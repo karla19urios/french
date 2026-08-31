@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Sleeping Letters</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --paper:#EEF0F2;
+    --paper-raised:#FFFFFF;
+    --ink:#1F2430;
+    --ink-soft:#4B5165;
+    --indigo:#2A3B73;
+    --indigo-deep:#1C2A57;
+    --red:#A6362B;
+    --gold:#8A6A22;
+    --green:#2E7D4F;
+    --mist:#D7DCE3;
+    --mist-strong:#BFC7D2;
+    --shadow: 0 1px 2px rgba(31,36,48,.06), 0 8px 24px -12px rgba(31,36,48,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#14171F;
+      --paper-raised:#1B1F2B;
+      --ink:#E8E9EE;
+      --ink-soft:#A9AEC0;
+      --indigo:#8DA0E8;
+      --indigo-deep:#B7C4F2;
+      --red:#E58176;
+      --gold:#E3B563;
+      --green:#7FC494;
+      --mist:#313749;
+      --mist-strong:#3D465C;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 28px -12px rgba(0,0,0,.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#14171F;
+    --paper-raised:#1B1F2B;
+    --ink:#E8E9EE;
+    --ink-soft:#A9AEC0;
+    --indigo:#8DA0E8;
+    --indigo-deep:#B7C4F2;
+    --red:#E58176;
+    --gold:#E3B563;
+    --green:#7FC494;
+    --mist:#313749;
+    --mist-strong:#3D465C;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 28px -12px rgba(0,0,0,.55);
+  }
+
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Public Sans', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', Georgia, 'Times New Roman', serif;
+    text-wrap:balance;
+    margin:0;
+  }
+  .mono{ font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace; }
+  ::selection{ background:var(--indigo); color:var(--paper-raised); }
+  a{ color:inherit; }
+  button{ font-family:inherit; }
+
+  .app{ max-width:1180px; margin:0 auto; padding:20px clamp(14px,3vw,32px) 60px; }
+
+  .topbar{ display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:16px; padding-bottom:16px; }
+  .brand-eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 6px; }
+  .brand-title{ font-size:clamp(26px,3.4vw,38px); font-weight:600; letter-spacing:-.01em; color:var(--indigo); }
+  .brand-sub{ font-size:14px; color:var(--ink-soft); margin-top:6px; max-width:52ch; }
+
+  button:focus-visible, [tabindex]:focus-visible{ outline:2px solid var(--indigo); outline-offset:2px; }
+
+  .flag-rule{ height:3px; border-radius:2px; background: linear-gradient(90deg, var(--indigo) 0 32%, var(--mist) 32% 68%, var(--red) 68% 100%); margin:2px 0 22px; }
+
+  .progress-track{ height:6px; border-radius:4px; background:var(--mist); overflow:hidden; margin-bottom:26px; }
+  .progress-fill{ height:100%; width:0%; background:linear-gradient(90deg, var(--indigo), var(--red)); transition:width .4s ease; }
+  @media (prefers-reduced-motion: reduce){ .progress-fill{ transition:none; } }
+
+  .layout{ display:grid; grid-template-columns: 250px 1fr; gap:24px; align-items:start; }
+  .rail{ display:flex; flex-direction:column; gap:6px; position:sticky; top:16px; }
+  .rail-item{ display:flex; align-items:center; gap:10px; padding:9px 10px; border-radius:8px; border:1px solid transparent; background:transparent; cursor:pointer; text-align:left; color:var(--ink-soft); }
+  .rail-item:hover{ background:var(--paper-raised); border-color:var(--mist); }
+  .rail-item.active{ background:var(--paper-raised); border-color:var(--mist-strong); box-shadow:var(--shadow); color:var(--ink); }
+  .rail-num{ font-family:'IBM Plex Mono', monospace; font-size:11px; width:22px; height:22px; border-radius:50%; display:grid; place-items:center; background:var(--mist); color:var(--ink-soft); flex:0 0 auto; }
+  .rail-item.active .rail-num{ background:var(--indigo); color:var(--paper-raised); }
+  .rail-item.done .rail-num{ background:var(--indigo-deep); color:var(--paper-raised); }
+  .rail-text{ display:flex; flex-direction:column; gap:1px; min-width:0; }
+  .rail-title{ font-size:13px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .rail-time{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--ink-soft); }
+
+  @media (max-width: 860px){
+    .layout{ grid-template-columns:1fr; }
+    .rail{ order:2; display:flex; flex-direction:row; overflow-x:auto; gap:8px; padding-bottom:6px; position:static; }
+    .rail-item{ min-width:168px; flex:0 0 auto; }
+    .stage{ order:1; }
+  }
+
+  .stage{ background:var(--paper-raised); border:1px solid var(--mist); border-radius:14px; box-shadow:var(--shadow); padding:clamp(20px,3.4vw,40px); min-height:480px; }
+  .kicker{ font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.06em; color:var(--red); margin-bottom:8px; }
+  .badge-time{ display:inline-block; margin-left:10px; font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-soft); border:1px solid var(--mist-strong); border-radius:999px; padding:1px 9px; }
+  .stage h2{ font-size:clamp(24px,3vw,34px); color:var(--ink); line-height:1.15; }
+  .stage-lede{ margin-top:12px; color:var(--ink-soft); font-size:15.5px; line-height:1.6; max-width:72ch; }
+  .section-block{ margin-top:28px; }
+  .section-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-soft); margin-bottom:10px; font-weight:600; }
+
+  /* chips */
+  .chip-row{ display:flex; flex-wrap:wrap; gap:10px; }
+  .chip{ display:inline-flex; align-items:center; gap:8px; background:var(--paper); border:1px solid var(--mist-strong); border-radius:999px; padding:8px 14px 8px 10px; cursor:pointer; color:var(--ink); }
+  .chip:hover{ border-color:var(--indigo); }
+  .chip:active{ transform:translateY(1px); }
+  .chip-icon{ width:22px; height:22px; border-radius:50%; background:var(--indigo); color:var(--paper-raised); display:grid; place-items:center; flex:0 0 auto; }
+  .chip-word{ font-weight:600; font-size:14.5px; }
+  .chip-ipa{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--ink-soft); }
+
+  /* sleeping letters row */
+  .sleep-row{ display:flex; flex-wrap:wrap; gap:14px; }
+  .sleep-tile{ background:var(--paper); border:1px solid var(--mist); border-radius:12px; padding:14px 16px; width:150px; text-align:center; }
+  .sleep-tile .letter{ font-family:'IBM Plex Mono', monospace; font-size:22px; font-weight:600; color:var(--ink-soft); opacity:.55; }
+  .sleep-tile .letter::before{ content:"–"; }
+  .sleep-tile .dots{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.2em; color:var(--mist-strong); margin:2px 0 8px; }
+  .sleep-tile .ex{ margin-top:6px; }
+
+  /* warm-up word cards */
+  .word-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; }
+  .word-card{ background:var(--paper); border:1px solid var(--mist); border-radius:12px; padding:14px; text-align:center; }
+  .word-card .w{ font-family:'Fraunces',serif; font-size:19px; font-weight:600; }
+  .word-card .w .silent{ opacity:.3; text-decoration:line-through; text-decoration-thickness:1.5px; }
+  .word-card .reveal-btn{ margin-top:8px; font-size:11.5px; border:1px solid var(--mist-strong); background:var(--paper-raised); color:var(--ink-soft); border-radius:999px; padding:4px 10px; cursor:pointer; }
+  .word-card .reveal-btn:hover{ border-color:var(--indigo); color:var(--indigo); }
+  .word-card .play-btn{ margin-top:6px; margin-left:6px; font-size:11.5px; border:1px solid var(--mist-strong); background:var(--paper-raised); color:var(--ink-soft); border-radius:999px; padding:4px 10px; cursor:pointer; }
+  .word-card .play-btn:hover{ border-color:var(--indigo); color:var(--indigo); }
+
+  /* liaison demo */
+  .liaison-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; }
+  .liaison-card{ background:var(--paper); border:1px solid var(--mist); border-radius:12px; padding:16px; }
+  .liaison-words{ display:flex; align-items:baseline; gap:6px; flex-wrap:wrap; font-family:'Fraunces',serif; font-size:19px; }
+  .liaison-words .w1-end{ color:var(--ink-soft); opacity:.4; text-decoration:line-through; text-decoration-thickness:1.5px; }
+  .liaison-arrow{ color:var(--ink-soft); font-size:13px; margin:0 6px; }
+  .liaison-result{ font-family:'Fraunces',serif; font-size:19px; margin-top:4px; }
+  .liaison-result .woke{ color:var(--red); font-weight:700; }
+  .liaison-sound{ font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--indigo); margin-top:6px; }
+  .liaison-card .play-line{ display:inline-flex; align-items:center; gap:6px; margin-top:10px; font-size:12.5px; color:var(--ink-soft); border:1px solid var(--mist-strong); border-radius:999px; padding:5px 12px 5px 8px; cursor:pointer; background:var(--paper-raised); }
+  .liaison-card .play-line:hover{ border-color:var(--indigo); }
+
+  /* vocab */
+  .vocab-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px; }
+  .vocab-item{ display:flex; align-items:baseline; justify-content:space-between; gap:14px; padding:8px 4px; border-bottom:1px dashed var(--mist-strong); }
+  .vocab-fr{ font-weight:600; font-size:14.5px; }
+  .vocab-en{ color:var(--ink-soft); font-size:13.5px; text-align:right; }
+  .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+  @media (max-width:700px){ .two-col{ grid-template-columns:1fr; } }
+
+  /* quiz */
+  .quiz-card{ border:1px solid var(--mist); border-radius:10px; padding:16px; background:var(--paper); margin-top:12px; }
+  .quiz-q{ font-weight:600; margin-bottom:10px; font-size:14.5px; }
+  .quiz-opts{ display:flex; flex-wrap:wrap; gap:8px; }
+  .quiz-opt{ border:1px solid var(--mist-strong); background:var(--paper-raised); color:var(--ink); border-radius:8px; padding:8px 14px; cursor:pointer; font-size:14px; }
+  .quiz-opt:hover{ border-color:var(--indigo); }
+  .quiz-opt.correct{ background:var(--green); border-color:var(--green); color:#fff; }
+  .quiz-opt.wrong{ background:var(--red); border-color:var(--red); color:#fff; }
+  .quiz-opt[disabled]{ cursor:default; }
+  .quiz-feedback{ margin-top:8px; font-size:13px; color:var(--ink-soft); min-height:16px; }
+
+  .callout{ border-left:3px solid var(--gold); background:var(--paper); padding:12px 16px; border-radius:0 8px 8px 0; font-size:14px; color:var(--ink-soft); line-height:1.55; }
+
+  .passage{ font-family:'Fraunces', serif; font-size:18px; line-height:1.9; color:var(--ink); background:var(--paper); border:1px solid var(--mist); border-radius:10px; padding:20px 22px; }
+  .m-sleep{ opacity:.4; text-decoration:line-through; text-decoration-thickness:1.5px; }
+  .m-liaison{ color:var(--red); font-weight:700; text-decoration:underline; text-decoration-color:var(--red); text-decoration-thickness:2px; text-underline-offset:3px; }
+  .legend-line{ display:flex; flex-wrap:wrap; gap:18px; margin-top:10px; font-size:13px; color:var(--ink-soft); }
+  .legend-swatch{ display:inline-flex; align-items:center; gap:6px; }
+  .legend-swatch .sample{ font-family:'Fraunces',serif; font-size:15px; }
+  .passage-src{ font-size:11.5px; color:var(--ink-soft); margin-top:8px; font-style:italic; }
+  .listen-line{ display:inline-flex; align-items:center; gap:8px; border:1px solid var(--mist-strong); border-radius:999px; padding:6px 14px 6px 8px; cursor:pointer; margin-top:10px; font-size:13.5px; background:var(--paper-raised); }
+  .listen-line:hover{ border-color:var(--indigo); }
+
+  .stage-nav{ display:flex; justify-content:space-between; align-items:center; margin-top:32px; padding-top:18px; border-top:1px solid var(--mist); }
+  .nav-btn{ display:inline-flex; align-items:center; gap:8px; background:var(--indigo); color:var(--paper-raised); border:none; border-radius:8px; padding:11px 18px; font-weight:600; font-size:14px; cursor:pointer; }
+  .nav-btn.ghost{ background:transparent; color:var(--ink); border:1px solid var(--mist-strong); }
+  .nav-btn:disabled{ opacity:.35; cursor:default; }
+  .nav-btn:hover:not(:disabled){ background:var(--indigo-deep); }
+  .nav-btn.ghost:hover:not(:disabled){ border-color:var(--indigo); color:var(--indigo); }
+
+  .score-pill{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--ink-soft); border:1px solid var(--mist-strong); border-radius:999px; padding:4px 12px; white-space:nowrap; }
+
+  .obj-list{ margin:14px 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:8px; }
+  .obj-list li{ display:flex; gap:10px; font-size:14.5px; color:var(--ink); align-items:flex-start; }
+  .obj-list li::before{ content:"«" attr(data-n) "»"; font-family:'IBM Plex Mono',monospace; color:var(--red); font-size:12px; flex:0 0 auto; margin-top:3px; }
+
+  .final-score{ display:flex; align-items:baseline; gap:10px; font-family:'IBM Plex Mono', monospace; }
+  .final-score .num{ font-size:40px; font-weight:600; color:var(--indigo); }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="topbar">
+    <div>
+      <p class="brand-eyebrow">A1 · French Liaison Workshop</p>
+      <h1 class="brand-title">The Sleeping Letters</h1>
+      <p class="brand-sub">Why "les amis" sounds like "lez-ami" — a 50-minute lesson on liaison, built around a wintery story, taught by Karla, in English.</p>
+    </div>
+  </div>
+  <div class="flag-rule"></div>
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+  <div class="layout">
+    <nav class="rail" id="rail" aria-label="Lesson stops"></nav>
+    <main class="stage" id="stage"></main>
+  </div>
+</div>
+
+<script>
+(function(){
+
+  /* ---------------- Speech ---------------- */
+  var frVoice = null;
+  function loadVoices(){
+    if(!('speechSynthesis' in window)) return;
+    var voices = window.speechSynthesis.getVoices();
+    frVoice = voices.find(function(v){ return v.lang === 'fr-FR'; }) ||
+              voices.find(function(v){ return v.lang && v.lang.indexOf('fr') === 0; }) || null;
+  }
+  if('speechSynthesis' in window){
+    loadVoices();
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+  }
+  function speak(text){
+    if(!('speechSynthesis' in window)){
+      alert('Text-to-speech is not available in this browser. Try Chrome or Edge.');
+      return;
+    }
+    window.speechSynthesis.cancel();
+    var u = new SpeechSynthesisUtterance(text);
+    u.lang = 'fr-FR';
+    if(frVoice) u.voice = frVoice;
+    u.rate = 0.85;
+    window.speechSynthesis.speak(u);
+  }
+  window.speak = speak;
+
+  function esc(s){ return s.replace(/'/g,"\\'"); }
+
+  function speakerSvg(){
+    return '<svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M1 4.5H3L6 2V10L3 7.5H1V4.5Z" fill="currentColor"/><path d="M8 4.2C8.6 4.7 9 5.3 9 6C9 6.7 8.6 7.3 8 7.8" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>';
+  }
+
+  function chip(word, ipa){
+    return '<button class="chip" onclick="speak(\''+esc(word)+'\')" title="Play pronunciation">' +
+      '<span class="chip-icon">'+speakerSvg()+'</span>' +
+      '<span class="chip-word">'+word+'</span>' +
+      (ipa ? '<span class="chip-ipa">['+ipa+']</span>' : '') +
+      '</button>';
+  }
+
+  function sleepTile(letter, example, note){
+    return '<div class="sleep-tile">' +
+      '<div class="letter">'+letter+'</div>' +
+      '<div class="dots">z z z</div>' +
+      '<div class="ex">'+chip(example)+'</div>' +
+      (note ? '<div style="font-size:11px;color:var(--ink-soft);margin-top:6px;">'+note+'</div>' : '') +
+      '</div>';
+  }
+
+  function wordCard(word, displayHtml, ipa){
+    var id = 'wc'+(Math.random()+'').slice(2,9);
+    return '<div class="word-card">' +
+      '<div class="w" id="'+id+'">'+word+'</div>' +
+      '<div>' +
+      '<button class="reveal-btn" onclick="revealWord(\''+id+'\',\''+esc(displayHtml)+'\')">Reveal silent letter</button>' +
+      '<button class="play-btn" onclick="speak(\''+esc(word)+'\')">'+speakerSvg()+' Play</button>' +
+      '</div>' +
+      (ipa ? '<div class="chip-ipa" style="margin-top:6px;">['+ipa+']</div>' : '') +
+      '</div>';
+  }
+  window.revealWord = function(id, html){
+    document.getElementById(id).innerHTML = html;
+  };
+
+  function liaisonDemo(w1Rest, w1Sleep, w2, sound, full){
+    // w1Rest = part of word1 before the sleeping letter, w1Sleep = the sleeping letter(s)
+    return '<div class="liaison-card">' +
+      '<div class="liaison-words">' + w1Rest + '<span class="w1-end">'+w1Sleep+'</span>&nbsp;'+w2+'</div>' +
+      '<div class="liaison-arrow">wakes up as&hellip;</div>' +
+      '<div class="liaison-result">' + w1Rest + '<span class="woke">'+sound+'</span>&#8209;'+w2+'</div>' +
+      '<div class="liaison-sound">liaison sound: ['+sound+']</div>' +
+      '<div class="play-line" onclick="speak(\''+esc(full)+'\')">'+speakerSvg()+' Hear it linked</div>' +
+      '</div>';
+  }
+
+  function vocabList(pairs){
+    return '<ul class="vocab-list">' + pairs.map(function(p){
+      return '<li class="vocab-item"><span class="vocab-fr">'+chip(p[0])+'</span><span class="vocab-en">'+p[1]+'</span></li>';
+    }).join('') + '</ul>';
+  }
+
+  var qCounter = 0;
+  var score = { correct:0, answered:0 };
+  function quiz(question, options, correctIndex, opts){
+    opts = opts || {};
+    var qid = 'q'+(qCounter++);
+    var optsHtml = options.map(function(opt,i){
+      return '<button class="quiz-opt" data-qid="'+qid+'" data-correct="'+(i===correctIndex)+'" onclick="answerQuiz(this)">'+opt+'</button>';
+    }).join('');
+    var audioBtn = opts.audio ?
+      '<span class="listen-line" onclick="speak(\''+esc(opts.audio)+'\')">'+speakerSvg()+' Listen</span><br>' : '';
+    return '<div class="quiz-card" id="'+qid+'-wrap">' +
+      audioBtn +
+      '<div class="quiz-q">'+question+'</div>' +
+      '<div class="quiz-opts" id="'+qid+'">'+optsHtml+'</div>' +
+      '<div class="quiz-feedback" id="'+qid+'-fb"></div>' +
+      '</div>';
+  }
+  window.answerQuiz = function(btn){
+    var group = btn.parentElement;
+    if(group.dataset.answered) return;
+    group.dataset.answered = '1';
+    var isCorrect = btn.dataset.correct === 'true';
+    Array.prototype.forEach.call(group.children, function(b){
+      b.disabled = true;
+      if(b.dataset.correct === 'true') b.classList.add('correct');
+    });
+    if(!isCorrect) btn.classList.add('wrong');
+    var fb = document.getElementById(group.id+'-fb');
+    fb.textContent = isCorrect ? 'Correct!' : 'Not quite — the right answer is highlighted in green.';
+    score.answered++;
+    if(isCorrect) score.correct++;
+    updateScorePill();
+  };
+  function updateScorePill(){
+    var el = document.getElementById('scorePill');
+    if(el) el.textContent = 'Practice score: ' + score.correct + '/' + score.answered;
+    var fs = document.getElementById('finalScoreNum');
+    if(fs) fs.textContent = score.correct + '/' + score.answered;
+  }
+
+  /* ---------------- Content data ---------------- */
+  var S = [];
+
+  // 0 — Welcome
+  S.push({
+    tag:'Welcome', minutes:3, kicker:'ORIENTATION',
+    title:'The letters that sleep — and the ones that wake up',
+    lede:'Today\'s lesson uses the story of a very grumpy wolf who hates Noël to teach one of French\'s most musical habits: liaison — the moment a normally silent final letter "wakes up" and links smoothly into the next word.',
+    body:function(){
+      return '<div class="section-block">'+
+        '<div class="section-label">Today\'s stops</div>'+
+        '<ul class="obj-list">'+
+          '<li data-n="1">Spot the "sleeping" final letters: «-s -x -t -d -e -p -z» that go silent at the end of a word.</li>'+
+          '<li data-n="2">Learn the two liaison rules: «-s/-x/-z» + vowel &rarr; [z], and «-d/-t» + vowel &rarr; [t].</li>'+
+          '<li data-n="3">Read two passages from <em>Le loup qui n\'aimait pas Noël</em> — first spotting sleeping letters, then spotting liaisons.</li>'+
+          '<li data-n="4">Practice hearing and producing liaison out loud, together.</li>'+
+        '</ul>'+
+        '</div>'+
+        '<div class="callout" style="margin-top:22px;">Click any word chip throughout this lesson to hear it spoken aloud.</div>';
+    }
+  });
+
+  // 1 — Warm-up: silent final letters
+  S.push({
+    tag:'Stop 1', minutes:6, kicker:'WARM-UP · SILENT LETTERS',
+    title:'Say it without the last letter',
+    lede:'Lots of French words end in a letter that is never pronounced. Before we can talk about liaison, we need to be able to spot these "sleeping" letters. Look at each word — can you guess which final letter goes silent? Click to check, then click play to hear it confirmed.',
+    body:function(){
+      return '<div class="section-block"><div class="word-grid">'+
+        wordCard('Paris', 'Pari<span class=\'silent\'>s</span>')+
+        wordCard('froid', 'froi<span class=\'silent\'>d</span>')+
+        wordCard('Bordeaux', 'Bordea<span class=\'silent\'>ux</span>')+
+        wordCard('trop', 'tro<span class=\'silent\'>p</span>')+
+        wordCard('Étretat', 'Étreta<span class=\'silent\'>t</span>')+
+        wordCard('bienvenue', 'bienvenu<span class=\'silent\'>e</span>')+
+        wordCard('poste', 'post<span class=\'silent\'>e</span>')+
+        wordCard('trois', 'troi<span class=\'silent\'>s</span>')+
+        wordCard('chaud', 'chau<span class=\'silent\'>d</span>')+
+        wordCard('restaurant', 'restauran<span class=\'silent\'>t</span>')+
+        wordCard('beaucoup', 'beaucou<span class=\'silent\'>p</span>')+
+        '</div></div>'+
+        '<div class="callout">Notice a pattern? Every silent letter you just found is one of just a handful of repeat offenders — that\'s exactly what we look at next.</div>';
+    }
+  });
+
+  // 2 — Concept: les lettres qui dorment
+  S.push({
+    tag:'Stop 2', minutes:5, kicker:'CONCEPT · LES LETTRES QUI DORMENT',
+    title:'Seven letters that go silent at the end of a word',
+    lede:'In French, a short list of final letters "fall asleep" almost every time they land at the end of a word: «-s, -x, -t, -d, -e, -p, -z». Learn to recognize this short list and half of French pronunciation gets easier overnight.',
+    body:function(){
+      return '<div class="section-block"><div class="sleep-row">'+
+        sleepTile('s','Paris')+
+        sleepTile('x','deux')+
+        sleepTile('t','petit')+
+        sleepTile('d','grand')+
+        sleepTile('e','porte')+
+        sleepTile('p','trop')+
+        sleepTile('z','chez')+
+        '</div></div>'+
+        '<div class="callout">Keep this list of seven in the back of your mind — every one of them is about to reappear as the letters that <em>can</em> wake up in the next few stops.</div>';
+    }
+  });
+
+  // 3 — Story part 1 + vocab
+  S.push({
+    tag:'Stop 3', minutes:6, kicker:'STORY · PART 1',
+    title:'Le loup qui n’aimait pas Noël',
+    lede:'Our first reading, from a French children\'s book about a wolf who hates Christmas. Listen once with the passage covered, then follow along — the muted, crossed-out letters are the "sleeping" letters you just learned to spot.',
+    body:function(){
+      return '<div class="section-block">'+
+        '<div class="section-label">The wolf who didn\'t like Christmas</div>'+
+        '<div class="passage">Il éta<span class="m-sleep">t</span> une foi<span class="m-sleep">s</span> un gro<span class="m-sleep">s</span> loup noir qui n’aimai<span class="m-sleep">t</span> pas Noël. Il s’appelait Loup. À Noël, il y avai<span class="m-sleep">t</span> tro<span class="m-sleep">p</span> de lumière<span class="m-sleep">s</span>, tro<span class="m-sleep">p</span> de chanson<span class="m-sleep">s</span>, tro<span class="m-sleep">p</span> de décoration<span class="m-sleep">s</span>. Vraimen<span class="m-sleep">t</span>, cette fêt<span class="m-sleep">e</span> lui donnait mal à la têt<span class="m-sleep">e</span>. Et plus décembre approchai<span class="m-sleep">t</span>, plus Loup se renfrognai<span class="m-sleep">t</span>. Ce matin-là, quand Loup se réveilla, tou<span class="m-sleep">t</span> éta<span class="m-sleep">t</span> blanc dans la forêt. Enchanté, il s’habilla chaudemen<span class="m-sleep">t</span> et sortit se promener.'+
+        '<div class="listen-line" onclick="speak(\'Il était une fois un gros loup noir qui n\\\'aimait pas Noël. Il s\\\'appelait Loup. À Noël, il y avait trop de lumières, trop de chansons, trop de décorations. Vraiment, cette fête lui donnait mal à la tête. Et plus décembre approchait, plus Loup se renfrognait. Ce matin-là, quand Loup se réveilla, tout était blanc dans la forêt. Enchanté, il s\\\'habilla chaudement et sortit se promener.\')">'+speakerSvg()+' Listen to the full passage</div>'+
+        '<div class="legend-line"><span class="legend-swatch"><span class="sample">éta<span class="m-sleep">t</span></span> — sleeping letter, not pronounced</span></div>'+
+        '</div>'+
+        '</div>'+
+        '<div class="section-block two-col">'+
+          '<div><div class="section-label">Vocabulary</div>'+
+            vocabList([['trop','too much'],['beaucoup','many, a lot'],['la forêt','forest'],['la fête','celebration']])+
+          '</div>'+
+          '<div><div class="section-label">&nbsp;</div>'+
+            vocabList([['le matin','morning'],['mal à la tête','headache'],['vraiment','really'],['approcher','to get close to']])+
+          '</div>'+
+        '</div>'+
+        '<div class="section-block">'+
+          vocabList([['il y a','there is / there are'],['se renfrogner','to scowl'],['se réveiller','to wake up'],['s’habiller','to get dressed'],['chaud','hot']])+
+        '</div>';
+    }
+  });
+
+  // 4 — Liaison concept
+  S.push({
+    tag:'Stop 4', minutes:5, kicker:'CONCEPT · LA LIAISON',
+    title:'Sleeping letters can wake up',
+    lede:'Here is the twist: when a word ending in one of those sleeping letters is followed by a word that starts with a vowel sound, the sleeping letter often wakes up — and links the two words into one smooth sound. This is called liaison.',
+    body:function(){
+      return '<div class="section-block">'+
+        liaisonDemo('le', 's', 'opéras', 'z', 'les opéras')+
+        '</div>'+
+        '<div class="callout"><strong style="color:var(--ink);">les</strong> ends in a sleeping «s». <strong style="color:var(--ink);">opéras</strong> starts with the vowel «o». Put them next to each other and the «s» wakes up as a [z] sound: <span class="mono">le&#8209;z&#8209;opéras</span>.</div>'+
+        '<div class="section-block">'+
+        quiz('Liaison happens when a word ending in a sleeping letter meets a word that starts with&hellip;', ['another consonant','a vowel sound','a silent letter'], 1)+
+        '</div>';
+    }
+  });
+
+  // 5 — Rule 1: s/x/z -> z
+  S.push({
+    tag:'Stop 5', minutes:6, kicker:'RULE 1 · «-s», «-x», «-z» + VOYELLE',
+    title:'Three spellings, one wake-up sound: [z]',
+    lede:'When a word ending in -s, -x, or -z meets a vowel sound, it wakes up as [z] — no matter which of the three letters it started as.',
+    body:function(){
+      return '<div class="section-block"><div class="liaison-grid">'+
+        liaisonDemo('le', 's', 'amis', 'z', 'les amis')+
+        liaisonDemo('deu', 'x', 'amis', 'z', 'deux amis')+
+        liaisonDemo('di', 'x', 'ans', 'z', 'dix ans')+
+        '</div></div>'+
+        '<div class="section-block">'+
+        quiz('What sound does the liaison in "les amis" produce?', ['[s]','[z]','[t]'], 1, {audio:'les amis'})+
+        quiz('"dix ans" (ten years) links its final «x» into which sound?', ['[t]','[s]','[z]'], 2, {audio:'dix ans'})+
+        '</div>';
+    }
+  });
+
+  // 6 — Rule 2: d/t -> t
+  S.push({
+    tag:'Stop 6', minutes:6, kicker:'RULE 2 · «-d», «-t» + VOYELLE',
+    title:'Two spellings, one wake-up sound: [t]',
+    lede:'The same idea applies to -d and -t: in front of a vowel sound, both wake up as the same [t] sound.',
+    body:function(){
+      return '<div class="section-block"><div class="liaison-grid">'+
+        liaisonDemo('peti', 't', 'ami', 't', 'petit ami')+
+        liaisonDemo('gran', 'd', 'ami', 't', 'grand ami')+
+        liaisonDemo('tou', 't', 'est bon', 't', 'tout est bon')+
+        '</div></div>'+
+        '<div class="callout">Notice: «grand» ends in the letter «d», but the liaison sound is still [t], not [d] — the ear always hears [t] for both -d and -t liaisons.</div>'+
+        '<div class="section-block">'+
+        quiz('"grand ami" links its final «d» into which sound?', ['[d]','[t]','[z]'], 1, {audio:'grand ami'})+
+        quiz('Which pair of letters both wake up as the SAME [t] sound?', ['-s and -x','-d and -t','-e and -p'], 1)+
+        '</div>';
+    }
+  });
+
+  // 7 — Story part 2 + vocab, liaisons marked
+  S.push({
+    tag:'Stop 7', minutes:6, kicker:'STORY · PART 2',
+    title:'Le loup qui n’aimait pas Noël — the wolf meets his friends',
+    lede:'The story continues — and this time, listen for the liaisons. Every underlined red link below is a sleeping letter that woke up.',
+    body:function(){
+      return '<div class="section-block">'+
+        '<div class="section-label">Continued&hellip;</div>'+
+        '<div class="passage">&laquo; You-hou&nbsp;! Lou-oup&nbsp;! &raquo; &mdash; Salu<span class="m-sleep">t</span> <span class="m-liaison">les_ami</span><span class="m-sleep">s</span>&nbsp;! fi<span class="m-sleep">t</span> Loup en découvran<span class="m-sleep">t</span> Maîtr<span class="m-sleep">e</span> Hibou e<span class="m-sleep">t</span> Valentin perché<span class="m-sleep">s</span> <span class="m-liaison">tout_en</span> hau<span class="m-sleep">t</span> d’un sapin. Voule<span class="m-sleep">z</span>-vou<span class="m-sleep">s</span> fair<span class="m-sleep">e</span> un<span class="m-sleep">e</span> bataill<span class="m-sleep">e</span> de boule<span class="m-sleep">s</span> de neig<span class="m-sleep">e</span> avec moi&nbsp;? &mdash; Désolé, Lou<span class="m-sleep">p</span>, mai<span class="m-sleep">s</span> <span class="m-liaison">nous_installon</span><span class="m-sleep">s</span> le<span class="m-sleep">s</span> guirlande<span class="m-sleep">s</span> lumineuse<span class="m-sleep">s</span> pour Noël. Tu vien<span class="m-sleep">s</span> <span class="m-liaison">nous_aider</span>&nbsp;? &mdash; Certainemen<span class="m-sleep">t</span> pa<span class="m-sleep">s</span>&nbsp;! répondi<span class="m-sleep">t</span> Lou<span class="m-sleep">p</span>. Je détest<span class="m-sleep">e</span> Noël. &raquo;'+
+        '<div class="listen-line" onclick="speak(\'Salut les amis ! fit Loup en découvrant Maître Hibou et Valentin perchés tout en haut d\\\'un sapin. Voulez-vous faire une bataille de boules de neige avec moi ? Désolé, Loup, mais nous installons les guirlandes lumineuses pour Noël. Tu viens nous aider ? Certainement pas ! répondit Loup. Je déteste Noël.\')">'+speakerSvg()+' Listen to the full passage</div>'+
+        '<div class="legend-line"><span class="legend-swatch"><span class="sample">le<span class="m-sleep">s</span></span> sleeping letter, not pronounced</span><span class="legend-swatch"><span class="sample m-liaison">les_amis</span> a liaison — two words linked into one sound</span></div>'+
+        '</div>'+
+        '</div>'+
+        '<div class="section-block">'+
+          '<div class="section-label">Vocabulary</div>'+
+          vocabList([['un sapin','a Christmas tree'],['une bataille de boules de neige','a snowball fight'],['des guirlandes lumineuses','Christmas lights'],['désolé','sorry'],['l’arbre','tree']])+
+        '</div>'+
+        '<div class="section-block">'+
+        quiz('"les amis" in this passage links with which sound?', ['[t]','[z]','[s]'], 1)+
+        '</div>';
+    }
+  });
+
+  // 8 — Read aloud practice
+  S.push({
+    tag:'Stop 8', minutes:6, kicker:'READ ALOUD',
+    title:'Now you find the liaisons',
+    lede:'Same passage, links removed. Read it aloud as a class first, then in pairs — see if you can hear (and produce) the four liaisons yourselves before checking the answer below.',
+    body:function(){
+      return '<div class="section-block">'+
+        '<div class="passage">&laquo; You-hou&nbsp;! Lou-oup&nbsp;! &raquo; &mdash; Salut les amis&nbsp;! fit Loup en découvrant Maître Hibou et Valentin perchés tout en haut d’un sapin. Voulez-vous faire une bataille de boules de neige avec moi&nbsp;? &mdash; Désolé, Loup, mais nous installons les guirlandes lumineuses pour Noël. Tu viens nous aider&nbsp;? &mdash; Certainement pas&nbsp;! répondit Loup. Je déteste Noël. &raquo;'+
+        '<div class="listen-line" onclick="speak(\'Salut les amis ! fit Loup en découvrant Maître Hibou et Valentin perchés tout en haut d\\\'un sapin. Voulez-vous faire une bataille de boules de neige avec moi ? Désolé, Loup, mais nous installons les guirlandes lumineuses pour Noël. Tu viens nous aider ? Certainement pas ! répondit Loup. Je déteste Noël.\')">'+speakerSvg()+' Listen again</div>'+
+        '</div>'+
+        '</div>'+
+        '<div class="section-block">'+
+        '<button class="nav-btn ghost" id="revealAnswerBtn" onclick="document.getElementById(\'answerPassage\').style.display=\'block\'; this.style.display=\'none\';">Reveal the four liaisons</button>'+
+        '<div id="answerPassage" class="passage" style="display:none; margin-top:14px;">&laquo; You-hou&nbsp;! Lou-oup&nbsp;! &raquo; &mdash; Salut <span class="m-liaison">les_amis</span>&nbsp;! fit Loup en découvrant Maître Hibou et Valentin perchés <span class="m-liaison">tout_en</span> haut d’un sapin&hellip; mais <span class="m-liaison">nous_installons</span> les guirlandes&hellip; Tu viens <span class="m-liaison">nous_aider</span>&nbsp;?</div>'+
+        '</div>'+
+        '<div class="callout">Classroom routine: one volunteer reads with liaisons deliberately exaggerated, then the whole class reads together at natural speed.</div>';
+    }
+  });
+
+  // 9 — wrap up
+  S.push({
+    tag:'Stop 9', minutes:6, kicker:'WRAP-UP',
+    title:'One last check before we go',
+    lede:'A final mixed round, then a look at what\'s next.',
+    body:function(){
+      return '<div class="section-block">'+
+        quiz('Which seven letters are the "sleeping letters" at the end of a French word?', ['-s -x -t -d -e -p -z','-a -i -o -u -y','-r -l -m -n'], 0)+
+        quiz('"deux amis" — what sound does the liaison make?', ['[t]','[z]','[d]'], 1, {audio:'deux amis'})+
+        quiz('"petit ami" — what sound does the liaison make?', ['[t]','[d]','[z]'], 0, {audio:'petit ami'})+
+        '</div>'+
+        '<div class="section-block" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">'+
+        '<div class="final-score"><span class="num" id="finalScoreNum">0/0</span><span style="color:var(--ink-soft); font-size:13px;">practice questions correct today</span></div>'+
+        '</div>'+
+        '<div class="section-block callout" style="border-color:var(--indigo); border-left-color:var(--indigo);">'+
+        '<strong style="color:var(--indigo); font-family:\'Fraunces\',serif; font-size:16px;">Next lesson: Se présenter</strong><br>'+
+        'We\'ll put our new sounds to work introducing ourselves in French.'+
+        '</div>';
+    }
+  });
+
+  /* ---------------- Render ---------------- */
+  var current = 0;
+  var rail = document.getElementById('rail');
+  var stage = document.getElementById('stage');
+  var cum = [];
+  (function(){ var t=0; S.forEach(function(s){ cum.push(t); t+=s.minutes; }); })();
+
+  function mm(n){ return (n<10?'0':'')+n+':00'; }
+
+  function renderRail(){
+    rail.innerHTML = S.map(function(s,i){
+      var cls = 'rail-item' + (i===current?' active':'') + (i<current?' done':'');
+      return '<button class="'+cls+'" onclick="goTo('+i+')">'+
+        '<span class="rail-num">'+(i+1)+'</span>'+
+        '<span class="rail-text"><span class="rail-title">'+s.kicker.replace(/«|»/g,'')+'</span>'+
+        '<span class="rail-time">'+mm(cum[i])+'&ndash;'+mm(cum[i]+s.minutes)+'</span></span>'+
+        '</button>';
+    }).join('');
+  }
+
+  function renderStage(){
+    var s = S[current];
+    stage.innerHTML =
+      '<div class="kicker">'+s.tag.toUpperCase()+' &nbsp;·&nbsp; '+s.kicker+'<span class="badge-time">'+s.minutes+' min</span></div>'+
+      '<h2>'+s.title+'</h2>'+
+      '<p class="stage-lede">'+s.lede+'</p>'+
+      s.body()+
+      '<div class="stage-nav">'+
+        '<button class="nav-btn ghost" onclick="goTo('+(current-1)+')" '+(current===0?'disabled':'')+'>&larr; Back</button>'+
+        '<span class="score-pill" id="scorePill">Practice score: '+score.correct+'/'+score.answered+'</span>'+
+        (current===S.length-1 ?
+          '<button class="nav-btn" onclick="goTo(0)">Restart lesson &#8635;</button>' :
+          '<button class="nav-btn" onclick="goTo('+(current+1)+')">Next stop &rarr;</button>')+
+      '</div>';
+    var fs = document.getElementById('finalScoreNum');
+    if(fs) fs.textContent = score.correct+'/'+score.answered;
+    var fillEl = document.getElementById('progressFill');
+    if(fillEl) fillEl.style.width = (((current+1)/S.length)*100)+'%';
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  window.goTo = function(i){
+    if(i<0 || i>=S.length) return;
+    current = i;
+    renderRail();
+    renderStage();
+  };
+
+  renderRail();
+  renderStage();
+
+})();
+</script>
+
+</body></html>

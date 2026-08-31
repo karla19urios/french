@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Les Mois et les Saisons</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&family=Caveat:wght@600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+  :root{
+    --paper:#f8f3e6;
+    --paper-2:#fffdf7;
+    --rule:rgba(36,86,201,.11);
+    --margin:rgba(196,74,74,.28);
+    --ink:#2a2a28;
+    --ink-soft:#6b665a;
+    --blue:#2456c9;
+    --blue-soft:rgba(36,86,201,.1);
+    --green:#1c7a4d;
+    --green-soft:rgba(28,122,77,.1);
+    --orange:#dd7a37;
+    --orange-soft:rgba(221,122,55,.12);
+    --sun:#e2a730;
+    --sun-soft:rgba(226,167,48,.14);
+    --sky:#4f9bcf;
+    --sky-soft:rgba(79,155,207,.12);
+    --card-line:rgba(42,42,40,.12);
+    --shadow:0 10px 26px rgba(42,32,20,.1);
+    --radius:16px;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Nunito Sans', system-ui, sans-serif;
+    line-height:1.55;
+    margin:0;
+  }
+  img,svg{max-width:100%;}
+  ::selection{background:var(--sun); color:#2a2a28;}
+  a{color:var(--blue);}
+
+  h1,h2,h3,.display{
+    font-family:'Baloo 2','Nunito Sans',sans-serif;
+    text-wrap:balance;
+  }
+  .mono{font-family:'IBM Plex Mono', ui-monospace, monospace;}
+  .hand{font-family:'Caveat',cursive;}
+
+  /* ruled notebook paper background */
+  .page{
+    position:relative;
+    background:
+      repeating-linear-gradient(var(--paper) 0 34px, var(--rule) 34px 35px);
+  }
+  .page::before{
+    content:"";
+    position:fixed;
+    top:0; bottom:0; left:0;
+    width:56px;
+    background:var(--margin);
+    opacity:.55;
+    z-index:0;
+    pointer-events:none;
+  }
+  .page::after{
+    content:"";
+    position:fixed;
+    top:0; bottom:0; left:22px;
+    width:2px;
+    background:repeating-radial-gradient(circle, transparent 0 6px, rgba(42,42,40,.12) 6px 8px, transparent 8px 40px);
+    z-index:0;
+    pointer-events:none;
+  }
+
+  .wrap{
+    max-width:960px;
+    margin:0 auto;
+    padding:0 24px 100px 76px;
+    position:relative;
+    z-index:1;
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 18px 90px 54px;}
+    .page::before{width:34px;}
+    .page::after{left:14px;}
+  }
+
+  /* torn paper divider */
+  .torn{
+    height:26px;
+    margin:8px 0;
+    background:var(--paper);
+    -webkit-mask-image:linear-gradient(90deg,#000 0 100%);
+  }
+  .torn svg{display:block; width:100%; height:100%;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:60px 0 26px;
+  }
+  .hero .kicker{
+    font-family:'Caveat',cursive;
+    font-size:1.35rem;
+    color:var(--green);
+    margin-bottom:2px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem,6.4vw,4rem);
+    font-weight:800;
+    color:var(--blue);
+    margin:0 0 6px;
+  }
+  .hero h1 .accent{color:var(--orange);}
+  .hero p.sub{
+    max-width:560px;
+    color:var(--ink-soft);
+    font-size:1.05rem;
+    margin:0;
+  }
+  .season-strip{
+    display:flex;
+    gap:8px;
+    margin-top:20px;
+  }
+  .season-strip span{
+    flex:1;
+    height:9px;
+    border-radius:5px;
+  }
+  .season-strip .s-hiver{background:var(--sky);}
+  .season-strip .s-printemps{background:var(--green);}
+  .season-strip .s-ete{background:var(--sun);}
+  .season-strip .s-automne{background:var(--orange);}
+
+  /* ---------- section heads ---------- */
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin:56px 0 18px;
+  }
+  .section-head .num{
+    font-family:'Baloo 2';
+    font-size:1.1rem;
+    color:var(--paper-2);
+    background:var(--blue);
+    width:30px;height:30px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    flex:none;
+  }
+  .section-head h2{
+    font-size:clamp(1.4rem,3.4vw,1.9rem);
+    margin:0;
+    color:var(--ink);
+  }
+  .section-head p.hint{
+    margin:4px 0 0 42px;
+    color:var(--ink-soft);
+    font-size:.92rem;
+    grid-column:1/-1;
+  }
+
+  .note-card{
+    background:var(--paper-2);
+    border:1px solid var(--card-line);
+    border-left:5px solid var(--blue);
+    border-radius:10px;
+    padding:20px 22px;
+    box-shadow:var(--shadow);
+  }
+  .note-card p{margin:0 0 8px; color:var(--ink-soft);}
+  .note-card p:last-child{margin-bottom:0;}
+  .note-card strong{color:var(--ink);}
+
+  /* ---------- month explorer ---------- */
+  .month-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+  }
+  @media (max-width:640px){ .month-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:420px){ .month-grid{grid-template-columns:1fr;} }
+
+  .month-tile{
+    background:var(--paper-2);
+    border:2px solid var(--card-line);
+    border-radius:12px;
+    padding:10px 8px 10px 12px;
+    display:flex;
+    align-items:center;
+    gap:4px;
+    transition:transform .12s ease, border-color .12s ease, box-shadow .12s ease;
+  }
+  .month-tile:hover{transform:translateY(-2px); box-shadow:var(--shadow);}
+  .month-tile.sel{border-color:var(--blue); box-shadow:var(--shadow);}
+  .month-select{
+    appearance:none; cursor:pointer; text-align:left;
+    background:transparent; border:none; padding:2px 0;
+    display:flex; align-items:center; gap:8px;
+    flex:1; min-width:0;
+  }
+  .month-select:focus-visible{outline:2px solid var(--blue); outline-offset:2px;}
+  .month-select .fr{font-family:'Baloo 2'; font-size:1.02rem; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .month-select .check{color:var(--blue); font-weight:800;}
+  .month-tile .dot{width:9px;height:9px;border-radius:50%; flex:none;}
+  .month-tile .listen-btn{width:30px; height:30px; font-size:.8rem;}
+
+  .dot.hiver{background:var(--sky);}
+  .dot.printemps{background:var(--green);}
+  .dot.ete{background:var(--sun);}
+  .dot.automne{background:var(--orange);}
+
+  .detail-bar{
+    margin-top:16px;
+    background:var(--paper-2);
+    border:1px solid var(--card-line);
+    border-radius:12px;
+    padding:16px 20px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+    box-shadow:var(--shadow);
+  }
+  .detail-bar .placeholder{color:var(--ink-soft); font-style:italic;}
+  .detail-bar .big{font-family:'Baloo 2'; font-size:1.5rem;}
+  .detail-bar .meta{color:var(--ink-soft); font-size:.9rem;}
+
+  .listen-btn{
+    appearance:none;
+    border:1px solid var(--card-line);
+    background:var(--paper);
+    color:var(--ink);
+    width:38px;height:38px;
+    border-radius:50%;
+    cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    font-size:1rem;
+    flex:none;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .listen-btn:hover{background:var(--sun); transform:scale(1.06);}
+  .listen-btn:focus-visible{outline:2px solid var(--blue); outline-offset:2px;}
+
+  /* ---------- season cards ---------- */
+  .season-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+  @media (max-width:600px){ .season-grid{grid-template-columns:1fr;} }
+
+  .season-card{
+    position:relative;
+    background:var(--paper-2);
+    border:1px solid var(--card-line);
+    border-radius:var(--radius);
+    padding:20px 22px;
+    box-shadow:var(--shadow);
+  }
+  .season-card.match{outline:2px solid var(--blue); outline-offset:3px;}
+  .season-card .badge{
+    position:absolute; top:14px; right:14px;
+    font-size:.66rem; font-weight:800; text-transform:uppercase; letter-spacing:.4px;
+    background:var(--blue); color:#fff;
+    padding:3px 8px; border-radius:6px;
+    display:none;
+  }
+  .season-card.match .badge{display:inline-block;}
+  .season-card .icon{font-size:1.8rem;}
+  .season-card .name-row{display:flex; align-items:center; gap:8px; margin:6px 0 0;}
+  .season-card h3{margin:0; font-size:1.3rem;}
+  .season-card .name-row .listen-btn{width:30px; height:30px; font-size:.8rem;}
+  .season-card .en{color:var(--ink-soft); font-size:.88rem; margin-bottom:10px;}
+  .season-card .weather-line{
+    display:flex; align-items:center; gap:10px;
+    padding:6px 0;
+    border-top:1px dashed var(--card-line);
+    font-size:.95rem;
+  }
+  .season-card .weather-line:first-of-type{border-top:none; padding-top:0;}
+  .season-card .weather-line .en{margin:0; flex:1;}
+  .season-card .weather-line .fr-w{font-weight:700; min-width:150px;}
+  .season-card .weather-line .listen-btn{width:28px; height:28px; font-size:.75rem;}
+  .season-card .months-line{
+    margin-top:10px;
+    font-size:.8rem;
+    color:var(--ink-soft);
+  }
+  .season-card .months-line b{color:var(--ink);}
+
+  /* ---------- quiz ---------- */
+  .quiz-shell{
+    background:var(--paper-2);
+    border:1px solid var(--card-line);
+    border-radius:var(--radius);
+    padding:22px 24px;
+    box-shadow:var(--shadow);
+  }
+  .quiz-top{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom:14px;
+  }
+  .quiz-score{
+    font-family:'IBM Plex Mono'; font-size:.85rem; color:var(--ink-soft);
+    font-variant-numeric:tabular-nums;
+  }
+  .quiz-prompt{
+    font-family:'Baloo 2'; font-size:1.6rem; color:var(--ink); margin-bottom:14px;
+  }
+  .quiz-options{
+    display:grid; grid-template-columns:1fr 1fr; gap:10px;
+  }
+  @media (max-width:480px){ .quiz-options{grid-template-columns:1fr;} }
+  .quiz-opt{
+    appearance:none; cursor:pointer;
+    border:2px solid var(--card-line);
+    background:var(--paper);
+    border-radius:10px;
+    padding:12px 14px;
+    font-family:'Nunito Sans'; font-weight:700; font-size:.98rem;
+    display:flex; align-items:center; gap:8px;
+    color:var(--ink);
+  }
+  .quiz-opt:hover{border-color:var(--blue);}
+  .quiz-opt.correct{border-color:var(--green); background:var(--green-soft);}
+  .quiz-opt.wrong{border-color:#c94f4f; background:rgba(201,79,79,.1);}
+  .quiz-opt:disabled{cursor:default;}
+  .quiz-feedback{margin-top:12px; font-size:.92rem; min-height:1.4em; color:var(--ink-soft);}
+  .quiz-actions{margin-top:14px;}
+
+  /* ---------- date practice ---------- */
+  .date-target{
+    font-family:'IBM Plex Mono'; font-weight:600; font-size:2rem;
+    color:var(--blue);
+    letter-spacing:.5px;
+    font-variant-numeric:tabular-nums;
+    margin-bottom:4px;
+  }
+  .date-target-note{color:var(--ink-soft); font-size:.82rem; margin-bottom:16px;}
+  .date-opt-row{
+    display:flex; align-items:stretch; gap:8px;
+    margin-bottom:10px;
+  }
+  .date-opt-select{
+    appearance:none; cursor:pointer; text-align:left; flex:1;
+    border:2px solid var(--card-line);
+    background:var(--paper);
+    border-radius:10px;
+    padding:11px 14px;
+    font-family:'Nunito Sans'; font-weight:700; font-size:.94rem;
+    color:var(--ink);
+  }
+  .date-opt-select:hover{border-color:var(--blue);}
+  .date-opt-select:focus-visible{outline:2px solid var(--blue); outline-offset:2px;}
+  .date-opt-select.correct{border-color:var(--green); background:var(--green-soft);}
+  .date-opt-select.wrong{border-color:#c94f4f; background:rgba(201,79,79,.1);}
+  .date-opt-select:disabled{cursor:default;}
+  .date-opt-row .listen-btn{width:40px; height:40px; flex:none;}
+
+  /* ---------- weather composer ---------- */
+  .weather-shell{
+    background:var(--paper-2);
+    border:1px solid var(--card-line);
+    border-radius:var(--radius);
+    padding:22px 24px;
+    box-shadow:var(--shadow);
+  }
+  .weather-shell .placeholder{color:var(--ink-soft); font-style:italic;}
+  .temp-row{
+    display:flex; align-items:center; gap:16px;
+    margin-top:16px;
+  }
+  .temp-row input[type="range"]{flex:1; accent-color:var(--blue);}
+  .temp-readout{
+    font-family:'IBM Plex Mono'; font-weight:600; font-size:1.4rem;
+    min-width:82px; text-align:right;
+    font-variant-numeric:tabular-nums;
+    color:var(--blue);
+  }
+  .compose-line{
+    margin-top:16px;
+    background:var(--paper);
+    border:1px dashed var(--card-line);
+    border-radius:10px;
+    padding:14px 16px;
+    display:flex; align-items:center; gap:12px;
+  }
+  .compose-line .txt{font-family:'Baloo 2'; font-size:1.2rem; flex:1;}
+
+  /* ---------- weekdays + today ---------- */
+  .weekday-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+  }
+  @media (max-width:640px){ .weekday-grid{grid-template-columns:repeat(2,1fr);} }
+  .weekday-card{
+    background:var(--paper-2);
+    border:1px solid var(--card-line);
+    border-radius:12px;
+    padding:12px 14px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+  }
+  .weekday-card .fr{font-family:'Baloo 2'; font-size:1.02rem;}
+  .weekday-card .meta{color:var(--ink-soft); font-size:.78rem;}
+  .weekday-card .listen-btn{width:32px; height:32px; font-size:.85rem;}
+
+  .formula-row{
+    display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+    margin-bottom:20px;
+  }
+  .formula-chip{
+    font-family:'Baloo 2'; font-size:1.05rem;
+    background:var(--blue-soft); color:var(--blue);
+    padding:8px 14px; border-radius:8px;
+  }
+  .formula-plus{color:var(--ink-soft); font-family:'Baloo 2'; font-size:1.1rem;}
+
+  .today-card{
+    margin-top:18px;
+    background:var(--paper);
+    border:1px dashed var(--card-line);
+    border-radius:12px;
+    padding:18px 20px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .today-card .label{
+    font-size:.72rem; text-transform:uppercase; letter-spacing:.8px;
+    color:var(--ink-soft); margin-bottom:4px;
+  }
+  .today-card .txt{font-family:'Baloo 2'; font-size:1.2rem; flex:1;}
+  .today-card .year-note{font-size:.82rem; color:var(--ink-soft); margin-top:4px;}
+
+  /* ---------- date expresser ---------- */
+  .mode-toggle{
+    display:inline-flex;
+    background:var(--paper);
+    border:1px solid var(--card-line);
+    border-radius:999px;
+    padding:4px;
+    gap:2px;
+    margin-bottom:16px;
+  }
+  .mode-toggle button{
+    appearance:none; border:none; cursor:pointer;
+    font-family:'Baloo 2'; font-size:.85rem;
+    padding:8px 16px; border-radius:999px;
+    background:transparent; color:var(--ink-soft);
+  }
+  .mode-toggle button.active{color:#fff;}
+  .mode-toggle button[data-mode="formal"].active{background:var(--blue);}
+  .mode-toggle button[data-mode="casual"].active{background:var(--orange);}
+  .mode-toggle button:focus-visible{outline:2px solid var(--blue); outline-offset:2px;}
+
+  .date-shell{
+    background:var(--paper-2);
+    border:1px solid var(--card-line);
+    border-radius:var(--radius);
+    padding:22px 24px;
+    box-shadow:var(--shadow);
+  }
+  .prompt-q{
+    font-family:'Baloo 2'; font-size:1.3rem; color:var(--ink); margin-bottom:2px;
+  }
+  .prompt-en{color:var(--ink-soft); font-size:.88rem; margin-bottom:16px;}
+
+  .day-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(42px,1fr));
+    gap:6px;
+    margin-bottom:16px;
+  }
+  .day-btn{
+    appearance:none; cursor:pointer;
+    border:1px solid var(--card-line);
+    background:var(--paper);
+    border-radius:8px;
+    padding:8px 0;
+    font-family:'IBM Plex Mono'; font-size:.85rem;
+    color:var(--ink);
+  }
+  .day-btn:hover{border-color:var(--blue);}
+  .day-btn.sel{background:var(--blue); color:#fff; border-color:var(--blue); font-weight:700;}
+  .day-btn:focus-visible{outline:2px solid var(--blue); outline-offset:2px;}
+  .day-btn:disabled{opacity:.3; cursor:not-allowed;}
+
+  .year-row{
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:16px;
+  }
+  .year-row label{
+    font-family:'Nunito Sans'; font-weight:700; font-size:.9rem; color:var(--ink-soft);
+  }
+  .year-step{
+    appearance:none; cursor:pointer;
+    width:34px; height:34px; border-radius:8px;
+    border:1px solid var(--card-line);
+    background:var(--paper);
+    font-family:'Baloo 2'; font-size:1.1rem; color:var(--ink);
+  }
+  .year-step:hover{border-color:var(--blue);}
+  .year-step:focus-visible{outline:2px solid var(--blue); outline-offset:2px;}
+  .year-input{
+    width:96px;
+    text-align:center;
+    font-family:'IBM Plex Mono'; font-size:1rem;
+    border:1px solid var(--card-line);
+    border-radius:8px;
+    padding:8px 6px;
+    background:var(--paper);
+    color:var(--ink);
+  }
+  .year-input:focus-visible{outline:2px solid var(--blue); outline-offset:1px;}
+  .year-words{
+    font-family:'Caveat',cursive; font-size:1.15rem; color:var(--green);
+  }
+
+  .gender-choice{display:flex; gap:10px; margin-bottom:16px;}
+  .gender-btn{
+    flex:1; cursor:pointer;
+    border:1px solid var(--card-line);
+    background:var(--paper);
+    border-radius:10px;
+    padding:10px;
+    text-align:center;
+    font-family:'Nunito Sans'; font-weight:700; font-size:.9rem;
+    color:var(--ink);
+  }
+  .gender-btn.selected{border-color:var(--blue); background:var(--blue-soft); color:var(--blue);}
+
+  .date-result{
+    display:flex; align-items:center; gap:12px;
+    background:var(--paper);
+    border:1px dashed var(--card-line);
+    border-radius:10px;
+    padding:14px 16px;
+  }
+  .date-result .txt{font-family:'Baloo 2'; font-size:1.25rem; flex:1;}
+  .date-result .placeholder{color:var(--ink-soft); font-style:italic; font-family:'Nunito Sans'; font-weight:400; font-size:1rem;}
+
+  /* ---------- birthday card ---------- */
+  .pin-wrap{display:flex; justify-content:center; padding-top:8px;}
+  .washi{
+    width:120px; height:26px;
+    background:repeating-linear-gradient(45deg, var(--orange) 0 8px, var(--sun) 8px 16px);
+    opacity:.85;
+    margin:0 auto -14px;
+    transform:rotate(-3deg);
+    box-shadow:0 3px 6px rgba(0,0,0,.15);
+    position:relative;
+    z-index:2;
+  }
+  .card-note{
+    background:var(--paper-2);
+    max-width:560px;
+    margin:0 auto;
+    border-radius:8px;
+    padding:30px 28px 26px;
+    box-shadow:0 16px 34px rgba(42,32,20,.16);
+    border:1px solid var(--card-line);
+    transform:rotate(.5deg);
+  }
+  .card-note .kicker{font-family:'Caveat',cursive; font-size:1.25rem; color:var(--green);}
+  .card-note h3{margin:0 0 12px; font-size:1.35rem;}
+  .card-note .lines{display:grid; gap:8px; font-size:1.05rem;}
+  .card-note .lines .placeholder{color:var(--ink-soft); font-style:italic;}
+  .card-note .season-tag{
+    display:inline-flex; align-items:center; gap:6px;
+    margin-top:10px;
+    font-size:.85rem; color:var(--ink-soft);
+  }
+  .card-actions{margin-top:18px; display:flex; gap:10px; flex-wrap:wrap;}
+
+  .btn{
+    appearance:none; border:none; cursor:pointer;
+    font-family:'Baloo 2'; font-size:.92rem;
+    padding:11px 20px; border-radius:10px;
+    transition:transform .12s ease, filter .12s ease;
+  }
+  .btn:hover{filter:brightness(1.06);}
+  .btn:active{transform:scale(.97);}
+  .btn:focus-visible{outline:2px solid var(--blue); outline-offset:2px;}
+  .btn.primary{background:var(--blue); color:#fff;}
+  .btn.ghost{background:transparent; color:var(--ink-soft); border:1px solid var(--card-line);}
+  .btn.ghost:hover{color:var(--ink); border-color:var(--ink-soft);}
+
+  footer{
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:.85rem;
+    margin-top:70px;
+    opacity:.85;
+  }
+
+  @media (prefers-reduced-motion:reduce){ *{transition:none !important; animation:none !important;} }
+</style>
+</head>
+<body>
+
+<div class="page">
+<div class="wrap">
+
+  <header class="hero">
+    <h1>Les Mois <span class="accent">&amp;</span> les Saisons</h1>
+    <p class="sub">Twelve months, four seasons, the weather that goes with each, and how to say a date out loud — starting with your own birthday.</p>
+    <div class="season-strip"><span class="s-hiver"></span><span class="s-printemps"></span><span class="s-ete"></span><span class="s-automne"></span></div>
+  </header>
+
+  <div class="note-card">
+    <p><strong>The goal of this lesson</strong> (straight from the source deck): <em>exprimer sa date de naissance et connaître les saisons</em>, meaning express your date of birth and know the seasons.</p>
+    <p>Pick a month below to anchor the lesson — everything after it (the matching season, its weather, and your date sentence) updates to match.</p>
+  </div>
+
+  <section id="months">
+    <div class="section-head"><span class="num">1</span><h2>Choisis un mois</h2></div>
+    <p class="hint">Tap a month to select it — it's color-coded by season.</p>
+    <div class="month-grid" id="monthGrid"></div>
+    <div class="detail-bar" id="detailBar"></div>
+  </section>
+
+  <section id="seasons">
+    <div class="section-head"><span class="num">2</span><h2>Les 4 Saisons</h2></div>
+    <p class="hint">The season card matching your chosen month gets marked "ton mois."</p>
+    <div class="season-grid" id="seasonGrid"></div>
+  </section>
+
+  <section id="quiz">
+    <div class="section-head"><span class="num">3</span><h2>Mini-Quiz: Mois → Saison</h2></div>
+    <p class="hint">Which season does this month belong to?</p>
+    <div class="quiz-shell">
+      <div class="quiz-top">
+        <span class="quiz-score mono" id="quizScore">Score : 0 / 0</span>
+        <button class="btn ghost" id="quizSkip" type="button">Skip →</button>
+      </div>
+      <div class="quiz-prompt" id="quizPrompt"></div>
+      <div class="quiz-options" id="quizOptions"></div>
+      <div class="quiz-feedback" id="quizFeedback"></div>
+    </div>
+  </section>
+
+  <section id="weather">
+    <div class="section-head"><span class="num">4</span><h2>Quel temps fait-il ?</h2></div>
+    <p class="hint">Drag the temperature — the weather phrase and season it implies update to match, so you never get "il neige" at 38°C.</p>
+    <div class="weather-shell" id="weatherShell"></div>
+  </section>
+
+  <section id="fulldate">
+    <div class="section-head"><span class="num">5</span><h2>La Date Complète</h2></div>
+    <p class="hint">A full date in French stacks three pieces, in this order:</p>
+    <div class="date-shell">
+      <div class="formula-row">
+        <span class="formula-chip">Jour</span><span class="formula-plus">+</span>
+        <span class="formula-chip">Mois</span><span class="formula-plus">+</span>
+        <span class="formula-chip">An</span>
+      </div>
+      <p class="hint" style="margin:0 0 14px;">"Jour" here covers both pieces of the day: the weekday name and the day number. Here are the seven weekday names first:</p>
+      <div class="weekday-grid" id="weekdayGrid"></div>
+
+      <div class="today-card">
+        <div style="flex:1;">
+          <div class="label">Quelle est la date d'aujourd'hui ?</div>
+          <div class="txt" id="todaySentence"></div>
+          <div class="year-note">This updates automatically — it's always today's real date.</div>
+        </div>
+        <button class="listen-btn" id="listenToday" type="button" aria-label="Listen to today's date">🔊</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="date">
+    <div class="section-head"><span class="num">6</span><h2>Exprimer ta date de naissance</h2></div>
+    <p class="hint">French skips the "of" — it's <em>le 5 mai</em>, never <em>le 5 de mai</em>. The 1st is the one exception: <em>le premier</em>, not <em>le un</em>.</p>
+    <div class="date-shell">
+      <div class="mode-toggle" role="group" aria-label="Formal or casual question">
+        <button type="button" class="active" data-mode="formal" id="btn-formal">Vous · formal</button>
+        <button type="button" data-mode="casual" id="btn-casual">Tu · casual</button>
+      </div>
+      <div class="prompt-q" id="dateQ"></div>
+      <div class="prompt-en" id="dateQEn">What's your date of birth?</div>
+
+      <div class="gender-choice">
+        <button type="button" class="gender-btn" data-g="m" id="genM">🧑 Je suis né...</button>
+        <button type="button" class="gender-btn" data-g="f" id="genF">👩 Je suis née...</button>
+      </div>
+
+      <div class="day-grid" id="dayGrid"></div>
+
+      <div class="year-row">
+        <label for="yearInput">Année :</label>
+        <button type="button" class="year-step" id="yearMinus" aria-label="One year earlier">−</button>
+        <input type="number" id="yearInput" class="year-input" placeholder="ex. 2005" min="1900" max="2026">
+        <button type="button" class="year-step" id="yearPlus" aria-label="One year later">+</button>
+        <span class="year-words hand" id="yearWords"></span>
+      </div>
+
+      <div class="date-result" id="dateResult"></div>
+    </div>
+  </section>
+
+  <section id="datequiz">
+    <div class="section-head"><span class="num">7</span><h2>Activité Finale : Pratique les Dates</h2></div>
+    <p class="hint">A date shows up as numbers — pick how it's actually said out loud. Tap 🔊 on any option to hear it first.</p>
+    <div class="quiz-shell">
+      <div class="quiz-top">
+        <span class="quiz-score mono" id="dateQuizScore">Score : 0 / 0</span>
+        <button class="btn ghost" id="dateQuizSkip" type="button">Skip →</button>
+      </div>
+      <div class="date-target" id="dateQuizTarget"></div>
+      <div class="date-target-note">jour / mois / année — comment dit-on cette date ?</div>
+      <div id="dateQuizOptions"></div>
+      <div class="quiz-feedback" id="dateQuizFeedback"></div>
+    </div>
+  </section>
+
+  <section id="card">
+    <div class="section-head"><span class="num">8</span><h2>Ta Carte d'Anniversaire</h2></div>
+    <div class="pin-wrap"><div class="washi"></div></div>
+    <div class="card-note">
+      <span class="kicker">carte d'anniversaire</span>
+      <h3>Mon anniversaire</h3>
+      <div class="lines" id="cardLines"></div>
+      <div class="card-actions">
+        <button class="btn primary" id="playCard" type="button">🔊 Écouter</button>
+        <button class="btn ghost" id="resetCard" type="button">Recommencer</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>Adapted from your "Les mois en français" slides — months, seasons, weather, and dates, end to end.<br>Prochaine leçon : <em>les nombres (20–10 000)</em>.</footer>
+
+</div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------------- speech ---------------- */
+  var cachedVoices = [];
+  function loadVoices(){
+    try{ if('speechSynthesis' in window){ cachedVoices = window.speechSynthesis.getVoices() || []; } }catch(e){}
+  }
+  loadVoices();
+  try{ if('speechSynthesis' in window){ window.speechSynthesis.onvoiceschanged = loadVoices; } }catch(e){}
+
+  function pickFrenchVoice(){
+    if(!cachedVoices.length) loadVoices();
+    if(!cachedVoices.length) return null;
+    var exact = cachedVoices.find(function(v){ return v.lang && v.lang.toLowerCase() === 'fr-fr'; });
+    if(exact) return exact;
+    var starts = cachedVoices.find(function(v){ return v.lang && v.lang.toLowerCase().indexOf('fr') === 0; });
+    if(starts) return starts;
+    var byName = cachedVoices.find(function(v){ return /fran[cç]ais|french/i.test(v.name || ''); });
+    if(byName) return byName;
+    return null;
+  }
+
+  function speak(text){
+    try{
+      if(!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      var say = function(){
+        var u = new SpeechSynthesisUtterance(text);
+        u.lang = 'fr-FR';
+        u.rate = 0.92;
+        var v = pickFrenchVoice();
+        if(v){ u.voice = v; u.lang = v.lang; }
+        window.speechSynthesis.speak(u);
+      };
+      if(!cachedVoices.length){ setTimeout(say, 150); } else { say(); }
+    }catch(e){}
+  }
+
+  /* ---------------- data ---------------- */
+  var SEASONS = {
+    hiver:     {fr:'Hiver',     en:'Winter', icon:'❄️', cls:'hiver',     weather:[
+      {fr:'Il neige.', en:"It's snowing."},
+      {fr:'Il fait froid.', en:"It's cold."}
+    ]},
+    printemps: {fr:'Printemps', en:'Spring', icon:'🌸', cls:'printemps', weather:[
+      {fr:'Il fait beau.', en:'The weather is nice.'},
+      {fr:'Il fait chaud.', en:"It's warm."}
+    ]},
+    ete:       {fr:'Été',       en:'Summer', icon:'☀️', cls:'ete',       weather:[
+      {fr:'Il y a du soleil.', en:"It's sunny."},
+      {fr:'Il fait beau.', en:'The weather is nice.'}
+    ]},
+    automne:   {fr:'Automne',   en:'Fall',   icon:'🍂', cls:'automne',   weather:[
+      {fr:'Il fait froid.', en:"It's cold."},
+      {fr:'Il pleut.', en:"It's raining."}
+    ]}
+  };
+  var SEASON_ORDER = ['hiver','printemps','ete','automne'];
+
+  // Which phrase (and season) fits a given temperature — coldest to hottest.
+  var TEMP_BANDS = [
+    {max: 0,   season:'hiver',     fr:'Il neige.',         en:"It's snowing."},
+    {max: 7,   season:'hiver',     fr:'Il fait froid.',    en:"It's cold."},
+    {max: 13,  season:'automne',   fr:'Il pleut.',         en:"It's raining."},
+    {max: 20,  season:'printemps', fr:'Il fait beau.',     en:'The weather is nice.'},
+    {max: 29,  season:'printemps', fr:'Il fait chaud.',    en:"It's warm."},
+    {max: 999, season:'ete',       fr:'Il y a du soleil.', en:"It's sunny."}
+  ];
+  function bandForTemp(t){
+    for(var i=0; i<TEMP_BANDS.length; i++){ if(t <= TEMP_BANDS[i].max) return TEMP_BANDS[i]; }
+    return TEMP_BANDS[TEMP_BANDS.length-1];
+  }
+  var SEASON_SEED_TEMP = {hiver:2, printemps:17, ete:28, automne:11};
+
+  var MONTHS = [
+    {fr:'Janvier',   en:'January',   season:'hiver',     phon:'zhahn-vee-AY',  days:31},
+    {fr:'Février',   en:'February',  season:'hiver',     phon:'fay-vree-AY',   days:28},
+    {fr:'Mars',      en:'March',     season:'printemps', phon:'MARSS',         days:31},
+    {fr:'Avril',     en:'April',     season:'printemps', phon:'ah-VREEL',      days:30},
+    {fr:'Mai',       en:'May',       season:'printemps', phon:'MAY',           days:31},
+    {fr:'Juin',      en:'June',      season:'ete',       phon:'ZHWAN',         days:30},
+    {fr:'Juillet',   en:'July',      season:'ete',       phon:'zhwee-YAY',     days:31},
+    {fr:'Août',      en:'August',    season:'ete',       phon:'OOT',           days:31},
+    {fr:'Septembre', en:'September', season:'automne',   phon:'sep-TAHM-bruh', days:30},
+    {fr:'Octobre',   en:'October',   season:'automne',   phon:'ock-TOH-bruh',  days:31},
+    {fr:'Novembre',  en:'November',  season:'automne',   phon:'noh-VAHM-bruh', days:30},
+    {fr:'Décembre',  en:'December',  season:'hiver',     phon:'day-SAHM-bruh', days:31}
+  ];
+
+  var DATE_WORDS = ["","premier","deux","trois","quatre","cinq","six","sept","huit","neuf","dix",
+    "onze","douze","treize","quatorze","quinze","seize","dix-sept","dix-huit","dix-neuf","vingt",
+    "vingt et un","vingt-deux","vingt-trois","vingt-quatre","vingt-cinq","vingt-six","vingt-sept",
+    "vingt-huit","vingt-neuf","trente","trente et un"];
+
+  var WEEKDAYS = [
+    {fr:'Lundi',    en:'Monday',    phon:'luhn-DEE'},
+    {fr:'Mardi',    en:'Tuesday',   phon:'mar-DEE'},
+    {fr:'Mercredi', en:'Wednesday', phon:'mair-kruh-DEE'},
+    {fr:'Jeudi',    en:'Thursday',  phon:'zhuh-DEE'},
+    {fr:'Vendredi', en:'Friday',    phon:'vahn-druh-DEE'},
+    {fr:'Samedi',   en:'Saturday',  phon:'sam-DEE'},
+    {fr:'Dimanche', en:'Sunday',    phon:'dee-MAHNSH'}
+  ];
+  // JS Date.getDay(): 0=Sunday..6=Saturday — map to the WEEKDAYS array above (0=Lundi).
+  var JSDAY_TO_WEEKDAY = [6,0,1,2,3,4,5];
+
+  /* ---------- number words (for years) ---------- */
+  var ONES = ["zéro","un","deux","trois","quatre","cinq","six","sept","huit","neuf","dix",
+    "onze","douze","treize","quatorze","quinze","seize"];
+  var TENS = {20:"vingt",30:"trente",40:"quarante",50:"cinquante",60:"soixante"};
+
+  function under100(n){
+    if(n < 17) return ONES[n];
+    if(n < 20) return "dix-" + ONES[n-10];
+    if(n < 70){
+      var t = Math.floor(n/10)*10, r = n%10;
+      if(r === 0) return TENS[t];
+      if(r === 1) return TENS[t] + " et un";
+      return TENS[t] + "-" + ONES[r];
+    }
+    if(n < 80){
+      var r2 = n - 60;
+      if(r2 === 11) return "soixante et onze";
+      return "soixante-" + under100(r2);
+    }
+    if(n === 80) return "quatre-vingts";
+    if(n < 100) return "quatre-vingt-" + under100(n-80);
+    return String(n);
+  }
+
+  function yearToWords(y){
+    y = Math.round(y);
+    if(y <= 0 || y > 9999) return String(y);
+    var thousands = Math.floor(y/1000);
+    var rem1 = y % 1000;
+    var hundreds = Math.floor(rem1/100);
+    var rem2 = rem1 % 100;
+    var parts = [];
+    if(thousands > 0) parts.push(thousands === 1 ? "mille" : under100(thousands) + " mille");
+    if(hundreds > 0){
+      var hw = hundreds === 1 ? "cent" : ONES[hundreds] + " cent";
+      if(hundreds > 1 && rem2 === 0) hw += "s";
+      parts.push(hw);
+    }
+    if(rem2 > 0) parts.push(under100(rem2));
+    return parts.join(" ");
+  }
+
+  /* ---------------- state ---------------- */
+  var selectedMonth = null;
+  var selectedDay = null;
+  var selectedYear = null;
+  var gender = null;
+  var formal = true;
+
+  /* ---------------- month explorer ---------------- */
+  function renderMonths(){
+    var grid = document.getElementById('monthGrid');
+    grid.innerHTML = '';
+    MONTHS.forEach(function(m, i){
+      var tile = document.createElement('div');
+      tile.className = 'month-tile' + (selectedMonth===i ? ' sel' : '');
+
+      var select = document.createElement('button');
+      select.type = 'button';
+      select.className = 'month-select';
+      select.setAttribute('aria-pressed', selectedMonth===i ? 'true' : 'false');
+      select.innerHTML = '<span class="dot ' + m.season + '"></span><span class="fr">' + m.fr + (selectedMonth===i ? ' <span class="check">✓</span>' : '') + '</span>';
+      select.addEventListener('click', function(){
+        selectedMonth = i;
+        if(selectedDay !== null && selectedDay > m.days) selectedDay = null;
+        temp = SEASON_SEED_TEMP[m.season];
+        renderAll();
+      });
+
+      var listenBtn = document.createElement('button');
+      listenBtn.type = 'button';
+      listenBtn.className = 'listen-btn';
+      listenBtn.setAttribute('aria-label', 'Listen to ' + m.fr);
+      listenBtn.innerHTML = '🔊';
+      listenBtn.addEventListener('click', function(){ speak(m.fr); });
+
+      tile.appendChild(select);
+      tile.appendChild(listenBtn);
+      grid.appendChild(tile);
+    });
+
+    var bar = document.getElementById('detailBar');
+    if(selectedMonth === null){
+      bar.innerHTML = '<span class="placeholder">👆 Choose a month above to see its details here.</span>';
+    } else {
+      var m = MONTHS[selectedMonth];
+      bar.innerHTML =
+        '<div style="flex:1;">' +
+          '<div class="big">' + m.fr + ' <span style="color:var(--ink-soft); font-family:\'Nunito Sans\'; font-weight:600; font-size:.95rem;">— ' + m.en + '</span></div>' +
+          '<div class="meta mono">' + m.phon + '</div>' +
+        '</div>';
+      var btn = document.createElement('button');
+      btn.className = 'listen-btn';
+      btn.type = 'button';
+      btn.setAttribute('aria-label','Listen to ' + m.fr);
+      btn.innerHTML = '🔊';
+      btn.addEventListener('click', function(){ speak(m.fr); });
+      bar.appendChild(btn);
+    }
+  }
+
+  /* ---------------- season cards ---------------- */
+  function renderSeasons(){
+    var grid = document.getElementById('seasonGrid');
+    grid.innerHTML = '';
+    var curSeason = selectedMonth !== null ? MONTHS[selectedMonth].season : null;
+    SEASON_ORDER.forEach(function(key){
+      var s = SEASONS[key];
+      var monthNames = MONTHS.filter(function(m){ return m.season === key; }).map(function(m){ return m.fr; }).join(', ');
+      var card = document.createElement('div');
+      card.className = 'season-card' + (key===curSeason ? ' match' : '');
+      var weatherHtml = s.weather.map(function(w, idx){
+        return '<div class="weather-line"><span class="fr-w">' + w.fr + '</span><span class="en">' + w.en + '</span><button type="button" class="listen-btn" data-w="' + idx + '" aria-label="Listen">🔊</button></div>';
+      }).join('');
+      card.innerHTML =
+        '<span class="badge">ton mois</span>' +
+        '<div class="icon">' + s.icon + '</div>' +
+        '<div class="name-row"><h3>' + s.fr + '</h3><button type="button" class="listen-btn" data-season aria-label="Listen to ' + s.fr + '">🔊</button></div>' +
+        '<div class="en">' + s.en + '</div>' +
+        weatherHtml +
+        '<div class="months-line"><b>Mois :</b> ' + monthNames + '</div>';
+      grid.appendChild(card);
+
+      card.querySelector('[data-season]').addEventListener('click', function(){ speak(s.fr); });
+      card.querySelectorAll('[data-w]').forEach(function(btn){
+        var idx = parseInt(btn.getAttribute('data-w'), 10);
+        btn.addEventListener('click', function(){ speak(s.weather[idx].fr); });
+      });
+    });
+  }
+
+  /* ---------------- quiz ---------------- */
+  var quizCorrect = 0, quizTotal = 0, quizAnswered = false, quizMonthIdx = null;
+
+  function newQuizRound(){
+    quizAnswered = false;
+    quizMonthIdx = Math.floor(Math.random() * MONTHS.length);
+    var m = MONTHS[quizMonthIdx];
+    document.getElementById('quizPrompt').textContent = m.fr + ' → ?';
+    var opts = document.getElementById('quizOptions');
+    opts.innerHTML = '';
+    var shuffled = SEASON_ORDER.slice().sort(function(){ return Math.random() - 0.5; });
+    shuffled.forEach(function(key){
+      var s = SEASONS[key];
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'quiz-opt';
+      b.innerHTML = s.icon + ' ' + s.fr;
+      b.addEventListener('click', function(){ answerQuiz(key, b); });
+      opts.appendChild(b);
+    });
+    document.getElementById('quizFeedback').textContent = '';
+  }
+
+  function answerQuiz(key, btnEl){
+    if(quizAnswered) return;
+    quizAnswered = true;
+    var m = MONTHS[quizMonthIdx];
+    quizTotal++;
+    var correct = key === m.season;
+    if(correct) quizCorrect++;
+    document.getElementById('quizScore').textContent = 'Score : ' + quizCorrect + ' / ' + quizTotal;
+    document.querySelectorAll('#quizOptions .quiz-opt').forEach(function(b){
+      b.disabled = true;
+      var bKey = SEASON_ORDER.find(function(k){ return b.textContent.indexOf(SEASONS[k].fr) !== -1; });
+      if(bKey === m.season) b.classList.add('correct');
+    });
+    if(!correct) btnEl.classList.add('wrong');
+    document.getElementById('quizFeedback').textContent = correct ?
+      '✅ Exactement — ' + m.fr + ' is in ' + SEASONS[m.season].en.toLowerCase() + '.' :
+      '💡 ' + m.fr + ' is actually in ' + SEASONS[m.season].fr + ' (' + SEASONS[m.season].en.toLowerCase() + ').';
+    setTimeout(newQuizRound, 1400);
+  }
+
+  document.getElementById('quizSkip').addEventListener('click', newQuizRound);
+
+  /* ---------------- weather composer ---------------- */
+  var temp = 18;
+
+  function renderWeather(){
+    var shell = document.getElementById('weatherShell');
+    if(selectedMonth === null){
+      shell.innerHTML = '<span class="placeholder">👆 Choose a month first — the temperature you pick here will suggest its own weather and season.</span>';
+      return;
+    }
+    var chosenSeason = SEASONS[MONTHS[selectedMonth].season];
+    shell.innerHTML =
+      '<div class="temp-row">' +
+        '<input type="range" min="-10" max="38" value="' + temp + '" id="tempSlider" aria-label="Temperature in Celsius">' +
+        '<span class="temp-readout mono" id="tempReadout">' + temp + '°C</span>' +
+      '</div>' +
+      '<div class="compose-line">' +
+        '<span class="txt" id="weatherSentence"></span>' +
+        '<button class="listen-btn" id="listenWeather" type="button" aria-label="Listen">🔊</button>' +
+      '</div>' +
+      '<div class="year-note" id="weatherMonthNote" style="margin-top:10px;"></div>';
+
+    function tempWords(t){
+      var abs = Math.abs(t);
+      var word = under100(abs);
+      var unit = abs <= 1 ? 'degré' : 'degrés';
+      return (t < 0 ? 'moins ' : '') + word + ' ' + unit;
+    }
+    function sentence(){
+      var band = bandForTemp(temp);
+      return band.fr + ' Il fait ' + tempWords(temp) + '.';
+    }
+    function refresh(){
+      var band = bandForTemp(temp);
+      var s = SEASONS[band.season];
+      document.getElementById('weatherSentence').innerHTML =
+        '<span style="margin-right:6px;">' + s.icon + '</span>' + sentence();
+      document.getElementById('weatherMonthNote').textContent =
+        'Tu as choisi ' + MONTHS[selectedMonth].fr + ' — typiquement ' + chosenSeason.fr.toLowerCase() + '. Fais glisser le curseur pour explorer d\'autres températures et saisons.';
+    }
+    refresh();
+
+    document.getElementById('tempSlider').addEventListener('input', function(e){
+      temp = parseInt(e.target.value, 10);
+      document.getElementById('tempReadout').textContent = temp + '°C';
+      refresh();
+    });
+    document.getElementById('listenWeather').addEventListener('click', function(){ speak(sentence()); });
+  }
+
+  /* ---------------- weekdays + today ---------------- */
+  function renderWeekdays(){
+    var grid = document.getElementById('weekdayGrid');
+    grid.innerHTML = '';
+    WEEKDAYS.forEach(function(w){
+      var card = document.createElement('div');
+      card.className = 'weekday-card';
+      card.innerHTML =
+        '<div><div class="fr">' + w.fr + '</div><div class="meta mono">' + w.phon + ' — ' + w.en + '</div></div>';
+      var btn = document.createElement('button');
+      btn.className = 'listen-btn';
+      btn.type = 'button';
+      btn.setAttribute('aria-label', 'Listen to ' + w.fr);
+      btn.innerHTML = '🔊';
+      btn.addEventListener('click', function(){ speak(w.fr); });
+      card.appendChild(btn);
+      grid.appendChild(card);
+    });
+  }
+
+  function todaySentence(){
+    var now = new Date();
+    var weekday = WEEKDAYS[JSDAY_TO_WEEKDAY[now.getDay()]].fr.toLowerCase();
+    var day = now.getDate();
+    var month = MONTHS[now.getMonth()].fr.toLowerCase();
+    var year = yearToWords(now.getFullYear());
+    return "Aujourd'hui est le " + weekday + " " + DATE_WORDS[day] + " " + month + " " + year + ".";
+  }
+
+  function renderToday(){
+    var sent = todaySentence();
+    document.getElementById('todaySentence').textContent = sent;
+    document.getElementById('listenToday').addEventListener('click', function(){ speak(sent); });
+  }
+
+  /* ---------------- date expresser ---------------- */
+  function setMode(newFormal){
+    formal = newFormal;
+    document.getElementById('btn-formal').classList.toggle('active', formal);
+    document.getElementById('btn-casual').classList.toggle('active', !formal);
+    renderDate();
+  }
+  document.getElementById('btn-formal').addEventListener('click', function(){ setMode(true); });
+  document.getElementById('btn-casual').addEventListener('click', function(){ setMode(false); });
+
+  document.getElementById('genM').addEventListener('click', function(){ gender='m'; renderDate(); updateCard(); });
+  document.getElementById('genF').addEventListener('click', function(){ gender='f'; renderDate(); updateCard(); });
+
+  function setYear(y){
+    if(y === null || isNaN(y)){ selectedYear = null; }
+    else { selectedYear = Math.min(2026, Math.max(1900, Math.round(y))); }
+    renderDate();
+    updateCard();
+  }
+  document.getElementById('yearInput').addEventListener('input', function(e){
+    var v = e.target.value.trim();
+    setYear(v === '' ? null : parseInt(v, 10));
+  });
+  document.getElementById('yearMinus').addEventListener('click', function(){ setYear((selectedYear || 2006) - 1); });
+  document.getElementById('yearPlus').addEventListener('click', function(){ setYear((selectedYear || 2004) + 1); });
+
+  function renderDate(){
+    document.getElementById('dateQ').textContent = formal ? 'Quelle est votre date de naissance ?' : 'Quelle est ta date de naissance ?';
+
+    document.getElementById('genM').classList.toggle('selected', gender==='m');
+    document.getElementById('genF').classList.toggle('selected', gender==='f');
+
+    var maxDays = selectedMonth !== null ? MONTHS[selectedMonth].days : 31;
+    var dayGrid = document.getElementById('dayGrid');
+    dayGrid.innerHTML = '';
+    for(var d=1; d<=31; d++){
+      (function(day){
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'day-btn' + (selectedDay===day ? ' sel' : '');
+        b.textContent = day===1 ? '1er' : String(day);
+        b.disabled = day > maxDays;
+        b.addEventListener('click', function(){ selectedDay = day; renderDate(); updateCard(); });
+        dayGrid.appendChild(b);
+      })(d);
+    }
+
+    var yearInput = document.getElementById('yearInput');
+    if(document.activeElement !== yearInput){
+      yearInput.value = selectedYear === null ? '' : String(selectedYear);
+    }
+    document.getElementById('yearWords').textContent = selectedYear ? yearToWords(selectedYear) : '';
+
+    var result = document.getElementById('dateResult');
+    if(selectedMonth === null || selectedDay === null || !gender || !selectedYear){
+      var need = [];
+      if(selectedMonth === null) need.push('a month');
+      if(selectedDay === null) need.push('a day');
+      if(!selectedYear) need.push('a year');
+      if(!gender) need.push('né / née');
+      result.innerHTML = '<span class="placeholder">Pick ' + need.join(', ') + ' to build your sentence.</span>';
+      return;
+    }
+    var sentence = fullSentence();
+    result.innerHTML = '<span class="txt">' + sentence + '</span>';
+    var btn = document.createElement('button');
+    btn.className = 'listen-btn';
+    btn.type = 'button';
+    btn.setAttribute('aria-label','Listen');
+    btn.innerHTML = '🔊';
+    btn.addEventListener('click', function(){ speak(sentence); });
+    result.appendChild(btn);
+  }
+
+  /* ---------------- birthday card ---------------- */
+  function fullSentence(){
+    if(selectedMonth === null || selectedDay === null || !gender || !selectedYear) return null;
+    var m = MONTHS[selectedMonth];
+    return "Je suis né" + (gender==='f' ? 'e' : '') + " le " + DATE_WORDS[selectedDay] + " " + m.fr.toLowerCase() + " " + yearToWords(selectedYear) + ".";
+  }
+
+  function updateCard(){
+    var lines = document.getElementById('cardLines');
+    var sent = fullSentence();
+    if(!sent){
+      lines.innerHTML = '<div class="placeholder">Finish picking your month, day, year, and né / née above — your sentence lands here.</div>';
+      return;
+    }
+    var m = MONTHS[selectedMonth];
+    var s = SEASONS[m.season];
+    lines.innerHTML =
+      '<div>' + sent + '</div>' +
+      '<div class="season-tag">' + s.icon + ' Né(e) en ' + s.fr.toLowerCase() + ' — <span class="mono">' + s.weather[0].fr + '</span></div>';
+  }
+
+  document.getElementById('playCard').addEventListener('click', function(){
+    var sent = fullSentence();
+    if(sent) speak(sent);
+  });
+  document.getElementById('resetCard').addEventListener('click', function(){
+    selectedMonth = null;
+    selectedDay = null;
+    selectedYear = null;
+    gender = null;
+    renderAll();
+    document.getElementById('months').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+
+  /* ---------------- date practice activity ---------------- */
+  var dateQuizCorrect = 0, dateQuizTotal = 0, dateQuizAnswered = false, dateQuizTarget = null;
+
+  function randomTargetDate(){
+    var year = 1950 + Math.floor(Math.random() * 77); // 1950–2026
+    var monthIdx = Math.floor(Math.random() * 12);
+    var maxDay = MONTHS[monthIdx].days;
+    var day = 1 + Math.floor(Math.random() * maxDay);
+    return {year: year, monthIdx: monthIdx, day: day};
+  }
+
+  function dateSentenceFor(day, monthIdx, year){
+    return "Le " + DATE_WORDS[day] + " " + MONTHS[monthIdx].fr.toLowerCase() + " " + yearToWords(year) + ".";
+  }
+
+  function buildDateOptions(t){
+    var correct = dateSentenceFor(t.day, t.monthIdx, t.year);
+
+    // distractor 1: wrong "de" before the month (a common Spanish-to-French slip)
+    var wrongDe = "Le " + DATE_WORDS[t.day] + " de " + MONTHS[t.monthIdx].fr.toLowerCase() + " " + yearToWords(t.year) + ".";
+
+    // distractor 2: off-by-one day
+    var maxDay = MONTHS[t.monthIdx].days;
+    var altDay = t.day + 1 <= maxDay ? t.day + 1 : t.day - 1;
+    if(altDay < 1) altDay = 2;
+    var wrongDay = dateSentenceFor(altDay, t.monthIdx, t.year);
+
+    // distractor 3: wrong year
+    var altYear = t.year + 1 <= 2026 ? t.year + 1 : t.year - 1;
+    var wrongYear = dateSentenceFor(t.day, t.monthIdx, altYear);
+
+    var opts = [
+      {text: correct, correct: true},
+      {text: wrongDe, correct: false},
+      {text: wrongDay, correct: false},
+      {text: wrongYear, correct: false}
+    ];
+    return opts.sort(function(){ return Math.random() - 0.5; });
+  }
+
+  function newDateQuizRound(){
+    dateQuizAnswered = false;
+    dateQuizTarget = randomTargetDate();
+    var t = dateQuizTarget;
+    var dd = String(t.day).padStart(2, '0');
+    var mm = String(t.monthIdx + 1).padStart(2, '0');
+    document.getElementById('dateQuizTarget').textContent = dd + ' / ' + mm + ' / ' + t.year;
+
+    var opts = buildDateOptions(t);
+    var wrap = document.getElementById('dateQuizOptions');
+    wrap.innerHTML = '';
+    opts.forEach(function(opt){
+      var row = document.createElement('div');
+      row.className = 'date-opt-row';
+
+      var sel = document.createElement('button');
+      sel.type = 'button';
+      sel.className = 'date-opt-select';
+      sel.textContent = opt.text;
+      sel.addEventListener('click', function(){ answerDateQuiz(opt.correct, sel); });
+
+      var listenBtn = document.createElement('button');
+      listenBtn.type = 'button';
+      listenBtn.className = 'listen-btn';
+      listenBtn.setAttribute('aria-label', 'Listen');
+      listenBtn.innerHTML = '🔊';
+      listenBtn.addEventListener('click', function(){ speak(opt.text); });
+
+      row.appendChild(sel);
+      row.appendChild(listenBtn);
+      wrap.appendChild(row);
+    });
+    document.getElementById('dateQuizFeedback').textContent = '';
+  }
+
+  function answerDateQuiz(isCorrect, selEl){
+    if(dateQuizAnswered) return;
+    dateQuizAnswered = true;
+    dateQuizTotal++;
+    if(isCorrect) dateQuizCorrect++;
+    document.getElementById('dateQuizScore').textContent = 'Score : ' + dateQuizCorrect + ' / ' + dateQuizTotal;
+    document.querySelectorAll('#dateQuizOptions .date-opt-select').forEach(function(b){
+      b.disabled = true;
+      if(b.textContent === dateSentenceFor(dateQuizTarget.day, dateQuizTarget.monthIdx, dateQuizTarget.year)){
+        b.classList.add('correct');
+      }
+    });
+    if(!isCorrect) selEl.classList.add('wrong');
+    document.getElementById('dateQuizFeedback').textContent = isCorrect ?
+      '✅ Exactement !' :
+      '💡 The right one: "' + dateSentenceFor(dateQuizTarget.day, dateQuizTarget.monthIdx, dateQuizTarget.year) + '"';
+    setTimeout(newDateQuizRound, 1800);
+  }
+
+  document.getElementById('dateQuizSkip').addEventListener('click', newDateQuizRound);
+
+  /* ---------------- orchestrator ---------------- */
+  function renderAll(){
+    renderMonths();
+    renderSeasons();
+    renderWeather();
+    renderDate();
+    updateCard();
+  }
+
+  renderAll();
+  renderWeekdays();
+  renderToday();
+  newQuizRound();
+  newDateQuizRound();
+})();
+</script>
+
+</body></html>

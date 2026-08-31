@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Se Présenter</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&family=Caveat:wght@600;700&family=IBM+Plex+Mono:wght@500&display=swap');
+
+  :root{
+    --board:#1b2a23;
+    --board-raised:#233830;
+    --board-raised-2:#2b443a;
+    --chalk:#f5f1e3;
+    --chalk-dim:#b7c2b8;
+    --chalk-faint:rgba(245,241,227,.14);
+    --yellow:#e8c94a;
+    --blue:#8ab6d6;
+    --coral:#e2836f;
+    --paper:#f3ecd8;
+    --paper-ink:#33291c;
+    --good:#8fbf7f;
+    --radius:14px;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--board);
+    color:var(--chalk);
+    font-family:'Nunito Sans', system-ui, sans-serif;
+    line-height:1.55;
+    margin:0;
+  }
+  img,svg{max-width:100%;}
+
+  h1,h2,h3,.display{
+    font-family:'Baloo 2', 'Nunito Sans', sans-serif;
+    text-wrap:balance;
+    letter-spacing:.2px;
+  }
+
+  .mono{font-family:'IBM Plex Mono', ui-monospace, monospace;}
+  .hand{font-family:'Caveat', cursive;}
+
+  a{color:var(--yellow);}
+
+  ::selection{background:var(--yellow);color:var(--paper-ink);}
+
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 20px 96px;
+  }
+
+  /* ---------- background texture: faint chalk dust + rule lines ---------- */
+  .board-texture{
+    position:relative;
+  }
+  .board-texture::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+      radial-gradient(ellipse at 15% 10%, rgba(255,255,255,.05), transparent 55%),
+      radial-gradient(ellipse at 85% 90%, rgba(255,255,255,.04), transparent 50%);
+    z-index:0;
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:64px 20px 40px;
+    text-align:center;
+    position:relative;
+  }
+  .hero .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Caveat',cursive;
+    font-size:1.4rem;
+    color:var(--blue);
+    margin-bottom:6px;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 7vw, 4.6rem);
+    font-weight:800;
+    color:var(--chalk);
+    margin:0 0 10px;
+    text-shadow: 0 0 22px rgba(245,241,227,.12);
+  }
+  .hero .underline{
+    width:min(320px,70%);
+    height:14px;
+    margin:-8px auto 18px;
+  }
+  .hero p.sub{
+    max-width:520px;
+    margin:0 auto;
+    color:var(--chalk-dim);
+    font-size:1.05rem;
+  }
+  .flags{
+    display:flex;
+    justify-content:center;
+    gap:6px;
+    margin:22px 0 0;
+  }
+  .flags span{
+    width:34px;height:8px;border-radius:2px;
+  }
+  .flags span:nth-child(1){background:var(--blue);}
+  .flags span:nth-child(2){background:var(--chalk);}
+  .flags span:nth-child(3){background:var(--coral);}
+
+  /* ---------- section headings ---------- */
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin:64px 0 20px;
+  }
+  .section-head .tag{
+    font-family:'Caveat',cursive;
+    font-size:1.5rem;
+    color:var(--coral);
+    white-space:nowrap;
+  }
+  .section-head h2{
+    font-size:clamp(1.5rem,3.6vw,2rem);
+    margin:0;
+    color:var(--chalk);
+  }
+  .section-head::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:repeating-linear-gradient(90deg, var(--chalk-faint) 0 8px, transparent 8px 14px);
+    align-self:center;
+  }
+
+  /* ---------- intro / how-this-works note ---------- */
+  .note-card{
+    background:var(--board-raised);
+    border:1px solid var(--chalk-faint);
+    border-radius:var(--radius);
+    padding:22px 24px;
+    display:grid;
+    gap:14px;
+  }
+  .note-card p{margin:0;color:var(--chalk-dim);}
+  .note-card strong{color:var(--chalk);}
+
+  .vous-tu-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    margin-top:6px;
+  }
+  @media (max-width:560px){ .vous-tu-grid{grid-template-columns:1fr;} }
+  .vt-card{
+    border-radius:10px;
+    padding:14px 16px;
+    font-size:.94rem;
+  }
+  .vt-card.vous{background:rgba(138,182,214,.14); border:1px solid rgba(138,182,214,.35);}
+  .vt-card.tu{background:rgba(226,131,111,.14); border:1px solid rgba(226,131,111,.35);}
+  .vt-card b{display:block;font-family:'Baloo 2';font-size:1.05rem;margin-bottom:4px;}
+  .vt-card.vous b{color:var(--blue);}
+  .vt-card.tu b{color:var(--coral);}
+
+  /* ---------- global mode toggle ---------- */
+  .mode-toggle{
+    position:sticky;
+    top:12px;
+    z-index:20;
+    display:flex;
+    justify-content:center;
+    margin:28px 0 0;
+  }
+  .mode-toggle .pill{
+    display:inline-flex;
+    background:var(--board-raised-2);
+    border:1px solid var(--chalk-faint);
+    border-radius:999px;
+    padding:4px;
+    gap:2px;
+    box-shadow:0 8px 24px rgba(0,0,0,.35);
+    backdrop-filter:blur(6px);
+  }
+  .mode-toggle button{
+    appearance:none;
+    border:none;
+    cursor:pointer;
+    font-family:'Baloo 2';
+    font-size:.9rem;
+    padding:9px 18px;
+    border-radius:999px;
+    background:transparent;
+    color:var(--chalk-dim);
+    transition:background .18s ease, color .18s ease;
+  }
+  .mode-toggle button.active{
+    color:var(--paper-ink);
+  }
+  .mode-toggle button[data-mode="formal"].active{background:var(--blue);}
+  .mode-toggle button[data-mode="casual"].active{background:var(--coral);}
+  .mode-toggle button:focus-visible{outline:2px solid var(--yellow); outline-offset:2px;}
+
+  /* ---------- phrasebook cards ---------- */
+  .phrase-grid{
+    display:grid;
+    gap:16px;
+  }
+  .phrase-card{
+    background:var(--board-raised);
+    border:1px solid var(--chalk-faint);
+    border-radius:var(--radius);
+    padding:20px 22px;
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    gap:6px 18px;
+    align-items:start;
+  }
+  @media (max-width:640px){
+    .phrase-card{grid-template-columns:1fr; }
+    .phrase-card .listen-btn{justify-self:start;}
+  }
+  .phrase-card .cat{
+    grid-column:1/-1;
+    font-size:.78rem;
+    text-transform:uppercase;
+    letter-spacing:1.4px;
+    color:var(--chalk-dim);
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .phrase-card .cat .ico{font-size:1rem;}
+  .phrase-card .fr{
+    font-family:'Baloo 2';
+    font-size:1.28rem;
+    color:var(--chalk);
+    grid-column:1;
+  }
+  .phrase-card .variant-badge{
+    display:inline-block;
+    font-family:'Nunito Sans';
+    font-size:.62rem;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.6px;
+    padding:2px 7px;
+    border-radius:5px;
+    margin-right:8px;
+    vertical-align:middle;
+    position:relative;
+    top:-2px;
+  }
+  .variant-badge.vous{background:rgba(138,182,214,.2);color:var(--blue);}
+  .variant-badge.tu{background:rgba(226,131,111,.2);color:var(--coral);}
+  .phrase-card .en{
+    grid-column:1;
+    color:var(--chalk-dim);
+    font-size:.92rem;
+  }
+  .phrase-card .phon{
+    grid-column:1;
+    color:var(--chalk-dim);
+    font-size:.82rem;
+    opacity:.85;
+  }
+  .phrase-card .answer{
+    grid-column:1;
+    margin-top:8px;
+    padding-top:8px;
+    border-top:1px dashed var(--chalk-faint);
+    font-size:.95rem;
+    color:var(--chalk);
+  }
+  .phrase-card .answer .lbl{color:var(--yellow);font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:.8px;margin-right:6px;}
+  .phrase-card .note{
+    grid-column:1;
+    font-family:'Caveat',cursive;
+    color:var(--yellow);
+    font-size:1.05rem;
+    margin-top:4px;
+  }
+
+  .listen-btn{
+    appearance:none;
+    border:1px solid var(--chalk-faint);
+    background:var(--board-raised-2);
+    color:var(--chalk);
+    width:38px;height:38px;
+    border-radius:50%;
+    cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    font-size:1rem;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .listen-btn:hover{background:var(--yellow); color:var(--paper-ink); transform:scale(1.06);}
+  .listen-btn:focus-visible{outline:2px solid var(--yellow); outline-offset:2px;}
+
+  /* ---------- practice wizard ---------- */
+  .practice-shell{
+    background:var(--board-raised);
+    border:1px solid var(--chalk-faint);
+    border-radius:18px;
+    padding:26px;
+  }
+  .steps-rail{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:22px;
+  }
+  .step-dot{
+    width:30px;height:30px;
+    border-radius:50%;
+    border:1px solid var(--chalk-faint);
+    background:var(--board);
+    color:var(--chalk-dim);
+    font-family:'IBM Plex Mono';
+    font-size:.75rem;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
+    transition:all .15s ease;
+    flex:none;
+  }
+  .step-dot.current{background:var(--yellow); color:var(--paper-ink); border-color:var(--yellow); font-weight:700;}
+  .step-dot.done{background:var(--good); color:var(--paper-ink); border-color:var(--good);}
+  .step-dot:focus-visible{outline:2px solid var(--yellow); outline-offset:2px;}
+
+  .avatar-row{
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+    margin-bottom:18px;
+  }
+  .avatar{
+    flex:none;
+    width:52px;height:52px;
+    border-radius:50%;
+    background:var(--board);
+    border:2px solid var(--yellow);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.5rem;
+  }
+  .bubble{
+    background:var(--board);
+    border:1px solid var(--chalk-faint);
+    border-radius:16px 16px 16px 4px;
+    padding:16px 18px;
+    flex:1;
+  }
+  .bubble .cat-label{
+    font-size:.72rem;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    color:var(--chalk-dim);
+    margin-bottom:6px;
+  }
+  .bubble .fr-q{
+    font-family:'Baloo 2';
+    font-size:1.4rem;
+    color:var(--chalk);
+  }
+  .bubble .en-q{
+    font-size:.86rem;
+    color:var(--chalk-dim);
+    margin-top:4px;
+  }
+  .bubble .phon-q{
+    font-size:.78rem;
+    color:var(--chalk-dim);
+    opacity:.8;
+    margin-top:2px;
+  }
+  .bubble .instructions{
+    margin-top:10px;
+    font-size:.92rem;
+    color:var(--yellow);
+  }
+
+  .answer-row{
+    display:flex;
+    gap:10px;
+    margin:14px 0 8px;
+  }
+  .answer-row input[type="text"]{
+    flex:1;
+    background:var(--board);
+    border:1px solid var(--chalk-faint);
+    border-radius:10px;
+    padding:12px 14px;
+    color:var(--chalk);
+    font-size:1rem;
+    font-family:'Nunito Sans';
+  }
+  .answer-row input[type="text"]::placeholder{color:var(--chalk); opacity:1;}
+  .answer-row input[type="text"]:focus-visible{outline:2px solid var(--yellow); outline-offset:1px;}
+
+  .btn{
+    appearance:none;
+    border:none;
+    cursor:pointer;
+    font-family:'Baloo 2';
+    font-size:.95rem;
+    padding:11px 20px;
+    border-radius:10px;
+    transition:transform .12s ease, filter .12s ease;
+  }
+  .btn:hover{filter:brightness(1.08);}
+  .btn:active{transform:scale(.97);}
+  .btn:focus-visible{outline:2px solid var(--yellow); outline-offset:2px;}
+  .btn.primary{background:var(--yellow); color:var(--paper-ink);}
+  .btn.ghost{background:transparent; color:var(--chalk-dim); border:1px solid var(--chalk-faint);}
+  .btn.ghost:hover{color:var(--chalk); border-color:var(--chalk-dim);}
+  .btn.next{background:var(--good); color:var(--paper-ink);}
+  .btn:disabled{opacity:.4; cursor:not-allowed; filter:none;}
+
+  .chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:10px 0;
+  }
+  .chip{
+    appearance:none;
+    border:1px dashed var(--chalk-faint);
+    background:transparent;
+    color:var(--chalk-dim);
+    font-family:'IBM Plex Mono';
+    font-size:.78rem;
+    padding:6px 10px;
+    border-radius:8px;
+    cursor:pointer;
+  }
+  .chip:hover{border-color:var(--yellow); color:var(--yellow);}
+
+  .feedback{
+    margin-top:10px;
+    font-size:.92rem;
+    display:none;
+    padding:10px 12px;
+    border-radius:8px;
+  }
+  .feedback.show{display:block;}
+  .feedback.good{background:rgba(143,191,127,.14); color:var(--good); border:1px solid rgba(143,191,127,.35);}
+  .feedback.hint{background:rgba(232,201,74,.1); color:var(--yellow); border:1px solid rgba(232,201,74,.3);}
+
+  .practice-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+    margin-top:14px;
+  }
+
+  .gender-choice{
+    display:flex;
+    gap:12px;
+    margin:14px 0;
+  }
+  .gender-btn{
+    flex:1;
+    border:1px solid var(--chalk-faint);
+    background:var(--board);
+    border-radius:12px;
+    padding:16px;
+    text-align:center;
+    cursor:pointer;
+    color:var(--chalk);
+  }
+  .gender-btn:hover{border-color:var(--yellow);}
+  .gender-btn.selected{border-color:var(--yellow); background:rgba(232,201,74,.1);}
+  .gender-btn .big{font-family:'Baloo 2'; font-size:1.2rem; display:block; margin-top:6px;}
+
+  /* ---------- pinned intro card ---------- */
+  .pin-wrap{
+    display:flex;
+    justify-content:center;
+    padding-top:26px;
+  }
+  .pin{
+    width:14px;height:14px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #ffe184, var(--yellow) 60%, #a9822a 100%);
+    box-shadow:0 3px 5px rgba(0,0,0,.4);
+    margin:0 auto -8px;
+    position:relative;
+    z-index:2;
+  }
+  .index-card{
+    background:var(--paper);
+    color:var(--paper-ink);
+    border-radius:6px;
+    padding:26px 28px 24px;
+    max-width:560px;
+    margin:0 auto;
+    box-shadow:0 18px 40px rgba(0,0,0,.4), 0 2px 0 rgba(0,0,0,.05);
+    transform:rotate(-.6deg);
+    position:relative;
+  }
+  .index-card::before{
+    content:"";
+    position:absolute;
+    inset:10px;
+    border:1px dashed rgba(51,41,28,.18);
+    border-radius:4px;
+    pointer-events:none;
+  }
+  .index-card h3{
+    font-size:1.3rem;
+    margin:0 0 4px;
+    color:var(--paper-ink);
+  }
+  .index-card .kicker{
+    font-family:'Caveat',cursive;
+    font-size:1.2rem;
+    color:#7a5230;
+  }
+  .index-card .lines{
+    margin-top:14px;
+    display:grid;
+    gap:8px;
+    font-size:1rem;
+  }
+  .index-card .lines .placeholder{
+    color:#8a7a5f;
+    font-style:italic;
+  }
+  .index-card .card-actions{
+    margin-top:18px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .index-card .btn.primary{background:#2c4235; color:var(--paper);}
+  .index-card .btn.ghost{border-color:#c9bd9c; color:#6b5c40;}
+
+  footer{
+    text-align:center;
+    color:var(--chalk-dim);
+    font-size:.85rem;
+    margin-top:70px;
+    opacity:.75;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important; animation:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="board-texture">
+<div class="wrap">
+
+  <header class="hero">
+    <h1>Se Présenter</h1>
+    <svg class="underline" viewBox="0 0 320 14" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M4 8 C 60 2, 120 12, 160 6 S 260 2, 316 9" stroke="#e2836f" stroke-width="4" fill="none" stroke-linecap="round"/>
+    </svg>
+    <p class="sub">Introducing yourself in French — greetings, name, age, nationality, languages, job and home, drilled the way your teacher actually wrote it on the board.</p>
+    <div class="flags"><span></span><span></span><span></span></div>
+  </header>
+
+  <section class="note-card" aria-labelledby="how-it-works">
+    <h2 id="how-it-works" style="margin:0;font-size:1.15rem;">How this lesson works</h2>
+    <p>French has two ways to say "you" — it changes almost every question below. Use the switch that appears once you scroll down to flip the whole page between them.</p>
+    <div class="vous-tu-grid">
+      <div class="vt-card vous">
+        <b>Vous — formal</b>
+        Strangers, teachers, work, anyone older or in a position of respect. Also the "you-plural" for a group.
+      </div>
+      <div class="vt-card tu">
+        <b>Tu — casual</b>
+        Friends, classmates, family, kids. Using <em>tu</em> with the wrong person can sound rude — when unsure, start with <em>vous</em>.
+      </div>
+    </div>
+    <p>Browse the phrase cards below first, then run the conversation in the practice studio — you'll type real answers about yourself and end up with your own French introduction card.</p>
+  </section>
+
+  <div class="mode-toggle">
+    <div class="pill" role="group" aria-label="Choose formal or casual French">
+      <button type="button" data-mode="formal" class="active" id="btn-formal">Vous · formal</button>
+      <button type="button" data-mode="casual" id="btn-casual">Tu · casual</button>
+    </div>
+  </div>
+
+  <section id="phrasebook">
+    <div class="section-head"><span class="tag">le tableau</span><h2>The Phrasebook</h2></div>
+    <div class="phrase-grid" id="phraseGrid"></div>
+  </section>
+
+  <section id="practice">
+    <div class="section-head"><span class="tag">à vous</span><h2>Practice Studio</h2></div>
+    <div class="practice-shell">
+      <div class="steps-rail" id="stepsRail" role="tablist" aria-label="Lesson steps"></div>
+      <div id="stepStage"></div>
+    </div>
+  </section>
+
+  <section id="result">
+    <div class="section-head"><span class="tag">votre carte</span><h2>Your Introduction</h2></div>
+    <div class="pin-wrap"><div class="pin"></div></div>
+    <div class="index-card" id="indexCard">
+      <span class="kicker">carte de présentation</span>
+      <h3>My introduction</h3>
+      <div class="lines" id="cardLines"></div>
+      <div class="card-actions">
+        <button class="btn primary" id="playCard" type="button">🔊 Read it aloud</button>
+        <button class="btn ghost" id="resetCard" type="button">Restart practice</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>Adapted from your "Se présenter" slides — greetings through goodbye, vous and tu side by side.</footer>
+
+</div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var formal = true;
+
+  function norm(s){
+    return (s||"").normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim();
+  }
+
+  var cachedVoices = [];
+  function loadVoices(){
+    try{
+      if('speechSynthesis' in window){
+        cachedVoices = window.speechSynthesis.getVoices() || [];
+      }
+    }catch(e){ /* ignore */ }
+  }
+  loadVoices();
+  try{
+    if('speechSynthesis' in window){
+      window.speechSynthesis.onvoiceschanged = loadVoices;
+    }
+  }catch(e){ /* ignore */ }
+
+  function pickFrenchVoice(){
+    if(!cachedVoices.length) loadVoices();
+    if(!cachedVoices.length) return null;
+    var exact = cachedVoices.find(function(v){ return v.lang && v.lang.toLowerCase() === 'fr-fr'; });
+    if(exact) return exact;
+    var starts = cachedVoices.find(function(v){ return v.lang && v.lang.toLowerCase().indexOf('fr') === 0; });
+    if(starts) return starts;
+    var byName = cachedVoices.find(function(v){ return /fran[cç]ais|french/i.test(v.name || ''); });
+    if(byName) return byName;
+    return null;
+  }
+
+  function speak(text){
+    try{
+      if(!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      var say = function(){
+        var u = new SpeechSynthesisUtterance(text);
+        u.lang = 'fr-FR';
+        u.rate = 0.92;
+        var v = pickFrenchVoice();
+        if(v){ u.voice = v; u.lang = v.lang; }
+        window.speechSynthesis.speak(u);
+      };
+      // Voices load asynchronously in some browsers — give them a beat on first use.
+      if(!cachedVoices.length){
+        setTimeout(say, 150);
+      } else {
+        say();
+      }
+    }catch(e){ /* speech synthesis unavailable — silently skip */ }
+  }
+
+  /* ---------------- phrasebook data ---------------- */
+  var phrases = [
+    {
+      cat:"Greeting", icon:"👋",
+      fr:"Bonjour !", phon:"bohn-ZHOOR", en:"Hello! / Good day!",
+      note:"Use bonsoir instead after nightfall."
+    },
+    {
+      cat:"How are you", icon:"🙂",
+      fr:"Comment ça va ?", phon:"koh-mahn sah VAH", en:"How's it going?",
+      answerFormal:"Ça va bien, et vous ?", answerCasual:"Ça va bien, et toi ?",
+      answerFollow:"Ça va bien aussi."
+    },
+    {
+      cat:"Nice to meet you", icon:"🤝",
+      fr:"Enchanté / Enchantée", speak:"Enchanté", phon:"ahn-shahn-TAY", en:"Delighted (to meet you).",
+      note:"Sounds identical either way — Enchanté if you're a man, Enchantée if you're a woman."
+    },
+    {
+      cat:"Name", icon:"🏷️",
+      formalFr:"Comment vous appelez-vous ?", casualFr:"Comment tu t'appelles ?",
+      phonFormal:"koh-mahn voo zah-play VOO", phonCasual:"koh-mahn tü tah-PELL",
+      en:"What's your name?",
+      answerFormal:"Je m'appelle ..., et vous ?", answerCasual:"Je m'appelle ..., et toi ?",
+      answerFollow:"Je m'appelle ..."
+    },
+    {
+      cat:"Age", icon:"🎂",
+      formalFr:"Quel âge avez-vous ?", casualFr:"Quel âge as-tu ?",
+      phonFormal:"kell ahzh ah-vay VOO", phonCasual:"kell ahzh ah TÜ",
+      en:"How old are you?",
+      answerFormal:"J'ai ... ans, et vous ?", answerCasual:"J'ai ... ans, et toi ?",
+      answerFollow:"J'ai ... ans."
+    },
+    {
+      cat:"Nationality", icon:"🌍",
+      formalFr:"Quelle est votre nationalité ?", casualFr:"Quelle est ta nationalité ?",
+      phonFormal:"kell eh vot-ruh nah-syoh-nah-lee-TAY", phonCasual:"kell eh tah nah-syoh-nah-lee-TAY",
+      en:"What's your nationality?",
+      answerFormal:"Je suis ..., et vous ?", answerCasual:"Je suis ..., et toi ?",
+      answerFollow:"Je suis ..."
+    },
+    {
+      cat:"Languages", icon:"🗣️",
+      formalFr:"Quelles langues parlez-vous ?", casualFr:"Quelles langues parles-tu ?",
+      phonFormal:"kell lahngz par-lay VOO", phonCasual:"kell lahngz parl TÜ",
+      en:"What languages do you speak?",
+      answerFormal:"Je parle ..., et vous ?", answerCasual:"Je parle ..., et toi ?",
+      answerFollow:"Je parle ..."
+    },
+    {
+      cat:"Profession", icon:"💼",
+      formalFr:"Quelle est votre profession ?", casualFr:"Quelle est ta profession ?",
+      phonFormal:"kell eh vot-ruh proh-feh-syohn", phonCasual:"kell eh tah proh-feh-syohn",
+      en:"What's your job?",
+      answerFormal:"Je suis ..., et vous ?", answerCasual:"Je suis ..., et toi ?",
+      answerFollow:"Je suis ..."
+    },
+    {
+      cat:"Home", icon:"🏠",
+      formalFr:"Où habitez-vous ?", casualFr:"Où habites-tu ?",
+      phonFormal:"oo ah-bee-tay VOO", phonCasual:"oo ah-beet TÜ",
+      en:"Where do you live?",
+      answerFormal:"J'habite à ..., et vous ?", answerCasual:"J'habite à ..., et toi ?",
+      answerFollow:"J'habite à ..."
+    },
+    {
+      cat:"Goodbye", icon:"👋",
+      fr:"Au revoir !", phon:"oh ruh-VWAHR", en:"Goodbye!",
+      note:"À bientôt (see you soon) works too, among friends."
+    }
+  ];
+
+  function renderPhrasebook(){
+    var grid = document.getElementById('phraseGrid');
+    grid.innerHTML = '';
+    phrases.forEach(function(p){
+      var card = document.createElement('div');
+      card.className = 'phrase-card';
+
+      var mainFr, phon, badge = '';
+      if(p.formalFr){
+        mainFr = formal ? p.formalFr : p.casualFr;
+        phon = formal ? p.phonFormal : p.phonCasual;
+        badge = '<span class="variant-badge ' + (formal?'vous':'tu') + '">' + (formal?'vous':'tu') + '</span>';
+      } else {
+        mainFr = p.fr; phon = p.phon;
+      }
+
+      var answerHtml = '';
+      if(p.answerFormal){
+        var ans = formal ? p.answerFormal : p.answerCasual;
+        answerHtml =
+          '<div class="answer"><span class="lbl">reply</span>' + ans + '</div>' +
+          '<div class="answer" style="border-top:none;padding-top:0;">' + p.answerFollow + '</div>';
+      }
+
+      var noteHtml = p.note ? '<div class="note">' + p.note + '</div>' : '';
+
+      card.innerHTML =
+        '<div class="cat"><span class="ico">' + p.icon + '</span>' + p.cat + '</div>' +
+        '<div class="fr">' + badge + mainFr + '</div>' +
+        '<div class="en">' + p.en + '</div>' +
+        '<div class="phon mono">' + phon + '</div>' +
+        answerHtml + noteHtml;
+
+      var speakText = p.speak || mainFr;
+      var btn = document.createElement('button');
+      btn.className = 'listen-btn';
+      btn.type = 'button';
+      btn.setAttribute('aria-label', 'Listen to ' + mainFr);
+      btn.innerHTML = '🔊';
+      btn.addEventListener('click', function(){ speak(speakText); });
+      card.appendChild(btn);
+
+      grid.appendChild(card);
+    });
+  }
+
+  /* ---------------- practice steps ---------------- */
+  var chips = {
+    nat: ["français / française","américain / américaine","mexicain / mexicaine","coréen / coréenne","espagnol / espagnole","chinois / chinoise","japonais / japonaise","canadien / canadienne","brésilien / brésilienne","britannique"],
+    lang: ["français","anglais","espagnol","coréen","chinois","japonais","allemand","italien","portugais","arabe"],
+    job: ["étudiant(e)","professeur(e)","ingénieur(e)","médecin","avocat(e)","artiste","employé(e) de bureau","informaticien(ne)"]
+  };
+
+  var steps = [
+    {
+      id:'greet', cat:'Warm-up · Bonjour', avatar:'👋',
+      q:function(){ return 'Bonjour !'; },
+      en:'Hello!', phon:'bohn-ZHOOR',
+      instructions:'Say hello back — type "Bonjour".',
+      expect:['bonjour'],
+      placeholder:'Bonjour...'
+    },
+    {
+      id:'howareyou', cat:'How are you · Comment ça va ?', avatar:'🙂',
+      q:function(){ return 'Comment ça va ?'; },
+      en:"How's it going?", phon:'koh-mahn sah VAH',
+      instructions:'Say you\'re doing well and ask back — start with "Ça va bien".',
+      expect:['va bien'],
+      placeholder:formalPlaceholder('Ça va bien, et vous ?','Ça va bien, et toi ?')
+    },
+    { id:'gender', special:'gender' },
+    {
+      id:'name', cat:'Name · Se nommer', avatar:'🏷️',
+      q:function(){ return formal ? "Comment vous appelez-vous ?" : "Comment tu t'appelles ?"; },
+      en:"What's your name?",
+      phonF:'koh-mahn voo zah-play VOO', phonC:"koh-mahn tü tah-PELL",
+      instructions:'Answer with "Je m\'appelle ..."',
+      expect:["je m'appelle","je mappelle"],
+      note:"The source deck only shows the tu form — the vous form is added here for completeness.",
+      noteOnlyWhen:'formal',
+      placeholder:"Je m'appelle ..."
+    },
+    {
+      id:'age', cat:'Age · L\'âge', avatar:'🎂',
+      q:function(){ return formal ? 'Quel âge avez-vous ?' : 'Quel âge as-tu ?'; },
+      en:'How old are you?',
+      phonF:'kell ahzh ah-vay VOO', phonC:'kell ahzh ah TÜ',
+      instructions:'Answer with "J\'ai ... ans."',
+      expect:["j'ai","jai"], expectAlso:['ans'],
+      placeholder:"J'ai ... ans"
+    },
+    {
+      id:'nat', cat:'Nationality · La nationalité', avatar:'🌍',
+      q:function(){ return formal ? 'Quelle est votre nationalité ?' : 'Quelle est ta nationalité ?'; },
+      en:"What's your nationality?",
+      phonF:'kell eh vot-ruh nah-syoh-nah-lee-TAY', phonC:'kell eh tah nah-syoh-nah-lee-TAY',
+      instructions:'Answer with "Je suis ..."',
+      expect:['je suis'],
+      chips:chips.nat,
+      placeholder:"Je suis ..."
+    },
+    {
+      id:'lang', cat:'Languages · Les langues', avatar:'🗣️',
+      q:function(){ return formal ? 'Quelles langues parlez-vous ?' : 'Quelles langues parles-tu ?'; },
+      en:'What languages do you speak?',
+      phonF:'kell lahngz par-lay VOO', phonC:'kell lahngz parl TÜ',
+      instructions:'Answer with "Je parle ..."',
+      expect:['je parle'],
+      chips:chips.lang,
+      placeholder:"Je parle ..."
+    },
+    {
+      id:'job', cat:'Profession · Le métier', avatar:'💼',
+      q:function(){ return formal ? 'Quelle est votre profession ?' : 'Quelle est ta profession ?'; },
+      en:"What's your job?",
+      phonF:'kell eh vot-ruh proh-feh-syohn', phonC:'kell eh tah proh-feh-syohn',
+      instructions:'Answer with "Je suis ..."',
+      expect:['je suis'],
+      chips:chips.job,
+      placeholder:"Je suis ..."
+    },
+    {
+      id:'home', cat:'Home · Le domicile', avatar:'🏠',
+      q:function(){ return formal ? 'Où habitez-vous ?' : 'Où habites-tu ?'; },
+      en:'Where do you live?',
+      phonF:'oo ah-bee-tay VOO', phonC:'oo ah-beet TÜ',
+      instructions:'Answer with "J\'habite à ..."',
+      expect:["j'habite","jhabite"],
+      note:"The source deck only shows the vous form — the tu form is added here for completeness.",
+      noteOnlyWhen:'casual',
+      placeholder:"J'habite à ..."
+    },
+    {
+      id:'bye', cat:'Goodbye · Au revoir', avatar:'👋',
+      q:function(){ return 'Au revoir !'; },
+      en:'Goodbye!', phon:'oh ruh-VWAHR',
+      instructions:'Wrap up the conversation — type "Au revoir".',
+      expect:['au revoir'],
+      placeholder:'Au revoir...'
+    }
+  ];
+
+  function formalPlaceholder(a,b){ return function(){ return formal ? a : b; }; }
+
+  var current = 0;
+  var doneSteps = {};
+  var answers = {}; // id -> raw text
+  var genderChoice = null; // 'm' | 'f'
+
+  function stepPhon(step){
+    if(step.phon) return step.phon;
+    return formal ? step.phonF : step.phonC;
+  }
+
+  function renderRail(){
+    var rail = document.getElementById('stepsRail');
+    rail.innerHTML = '';
+    steps.forEach(function(s, i){
+      var dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'step-dot' + (i===current?' current':'') + (doneSteps[i]?' done':'');
+      dot.textContent = doneSteps[i] ? '✓' : (i+1);
+      dot.setAttribute('aria-label', 'Step ' + (i+1));
+      dot.addEventListener('click', function(){
+        if(doneSteps[i] || i===current || i < current){ current = i; render(); }
+      });
+      rail.appendChild(dot);
+    });
+  }
+
+  function renderStage(){
+    var stage = document.getElementById('stepStage');
+    var step = steps[current];
+    stage.innerHTML = '';
+
+    if(step.special === 'gender'){
+      stage.innerHTML =
+        '<div class="avatar-row">' +
+          '<div class="avatar">🤝</div>' +
+          '<div class="bubble">' +
+            '<div class="cat-label">Nice to meet you</div>' +
+            '<div class="fr-q">Enchanté(e) !</div>' +
+            '<div class="en-q">Delighted to meet you — pronounced identically, spelled differently.</div>' +
+            '<div class="instructions">Pick the form that agrees with you. It only changes the spelling.</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="gender-choice">' +
+          '<button type="button" class="gender-btn' + (genderChoice==='m'?' selected':'') + '" data-g="m">🧑 <span class="big">Enchanté</span></button>' +
+          '<button type="button" class="gender-btn' + (genderChoice==='f'?' selected':'') + '" data-g="f">👩 <span class="big">Enchantée</span></button>' +
+        '</div>' +
+        '<div class="practice-actions">' +
+          '<button class="btn ghost" id="listenGender" type="button">🔊 Listen</button>' +
+          '<button class="btn next" id="nextBtn" type="button" ' + (genderChoice?'':'disabled') + '>Continue →</button>' +
+        '</div>';
+
+      stage.querySelectorAll('.gender-btn').forEach(function(b){
+        b.addEventListener('click', function(){
+          genderChoice = b.getAttribute('data-g');
+          answers.gender = genderChoice === 'f' ? 'Enchantée.' : 'Enchanté.';
+          doneSteps[current] = true;
+          renderRail();
+          renderStage();
+        });
+      });
+      var lg = document.getElementById('listenGender');
+      if(lg) lg.addEventListener('click', function(){ speak(genderChoice==='f' ? 'Enchantée' : 'Enchanté'); });
+      var nb = document.getElementById('nextBtn');
+      if(nb) nb.addEventListener('click', goNext);
+      return;
+    }
+
+    var qText = step.q();
+    var noteHtml = '';
+    if(step.note){
+      var show = !step.noteOnlyWhen || (step.noteOnlyWhen==='formal' && formal) || (step.noteOnlyWhen==='casual' && !formal);
+      if(show) noteHtml = '<div class="instructions" style="color:var(--blue);">' + step.note + '</div>';
+    }
+
+    var chipsHtml = '';
+    if(step.chips){
+      chipsHtml = '<div class="chips">' + step.chips.map(function(c){
+        return '<button type="button" class="chip" data-val="' + c.split(' / ')[0].replace(/"/g,'&quot;') + '">' + c + '</button>';
+      }).join('') + '</div>';
+    }
+
+    var savedVal = answers[step.id] || '';
+    var wasDone = !!doneSteps[current];
+
+    stage.innerHTML =
+      '<div class="avatar-row">' +
+        '<div class="avatar">' + step.avatar + '</div>' +
+        '<div class="bubble">' +
+          '<div class="cat-label">' + step.cat + '</div>' +
+          '<div class="fr-q">' + qText + '</div>' +
+          '<div class="en-q">' + step.en + '</div>' +
+          '<div class="phon-q mono">' + stepPhon(step) + '</div>' +
+          '<div class="instructions">' + step.instructions + '</div>' +
+          noteHtml +
+        '</div>' +
+      '</div>' +
+      chipsHtml +
+      '<div class="answer-row">' +
+        '<input type="text" id="answerInput" placeholder="" value="' + savedVal.replace(/"/g,'&quot;') + '" autocomplete="off" />' +
+        '<button class="listen-btn" id="listenQ" type="button" aria-label="Listen to the question">🔊</button>' +
+      '</div>' +
+      '<div class="feedback" id="feedback"></div>' +
+      '<div class="practice-actions">' +
+        '<button class="btn ghost" id="hintBtn" type="button">Show model answer</button>' +
+        '<button class="btn primary" id="checkBtn" type="button">Check</button>' +
+        '<button class="btn next" id="nextBtn2" type="button" style="display:' + (wasDone?'inline-flex':'none') + ';">Continue →</button>' +
+      '</div>';
+
+    document.getElementById('listenQ').addEventListener('click', function(){ speak(qText); });
+
+    stage.querySelectorAll('.chip').forEach(function(chip){
+      chip.addEventListener('click', function(){
+        var input = document.getElementById('answerInput');
+        var val = chip.getAttribute('data-val');
+        var lead = (step.expect && step.expect[0]) ? capitalize(step.expect[0]) : '';
+        if(!input.value.trim()){
+          input.value = lead + ' ' + val + (step.expectAlso ? ' ' + step.expectAlso[0] : '') + '.';
+        } else {
+          input.value += ' ' + val;
+        }
+        input.focus();
+      });
+    });
+
+    function capitalize(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+
+    var fb = document.getElementById('feedback');
+
+    function check(){
+      var val = document.getElementById('answerInput').value;
+      var n = norm(val);
+      var okMain = step.expect.some(function(e){ return n.indexOf(norm(e)) !== -1; });
+      var okAlso = !step.expectAlso || step.expectAlso.some(function(e){ return n.indexOf(norm(e)) !== -1; });
+      if(val.trim() && okMain && okAlso){
+        fb.className = 'feedback show good';
+        fb.textContent = '✅ Nice — that reads as natural French.';
+        answers[step.id] = val.trim();
+        doneSteps[current] = true;
+        renderRail();
+        document.getElementById('nextBtn2').style.display = 'inline-flex';
+      } else {
+        fb.className = 'feedback show hint';
+        fb.textContent = '💡 Not quite — ' + step.instructions.toLowerCase();
+      }
+    }
+
+    document.getElementById('checkBtn').addEventListener('click', check);
+    document.getElementById('answerInput').addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){ e.preventDefault(); check(); }
+    });
+
+    document.getElementById('hintBtn').addEventListener('click', function(){
+      var model = formal ?
+        (step.hintFormal || defaultModel(step, true)) :
+        (step.hintCasual || defaultModel(step, false));
+      fb.className = 'feedback show hint';
+      fb.innerHTML = '📝 Model answer: <strong>' + model + '</strong>';
+      var input = document.getElementById('answerInput');
+      if(!input.value.trim()) input.value = model;
+    });
+
+    document.getElementById('nextBtn2').addEventListener('click', goNext);
+  }
+
+  function defaultModel(step, isFormal){
+    var who = isFormal ? 'vous' : 'toi';
+    switch(step.id){
+      case 'greet': return 'Bonjour !';
+      case 'howareyou': return 'Ça va bien, et ' + who + ' ?';
+      case 'name': return "Je m'appelle Karla, et " + who + ' ?';
+      case 'age': return "J'ai 25 ans, et " + who + ' ?';
+      case 'nat': return 'Je suis mexicaine, et ' + who + ' ?';
+      case 'lang': return 'Je parle espagnol et anglais, et ' + who + ' ?';
+      case 'job': return 'Je suis étudiante, et ' + who + ' ?';
+      case 'home': return "J'habite à Séoul, et " + who + ' ?';
+      case 'bye': return 'Au revoir !';
+      default: return '';
+    }
+  }
+
+  function goNext(){
+    if(current < steps.length - 1){
+      current += 1;
+      render();
+      updateCard();
+    } else {
+      updateCard();
+      var res = document.getElementById('result');
+      if(res) res.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  }
+
+  function render(){
+    renderRail();
+    renderStage();
+  }
+
+  /* ---------------- result card ---------------- */
+  function updateCard(){
+    var lines = document.getElementById('cardLines');
+    var order = ['greet','howareyou','gender','name','age','nat','lang','job','home','bye'];
+    var any = false;
+    var html = '';
+    order.forEach(function(id){
+      if(answers[id]){
+        any = true;
+        html += '<div>' + escapeHtml(answers[id]) + '</div>';
+      }
+    });
+    if(!any){
+      html = '<div class="placeholder">Work through the practice studio above — every answer you type lands here.</div>';
+    }
+    lines.innerHTML = html;
+  }
+
+  function escapeHtml(s){
+    var d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  function fullCardText(){
+    var order = ['greet','howareyou','gender','name','age','nat','lang','job','home','bye'];
+    return order.map(function(id){ return answers[id]; }).filter(Boolean).join(' ');
+  }
+
+  document.getElementById('playCard').addEventListener('click', function(){
+    var t = fullCardText();
+    if(t) speak(t);
+  });
+
+  document.getElementById('resetCard').addEventListener('click', function(){
+    current = 0;
+    doneSteps = {};
+    answers = {};
+    genderChoice = null;
+    render();
+    updateCard();
+    document.getElementById('practice').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+
+  /* ---------------- mode toggle ---------------- */
+  function setMode(newFormal){
+    formal = newFormal;
+    document.getElementById('btn-formal').classList.toggle('active', formal);
+    document.getElementById('btn-casual').classList.toggle('active', !formal);
+    renderPhrasebook();
+    renderStage();
+  }
+  document.getElementById('btn-formal').addEventListener('click', function(){ setMode(true); });
+  document.getElementById('btn-casual').addEventListener('click', function(){ setMode(false); });
+
+  /* ---------------- init ---------------- */
+  renderPhrasebook();
+  render();
+  updateCard();
+})();
+</script>
+
+</body></html>

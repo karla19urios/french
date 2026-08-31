@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Les Nombres — French Numbers Lesson (A1)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Caveat:wght@600;700&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #FAF6EC;
+    --grid-blue: #AFC9E0;
+    --margin-red: #D8465A;
+    --ink: #1E2A44;
+    --ink-soft: #445071;
+    --highlight: #F4C24B;
+    --highlight-soft: #FBE7B7;
+    --green-ok: #3E8E5A;
+    --red-no: #C24444;
+    --card-bg: #FFFFFF;
+    --grid-size: 26px;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html, body{
+    margin:0; padding:0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Work Sans', sans-serif;
+    scroll-behavior: smooth;
+  }
+
+
+  body{
+    background-image:
+      linear-gradient(var(--grid-blue) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-blue) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
+    background-position: 90px 0, 90px 0;
+    background-attachment: local;
+    position: relative;
+  }
+
+  body::before{
+    content:"";
+    position: fixed;
+    top:0; bottom:0; left:64px;
+    width:2px;
+    background: var(--margin-red);
+    opacity:0.55;
+    z-index: 0;
+    pointer-events:none;
+  }
+
+  .wrap{
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 24px 24px 100px;
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 640px){
+    .wrap{ padding: 0 16px 24px 56px; }
+
+    body::before{ left: 36px; }
+  }
+
+  header.hero{
+    padding-top: 56px;
+    padding-bottom: 24px;
+  }
+
+  .eyebrow{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: var(--margin-red);
+    text-transform: uppercase;
+    margin: 0 0 6px 2px;
+  }
+
+  h1.title{
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: clamp(52px, 11vw, 92px);
+    line-height: 0.95;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  h1.title .accent{
+    color: var(--margin-red);
+  }
+
+  .subtitle{
+    font-size: 17px;
+
+    color: var(--ink-soft);
+    max-width: 56ch;
+    margin: 12px 0 0 2px;
+  }
+
+  .meta-row{
+    display:flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 18px 0 0 2px;
+  }
+
+  .meta-chip{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    background: var(--card-bg);
+    border: 1.5px solid var(--ink);
+    border-radius: 999px;
+    padding: 5px 12px;
+    color: var(--ink);
+  }
+
+  section{
+    margin-top: 52px;
+  }
+
+  .section-label{
+    display:flex;
+    align-items:baseline;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+
+
+  .section-num{
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 34px;
+    color: var(--margin-red);
+  }
+
+  h2{
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  .section-sub{
+    color: var(--ink-soft);
+    font-size: 15px;
+    margin: 8px 0 20px 2px;
+    max-width: 62ch;
+  }
+
+  ul.obj-list{
+    list-style: none;
+    margin: 0; padding: 0;
+    display: grid;
+    gap: 10px;
+  }
+
+  ul.obj-list li{
+    background: var(--card-bg);
+
+    border: 1.5px solid #E2DCC9;
+    border-left: 4px solid var(--margin-red);
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  /* Flashcards */
+  .card-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 12px;
+  }
+
+  .flip-card{
+    perspective: 800px;
+    height: 110px;
+    cursor: pointer;
+  }
+
+  .flip-inner{
+    position: relative;
+    width:100%; height:100%;
+    transition: transform 0.5s cubic-bezier(.2,.7,.3,1);
+    transform-style: preserve-3d;
+  }
+
+  .flip-card.flipped .flip-inner{
+    transform: rotateY(180deg);
+  }
+
+
+  .flip-face{
+    position:absolute; inset:0;
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    border-radius: 10px;
+    backface-visibility: hidden;
+    border: 1.5px solid var(--ink);
+  }
+
+  .flip-front{
+    background: var(--card-bg);
+  }
+
+  .flip-front .num{
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 44px;
+    color: var(--ink);
+  }
+
+  .flip-front .hint{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #9AA3B8;
+    margin-top: 2px;
+  }
+
+  .flip-back{
+    background: var(--ink);
+    color: var(--paper);
+    transform: rotateY(180deg);
+    padding: 8px;
+
+    text-align:center;
+  }
+
+  .flip-back .word{
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+  .flip-back .pron{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--highlight);
+    margin-top: 4px;
+  }
+
+  /* Matching game */
+  .match-wrap{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  @media (max-width: 560px){
+    .match-wrap{ grid-template-columns: 1fr; }
+  }
+
+  .match-col h3{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+
+    margin: 0 0 10px 2px;
+  }
+
+  .match-item{
+    background: var(--card-bg);
+    border: 1.5px solid var(--ink);
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: none;
+  }
+
+  .match-item:hover{
+    transform: translateX(2px);
+  }
+
+  .match-item.selected{
+    background: var(--highlight-soft);
+    border-color: var(--highlight);
+  }
+
+  .match-item.matched{
+    background: #E7F3EA;
+    border-color: var(--green-ok);
+    color: var(--green-ok);
+    cursor: default;
+    opacity: 0.8;
+  }
+
+
+  .match-item.wrong{
+    background: #FBEAEA;
+    border-color: var(--red-no);
+    animation: shake 0.3s;
+  }
+
+  @keyframes shake{
+    0%,100%{ transform: translateX(0); }
+    25%{ transform: translateX(-4px); }
+    75%{ transform: translateX(4px); }
+  }
+
+  .match-status{
+    margin-top: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  .reset-btn{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    border-radius: 6px;
+    padding: 8px 14px;
+    cursor: pointer;
+    margin-top: 12px;
+  }
+
+  .reset-btn:hover{ background: var(--margin-red); }
+
+
+  /* Quiz */
+  .quiz-card{
+    background: var(--card-bg);
+    border: 1.5px solid var(--ink);
+    border-radius: 10px;
+    padding: 22px;
+  }
+
+  .quiz-progress{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+
+  .quiz-q{
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .quiz-options{
+    display:grid;
+    gap: 8px;
+  }
+
+  .quiz-opt{
+    text-align:left;
+    background: var(--paper);
+    border: 1.5px solid #C9C2AC;
+    border-radius: 7px;
+
+    padding: 10px 14px;
+    font-size: 15px;
+    font-family: inherit;
+    cursor: pointer;
+    color: var(--ink);
+  }
+
+  .quiz-opt:hover{ border-color: var(--ink); }
+
+  .quiz-opt.correct{
+    background: #E7F3EA;
+    border-color: var(--green-ok);
+    color: var(--green-ok);
+    font-weight: 600;
+  }
+
+  .quiz-opt.incorrect{
+    background: #FBEAEA;
+    border-color: var(--red-no);
+    color: var(--red-no);
+  }
+
+  .quiz-feedback{
+    margin-top: 12px;
+    font-size: 14px;
+    min-height: 20px;
+    color: var(--ink-soft);
+  }
+
+  .quiz-nav{
+    margin-top: 16px;
+    display:flex;
+
+    justify-content: flex-end;
+  }
+
+  .quiz-nav button{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    border-radius: 6px;
+    padding: 9px 16px;
+    cursor: pointer;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .quiz-nav button.active{
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .quiz-nav button:hover.active{ background: var(--margin-red); }
+
+  .quiz-result{
+    text-align:center;
+    padding: 30px 20px;
+  }
+
+  .quiz-result .score{
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 64px;
+
+    color: var(--margin-red);
+  }
+
+  footer{
+    margin-top: 60px;
+    padding: 20px 0 40px;
+    text-align:center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #A6A088;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <p class="eyebrow">French · Level A1 · 50 minutes</p>
+    <h1 class="title">Les <span class="accent">Nombres</span></h1>
+    <p class="subtitle">A lesson for learning to count in French — from zero to twenty, and a bit beyond.</p>
+    <div class="meta-row">
+      <span class="meta-chip">⏱ 50 min</span>
+      <span class="meta-chip">🎯 Level A1</span>
+      <span class="meta-chip">🔢 0–20 (+ tens)</span>
+    </div>
+  </header>
+
+  <section id="objectives">
+    <div class="section-label">
+      <span class="section-num">1</span>
+      <h2>Learning objectives</h2>
+    </div>
+
+    <p class="section-sub">By the end of class, students will be able to:</p>
+    <ul class="obj-list">
+      <li>Recognize and correctly pronounce the numbers 0 to 20 in French.</li>
+      <li>Answer the question <em>"Combien de...?"</em> by counting objects out loud.</li>
+      <li>Identify the tens (30, 40, 50... 100) by sound and in writing.</li>
+    </ul>
+  </section>
+
+  <section id="activity1">
+    <div class="section-label">
+      <span class="section-num">2</span>
+      <h2>Activity 1 — Flashcards and repetition (15 min)</h2>
+    </div>
+    <p class="section-sub">The teacher says each number out loud and the class repeats in chorus. Then each student taps the cards to review pronunciation on their own.</p>
+    <div class="card-grid" id="flashcards"></div>
+  </section>
+
+  <section id="activity2">
+    <div class="section-label">
+      <span class="section-num">3</span>
+      <h2>Activity 2 — Matching game (20 min)</h2>
+    </div>
+    <p class="section-sub">In pairs or individually: click a number, then click the French word that matches it. Classroom variant: split the group into two teams and turn it into a board competition.</p>
+    <div class="match-wrap">
+      <div class="match-col">
+        <h3>Chiffres</h3>
+        <div id="match-numbers"></div>
+      </div>
+      <div class="match-col">
+        <h3>Mots</h3>
+        <div id="match-words"></div>
+      </div>
+
+    </div>
+    <p class="match-status" id="match-status">0 / 8 pairs found</p>
+    <button class="reset-btn" id="match-reset">↻ Restart game</button>
+  </section>
+
+  <section id="check">
+    <div class="section-label">
+      <span class="section-num">4</span>
+      <h2>Quick comprehension check (10 min)</h2>
+    </div>
+    <p class="section-sub">A 5-question quiz. Each student answers individually; review together as a class at the end.</p>
+    <div class="quiz-card" id="quiz-container"></div>
+  </section>
+
+  <footer>fait avec un cahier Seyès · lesson generated for your class</footer>
+</div>
+
+<script>
+// ---------- Data ----------
+const numbers = [
+  {n:0, fr:"zéro", pron:"zé-ro"},
+  {n:1, fr:"un", pron:" œ̃"},
+  {n:2, fr:"deux", pron:"deu"},
+  {n:3, fr:"trois", pron:"trwa"},
+  {n:4, fr:"quatre", pron:"katr"},
+  {n:5, fr:"cinq", pron:"sank"},
+  {n:6, fr:"six", pron:"sis"},
+  {n:7, fr:"sept", pron:"set"},
+  {n:8, fr:"huit", pron:"wit"},
+  {n:9, fr:"neuf", pron:"neuf"},
+  {n:10, fr:"dix", pron:"dis"},
+  {n:11, fr:"onze", pron:"onz"},
+
+  {n:12, fr:"douze", pron:"duz"},
+  {n:13, fr:"treize", pron:"trez"},
+  {n:14, fr:"quatorze", pron:"ka-torz"},
+  {n:15, fr:"quinze", pron:"kanz"},
+  {n:16, fr:"seize", pron:"sez"},
+  {n:17, fr:"dix-sept", pron:"di-set"},
+  {n:18, fr:"dix-huit", pron:"di-zwit"},
+  {n:19, fr:"dix-neuf", pron:"diz-neuf"},
+  {n:20, fr:"vingt", pron:"van"}
+];
+
+// ---------- Flashcards ----------
+const flashGrid = document.getElementById('flashcards');
+numbers.forEach(item => {
+  const card = document.createElement('div');
+  card.className = 'flip-card';
+  card.innerHTML = `
+    <div class="flip-inner">
+      <div class="flip-face flip-front">
+        <div class="num">${item.n}</div>
+        <div class="hint">tap to reveal</div>
+      </div>
+      <div class="flip-face flip-back">
+        <div class="word">${item.fr}</div>
+        <div class="pron">/${item.pron}/</div>
+      </div>
+    </div>`;
+  card.addEventListener('click', () => card.classList.toggle('flipped'));
+  flashGrid.appendChild(card);
+});
+
+// ---------- Matching game ----------
+
+const matchSet = [1,3,5,7,9,12,15,20].map(n => numbers.find(x => x.n === n));
+
+function shuffled(arr){
+  return [...arr].sort(() => Math.random() - 0.5);
+}
+
+let selectedNum = null;
+let selectedWord = null;
+let matchedCount = 0;
+
+function renderMatch(){
+  matchedCount = 0;
+  selectedNum = null;
+  selectedWord = null;
+  const numCol = document.getElementById('match-numbers');
+  const wordCol = document.getElementById('match-words');
+  numCol.innerHTML = '';
+  wordCol.innerHTML = '';
+
+  shuffled(matchSet).forEach(item => {
+    const el = document.createElement('div');
+    el.className = 'match-item';
+    el.textContent = item.n;
+    el.dataset.n = item.n;
+    el.addEventListener('click', () => handlePick(el, 'num', item.n));
+    numCol.appendChild(el);
+  });
+
+  shuffled(matchSet).forEach(item => {
+    const el = document.createElement('div');
+    el.className = 'match-item';
+    el.textContent = item.fr;
+
+    el.dataset.n = item.n;
+    el.addEventListener('click', () => handlePick(el, 'word', item.n));
+    wordCol.appendChild(el);
+  });
+
+  updateStatus();
+}
+
+function updateStatus(){
+  document.getElementById('match-status').textContent =
+    matchedCount === matchSet.length
+      ? `🎉 Complete! ${matchedCount} / ${matchSet.length} pairs found`
+      : `${matchedCount} / ${matchSet.length} pairs found`;
+}
+
+function handlePick(el, type, n){
+  if(el.classList.contains('matched')) return;
+
+  if(type === 'num'){
+    if(selectedNum) selectedNum.classList.remove('selected');
+    selectedNum = el;
+  } else {
+    if(selectedWord) selectedWord.classList.remove('selected');
+    selectedWord = el;
+  }
+  el.classList.add('selected');
+
+  if(selectedNum && selectedWord){
+    if(selectedNum.dataset.n === selectedWord.dataset.n){
+      selectedNum.classList.remove('selected');
+      selectedWord.classList.remove('selected');
+      selectedNum.classList.add('matched');
+
+      selectedWord.classList.add('matched');
+      matchedCount++;
+      selectedNum = null;
+      selectedWord = null;
+      updateStatus();
+    } else {
+      const a = selectedNum, b = selectedWord;
+      a.classList.add('wrong');
+      b.classList.add('wrong');
+      setTimeout(() => {
+        a.classList.remove('wrong','selected');
+        b.classList.remove('wrong','selected');
+      }, 400);
+      selectedNum = null;
+      selectedWord = null;
+    }
+  }
+}
+
+document.getElementById('match-reset').addEventListener('click', renderMatch);
+renderMatch();
+
+// ---------- Quiz ----------
+const quizQuestions = [
+  {
+    q: "How do you say 7 in French?",
+    options: ["sept", "six", "huit", "neuf"],
+    correct: 0
+  },
+  {
+    q: "Which number is 'quinze'?",
+    options: ["5", "14", "15", "16"],
+
+    correct: 2
+  },
+  {
+    q: "Complete: 'dix-___' means 17.",
+    options: ["huit", "neuf", "sept", "six"],
+    correct: 2
+  },
+  {
+    q: "Which tens number comes right after 'quarante' (40)?",
+    options: ["cinquante", "soixante", "trente", "quatre-vingts"],
+    correct: 0
+  },
+  {
+    q: "How do you say 0 in French?",
+    options: ["une", "zéro", "onze", "deux"],
+    correct: 1
+  }
+];
+
+let currentQ = 0;
+let score = 0;
+let answered = false;
+
+function renderQuiz(){
+  const container = document.getElementById('quiz-container');
+
+  if(currentQ >= quizQuestions.length){
+    container.innerHTML = `
+      <div class="quiz-result">
+        <div class="score">${score}/${quizQuestions.length}</div>
+        <p>correct answers</p>
+        <button class="reset-btn" id="quiz-restart">↻ Retake quiz</button>
+
+      </div>`;
+    document.getElementById('quiz-restart').addEventListener('click', () => {
+      currentQ = 0; score = 0; answered = false; renderQuiz();
+    });
+    return;
+  }
+
+  const item = quizQuestions[currentQ];
+  answered = false;
+
+  container.innerHTML = `
+    <div class="quiz-progress">Question ${currentQ + 1} of ${quizQuestions.length} · Score: ${score}</div>
+    <div class="quiz-q">${item.q}</div>
+    <div class="quiz-options">
+      ${item.options.map((opt, i) => `<button class="quiz-opt" data-i="${i}">${opt}</button>`).join('')}
+    </div>
+    <div class="quiz-feedback" id="quiz-feedback"></div>
+    <div class="quiz-nav"><button id="quiz-next">Next →</button></div>
+  `;
+
+  const opts = container.querySelectorAll('.quiz-opt');
+  opts.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if(answered) return;
+      answered = true;
+      const i = parseInt(btn.dataset.i);
+      const feedback = document.getElementById('quiz-feedback');
+      if(i === item.correct){
+        btn.classList.add('correct');
+        score++;
+        feedback.textContent = "✓ Correct!";
+      } else {
+
+        btn.classList.add('incorrect');
+        opts[item.correct].classList.add('correct');
+        feedback.textContent = "✗ Not quite — check the correct answer in green.";
+      }
+      document.getElementById('quiz-next').classList.add('active');
+    });
+  });
+
+  document.getElementById('quiz-next').addEventListener('click', () => {
+    if(!answered) return;
+    currentQ++;
+    renderQuiz();
+  });
+}
+
+renderQuiz();
+</script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Français A1.1</title>
+<style>
+  :root{
+    --bleu:#002395;
+    --blanc:#ffffff;
+    --rouge:#ED2939;
+    --bg:#f4f5f7;
+    --card:#ffffff;
+    --text:#1a1a2e;
+    --muted:#6b7280;
+    --border:#e5e7eb;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#12141c;
+      --card:#1b1e2b;
+      --text:#f1f2f6;
+      --muted:#9aa0b4;
+      --border:#2a2e40;
+    }
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+  }
+  header.flag{
+    background:linear-gradient(90deg, var(--bleu) 33%, var(--blanc) 33%, var(--blanc) 66%, var(--rouge) 66%);
+    height:8px;
+    width:100%;
+  }
+  .hero{
+    padding:3.5rem 1.5rem 2rem;
+    text-align:center;
+  }
+  .hero h1{
+    margin:0 0 .5rem;
+    font-size:2.4rem;
+    letter-spacing:-0.02em;
+  }
+  .hero p{
+    margin:0;
+    color:var(--muted);
+    font-size:1.05rem;
+  }
+  main{
+    max-width:1000px;
+    margin:0 auto;
+    padding:0 1.5rem 3rem;
+  }
+  .section-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(260px,1fr));
+    gap:1.2rem;
+  }
+  .section-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:1.6rem;
+    display:flex;
+    flex-direction:column;
+    gap:.6rem;
+    text-decoration:none;
+    color:var(--text);
+    transition:transform .14s ease, box-shadow .14s ease, border-color .14s ease;
+    position:relative;
+    overflow:hidden;
+  }
+  .section-card::before{
+    content:"";
+    position:absolute;
+    top:0; left:0; right:0;
+    height:4px;
+    background:linear-gradient(90deg, var(--bleu) 33%, var(--blanc) 33%, var(--blanc) 66%, var(--rouge) 66%);
+  }
+  .section-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 24px rgba(0,0,0,.1);
+    border-color:var(--bleu);
+  }
+  .section-card .icon{
+    font-size:2.2rem;
+    line-height:1;
+  }
+  .section-card h2{
+    margin:0;
+    font-size:1.3rem;
+  }
+  .section-card p{
+    margin:0;
+    color:var(--muted);
+    font-size:.92rem;
+    line-height:1.4;
+  }
+  .section-card .count{
+    margin-top:.4rem;
+    font-size:.75rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    color:var(--bleu);
+  }
+  footer{
+    text-align:center;
+    color:var(--muted);
+    font-size:.8rem;
+    padding:1.5rem;
+  }
+  .back-link{
+    display:block;
+    text-align:center;
+    margin-top:1.2rem;
+    font-size:.85rem;
+    color:var(--muted);
+    text-decoration:none;
+  }
+  .back-link:hover{ color:var(--bleu); }
+</style>
+</head>
+<body>
+<header class="flag"></header>
+<div class="hero">
+  <h1>🇫🇷 Français A1.1</h1>
+  <p>Grammaire · Lectures · Audios — tout le matériel de cours en un seul endroit</p>
+  <a class="back-link" href="../index.html">← Tous les niveaux</a>
+</div>
+
+<main>
+  <div class="section-grid">
+    <a class="section-card" href="grammaire.html">
+      <span class="icon">🧪</span>
+      <h2>Laboratoire de grammaire</h2>
+      <p>Toutes les leçons, du vocabulaire aux structures grammaticales — interactives et PDF.</p>
+      <span class="count">13 leçons</span>
+    </a>
+
+<a class="section-card" href="lectures.html">
+      <span class="icon">📖</span>
+      <h2>Lectures</h2>
+      <p>Textes courts pour travailler la compréhension écrite.</p>
+      <span class="count">2 lectures</span>
+    </a>
+
+    <a class="section-card" href="audios.html">
+      <span class="icon">🎧</span>
+      <h2>Audios</h2>
+      <p>Écoute et prononciation — pistes audio et activités interactives.</p>
+      <span class="count">4 pistes</span>
+    </a>
+  </div>
+</main>
+
+<footer>Site local généré pour consulter les fichiers du cours A1.1</footer>
+</body>
+</html>

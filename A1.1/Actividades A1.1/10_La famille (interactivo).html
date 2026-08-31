@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Famille</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700;800&family=Caveat:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root{
+    --cork:#c69a5e;
+    --panel:#fffaf0;
+    --paper:#fdf3df;
+    --ink:#3a2c1e;
+    --ink-soft:#7d6852;
+    --pin-red:#d1495b;
+    --pin-blue:#3f7cac;
+    --pin-yellow:#dfa22e;
+    --pin-green:#5b8c5a;
+    --twine:#8a6b45;
+    --line:#e6d2a3;
+    --tape:#f1cf8a;
+    --shadow:rgba(58,44,30,.32);
+  }
+
+  *{box-sizing:border-box;}
+  body{margin:0;}
+  .page{
+    font-family:'Nunito Sans',sans-serif;
+    color:var(--ink);
+    background-color:var(--cork);
+    background-image:
+      radial-gradient(circle at 10% 20%, rgba(255,255,255,.07) 1px, transparent 1.4px),
+      radial-gradient(circle at 60% 65%, rgba(0,0,0,.08) 1px, transparent 1.4px),
+      radial-gradient(circle at 80% 12%, rgba(255,255,255,.06) 1px, transparent 1.4px),
+      radial-gradient(circle at 30% 85%, rgba(0,0,0,.07) 1px, transparent 1.4px),
+      radial-gradient(circle at 45% 45%, rgba(0,0,0,.05) 1px, transparent 1.4px);
+    background-size:18px 18px, 24px 24px, 27px 27px, 15px 15px, 21px 21px;
+    min-height:100%;
+    padding-bottom:50px;
+    line-height:1.5;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:0 20px;}
+  h1,h2,h3{font-family:'Baloo 2',cursive;margin:0;color:var(--ink);}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  .hand{font-family:'Caveat',cursive;}
+  p{margin:0 0 8px;}
+  em{font-style:italic;}
+  strong{font-weight:800;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:var(--panel);
+    border-radius:8px;
+    padding:44px 30px 30px;
+    position:relative;
+    box-shadow:0 16px 32px var(--shadow);
+    transform:rotate(-1deg);
+    margin:36px auto 26px;
+    text-align:center;
+  }
+  .pin{
+    position:absolute; top:-14px; left:50%; transform:translateX(-50%);
+    width:22px;height:22px;border-radius:50%;
+    box-shadow:0 3px 6px rgba(0,0,0,.45);
+  }
+  .hero h1{font-size:2.6rem;letter-spacing:.5px;}
+  .hero .sub{font-size:1.02rem;color:var(--ink-soft);max-width:560px;margin:10px auto 0;}
+
+  /* ---------- note cards ---------- */
+  .note-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:20px 22px;
+    position:relative;
+    transform:rotate(.6deg);
+    box-shadow:0 10px 22px var(--shadow);
+    margin-bottom:26px;
+  }
+  .note-card:nth-of-type(even){transform:rotate(-.6deg);}
+  .tape{
+    position:absolute; top:-11px; left:50%; transform:translateX(-50%) rotate(-3deg);
+    width:96px;height:26px;
+    background:var(--tape);
+    opacity:.9;
+    box-shadow:0 2px 4px rgba(0,0,0,.18);
+  }
+  .kicker{font-family:'Baloo 2';font-weight:700;color:var(--pin-red);margin-bottom:6px;font-size:1.05rem;}
+  .flag-note{
+    font-size:.85rem; color:var(--ink-soft); font-style:italic; margin-top:8px;
+    border-top:1px dashed var(--line); padding-top:8px;
+  }
+  .pattern-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:10px;}
+  @media (max-width:560px){ .pattern-grid{grid-template-columns:1fr;} }
+  .pattern-box{background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:10px 12px;}
+  .pattern-box .lbl{font-family:'Baloo 2'; font-weight:700; color:var(--pin-blue); font-size:.95rem;}
+  .pattern-box .ex{font-size:.88rem; color:var(--ink-soft); margin-top:4px;}
+
+  /* ---------- sections ---------- */
+  section{margin-bottom:36px;}
+  .section-head{display:flex; align-items:center; gap:12px; margin-bottom:12px;}
+  .num{
+    display:flex; align-items:center; justify-content:center;
+    width:32px;height:32px;border-radius:50%;
+    background:var(--ink); color:var(--paper);
+    font-family:'Baloo 2'; font-weight:700; font-size:1rem; flex:none;
+  }
+  .hint{color:#fff8ea; font-size:.92rem; margin-bottom:14px; text-shadow:0 1px 3px rgba(0,0,0,.35);}
+
+  /* ---------- family tree (section 1) ---------- */
+  .tree-wrap{
+    background:var(--panel);
+    border-radius:10px;
+    padding:26px 20px;
+    box-shadow:0 10px 24px var(--shadow);
+  }
+  .tree-caption{text-align:center; font-family:'Caveat',cursive; font-size:1.3rem; color:var(--pin-blue); margin-bottom:10px;}
+  .tree-row{display:flex; justify-content:center; gap:22px; flex-wrap:wrap;}
+  .tree-divider{text-align:center; font-size:1.4rem; color:var(--twine); margin:14px 0;}
+
+  .member-tag{
+    background:#fff;
+    border-radius:8px;
+    padding:14px 14px 10px;
+    width:118px;
+    text-align:center;
+    box-shadow:0 8px 16px rgba(58,44,30,.28);
+    position:relative;
+  }
+  .member-tag .pin-dot{
+    position:absolute; top:-8px; left:50%; transform:translateX(-50%);
+    width:13px;height:13px;border-radius:50%;
+    box-shadow:0 2px 4px rgba(0,0,0,.35);
+  }
+  .member-tag .icon{font-size:2.1rem; display:block;}
+  .member-tag .label{font-family:'Baloo 2'; font-weight:700; font-size:.9rem; margin-top:6px;}
+  .member-tag .listen-btn{margin-top:8px;}
+
+  /* ---------- listen button (shared) ---------- */
+  .listen-btn{
+    appearance:none; cursor:pointer; border:none;
+    width:30px;height:30px;border-radius:50%;
+    background:var(--pin-blue); color:#fff;
+    font-size:.95rem; display:inline-flex; align-items:center; justify-content:center;
+    box-shadow:0 3px 8px rgba(63,124,172,.5);
+  }
+  .listen-btn:hover{filter:brightness(1.08);}
+  .listen-btn:focus-visible{outline:2px solid var(--ink); outline-offset:2px;}
+  .listen-btn.sm{width:26px;height:26px;font-size:.82rem;}
+
+  /* ---------- vocab wall (section 2) ---------- */
+  .vocab-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:14px;}
+  .vocab-card{
+    background:#fff; border-radius:8px; padding:14px 14px 12px;
+    box-shadow:0 8px 16px rgba(58,44,30,.25);
+    position:relative;
+  }
+  .vocab-card .pin-dot{position:absolute; top:-8px; left:16px; width:12px;height:12px;border-radius:50%; box-shadow:0 2px 4px rgba(0,0,0,.35);}
+  .vocab-card .icon{font-size:1.8rem;}
+  .vocab-card .fr{font-family:'Baloo 2'; font-weight:700; font-size:1rem; margin-top:4px;}
+  .vocab-card .en{font-size:.82rem; color:var(--ink-soft); font-style:italic;}
+  .vocab-card .phon{font-size:.78rem; color:var(--pin-blue); margin-top:2px;}
+  .vocab-card .row-bottom{display:flex; justify-content:space-between; align-items:center; margin-top:8px;}
+
+  .bonus-strip{
+    margin-top:16px; background:var(--paper); border:1px dashed var(--line); border-radius:8px;
+    padding:12px 14px;
+  }
+  .bonus-strip .bl{font-family:'Baloo 2'; font-weight:700; color:var(--pin-green); font-size:.9rem; margin-bottom:6px;}
+  .bonus-chip-row{display:flex; flex-wrap:wrap; gap:8px;}
+  .bonus-chip{
+    background:#fff; border:1px solid var(--line); border-radius:20px; padding:5px 12px;
+    font-size:.85rem; display:flex; align-items:center; gap:6px;
+  }
+
+  /* ---------- builder (section 3) ---------- */
+  .group-label{
+    font-family:'Baloo 2'; font-weight:700; color:#fff8ea; font-size:1.05rem; margin:18px 0 10px;
+    text-shadow:0 1px 3px rgba(0,0,0,.35);
+  }
+  .group-label:first-child{margin-top:0;}
+  .builder-card{
+    background:#fff; border-radius:10px; padding:16px 18px; margin-bottom:12px;
+    box-shadow:0 8px 18px var(--shadow);
+  }
+  .builder-top{display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:space-between;}
+  .builder-who{display:flex; align-items:center; gap:10px;}
+  .builder-who .icon{font-size:1.6rem;}
+  .builder-who .label{font-family:'Baloo 2'; font-weight:700;}
+  .builder-who .label .en{font-family:'Nunito Sans'; font-weight:400; font-size:.8rem; color:var(--ink-soft); font-style:italic; margin-left:4px;}
+
+  .skip-toggle{
+    appearance:none; cursor:pointer; border:1px solid var(--line); background:var(--paper);
+    border-radius:20px; padding:5px 12px; font-size:.8rem; color:var(--ink-soft); font-family:'Nunito Sans'; font-weight:700;
+  }
+  .skip-toggle.on{background:var(--ink); color:#fff; border-color:var(--ink);}
+  .skip-toggle:focus-visible{outline:2px solid var(--pin-blue); outline-offset:2px;}
+
+  .builder-body{margin-top:14px;}
+  .adj-row{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px;}
+  .adj-chip{
+    appearance:none; cursor:pointer; border:1px solid var(--line); background:var(--paper);
+    border-radius:18px; padding:6px 13px; font-size:.85rem; color:var(--ink);
+  }
+  .adj-chip.sel{background:var(--pin-blue); color:#fff; border-color:var(--pin-blue);}
+  .adj-chip:focus-visible{outline:2px solid var(--pin-blue); outline-offset:2px;}
+
+  .age-row{display:flex; align-items:center; gap:8px; margin-bottom:12px;}
+  .age-row label{font-size:.85rem; color:var(--ink-soft);}
+  .age-row input{
+    width:70px; border:1px solid var(--line); border-radius:6px; padding:6px 8px;
+    font-family:'IBM Plex Mono'; font-size:.9rem;
+  }
+  .age-row input:focus-visible{outline:2px solid var(--pin-blue); outline-offset:1px;}
+
+  .name-row{display:flex; align-items:center; gap:8px; margin-bottom:12px; flex-wrap:wrap;}
+  .name-row label{font-size:.85rem; color:var(--ink-soft);}
+  .name-row input{
+    width:150px; border:1px solid var(--line); border-radius:6px; padding:6px 10px;
+    font-family:'Nunito Sans'; font-size:.9rem;
+  }
+  .name-row input:focus-visible{outline:2px solid var(--pin-blue); outline-offset:1px;}
+
+  .gender-mini{display:flex; gap:6px; margin-bottom:12px;}
+  .gender-mini button{
+    appearance:none; cursor:pointer; border:1px solid var(--line); background:var(--paper);
+    border-radius:16px; padding:5px 12px; font-size:.82rem;
+  }
+  .gender-mini button.sel{background:var(--pin-green); color:#fff; border-color:var(--pin-green);}
+
+  .builder-result{
+    display:flex; align-items:center; gap:10px;
+    background:var(--paper); border-radius:8px; padding:10px 12px; min-height:20px;
+    font-size:.95rem;
+  }
+  .builder-result .placeholder{color:var(--ink-soft); font-style:italic; font-size:.85rem;}
+  .builder-result .skipped-msg{color:var(--ink-soft); font-style:italic; font-size:.85rem;}
+
+  .only-child-tip{
+    font-size:.82rem; color:#fff8ea; font-style:italic; margin-top:-4px; margin-bottom:14px;
+    text-shadow:0 1px 3px rgba(0,0,0,.35);
+  }
+
+  /* ---------- quiz (section 4) ---------- */
+  .quiz-shell{background:var(--panel); border-radius:10px; padding:18px 20px; box-shadow:0 10px 24px var(--shadow);}
+  .quiz-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;}
+  .quiz-score{background:var(--ink); color:var(--paper); padding:4px 12px; border-radius:20px; font-size:.85rem;}
+  .quiz-prompt{font-family:'Baloo 2'; font-size:1.3rem; text-align:center; margin-bottom:16px;}
+  .quiz-prompt .icon{font-size:2rem; display:block; margin-bottom:6px;}
+  .quiz-options{display:flex; gap:12px; justify-content:center; flex-wrap:wrap;}
+  .quiz-options button{
+    appearance:none; cursor:pointer; border:2px solid var(--line); background:#fff;
+    border-radius:10px; padding:12px 26px; font-family:'Baloo 2'; font-size:1.1rem; color:var(--ink);
+  }
+  .quiz-options button:hover{border-color:var(--pin-blue);}
+  .quiz-options button.correct{background:var(--pin-green); border-color:var(--pin-green); color:#fff;}
+  .quiz-options button.wrong{background:var(--pin-red); border-color:var(--pin-red); color:#fff;}
+  .quiz-feedback{text-align:center; margin-top:12px; font-size:.92rem; min-height:20px; color:var(--ink-soft);}
+  .btn{
+    appearance:none; cursor:pointer; border-radius:20px; padding:8px 18px;
+    font-family:'Baloo 2'; font-weight:600; font-size:.9rem; border:1px solid var(--line);
+  }
+  .btn.ghost{background:transparent; color:var(--ink-soft);}
+  .btn.primary{background:var(--pin-blue); color:#fff; border-color:var(--pin-blue);}
+
+  /* ---------- final scrapbook card (section 5) ---------- */
+  .scrap-wrap{display:flex; justify-content:center;}
+  .scrap-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:26px 26px 22px;
+    max-width:520px; width:100%;
+    box-shadow:0 18px 34px var(--shadow);
+    position:relative;
+    transform:rotate(-.6deg);
+  }
+  .scrap-card .kicker2{font-family:'Caveat',cursive; font-size:1.4rem; color:var(--pin-red); text-align:center;}
+  .scrap-card h3{text-align:center; margin-bottom:14px;}
+  .scrap-lines{display:flex; flex-direction:column; gap:8px; margin-bottom:16px;}
+  .scrap-lines .line-item{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    background:#fff; border-radius:6px; padding:8px 12px; font-size:.92rem;
+  }
+  .scrap-lines .placeholder{color:var(--ink-soft); font-style:italic; text-align:center; padding:12px 0;}
+  .card-actions{display:flex; gap:10px; justify-content:center;}
+
+  footer{text-align:center; color:#fff8ea; font-size:.85rem; margin-top:10px; text-shadow:0 1px 3px rgba(0,0,0,.4);}
+  footer em{color:#fff;}
+
+  @media (prefers-reduced-motion:reduce){ *{transition:none !important; animation:none !important;} }
+</style>
+</head>
+<body>
+
+<div class="page">
+<div class="wrap">
+
+  <header class="hero">
+    <span class="pin" style="background:radial-gradient(circle at 35% 30%,#ff8a8a,var(--pin-red) 60%,#7c232d 100%);"></span>
+    <h1>La Famille</h1>
+    <p class="sub">Meet the family — learn the words for parents, siblings, grandparents and more, then put together a few sentences to introduce your own.</p>
+  </header>
+
+  <div class="note-card">
+    <span class="tape"></span>
+    <p class="kicker">🎯 Objectif</p>
+    <p>Be able to <strong>present your family</strong>: say who each person is, and describe them with a couple of simple sentences.</p>
+  </div>
+
+  <div class="note-card">
+    <span class="tape"></span>
+    <p class="kicker">🧩 The pattern</p>
+    <p>Your slides give you two sentence starters for every family member — this lesson fills them in with real words so you can practice out loud.</p>
+    <div class="pattern-grid">
+      <div class="pattern-box"><div class="lbl">…est… <span class="mono" style="font-weight:400;">(is)</span></div><div class="ex">gives their name <em>or</em> describes them — <em>Mon père est Jean.</em> / <em>Mon père est gentil.</em></div></div>
+      <div class="pattern-box"><div class="lbl">…a…ans <span class="mono" style="font-weight:400;">(has…years)</span></div><div class="ex">gives their age — <em>Mon père a 52 ans.</em> (My father is 52.)</div></div>
+    </div>
+    <p class="flag-note">Note: <em>mon</em> (my, masculine) and <em>ma</em> (my, feminine) are used throughout — your next lesson covers the full set of possessive adjectives, so we're keeping to just these two for now.</p>
+  </div>
+
+  <section id="tree">
+    <div class="section-head"><span class="num">1</span><h2>L'Arbre Généalogique</h2></div>
+    <p class="hint">The family from your slide — tap 🔊 to hear each word.</p>
+    <div class="tree-wrap">
+      <div class="tree-caption">les parents</div>
+      <div class="tree-row" id="treeParents"></div>
+      <div class="tree-divider">↓</div>
+      <div class="tree-caption">leurs enfants — et moi</div>
+      <div class="tree-row" id="treeChildren"></div>
+    </div>
+  </section>
+
+  <section id="vocab">
+    <div class="section-head"><span class="num">2</span><h2>Le Mur de Vocabulaire</h2></div>
+    <p class="hint">Every family word from your slides, all in one place.</p>
+    <div class="vocab-grid" id="vocabGrid"></div>
+    <div class="bonus-strip">
+      <div class="bl">＋ Bonus (not on your slides, but handy when talking about a family as a group)</div>
+      <div class="bonus-chip-row" id="bonusChips"></div>
+    </div>
+  </section>
+
+  <section id="builder">
+    <div class="section-head"><span class="num">3</span><h2>Présente ta Famille</h2></div>
+    <p class="hint">Pick a personality word (and an age, if you want) for each person — or skip anyone who doesn't apply to you.</p>
+    <div id="builderHost"></div>
+  </section>
+
+  <section id="quiz">
+    <div class="section-head"><span class="num">4</span><h2>Quiz : Mon ou Ma ?</h2></div>
+    <p class="hint">Every family word is masculine or feminine — which little word goes in front?</p>
+    <div class="quiz-shell">
+      <div class="quiz-top">
+        <span class="quiz-score mono" id="quizScore">Score : 0 / 0</span>
+        <button class="btn ghost" id="quizSkip" type="button">Skip →</button>
+      </div>
+      <div class="quiz-prompt" id="quizPrompt"></div>
+      <div class="quiz-options" id="quizOptions"></div>
+      <div class="quiz-feedback" id="quizFeedback"></div>
+    </div>
+  </section>
+
+  <section id="card">
+    <div class="section-head"><span class="num">5</span><h2>Mon Arbre de Famille</h2></div>
+    <p class="hint">Everything you built in section 3, collected on one card.</p>
+    <div class="scrap-wrap">
+      <div class="scrap-card">
+        <p class="kicker2">ma famille</p>
+        <h3>Voici ma famille</h3>
+        <div class="scrap-lines" id="scrapLines"></div>
+        <div class="card-actions">
+          <button class="btn primary" id="playAll" type="button">🔊 Écouter tout</button>
+          <button class="btn ghost" id="resetAll" type="button">Recommencer</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>Adapted from your "La famille" slides — the family tree, vocabulary, and the est / a sentence starters.<br>Prochaine leçon : <em>les adjectifs possessifs</em>.</footer>
+
+</div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------------- speech ---------------- */
+  var cachedVoices = [];
+  function loadVoices(){
+    try{ if('speechSynthesis' in window){ cachedVoices = window.speechSynthesis.getVoices() || []; } }catch(e){}
+  }
+  loadVoices();
+  try{ if('speechSynthesis' in window){ window.speechSynthesis.onvoiceschanged = loadVoices; } }catch(e){}
+  function pickFrenchVoice(){
+    if(!cachedVoices.length) loadVoices();
+    if(!cachedVoices.length) return null;
+    var exact = cachedVoices.find(function(v){ return v.lang && v.lang.toLowerCase() === 'fr-fr'; });
+    if(exact) return exact;
+    var starts = cachedVoices.find(function(v){ return v.lang && v.lang.toLowerCase().indexOf('fr') === 0; });
+    if(starts) return starts;
+    var byName = cachedVoices.find(function(v){ return /fran[cç]ais|french/i.test(v.name || ''); });
+    if(byName) return byName;
+    return null;
+  }
+  function speak(text){
+    try{
+      if(!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      var say = function(){
+        var u = new SpeechSynthesisUtterance(text);
+        u.lang = 'fr-FR';
+        u.rate = 0.92;
+        var v = pickFrenchVoice();
+        if(v){ u.voice = v; u.lang = v.lang; }
+        window.speechSynthesis.speak(u);
+      };
+      if(!cachedVoices.length){ setTimeout(say, 150); } else { say(); }
+    }catch(e){}
+  }
+
+  function mkListenBtn(text, small){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'listen-btn' + (small ? ' sm' : '');
+    b.setAttribute('aria-label', 'Listen');
+    b.innerHTML = '🔊';
+    b.addEventListener('click', function(){ speak(text); });
+    return b;
+  }
+  function capFirst(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+  function deWord(word){ return /^[aeiouhâàéèêëîïôûùAEIOUH]/.test(word) ? "d'" + word : 'de ' + word; }
+  var PIN_COLORS = ['var(--pin-red)','var(--pin-blue)','var(--pin-yellow)','var(--pin-green)'];
+
+  /* ---------------- data ---------------- */
+  var FAMILY_VOCAB = [
+    {key:'pere',      fr:'le père',        en:'father',           art:'mon', icon:'👨', phon:'pehr'},
+    {key:'mere',      fr:'la mère',        en:'mother',           art:'ma',  icon:'👩', phon:'mehr'},
+    {key:'frere',     fr:'le frère',       en:'brother',          art:'mon', icon:'👦', phon:'frehr'},
+    {key:'soeur',     fr:'la sœur',        en:'sister',           art:'ma',  icon:'👧', phon:'suhr'},
+    {key:'grandpere', fr:'le grand-père',  en:'grandfather',      art:'mon', icon:'👴', phon:'grahn-pehr'},
+    {key:'grandmere', fr:'la grand-mère',  en:'grandmother',      art:'ma',  icon:'👵', phon:'grahn-mehr'},
+    {key:'oncle',     fr:"l'oncle",        en:'uncle',            art:'mon', icon:'🧔', phon:'ohnkl'},
+    {key:'tante',     fr:'la tante',       en:'aunt',             art:'ma',  icon:'👩‍🦳', phon:'tahnt'},
+    {key:'cousin',    fr:'le cousin',      en:'cousin (m)',       art:'mon', icon:'🧑', phon:'koo-zan'},
+    {key:'cousine',   fr:'la cousine',     en:'cousin (f)',       art:'ma',  icon:'👩', phon:'koo-zeen'}
+  ];
+  var BONUS_VOCAB = [
+    {fr:'les parents', en:'parents'},
+    {fr:'les grands-parents', en:'grandparents'},
+    {fr:'les enfants', en:'children'}
+  ];
+
+  var ADJECTIVES = [
+    {m:'gentil',       f:'gentille',    en:'kind'},
+    {m:'drôle',        f:'drôle',       en:'funny'},
+    {m:'sympa',        f:'sympa',       en:'nice'},
+    {m:'patient',      f:'patiente',    en:'patient'},
+    {m:'sérieux',      f:'sérieuse',    en:'serious'},
+    {m:'généreux',     f:'généreuse',   en:'generous'},
+    {m:'intelligent',  f:'intelligente',en:'smart'},
+    {m:'grand',        f:'grande',      en:'tall'},
+    {m:'petit',        f:'petite',      en:'short'},
+    {m:'actif',        f:'active',      en:'active'}
+  ];
+
+  var RELATIVES = [
+    {key:'pere',      subj:'mon père',      en:'my father',        gender:'m', icon:'👨', group:'parents',    groupLabel:'Les parents', skippable:true},
+    {key:'mere',      subj:'ma mère',       en:'my mother',        gender:'f', icon:'👩', group:'parents',    groupLabel:'Les parents', skippable:true},
+    {key:'moi',       subj:null,            en:'me',                gender:null,icon:'🙋', group:'siblings',   groupLabel:'Frères, sœurs — et toi', skippable:false},
+    {key:'frere',     subj:'mon frère',     en:'my brother',       gender:'m', icon:'👦', group:'siblings',   groupLabel:'Frères, sœurs — et toi', skippable:true},
+    {key:'soeur',     subj:'ma sœur',       en:'my sister',        gender:'f', icon:'👧', group:'siblings',   groupLabel:'Frères, sœurs — et toi', skippable:true},
+    {key:'grandpere', subj:'mon grand-père',en:'my grandfather',   gender:'m', icon:'👴', group:'grandparents',groupLabel:'Les grands-parents', skippable:true},
+    {key:'grandmere', subj:'ma grand-mère', en:'my grandmother',   gender:'f', icon:'👵', group:'grandparents',groupLabel:'Les grands-parents', skippable:true},
+    {key:'oncle',     subj:'mon oncle',     en:'my uncle',         gender:'m', icon:'🧔', group:'other',       groupLabel:"D'autres membres", skippable:true},
+    {key:'tante',     subj:'ma tante',      en:'my aunt',          gender:'f', icon:'👩‍🦳', group:'other',      groupLabel:"D'autres membres", skippable:true},
+    {key:'cousin',    subj:'mon cousin',    en:'my cousin',        gender:'m', icon:'🧑', group:'other',       groupLabel:"D'autres membres", skippable:true},
+    {key:'cousine',   subj:'ma cousine',    en:'my cousin',        gender:'f', icon:'👩', group:'other',       groupLabel:"D'autres membres", skippable:true}
+  ];
+
+  var builderState = {};
+  RELATIVES.forEach(function(rel){
+    builderState[rel.key] = {skip:false, adjIndex:null, age:'', name:'', gender:'m'};
+  });
+
+  /* ---------------- section 1: family tree ---------------- */
+  function renderTree(){
+    var parentsWrap = document.getElementById('treeParents');
+    var childrenWrap = document.getElementById('treeChildren');
+    parentsWrap.innerHTML = '';
+    childrenWrap.innerHTML = '';
+
+    var parents = [
+      {label:'le père', icon:'👨'},
+      {label:'la mère', icon:'👩'}
+    ];
+    var children = [
+      {label:'le frère', icon:'👦'},
+      {label:'la sœur',  icon:'👧'},
+      {label:'moi',      icon:'🙋'}
+    ];
+
+    parents.forEach(function(m, i){
+      var tag = document.createElement('div');
+      tag.className = 'member-tag';
+      tag.innerHTML = '<span class="pin-dot" style="background:' + PIN_COLORS[i % PIN_COLORS.length] + ';"></span>' +
+        '<span class="icon">' + m.icon + '</span><div class="label">' + m.label + '</div>';
+      tag.appendChild(document.createElement('div')).className = 'btnhost';
+      tag.querySelector('.btnhost').appendChild(mkListenBtn(m.label, true));
+      parentsWrap.appendChild(tag);
+    });
+    children.forEach(function(m, i){
+      var tag = document.createElement('div');
+      tag.className = 'member-tag';
+      tag.innerHTML = '<span class="pin-dot" style="background:' + PIN_COLORS[(i+2) % PIN_COLORS.length] + ';"></span>' +
+        '<span class="icon">' + m.icon + '</span><div class="label">' + m.label + '</div>';
+      tag.appendChild(document.createElement('div')).className = 'btnhost';
+      tag.querySelector('.btnhost').appendChild(mkListenBtn(m.label, true));
+      childrenWrap.appendChild(tag);
+    });
+  }
+
+  /* ---------------- section 2: vocab wall ---------------- */
+  function renderVocab(){
+    var grid = document.getElementById('vocabGrid');
+    grid.innerHTML = '';
+    FAMILY_VOCAB.forEach(function(v, i){
+      var card = document.createElement('div');
+      card.className = 'vocab-card';
+      card.innerHTML =
+        '<span class="pin-dot" style="background:' + PIN_COLORS[i % PIN_COLORS.length] + ';"></span>' +
+        '<span class="icon">' + v.icon + '</span>' +
+        '<div class="fr">' + v.fr + '</div>' +
+        '<div class="en">' + v.en + '</div>' +
+        '<div class="phon mono">' + v.phon + '</div>' +
+        '<div class="row-bottom"></div>';
+      card.querySelector('.row-bottom').appendChild(mkListenBtn(v.fr, true));
+      grid.appendChild(card);
+    });
+
+    var bonusWrap = document.getElementById('bonusChips');
+    bonusWrap.innerHTML = '';
+    BONUS_VOCAB.forEach(function(b){
+      var chip = document.createElement('span');
+      chip.className = 'bonus-chip';
+      chip.innerHTML = '<span>' + b.fr + ' <span style="color:var(--ink-soft);font-style:italic;">(' + b.en + ')</span></span>';
+      chip.appendChild(mkListenBtn(b.fr, true));
+      bonusWrap.appendChild(chip);
+    });
+  }
+
+  /* ---------------- section 3: builder ---------------- */
+  function relSentence(rel){
+    var st = builderState[rel.key];
+    if(rel.skippable && st.skip) return null;
+    var gender = rel.key === 'moi' ? st.gender : rel.gender;
+    var subject = rel.key === 'moi' ? 'Je' : capFirst(rel.subj);
+    var verbEst = rel.key === 'moi' ? 'suis' : 'est';
+    var parts = [];
+
+    if(st.name && st.name.trim()){
+      parts.push(subject + ' ' + verbEst + ' ' + st.name.trim() + '.');
+    }
+    if(st.adjIndex !== null){
+      var adjObj = ADJECTIVES[st.adjIndex];
+      var adj = gender === 'f' ? adjObj.f : adjObj.m;
+      parts.push(subject + ' ' + verbEst + ' ' + adj + '.');
+    }
+    var age = parseInt(st.age, 10);
+    if(st.age !== '' && !isNaN(age) && age >= 0){
+      if(rel.key === 'moi'){
+        parts.push("J'ai " + age + ' an' + (age > 1 ? 's' : '') + '.');
+      } else {
+        parts.push(capFirst(rel.subj) + ' a ' + age + ' an' + (age > 1 ? 's' : '') + '.');
+      }
+    }
+
+    if(!parts.length) return null;
+    return parts.join(' ');
+  }
+
+  function renderBuilder(){
+    var host = document.getElementById('builderHost');
+    host.innerHTML = '';
+    var lastGroup = null;
+
+    RELATIVES.forEach(function(rel){
+      if(rel.group !== lastGroup){
+        var glabel = document.createElement('div');
+        glabel.className = 'group-label';
+        glabel.textContent = rel.groupLabel;
+        host.appendChild(glabel);
+        lastGroup = rel.group;
+      }
+
+      var st = builderState[rel.key];
+      var card = document.createElement('div');
+      card.className = 'builder-card';
+
+      var top = document.createElement('div');
+      top.className = 'builder-top';
+      var who = document.createElement('div');
+      who.className = 'builder-who';
+      var subjLabel = rel.key === 'moi' ? 'moi' : rel.subj;
+      who.innerHTML = '<span class="icon">' + rel.icon + '</span><span class="label">' + subjLabel + ' <span class="en">(' + rel.en + ')</span></span>';
+      top.appendChild(who);
+
+      if(rel.skippable){
+        var skipBtn = document.createElement('button');
+        skipBtn.type = 'button';
+        skipBtn.className = 'skip-toggle' + (st.skip ? ' on' : '');
+        skipBtn.textContent = st.skip ? "N/A — inclure ↺" : "Je n'ai pas " + deWord(rel.subj.split(' ').slice(1).join(' '));
+        skipBtn.addEventListener('click', function(){
+          st.skip = !st.skip;
+          renderBuilder();
+        });
+        top.appendChild(skipBtn);
+      }
+      card.appendChild(top);
+
+      if(!(rel.skippable && st.skip)){
+        var body = document.createElement('div');
+        body.className = 'builder-body';
+
+        if(rel.key === 'moi'){
+          var genderRow = document.createElement('div');
+          genderRow.className = 'gender-mini';
+          ['m','f'].forEach(function(g){
+            var gb = document.createElement('button');
+            gb.type = 'button';
+            gb.className = st.gender === g ? 'sel' : '';
+            gb.textContent = g === 'm' ? '🧑 masculin' : '👩 féminin';
+            gb.addEventListener('click', function(){ st.gender = g; renderBuilder(); });
+            genderRow.appendChild(gb);
+          });
+          body.appendChild(genderRow);
+        }
+
+        var nameRow = document.createElement('div');
+        nameRow.className = 'name-row';
+        var nameLabel = document.createElement('label');
+        nameLabel.textContent = 'Nom (optional):';
+        var nameInput = document.createElement('input');
+        nameInput.type = 'text';
+        nameInput.placeholder = rel.key === 'moi' ? 'e.g. Karla' : 'e.g. Jean';
+        nameInput.value = st.name;
+        nameInput.addEventListener('input', function(){ st.name = this.value; renderResultsOnly(); });
+        nameRow.appendChild(nameLabel);
+        nameRow.appendChild(nameInput);
+        body.appendChild(nameRow);
+
+        var adjRow = document.createElement('div');
+        adjRow.className = 'adj-row';
+        var gender = rel.key === 'moi' ? st.gender : rel.gender;
+        ADJECTIVES.forEach(function(a, ai){
+          var chip = document.createElement('button');
+          chip.type = 'button';
+          chip.className = 'adj-chip' + (st.adjIndex === ai ? ' sel' : '');
+          chip.textContent = (gender === 'f' ? a.f : a.m);
+          chip.addEventListener('click', function(){ st.adjIndex = ai; renderBuilder(); });
+          adjRow.appendChild(chip);
+        });
+        body.appendChild(adjRow);
+
+        var ageRow = document.createElement('div');
+        ageRow.className = 'age-row';
+        var ageLabel = document.createElement('label');
+        ageLabel.textContent = 'Âge (optional):';
+        var ageInput = document.createElement('input');
+        ageInput.type = 'number';
+        ageInput.min = '0'; ageInput.max = '120';
+        ageInput.value = st.age;
+        ageInput.addEventListener('input', function(){ st.age = this.value; renderResultsOnly(); });
+        ageRow.appendChild(ageLabel);
+        ageRow.appendChild(ageInput);
+        body.appendChild(ageRow);
+
+        var result = document.createElement('div');
+        result.className = 'builder-result';
+        result.setAttribute('data-rel', rel.key);
+        body.appendChild(result);
+
+        card.appendChild(body);
+      } else {
+        var skippedMsg = document.createElement('div');
+        skippedMsg.className = 'builder-result';
+        skippedMsg.innerHTML = '<span class="skipped-msg">Skipped — won\'t appear on your family card.</span>';
+        card.appendChild(skippedMsg);
+      }
+
+      host.appendChild(card);
+
+      if(rel.key === 'soeur'){
+        var frereSt = builderState.frere, soeurSt = builderState.soeur;
+        if(frereSt.skip && soeurSt.skip){
+          var tip = document.createElement('div');
+          tip.className = 'only-child-tip';
+          tip.textContent = "Tip: if you don't have siblings, you can say \"Je suis fils unique\" (only child, m.) or \"Je suis fille unique\" (only child, f.) — a handy bonus phrase not on your slides.";
+          host.appendChild(tip);
+        }
+      }
+    });
+
+    renderResultsOnly();
+    updateScrapCard();
+  }
+
+  function renderResultsOnly(){
+    RELATIVES.forEach(function(rel){
+      var el = document.querySelector('.builder-result[data-rel="' + rel.key + '"]');
+      if(!el) return;
+      var sent = relSentence(rel);
+      el.innerHTML = '';
+      if(!sent){
+        var ph = document.createElement('span');
+        ph.className = 'placeholder';
+        ph.textContent = 'Add a name, an adjective, or an age above to build a sentence.';
+        el.appendChild(ph);
+      } else {
+        var txt = document.createElement('span');
+        txt.textContent = sent;
+        el.appendChild(txt);
+        el.appendChild(mkListenBtn(sent, true));
+      }
+    });
+    updateScrapCard();
+  }
+
+  /* ---------------- section 4: mon/ma quiz ---------------- */
+  var quizCorrect = 0, quizTotal = 0, quizAnswered = false, quizTarget = null;
+
+  function newQuizRound(){
+    quizAnswered = false;
+    quizTarget = FAMILY_VOCAB[Math.floor(Math.random() * FAMILY_VOCAB.length)];
+    var bare = quizTarget.fr.replace(/^(le|la|l')\s*/, '');
+    document.getElementById('quizPrompt').innerHTML = '<span class="icon">' + quizTarget.icon + '</span>' + bare + ' ?';
+    var opts = document.getElementById('quizOptions');
+    opts.innerHTML = '';
+    ['mon', 'ma'].forEach(function(choice){
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = choice;
+      btn.addEventListener('click', function(){ answerQuiz(choice, btn); });
+      opts.appendChild(btn);
+    });
+    document.getElementById('quizFeedback').textContent = '';
+  }
+
+  function answerQuiz(choice, btn){
+    if(quizAnswered) return;
+    quizAnswered = true;
+    quizTotal++;
+    var bare = quizTarget.fr.replace(/^(le|la|l')\s*/, '');
+    var isCorrect = choice === quizTarget.art;
+    if(isCorrect) quizCorrect++;
+    document.querySelectorAll('#quizOptions button').forEach(function(b){
+      if(b.textContent === quizTarget.art) b.classList.add('correct');
+      else if(b === btn) b.classList.add('wrong');
+    });
+    document.getElementById('quizScore').textContent = 'Score : ' + quizCorrect + ' / ' + quizTotal;
+    document.getElementById('quizFeedback').textContent = isCorrect ?
+      '✅ Exactement — ' + quizTarget.art + ' ' + bare :
+      '💡 La bonne réponse : ' + quizTarget.art + ' ' + bare;
+    speak(quizTarget.art + ' ' + bare);
+    setTimeout(newQuizRound, 1800);
+  }
+
+  document.getElementById('quizSkip').addEventListener('click', newQuizRound);
+
+  /* ---------------- section 5: scrapbook card ---------------- */
+  function updateScrapCard(){
+    var lines = document.getElementById('scrapLines');
+    var sentences = [];
+    RELATIVES.forEach(function(rel){
+      var s = relSentence(rel);
+      if(s) sentences.push(s);
+    });
+    lines.innerHTML = '';
+    if(!sentences.length){
+      var ph = document.createElement('div');
+      ph.className = 'placeholder';
+      ph.textContent = 'Build a few sentences in section 3 — they will show up here.';
+      lines.appendChild(ph);
+      return;
+    }
+    sentences.forEach(function(s){
+      var item = document.createElement('div');
+      item.className = 'line-item';
+      var txt = document.createElement('span');
+      txt.textContent = s;
+      item.appendChild(txt);
+      item.appendChild(mkListenBtn(s, true));
+      lines.appendChild(item);
+    });
+  }
+
+  document.getElementById('playAll').addEventListener('click', function(){
+    var sentences = [];
+    RELATIVES.forEach(function(rel){
+      var s = relSentence(rel);
+      if(s) sentences.push(s);
+    });
+    if(sentences.length) speak(sentences.join(' '));
+  });
+
+  document.getElementById('resetAll').addEventListener('click', function(){
+    RELATIVES.forEach(function(rel){
+      builderState[rel.key] = {skip:false, adjIndex:null, age:'', name:'', gender:'m'};
+    });
+    renderBuilder();
+    document.getElementById('builder').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+
+  /* ---------------- init ---------------- */
+  renderTree();
+  renderVocab();
+  renderBuilder();
+  newQuizRound();
+})();
+</script>
+
+</body></html>

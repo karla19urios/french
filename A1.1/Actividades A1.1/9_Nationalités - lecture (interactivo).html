@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture : Interlingua</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700;800&family=Caveat:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root{
+    --bleu:#002395;
+    --blanc:#ffffff;
+    --rouge:#ED2939;
+    --teal:var(--bleu);
+    --teal-soft:#e8ecf7;
+    --orange:var(--rouge);
+    --orange-soft:#fbe4e6;
+    --bg:#f4f5f7;
+    --page-bg:#dde1e6;
+    --chrome:#e5e7eb;
+    --card:#ffffff;
+    --ink:#1a1a2e;
+    --ink-soft:#6b7280;
+    --line:#e5e7eb;
+    --dot-red:#f06a6a;
+    --dot-yellow:#f0c419;
+    --dot-green:#3ecf8e;
+    --shadow:rgba(26,26,46,.10);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --teal-soft:#1c2340;
+      --orange-soft:#3a1d22;
+      --bg:#12141c;
+      --page-bg:#05060a;
+      --chrome:#232635;
+      --card:#1b1e2b;
+      --ink:#f1f2f6;
+      --ink-soft:#9aa0b4;
+      --line:#2a2e40;
+      --shadow:rgba(0,0,0,.45);
+    }
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;}
+  .page{
+    font-family:'Nunito Sans',sans-serif;
+    color:var(--ink);
+    background:var(--page-bg);
+    padding:24px 14px 50px;
+    line-height:1.55;
+  }
+  .flag-stripe{
+    max-width:920px; margin:0 auto; height:8px; border-radius:14px 14px 0 0; overflow:hidden;
+    background:linear-gradient(90deg, var(--bleu) 33%, var(--blanc) 33%, var(--blanc) 66%, var(--rouge) 66%);
+  }
+  h1,h2,h3{font-family:'Baloo 2',cursive;margin:0;color:var(--ink);}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  .hand{font-family:'Caveat',cursive;}
+  p{margin:0 0 8px;}
+  em{font-style:italic;}
+  strong{font-weight:800;}
+
+  /* ---------- browser frame ---------- */
+  .browser-frame{
+    max-width:920px; margin:0 auto;
+    border-radius:14px; overflow:hidden;
+    box-shadow:0 24px 50px rgba(20,30,35,.35);
+    background:var(--card);
+  }
+  .browser-chrome{
+    background:var(--chrome); padding:12px 18px;
+    display:flex; align-items:center; gap:14px;
+  }
+  .chrome-dots{display:flex; gap:7px;}
+  .chrome-dots span{width:11px;height:11px;border-radius:50%;display:block;}
+  .chrome-dots span:nth-child(1){background:var(--dot-red);}
+  .chrome-dots span:nth-child(2){background:var(--dot-yellow);}
+  .chrome-dots span:nth-child(3){background:var(--dot-green);}
+  .chrome-bar{
+    flex:1; background:var(--card); border-radius:8px; padding:7px 16px;
+    font-family:'IBM Plex Mono',monospace; font-size:.78rem; color:var(--ink-soft);
+    text-align:center; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  }
+  .browser-body{background:var(--bg); padding:28px 28px 38px;}
+  @media (max-width:560px){ .browser-body{padding:20px 16px 30px;} }
+  .wrap{max-width:760px; margin:0 auto;}
+
+  /* ---------- hero ---------- */
+  .hero{text-align:center; margin-bottom:22px;}
+  .hero h1{font-size:2.1rem;}
+  .hero .sub{color:var(--ink-soft); font-size:.98rem; max-width:560px; margin:8px auto 0;}
+
+  .note-banner{
+    background:var(--teal-soft); border:1px solid var(--teal); border-left:4px solid var(--teal);
+    border-radius:8px; padding:14px 18px; margin-bottom:24px;
+  }
+  .note-banner .kicker{color:var(--teal); font-family:'Baloo 2'; font-weight:700; margin-bottom:4px; font-size:1rem;}
+
+  /* ---------- sections ---------- */
+  section{margin-bottom:34px;}
+  .section-head{display:flex; align-items:center; gap:12px; margin-bottom:12px;}
+  .num{
+    display:flex; align-items:center; justify-content:center;
+    width:30px;height:30px;border-radius:50%;
+    background:var(--teal); color:#fff;
+    font-family:'Baloo 2'; font-weight:700; font-size:.95rem; flex:none;
+  }
+  .hint{color:var(--ink-soft); font-size:.9rem; margin-bottom:14px;}
+
+  /* ---------- listen btn ---------- */
+  .listen-btn{
+    appearance:none; cursor:pointer; border:none;
+    width:28px;height:28px;border-radius:50%;
+    background:var(--teal); color:#fff;
+    font-size:.9rem; display:inline-flex; align-items:center; justify-content:center; flex:none;
+    box-shadow:0 3px 8px rgba(31,138,122,.4);
+  }
+  .listen-btn:hover{filter:brightness(1.08);}
+  .listen-btn:focus-visible{outline:2px solid var(--ink); outline-offset:2px;}
+
+  /* ---------- vocab ---------- */
+  .vocab-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:10px;}
+  .vocab-card{
+    background:var(--card); border:1px solid var(--line); border-radius:8px;
+    padding:10px 12px; display:flex; align-items:center; justify-content:space-between; gap:10px;
+    box-shadow:0 3px 8px var(--shadow);
+  }
+  .vocab-card .txt .fr{font-family:'Baloo 2'; font-weight:700; font-size:.92rem;}
+  .vocab-card .txt .en{font-size:.78rem; color:var(--ink-soft); font-style:italic;}
+
+  /* ---------- site mockup ---------- */
+  .site-mock{
+    background:var(--card); border-radius:12px; padding:22px 24px;
+    box-shadow:0 8px 20px var(--shadow); position:relative;
+  }
+  .site-mock .brand{color:var(--teal); font-weight:800; font-size:1.4rem; display:flex; align-items:center; gap:8px;}
+  .site-mock .tagline{color:var(--ink-soft); font-size:.85rem; margin:6px 0 14px;}
+  .badge-free{
+    display:inline-block; background:var(--orange); color:#fff; font-family:'Baloo 2'; font-weight:700;
+    padding:6px 14px; border-radius:20px; font-size:.85rem; margin-bottom:14px;
+  }
+  .stats-row{display:flex; gap:26px; margin-bottom:16px;}
+  .stat{text-align:center;}
+  .stat .stat-num{font-family:'Baloo 2'; font-weight:800; font-size:1.5rem; color:var(--orange);}
+  .stat .stat-lbl{font-size:.78rem; color:var(--ink-soft);}
+  .field-list{display:grid; gap:7px; margin-bottom:14px;}
+  .field-row{
+    display:flex; justify-content:space-between; align-items:center;
+    background:var(--bg); border-radius:6px; padding:7px 12px; font-size:.85rem;
+  }
+  .field-row .val{font-family:'IBM Plex Mono'; color:var(--teal); font-weight:600;}
+
+  /* ---------- profile cards ---------- */
+  .profile-card{
+    background:var(--card); border-radius:12px; padding:20px 22px;
+    box-shadow:0 8px 20px var(--shadow); margin-bottom:16px;
+  }
+  .profile-head{display:flex; align-items:center; gap:14px; margin-bottom:12px;}
+  .avatar{
+    width:50px;height:50px;border-radius:50%; background:var(--teal); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex:none;
+  }
+  .profile-head .name{font-family:'Baloo 2'; font-weight:700; font-size:1.08rem;}
+  .profile-head .age{color:var(--ink-soft); font-size:.85rem;}
+  .bio-row{display:flex; align-items:flex-start; gap:10px; margin-bottom:12px;}
+  .bio-text{font-size:.94rem; flex:1;}
+  .wants-list{display:flex; flex-direction:column; gap:5px; margin-bottom:12px; font-size:.86rem;}
+  .wants-list .want{display:flex; align-items:center; gap:8px;}
+  .wants-list .box{
+    width:16px;height:16px;border:1.5px solid var(--ink-soft); border-radius:3px;
+    display:inline-flex; align-items:center; justify-content:center; font-size:.68rem; flex:none; color:#fff;
+  }
+  .wants-list .box.checked{background:var(--teal); border-color:var(--teal);}
+  .contacts-row{display:flex; gap:8px; flex-wrap:wrap; align-items:center;}
+  .contacts-row .lbl{font-size:.8rem; color:var(--ink-soft);}
+  .contact-chip{background:var(--bg); border-radius:16px; padding:4px 12px; font-size:.8rem;}
+
+  /* ---------- quiz ---------- */
+  .quiz-shell{background:var(--card); border-radius:12px; padding:20px 22px; box-shadow:0 8px 20px var(--shadow);}
+  .quiz-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;}
+  .quiz-score{background:var(--teal); color:#fff; padding:4px 12px; border-radius:20px; font-size:.85rem;}
+  .quiz-tag{font-size:.72rem; text-transform:uppercase; letter-spacing:.06em; color:var(--orange); font-weight:700; margin-bottom:6px;}
+  .quiz-prompt{font-size:1.08rem; margin-bottom:16px; font-weight:700;}
+  .quiz-options{display:flex; gap:10px; justify-content:center; flex-wrap:wrap;}
+  .quiz-options button{
+    appearance:none; cursor:pointer; border:2px solid var(--line); background:var(--card);
+    border-radius:10px; padding:10px 20px; font-family:'Baloo 2'; font-size:1rem; color:var(--ink);
+  }
+  .quiz-options button:hover{border-color:var(--teal);}
+  .quiz-options button.correct{background:var(--teal); border-color:var(--teal); color:#fff;}
+  .quiz-options button.wrong{background:var(--rouge); border-color:var(--rouge); color:#fff;}
+  .quiz-feedback{text-align:center; margin-top:14px; font-size:.9rem; color:var(--ink-soft); min-height:36px;}
+  .btn{
+    appearance:none; cursor:pointer; border-radius:20px; padding:8px 18px;
+    font-family:'Baloo 2'; font-weight:600; font-size:.88rem; border:1px solid var(--line);
+  }
+  .btn.ghost{background:transparent; color:var(--ink-soft);}
+  .btn.primary{background:var(--teal); color:#fff; border-color:var(--teal);}
+
+  /* ---------- open questions ---------- */
+  .open-card{
+    background:var(--card); border-radius:12px; padding:18px 20px; margin-bottom:14px;
+    box-shadow:0 6px 16px var(--shadow);
+  }
+  .open-card .q{font-weight:700; margin-bottom:10px;}
+  .open-card.personal .q{color:var(--orange);}
+  .open-card textarea{
+    width:100%; min-height:60px; border:1px solid var(--line); border-radius:8px;
+    padding:10px 12px; font-family:'Nunito Sans'; font-size:.92rem; resize:vertical;
+    background:var(--bg);
+  }
+  .open-card textarea:focus-visible{outline:2px solid var(--teal); outline-offset:1px;}
+  .reveal-row{display:flex; align-items:center; gap:10px; margin-top:10px;}
+  .model-answer{
+    margin-top:10px; background:var(--teal-soft); border-radius:8px; padding:10px 14px;
+    font-size:.9rem; display:none; align-items:center; gap:10px; justify-content:space-between;
+  }
+  .model-answer.show{display:flex;}
+  .model-answer .txt{flex:1;}
+
+  footer{text-align:center; color:var(--ink-soft); font-size:.82rem; margin-top:14px;}
+
+  @media (prefers-reduced-motion:reduce){ *{transition:none !important; animation:none !important;} }
+</style>
+</head>
+<body>
+
+<div class="page">
+<div class="flag-stripe"></div>
+<div class="browser-frame">
+  <div class="browser-chrome">
+    <div class="chrome-dots"><span></span><span></span><span></span></div>
+    <div class="chrome-bar">🔒 www.interlingua.com/salle-de-classe</div>
+  </div>
+  <div class="browser-body">
+  <div class="wrap">
+
+    <header class="hero">
+      <h1>Lecture : Interlingua</h1>
+      <p class="sub">A short reading about three people on a language-exchange website — build your vocabulary, then answer closed and open questions about what you read.</p>
+    </header>
+
+    <div class="note-banner">
+      <div class="kicker">🎯 Objectif</div>
+      <p>Read an authentic-style text (a website + three profiles), learn the key words, and check your understanding with true/false, multiple-choice, and short-answer questions.</p>
+    </div>
+
+    <section id="vocab">
+      <div class="section-head"><span class="num">1</span><h2>Vocabulaire Clé</h2></div>
+      <p class="hint">These words appear in the reading below — tap 🔊 to hear each one before you start.</p>
+      <div class="vocab-grid" id="vocabGrid"></div>
+    </section>
+
+    <section id="site">
+      <div class="section-head"><span class="num">2</span><h2>Le Site : Interlingua</h2></div>
+      <p class="hint">The homepage from your worksheet, recreated.</p>
+      <div class="site-mock">
+        <div class="brand">🌐 Interlingua <span id="siteListen"></span></div>
+        <p class="tagline">Apprendre et pratiquer les langues avec une communauté mondiale.</p>
+        <span class="badge-free">🎁 Inscription gratuite !</span>
+        <div class="stats-row">
+          <div class="stat"><div class="stat-num">9M</div><div class="stat-lbl">personnes</div></div>
+          <div class="stat"><div class="stat-num">38</div><div class="stat-lbl">langues</div></div>
+        </div>
+        <div class="field-list" id="fieldList"></div>
+      </div>
+    </section>
+
+    <section id="profiles">
+      <div class="section-head"><span class="num">3</span><h2>Les Profils</h2></div>
+      <p class="hint">Three Interlingua members introduce themselves — tap 🔊 to hear each bio read aloud.</p>
+      <div id="profilesHost"></div>
+    </section>
+
+    <section id="closed">
+      <div class="section-head"><span class="num">4</span><h2>Questions Fermées</h2></div>
+      <p class="hint">Vrai ou faux, and multiple choice — based on what you just read.</p>
+      <div class="quiz-shell">
+        <div class="quiz-top">
+          <span class="quiz-score mono" id="quizScore">Score : 0 / 0</span>
+          <button class="btn ghost" id="quizSkip" type="button">Skip →</button>
+        </div>
+        <div class="quiz-tag" id="quizTag"></div>
+        <div class="quiz-prompt" id="quizPrompt"></div>
+        <div class="quiz-options" id="quizOptions"></div>
+        <div class="quiz-feedback" id="quizFeedback"></div>
+      </div>
+    </section>
+
+    <section id="open">
+      <div class="section-head"><span class="num">5</span><h2>Questions Ouvertes</h2></div>
+      <p class="hint">Write your own answer in French, then reveal a model answer to compare.</p>
+      <div id="openHost"></div>
+    </section>
+
+    <footer>Adapted from your "Nationalités — lecture" worksheet (the Interlingua reading and its vrai/faux exercise), with added vocabulary and open-question practice.</footer>
+
+  </div>
+  </div>
+</div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------------- speech ---------------- */
+  var cachedVoices = [];
+  function loadVoices(){
+    try{ if('speechSynthesis' in window){ cachedVoices = window.speechSynthesis.getVoices() || []; } }catch(e){}
+  }
+  loadVoices();
+  try{ if('speechSynthesis' in window){ window.speechSynthesis.onvoiceschanged = loadVoices; } }catch(e){}
+  function pickFrenchVoice(){
+    if(!cachedVoices.length) loadVoices();
+    if(!cachedVoices.length) return null;
+    var exact = cachedVoices.find(function(v){ return v.lang && v.lang.toLowerCase() === 'fr-fr'; });
+    if(exact) return exact;
+    var starts = cachedVoices.find(function(v){ return v.lang && v.lang.toLowerCase().indexOf('fr') === 0; });
+    if(starts) return starts;
+    var byName = cachedVoices.find(function(v){ return /fran[cç]ais|french/i.test(v.name || ''); });
+    if(byName) return byName;
+    return null;
+  }
+  function speak(text){
+    try{
+      if(!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      var say = function(){
+        var u = new SpeechSynthesisUtterance(text);
+        u.lang = 'fr-FR';
+        u.rate = 0.92;
+        var v = pickFrenchVoice();
+        if(v){ u.voice = v; u.lang = v.lang; }
+        window.speechSynthesis.speak(u);
+      };
+      if(!cachedVoices.length){ setTimeout(say, 150); } else { say(); }
+    }catch(e){}
+  }
+  function mkListenBtn(text){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'listen-btn';
+    b.setAttribute('aria-label', 'Listen');
+    b.innerHTML = '🔊';
+    b.addEventListener('click', function(){ speak(text); });
+    return b;
+  }
+
+  /* ---------------- data ---------------- */
+  var VOCAB = [
+    {fr:'la langue maternelle', en:'native language'},
+    {fr:'bilingue', en:'bilingual'},
+    {fr:'je voudrais', en:'I would like'},
+    {fr:'aider', en:'to help'},
+    {fr:'chercher', en:'to look for'},
+    {fr:'communiquer', en:'to communicate'},
+    {fr:'gratuit / gratuite', en:'free (no cost)'},
+    {fr:"l'inscription", en:'sign-up, registration'},
+    {fr:'un contact', en:'a contact'},
+    {fr:'une communauté mondiale', en:'a worldwide community'},
+    {fr:"je n'ai pas cours", en:"I don't have class"},
+    {fr:'tous les jours', en:'every day'},
+    {fr:"l'après-midi", en:'the afternoon'},
+    {fr:'le week-end', en:'the weekend'},
+    {fr:'à bientôt', en:'see you soon'}
+  ];
+
+  var FIELDS = [
+    {label:'Votre langue maternelle', val:'chinois'},
+    {label:'Autre langue', val:'anglais'},
+    {label:'Vous apprenez', val:'français'},
+    {label:'Votre âge', val:'vous avez 20-30 ans'}
+  ];
+
+  var PROFILES = [
+    {
+      name:'Roberto Sanchez', age:23, avatar:'🇲🇽',
+      bio:"Je suis mexicain, j'ai 23 ans. J'étudie le commerce international et, le samedi, j'apprends le chinois dans une école de langues. Je suis bilingue : je parle espagnol et français. Je ne parle pas bien anglais.",
+      wants:[false, false, true],
+      contacts:['Ming (Chine)', 'Sven (Norvège)']
+    },
+    {
+      name:'Ming Pei', age:26, avatar:'🇨🇳',
+      bio:"J'ai 26 ans, je suis chinoise. J'étudie l'économie. Je parle chinois et anglais ; j'apprends le français. J'étudie à l'université tous les jours mais je n'ai pas cours les mardis et jeudis après-midi ; je ne travaille pas le week-end. Je cherche des personnes pour communiquer en anglais et en français, en direct sur Interlingua.",
+      wants:[false, true, true],
+      contacts:['Roberto (Mexique)']
+    },
+    {
+      name:'Sven Kristiansen', age:23, avatar:'🇳🇴',
+      bio:"Ma nationalité : je suis norvégien. Mon âge : 23 ans. Mes études : les langues et la littérature. Je parle norvégien, anglais, allemand et français ; j'apprends l'espagnol. J'étudie le matin, je n'ai pas cours l'après-midi. À bientôt sur Interlingua !",
+      wants:[false, true, true],
+      contacts:['Roberto (Mexique)']
+    }
+  ];
+  var WANT_LABELS = ['apprendre une langue', 'aider les autres à apprendre ma langue', 'communiquer avec les gens'];
+
+  var QUESTIONS_CLOSED = [
+    {type:'vf', q:'Interlingua est une école de langues.', options:['Vrai','Faux'], answer:'Faux', explain:"C'est une communauté mondiale pour pratiquer les langues avec d'autres personnes — pas une école."},
+    {type:'vf', q:'Les personnes utilisent Interlingua pour apprendre une langue étrangère.', options:['Vrai','Faux'], answer:'Vrai', explain:'Les trois profils veulent apprendre, pratiquer ou aider les autres à apprendre une langue.'},
+    {type:'vf', q:"C'est possible de pratiquer 45 langues avec Interlingua.", options:['Vrai','Faux'], answer:'Faux', explain:'La page d\'accueil dit 38 langues, pas 45.'},
+    {type:'vf', q:"L'inscription à Interlingua est gratuite.", options:['Vrai','Faux'], answer:'Vrai', explain:'« Inscription gratuite ! » est écrit sur la page d\'accueil.'},
+    {type:'mcq', q:'Qui parle quatre langues ?', options:['Roberto','Ming Pei','Sven'], answer:'Sven', explain:'Sven parle norvégien, anglais, allemand et français.'},
+    {type:'mcq', q:'Quel jour est-ce que Ming ne travaille pas ?', options:['le samedi','le week-end','le mardi'], answer:'le week-end', explain:'« Je ne travaille pas le week-end. »'},
+    {type:'mcq', q:'Qui a probablement rempli ce formulaire (langue maternelle : chinois ; apprend : français ; âge : 20-30 ans) ?', options:['Roberto','Ming Pei','Sven'], answer:'Ming Pei', explain:'Ming est chinoise, apprend le français, et a 26 ans — entre 20 et 30 ans.'}
+  ];
+
+  var QUESTIONS_OPEN = [
+    {q:'Quelle est la nationalité de Roberto, et quelles langues parle-t-il ?', model:"Roberto est mexicain. Il parle espagnol et français, mais il ne parle pas bien anglais."},
+    {q:'Pourquoi est-ce que Ming Pei utilise Interlingua ?', model:"Elle cherche des personnes pour communiquer en anglais et en français, et elle voudrait aider les autres à apprendre le chinois."},
+    {q:"Décris les horaires d'études de Sven.", model:"Il étudie le matin ; il n'a pas cours l'après-midi."},
+    {q:'Et toi ? Quelle est ta langue maternelle, et quelle langue voudrais-tu apprendre sur Interlingua ?', model:"Exemple : « Ma langue maternelle est l'espagnol. Je voudrais apprendre le français et l'italien. »", personal:true}
+  ];
+
+  /* ---------------- section 1: vocab ---------------- */
+  function renderVocab(){
+    var grid = document.getElementById('vocabGrid');
+    grid.innerHTML = '';
+    VOCAB.forEach(function(v){
+      var card = document.createElement('div');
+      card.className = 'vocab-card';
+      var txt = document.createElement('div');
+      txt.className = 'txt';
+      txt.innerHTML = '<div class="fr">' + v.fr + '</div><div class="en">' + v.en + '</div>';
+      card.appendChild(txt);
+      card.appendChild(mkListenBtn(v.fr.replace(' / ', ', ')));
+      grid.appendChild(card);
+    });
+  }
+
+  /* ---------------- section 2: site mockup ---------------- */
+  function renderSite(){
+    document.getElementById('siteListen').appendChild(
+      mkListenBtn("Interlingua, c'est une communauté mondiale de neuf millions de personnes, avec trente-huit langues. L'inscription est gratuite !")
+    );
+    var fl = document.getElementById('fieldList');
+    fl.innerHTML = '';
+    FIELDS.forEach(function(f){
+      var row = document.createElement('div');
+      row.className = 'field-row';
+      row.innerHTML = '<span>' + f.label + '</span><span class="val">' + f.val + '</span>';
+      fl.appendChild(row);
+    });
+  }
+
+  /* ---------------- section 3: profiles ---------------- */
+  function renderProfiles(){
+    var host = document.getElementById('profilesHost');
+    host.innerHTML = '';
+    PROFILES.forEach(function(p){
+      var card = document.createElement('div');
+      card.className = 'profile-card';
+
+      var head = document.createElement('div');
+      head.className = 'profile-head';
+      head.innerHTML =
+        '<div class="avatar">' + p.avatar + '</div>' +
+        '<div><div class="name">' + p.name + '</div><div class="age">' + p.age + ' ans</div></div>';
+      card.appendChild(head);
+
+      var bioRow = document.createElement('div');
+      bioRow.className = 'bio-row';
+      var bioText = document.createElement('div');
+      bioText.className = 'bio-text';
+      bioText.textContent = p.bio;
+      bioRow.appendChild(bioText);
+      bioRow.appendChild(mkListenBtn(p.bio));
+      card.appendChild(bioRow);
+
+      var wants = document.createElement('div');
+      wants.className = 'wants-list';
+      var wantsTitle = document.createElement('div');
+      wantsTitle.style.fontWeight = '700';
+      wantsTitle.style.marginBottom = '2px';
+      wantsTitle.textContent = 'Je voudrais :';
+      wants.appendChild(wantsTitle);
+      p.wants.forEach(function(checked, i){
+        var w = document.createElement('div');
+        w.className = 'want';
+        w.innerHTML = '<span class="box' + (checked ? ' checked' : '') + '">' + (checked ? '✓' : '') + '</span><span>' + WANT_LABELS[i] + '</span>';
+        wants.appendChild(w);
+      });
+      card.appendChild(wants);
+
+      var contactsRow = document.createElement('div');
+      contactsRow.className = 'contacts-row';
+      contactsRow.innerHTML = '<span class="lbl">Vos contacts :</span>';
+      p.contacts.forEach(function(c){
+        var chip = document.createElement('span');
+        chip.className = 'contact-chip';
+        chip.textContent = c;
+        contactsRow.appendChild(chip);
+      });
+      card.appendChild(contactsRow);
+
+      host.appendChild(card);
+    });
+  }
+
+  /* ---------------- section 4: closed questions ---------------- */
+  var quizOrder = [];
+  var quizIdx = 0, quizCorrect = 0, quizTotal = 0, quizAnswered = false;
+
+  function shuffle(arr){
+    var a = arr.slice();
+    for(var i = a.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
+  function newQuizRound(){
+    if(quizIdx >= quizOrder.length){
+      quizOrder = shuffle(QUESTIONS_CLOSED.map(function(_, i){ return i; }));
+      quizIdx = 0;
+    }
+    quizAnswered = false;
+    var item = QUESTIONS_CLOSED[quizOrder[quizIdx]];
+    document.getElementById('quizTag').textContent = item.type === 'vf' ? 'Vrai ou Faux' : 'Choix multiple';
+    document.getElementById('quizPrompt').textContent = item.q;
+    var opts = document.getElementById('quizOptions');
+    opts.innerHTML = '';
+    item.options.forEach(function(choice){
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = choice;
+      btn.addEventListener('click', function(){ answerQuiz(item, choice, btn); });
+      opts.appendChild(btn);
+    });
+    document.getElementById('quizFeedback').textContent = '';
+  }
+
+  function answerQuiz(item, choice, btn){
+    if(quizAnswered) return;
+    quizAnswered = true;
+    quizTotal++;
+    var isCorrect = choice === item.answer;
+    if(isCorrect) quizCorrect++;
+    document.querySelectorAll('#quizOptions button').forEach(function(b){
+      if(b.textContent === item.answer) b.classList.add('correct');
+      else if(b === btn) b.classList.add('wrong');
+    });
+    document.getElementById('quizScore').textContent = 'Score : ' + quizCorrect + ' / ' + quizTotal;
+    document.getElementById('quizFeedback').textContent = (isCorrect ? '✅ ' : '💡 Réponse : ' + item.answer + ' — ') + item.explain;
+    quizIdx++;
+    setTimeout(newQuizRound, 2200);
+  }
+
+  document.getElementById('quizSkip').addEventListener('click', function(){ quizIdx++; newQuizRound(); });
+
+  /* ---------------- section 5: open questions ---------------- */
+  function renderOpen(){
+    var host = document.getElementById('openHost');
+    host.innerHTML = '';
+    QUESTIONS_OPEN.forEach(function(item, i){
+      var card = document.createElement('div');
+      card.className = 'open-card' + (item.personal ? ' personal' : '');
+
+      var q = document.createElement('div');
+      q.className = 'q';
+      q.textContent = (i + 1) + '. ' + item.q;
+      card.appendChild(q);
+
+      var ta = document.createElement('textarea');
+      ta.placeholder = 'Écris ta réponse en français...';
+      card.appendChild(ta);
+
+      var revealRow = document.createElement('div');
+      revealRow.className = 'reveal-row';
+      var revealBtn = document.createElement('button');
+      revealBtn.type = 'button';
+      revealBtn.className = 'btn ghost';
+      revealBtn.textContent = item.personal ? 'Voir un exemple' : 'Voir la réponse modèle';
+      revealRow.appendChild(revealBtn);
+      card.appendChild(revealRow);
+
+      var model = document.createElement('div');
+      model.className = 'model-answer';
+      var modelTxt = document.createElement('span');
+      modelTxt.className = 'txt';
+      modelTxt.textContent = item.model;
+      model.appendChild(modelTxt);
+      model.appendChild(mkListenBtn(item.model.replace(/[«»]/g, '')));
+      card.appendChild(model);
+
+      revealBtn.addEventListener('click', function(){
+        model.classList.toggle('show');
+      });
+
+      host.appendChild(card);
+    });
+  }
+
+  /* ---------------- init ---------------- */
+  renderVocab();
+  renderSite();
+  renderProfiles();
+  renderOpen();
+  quizOrder = shuffle(QUESTIONS_CLOSED.map(function(_, i){ return i; }));
+  newQuizRound();
+})();
+</script>
+
+</body></html>

@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Masculin ou Féminin</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+  :root{
+    --bg:#f4f5f7;
+    --paper:#ffffff;
+    --paper-2:#f4f5f7;
+    --ink:#1a1a2e;
+    --ink-soft:#6b7280;
+    --line:#e5e7eb;
+    --bleu:#002395;
+    --rouge:#ED2939;
+    --accent:#002395;
+    --accent-ink:#002395;
+    --green:#3f8f6d;
+    --green-bg:#e7f3ed;
+    --red:#ED2939;
+    --red-bg:#fdecec;
+    --shadow: 0 1px 2px rgba(26,26,46,.06), 0 8px 24px -12px rgba(26,26,46,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#12141c;
+      --paper:#1b1e2b;
+      --paper-2:#20232f;
+      --ink:#f1f2f6;
+      --ink-soft:#9aa0b4;
+      --line:#2a2e40;
+      --bleu:#002395;
+      --rouge:#ED2939;
+      --accent:#5b7fe0;
+      --accent-ink:#7c9df2;
+      --green:#63c299;
+      --green-bg:#173226;
+      --red:#ED2939;
+      --red-bg:#3a1418;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#12141c;
+    --paper:#1b1e2b;
+    --paper-2:#20232f;
+    --ink:#f1f2f6;
+    --ink-soft:#9aa0b4;
+    --line:#2a2e40;
+    --bleu:#002395;
+    --rouge:#ED2939;
+    --accent:#5b7fe0;
+    --accent-ink:#7c9df2;
+    --green:#63c299;
+    --green-bg:#173226;
+    --red:#ED2939;
+    --red-bg:#3a1418;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.6);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'Work Sans', ui-sans-serif, system-ui, sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:0 20px 90px;}
+  h1,h2,h3{font-family:'Fraunces', Georgia, serif; text-wrap:balance; margin:0; color:var(--ink);}
+  .eyebrow{font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-ink); font-weight:600;}
+  code, .mono{font-family:'IBM Plex Mono', monospace;}
+
+  /* ---- Tricolor stripe ---- */
+  .stripe{height:8px; background:linear-gradient(90deg, var(--bleu) 33%, #ffffff 33%, #ffffff 66%, var(--rouge) 66%);}
+
+  /* ---- Hero ---- */
+  .hero{
+    background: linear-gradient(180deg, var(--bleu) 0%, #000f42 100%);
+    color:#f3f5ff; padding:40px 20px 40px;
+  }
+  .hero-inner{max-width:900px; margin:0 auto;}
+  .hero h1{font-size:clamp(30px,4.4vw,44px); font-weight:600; color:#ffffff; letter-spacing:-.01em;}
+  .hero-meta{display:flex; gap:22px; margin-top:22px; flex-wrap:wrap;}
+  .hero-meta div{font-family:'IBM Plex Mono',monospace; font-size:12px; color:#a9b6e8;}
+  .hero-meta b{display:block; color:#f3f5ff; font-size:14px; font-family:'Work Sans',sans-serif; font-weight:600; margin-top:2px;}
+
+  section{margin-top:46px;}
+  .wrap > section:first-of-type{margin-top:36px;}
+  .sec-head{display:flex; align-items:baseline; gap:12px; margin-bottom:16px;}
+  .sec-num{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent-ink); font-weight:600;}
+  section h2{font-size:25px; font-weight:600;}
+  .sec-intro{color:var(--ink-soft); font-size:15px; max-width:66ch; margin-top:6px;}
+
+  .card{background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:22px; box-shadow:var(--shadow);}
+  .card + .card{margin-top:14px;}
+
+  table.poss{width:100%; border-collapse:collapse; margin-top:12px; font-size:14.5px;}
+  table.poss th{text-align:left; font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); padding:6px 10px; border-bottom:2px solid var(--line);}
+  table.poss td{padding:8px 10px; border-bottom:1px solid var(--line);}
+  table.poss tr:last-child td{border-bottom:none;}
+  table.poss .pron{color:var(--ink-soft); width:150px;}
+  table.poss .pos{font-weight:700; color:var(--accent-ink);}
+
+  .instr-box{border-left:3px solid var(--accent); background:var(--paper-2); border-radius:0 10px 10px 0; padding:14px 18px; margin:16px 0; font-size:14.5px;}
+  .instr-box b{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-ink); display:block; margin-bottom:6px;}
+  .instr-box s{color:var(--ink-soft);}
+
+  .note-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px;}
+  @media (max-width:640px){.note-grid{grid-template-columns:1fr;}}
+  .note{background:var(--paper-2); border-radius:10px; padding:14px 16px; font-size:13.8px;}
+  .note b{display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--accent-ink); margin-bottom:6px;}
+  .note .fr{font-style:italic; color:var(--ink); display:block; margin-top:4px;}
+
+  /* suffix reference */
+  .suffix-cols{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:16px;}
+  @media (max-width:640px){.suffix-cols{grid-template-columns:1fr;}}
+  .suffix-col-h{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--accent-ink); font-weight:600; margin-bottom:8px; padding-bottom:6px; border-bottom:2px solid var(--line);}
+  .suffix-row{display:flex; align-items:baseline; gap:8px; padding:5px 0; font-size:13.6px; border-bottom:1px dashed var(--line);}
+  .suffix-row:last-child{border-bottom:none;}
+  .suf{font-family:'IBM Plex Mono',monospace; font-weight:700; background:var(--paper-2); border-radius:5px; padding:1px 6px; font-size:12.5px; flex:0 0 auto; color:var(--accent-ink);}
+  .suffix-row .ex{color:var(--ink);}
+  .suffix-row .tr{color:var(--ink-soft); font-size:12px;}
+
+  /* exercises */
+  .ex-block{margin-top:16px;}
+  .ex-tag{
+    display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%;
+    background:var(--bleu); color:#ffffff; font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:13px;
+    margin-right:8px; flex:0 0 auto;
+  }
+  .ex-title{font-weight:600; font-size:15.5px; display:flex; align-items:center; margin-bottom:4px;}
+  .ex-sub{color:var(--ink-soft); font-size:13.3px; margin:2px 0 14px 34px;}
+  .ex-part{font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:600; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.06em; margin:16px 0 6px;}
+  .ex-part:first-of-type{margin-top:4px;}
+  .cat-label{font-weight:700; font-size:14px; color:var(--ink); margin:14px 0 4px;}
+  .cat-label:first-child{margin-top:0;}
+  .cat-given{color:var(--ink-soft); font-weight:400; font-size:13px; margin-left:8px;}
+
+  .fill-line{
+    display:flex; align-items:baseline; flex-wrap:wrap; gap:6px 4px; padding:9px 0; font-size:15px; border-bottom:1px dashed var(--line);
+  }
+  .fill-line:last-child{border-bottom:none;}
+  .fill-line .qn{font-family:'IBM Plex Mono',monospace; color:var(--ink-soft); font-size:12.5px; width:16px;}
+  .blank{
+    padding:5px 8px; border-radius:6px; border:1px solid var(--line); background:var(--paper-2);
+    color:var(--ink); font-family:'Work Sans',sans-serif; font-size:14.5px;
+  }
+  .blank.w-full{width:100%; margin-top:4px;}
+  .blank.w-med{width:220px;}
+  .blank.w-sm{width:66px; text-align:center;}
+  .blank.tiny{width:56px; text-align:center;}
+  .blank:focus{outline:2px solid var(--accent); outline-offset:1px;}
+  .blank.ok{border-color:var(--green); background:var(--green-bg);}
+  .blank.no{border-color:var(--red); background:var(--red-bg);}
+  .given{font-weight:600; color:var(--accent-ink);}
+
+  .hint-chip{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:600; color:var(--accent-ink); background:var(--paper-2); border:1px solid var(--line); border-radius:6px; padding:2px 7px; margin-right:6px; white-space:nowrap;}
+
+  .btn{font-family:'Work Sans',sans-serif; font-weight:600; font-size:14px; padding:10px 18px; border-radius:9px; border:none; cursor:pointer; background:var(--bleu); color:#ffffff;}
+  .btn:hover{background:var(--rouge);}
+  .btn.secondary{background:transparent; color:var(--ink); border:1px solid var(--line);}
+  .btn.secondary:hover{border-color:var(--accent); color:var(--accent-ink);}
+  .btn-row{display:flex; gap:10px; margin-top:16px; flex-wrap:wrap;}
+
+  /* phrase bank / production */
+  .phrase-bank{display:flex; gap:8px; flex-wrap:wrap; margin:12px 0;}
+  .phrase{font-family:'IBM Plex Mono',monospace; font-size:12.5px; background:var(--paper-2); border:1px solid var(--line); border-radius:20px; padding:6px 12px; cursor:pointer;}
+  .phrase:hover{border-color:var(--accent);}
+  .phrase .g{color:var(--ink-soft); margin-left:3px;}
+  textarea, input[type="text"].free{width:100%; min-height:44px; border-radius:10px; border:1px solid var(--line); background:var(--paper-2); color:var(--ink); font-family:'Work Sans',sans-serif; font-size:14.5px; padding:11px 13px; resize:vertical;}
+  textarea:focus, input[type="text"].free:focus{outline:2px solid var(--accent); outline-offset:1px;}
+  .model-answer{display:none; margin-top:10px; background:var(--green-bg); border-radius:10px; padding:13px 16px; font-size:14px;}
+  .model-answer.show{display:block;}
+  .model-answer b{display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--green); margin-bottom:7px;}
+  .model-answer p{margin:3px 0;}
+
+  /* select drill */
+  .sel-line{display:flex; align-items:baseline; flex-wrap:wrap; gap:6px; font-size:15px; padding:8px 0; border-bottom:1px dashed var(--line);}
+  .sel-line:last-child{border-bottom:none;}
+  select.blank{appearance:auto; cursor:pointer;}
+
+  .score-banner{margin-top:16px; padding:14px 18px; border-radius:12px; background:var(--paper-2); border:1px solid var(--line); display:none; align-items:center; gap:14px;}
+  .score-banner.show{display:flex;}
+  .score-num{font-family:'Fraunces',serif; font-size:30px; font-weight:600; color:var(--accent-ink);}
+
+  footer{max-width:900px; margin:60px auto 0; padding:20px; text-align:center; color:var(--ink-soft); font-size:12.5px; font-family:'IBM Plex Mono',monospace;}
+</style>
+
+<div class="stripe"></div>
+<div class="hero">
+  <div class="hero-inner">
+    <h1>Masculin ou Féminin</h1>
+    <div class="hero-meta">
+      <div>Language<b>French · A1</b></div>
+      <div>Focus<b>Noun &amp; article gender</b></div>
+      <div>Time<b>~20 minutes</b></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section id="sec-intro">
+    <div class="sec-head"><span class="sec-num">01</span><h2>How this lesson works</h2></div>
+    <p class="sec-intro">Every French noun is either masculine or feminine, and the article (<em>un/une</em>, <em>le/la</em>) has to match. First, how to spot the gender of people — then how word endings hint at the gender of everything else. Then every exercise from your worksheet, checked as you type.</p>
+  </section>
+
+  <!-- THEORY: PEOPLE -->
+  <section id="sec-people">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Le nom et l'article</h2></div>
+    <div class="card">
+      <p class="sec-intro" style="margin-top:0;">A French noun almost always needs an article in front of it — and the article has to be the same gender as the noun.</p>
+      <div class="instr-box">
+        <b>Say it with an article</b>
+        <s style="color:var(--ink-soft);">Homme marche.</s> ✗ &nbsp;→&nbsp; <b style="color:var(--ink)">Un</b> homme marche. ✓
+      </div>
+      <table class="poss">
+        <tr><th></th><th>Masculin</th><th>Féminin</th></tr>
+        <tr><td class="pron">Personne</td><td class="pos">un homme</td><td class="pos">une femme</td></tr>
+        <tr><td class="pron">Chose</td><td class="pos">un arbre</td><td class="pos">une route</td></tr>
+      </table>
+      <p class="sec-intro" style="margin-top:10px;">Same liaison rule as before: <span class="mono">un ami</span>, <span class="mono">un homme</span> — the "n" links to the vowel that follows.</p>
+    </div>
+
+    <div class="card">
+      <div class="instr-box">
+        <b>Feminine of people = feminine of adjectives</b>
+        Add <b style="color:var(--ink)">-e</b> (or double the last consonant + e) — the same pattern you already know from adjectives.
+      </div>
+      <table class="poss">
+        <tr><th></th><th>Masculin</th><th>Féminin</th></tr>
+        <tr><td class="pron">student</td><td>un étudiant élégant</td><td>une étudiante élégante</td></tr>
+        <tr><td class="pron">musician</td><td>un musicien italien</td><td>une musicienne italienne</td></tr>
+        <tr><td class="pron">waiter</td><td>un serveur rêveur</td><td>une serveuse rêveuse</td></tr>
+        <tr><td class="pron">actor</td><td>un acteur séducteur</td><td>une actrice séductrice</td></tr>
+        <tr><td class="pron">journalist</td><td>un journaliste triste</td><td>une journaliste triste <span class="tr">(no change)</span></td></tr>
+      </table>
+      <div class="instr-box">
+        <b>Irregular pairs — different word entirely</b>
+        un homme → une femme &nbsp;·&nbsp; un monsieur → une dame &nbsp;·&nbsp; un garçon → une fille
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="sec-intro" style="margin-top:0;"><b style="color:var(--ink)">Professions</b> follow a handful of suffix patterns:</p>
+      <table class="poss">
+        <tr><th>Pattern</th><th>Masculin</th><th>Féminin</th></tr>
+        <tr><td class="pron mono">-teur / -trice</td><td>acteur, réalisateur</td><td>actrice, réalisatrice</td></tr>
+        <tr><td class="pron mono">-er / -ère</td><td>boulanger</td><td>boulangère</td></tr>
+        <tr><td class="pron mono">-ier / -ière</td><td>poissonnier</td><td>poissonnière</td></tr>
+        <tr><td class="pron mono">-eur / -euse</td><td>danseur, chanteur</td><td>danseuse, chanteuse</td></tr>
+        <tr><td class="pron mono">-ien / -ienne</td><td>pharmacien, musicien</td><td>pharmacienne, musicienne</td></tr>
+      </table>
+      <div class="instr-box">
+        <b>Same word for both — épicène</b>
+        un/une ingénieur &nbsp;·&nbsp; un/une dentiste &nbsp;·&nbsp; un/une professeur(e) &nbsp;·&nbsp; un/une médecin
+      </div>
+    </div>
+  </section>
+
+  <!-- THEORY: ENDINGS -->
+  <section id="sec-endings">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Deviner le genre par la terminaison</h2></div>
+    <div class="card">
+      <p class="sec-intro" style="margin-top:0;">For everything else — objects, places, ideas — the <b style="color:var(--ink)">ending of the word</b> is usually a reliable clue. From your slides:</p>
+      <div class="suffix-cols">
+        <div>
+          <div class="suffix-col-h">Masculine endings</div>
+          <div class="suffix-row"><span class="suf">-ment</span><span class="ex">le bâtiment</span><span class="tr">(building)</span></div>
+          <div class="suffix-row"><span class="suf">-oir</span><span class="ex">le devoir</span><span class="tr">(homework)</span></div>
+          <div class="suffix-row"><span class="suf">-al</span><span class="ex">le cheval</span><span class="tr">(horse)</span></div>
+          <div class="suffix-row"><span class="suf">-eau</span><span class="ex">le bureau</span><span class="tr">(desk/office)</span></div>
+          <div class="suffix-row"><span class="suf">-age</span><span class="ex">le mariage, le fromage</span></div>
+          <div class="suffix-row"><span class="suf">-ai</span><span class="ex">le délai</span><span class="tr">(delay)</span></div>
+          <div class="suffix-row"><span class="suf">-ou</span><span class="ex">le bijou</span><span class="tr">(jewelry)</span></div>
+          <div class="suffix-row"><span class="suf">-ier</span><span class="ex">le policier</span><span class="tr">(police officer)</span></div>
+          <div class="suffix-row"><span class="suf">-isme</span><span class="ex">le socialisme, le capitalisme</span></div>
+          <div class="suffix-row"><span class="suf">-phone</span><span class="ex">le téléphone</span></div>
+          <div class="suffix-row"><span class="suf">-cide</span><span class="ex">l'homicide</span></div>
+          <div class="suffix-row"><span class="suf">-drome</span><span class="ex">le syndrome</span></div>
+          <div class="suffix-row"><span class="suf">-scope</span><span class="ex">le microscope</span></div>
+          <div class="suffix-row"><span class="suf">-mètre</span><span class="ex">le sonomètre</span></div>
+          <div class="suffix-row"><span class="suf">-gramme</span><span class="ex">le télégramme</span></div>
+        </div>
+        <div>
+          <div class="suffix-col-h">Feminine endings</div>
+          <div class="suffix-row"><span class="suf">-tion</span><span class="ex">la relation</span></div>
+          <div class="suffix-row"><span class="suf">-sion</span><span class="ex">la vision, la compréhension</span></div>
+          <div class="suffix-row"><span class="suf">-ance</span><span class="ex">la nuance, la persévérance, la tolérance</span></div>
+          <div class="suffix-row"><span class="suf">-ence</span><span class="ex">la science, l'intelligence, l'importance</span></div>
+          <div class="suffix-row"><span class="suf">-ade</span><span class="ex">la promenade</span></div>
+          <div class="suffix-row"><span class="suf">-té</span><span class="ex">la liberté, l'égalité, la pauvreté</span></div>
+          <div class="suffix-row"><span class="suf">-ure</span><span class="ex">la voiture</span></div>
+          <div class="suffix-row"><span class="suf">-ie</span><span class="ex">la pharmacie, la vie, la technologie</span></div>
+          <div class="suffix-row"><span class="suf">-ière</span><span class="ex">la policière</span></div>
+          <div class="suffix-row"><span class="suf">-ette</span><span class="ex">la recette</span><span class="tr">(recipe)</span></div>
+          <div class="suffix-row"><span class="suf">-elle</span><span class="ex">l'intelligence artificielle</span></div>
+          <div class="suffix-row"><span class="suf">-esse</span><span class="ex">la richesse</span><span class="tr">(richness)</span></div>
+          <div class="suffix-row"><span class="suf">-ine</span><span class="ex">la vitamine</span></div>
+          <div class="suffix-row"><span class="suf">-logie</span><span class="ex">la sociologie, la psychologie</span></div>
+          <div class="suffix-row"><span class="suf">-phobie</span><span class="ex">la claustrophobie</span></div>
+          <div class="suffix-row"><span class="suf">-ée</span><span class="ex">la matinée, la soirée, la journée</span></div>
+        </div>
+      </div>
+      <div class="instr-box">
+        <b>Short (m) for counting, -ée (f) for the whole stretch of time</b>
+        un jour / la journée &nbsp;·&nbsp; un an / l'année &nbsp;·&nbsp; un matin / la matinée &nbsp;·&nbsp; un soir / la soirée
+      </div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title">Quick drill — <span style="margin-left:6px;">le</span>&nbsp;or&nbsp;<span>la</span>&nbsp;?</div>
+      <div class="ex-sub">New words, same endings from the table above.</div>
+      <div id="drill"></div>
+      <div class="btn-row" style="align-items:center;">
+        <button class="btn" data-check="drill">Check my answers</button>
+        <button class="btn secondary" data-reveal="drill">Show answers</button>
+        <button class="btn secondary" id="drill-continue">Next page →</button>
+        <span id="drill-page" class="hint-chip" style="margin-left:auto;">Page 1 of 3</span>
+      </div>
+      <div class="score-banner" id="drill-score"><div class="score-num" id="drill-score-num">0/8</div><div>correct</div></div>
+    </div>
+  </section>
+
+  <!-- PRACTICE -->
+  <section id="sec-practice">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Practice</h2></div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">1</span>Placez l'article « un » ou « une », selon le modèle.</div>
+      <div class="ex-sub">The gender is given in parentheses — just pick the right article.</div>
+      <div id="ex1"></div>
+      <div class="btn-row"><button class="btn" data-check="ex1">Check my answers</button><button class="btn secondary" data-reveal="ex1">Show answers</button></div>
+      <div class="score-banner" id="ex1-score"><div class="score-num" id="ex1-score-num">0/22</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">2</span>Complétez avec « un » ou « une ». Observez les adjectifs.</div>
+      <div class="ex-sub"><span class="given">1. une voiture française</span> — this time the adjective's ending gives away the gender.</div>
+      <div id="ex2"></div>
+      <div class="btn-row"><button class="btn" data-check="ex2">Check my answers</button><button class="btn secondary" data-reveal="ex2">Show answers</button></div>
+      <div class="score-banner" id="ex2-score"><div class="score-num" id="ex2-score-num">0/11</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">4</span>Complétez avec « un » ou « une ».</div>
+      <div class="ex-sub"><span class="given">1. Une dame entre dans une maison.</span> — every sentence has two articles to place.</div>
+      <div id="ex4"></div>
+      <div class="btn-row"><button class="btn" data-check="ex4">Check my answers</button><button class="btn secondary" data-reveal="ex4">Show answers</button></div>
+      <div class="score-banner" id="ex4-score"><div class="score-num" id="ex4-score-num">0/11</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">5</span>Observez l'adjectif et trouvez le nom. Continuez librement.</div>
+      <div class="ex-sub"><span class="given">1. Victoria Abril est une actrice espagnole.</span> — the adjective's ending tells you which word from the pair to pick.</div>
+      <div id="ex5"></div>
+      <div class="btn-row"><button class="btn" data-check="ex5">Check my answers</button><button class="btn secondary" data-reveal="ex5">Show answers</button></div>
+      <div class="score-banner" id="ex5-score"><div class="score-num" id="ex5-score-num">0/3</div><div>correct</div></div>
+
+      <div class="ex-part">Continuez librement</div>
+      <textarea id="produce5" placeholder="Un(e) autre exemple : … est un/une … (adjectif)…"></textarea>
+    </div>
+
+  </section>
+
+</div>
+
+<footer>Adapted from the uploaded worksheet &amp; slides &middot; Leçon — Masculin ou féminin</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  function norm(s){
+    return (s||"").normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim()
+      .replace(/\s+/g,' ').replace(/['’]/g,"'").replace(/[?!.]+$/g,'').trim();
+  }
+  function matches(val, answers){
+    var v = norm(val);
+    if(!v) return false;
+    return answers.some(function(a){ return norm(a) === v; });
+  }
+
+  function buildFillExercise(containerId, items){
+    var container = document.getElementById(containerId);
+    items.forEach(function(item, i){
+      var line = document.createElement('div');
+      line.className = 'fill-line';
+      var html = '<span class="qn">'+(i+1)+'.</span> ';
+      html += item.hint ? '<span class="hint-chip">'+item.hint+'</span>' : '';
+      html += item.pre ? '<span>'+item.pre+'</span> ' : '';
+      if(item.given){
+        html += '<span class="given">'+item.given+'</span>';
+      } else {
+        html += '<input class="blank '+(item.width||'w-med')+'" type="text" autocomplete="off" data-idx="'+i+'">';
+      }
+      html += item.post ? ' <span>'+item.post+'</span>' : '';
+      line.innerHTML = html;
+      container.appendChild(line);
+    });
+
+    function allInputs(){ return container.querySelectorAll('input.blank'); }
+
+    document.querySelector('[data-check="'+containerId+'"]').addEventListener('click', function(){
+      var score = 0, total = 0;
+      allInputs().forEach(function(input){
+        var idx = +input.dataset.idx;
+        var item = items[idx];
+        total++;
+        input.classList.remove('ok','no');
+        if(matches(input.value, item.answers)){ input.classList.add('ok'); score++; }
+        else { input.classList.add('no'); }
+      });
+      var sb = document.getElementById(containerId+'-score');
+      if(sb){ sb.classList.add('show'); document.getElementById(containerId+'-score-num').textContent = score+'/'+total; }
+    });
+    document.querySelector('[data-reveal="'+containerId+'"]').addEventListener('click', function(){
+      allInputs().forEach(function(input){
+        var idx = +input.dataset.idx;
+        input.value = items[idx].answers[0];
+        input.classList.remove('no'); input.classList.add('ok');
+      });
+      var sb = document.getElementById(containerId+'-score');
+      var totalBlanks = allInputs().length;
+      if(sb){ sb.classList.add('show'); document.getElementById(containerId+'-score-num').textContent = totalBlanks+'/'+totalBlanks; }
+    });
+  }
+
+  /* ---------------- Quick drill: le / la ---------------- */
+  (function(){
+    var container = document.getElementById('drill');
+    var items = [
+      {word:"gouvernement", suf:"-ment", answer:"le"},
+      {word:"question", suf:"-tion", answer:"la"},
+      {word:"miroir", suf:"-oir", answer:"le"},
+      {word:"chance", suf:"-ance", answer:"la"},
+      {word:"canal", suf:"-al", answer:"le"},
+      {word:"présence", suf:"-ence", answer:"la"},
+      {word:"tableau", suf:"-eau", answer:"le"},
+      {word:"façade", suf:"-ade", answer:"la"},
+      {word:"voyage", suf:"-age", answer:"le"},
+      {word:"santé", suf:"-té", answer:"la"},
+      {word:"balai", suf:"-ai", answer:"le"},
+      {word:"nature", suf:"-ure", answer:"la"},
+      {word:"genou", suf:"-ou", answer:"le"},
+      {word:"sortie", suf:"-ie", answer:"la"},
+      {word:"cahier", suf:"-ier", answer:"le"},
+      {word:"rivière", suf:"-ière", answer:"la"},
+      {word:"réalisme", suf:"-isme", answer:"le"},
+      {word:"baguette", suf:"-ette", answer:"la"},
+      {word:"saxophone", suf:"-phone", answer:"le"},
+      {word:"vitesse", suf:"-esse", answer:"la"},
+      {word:"pesticide", suf:"-cide", answer:"le"},
+      {word:"cuisine", suf:"-ine", answer:"la"},
+      {word:"syndrome", suf:"-drome", answer:"le"},
+      {word:"géologie", suf:"-logie", answer:"la"}
+    ];
+    var BATCH = 8;
+    var totalPages = Math.ceil(items.length / BATCH);
+    var page = 0;
+    var continueBtn = document.getElementById('drill-continue');
+    var pageLabel = document.getElementById('drill-page');
+    var scoreBanner = document.getElementById('drill-score');
+
+    function renderPage(p){
+      container.innerHTML = '';
+      var start = p * BATCH;
+      var end = Math.min(start + BATCH, items.length);
+      for(var i = start; i < end; i++){
+        var item = items[i];
+        var line = document.createElement('div');
+        line.className = 'sel-line';
+        line.innerHTML = '<span class="qn">'+(i+1)+'.</span> ' +
+          '<select class="blank" data-idx="'+i+'"><option value="">…</option><option value="le">le</option><option value="la">la</option></select> ' +
+          item.word+' <span class="hint-chip" style="margin-left:6px;">'+item.suf+'</span>';
+        container.appendChild(line);
+      }
+      scoreBanner.classList.remove('show');
+      pageLabel.textContent = 'Page '+(p+1)+' of '+totalPages;
+      continueBtn.textContent = (p+1 < totalPages) ? 'Next page →' : 'Restart from page 1';
+    }
+
+    renderPage(page);
+
+    continueBtn.addEventListener('click', function(){
+      page = (page + 1) % totalPages;
+      renderPage(page);
+    });
+
+    document.querySelector('[data-check="drill"]').addEventListener('click', function(){
+      var score = 0, total = 0;
+      container.querySelectorAll('select.blank').forEach(function(sel){
+        var idx = +sel.dataset.idx;
+        total++;
+        sel.classList.remove('ok','no');
+        if(sel.value === items[idx].answer){ sel.classList.add('ok'); score++; }
+        else { sel.classList.add('no'); }
+      });
+      scoreBanner.classList.add('show');
+      document.getElementById('drill-score-num').textContent = score+'/'+total;
+    });
+    document.querySelector('[data-reveal="drill"]').addEventListener('click', function(){
+      var total = 0;
+      container.querySelectorAll('select.blank').forEach(function(sel){
+        var idx = +sel.dataset.idx;
+        total++;
+        sel.value = items[idx].answer;
+        sel.classList.remove('no'); sel.classList.add('ok');
+      });
+      scoreBanner.classList.add('show');
+      document.getElementById('drill-score-num').textContent = total+'/'+total;
+    });
+  })();
+
+  /* ---------------- Ex1: un / une by category ---------------- */
+  (function(){
+    var container = document.getElementById('ex1');
+    var categories = [
+      {label:"Personnes", given:"un garçon (m) · une fille (f)", items:[["homme","m"],["femme","f"],["ami","m"],["amie","f"]]},
+      {label:"Transports", items:[["voiture","f"],["bus","m"],["train","m"],["avion","m"],["bateau","m"]]},
+      {label:"Logement", items:[["hôtel","m"],["maison","f"],["appartement","m"],["chambre","f"]]},
+      {label:"Meubles", items:[["lit","m"],["table","f"],["chaise","f"],["divan","m"],["fauteuil","m"]]},
+      {label:"Aliments", items:[["sandwich","m"],["salade","f"],["croissant","m"],["gâteau","m"]]}
+    ];
+    var answers = [];
+    categories.forEach(function(cat){
+      var head = document.createElement('div');
+      head.className = 'cat-label';
+      head.innerHTML = cat.label+' :' + (cat.given ? '<span class="cat-given">'+cat.given+'</span>' : '');
+      container.appendChild(head);
+
+      cat.items.forEach(function(it){
+        var word = it[0], gender = it[1];
+        var idx = answers.length;
+        answers.push(gender === 'm' ? 'un' : 'une');
+        var line = document.createElement('div');
+        line.className = 'fill-line';
+        line.innerHTML = '<input class="blank tiny" type="text" autocomplete="off" data-idx="'+idx+'"> '+word+' <span class="hint-chip">'+gender+'</span>';
+        container.appendChild(line);
+      });
+    });
+
+    document.querySelector('[data-check="ex1"]').addEventListener('click', function(){
+      var score = 0;
+      container.querySelectorAll('input.blank').forEach(function(input){
+        var idx = +input.dataset.idx;
+        input.classList.remove('ok','no');
+        if(matches(input.value, [answers[idx]])){ input.classList.add('ok'); score++; }
+        else { input.classList.add('no'); }
+      });
+      document.getElementById('ex1-score').classList.add('show');
+      document.getElementById('ex1-score-num').textContent = score+'/'+answers.length;
+    });
+    document.querySelector('[data-reveal="ex1"]').addEventListener('click', function(){
+      container.querySelectorAll('input.blank').forEach(function(input){
+        var idx = +input.dataset.idx;
+        input.value = answers[idx];
+        input.classList.remove('no'); input.classList.add('ok');
+      });
+      document.getElementById('ex1-score').classList.add('show');
+      document.getElementById('ex1-score-num').textContent = answers.length+'/'+answers.length;
+    });
+  })();
+
+  /* ---------------- Ex2: un / une from the adjective ---------------- */
+  buildFillExercise('ex2', [
+    {post:"femme blonde", answers:["une"], width:"w-sm"},
+    {post:"maison blanche", answers:["une"], width:"w-sm"},
+    {post:"restaurant italien", answers:["un"], width:"w-sm"},
+    {post:"bon disque", answers:["un"], width:"w-sm"},
+    {post:"salade verte", answers:["une"], width:"w-sm"},
+    {post:"ami américain", answers:["un"], width:"w-sm"},
+    {post:"film intéressant", answers:["un"], width:"w-sm"},
+    {post:"leçon importante", answers:["une"], width:"w-sm"},
+    {post:"bus vert", answers:["un"], width:"w-sm"},
+    {post:"garçon blond", answers:["un"], width:"w-sm"},
+    {post:"valise noire", answers:["une"], width:"w-sm"}
+  ]);
+
+  /* ---------------- Ex4: two articles per sentence ---------------- */
+  (function(){
+    var container = document.getElementById('ex4');
+    var sentences = [
+      {given1:"Une", t1:" dame entre dans", ans2:"une", t2:" maison."},
+      {ans1:"un", t1:" garçon regarde", ans2:"une", t2:" voiture."},
+      {ans1:"une", t1:" fille mange", ans2:"un", t2:" gâteau."},
+      {ans1:"un", t1:" homme dîne dans", ans2:"un", t2:" restaurant."},
+      {ans1:"un", t1:" étudiant achète", ans2:"un", t2:" livre."},
+      {ans1:"une", t1:" femme cherche", ans2:"un", t2:" appartement."}
+    ];
+    var answers = [];
+    sentences.forEach(function(s, i){
+      var line = document.createElement('div');
+      line.className = 'fill-line';
+      var html = '<span class="qn">'+(i+1)+'.</span> ';
+      if(s.given1){
+        html += '<span class="given">'+s.given1+'</span>';
+      } else {
+        html += '<input class="blank tiny" type="text" autocomplete="off" data-idx="'+answers.length+'">';
+        answers.push(s.ans1);
+      }
+      html += '<span>'+s.t1+'</span> ';
+      html += '<input class="blank tiny" type="text" autocomplete="off" data-idx="'+answers.length+'">';
+      answers.push(s.ans2);
+      html += '<span>'+s.t2+'</span>';
+      line.innerHTML = html;
+      container.appendChild(line);
+    });
+
+    document.querySelector('[data-check="ex4"]').addEventListener('click', function(){
+      var score = 0;
+      container.querySelectorAll('input.blank').forEach(function(input){
+        var idx = +input.dataset.idx;
+        input.classList.remove('ok','no');
+        if(matches(input.value, [answers[idx]])){ input.classList.add('ok'); score++; }
+        else { input.classList.add('no'); }
+      });
+      document.getElementById('ex4-score').classList.add('show');
+      document.getElementById('ex4-score-num').textContent = score+'/'+answers.length;
+    });
+    document.querySelector('[data-reveal="ex4"]').addEventListener('click', function(){
+      container.querySelectorAll('input.blank').forEach(function(input){
+        var idx = +input.dataset.idx;
+        input.value = answers[idx];
+        input.classList.remove('no'); input.classList.add('ok');
+      });
+      document.getElementById('ex4-score').classList.add('show');
+      document.getElementById('ex4-score-num').textContent = answers.length+'/'+answers.length;
+    });
+  })();
+
+  /* ---------------- Ex5: choose the right word from the pair ---------------- */
+  buildFillExercise('ex5', [
+    {hint:"un musicien / une musicienne", pre:"Ravi Shankar est", answers:["un musicien"], width:"w-med", post:"indien."},
+    {hint:"un architecte / une architecte", pre:"Gae Aulenti est", answers:["une architecte"], width:"w-med", post:"italienne."},
+    {hint:"un danseur / une danseuse", pre:"Carolyn Carlson est", answers:["une danseuse"], width:"w-med", post:"américaine."}
+  ]);
+
+})();
+</script>
+
+</body></html>

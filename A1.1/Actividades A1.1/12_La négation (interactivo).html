@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Négation</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+  :root{
+    --bg:#f4f5f7;
+    --paper:#ffffff;
+    --paper-2:#f4f5f7;
+    --ink:#1a1a2e;
+    --ink-soft:#6b7280;
+    --line:#e5e7eb;
+    --bleu:#002395;
+    --rouge:#ED2939;
+    --accent:#002395;
+    --accent-ink:#002395;
+    --green:#3f8f6d;
+    --green-bg:#e7f3ed;
+    --red:#ED2939;
+    --red-bg:#fdecec;
+    --shadow: 0 1px 2px rgba(26,26,46,.06), 0 8px 24px -12px rgba(26,26,46,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#12141c;
+      --paper:#1b1e2b;
+      --paper-2:#20232f;
+      --ink:#f1f2f6;
+      --ink-soft:#9aa0b4;
+      --line:#2a2e40;
+      --bleu:#002395;
+      --rouge:#ED2939;
+      --accent:#5b7fe0;
+      --accent-ink:#7c9df2;
+      --green:#63c299;
+      --green-bg:#173226;
+      --red:#ED2939;
+      --red-bg:#3a1418;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#12141c;
+    --paper:#1b1e2b;
+    --paper-2:#20232f;
+    --ink:#f1f2f6;
+    --ink-soft:#9aa0b4;
+    --line:#2a2e40;
+    --bleu:#002395;
+    --rouge:#ED2939;
+    --accent:#5b7fe0;
+    --accent-ink:#7c9df2;
+    --green:#63c299;
+    --green-bg:#173226;
+    --red:#ED2939;
+    --red-bg:#3a1418;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.6);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'Work Sans', ui-sans-serif, system-ui, sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+    margin:0;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:0 20px 90px;}
+  h1,h2,h3{font-family:'Fraunces', Georgia, serif; text-wrap:balance; margin:0; color:var(--ink);}
+  .eyebrow{font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-ink); font-weight:600;}
+  code, .mono{font-family:'IBM Plex Mono', monospace;}
+
+  /* ---- Tricolor stripe ---- */
+  .stripe{height:8px; background:linear-gradient(90deg, var(--bleu) 33%, #ffffff 33%, #ffffff 66%, var(--rouge) 66%);}
+
+  /* ---- Hero ---- */
+  .hero{
+    background: linear-gradient(180deg, var(--bleu) 0%, #000f42 100%);
+    color:#f3f5ff; padding:40px 20px 40px;
+  }
+  .hero-inner{max-width:900px; margin:0 auto;}
+  .hero h1{font-size:clamp(30px,4.4vw,44px); font-weight:600; color:#ffffff; letter-spacing:-.01em;}
+  .hero p.sub{color:#c7d0f2; font-size:16.5px; max-width:58ch; margin-top:10px;}
+  .hero-meta{display:flex; gap:22px; margin-top:22px; flex-wrap:wrap;}
+  .hero-meta div{font-family:'IBM Plex Mono',monospace; font-size:12px; color:#a9b6e8;}
+  .hero-meta b{display:block; color:#f3f5ff; font-size:14px; font-family:'Work Sans',sans-serif; font-weight:600; margin-top:2px;}
+
+  section{margin-top:46px;}
+  .wrap > section:first-of-type{margin-top:36px;}
+  .sec-head{display:flex; align-items:baseline; gap:12px; margin-bottom:16px;}
+  .sec-num{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent-ink); font-weight:600;}
+  section h2{font-size:25px; font-weight:600;}
+  .sec-intro{color:var(--ink-soft); font-size:15px; max-width:66ch; margin-top:6px;}
+
+  .card{background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:22px; box-shadow:var(--shadow);}
+  .card + .card{margin-top:14px;}
+
+  .flag-title{
+    display:flex; align-items:center; gap:10px; margin-bottom:14px; padding-bottom:12px; border-bottom:2px solid var(--line);
+  }
+  .flag-title .title{font-family:'Fraunces',serif; font-weight:600; font-size:20px;}
+
+  table.conj{width:100%; border-collapse:collapse; margin-top:6px; font-size:15px;}
+  table.conj td{padding:7px 10px; border-bottom:1px solid var(--line);}
+  table.conj tr:last-child td{border-bottom:none;}
+  table.conj .pron{color:var(--ink-soft); width:70px;}
+  table.conj .verb{font-weight:700; color:var(--accent-ink);}
+  table.conj .ex{font-style:italic; color:var(--ink-soft);}
+
+  .neg-formula{
+    display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap;
+    font-family:'Fraunces',serif; font-weight:600; font-size:22px; margin:18px 0; padding:18px;
+    background:var(--paper-2); border-radius:12px;
+  }
+  .neg-formula .chip{
+    background:var(--bleu); color:#fff; padding:6px 16px; border-radius:8px; font-size:18px;
+  }
+  .neg-formula .plus{color:var(--ink-soft); font-weight:400; font-size:18px;}
+
+  .example-line{
+    display:flex; align-items:center; gap:10px; padding:10px 0; border-bottom:1px dashed var(--line); font-size:16px;
+  }
+  .example-line:last-child{border-bottom:none;}
+  .example-line .ne{color:var(--bleu); font-weight:700; text-decoration:underline;}
+  .example-line .pas{color:var(--rouge); font-weight:700; text-decoration:underline;}
+  .example-line .en{margin-left:auto; color:var(--ink-soft); font-size:13px; font-style:italic; white-space:nowrap;}
+
+  .instr-box{border-left:3px solid var(--accent); background:var(--paper-2); border-radius:0 10px 10px 0; padding:14px 18px; margin:16px 0; font-size:14.5px;}
+  .instr-box b{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-ink); display:block; margin-bottom:6px;}
+
+  .note-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px;}
+  @media (max-width:640px){.note-grid{grid-template-columns:1fr;}}
+  .note{background:var(--paper-2); border-radius:10px; padding:14px 16px; font-size:13.8px;}
+  .note b{display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--accent-ink); margin-bottom:6px;}
+  .note .fr{font-style:italic; color:var(--ink); display:block; margin-top:4px;}
+
+  /* exercises */
+  .ex-block{margin-top:16px;}
+  .ex-tag{
+    display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%;
+    background:var(--bleu); color:#ffffff; font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:13px;
+    margin-right:8px; flex:0 0 auto;
+  }
+  .ex-title{font-weight:600; font-size:15.5px; display:flex; align-items:center; margin-bottom:4px;}
+  .ex-sub{color:var(--ink-soft); font-size:13.3px; margin:2px 0 14px 34px;}
+
+  .fill-line{
+    display:flex; align-items:baseline; flex-wrap:wrap; gap:6px 4px; padding:9px 0; font-size:15px; border-bottom:1px dashed var(--line);
+  }
+  .fill-line:last-child{border-bottom:none;}
+  .fill-line .qn{font-family:'IBM Plex Mono',monospace; color:var(--ink-soft); font-size:12.5px; width:16px;}
+  .blank{
+    padding:5px 8px; border-radius:6px; border:1px solid var(--line); background:var(--paper-2);
+    color:var(--ink); font-family:'Work Sans',sans-serif; font-size:14.5px;
+  }
+  .blank.w-full{width:100%; margin-top:4px;}
+  .blank.w-med{width:220px;}
+  .blank.w-sm{width:70px; text-align:center;}
+  .blank:focus{outline:2px solid var(--accent); outline-offset:1px;}
+  .blank.ok{border-color:var(--green); background:var(--green-bg);}
+  .blank.no{border-color:var(--red); background:var(--red-bg);}
+  .given{font-weight:600; color:var(--accent-ink);}
+
+  .hint-chip{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:600; color:var(--accent-ink); background:var(--paper-2); border:1px solid var(--line); border-radius:6px; padding:2px 7px; margin-right:6px; white-space:nowrap;}
+
+  .btn{font-family:'Work Sans',sans-serif; font-weight:600; font-size:14px; padding:10px 18px; border-radius:9px; border:none; cursor:pointer; background:var(--bleu); color:#ffffff;}
+  .btn:hover{background:var(--rouge);}
+  .btn.secondary{background:transparent; color:var(--ink); border:1px solid var(--line);}
+  .btn.secondary:hover{border-color:var(--accent); color:var(--accent-ink);}
+  .btn-row{display:flex; gap:10px; margin-top:16px; flex-wrap:wrap;}
+
+  /* phrase bank / production */
+  .phrase-bank{display:flex; gap:8px; flex-wrap:wrap; margin:12px 0;}
+  .phrase{font-family:'IBM Plex Mono',monospace; font-size:12.5px; background:var(--paper-2); border:1px solid var(--line); border-radius:20px; padding:6px 12px; cursor:pointer;}
+  .phrase:hover{border-color:var(--accent);}
+  textarea, input[type="text"].free{width:100%; min-height:44px; border-radius:10px; border:1px solid var(--line); background:var(--paper-2); color:var(--ink); font-family:'Work Sans',sans-serif; font-size:14.5px; padding:11px 13px; resize:vertical;}
+  textarea:focus, input[type="text"].free:focus{outline:2px solid var(--accent); outline-offset:1px;}
+  .model-answer{display:none; margin-top:10px; background:var(--green-bg); border-radius:10px; padding:13px 16px; font-size:14px;}
+  .model-answer.show{display:block;}
+  .model-answer b{display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--green); margin-bottom:7px;}
+  .model-answer p{margin:3px 0;}
+
+  .q-block{padding:14px 0; border-bottom:1px dashed var(--line);}
+  .q-block:last-child{border-bottom:none;}
+  .q-block .q{font-weight:600; margin-bottom:8px;}
+  .q-block .toggle-model{margin-top:8px;}
+
+  /* select drill */
+  .sel-line{display:flex; align-items:baseline; flex-wrap:wrap; gap:6px; font-size:15px; padding:8px 0; border-bottom:1px dashed var(--line);}
+  .sel-line:last-child{border-bottom:none;}
+  select.blank{appearance:auto; cursor:pointer;}
+
+  .score-banner{margin-top:16px; padding:14px 18px; border-radius:12px; background:var(--paper-2); border:1px solid var(--line); display:none; align-items:center; gap:14px;}
+  .score-banner.show{display:flex;}
+  .score-num{font-family:'Fraunces',serif; font-size:30px; font-weight:600; color:var(--accent-ink);}
+
+  footer{max-width:900px; margin:60px auto 0; padding:20px; text-align:center; color:var(--ink-soft); font-size:12.5px; font-family:'IBM Plex Mono',monospace;}
+</style>
+</head>
+<body>
+
+<div class="stripe"></div>
+<div class="hero">
+  <div class="hero-inner">
+    <h1>La Négation</h1>
+    <p class="sub">How to say no in French — taught in English, from your grammar worksheet and slides. Learn <em>ne…pas</em>, ask questions with <em>est-ce que</em>, and work every exercise with instant feedback.</p>
+    <div class="hero-meta">
+      <div>Language<b>French · A1</b></div>
+      <div>Focus<b>Negation &amp; questions</b></div>
+      <div>Time<b>~20 minutes</b></div>
+      <div>Source<b>Grammar worksheet + slides, uploaded</b></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section id="sec-intro">
+    <div class="sec-head"><span class="sec-num">01</span><h2>How this lesson works</h2></div>
+    <p class="sec-intro">First the theory: how to ask a simple question, and how to say "not" in French with <b style="color:var(--ink)">ne…pas</b>. Then every exercise from your worksheet, checked as you type — plus a couple of extra drills on the tricky bits. Type an answer and press <b style="color:var(--ink)">Check</b>.</p>
+  </section>
+
+  <!-- INTERROGATION THEORY -->
+  <section id="sec-interro-theory">
+    <div class="sec-head"><span class="sec-num">02</span><h2>L'interrogation simple</h2></div>
+    <div class="card">
+      <p class="sec-intro" style="margin-top:0;">The easiest way to turn a statement into a yes/no question in French: change your intonation, or add <b style="color:var(--ink)">Est-ce que</b> to the front.</p>
+      <div class="note-grid">
+        <div class="note"><b>Affirmation — intonation falls</b>Vous êtes japonais.<span class="fr">Jean est français.</span></div>
+        <div class="note"><b>Question — intonation rises</b>Vous êtes japonais&nbsp;?<span class="fr">Jean est français&nbsp;?</span></div>
+      </div>
+      <div class="instr-box">
+        <b>Or just add Est-ce que…</b>
+        <span class="mono">Est-ce que</span> vous êtes japonais&nbsp;? &nbsp;·&nbsp; <span class="mono">Est-ce que</span> Jean est français&nbsp;?
+      </div>
+      <p class="sec-intro" style="margin-top:14px;">Answer with <b style="color:var(--ink)">Oui</b> (yes) or <b style="color:var(--ink)">Non</b> (no) — and if it's "no," that's where the negation below comes in.</p>
+    </div>
+  </section>
+
+  <!-- NEGATION THEORY -->
+  <section id="sec-neg-theory">
+    <div class="sec-head"><span class="sec-num">03</span><h2>La négation : ne … pas</h2></div>
+    <div class="card">
+      <p class="sec-intro" style="margin-top:0;">French negation wraps around the conjugated verb — <em>ne</em> goes right before it, <em>pas</em> right after.</p>
+      <div class="neg-formula">
+        <span class="chip">ne</span><span class="plus">+</span><span class="chip">verbe</span><span class="plus">+</span><span class="chip">pas</span>
+      </div>
+      <table class="conj">
+        <tr><td class="pron">Je</td><td class="verb">ne</td><td>suis</td><td class="verb">pas</td><td class="ex">content.</td></tr>
+        <tr><td class="pron">Elle</td><td class="verb">n'</td><td>est</td><td class="verb">pas</td><td class="ex">riche.</td></tr>
+        <tr><td class="pron">Ils</td><td class="verb">ne</td><td>sont</td><td class="verb">pas</td><td class="ex">italiens.</td></tr>
+      </table>
+      <div class="instr-box">
+        <b>Ne becomes n' before a vowel sound</b>
+        Il ne est pas &rarr; <b>Il n'est pas</b>&hellip; &nbsp;·&nbsp; Vous ne êtes pas &rarr; <b>Vous n'êtes pas</b>&hellip;
+      </div>
+
+      <p class="sec-intro" style="margin-top:18px; margin-bottom:4px;">From your slides — some real examples:</p>
+      <div>
+        <div class="example-line"><span class="ne">Je ne</span> suis <span class="pas">pas</span> Karla.<span class="en">I'm not Karla.</span></div>
+        <div class="example-line">Je <span class="ne">n'</span>ai <span class="pas">pas</span> 8 ans.<span class="en">I'm not 8 years old.</span></div>
+        <div class="example-line"><span class="ne">Je ne</span> parle <span class="pas">pas</span> français.<span class="en">I don't speak French.</span></div>
+        <div class="example-line">Je <span class="ne">ne</span> sais <span class="pas">pas</span>.<span class="en">I don't know.</span></div>
+      </div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title">Quick drill — <span style="margin-left:6px;">ne</span>&nbsp;or&nbsp;n'&nbsp;?</div>
+      <div class="ex-sub">Pick the right form for each verb — remember, it depends on the sound right after it.</div>
+      <div id="elision"></div>
+      <div class="btn-row"><button class="btn" data-check="elision">Check my answers</button><button class="btn secondary" data-reveal="elision">Show answers</button></div>
+      <div class="score-banner" id="elision-score"><div class="score-num" id="elision-score-num">0/8</div><div>correct</div></div>
+    </div>
+  </section>
+
+  <!-- PRACTICE -->
+  <section id="sec-practice">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Practice</h2></div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">1</span>Posez les questions selon le modèle.</div>
+      <div class="ex-sub">For each word in the little tag, finish the question — first with <em>vous</em>, then with <em>tu</em>. Model: <span class="hint-chip" style="margin:0 4px;">français(e)</span> → <b style="color:var(--ink)">Est-ce que vous êtes français(e)&nbsp;?</b></div>
+      <div id="ex1"></div>
+      <div class="btn-row"><button class="btn" data-check="ex1">Check my answers</button><button class="btn secondary" data-reveal="ex1">Show answers</button></div>
+      <div class="score-banner" id="ex1-score"><div class="score-num" id="ex1-score-num">0/8</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">2</span>Lisez et mettez à la forme négative.</div>
+      <div id="ex2"></div>
+      <div class="btn-row"><button class="btn" data-check="ex2">Check my answers</button><button class="btn secondary" data-reveal="ex2">Show answers</button></div>
+      <div class="score-banner" id="ex2-score"><div class="score-num" id="ex2-score-num">0/4</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">3</span>Mettez à la forme négative.</div>
+      <div class="ex-sub">Dans un bon hôtel &rarr; dans un mauvais hôtel.</div>
+      <div id="ex3"></div>
+      <div class="btn-row"><button class="btn" data-check="ex3">Check my answers</button><button class="btn secondary" data-reveal="ex3">Show answers</button></div>
+      <div class="score-banner" id="ex3-score"><div class="score-num" id="ex3-score-num">0/3</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">4</span>Sur le modèle précédent, décrivez un bon restaurant et un mauvais restaurant.</div>
+      <div class="ex-sub">Open practice — use affirmative sentences for the good restaurant, negative ones for the bad.</div>
+      <div class="phrase-bank" id="bank4"></div>
+      <textarea id="produce4" placeholder="Un bon restaurant : le service est rapide…&#10;Un mauvais restaurant : le service n'est pas rapide…"></textarea>
+      <div class="btn-row"><button class="btn secondary" data-model="model4">Show the pattern</button></div>
+      <div class="model-answer" id="model4">
+        <b>Sentence pattern — not the answer, just the shape</b>
+        <p><b>Un bon restaurant :</b> Le/La/L' ______ est ______. Les ______ sont ______.</p>
+        <p><b>Un mauvais restaurant :</b> Le/La/L' ______ n'est pas ______. Les ______ ne sont pas ______.</p>
+        <p class="sec-intro" style="margin-top:8px;">Pick your own words from the bank above to fill in the blanks.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ON VA PRATIQUER -->
+  <section id="sec-pratiquer">
+    <div class="sec-head"><span class="sec-num">05</span><h2>On va pratiquer !</h2></div>
+    <p class="sec-intro">From your slides — answer for real, then reveal the sentence pattern (not the full answer) to check your negative form.</p>
+    <div class="card" id="pratiquer"></div>
+  </section>
+
+</div>
+
+<footer>Adapted from the uploaded worksheet &amp; slides &middot; Leçon — La négation</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  function norm(s){
+    return (s||"").normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim()
+      .replace(/\s+/g,' ').replace(/['’]/g,"'").replace(/[?!.]+$/g,'').trim();
+  }
+  function matches(val, answers){
+    var v = norm(val);
+    if(!v) return false;
+    return answers.some(function(a){ return norm(a) === v; });
+  }
+
+  function buildFillExercise(containerId, items){
+    var container = document.getElementById(containerId);
+    items.forEach(function(item, i){
+      var line = document.createElement('div');
+      line.className = 'fill-line';
+      var html = '<span class="qn">'+(i+1)+'.</span> ';
+      html += item.hint ? '<span class="hint-chip">'+item.hint+'</span>' : '';
+      html += item.pre ? '<span>'+item.pre+'</span> ' : '';
+      if(item.given){
+        html += '<span class="given">'+item.given+'</span>';
+      } else {
+        html += '<input class="blank '+(item.width||'w-med')+'" type="text" autocomplete="off" data-idx="'+i+'">';
+      }
+      html += item.post ? ' <span>'+item.post+'</span>' : '';
+      line.innerHTML = html;
+      container.appendChild(line);
+    });
+
+    function allInputs(){ return container.querySelectorAll('input.blank'); }
+
+    document.querySelector('[data-check="'+containerId+'"]').addEventListener('click', function(){
+      var score = 0, total = 0;
+      allInputs().forEach(function(input){
+        var idx = +input.dataset.idx;
+        var item = items[idx];
+        total++;
+        input.classList.remove('ok','no');
+        if(matches(input.value, item.answers)){ input.classList.add('ok'); score++; }
+        else { input.classList.add('no'); }
+      });
+      var sb = document.getElementById(containerId+'-score');
+      if(sb){ sb.classList.add('show'); document.getElementById(containerId+'-score-num').textContent = score+'/'+total; }
+    });
+    document.querySelector('[data-reveal="'+containerId+'"]').addEventListener('click', function(){
+      allInputs().forEach(function(input){
+        var idx = +input.dataset.idx;
+        input.value = items[idx].answers[0];
+        input.classList.remove('no'); input.classList.add('ok');
+      });
+      var sb = document.getElementById(containerId+'-score');
+      var totalBlanks = allInputs().length;
+      if(sb){ sb.classList.add('show'); document.getElementById(containerId+'-score-num').textContent = totalBlanks+'/'+totalBlanks; }
+    });
+  }
+
+  /* ---------------- Ex1: Est-ce que vous / tu ---------------- */
+  buildFillExercise('ex1', [
+    {hint:"étudiant(e)", pre:"Est-ce que vous êtes", answers:["étudiant(e) ?","étudiant ?","étudiante ?","étudiant(e)","étudiant","étudiante"], width:"w-med"},
+    {hint:"étudiant(e)", pre:"Est-ce que tu es", answers:["étudiant(e) ?","étudiant ?","étudiante ?","étudiant(e)","étudiant","étudiante"], width:"w-med"},
+    {hint:"anglais(e)", pre:"Est-ce que vous êtes", answers:["anglais(e) ?","anglais ?","anglaise ?","anglais(e)","anglais","anglaise"], width:"w-med"},
+    {hint:"anglais(e)", pre:"Est-ce que tu es", answers:["anglais(e) ?","anglais ?","anglaise ?","anglais(e)","anglais","anglaise"], width:"w-med"},
+    {hint:"marié(e)", pre:"Est-ce que vous êtes", answers:["marié(e) ?","marié ?","mariée ?","marié(e)","marié","mariée"], width:"w-med"},
+    {hint:"marié(e)", pre:"Est-ce que tu es", answers:["marié(e) ?","marié ?","mariée ?","marié(e)","marié","mariée"], width:"w-med"},
+    {hint:"fatigué(e)", pre:"Est-ce que vous êtes", answers:["fatigué(e) ?","fatigué ?","fatiguée ?","fatigué(e)","fatigué","fatiguée"], width:"w-med"},
+    {hint:"fatigué(e)", pre:"Est-ce que tu es", answers:["fatigué(e) ?","fatigué ?","fatiguée ?","fatigué(e)","fatigué","fatiguée"], width:"w-med"}
+  ]);
+
+  /* ---------------- Ex2: negative simple ---------------- */
+  buildFillExercise('ex2', [
+    {pre:"Je suis grand.", answers:["je ne suis pas grand"], width:"w-med"},
+    {pre:"Je suis français.", answers:["je ne suis pas français","je ne suis pas francais"], width:"w-med"},
+    {pre:"Je suis bilingue.", answers:["je ne suis pas bilingue"], width:"w-med"},
+    {pre:"Je suis professeur.", answers:["je ne suis pas professeur"], width:"w-med"}
+  ]);
+
+  /* ---------------- Ex3: hotel ---------------- */
+  buildFillExercise('ex3', [
+    {pre:"Le lit est confortable.", answers:["le lit n'est pas confortable","le lit nest pas confortable"], width:"w-med"},
+    {pre:"L'eau est chaude.", answers:["l'eau n'est pas chaude","l'eau nest pas chaude","leau n'est pas chaude"], width:"w-med"},
+    {pre:"Les chambres sont chères.", answers:["les chambres ne sont pas chères","les chambres ne sont pas cheres"], width:"w-med"}
+  ]);
+
+  /* ---------------- Elision drill (ne / n') ---------------- */
+  (function(){
+    var container = document.getElementById('elision');
+    var items = [
+      {pre:"Je", verb:"suis", answer:"ne"},
+      {pre:"Il", verb:"est", answer:"n'"},
+      {pre:"Vous", verb:"êtes", answer:"n'"},
+      {pre:"Nous", verb:"avons", answer:"n'"},
+      {pre:"Tu", verb:"as", answer:"n'"},
+      {pre:"Elle", verb:"parle", answer:"ne"},
+      {pre:"Ils", verb:"sont", answer:"ne"},
+      {pre:"On", verb:"a", answer:"n'"}
+    ];
+    items.forEach(function(item, i){
+      var line = document.createElement('div');
+      line.className = 'sel-line';
+      line.innerHTML = '<span class="qn">'+(i+1)+'.</span> '+item.pre+' ' +
+        '<select class="blank" data-idx="'+i+'"><option value="">…</option><option value="ne">ne</option><option value="n\'">n\'</option></select> ' +
+        item.verb+' pas…';
+      container.appendChild(line);
+    });
+    document.querySelector('[data-check="elision"]').addEventListener('click', function(){
+      var score = 0;
+      container.querySelectorAll('select.blank').forEach(function(sel){
+        var idx = +sel.dataset.idx;
+        sel.classList.remove('ok','no');
+        if(sel.value === items[idx].answer){ sel.classList.add('ok'); score++; }
+        else { sel.classList.add('no'); }
+      });
+      document.getElementById('elision-score').classList.add('show');
+      document.getElementById('elision-score-num').textContent = score+'/'+items.length;
+    });
+    document.querySelector('[data-reveal="elision"]').addEventListener('click', function(){
+      container.querySelectorAll('select.blank').forEach(function(sel){
+        var idx = +sel.dataset.idx;
+        sel.value = items[idx].answer;
+        sel.classList.remove('no'); sel.classList.add('ok');
+      });
+      document.getElementById('elision-score').classList.add('show');
+      document.getElementById('elision-score-num').textContent = items.length+'/'+items.length;
+    });
+  })();
+
+  /* ---------------- Ex4 phrase bank ---------------- */
+  var words4 = ["le service","les plats","l'ambiance","les prix","rapide","délicieux","agréable","cher"];
+  var bank4 = document.getElementById('bank4');
+  var produce4 = document.getElementById('produce4');
+  words4.forEach(function(w){
+    var b = document.createElement('button');
+    b.className = 'phrase'; b.type = 'button'; b.textContent = w;
+    b.addEventListener('click', function(){
+      produce4.value += (produce4.value.length ? ' ' : '') + w;
+      produce4.focus();
+    });
+    bank4.appendChild(b);
+  });
+
+  /* ---------------- Model-answer toggles ---------------- */
+  document.querySelectorAll('[data-model]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.getElementById(btn.dataset.model).classList.toggle('show');
+    });
+  });
+
+  /* ---------------- On va pratiquer ---------------- */
+  var questions = [
+    {q:"Est-ce que tu parles français ?", pattern:"Non, je ne ______ pas français."},
+    {q:"Est-ce que tu aimes lire ?", pattern:"Non, je n'______ pas lire."},
+    {q:"Est-ce que tu aimes la couleur rose ?", pattern:"Non, je n'______ pas la couleur rose."},
+    {q:"Est-ce qu'aujourd'hui il est lundi ?", pattern:"Non, il n'______ pas lundi."},
+    {q:"Est-ce que tu es né(e) en novembre ?", pattern:"Non, je ne ______ pas né(e) en novembre."}
+  ];
+  var pratiquer = document.getElementById('pratiquer');
+  questions.forEach(function(item, i){
+    var div = document.createElement('div');
+    div.className = 'q-block';
+    div.innerHTML =
+      '<div class="q">'+(i+1)+'. '+item.q+'</div>' +
+      '<input type="text" class="free" placeholder="Oui, … / Non, …">' +
+      '<div class="toggle-model"><button class="btn secondary" type="button" data-p-model="'+i+'">Show the pattern</button></div>' +
+      '<div class="model-answer" id="p-model-'+i+'"><b>Pattern if the answer is no — fill in the verb yourself</b><p>'+item.pattern+'</p></div>';
+    pratiquer.appendChild(div);
+  });
+  pratiquer.addEventListener('click', function(e){
+    var btn = e.target.closest('[data-p-model]');
+    if(!btn) return;
+    document.getElementById('p-model-'+btn.dataset.pModel).classList.toggle('show');
+  });
+
+})();
+</script>
+
+</body></html>

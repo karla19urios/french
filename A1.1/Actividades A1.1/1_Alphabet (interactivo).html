@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The French Alphabet Lab</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --paper:#EEF0F2;
+    --paper-raised:#FFFFFF;
+    --ink:#1F2430;
+    --ink-soft:#4B5165;
+    --indigo:#2A3B73;
+    --indigo-deep:#1C2A57;
+    --red:#A6362B;
+    --gold:#8A6A22;
+    --mist:#D7DCE3;
+    --mist-strong:#BFC7D2;
+    --shadow: 0 1px 2px rgba(31,36,48,.06), 0 8px 24px -12px rgba(31,36,48,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#14171F;
+      --paper-raised:#1B1F2B;
+      --ink:#E8E9EE;
+      --ink-soft:#A9AEC0;
+      --indigo:#8DA0E8;
+      --indigo-deep:#B7C4F2;
+      --red:#E58176;
+      --gold:#E3B563;
+      --mist:#313749;
+      --mist-strong:#3D465C;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 28px -12px rgba(0,0,0,.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#14171F;
+    --paper-raised:#1B1F2B;
+    --ink:#E8E9EE;
+    --ink-soft:#A9AEC0;
+    --indigo:#8DA0E8;
+    --indigo-deep:#B7C4F2;
+    --red:#E58176;
+    --gold:#E3B563;
+    --mist:#313749;
+    --mist-strong:#3D465C;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 28px -12px rgba(0,0,0,.55);
+  }
+
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Public Sans', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', Georgia, 'Times New Roman', serif;
+    text-wrap:balance;
+    margin:0;
+  }
+  .mono{ font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace; }
+  ::selection{ background:var(--indigo); color:var(--paper-raised); }
+  a{ color:inherit; }
+  button{ font-family:inherit; }
+  button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--indigo); outline-offset:2px;
+  }
+
+  .app{
+    max-width:1180px;
+    margin:0 auto;
+    padding:20px clamp(14px,3vw,32px) 60px;
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:16px;
+    padding-bottom:16px;
+  }
+  .brand-eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 6px;
+  }
+  .brand-title{
+    font-size:clamp(26px,3.4vw,38px);
+    font-weight:600;
+    letter-spacing:-.01em;
+    color:var(--indigo);
+  }
+  .brand-sub{
+    font-size:14px;
+    color:var(--ink-soft);
+    margin-top:6px;
+    max-width:48ch;
+  }
+
+  .flag-rule{
+    height:3px;
+    border-radius:2px;
+    background: linear-gradient(90deg, var(--indigo) 0 32%, var(--mist) 32% 68%, var(--red) 68% 100%);
+    margin:2px 0 22px;
+  }
+
+  .progress-track{
+    height:6px;
+    border-radius:4px;
+    background:var(--mist);
+    overflow:hidden;
+    margin-bottom:26px;
+  }
+  .progress-fill{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg, var(--indigo), var(--red));
+    transition:width .4s ease;
+  }
+  @media (prefers-reduced-motion: reduce){ .progress-fill{ transition:none; } }
+
+  /* ---------- Layout ---------- */
+  .layout{
+    display:grid;
+    grid-template-columns: 250px 1fr;
+    gap:24px;
+    align-items:start;
+  }
+  .rail{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    position:sticky;
+    top:16px;
+  }
+  .rail-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:9px 10px;
+    border-radius:8px;
+    border:1px solid transparent;
+    background:transparent;
+    cursor:pointer;
+    text-align:left;
+    color:var(--ink-soft);
+  }
+  .rail-item:hover{ background:var(--paper-raised); border-color:var(--mist); }
+  .rail-item.active{
+    background:var(--paper-raised);
+    border-color:var(--mist-strong);
+    box-shadow:var(--shadow);
+    color:var(--ink);
+  }
+  .rail-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    width:22px; height:22px;
+    border-radius:50%;
+    display:grid; place-items:center;
+    background:var(--mist);
+    color:var(--ink-soft);
+    flex:0 0 auto;
+  }
+  .rail-item.active .rail-num{ background:var(--indigo); color:var(--paper-raised); }
+  .rail-item.done .rail-num{ background:var(--indigo-deep); color:var(--paper-raised); }
+  .rail-text{ display:flex; flex-direction:column; gap:1px; min-width:0; }
+  .rail-title{ font-size:13px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+  @media (max-width: 860px){
+    .layout{ grid-template-columns:1fr; }
+    .rail{
+      order:2;
+      display:flex;
+      flex-direction:row;
+      overflow-x:auto;
+      gap:8px;
+      padding-bottom:6px;
+      position:static;
+    }
+    .rail-item{ min-width:168px; flex:0 0 auto; }
+    .stage{ order:1; }
+  }
+
+  /* ---------- Stage ---------- */
+  .stage{
+    background:var(--paper-raised);
+    border:1px solid var(--mist);
+    border-radius:14px;
+    box-shadow:var(--shadow);
+    padding:clamp(20px,3.4vw,40px);
+    min-height:480px;
+  }
+  .kicker{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.06em;
+    color:var(--red);
+    margin-bottom:8px;
+  }
+  .stage h2{
+    font-size:clamp(24px,3vw,34px);
+    color:var(--ink);
+    line-height:1.15;
+  }
+  .stage-lede{
+    margin-top:12px;
+    color:var(--ink-soft);
+    font-size:15.5px;
+    line-height:1.6;
+    max-width:72ch;
+  }
+  .section-block{ margin-top:28px; }
+  .section-label{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    color:var(--ink-soft);
+    margin-bottom:10px;
+    font-weight:600;
+  }
+
+  /* letter tiles */
+  .letter-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(88px,1fr)); gap:10px; }
+  .letter-tile{
+    display:flex; flex-direction:column; align-items:center; gap:2px;
+    background:var(--paper);
+    border:1px solid var(--mist-strong);
+    border-radius:10px;
+    padding:12px 8px 10px;
+    cursor:pointer;
+  }
+  .letter-tile:hover{ border-color:var(--indigo); }
+  .letter-tile .big{ font-family:'Fraunces',serif; font-weight:600; font-size:26px; color:var(--indigo); line-height:1; }
+  .letter-tile .name{ font-size:12px; font-weight:600; color:var(--ink); margin-top:4px; }
+  .letter-tile .ipa{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--ink-soft); }
+  .row-head{
+    display:flex; align-items:center; justify-content:space-between;
+    margin:18px 0 8px;
+  }
+  .row-head:first-child{ margin-top:0; }
+  .play-row-btn{
+    display:inline-flex; align-items:center; gap:6px;
+    background:transparent; border:1px solid var(--mist-strong);
+    border-radius:999px; padding:5px 12px 5px 10px; font-size:12.5px;
+    cursor:pointer; color:var(--ink);
+  }
+  .play-row-btn:hover{ border-color:var(--indigo); color:var(--indigo); }
+
+  /* chips (letter names / phrases) */
+  .chip-row{ display:flex; flex-wrap:wrap; gap:10px; }
+  .chip{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--paper);
+    border:1px solid var(--mist-strong);
+    border-radius:999px;
+    padding:8px 14px 8px 10px;
+    cursor:pointer;
+    color:var(--ink);
+  }
+  .chip:hover{ border-color:var(--indigo); }
+  .chip:active{ transform:translateY(1px); }
+  .chip-icon{
+    width:22px; height:22px; border-radius:50%;
+    background:var(--indigo); color:var(--paper-raised);
+    display:grid; place-items:center; flex:0 0 auto;
+  }
+  .chip-word{ font-weight:600; font-size:14.5px; }
+  .chip-ipa{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--ink-soft); }
+
+  /* pair / contrast cards */
+  .pair-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; }
+  .pair-card{
+    border:1px solid var(--mist);
+    border-radius:10px;
+    padding:14px 16px;
+    background:var(--paper);
+  }
+  .pair-card .vs-title{ font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--red); margin-bottom:8px; letter-spacing:.04em; }
+  .pair-line{ display:flex; align-items:baseline; justify-content:space-between; padding:5px 0; }
+  .pair-line + .pair-line{ border-top:1px dashed var(--mist-strong); }
+
+  /* quiz */
+  .quiz-card{
+    border:1px solid var(--mist);
+    border-radius:10px;
+    padding:16px;
+    background:var(--paper);
+    margin-top:12px;
+  }
+  .quiz-q{ font-weight:600; margin-bottom:10px; font-size:14.5px; }
+  .quiz-opts{ display:flex; flex-wrap:wrap; gap:8px; }
+  .quiz-opt{
+    border:1px solid var(--mist-strong);
+    background:var(--paper-raised);
+    color:var(--ink);
+    border-radius:8px;
+    padding:8px 14px;
+    cursor:pointer;
+    font-size:14px;
+  }
+  .quiz-opt:hover{ border-color:var(--indigo); }
+  .quiz-opt.correct{ background:#2E7D4F; border-color:#2E7D4F; color:#fff; }
+  .quiz-opt.wrong{ background:var(--red); border-color:var(--red); color:#fff; }
+  .quiz-opt[disabled]{ cursor:default; }
+  .quiz-feedback{ margin-top:8px; font-size:13px; color:var(--ink-soft); min-height:16px; }
+
+  .callout{
+    border-left:3px solid var(--gold);
+    background:var(--paper);
+    padding:12px 16px;
+    border-radius:0 8px 8px 0;
+    font-size:14px;
+    color:var(--ink-soft);
+    line-height:1.55;
+  }
+
+  .vowel-hero{ display:flex; gap:16px; flex-wrap:wrap; justify-content:center; }
+  .vowel-hero .letter-tile{ width:96px; }
+  .vowel-hero .big{ font-size:34px; }
+
+  /* footer nav */
+  .stage-nav{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-top:32px; padding-top:18px; border-top:1px solid var(--mist);
+  }
+  .nav-btn{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--indigo); color:var(--paper-raised);
+    border:none; border-radius:8px; padding:11px 18px;
+    font-weight:600; font-size:14px; cursor:pointer;
+  }
+  .nav-btn.ghost{ background:transparent; color:var(--ink); border:1px solid var(--mist-strong); }
+  .nav-btn:disabled{ opacity:.35; cursor:default; }
+  .nav-btn:hover:not(:disabled){ background:var(--indigo-deep); }
+  .nav-btn.ghost:hover:not(:disabled){ border-color:var(--indigo); color:var(--indigo); }
+
+  .score-pill{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    border:1px solid var(--mist-strong);
+    border-radius:999px;
+    padding:4px 12px;
+    white-space:nowrap;
+  }
+
+  .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  @media (max-width:700px){ .two-col{ grid-template-columns:1fr; } }
+
+  .obj-list{ margin:14px 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:8px; }
+  .obj-list li{ display:flex; gap:10px; font-size:14.5px; color:var(--ink); align-items:flex-start; }
+  .obj-list li::before{
+    content:"«" attr(data-n) "»";
+    font-family:'IBM Plex Mono',monospace;
+    color:var(--red); font-size:12px; flex:0 0 auto; margin-top:3px;
+  }
+
+  .final-score{
+    display:flex; align-items:baseline; gap:10px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .final-score .num{ font-size:40px; font-weight:600; color:var(--indigo); }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="topbar">
+    <div>
+      <p class="brand-eyebrow">A1 · French Alphabet Workshop</p>
+      <h1 class="brand-title">The French Alphabet Lab</h1>
+      <p class="brand-sub">Just the sounds of L'alphabet — the 26 letter names — taught by Karla, in English.</p>
+    </div>
+  </div>
+  <div class="flag-rule"></div>
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+  <div class="layout">
+    <nav class="rail" id="rail" aria-label="Lesson stops"></nav>
+    <main class="stage" id="stage"></main>
+  </div>
+</div>
+
+<script>
+(function(){
+
+  /* ---------------- Speech ---------------- */
+  var frVoice = null;
+  function loadVoices(){
+    if(!('speechSynthesis' in window)) return;
+    var voices = window.speechSynthesis.getVoices();
+    frVoice = voices.find(function(v){ return v.lang === 'fr-FR'; }) ||
+              voices.find(function(v){ return v.lang && v.lang.indexOf('fr') === 0; }) || null;
+  }
+  if('speechSynthesis' in window){
+    loadVoices();
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+  }
+  function makeUtterance(text){
+    var u = new SpeechSynthesisUtterance(text);
+    u.lang = 'fr-FR';
+    if(frVoice) u.voice = frVoice;
+    u.rate = 0.85;
+    return u;
+  }
+  function speak(text){
+    if(!('speechSynthesis' in window)){
+      alert('Text-to-speech is not available in this browser. Try Chrome or Edge.');
+      return;
+    }
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(makeUtterance(text));
+  }
+  function speakSequence(arr){
+    if(!('speechSynthesis' in window)){
+      alert('Text-to-speech is not available in this browser. Try Chrome or Edge.');
+      return;
+    }
+    window.speechSynthesis.cancel();
+    arr.forEach(function(t){ window.speechSynthesis.speak(makeUtterance(t)); });
+  }
+  window.speak = speak;
+  window.speakSequence = speakSequence;
+
+  function esc(s){ return String(s).replace(/'/g,"\\'"); }
+  function speakerSvg(){
+    return '<svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M1 4.5H3L6 2V10L3 7.5H1V4.5Z" fill="currentColor"/><path d="M8 4.2C8.6 4.7 9 5.3 9 6C9 6.7 8.6 7.3 8 7.8" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>';
+  }
+
+  function chip(word, ipa){
+    return '<button class="chip" onclick="speak(\''+esc(word)+'\')" title="Play pronunciation">' +
+      '<span class="chip-icon">'+speakerSvg()+'</span>' +
+      '<span class="chip-word">'+word+'</span>' +
+      (ipa ? '<span class="chip-ipa">['+ipa+']</span>' : '') +
+      '</button>';
+  }
+
+  /* ---------------- Letter data ---------------- */
+  var LETTERS = [
+    {l:'A', n:'a',        say:'ah',        ipa:'a'},
+    {l:'B', n:'bé',       say:'bay',       ipa:'be'},
+    {l:'C', n:'cé',       say:'say',       ipa:'se'},
+    {l:'D', n:'dé',       say:'day',       ipa:'de'},
+    {l:'E', n:'e',        say:'euh',       ipa:'ə'},
+    {l:'F', n:'effe',     say:'eff',       ipa:'ɛf'},
+    {l:'G', n:'gé',       say:'zhay',      ipa:'ʒe'},
+    {l:'H', n:'hache',    say:'ash',       ipa:'aʃ'},
+    {l:'I', n:'i',        say:'ee',        ipa:'i'},
+    {l:'J', n:'ji',       say:'zhee',      ipa:'ʒi'},
+    {l:'K', n:'ka',       say:'kah',       ipa:'ka'},
+    {l:'L', n:'elle',     say:'ell',       ipa:'ɛl'},
+    {l:'M', n:'emme',     say:'emm',       ipa:'ɛm'},
+    {l:'N', n:'enne',     say:'enn',       ipa:'ɛn'},
+    {l:'O', n:'o',        say:'oh',        ipa:'o'},
+    {l:'P', n:'pé',       say:'pay',       ipa:'pe'},
+    {l:'Q', n:'ku',       say:'ku',        ipa:'ky'},
+    {l:'R', n:'erre',     say:'air',       ipa:'ɛʁ'},
+    {l:'S', n:'esse',     say:'ess',       ipa:'ɛs'},
+    {l:'T', n:'té',       say:'tay',       ipa:'te'},
+    {l:'U', n:'u',        say:'ew',        ipa:'y'},
+    {l:'V', n:'vé',       say:'vay',       ipa:'ve'},
+    {l:'W', n:'double vé',say:'doo-bluh-vay', ipa:'dubləve'},
+    {l:'X', n:'ixe',      say:'eeks',      ipa:'iks'},
+    {l:'Y', n:'i grec',   say:'ee-grek',   ipa:'igʁɛk'},
+    {l:'Z', n:'zède',     say:'zed',       ipa:'zɛd'}
+  ];
+  var byLetter = {};
+  LETTERS.forEach(function(x){ byLetter[x.l] = x; });
+
+  function letterTile(l){
+    var d = byLetter[l];
+    return '<button class="letter-tile" onclick="speak(\''+d.n+'\')" title="Play pronunciation">' +
+      '<span class="big">'+d.l+d.l.toLowerCase()+'</span>' +
+      '<span class="name">'+d.n+'</span>' +
+      '<span class="ipa">['+d.ipa+']</span>' +
+      '</button>';
+  }
+  function letterRow(letters, label){
+    var names = letters.split('').map(function(l){ return byLetter[l].n; });
+    var arrJs = "['"+names.map(esc).join("','")+"']";
+    return '<div class="row-head"><span class="section-label" style="margin:0;">'+label+'</span>' +
+      '<button class="play-row-btn" onclick="speakSequence('+arrJs.replace(/"/g,'&quot;')+')">'+speakerSvg()+' Play this row</button></div>' +
+      '<div class="letter-grid">'+letters.split('').map(letterTile).join('')+'</div>';
+  }
+
+  var qCounter = 0;
+  var score = { correct:0, answered:0 };
+  function quiz(question, options, correctIndex, opts){
+    opts = opts || {};
+    var qid = 'q'+(qCounter++);
+    var optsHtml = options.map(function(opt,i){
+      return '<button class="quiz-opt" data-qid="'+qid+'" data-correct="'+(i===correctIndex)+'" onclick="answerQuiz(this)">'+opt+'</button>';
+    }).join('');
+    var audioBtn = opts.audio ?
+      '<span class="chip" style="margin-bottom:10px;" onclick="speak(\''+esc(opts.audio)+'\')">'+speakerSvg()+' <span class="chip-word" style="font-weight:500;">Listen</span></span><br>' : '';
+    return '<div class="quiz-card" id="'+qid+'-wrap">' +
+      audioBtn +
+      '<div class="quiz-q">'+question+'</div>' +
+      '<div class="quiz-opts" id="'+qid+'">'+optsHtml+'</div>' +
+      '<div class="quiz-feedback" id="'+qid+'-fb"></div>' +
+      '</div>';
+  }
+  window.answerQuiz = function(btn){
+    var group = btn.parentElement;
+    if(group.dataset.answered) return;
+    group.dataset.answered = '1';
+    var isCorrect = btn.dataset.correct === 'true';
+    Array.prototype.forEach.call(group.children, function(b){
+      b.disabled = true;
+      if(b.dataset.correct === 'true') b.classList.add('correct');
+    });
+    if(!isCorrect) btn.classList.add('wrong');
+    var fb = document.getElementById(group.id+'-fb');
+    fb.textContent = isCorrect ? 'Correct!' : 'Not quite — the right answer is highlighted in green.';
+    score.answered++;
+    if(isCorrect) score.correct++;
+    updateScorePill();
+  };
+  function updateScorePill(){
+    var el = document.getElementById('scorePill');
+    if(el) el.textContent = 'Practice score: ' + score.correct + '/' + score.answered;
+  }
+  window.quiz = quiz;
+
+  /* ---------------- Content ---------------- */
+  var S = [];
+
+  // 0 — Welcome
+  S.push({
+    tag:'Welcome', kicker:'ORIENTATION',
+    title:'Meet the alphabet, by ear',
+    lede:'Quick focus for today: just the sounds of L\'alphabet — the 26 letter names. Full pronunciation patterns for words live in your other class; this is only about naming the letters themselves.',
+    body:function(){
+      return '<div class="section-block">'+
+        '<div class="section-label">Today\'s stops</div>'+
+        '<ul class="obj-list">'+
+          '<li data-n="1">Hear and say all 26 French letter names — many sound nothing like their English versions.</li>'+
+          '<li data-n="2">Spot the four letters that trip up English speakers: G, J, W, Y.</li>'+
+          '<li data-n="3">Meet the five vowels that anchor your pronunciation class.</li>'+
+        '</ul>'+
+        '</div>';
+    }
+  });
+
+  // 1 — full alphabet tour
+  S.push({
+    tag:'Stop 1', kicker:'A → Z',
+    title:'Twenty-six letters, one new song',
+    lede:'French letter names rarely match their English shapes. Work through each row, click any tile to hear it, then use "Play this row" to hear the whole group in order — the way you\'d learn a new alphabet song.',
+    body:function(){
+      return '<div class="section-block">'+
+        letterRow('ABCDEFGH','Row 1 — A to H')+
+        '</div>'+
+        '<div class="section-block">'+
+        letterRow('IJKLMNOPQ','Row 2 — I to Q')+
+        '</div>'+
+        '<div class="section-block">'+
+        letterRow('RSTUVWXYZ','Row 3 — R to Z')+
+        '</div>'+
+        '<div class="section-block callout">Notice how little these names resemble English: H is <strong>"ash"</strong>, not "aitch"; W is <strong>"double vé"</strong> — double <em>V</em>, not double <em>U</em>.</div>';
+    }
+  });
+
+  // 2 — tricky letters
+  S.push({
+    tag:'Stop 2', kicker:'FALSE FRIENDS',
+    title:'Four letters that fool English speakers',
+    lede:'These are the mix-ups that come up most often in class. Master these four and the rest of the alphabet falls into place.',
+    body:function(){
+      return '<div class="section-block"><div class="pair-grid">'+
+        '<div class="pair-card"><div class="vs-title">G vs J</div>'+
+          '<div class="pair-line">'+chip('G — gé','ʒe')+'</div>'+
+          '<div class="pair-line">'+chip('J — ji','ʒi')+'</div>'+
+          '<p style="font-size:12.5px; color:var(--ink-soft); margin:8px 0 0;">Both start with the soft "zh" sound — the difference is the vowel that follows: "zhay" vs "zhee".</p>'+
+        '</div>'+
+        '<div class="pair-card"><div class="vs-title">E vs I</div>'+
+          '<div class="pair-line">'+chip('E — e','ə')+'</div>'+
+          '<div class="pair-line">'+chip('I — i','i')+'</div>'+
+          '<p style="font-size:12.5px; color:var(--ink-soft); margin:8px 0 0;">The opposite of English instinct: E is a small mumble ("euh"), I is a bright "ee".</p>'+
+        '</div>'+
+        '<div class="pair-card"><div class="vs-title">W — not "double-u"</div>'+
+          '<div class="pair-line">'+chip('W — double vé','dubləve')+'</div>'+
+          '<p style="font-size:12.5px; color:var(--ink-soft); margin:8px 0 0;">Literally "double V" — French has no "u" sound in this letter\'s name at all.</p>'+
+        '</div>'+
+        '<div class="pair-card"><div class="vs-title">Y — a whole phrase</div>'+
+          '<div class="pair-line">'+chip('Y — i grec','igʁɛk')+'</div>'+
+          '<p style="font-size:12.5px; color:var(--ink-soft); margin:8px 0 0;">"Greek i" — two syllables for one letter, because Y came into French from Greek upsilon.</p>'+
+        '</div>'+
+      '</div></div>'+
+      '<div class="section-block">'+
+        quiz('Which letter is named "i grec"?', ['I','J','Y'], 2, {audio:'i grec'})+
+        quiz('"Double vé" is the French name for which letter?', ['V','W','U'], 1, {audio:'double vé'})+
+        quiz('Which of these is pronounced "zhay"?', ['J','G','K'], 1, {audio:'gé'})+
+      '</div>';
+    }
+  });
+
+  // 3 — five vowels + wrap-up
+  S.push({
+    tag:'Stop 3', kicker:'THE CORE FIVE',
+    title:'Aa Ee Ii Oo Uu — and that\'s a wrap',
+    lede:'Five letters carry almost every sound pattern you\'ll drill in your pronunciation class. Keep them in mind for next time.',
+    body:function(){
+      return '<div class="section-block"><div class="vowel-hero">'+
+        'AEIOU'.split('').map(letterTile).join('')+
+      '</div></div>'+
+      '<div class="section-block">'+
+        quiz('How many vowel letters are there in the French alphabet?', ['4','5','6'], 1)+
+      '</div>'+
+      '<div class="section-block" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">'+
+        '<div class="final-score"><span class="num" id="finalScoreNum">0/0</span><span style="color:var(--ink-soft); font-size:13px;">practice questions correct today</span></div>'+
+      '</div>';
+    }
+  });
+
+  /* ---------------- Render ---------------- */
+  var current = 0;
+  var rail = document.getElementById('rail');
+  var stage = document.getElementById('stage');
+
+  function renderRail(){
+    rail.innerHTML = S.map(function(s,i){
+      var cls = 'rail-item' + (i===current?' active':'') + (i<current?' done':'');
+      return '<button class="'+cls+'" onclick="goTo('+i+')">'+
+        '<span class="rail-num">'+(i+1)+'</span>'+
+        '<span class="rail-text"><span class="rail-title">'+s.kicker+'</span></span>'+
+        '</button>';
+    }).join('');
+  }
+
+  function renderStage(){
+    var s = S[current];
+    stage.innerHTML =
+      '<div class="kicker">'+s.tag.toUpperCase()+' &nbsp;·&nbsp; '+s.kicker+'</div>'+
+      '<h2>'+s.title+'</h2>'+
+      '<p class="stage-lede">'+s.lede+'</p>'+
+      s.body()+
+      '<div class="stage-nav">'+
+        '<button class="nav-btn ghost" onclick="goTo('+(current-1)+')" '+(current===0?'disabled':'')+'>&larr; Back</button>'+
+        '<span class="score-pill" id="scorePill">Practice score: '+score.correct+'/'+score.answered+'</span>'+
+        (current===S.length-1 ?
+          '<button class="nav-btn" onclick="goTo(0)">Restart lesson &#8635;</button>' :
+          '<button class="nav-btn" onclick="goTo('+(current+1)+')">Next stop &rarr;</button>')+
+      '</div>';
+    var fs = document.getElementById('finalScoreNum');
+    if(fs) fs.textContent = score.correct+'/'+score.answered;
+    var fillEl = document.getElementById('progressFill');
+    if(fillEl) fillEl.style.width = (((current+1)/S.length)*100)+'%';
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  window.goTo = function(i){
+    if(i<0 || i>=S.length) return;
+    current = i;
+    renderRail();
+    renderStage();
+  };
+
+  renderRail();
+  renderStage();
+
+})();
+</script>
+
+</body></html>

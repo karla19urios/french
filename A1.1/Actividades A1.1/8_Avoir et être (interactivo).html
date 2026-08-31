@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avoir &amp; Être</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+  :root{
+    --bg:#f4f5f7;
+    --paper:#ffffff;
+    --paper-2:#f4f5f7;
+    --ink:#1a1a2e;
+    --ink-soft:#6b7280;
+    --line:#e5e7eb;
+    --bleu:#002395;
+    --rouge:#ED2939;
+    --accent:#002395;
+    --accent-ink:#002395;
+    --green:#3f8f6d;
+    --green-bg:#e7f3ed;
+    --red:#ED2939;
+    --red-bg:#fdecec;
+    --shadow: 0 1px 2px rgba(26,26,46,.06), 0 8px 24px -12px rgba(26,26,46,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#12141c;
+      --paper:#1b1e2b;
+      --paper-2:#20232f;
+      --ink:#f1f2f6;
+      --ink-soft:#9aa0b4;
+      --line:#2a2e40;
+      --bleu:#002395;
+      --rouge:#ED2939;
+      --accent:#5b7fe0;
+      --accent-ink:#7c9df2;
+      --green:#63c299;
+      --green-bg:#173226;
+      --red:#ED2939;
+      --red-bg:#3a1418;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#12141c;
+    --paper:#1b1e2b;
+    --paper-2:#20232f;
+    --ink:#f1f2f6;
+    --ink-soft:#9aa0b4;
+    --line:#2a2e40;
+    --bleu:#002395;
+    --rouge:#ED2939;
+    --accent:#5b7fe0;
+    --accent-ink:#7c9df2;
+    --green:#63c299;
+    --green-bg:#173226;
+    --red:#ED2939;
+    --red-bg:#3a1418;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.6);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'Work Sans', ui-sans-serif, system-ui, sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+    margin:0;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:0 20px 90px;}
+  h1,h2,h3{font-family:'Fraunces', Georgia, serif; text-wrap:balance; margin:0; color:var(--ink);}
+  .eyebrow{font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-ink); font-weight:600;}
+  code, .mono{font-family:'IBM Plex Mono', monospace;}
+
+  /* ---- Tricolor stripe ---- */
+  .stripe{height:8px; background:linear-gradient(90deg, var(--bleu) 33%, #ffffff 33%, #ffffff 66%, var(--rouge) 66%);}
+
+  /* ---- Hero ---- */
+  .hero{
+    background: linear-gradient(180deg, var(--bleu) 0%, #000f42 100%);
+    color:#f3f5ff; padding:40px 20px 40px;
+  }
+  .hero-inner{max-width:900px; margin:0 auto;}
+  .hero h1{font-size:clamp(30px,4.4vw,44px); font-weight:600; color:#ffffff; letter-spacing:-.01em;}
+  .hero p.sub{color:#c7d0f2; font-size:16.5px; max-width:58ch; margin-top:10px;}
+  .hero-meta{display:flex; gap:22px; margin-top:22px; flex-wrap:wrap;}
+  .hero-meta div{font-family:'IBM Plex Mono',monospace; font-size:12px; color:#a9b6e8;}
+  .hero-meta b{display:block; color:#f3f5ff; font-size:14px; font-family:'Work Sans',sans-serif; font-weight:600; margin-top:2px;}
+
+  section{margin-top:46px;}
+  .wrap > section:first-of-type{margin-top:36px;}
+  .sec-head{display:flex; align-items:baseline; gap:12px; margin-bottom:16px;}
+  .sec-num{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent-ink); font-weight:600;}
+  section h2{font-size:25px; font-weight:600;}
+  .sec-intro{color:var(--ink-soft); font-size:15px; max-width:66ch; margin-top:6px;}
+
+  .card{background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:22px; box-shadow:var(--shadow);}
+  .card + .card{margin-top:14px;}
+
+  .verb-flag{
+    display:flex; align-items:center; gap:10px; margin-bottom:14px; padding-bottom:12px; border-bottom:2px solid var(--line);
+  }
+  .verb-flag .title{font-family:'Fraunces',serif; font-weight:600; font-size:20px;}
+
+  table.conj{width:100%; border-collapse:collapse; margin-top:6px; font-size:15px;}
+  table.conj td{padding:7px 10px; border-bottom:1px solid var(--line);}
+  table.conj tr:last-child td{border-bottom:none;}
+  table.conj .pron{color:var(--ink-soft); width:70px;}
+  table.conj .verb{font-weight:700; color:var(--accent-ink); width:80px;}
+  table.conj .ex{font-style:italic; color:var(--ink-soft);}
+  .conj-pair{display:grid; grid-template-columns:1fr 1fr; gap:0 26px;}
+  @media (max-width:640px){.conj-pair{grid-template-columns:1fr;}}
+
+  .instr-box{border-left:3px solid var(--accent); background:var(--paper-2); border-radius:0 10px 10px 0; padding:14px 18px; margin:16px 0; font-size:14.5px;}
+  .instr-box b{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-ink); display:block; margin-bottom:6px;}
+
+  .note-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px;}
+  @media (max-width:640px){.note-grid{grid-template-columns:1fr;}}
+  .note{background:var(--paper-2); border-radius:10px; padding:14px 16px; font-size:13.8px;}
+  .note b{display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--accent-ink); margin-bottom:6px;}
+  .note .fr{font-style:italic; color:var(--ink); display:block; margin-top:4px;}
+
+  .warn-box{background:var(--red-bg); border-radius:10px; padding:14px 18px; margin-top:16px; font-size:14px;}
+  .warn-box b{display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--red); margin-bottom:6px;}
+
+  /* exercises */
+  .ex-block{margin-top:16px;}
+  .ex-tag{
+    display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%;
+    background:var(--bleu); color:#ffffff; font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:13px;
+    margin-right:8px; flex:0 0 auto;
+  }
+  .ex-title{font-weight:600; font-size:15.5px; display:flex; align-items:center; margin-bottom:4px;}
+  .ex-sub{color:var(--ink-soft); font-size:13.3px; margin:2px 0 14px 34px;}
+
+  .fill-line{
+    display:flex; align-items:baseline; flex-wrap:wrap; gap:6px 4px; padding:9px 0; font-size:15px; border-bottom:1px dashed var(--line);
+  }
+  .fill-line:last-child{border-bottom:none;}
+  .fill-line .qn{font-family:'IBM Plex Mono',monospace; color:var(--ink-soft); font-size:12.5px; width:16px;}
+  .blank{
+    width:96px; padding:5px 8px; border-radius:6px; border:1px solid var(--line); background:var(--paper-2);
+    color:var(--ink); font-family:'Work Sans',sans-serif; font-size:14.5px; text-align:center;
+  }
+  .blank.tiny{width:64px;}
+  .blank.wide{width:150px;}
+  .blank:focus{outline:2px solid var(--accent); outline-offset:1px;}
+  .blank.ok{border-color:var(--green); background:var(--green-bg);}
+  .blank.no{border-color:var(--red); background:var(--red-bg);}
+  .given{font-weight:600; color:var(--accent-ink);}
+
+  .para-fill{font-size:15.5px; line-height:2.1;}
+  .para-fill .blank{width:66px;}
+
+  .btn{font-family:'Work Sans',sans-serif; font-weight:600; font-size:14px; padding:10px 18px; border-radius:9px; border:none; cursor:pointer; background:var(--bleu); color:#ffffff;}
+  .btn:hover{background:var(--rouge);}
+  .btn.secondary{background:transparent; color:var(--ink); border:1px solid var(--line);}
+  .btn.secondary:hover{border-color:var(--accent); color:var(--accent-ink);}
+  .btn-row{display:flex; gap:10px; margin-top:16px; flex-wrap:wrap;}
+
+  .fb-line{font-size:12px; margin-top:8px; font-family:'IBM Plex Mono',monospace; color:var(--ink-soft); min-height:16px;}
+  .fb-line.ok{color:var(--green);}
+  .fb-line.no{color:var(--red);}
+
+  /* phrase bank / production */
+  .phrase-bank{display:flex; gap:8px; flex-wrap:wrap; margin:12px 0;}
+  .phrase{font-family:'IBM Plex Mono',monospace; font-size:12.5px; background:var(--paper-2); border:1px solid var(--line); border-radius:20px; padding:6px 12px; cursor:pointer;}
+  .phrase:hover{border-color:var(--accent);}
+  textarea{width:100%; min-height:80px; border-radius:10px; border:1px solid var(--line); background:var(--paper-2); color:var(--ink); font-family:'Work Sans',sans-serif; font-size:14.5px; padding:11px 13px; resize:vertical;}
+  textarea:focus{outline:2px solid var(--accent); outline-offset:1px;}
+  .model-answer{display:none; margin-top:10px; background:var(--green-bg); border-radius:10px; padding:13px 16px; font-size:14px;}
+  .model-answer.show{display:block;}
+  .model-answer b{display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--green); margin-bottom:7px;}
+  .model-answer p{margin:3px 0;}
+
+  /* select drill */
+  .sel-line{display:flex; align-items:baseline; flex-wrap:wrap; gap:6px; font-size:15px; padding:8px 0;}
+  select.blank{appearance:auto; cursor:pointer;}
+
+  .score-banner{margin-top:16px; padding:14px 18px; border-radius:12px; background:var(--paper-2); border:1px solid var(--line); display:none; align-items:center; gap:14px;}
+  .score-banner.show{display:flex;}
+  .score-num{font-family:'Fraunces',serif; font-size:30px; font-weight:600; color:var(--accent-ink);}
+
+  footer{max-width:900px; margin:60px auto 0; padding:20px; text-align:center; color:var(--ink-soft); font-size:12.5px; font-family:'IBM Plex Mono',monospace;}
+</style>
+</head>
+<body>
+
+<div class="stripe"></div>
+<div class="hero">
+  <div class="hero-inner">
+    <h1>Avoir &amp; Être</h1>
+    <p class="sub">The two most important verbs in French — taught in English, straight from your grammar worksheet. Learn the conjugations, hear the traps in pronunciation, and work every exercise with instant feedback.</p>
+    <div class="hero-meta">
+      <div>Language<b>French · A1</b></div>
+      <div>Focus<b>Verb conjugation</b></div>
+      <div>Time<b>~20 minutes</b></div>
+      <div>Source<b>Grammar worksheet, uploaded</b></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section id="sec-intro">
+    <div class="sec-head"><span class="sec-num">01</span><h2>How this lesson works</h2></div>
+    <p class="sec-intro">This lesson follows your worksheet in two halves: first <b style="color:var(--ink)">être</b> (to be), then <b style="color:var(--ink)">avoir</b> (to have). Each half opens with the theory page exactly as your book presents it, then moves into the same exercises — but checked instantly as you type. Type an answer and press <b style="color:var(--ink)">Check</b>; accents matter less than the verb form itself.</p>
+  </section>
+
+  <!-- ÊTRE THEORY -->
+  <section id="sec-etre-theory">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Être — to be</h2></div>
+    <div class="card">
+      <div class="verb-flag"><div class="title">Je suis, tu es, il est&hellip;</div></div>
+      <p class="sec-intro" style="margin-top:0;">LE VERBE « ÊTRE » : conjugaison au présent</p>
+      <div class="conj-pair">
+        <table class="conj">
+          <tr><td class="pron">Je</td><td class="verb">suis</td><td class="ex">français(e).</td></tr>
+          <tr><td class="pron">Tu</td><td class="verb">es</td><td class="ex">anglais(e).</td></tr>
+          <tr><td class="pron">Il / Elle / On</td><td class="verb">est</td><td class="ex">italien(ne), jeune(s).</td></tr>
+        </table>
+        <table class="conj">
+          <tr><td class="pron">Nous</td><td class="verb">sommes</td><td class="ex">fatigué(e)s.</td></tr>
+          <tr><td class="pron">Vous</td><td class="verb">êtes</td><td class="ex">fatigué(e)(s).</td></tr>
+          <tr><td class="pron">Ils / Elles</td><td class="verb">sont</td><td class="ex">italien(ne)s.</td></tr>
+        </table>
+      </div>
+
+      <div class="note-grid">
+        <div class="note"><b>Vous — polite</b>«&nbsp;Vous êtes prêt, monsieur Meyer&nbsp;?&nbsp;»<span class="fr">Formal, or speaking to someone you don't know well.</span></div>
+        <div class="note"><b>Tu — familiar</b>«&nbsp;Tu es prêt, papa&nbsp;?&nbsp;»<span class="fr">Family, friends, children.</span></div>
+        <div class="note"><b>Vous — plural</b>«&nbsp;Vous êtes prêts&nbsp;?&nbsp;» (Léo et papa)<span class="fr">Also the plural "you," whatever the closeness.</span></div>
+        <div class="note"><b>On = nous (plural)</b>«&nbsp;Jean et moi, on est enrhumés.&nbsp;»<span class="fr">Casual French swaps "nous" for "on" constantly.</span></div>
+      </div>
+      <div class="note-grid" style="grid-template-columns:1fr; margin-top:12px;">
+        <div class="note"><b>On = a general "you / people / one" (singular verb)</b>«&nbsp;Quand on est enrhumé, on est fatigué.&nbsp;»<span class="fr">"When you have a cold, you're tired" — a general truth, no specific group.</span></div>
+      </div>
+      <div class="instr-box">
+        <b>Listen for the liaison</b>
+        <span class="mono">Vou<u>s</u>&#8288;êtes… (z-sound)</span> &nbsp;·&nbsp; <span class="mono">O<u>n</u>&#8288;est… (n-sound)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÊTRE PRACTICE -->
+  <section id="sec-etre-practice">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Practice — être</h2></div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">1</span>Complétez avec le verbe « être », selon le modèle.</div>
+      <div id="etre1"></div>
+      <div class="btn-row"><button class="btn" data-check="etre1">Check my answers</button><button class="btn secondary" data-reveal="etre1">Show answers</button></div>
+      <div class="score-banner" id="etre1-score"><div class="score-num" id="etre1-score-num">0/7</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">2</span>Conjuguez à toutes les personnes.</div>
+      <div class="ex-sub">Model: <em>Je suis fatigué.</em> — complete the rest with the right form of <em>être</em> + <em>fatigué</em>. (Adjective agreement isn't covered yet — just focus on the verb.)</div>
+      <div id="etre2"></div>
+      <div class="btn-row"><button class="btn" data-check="etre2">Check my answers</button><button class="btn secondary" data-reveal="etre2">Show answers</button></div>
+      <div class="score-banner" id="etre2-score"><div class="score-num" id="etre2-score-num">0/7</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">5</span>Donnez des informations sur votre groupe, avec « nous » puis « on » (pluriel).</div>
+      <div class="ex-sub">Words to use: étudiant &middot; en vacances &middot; à Rome &middot; sur une place &middot; fatigué</div>
+      <div class="phrase-bank" id="bank5"></div>
+      <textarea id="produce5" placeholder="Nous sommes étudiants, …&#10;On est étudiants, …"></textarea>
+      <div class="btn-row"><button class="btn secondary" data-model="model5">Show a model answer</button></div>
+      <div class="model-answer" id="model5">
+        <b>Model answer</b>
+        <p>Nous sommes étudiants, en vacances à Rome, sur une place, fatigués.</p>
+        <p>On est étudiants, en vacances à Rome, sur une place, fatigués.</p>
+      </div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">6</span>Faites des phrases avec « on » (généralité), selon le modèle.</div>
+      <div class="ex-sub">Model: <em>Quand on est enrhumé, on est fatigué.</em> Build one sentence per pair below (cause &rarr; result):</div>
+      <div class="note-grid" style="margin-top:0; margin-bottom:4px;">
+        <div class="note" style="padding:9px 14px;">fatigué &rarr; stressé</div>
+        <div class="note" style="padding:9px 14px;">en&nbsp;vacances &rarr; content</div>
+        <div class="note" style="padding:9px 14px;">au&nbsp;chômage &rarr; triste</div>
+        <div class="note" style="padding:9px 14px;">en&nbsp;retard &rarr; pressé</div>
+      </div>
+      <textarea id="produce6" placeholder="Quand on est fatigué, on est…"></textarea>
+      <div class="btn-row"><button class="btn secondary" data-model="model6">Show model answers</button></div>
+      <div class="model-answer" id="model6">
+        <b>Model answers</b>
+        <p>Quand on est fatigué, on est stressé.</p>
+        <p>Quand on est en vacances, on est content.</p>
+        <p>Quand on est au chômage, on est triste.</p>
+        <p>Quand on est en retard, on est pressé.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AVOIR THEORY -->
+  <section id="sec-avoir-theory">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Avoir — to have</h2></div>
+    <div class="card">
+      <div class="verb-flag"><div class="title">J'ai, tu as, il a&hellip;</div></div>
+      <p class="sec-intro" style="margin-top:0;">LE VERBE « AVOIR » : conjugaison au présent</p>
+      <div class="conj-pair">
+        <table class="conj">
+          <tr><td class="pron">J'</td><td class="verb">ai</td><td class="ex">une voiture.</td></tr>
+          <tr><td class="pron">Tu</td><td class="verb">as</td><td class="ex">une moto.</td></tr>
+          <tr><td class="pron">Il / Elle / On</td><td class="verb">a</td><td class="ex">les yeux bleus.</td></tr>
+        </table>
+        <table class="conj">
+          <tr><td class="pron">Nous</td><td class="verb">avons</td><td class="ex">faim.</td></tr>
+          <tr><td class="pron">Vous</td><td class="verb">avez</td><td class="ex">froid.</td></tr>
+          <tr><td class="pron">Ils / Elles</td><td class="verb">ont</td><td class="ex">sommeil.</td></tr>
+        </table>
+      </div>
+      <div class="instr-box">
+        <b>Listen for the liaison</b>
+        <span class="mono">O<u>n</u>&#8288;a (n)</span> &nbsp;·&nbsp; <span class="mono">Nou<u>s</u>&#8288;avons (z)</span> &nbsp;·&nbsp; <span class="mono">Vou<u>s</u>&#8288;avez (z)</span> &nbsp;·&nbsp; <span class="mono">Il<u>s</u>&#8288;ont (z)</span>
+      </div>
+      <div class="warn-box">
+        <b>Don't mix them up</b>
+        <span class="mono">Ils sont</span> (they <em>are</em> — an "s" sound) vs. <span class="mono">Ils ont</span> (they <em>have</em> — a "z" sound). Two completely different verbs that sound almost identical — the liaison consonant is what tells them apart.
+      </div>
+    </div>
+  </section>
+
+  <!-- AVOIR PRACTICE -->
+  <section id="sec-avoir-practice">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Practice — avoir</h2></div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">1</span>Complétez avec le verbe « avoir ».</div>
+      <div id="avoir1"></div>
+      <div class="btn-row"><button class="btn" data-check="avoir1">Check my answers</button><button class="btn secondary" data-reveal="avoir1">Show answers</button></div>
+      <div class="score-banner" id="avoir1-score"><div class="score-num" id="avoir1-score-num">0/7</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">2</span>Complétez en conjuguant le verbe « avoir ».</div>
+      <div class="ex-sub">A short story about Thibaud and his friend Antoine — fill every gap with the right form of <em>avoir</em>.</div>
+      <p class="para-fill" id="avoir2"></p>
+      <div class="btn-row"><button class="btn" data-check="avoir2">Check my answers</button><button class="btn secondary" data-reveal="avoir2">Show answers</button></div>
+      <div class="score-banner" id="avoir2-score"><div class="score-num" id="avoir2-score-num">0/11</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">4</span>Faites des phrases avec « il est / il a » ou « elle est / elle a ».</div>
+      <div class="ex-sub">Choose <em>est</em> for what someone <em>is</em> (a profession) and <em>a</em> for what they <em>have</em> (a feature). Item 1 is done for you.</div>
+      <div id="avoir4"></div>
+      <div class="btn-row"><button class="btn" data-check="avoir4">Check the verbs</button><button class="btn secondary" data-reveal="avoir4">Show answers</button></div>
+      <div class="score-banner" id="avoir4-score"><div class="score-num" id="avoir4-score-num">0/6</div><div>correct</div></div>
+
+      <div class="ex-sub" style="margin-top:20px;">Now put all four people in the plural (elles / ils), the way the first pair is done below.</div>
+      <div class="instr-box"><b>Given</b>Elles sont mannequins. Elles ont de jolies jambes.</div>
+      <textarea id="produce4" placeholder="Ils sont chanteurs. Ils ont…"></textarea>
+      <div class="btn-row"><button class="btn secondary" data-model="model4">Show a model answer</button></div>
+      <div class="model-answer" id="model4">
+        <b>Model answer</b>
+        <p>Ils sont chanteurs. Ils ont de belles voix.</p>
+        <p>Elles sont architectes. Elles ont de belles maisons.</p>
+        <p>Ils sont lycéens. Ils ont de gros cartables.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>Adapted from the uploaded grammar worksheet &middot; Leçon — Avoir et être</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  function norm(s){
+    return (s||"").normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim().replace(/\s+/g,' ').replace(/['’]/g,"'");
+  }
+  function matches(val, answers){
+    var v = norm(val);
+    if(!v) return false;
+    return answers.some(function(a){ return norm(a) === v; });
+  }
+
+  /* generic builder: renders a list of {before, answers, after} fill lines into a container,
+     wires up check/reveal buttons found via data-check / data-reveal attributes */
+  function buildFillExercise(containerId, items, opts){
+    opts = opts || {};
+    var container = document.getElementById(containerId);
+    items.forEach(function(item, i){
+      var line = document.createElement('div');
+      line.className = opts.paragraph ? '' : 'fill-line';
+      var html = '';
+      if(!opts.paragraph){
+        html += '<span class="qn">'+(i+1)+'.</span> ';
+      }
+      html += item.pre ? '<span>'+item.pre+'</span> ' : '';
+      if(item.given){
+        html += '<span class="given">'+item.given+'</span>';
+      } else {
+        html += '<input class="blank'+(item.wide?' wide':'')+(opts.paragraph?' tiny':'')+'" type="text" autocomplete="off" data-idx="'+i+'">';
+      }
+      html += item.post ? ' <span>'+item.post+'</span>' : '';
+      line.innerHTML = html;
+      container.appendChild(line);
+    });
+
+    function allInputs(){ return container.querySelectorAll('input.blank'); }
+
+    document.querySelector('[data-check="'+containerId+'"]').addEventListener('click', function(){
+      var score = 0, total = 0;
+      allInputs().forEach(function(input){
+        var idx = +input.dataset.idx;
+        var item = items[idx];
+        total++;
+        input.classList.remove('ok','no');
+        if(matches(input.value, item.answers)){
+          input.classList.add('ok'); score++;
+        } else {
+          input.classList.add('no');
+        }
+      });
+      var sb = document.getElementById(containerId+'-score');
+      if(sb){
+        sb.classList.add('show');
+        document.getElementById(containerId+'-score-num').textContent = score+'/'+total;
+      }
+    });
+
+    document.querySelector('[data-reveal="'+containerId+'"]').addEventListener('click', function(){
+      allInputs().forEach(function(input){
+        var idx = +input.dataset.idx;
+        input.value = items[idx].answers[0];
+        input.classList.remove('no'); input.classList.add('ok');
+      });
+      var sb = document.getElementById(containerId+'-score');
+      if(sb){
+        sb.classList.add('show');
+        document.getElementById(containerId+'-score-num').textContent = items.length+'/'+items.length;
+      }
+    });
+  }
+
+  /* ---------------- Être exercise 1 ---------------- */
+  buildFillExercise('etre1', [
+    {pre:"Je", given:"suis", post:"blond."},
+    {pre:"Tu", answers:["es"], post:"brun."},
+    {pre:"Ada", answers:["est"], post:"grande."},
+    {pre:"Léo", answers:["est"], post:"petit."},
+    {pre:"Nous", answers:["sommes"], post:"célibataires."},
+    {pre:"Vous", answers:["etes","êtes"], post:"marié ?"},
+    {pre:"Les enfants", answers:["sont"], post:"fatigués."},
+    {pre:"Ada et Léa", answers:["sont"], post:"gentilles."}
+  ]);
+
+  /* ---------------- Être exercise 2 ---------------- */
+  buildFillExercise('etre2', [
+    {pre:"Je", given:"suis fatigué", post:""},
+    {pre:"Tu", answers:["es fatigue","es fatigué","es fatiguee","es fatiguée"], wide:true, post:""},
+    {pre:"Il", answers:["est fatigue","est fatigué"], wide:true, post:""},
+    {pre:"Elle", answers:["est fatigue","est fatigué","est fatiguee","est fatiguée"], wide:true, post:""},
+    {pre:"Nous", answers:["sommes fatigue","sommes fatigué","sommes fatigues","sommes fatigués","sommes fatiguee","sommes fatiguée"], wide:true, post:""},
+    {pre:"Vous", answers:["etes fatigue","êtes fatigué","etes fatiguee","êtes fatiguée","etes fatigues","êtes fatigués","etes fatiguees","êtes fatiguées"], wide:true, post:""},
+    {pre:"Ils", answers:["sont fatigue","sont fatigué","sont fatigues","sont fatigués"], wide:true, post:""},
+    {pre:"Elles", answers:["sont fatigue","sont fatigué","sont fatiguees","sont fatiguées"], wide:true, post:""}
+  ]);
+
+  /* ---------------- Avoir exercise 1 ---------------- */
+  buildFillExercise('avoir1', [
+    {pre:"Paul", given:"a", post:"vingt ans."},
+    {pre:"Nous", answers:["avons"], post:"une maison de campagne."},
+    {pre:"Les enfants", answers:["ont"], post:"sommeil."},
+    {pre:"Vous", answers:["avez"], post:"envie d'un café ?"},
+    {pre:"Marie", answers:["a"], post:"un saxophone."},
+    {pre:"Ils", answers:["ont"], post:"trois enfants."},
+    {pre:"On", answers:["a"], post:"soif !"},
+    {pre:"Tu", answers:["as"], post:"faim ?"}
+  ]);
+
+  /* ---------------- Avoir exercise 2 (paragraph) ---------------- */
+  (function(){
+    var container = document.getElementById('avoir2');
+    var answers = ["a","a","ont","avons","a","a","ai","avons","avons","ont","ont"];
+    var parts = [
+      "J'ai un fils. Il s'appelle Thibaud. Il ", " huit ans. Il ",
+      " un très bon copain qui s'appelle Antoine. Ils ",
+      " tous les deux les yeux verts et les cheveux roux. La mère d'Antoine et moi, nous ",
+      " aussi les cheveux roux. On ",
+      " à peu près le même âge : elle ",
+      " trente et un ans, moi ",
+      " trente-deux ans. Nous ",
+      " les mêmes goûts, nous ",
+      " les mêmes disques et les mêmes livres. Nos enfants ",
+      " aussi les mêmes livres, les mêmes jouets et ils ",
+      " les mêmes copains."
+    ];
+    var altAnswers = {6:["ai","j'ai","jai"]};
+    var html = '';
+    for(var i=0;i<parts.length;i++){
+      html += parts[i].replace(/\n/g,' ');
+      if(i < answers.length){
+        html += '<input class="blank tiny" type="text" autocomplete="off" data-idx="'+i+'">';
+      }
+    }
+    container.innerHTML = html;
+
+    document.querySelector('[data-check="avoir2"]').addEventListener('click', function(){
+      var score = 0;
+      container.querySelectorAll('input.blank').forEach(function(input){
+        var idx = +input.dataset.idx;
+        var accepted = altAnswers[idx] || [answers[idx]];
+        input.classList.remove('ok','no');
+        if(matches(input.value, accepted)){ input.classList.add('ok'); score++; }
+        else { input.classList.add('no'); }
+      });
+      document.getElementById('avoir2-score').classList.add('show');
+      document.getElementById('avoir2-score-num').textContent = score+'/'+answers.length;
+    });
+    document.querySelector('[data-reveal="avoir2"]').addEventListener('click', function(){
+      container.querySelectorAll('input.blank').forEach(function(input){
+        var idx = +input.dataset.idx;
+        input.value = answers[idx];
+        input.classList.remove('no'); input.classList.add('ok');
+      });
+      document.getElementById('avoir2-score').classList.add('show');
+      document.getElementById('avoir2-score-num').textContent = answers.length+'/'+answers.length;
+    });
+  })();
+
+  /* ---------------- Avoir exercise 4 (select drill) ---------------- */
+  (function(){
+    var container = document.getElementById('avoir4');
+    var items = [
+      {subj:"Elle", prof:"mannequin", feat:"de jolies jambes", given:true},
+      {subj:"Il", prof:"chanteur", feat:"une belle voix"},
+      {subj:"Elle", prof:"architecte", feat:"une belle maison"},
+      {subj:"Il", prof:"lycéen", feat:"un gros cartable"}
+    ];
+    var answerKeys = [];
+    items.forEach(function(item, i){
+      var line = document.createElement('div');
+      line.className = 'sel-line';
+      if(item.given){
+        line.innerHTML = '<span class="qn">'+(i+1)+'.</span> <span class="given">'+item.subj+' est '+item.prof+'. '+item.subj+' a '+item.feat+'.</span>';
+      } else {
+        line.innerHTML =
+          '<span class="qn">'+(i+1)+'.</span> '+item.subj+' '+
+          '<select class="blank" data-idx="'+(answerKeys.length)+'"><option value="">…</option><option value="est">est</option><option value="a">a</option></select> '+
+          item.prof+'. '+item.subj+' '+
+          '<select class="blank" data-idx="'+(answerKeys.length+1)+'"><option value="">…</option><option value="est">est</option><option value="a">a</option></select> '+
+          item.feat+'.';
+        answerKeys.push('est'); answerKeys.push('a');
+      }
+      container.appendChild(line);
+    });
+
+    document.querySelector('[data-check="avoir4"]').addEventListener('click', function(){
+      var score = 0;
+      var selects = container.querySelectorAll('select.blank');
+      selects.forEach(function(sel){
+        var idx = +sel.dataset.idx;
+        sel.classList.remove('ok','no');
+        if(sel.value === answerKeys[idx]){ sel.classList.add('ok'); score++; }
+        else { sel.classList.add('no'); }
+      });
+      document.getElementById('avoir4-score').classList.add('show');
+      document.getElementById('avoir4-score-num').textContent = score+'/'+answerKeys.length;
+    });
+    document.querySelector('[data-reveal="avoir4"]').addEventListener('click', function(){
+      var selects = container.querySelectorAll('select.blank');
+      selects.forEach(function(sel){
+        var idx = +sel.dataset.idx;
+        sel.value = answerKeys[idx];
+        sel.classList.remove('no'); sel.classList.add('ok');
+      });
+      document.getElementById('avoir4-score').classList.add('show');
+      document.getElementById('avoir4-score-num').textContent = answerKeys.length+'/'+answerKeys.length;
+    });
+  })();
+
+  /* ---------------- Phrase bank (exercise 5) ---------------- */
+  var words5 = ["étudiant","en vacances","à Rome","sur une place","fatigué"];
+  var bank5 = document.getElementById('bank5');
+  var produce5 = document.getElementById('produce5');
+  words5.forEach(function(w){
+    var b = document.createElement('button');
+    b.className = 'phrase'; b.textContent = w; b.type = 'button';
+    b.addEventListener('click', function(){
+      produce5.value += (produce5.value.length ? ', ' : '') + w;
+      produce5.focus();
+    });
+    bank5.appendChild(b);
+  });
+
+  /* ---------------- Model-answer toggles ---------------- */
+  document.querySelectorAll('[data-model]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.getElementById(btn.dataset.model).classList.toggle('show');
+    });
+  });
+
+})();
+</script>
+
+</body></html>

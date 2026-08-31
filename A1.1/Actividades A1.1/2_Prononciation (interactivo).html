@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>French Sound Atlas</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --paper:#EEF0F2;
+    --paper-raised:#FFFFFF;
+    --ink:#1F2430;
+    --ink-soft:#4B5165;
+    --indigo:#2A3B73;
+    --indigo-deep:#1C2A57;
+    --red:#A6362B;
+    --gold:#8A6A22;
+    --mist:#D7DCE3;
+    --mist-strong:#BFC7D2;
+    --shadow: 0 1px 2px rgba(31,36,48,.06), 0 8px 24px -12px rgba(31,36,48,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#14171F;
+      --paper-raised:#1B1F2B;
+      --ink:#E8E9EE;
+      --ink-soft:#A9AEC0;
+      --indigo:#8DA0E8;
+      --indigo-deep:#B7C4F2;
+      --red:#E58176;
+      --gold:#E3B563;
+      --mist:#313749;
+      --mist-strong:#3D465C;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 28px -12px rgba(0,0,0,.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#14171F;
+    --paper-raised:#1B1F2B;
+    --ink:#E8E9EE;
+    --ink-soft:#A9AEC0;
+    --indigo:#8DA0E8;
+    --indigo-deep:#B7C4F2;
+    --red:#E58176;
+    --gold:#E3B563;
+    --mist:#313749;
+    --mist-strong:#3D465C;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 28px -12px rgba(0,0,0,.55);
+  }
+
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Public Sans', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', Georgia, 'Times New Roman', serif;
+    text-wrap:balance;
+    margin:0;
+  }
+  .mono{ font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace; }
+  ::selection{ background:var(--indigo); color:var(--paper-raised); }
+  a{ color:inherit; }
+  button{ font-family:inherit; }
+
+  .app{
+    max-width:1180px;
+    margin:0 auto;
+    padding:20px clamp(14px,3vw,32px) 60px;
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:16px;
+    padding-bottom:16px;
+  }
+  .brand-eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 6px;
+  }
+  .brand-title{
+    font-size:clamp(26px,3.4vw,38px);
+    font-weight:600;
+    letter-spacing:-.01em;
+    color:var(--indigo);
+  }
+  .brand-sub{
+    font-size:14px;
+    color:var(--ink-soft);
+    margin-top:6px;
+    max-width:46ch;
+  }
+
+  button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--indigo); outline-offset:2px;
+  }
+
+  .flag-rule{
+    height:3px;
+    border-radius:2px;
+    background: linear-gradient(90deg, var(--indigo) 0 32%, var(--mist) 32% 68%, var(--red) 68% 100%);
+    margin:2px 0 22px;
+  }
+
+  .progress-track{
+    height:6px;
+    border-radius:4px;
+    background:var(--mist);
+    overflow:hidden;
+    margin-bottom:26px;
+  }
+  .progress-fill{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg, var(--indigo), var(--red));
+    transition:width .4s ease;
+  }
+  @media (prefers-reduced-motion: reduce){ .progress-fill{ transition:none; } }
+
+  /* ---------- Layout ---------- */
+  .layout{
+    display:grid;
+    grid-template-columns: 250px 1fr;
+    gap:24px;
+    align-items:start;
+  }
+  .rail{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    position:sticky;
+    top:16px;
+  }
+  .rail-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:9px 10px;
+    border-radius:8px;
+    border:1px solid transparent;
+    background:transparent;
+    cursor:pointer;
+    text-align:left;
+    color:var(--ink-soft);
+  }
+  .rail-item:hover{ background:var(--paper-raised); border-color:var(--mist); }
+  .rail-item.active{
+    background:var(--paper-raised);
+    border-color:var(--mist-strong);
+    box-shadow:var(--shadow);
+    color:var(--ink);
+  }
+  .rail-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    width:22px; height:22px;
+    border-radius:50%;
+    display:grid; place-items:center;
+    background:var(--mist);
+    color:var(--ink-soft);
+    flex:0 0 auto;
+  }
+  .rail-item.active .rail-num{ background:var(--indigo); color:var(--paper-raised); }
+  .rail-item.done .rail-num{ background:var(--indigo-deep); color:var(--paper-raised); }
+  .rail-text{ display:flex; flex-direction:column; gap:1px; min-width:0; }
+  .rail-title{ font-size:13px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .rail-time{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--ink-soft); }
+
+  @media (max-width: 860px){
+    .layout{ grid-template-columns:1fr; }
+    .rail{
+      order:2;
+      display:flex;
+      flex-direction:row;
+      overflow-x:auto;
+      gap:8px;
+      padding-bottom:6px;
+      position:static;
+    }
+    .rail-item{ min-width:168px; flex:0 0 auto; }
+    .stage{ order:1; }
+  }
+
+  /* ---------- Stage ---------- */
+  .stage{
+    background:var(--paper-raised);
+    border:1px solid var(--mist);
+    border-radius:14px;
+    box-shadow:var(--shadow);
+    padding:clamp(20px,3.4vw,40px);
+    min-height:480px;
+  }
+  .kicker{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.06em;
+    color:var(--red);
+    text-transform:none;
+    margin-bottom:8px;
+  }
+  .badge-time{
+    display:inline-block;
+    margin-left:10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+    border:1px solid var(--mist-strong);
+    border-radius:999px;
+    padding:1px 9px;
+  }
+  .stage h2{
+    font-size:clamp(24px,3vw,34px);
+    color:var(--ink);
+    line-height:1.15;
+  }
+  .stage-lede{
+    margin-top:12px;
+    color:var(--ink-soft);
+    font-size:15.5px;
+    line-height:1.6;
+    max-width:70ch;
+  }
+  .section-block{ margin-top:28px; }
+  .section-label{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    color:var(--ink-soft);
+    margin-bottom:10px;
+    font-weight:600;
+  }
+
+  /* mouth shapes */
+  .mouth-row{ display:flex; gap:22px; flex-wrap:wrap; }
+  .mouth-card{
+    background:var(--paper);
+    border:1px solid var(--mist);
+    border-radius:12px;
+    padding:16px;
+    width:168px;
+    text-align:center;
+  }
+  .mouth-shape{
+    margin:8px auto 10px;
+    position:relative;
+    background:linear-gradient(180deg, var(--indigo) 0%, var(--indigo-deep) 100%);
+  }
+  .mouth-shape::after{
+    content:"";
+    position:absolute; left:14%; right:14%; top:50%;
+    height:2px; background:rgba(0,0,0,.28);
+    transform:translateY(-1px);
+  }
+  .shape-round-front{ width:46px; height:58px; border-radius:50%; }
+  .shape-round-back{ width:74px; height:52px; border-radius:50%; }
+  .shape-spread{ width:92px; height:26px; border-radius:40% 40% 50% 50%/70% 70% 30% 30%; }
+  .shape-open{ width:58px; height:70px; border-radius:50% 50% 48% 48%/58% 58% 42% 42%; }
+  .shape-relaxed{ width:52px; height:34px; border-radius:50%; }
+  .mouth-ipa{ font-family:'IBM Plex Mono', monospace; font-size:19px; color:var(--indigo); font-weight:600; }
+  .mouth-word{ font-size:12.5px; color:var(--ink-soft); margin-top:2px; }
+  .mouth-desc{ font-size:11.5px; color:var(--ink-soft); margin-top:8px; line-height:1.45; }
+
+  /* chips */
+  .chip-row{ display:flex; flex-wrap:wrap; gap:10px; }
+  .chip{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--paper);
+    border:1px solid var(--mist-strong);
+    border-radius:999px;
+    padding:8px 14px 8px 10px;
+    cursor:pointer;
+    color:var(--ink);
+  }
+  .chip:hover{ border-color:var(--indigo); }
+  .chip:active{ transform:translateY(1px); }
+  .chip-icon{
+    width:22px; height:22px;
+    border-radius:50%;
+    background:var(--indigo);
+    color:var(--paper-raised);
+    display:grid; place-items:center;
+    flex:0 0 auto;
+  }
+  .chip-word{ font-weight:600; font-size:14.5px; }
+  .chip-ipa{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--ink-soft); }
+
+  /* minimal pairs */
+  .pair-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; }
+  .pair-card{
+    border:1px solid var(--mist);
+    border-radius:10px;
+    padding:12px 14px;
+    background:var(--paper);
+  }
+  .pair-line{ display:flex; align-items:baseline; justify-content:space-between; padding:5px 0; }
+  .pair-line + .pair-line{ border-top:1px dashed var(--mist-strong); }
+  .pair-word{ font-weight:600; font-size:15px; }
+  .pair-ipa{ font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--indigo); }
+
+  /* quiz */
+  .quiz-card{
+    border:1px solid var(--mist);
+    border-radius:10px;
+    padding:16px;
+    background:var(--paper);
+    margin-top:12px;
+  }
+  .quiz-q{ font-weight:600; margin-bottom:10px; font-size:14.5px; }
+  .quiz-opts{ display:flex; flex-wrap:wrap; gap:8px; }
+  .quiz-opt{
+    border:1px solid var(--mist-strong);
+    background:var(--paper-raised);
+    color:var(--ink);
+    border-radius:8px;
+    padding:8px 14px;
+    cursor:pointer;
+    font-size:14px;
+  }
+  .quiz-opt:hover{ border-color:var(--indigo); }
+  .quiz-opt.correct{ background:#2E7D4F; border-color:#2E7D4F; color:#fff; }
+  .quiz-opt.wrong{ background:var(--red); border-color:var(--red); color:#fff; }
+  .quiz-opt[disabled]{ cursor:default; }
+  .quiz-feedback{ margin-top:8px; font-size:13px; color:var(--ink-soft); min-height:16px; }
+
+  .callout{
+    border-left:3px solid var(--gold);
+    background:var(--paper);
+    padding:12px 16px;
+    border-radius:0 8px 8px 0;
+    font-size:14px;
+    color:var(--ink-soft);
+    line-height:1.55;
+  }
+
+  .passage{
+    font-family:'Fraunces', serif;
+    font-size:18px;
+    line-height:1.85;
+    color:var(--ink);
+    background:var(--paper);
+    border:1px solid var(--mist);
+    border-radius:10px;
+    padding:20px 22px;
+  }
+  .passage mark{
+    background:transparent;
+    color:var(--indigo);
+    font-weight:600;
+    text-decoration:underline;
+    text-decoration-color:var(--mist-strong);
+    text-decoration-thickness:2px;
+    text-underline-offset:3px;
+  }
+  .m-nasal{ color:var(--gold); }
+  .m-oi{ color:var(--red); }
+  .passage-src{ font-size:11.5px; color:var(--ink-soft); margin-top:8px; font-style:italic; }
+  .listen-line{
+    display:inline-flex; align-items:center; gap:8px;
+    border:1px solid var(--mist-strong);
+    border-radius:999px; padding:6px 14px 6px 8px;
+    cursor:pointer; margin-top:10px; font-size:13.5px;
+    background:var(--paper-raised);
+  }
+  .listen-line:hover{ border-color:var(--indigo); }
+
+  /* footer nav */
+  .stage-nav{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-top:32px; padding-top:18px; border-top:1px solid var(--mist);
+  }
+  .nav-btn{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--indigo); color:var(--paper-raised);
+    border:none; border-radius:8px; padding:11px 18px;
+    font-weight:600; font-size:14px; cursor:pointer;
+  }
+  .nav-btn.ghost{ background:transparent; color:var(--ink); border:1px solid var(--mist-strong); }
+  .nav-btn:disabled{ opacity:.35; cursor:default; }
+  .nav-btn:hover:not(:disabled){ background:var(--indigo-deep); }
+  .nav-btn.ghost:hover:not(:disabled){ border-color:var(--indigo); color:var(--indigo); }
+
+  .score-pill{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    border:1px solid var(--mist-strong);
+    border-radius:999px;
+    padding:4px 12px;
+    white-space:nowrap;
+  }
+
+  .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  @media (max-width:700px){ .two-col{ grid-template-columns:1fr; } }
+
+  .city-tour{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:12px;
+  }
+  .city-card{
+    border:1px solid var(--mist);
+    border-radius:10px;
+    padding:14px;
+    background:var(--paper);
+  }
+  .city-card .name{ font-family:'Fraunces',serif; font-weight:600; font-size:17px; color:var(--indigo); }
+  .city-card .pattern{ font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--red); margin-top:2px; }
+  .city-card .note{ font-size:12px; color:var(--ink-soft); margin-top:6px; line-height:1.4; }
+
+  .obj-list{ margin:14px 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:8px; }
+  .obj-list li{ display:flex; gap:10px; font-size:14.5px; color:var(--ink); align-items:flex-start; }
+  .obj-list li::before{
+    content:"«" attr(data-n) "»";
+    font-family:'IBM Plex Mono',monospace;
+    color:var(--red); font-size:12px; flex:0 0 auto; margin-top:3px;
+  }
+
+  .final-score{
+    display:flex; align-items:baseline; gap:10px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .final-score .num{ font-size:40px; font-weight:600; color:var(--indigo); }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="topbar">
+    <div>
+      <p class="brand-eyebrow">A1 · French Pronunciation Workshop</p>
+      <h1 class="brand-title">The French Sound Atlas</h1>
+      <p class="brand-sub">A 50-minute tour of France, spelling pattern by spelling pattern — taught by Karla, in English.</p>
+    </div>
+  </div>
+  <div class="flag-rule"></div>
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+  <div class="layout">
+    <nav class="rail" id="rail" aria-label="Lesson stops"></nav>
+    <main class="stage" id="stage"></main>
+  </div>
+</div>
+
+<script>
+(function(){
+
+  /* ---------------- Speech ---------------- */
+  var frVoice = null;
+  function loadVoices(){
+    if(!('speechSynthesis' in window)) return;
+    var voices = window.speechSynthesis.getVoices();
+    frVoice = voices.find(function(v){ return v.lang === 'fr-FR'; }) ||
+              voices.find(function(v){ return v.lang && v.lang.indexOf('fr') === 0; }) || null;
+  }
+  if('speechSynthesis' in window){
+    loadVoices();
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+  }
+  function speak(text){
+    if(!('speechSynthesis' in window)){
+      alert('Text-to-speech is not available in this browser. Try Chrome or Edge.');
+      return;
+    }
+    window.speechSynthesis.cancel();
+    var u = new SpeechSynthesisUtterance(text);
+    u.lang = 'fr-FR';
+    if(frVoice) u.voice = frVoice;
+    u.rate = 0.85;
+    window.speechSynthesis.speak(u);
+  }
+  window.speak = speak;
+
+  function esc(s){ return s.replace(/'/g,"\\'"); }
+
+  function chip(word, ipa){
+    return '<button class="chip" onclick="speak(\''+esc(word)+'\')" title="Play pronunciation">' +
+      '<span class="chip-icon">'+speakerSvg()+'</span>' +
+      '<span class="chip-word">'+word+'</span>' +
+      (ipa ? '<span class="chip-ipa">['+ipa+']</span>' : '') +
+      '</button>';
+  }
+  function speakerSvg(){
+    return '<svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M1 4.5H3L6 2V10L3 7.5H1V4.5Z" fill="currentColor"/><path d="M8 4.2C8.6 4.7 9 5.3 9 6C9 6.7 8.6 7.3 8 7.8" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>';
+  }
+  window.chip = chip; // exposed for template strings below (not required, kept for clarity)
+
+  function mouthCard(shapeClass, ipa, word, desc){
+    return '<div class="mouth-card">' +
+      '<div class="mouth-ipa">['+ipa+']</div>' +
+      '<div class="mouth-shape '+shapeClass+'"></div>' +
+      '<div class="mouth-word">'+word+'</div>' +
+      '<div class="mouth-desc">'+desc+'</div>' +
+      '</div>';
+  }
+
+  var qCounter = 0;
+  var score = { correct:0, answered:0 };
+  function quiz(question, options, correctIndex, opts){
+    opts = opts || {};
+    var qid = 'q'+(qCounter++);
+    var optsHtml = options.map(function(opt,i){
+      return '<button class="quiz-opt" data-qid="'+qid+'" data-correct="'+(i===correctIndex)+'" onclick="answerQuiz(this)">'+opt+'</button>';
+    }).join('');
+    var audioBtn = opts.audio ?
+      '<span class="listen-line" onclick="speak(\''+esc(opts.audio)+'\')">'+speakerSvg()+' Listen</span><br>' : '';
+    return '<div class="quiz-card" id="'+qid+'-wrap">' +
+      audioBtn +
+      '<div class="quiz-q">'+question+'</div>' +
+      '<div class="quiz-opts" id="'+qid+'">'+optsHtml+'</div>' +
+      '<div class="quiz-feedback" id="'+qid+'-fb"></div>' +
+      '</div>';
+  }
+  window.answerQuiz = function(btn){
+    var group = btn.parentElement;
+    if(group.dataset.answered) return;
+    group.dataset.answered = '1';
+    var isCorrect = btn.dataset.correct === 'true';
+    Array.prototype.forEach.call(group.children, function(b){
+      b.disabled = true;
+      if(b.dataset.correct === 'true') b.classList.add('correct');
+    });
+    if(!isCorrect) btn.classList.add('wrong');
+    var fb = document.getElementById(group.id+'-fb');
+    fb.textContent = isCorrect ? 'Correct!' : 'Not quite — the right answer is highlighted in green.';
+    score.answered++;
+    if(isCorrect) score.correct++;
+    updateScorePill();
+  };
+  function updateScorePill(){
+    var el = document.getElementById('scorePill');
+    if(el) el.textContent = 'Practice score: ' + score.correct + '/' + score.answered;
+  }
+  window.quiz = quiz;
+
+  /* ---------------- Content data ---------------- */
+  var S = []; // sections
+
+  // 0 — Welcome
+  S.push({
+    tag:'Welcome', minutes:4, kicker:'ORIENTATION',
+    title:'A grand tour, one sound at a time',
+    lede:'Every region of France has a town whose name is a small pronunciation lesson in disguise. Today we use six of them as waypoints — by the end, you will be able to look at an unfamiliar French word and make a confident guess at how it sounds.',
+    body:function(){
+      return '<div class="section-block">'+
+        '<div class="section-label">Today\'s stops</div>'+
+        '<ul class="obj-list">'+
+          '<li data-n="1">Tell «u» apart from «ou» — two rounded vowels, two tongue positions.</li>'+
+          '<li data-n="2">Produce all three nasal vowels: «-on», «-en/-an», «-in».</li>'+
+          '<li data-n="3">Decode «oi», the two «eu» sounds, and «au/eau».</li>'+
+          '<li data-n="4">Hear the difference between «e», «é», and «è / ai / ei».</li>'+
+          '<li data-n="5">Read two short children\'s-book passages aloud, out loud, together.</li>'+
+        '</ul>'+
+        '</div>'+
+        '<div class="section-block">'+
+        '<div class="section-label">Your six landmark cities</div>'+
+        '<div class="city-tour">'+
+          cityCard('Toulouse','«ou» → [u]','La ville rose — both syllables use the same round, back vowel.')+
+          cityCard('Lyon','«-on» → [ɔ̃]','France\'s second city ends in the nasal you\'ll meet first.')+
+          cityCard('Rouen','«-en» → [ɑ̃]','Normandy\'s capital packs an «ou» and a nasal «en» into one word.')+
+          cityCard('Poitiers','«oi» → [wa]','Watch the spelling «oi» turn into a clean "wa" sound.')+
+          cityCard('Beauvais','«eau/ai»','Two vowel teams, two different results — [o] then [ɛ].')+
+          cityCard('Avignon','«-gn» + «-on»','A second nasal «-on», plus a bonus soft «gn» sound.')+
+        '</div>'+
+        '</div>'+
+        '<div class="callout" style="margin-top:22px;">Click any word chip throughout this lesson to hear it spoken aloud — the atlas reads French out loud on demand.</div>';
+    }
+  });
+  function cityCard(name, pattern, note){
+    return '<div class="city-card">'+
+      '<div class="name">'+name+'</div>'+
+      '<div class="pattern">'+pattern+'</div>'+
+      '<div class="note">'+note+'</div>'+
+      '<div style="margin-top:8px;">'+chip(name)+'</div>'+
+      '</div>';
+  }
+
+  // 1 — u vs ou
+  S.push({
+    tag:'Stop 1', minutes:5, kicker:'«u» vs «ou»',
+    title:'Two rounded vowels, worlds apart',
+    lede:'Both sounds round the lips — the difference is entirely in the tongue. Get this pair right and you\'ll fix one of the most common mix-ups for English speakers.',
+    body:function(){
+      return '<div class="section-block"><div class="mouth-row">'+
+        mouthCard('shape-round-front','y','tu','Round your lips tightly, like a whistle — but push the <em>tongue forward</em>, as if saying "ee".')+
+        mouthCard('shape-round-back','u','tout','Round your lips more loosely and push the <em>tongue back</em>, as in the English "oo" in "moo".')+
+        '</div></div>'+
+        '<div class="section-block"><div class="section-label">Minimal pairs</div>'+
+        '<div class="pair-grid">'+
+          pairCard('tu','ty','tout','tu')+
+          pairCard('vu','vy','vous','vu')+
+          pairCard('rue','ʁy','roue','ʁu')+
+        '</div></div>'+
+        '<div class="section-block"><div class="section-label">Practice on real places</div>'+
+        '<div class="chip-row">'+chip('Toulouse','tuluz')+chip('Lunéville','lynevil')+chip('Tulle','tyl')+chip('Mulhouse','myluz')+'</div>'+
+        '</div>'+
+        '<div class="section-block">'+
+        quiz('Listen: which city do you hear?', ['Toulouse','Tulle'], 0, {audio:'Toulouse'})+
+        quiz('Which word has the <em>tongue-forward</em> [y] sound?', ['tout','tu','vous'], 1)+
+        '</div>';
+    }
+  });
+  function pairCard(w1,i1,w2,i2){
+    return '<div class="pair-card">'+
+      '<div class="pair-line">'+chip(w1,i1)+'</div>'+
+      '<div class="pair-line">'+chip(w2,i2)+'</div>'+
+      '</div>';
+  }
+
+  // 2 — nasal on
+  S.push({
+    tag:'Stop 2', minutes:5, kicker:'NASAL VOWELS · «-on»',
+    title:'Let the air escape through your nose',
+    lede:'French has three nasal vowels, and we will meet all three today. A nasal vowel means: drop the jaw slightly, let sound resonate in the nose, and never actually pronounce the "n" as a consonant.',
+    body:function(){
+      return '<div class="section-block"><div class="mouth-row">'+
+        mouthCard('shape-round-back','ɔ̃','mon','Lips rounded, jaw relaxed, air pushed through the nose. No "n" consonant at the end.')+
+        '</div></div>'+
+        '<div class="section-block"><div class="section-label">On real places</div>'+
+        '<div class="chip-row">'+chip('Lyon','ljɔ̃')+chip('Dijon','diʒɔ̃')+chip('Avignon','avinɔ̃')+'</div>'+
+        '</div>'+
+        '<div class="section-block"><div class="section-label">Contrast: nasal vs. oral</div>'+
+        '<div class="pair-grid">'+
+          pairCard('mon (nasal)','mɔ̃','mot (oral)','mo')+
+          pairCard('bon (nasal)','bɔ̃','beau (oral)','bo')+
+        '</div></div>'+
+        '<div class="callout">Teacher tip: have students hold a hand mirror or finger under the nose — a light puff of air on "mon" confirms the nasal is landing correctly.</div>'+
+        '<div class="section-block">'+
+        quiz('Which city ends in the nasal «-on» sound?', ['Rennes','Dijon','Reims'], 1)+
+        '</div>';
+    }
+  });
+
+  // 3 — nasal en/an
+  S.push({
+    tag:'Stop 3', minutes:4, kicker:'NASAL VOWELS · «-en / -an»',
+    title:'The open nasal: [ɑ̃]',
+    lede:'Drop the jaw further than for «-on» and keep the lips relaxed and unrounded. Both spellings «en» and «an» usually share this same open nasal sound.',
+    body:function(){
+      return '<div class="section-block"><div class="mouth-row">'+
+        mouthCard('shape-open','ɑ̃','sans / en','Jaw drops low, lips stay relaxed and neutral — the most open of the three nasals.')+
+        '</div></div>'+
+        '<div class="section-block"><div class="section-label">On real places</div>'+
+        '<div class="chip-row">'+chip('Rouen','ʁwɑ̃')+chip('Caen','kɑ̃')+chip('Sens','sɑ̃s')+'</div>'+
+        '</div>'+
+        '<div class="callout">Rouen is a great trick word: «ou» gives [w], then «en» gives the nasal [ɑ̃] — the whole city name is just two sounds, [ʁwɑ̃].</div>'+
+        '<div class="section-block">'+
+        quiz('Rouen and Caen share the same final sound. What is it?', ['[ɔ̃] as in Lyon','[ɑ̃] as in sans','[ɛ̃] as in vin'], 1, {audio:'Rouen'})+
+        '</div>';
+    }
+  });
+
+  // 4 — nasal in
+  S.push({
+    tag:'Stop 4', minutes:5, kicker:'NASAL VOWELS · «-in»',
+    title:'The bright nasal: [ɛ̃]',
+    lede:'Spread the lips slightly, as if starting a smile, and nasalize. This is the brightest and most forward of the three nasal vowels — and it completes the set.',
+    body:function(){
+      return '<div class="section-block"><div class="mouth-row">'+
+        mouthCard('shape-spread','ɛ̃','vin','Lips spread slightly wider than for [ɑ̃], tongue a touch more forward, sound nasalized.')+
+        '</div></div>'+
+        '<div class="section-block"><div class="section-label">On real places</div>'+
+        '<div class="chip-row">'+chip('Vincennes','vɛ̃sɛn')+chip('Saint-Tropez','sɛ̃tʁɔpe')+chip('Saint-Denis','sɛ̃dəni')+'</div>'+
+        '</div>'+
+        '<div class="section-block"><div class="section-label">The full nasal triplet</div>'+
+        '<div class="pair-grid">'+
+          '<div class="pair-card"><div class="pair-line">'+chip('bon','bɔ̃')+'</div><div class="pair-line">'+chip('banc','bɑ̃')+'</div><div class="pair-line">'+chip('bain','bɛ̃')+'</div></div>'+
+        '</div></div>'+
+        '<div class="section-block">'+
+        quiz('Which of the three nasals is spread and bright, like the start of a smile?', ['[ɔ̃]','[ɑ̃]','[ɛ̃]'], 2, {audio:'vin'})+
+        quiz('"Saint" in Saint-Denis and Saint-Tropez uses which nasal vowel?', ['[ɔ̃]','[ɑ̃]','[ɛ̃]'], 2)+
+        '</div>';
+    }
+  });
+
+  // 5 — oi
+  S.push({
+    tag:'Stop 5', minutes:4, kicker:'«-oi» → [wa]',
+    title:'One spelling, one glide',
+    lede:'The letters «oi» are wonderfully predictable in French: no matter the word, they almost always collapse into a single glide-plus-vowel sound, [wa] — like the English word "watch" without the "tch".',
+    body:function(){
+      return '<div class="section-block">'+
+        '<div class="pair-grid">'+
+          '<div class="pair-card"><div class="pair-line"><span class="pair-word mono">oi</span><span class="pair-ipa">→ [wa]</span></div></div>'+
+        '</div>'+
+        '</div>'+
+        '<div class="section-block"><div class="section-label">On real places</div>'+
+        '<div class="chip-row">'+chip('Troyes','tʁwa')+chip('Choisy-le-Roi','ʃwazi lə ʁwa')+chip('Poitiers','pwatje')+'</div>'+
+        '</div>'+
+        '<div class="callout">Choisy-le-Roi is worth lingering on: it has «oi» twice, once in "Choisy" and once in "Roi" (king) — both resolve to the same [wa].</div>'+
+        '<div class="section-block">'+
+        quiz('How do the letters «oi» sound in nearly every French word?', ['[wa]','[wɛ]','[oi], each letter separately'], 0, {audio:'Poitiers'})+
+        '</div>';
+    }
+  });
+
+  // 6 — eu
+  S.push({
+    tag:'Stop 6', minutes:5, kicker:'«eu» → [ø] or [œ]',
+    title:'Two cousins, one spelling',
+    lede:'The letters «eu» have two related sounds. As a rule of thumb: «eu» at the end of a word (or before a silent letter) is the tighter [ø]; «eu» followed by a pronounced consonant opens up to [œ].',
+    body:function(){
+      return '<div class="section-block"><div class="mouth-row">'+
+        mouthCard('shape-round-front','ø','peu','Lips rounded and slightly tighter, tongue forward — say [e] while rounding the lips.')+
+        mouthCard('shape-round-back','œ','fleur','Same rounding, but the jaw drops a little more, opening the sound — used when a consonant follows.')+
+        '</div></div>'+
+        '<div class="section-block"><div class="section-label">On real places</div>'+
+        '<div class="chip-row">'+chip('Neuilly-sur-Seine','nœji syʁ sɛn')+chip('Neufchâteau','nøʃato')+chip('Dieuze','djøz')+'</div>'+
+        '</div>'+
+        '<div class="section-block">'+
+        quiz('Which word ends the syllable cleanly and uses the tighter [ø]?', ['fleur','peu','Neuilly'], 1, {audio:'peu'})+
+        '</div>';
+    }
+  });
+
+  // 7 — e / é / è ai ei
+  S.push({
+    tag:'Stop 7', minutes:6, kicker:'«-e» · «é» · «è, ai, ei»',
+    title:'The most confusable family in French spelling',
+    lede:'Three related sounds, three different letters. Getting these apart is often what separates hesitant reading from confident reading.',
+    body:function(){
+      return '<div class="section-block"><div class="mouth-row">'+
+        mouthCard('shape-relaxed','ə','le','A short, relaxed, almost swallowed vowel — the "mute e" often barely pronounced at all.')+
+        mouthCard('shape-spread','e','parlez, été','Lips spread more, tongue high and forward — a closed, bright sound, as in "-ez" and "é".')+
+        mouthCard('shape-open','ɛ','avec, père','Jaw drops further than for [e] — an open sound, spelled «è», «ê», «ai», or «ei».')+
+        '</div></div>'+
+        '<div class="two-col section-block">'+
+          '<div><div class="section-label">«-e» silent / «é» closed</div><div class="chip-row">'+chip('Étretat','etʁəta')+chip('Béziers','bezje')+chip('Mérignac','meʁiɲak')+chip('Grenoble','gʁənɔbl')+chip('Besançon','bəzɑ̃sɔ̃')+chip('Sedan','sədɑ̃')+'</div></div>'+
+          '<div><div class="section-label">«è / ai / ei» open</div><div class="chip-row">'+chip('Reims','ʁɛ̃s')+chip('Aix-en-Provence','ɛksɑ̃pʁɔvɑ̃s')+chip('Rennes','ʁɛn')+'</div></div>'+
+        '</div>'+
+        '<div class="section-block">'+
+        quiz('Which sound is the odd one out — the one that can almost disappear?', ['[ə] mute e','[e] closed é','[ɛ] open è'], 0)+
+        quiz('"Été" (summer) is pronounced with which vowel, twice?', ['[ə]','[e]','[ɛ]'], 1, {audio:'été'})+
+        '</div>';
+    }
+  });
+
+  // 8 — au / eau
+  S.push({
+    tag:'Stop 8', minutes:4, kicker:'«au» & «eau» → [o]',
+    title:'Two spellings, one clean vowel',
+    lede:'Whether a word is spelled with «au» or the longer «eau», the result is the same round, closed [o] — as in the English "oh", but shorter and purer.',
+    body:function(){
+      return '<div class="section-block"><div class="mouth-row">'+
+        mouthCard('shape-round-back','o','Bordeaux','Lips rounded and forward, a clean single vowel — resist the urge to glide into a second sound.')+
+        '</div></div>'+
+        '<div class="section-block"><div class="section-label">On real places</div>'+
+        '<div class="chip-row">'+chip('Bordeaux','bɔʁdo')+chip('Beauvais','bove')+chip('Maubeuge','mobøʒ')+'</div>'+
+        '</div>'+
+        '<div class="callout">Beauvais is the perfect closer for today: «eau» gives [o], then «ai» gives [ɛ] — two patterns from this lesson in a single word, [bove].</div>'+
+        '<div class="section-block">'+
+        quiz('«au» and «eau» both spell which vowel?', ['[u] as in Toulouse','[o] as in Bordeaux','[ø] as in peu'], 1, {audio:'Bordeaux'})+
+        '</div>';
+    }
+  });
+
+  // 9 — reading practice
+  S.push({
+    tag:'Stop 9', minutes:5, kicker:'READ ALOUD',
+    title:'From city names to full sentences',
+    lede:'Now put every sound to work. Read each line aloud as a class, then individually. Colour shows the pattern: <strong class="m-nasal">gold = nasal vowel</strong>, <strong class="m-oi">red = «oi»</strong>, and underline = the «e/é/è» family.',
+    body:function(){
+      return '<div class="section-block">'+
+        '<div class="section-label">Le loup qui n\'aimait pas lire</div>'+
+        '<div class="passage">Il ét<mark>ai</mark>t une f<span class="m-oi">oi</span>s un loup qui dévor<mark>ai</mark>t les livres : les p<mark>e</mark>tits, les gr<span class="m-nasal">an</span>ds, les c<span class="m-nasal">on</span>tes, les dictionnaires, les rom<span class="m-nasal">an</span>s&hellip;'+
+        '<div class="listen-line" onclick="speak(\'Il était une fois un loup qui dévorait les livres, les petits, les grands, les contes, les dictionnaires, les romans.\')">'+speakerSvg()+' Listen to the full line</div>'+
+        '<div class="passage-src">Orianne Lallemand &amp; Éléonore Thuillier, <em>Le loup qui n\'aimait pas lire</em> (Auzou)</div>'+
+        '</div></div>'+
+        '<div class="section-block">'+
+        '<div class="section-label">Petit Ours Brun veut devenir grand</div>'+
+        '<div class="passage">Petit Ours Br<span class="m-nasal">un</span> veut devenir gr<span class="m-nasal">an</span>d,<br>il dit tout le temps :<br>&laquo; M<span class="m-oi">oi</span> tout seul. &raquo;'+
+        '<div class="listen-line" onclick="speak(\'Petit Ours Brun veut devenir grand, il dit tout le temps, moi tout seul.\')">'+speakerSvg()+' Listen to the full line</div>'+
+        '<div class="passage-src">Collection Popi / Pomme d\'Api (Bayard Poche)</div>'+
+        '</div></div>'+
+        '<div class="callout">Classroom routine: play the audio once with books closed, once with books open following along, then have three volunteers each read one line aloud.</div>';
+    }
+  });
+
+  // 10 — wrap up
+  S.push({
+    tag:'Stop 10', minutes:3, kicker:'WRAP-UP',
+    title:'One last round through France',
+    lede:'A final mixed check before we go — then a look at what\'s next.',
+    body:function(){
+      return '<div class="section-block">'+
+        quiz('Poitiers ends in which sound?', ['[wa]','[ɔ̃]','[o]'], 0, {audio:'Poitiers'})+
+        quiz('Which city is built entirely on the [u] sound, twice?', ['Tulle','Toulouse','Beauvais'], 1, {audio:'Toulouse'})+
+        quiz('Vincennes and Saint-Denis share which nasal vowel?', ['[ɔ̃]','[ɑ̃]','[ɛ̃]'], 2)+
+        '</div>'+
+        '<div class="section-block" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">'+
+        '<div class="final-score"><span class="num" id="finalScoreNum">0/0</span><span style="color:var(--ink-soft); font-size:13px;">practice questions correct today</span></div>'+
+        '</div>'+
+        '<div class="section-block callout" style="border-color:var(--indigo); border-left-color:var(--indigo);">'+
+        '<strong style="color:var(--indigo); font-family:\'Fraunces\',serif; font-size:16px;">Next lesson: La liaison</strong><br>'+
+        'We\'ll look at what happens when one word ends in a silent consonant and the next word begins with a vowel — the moment two words melt into one sound.'+
+        '</div>';
+    }
+  });
+
+  /* ---------------- Render ---------------- */
+  var current = 0;
+  var rail = document.getElementById('rail');
+  var stage = document.getElementById('stage');
+  var cum = []; // cumulative start minute for each stop
+  (function(){ var t=0; S.forEach(function(s){ cum.push(t); t+=s.minutes; }); })();
+
+  function mm(n){ return (n<10?'0':'')+n+':00'; }
+
+  function renderRail(){
+    rail.innerHTML = S.map(function(s,i){
+      var cls = 'rail-item' + (i===current?' active':'') + (i<current?' done':'');
+      return '<button class="'+cls+'" onclick="goTo('+i+')">'+
+        '<span class="rail-num">'+(i+1)+'</span>'+
+        '<span class="rail-text"><span class="rail-title">'+s.kicker.replace(/«|»/g,'')+'</span>'+
+        '<span class="rail-time">'+mm(cum[i])+'&ndash;'+mm(cum[i]+s.minutes)+'</span></span>'+
+        '</button>';
+    }).join('');
+  }
+
+  function renderStage(){
+    var s = S[current];
+    stage.innerHTML =
+      '<div class="kicker">'+s.tag.toUpperCase()+' &nbsp;·&nbsp; '+s.kicker+'<span class="badge-time">'+s.minutes+' min</span></div>'+
+      '<h2>'+s.title+'</h2>'+
+      '<p class="stage-lede">'+s.lede+'</p>'+
+      s.body()+
+      '<div class="stage-nav">'+
+        '<button class="nav-btn ghost" onclick="goTo('+(current-1)+')" '+(current===0?'disabled':'')+'>&larr; Back</button>'+
+        '<span class="score-pill" id="scorePill">Practice score: '+score.correct+'/'+score.answered+'</span>'+
+        (current===S.length-1 ?
+          '<button class="nav-btn" onclick="goTo(0)">Restart tour &#8635;</button>' :
+          '<button class="nav-btn" onclick="goTo('+(current+1)+')">Next stop &rarr;</button>')+
+      '</div>';
+    var fs = document.getElementById('finalScoreNum');
+    if(fs) fs.textContent = score.correct+'/'+score.answered;
+    var fillEl = document.getElementById('progressFill');
+    if(fillEl) fillEl.style.width = (((current+1)/S.length)*100)+'%';
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  window.goTo = function(i){
+    if(i<0 || i>=S.length) return;
+    current = i;
+    renderRail();
+    renderStage();
+  };
+
+  renderRail();
+  renderStage();
+
+})();
+</script>
+
+</body></html>
