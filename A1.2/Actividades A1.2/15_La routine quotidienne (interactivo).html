@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>La Routine Quotidienne</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --paper:#FAF4EA;
+    --paper-raised:#FFFFFF;
+    --ink:#3A2318;
+    --ink-soft:#8A5A42;
+    --coral:#E94B59;
+    --coral-deep:#C43847;
+    --teal:#3F7A80;
+    --gold:#C9820A;
+    --peach:#F8DAC3;
+    --green:#2E7D4F;
+    --mist:#F0E1CB;
+    --mist-strong:#E3CDAA;
+    --shadow: 0 1px 2px rgba(110,52,32,.08), 0 8px 24px -12px rgba(110,52,32,.22);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#201613;
+      --paper-raised:#2B1F1A;
+      --ink:#F7EAE0;
+      --ink-soft:#D9AE8C;
+      --coral:#FF7A83;
+      --coral-deep:#FF98A0;
+      --teal:#8FC7CC;
+      --gold:#FFC978;
+      --peach:#4A3527;
+      --green:#7FC494;
+      --mist:#3A2A22;
+      --mist-strong:#4A3527;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 28px -12px rgba(0,0,0,.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#201613;
+    --paper-raised:#2B1F1A;
+    --ink:#F7EAE0;
+    --ink-soft:#D9AE8C;
+    --coral:#FF7A83;
+    --coral-deep:#FF98A0;
+    --teal:#8FC7CC;
+    --gold:#FFC978;
+    --peach:#4A3527;
+    --green:#7FC494;
+    --mist:#3A2A22;
+    --mist-strong:#4A3527;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 28px -12px rgba(0,0,0,.55);
+  }
+
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Public Sans', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', Georgia, 'Times New Roman', serif;
+    text-wrap:balance;
+    margin:0;
+  }
+  .mono{ font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace; }
+  ::selection{ background:var(--coral); color:#fff; }
+  a{ color:inherit; }
+  button{ font-family:inherit; }
+
+  .app{ max-width:1180px; margin:0 auto; padding:20px clamp(14px,3vw,32px) 60px; }
+
+  .topbar{ display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:16px; padding-bottom:16px; }
+  .brand-eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 6px; }
+  .brand-title{ font-size:clamp(26px,3.4vw,38px); font-weight:600; letter-spacing:-.01em; color:var(--coral-deep); }
+  .brand-sub{ font-size:14px; color:var(--ink-soft); margin-top:6px; max-width:54ch; }
+
+  button:focus-visible, [tabindex]:focus-visible{ outline:2px solid var(--coral); outline-offset:2px; }
+
+  .flag-rule{ height:3px; border-radius:2px; background: linear-gradient(90deg, var(--coral) 0 32%, var(--gold) 32% 68%, var(--teal) 68% 100%); margin:2px 0 22px; }
+
+  .progress-track{ height:6px; border-radius:4px; background:var(--mist); overflow:hidden; margin-bottom:26px; }
+  .progress-fill{ height:100%; width:0%; background:linear-gradient(90deg, var(--coral), var(--gold)); transition:width .4s ease; }
+  @media (prefers-reduced-motion: reduce){ .progress-fill{ transition:none; } }
+
+  .layout{ display:grid; grid-template-columns: 250px 1fr; gap:24px; align-items:start; }
+  .rail{ display:flex; flex-direction:column; gap:6px; position:sticky; top:16px; }
+  .rail-item{ display:flex; align-items:center; gap:10px; padding:9px 10px; border-radius:8px; border:1px solid transparent; background:transparent; cursor:pointer; text-align:left; color:var(--ink-soft); }
+  .rail-item:hover{ background:var(--paper-raised); border-color:var(--mist); }
+  .rail-item.active{ background:var(--paper-raised); border-color:var(--mist-strong); box-shadow:var(--shadow); color:var(--ink); }
+  .rail-num{ font-family:'IBM Plex Mono', monospace; font-size:11px; width:22px; height:22px; border-radius:50%; display:grid; place-items:center; background:var(--mist); color:var(--ink-soft); flex:0 0 auto; }
+  .rail-item.active .rail-num{ background:var(--coral); color:#fff; }
+  .rail-item.done .rail-num{ background:var(--coral-deep); color:#fff; }
+  .rail-text{ display:flex; flex-direction:column; gap:1px; min-width:0; }
+  .rail-title{ font-size:13px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .rail-time{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--ink-soft); }
+
+  @media (max-width: 860px){
+    .layout{ grid-template-columns:1fr; }
+    .rail{ order:2; display:flex; flex-direction:row; overflow-x:auto; gap:8px; padding-bottom:6px; position:static; }
+    .rail-item{ min-width:168px; flex:0 0 auto; }
+    .stage{ order:1; }
+  }
+
+  .stage{ background:var(--paper-raised); border:1px solid var(--mist); border-radius:14px; box-shadow:var(--shadow); padding:clamp(20px,3.4vw,40px); min-height:480px; }
+  .kicker{ font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.06em; color:var(--teal); margin-bottom:8px; }
+  .badge-time{ display:inline-block; margin-left:10px; font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-soft); border:1px solid var(--mist-strong); border-radius:999px; padding:1px 9px; }
+  .stage h2{ font-size:clamp(24px,3vw,34px); color:var(--ink); line-height:1.15; }
+  .stage-lede{ margin-top:12px; color:var(--ink-soft); font-size:15.5px; line-height:1.6; max-width:72ch; }
+  .section-block{ margin-top:28px; }
+  .section-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-soft); margin-bottom:10px; font-weight:600; }
+
+  /* chips */
+  .chip-row{ display:flex; flex-wrap:wrap; gap:10px; }
+  .chip{ display:inline-flex; align-items:center; gap:8px; background:var(--paper); border:1px solid var(--mist-strong); border-radius:999px; padding:8px 14px 8px 10px; cursor:pointer; color:var(--ink); }
+  .chip:hover{ border-color:var(--coral); }
+  .chip:active{ transform:translateY(1px); }
+  .chip-icon{ width:22px; height:22px; border-radius:50%; background:var(--coral); color:#fff; display:grid; place-items:center; flex:0 0 auto; }
+  .chip-word{ font-weight:600; font-size:14.5px; }
+  .chip-ipa{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--ink-soft); }
+  .chip-emoji{ font-size:17px; line-height:1; }
+
+  /* moment tiles */
+  .num-row{ display:flex; flex-wrap:wrap; gap:12px; }
+  .num-tile{ background:var(--paper); border:1px solid var(--mist); border-radius:12px; padding:12px 14px; min-width:130px; text-align:center; cursor:pointer; }
+  .num-tile:hover{ border-color:var(--coral); }
+  .num-tile .digit{ font-family:'IBM Plex Mono', monospace; font-size:15px; font-weight:600; color:var(--coral-deep); }
+  .num-tile .word{ font-size:13.5px; margin-top:4px; font-weight:600; }
+  .num-tile .play-hint{ font-size:10.5px; color:var(--ink-soft); margin-top:4px; }
+
+  .callout{ border-left:3px solid var(--gold); background:var(--peach); padding:12px 16px; border-radius:0 8px 8px 0; font-size:14px; color:var(--ink); line-height:1.55; }
+  .callout strong{ color:var(--coral-deep); }
+
+  /* vocab */
+  .vocab-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px; }
+  .vocab-item{ display:flex; align-items:baseline; justify-content:space-between; gap:14px; padding:8px 4px; border-bottom:1px dashed var(--mist-strong); }
+  .vocab-fr{ font-weight:600; font-size:14.5px; }
+  .vocab-en{ color:var(--ink-soft); font-size:13.5px; text-align:right; }
+  .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+  @media (max-width:700px){ .two-col{ grid-template-columns:1fr; } }
+
+  /* conjugation table */
+  .conj-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px 24px; }
+  @media (max-width:600px){ .conj-grid{ grid-template-columns:1fr; } }
+  .conj-row{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:9px 12px; background:var(--paper); border:1px solid var(--mist); border-radius:9px; cursor:pointer; }
+  .conj-row:hover{ border-color:var(--coral); }
+  .conj-pronoun{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-soft); min-width:82px; }
+  .conj-verb{ font-weight:600; font-size:14.5px; flex:1; text-align:right; }
+
+  /* moment/greeting cards */
+  .moment-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; }
+  .moment-card{ background:var(--paper); border:1px solid var(--mist); border-radius:14px; padding:16px; text-align:center; cursor:pointer; }
+  .moment-card:hover{ border-color:var(--coral); }
+  .moment-name{ font-family:'Fraunces',serif; font-size:16.5px; font-weight:600; color:var(--coral-deep); }
+  .moment-greet{ font-size:13.5px; color:var(--ink); margin-top:8px; font-style:italic; }
+  .moment-en{ font-size:11.5px; color:var(--ink-soft); margin-top:6px; }
+
+  /* quiz */
+  .quiz-card{ border:1px solid var(--mist); border-radius:10px; padding:16px; background:var(--paper); margin-top:12px; }
+  .quiz-q{ font-weight:600; margin-bottom:10px; font-size:14.5px; }
+  .quiz-opts{ display:flex; flex-wrap:wrap; gap:8px; }
+  .quiz-opt{ border:1px solid var(--mist-strong); background:var(--paper-raised); color:var(--ink); border-radius:8px; padding:8px 14px; cursor:pointer; font-size:14px; }
+  .quiz-opt:hover{ border-color:var(--coral); }
+  .quiz-opt.correct{ background:var(--green); border-color:var(--green); color:#fff; }
+  .quiz-opt.wrong{ background:var(--coral-deep); border-color:var(--coral-deep); color:#fff; }
+  .quiz-opt[disabled]{ cursor:default; }
+  .quiz-feedback{ margin-top:8px; font-size:13px; color:var(--ink-soft); min-height:16px; }
+  .listen-line{ display:inline-flex; align-items:center; gap:8px; border:1px solid var(--mist-strong); border-radius:999px; padding:6px 14px 6px 8px; cursor:pointer; margin-top:10px; font-size:13.5px; background:var(--paper-raised); }
+  .listen-line:hover{ border-color:var(--coral); }
+
+  .passage{ font-family:'Fraunces', serif; font-size:17px; line-height:1.85; color:var(--ink); background:var(--paper); border:1px solid var(--mist); border-radius:10px; padding:20px 22px; }
+  .dialogue-line{ display:flex; gap:10px; margin:6px 0; }
+  .dialogue-role{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-soft); min-width:64px; padding-top:3px; }
+
+  /* testimony cards */
+  .testimony{ border:1px solid var(--mist); border-radius:12px; padding:18px 20px; margin-bottom:16px; background:var(--paper); }
+  .testimony-head{ display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+  .testimony-avatar{ width:38px; height:38px; border-radius:50%; display:grid; place-items:center; font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:13px; color:#fff; flex:0 0 auto; }
+  .testimony-name{ font-family:'Fraunces',serif; font-weight:600; font-size:16px; color:var(--ink); }
+  .testimony-role{ font-size:12px; color:var(--ink-soft); }
+  .testimony-text{ font-size:15px; line-height:1.75; color:var(--ink); }
+  .intro-text{ font-size:15px; line-height:1.75; color:var(--ink-soft); background:var(--peach); border-radius:10px; padding:16px 18px; margin-bottom:18px; }
+
+  .stage-nav{ display:flex; justify-content:space-between; align-items:center; margin-top:32px; padding-top:18px; border-top:1px solid var(--mist); }
+  .nav-btn{ display:inline-flex; align-items:center; gap:8px; background:var(--coral); color:#fff; border:none; border-radius:8px; padding:11px 18px; font-weight:600; font-size:14px; cursor:pointer; }
+  .nav-btn.ghost{ background:transparent; color:var(--ink); border:1px solid var(--mist-strong); }
+  .nav-btn:disabled{ opacity:.35; cursor:default; }
+  .nav-btn:hover:not(:disabled){ background:var(--coral-deep); }
+  .nav-btn.ghost:hover:not(:disabled){ border-color:var(--coral); color:var(--coral-deep); }
+
+  .score-pill{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--ink-soft); border:1px solid var(--mist-strong); border-radius:999px; padding:4px 12px; white-space:nowrap; }
+
+  .obj-list{ margin:14px 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:8px; }
+  .obj-list li{ display:flex; gap:10px; font-size:14.5px; color:var(--ink); align-items:flex-start; }
+  .obj-list li::before{ content:"«" attr(data-n) "»"; font-family:'IBM Plex Mono',monospace; color:var(--teal); font-size:12px; flex:0 0 auto; margin-top:3px; }
+
+  .final-score{ display:flex; align-items:baseline; gap:10px; font-family:'IBM Plex Mono', monospace; }
+  .final-score .num{ font-size:40px; font-weight:600; color:var(--coral-deep); }
+</style>
+
+<div class="app">
+  <div class="topbar">
+    <div>
+      <p class="brand-eyebrow">A1.2 · French Daily Routine</p>
+      <h1 class="brand-title">La Routine Quotidienne</h1>
+      <p class="brand-sub">Reflexive verbs, the moments of the day, household chores, and a real magazine reading about how French families spend their day — taught by Karla, in English.</p>
+    </div>
+  </div>
+  <div class="flag-rule"></div>
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+  <div class="layout">
+    <nav class="rail" id="rail" aria-label="Lesson stops"></nav>
+    <main class="stage" id="stage"></main>
+  </div>
+</div>
+
+<script>
+(function(){
+
+  /* ---------------- Speech ---------------- */
+  var frVoice = null;
+  function loadVoices(){
+    if(!('speechSynthesis' in window)) return;
+    var voices = window.speechSynthesis.getVoices();
+    frVoice = voices.find(function(v){ return v.lang === 'fr-FR'; }) ||
+              voices.find(function(v){ return v.lang && v.lang.indexOf('fr') === 0; }) || null;
+  }
+  if('speechSynthesis' in window){
+    loadVoices();
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+  }
+  function speak(text){
+    if(!('speechSynthesis' in window)){
+      alert('Text-to-speech is not available in this browser. Try Chrome or Edge.');
+      return;
+    }
+    window.speechSynthesis.cancel();
+    var u = new SpeechSynthesisUtterance(text);
+    u.lang = 'fr-FR';
+    if(frVoice) u.voice = frVoice;
+    u.rate = 0.85;
+    window.speechSynthesis.speak(u);
+  }
+  window.speak = speak;
+
+  function esc(s){ return s.replace(/'/g,"\\'"); }
+
+  function speakerSvg(){
+    return '<svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M1 4.5H3L6 2V10L3 7.5H1V4.5Z" fill="currentColor"/><path d="M8 4.2C8.6 4.7 9 5.3 9 6C9 6.7 8.6 7.3 8 7.8" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>';
+  }
+
+  function chip(word, ipa, emoji){
+    return '<button class="chip" onclick="speak(\''+esc(word)+'\')" title="Play pronunciation">' +
+      '<span class="chip-icon">'+speakerSvg()+'</span>' +
+      (emoji ? '<span class="chip-emoji">'+emoji+'</span>' : '') +
+      '<span class="chip-word">'+word+'</span>' +
+      (ipa ? '<span class="chip-ipa">['+ipa+']</span>' : '') +
+      '</button>';
+  }
+
+  function vocabList(pairs){
+    return '<ul class="vocab-list">' + pairs.map(function(p){
+      return '<li class="vocab-item"><span class="vocab-fr">'+chip(p[0], null, p[2])+'</span><span class="vocab-en">'+p[1]+'</span></li>';
+    }).join('') + '</ul>';
+  }
+
+  function momentCard(name, greet, en, emoji){
+    return '<div class="moment-card" onclick="speak(\''+esc(name)+'. '+esc(greet)+'\')">' +
+      (emoji ? '<div style="font-size:28px; margin-bottom:6px;">'+emoji+'</div>' : '') +
+      '<div class="moment-name">'+name+'</div>' +
+      '<div class="moment-greet">&laquo; '+greet+' &raquo;</div>' +
+      '<div class="moment-en">'+en+'</div>' +
+      '</div>';
+  }
+
+  function conjRow(pronoun, verb){
+    return '<div class="conj-row" onclick="speak(\''+esc(pronoun+' '+verb)+'\')">' +
+      '<span class="conj-pronoun">'+pronoun+'</span>' +
+      '<span class="conj-verb">'+verb+' '+speakerSvg()+'</span>' +
+      '</div>';
+  }
+  function conjTable(rows){
+    return '<div class="conj-grid">'+rows.map(function(r){ return conjRow(r[0], r[1]); }).join('')+'</div>';
+  }
+
+  var TESTIMONY_COLORS = { N:'var(--coral)', Mo:'var(--teal)', Ma:'var(--gold)', C:'var(--coral-deep)' };
+  function testimony(initials, name, role, text, emoji){
+    return '<div class="testimony">' +
+      '<div class="testimony-head">' +
+        '<span class="testimony-avatar" style="background:'+TESTIMONY_COLORS[initials]+'">'+initials+'</span>' +
+        '<div><div class="testimony-name">'+name+' '+(emoji||'')+'</div><div class="testimony-role">'+role+'</div></div>' +
+      '</div>' +
+      '<div class="testimony-text">'+text+'</div>' +
+      '<div class="listen-line" onclick="speak(\''+esc(text.replace(/<[^>]+>/g,''))+'\')">'+speakerSvg()+' Listen</div>' +
+      '</div>';
+  }
+
+  var qCounter = 0;
+  var score = { correct:0, answered:0 };
+  function quiz(question, options, correctIndex, opts){
+    opts = opts || {};
+    var qid = 'q'+(qCounter++);
+    var optsHtml = options.map(function(opt,i){
+      return '<button class="quiz-opt" data-qid="'+qid+'" data-correct="'+(i===correctIndex)+'" onclick="answerQuiz(this)">'+opt+'</button>';
+    }).join('');
+    var audioBtn = opts.audio ?
+      '<span class="listen-line" onclick="speak(\''+esc(opts.audio)+'\')">'+speakerSvg()+' Listen</span><br>' : '';
+    return '<div class="quiz-card" id="'+qid+'-wrap">' +
+      audioBtn +
+      '<div class="quiz-q">'+question+'</div>' +
+      '<div class="quiz-opts" id="'+qid+'">'+optsHtml+'</div>' +
+      '<div class="quiz-feedback" id="'+qid+'-fb"></div>' +
+      '</div>';
+  }
+  window.answerQuiz = function(btn){
+    var group = btn.parentElement;
+    if(group.dataset.answered) return;
+    group.dataset.answered = '1';
+    var isCorrect = btn.dataset.correct === 'true';
+    Array.prototype.forEach.call(group.children, function(b){
+      b.disabled = true;
+      if(b.dataset.correct === 'true') b.classList.add('correct');
+    });
+    if(!isCorrect) btn.classList.add('wrong');
+    var fb = document.getElementById(group.id+'-fb');
+    fb.textContent = isCorrect ? 'Correct!' : 'Not quite — the right answer is highlighted in green.';
+    score.answered++;
+    if(isCorrect) score.correct++;
+    updateScorePill();
+  };
+  function updateScorePill(){
+    var el = document.getElementById('scorePill');
+    if(el) el.textContent = 'Practice score: ' + score.correct + '/' + score.answered;
+    var fs = document.getElementById('finalScoreNum');
+    if(fs) fs.textContent = score.correct + '/' + score.answered;
+  }
+
+  /* ---------------- Content data ---------------- */
+  var S = [];
+
+  // 0 — Welcome
+  S.push({
+    tag:'Welcome', minutes:2, kicker:'ORIENTATION',
+    title:'🌅 A day in French, from sunrise to sleep',
+    lede:'Today we\'ll narrate an entire day in French — waking up, getting ready, doing chores, and winding down — using a special group of verbs called "reflexive verbs" that describe things you do to yourself. We\'ll finish with a real French magazine article about how one family actually spends its day.',
+    body:function(){
+      return '<div class="section-block">'+
+        '<div class="section-label">Today\'s stops</div>'+
+        '<ul class="obj-list">'+
+          '<li data-n="1">Name the moments of the day and greet people appropriately at each one.</li>'+
+          '<li data-n="2">Describe a morning routine using reflexive verbs like «se réveiller» and «se lever».</li>'+
+          '<li data-n="3">Conjugate reflexive verbs correctly across all six subject pronouns.</li>'+
+          '<li data-n="4">Talk about household chores and an evening wind-down routine.</li>'+
+          '<li data-n="5">Read and understand a real French magazine passage about four family members\' daily habits.</li>'+
+        '</ul>'+
+        '</div>'+
+        '<div class="callout" style="margin-top:22px;">Click any French word or sentence throughout this lesson to hear it spoken aloud.</div>';
+    }
+  });
+
+  // 1 — Moments de la journée
+  S.push({
+    tag:'Stop 1', minutes:4, kicker:'LES MOMENTS DE LA JOURNÉE',
+    title:'🕐 The moments of the day — and how to greet them',
+    lede:'French has a specific greeting for almost every part of the day. Learn the five moments first, then the phrase that goes with each one.',
+    body:function(){
+      return '<div class="section-block"><div class="section-label">The five moments</div><div class="num-row">'+
+        '<div class="num-tile" onclick="speak(\'le matin\')"><div style="font-size:22px;">☀️</div><div class="word">le matin</div><div class="play-hint">morning &middot; '+speakerSvg()+'</div></div>'+
+        '<div class="num-tile" onclick="speak(\'le midi\')"><div style="font-size:22px;">🕛</div><div class="word">le midi</div><div class="play-hint">noon &middot; '+speakerSvg()+'</div></div>'+
+        '<div class="num-tile" onclick="speak(\'l\\\'après-midi\')"><div style="font-size:22px;">🌤️</div><div class="word">l\'après-midi</div><div class="play-hint">afternoon &middot; '+speakerSvg()+'</div></div>'+
+        '<div class="num-tile" onclick="speak(\'le soir\')"><div style="font-size:22px;">🌆</div><div class="word">le soir</div><div class="play-hint">evening &middot; '+speakerSvg()+'</div></div>'+
+        '<div class="num-tile" onclick="speak(\'la nuit\')"><div style="font-size:22px;">🌙</div><div class="word">la nuit</div><div class="play-hint">night &middot; '+speakerSvg()+'</div></div>'+
+        '</div></div>'+
+        '<div class="section-block"><div class="section-label">Greet each moment properly</div><div class="moment-grid">'+
+        momentCard('Le matin','Bonjour !','morning — "hello / good morning"','👋☀️')+
+        momentCard('Le midi / L\'après-midi','Bonne journée !','noon/afternoon — "have a good day"','🌤️')+
+        momentCard('Le soir','Bonsoir !','evening — "good evening"','🌆')+
+        momentCard('Le soir (leaving)','Bonne soirée !','evening — "have a good evening"','🌇')+
+        momentCard('La nuit','Bonne nuit !','night — "good night"','🌙')+
+        '</div></div>'+
+        '<div class="callout">💡 <strong>Notice:</strong> «Bonjour» is a greeting you say when arriving; «Bonne journée / Bonne soirée / Bonne nuit» are wishes you say when leaving or parting.</div>'+
+        '<div class="section-block">'+
+        quiz('What do you say to someone leaving for the night, right before they sleep?', ['Bonjour !','Bonsoir !','Bonne nuit !'], 2, {audio:'Bonne nuit !'})+
+        quiz('Which moment is «l\'après-midi»?', ['morning','afternoon','night'], 1, {audio:'l\'après-midi'})+
+        '</div>';
+    }
+  });
+
+  // 2 — Le début de la journée
+  S.push({
+    tag:'Stop 2', minutes:6, kicker:'LE DÉBUT DE LA JOURNÉE',
+    title:'⏰ Starting the day — reflexive verbs',
+    lede:'Most morning-routine verbs in French are "reflexive": the action bounces back onto the subject, so they carry an extra little pronoun («me», «te», «se»&hellip;) right before the verb. Click each pair below — the infinitive first, then the "I" form.',
+    body:function(){
+      return '<div class="section-block two-col">'+
+          '<div>'+vocabList([
+            ['se réveiller — je me réveille','to wake up — I wake up','⏰'],
+            ['se lever — je me lève','to get up — I get up','🧍'],
+            ['se doucher — je me douche','to shower — I shower','🚿'],
+            ['se préparer — je me prépare','to get ready — I get ready','✨']
+          ])+'</div>'+
+          '<div>'+vocabList([
+            ['s\'habiller — je m\'habille','to get dressed — I get dressed','👕'],
+            ['se maquiller — je me maquille','to put on makeup — I put on makeup','💄'],
+            ['se brosser les dents — je me brosse les dents','to brush teeth — I brush my teeth','🪥'],
+            ['préparer le petit-déjeuner — je prépare le petit-déjeuner','to make breakfast — I make breakfast (not reflexive!)','☕']
+          ])+'</div>'+
+        '</div>'+
+        '<div class="section-block">'+vocabList([
+          ['aller à l\'école — je vais à l\'école','to go to school — I go to school','🎒'],
+          ['aller au travail — je vais au travail','to go to work — I go to work','💼']
+        ])+'</div>'+
+        '<div class="callout">⚠️ <strong>Careful:</strong> «préparer le petit-déjeuner» (making breakfast) and «aller à l\'école/au travail» (going to school/work) are ordinary, non-reflexive verbs — the action lands on something else, not on yourself.</div>'+
+        '<div class="section-block">'+
+        quiz('How do you say "I wake up"?', ['Je réveille','Je me réveille','Je me lève'], 1, {audio:'Je me réveille'})+
+        quiz('Which verb means "to get dressed"?', ["s'habiller","se maquiller","se doucher"], 0, {audio:"s'habille"})+
+        '</div>';
+    }
+  });
+
+  // 3 — Grammar: verbes pronominaux
+  S.push({
+    tag:'Stop 3', minutes:6, kicker:'GRAMMAIRE',
+    title:'📖 Reflexive verbs, fully conjugated',
+    lede:'Reflexive ("pronominal") verbs need a reflexive pronoun that matches the subject at every single conjugation, not just in "I". Here\'s «se doucher» (to shower) conjugated all the way through — click any row to hear it.',
+    body:function(){
+      return '<div class="section-block"><div class="section-label">se doucher — to shower</div>'+
+        conjTable([
+          ['je','me douche'],
+          ['tu','te douches'],
+          ['il / elle / on','se douche'],
+          ['nous','nous douchons'],
+          ['vous','vous douchez'],
+          ['ils / elles','se douchent']
+        ])+
+        '</div>'+
+        '<div class="callout">💡 <strong>Pattern:</strong> me &rarr; te &rarr; se &rarr; nous &rarr; vous &rarr; se. The reflexive pronoun always sits right before the conjugated verb.</div>'+
+        '<div class="section-block"><div class="section-label">Two verb families that look similar but aren\'t</div>'+
+        '<div class="two-col">'+
+          '<div><div style="font-weight:600; margin-bottom:6px; color:var(--coral-deep);">Regular -er reflexive</div>'+
+          vocabList([['se réveiller — je me réveille','wake up','⏰'],['se lever — je me lève','get up (e&rarr;è stem change)','🧍']])+
+          '</div>'+
+          '<div><div style="font-weight:600; margin-bottom:6px; color:var(--teal);">Irregular, non-reflexive</div>'+
+          vocabList([['sortir — je sors','to go out','🚪'],['venir — je viens','to come','🚶'],['arriver — j\'arrive','to arrive (regular -er, but not reflexive)','🏠']])+
+          '</div>'+
+        '</div></div>'+
+        '<div class="callout">These non-reflexive verbs describe your daily comings and goings — «J\'arrive chez moi» (I arrive home), «Je sors» (I go out) — but since the action isn\'t done <em>to yourself</em>, they don\'t take «me/te/se».</div>'+
+        '<div class="section-block">'+
+        quiz('How do you say "you (tu) shower"?', ['tu douches','tu te douches','tu se douche'], 1, {audio:'tu te douches'})+
+        quiz('Which pronoun goes with «nous»?', ['nous se','nous nous','nous vous'], 1, {audio:'nous nous douchons'})+
+        quiz('Which of these is NOT reflexive?', ['se lever','arriver','se doucher'], 1, {audio:'arriver'})+
+        '</div>';
+    }
+  });
+
+  // 4 — Les tâches ménagères
+  S.push({
+    tag:'Stop 4', minutes:4, kicker:'LES TÂCHES MÉNAGÈRES',
+    title:'🧹 Household chores',
+    lede:'A block of the day that isn\'t about you waking up or winding down, but keeping the house running.',
+    body:function(){
+      return '<div class="section-block two-col">'+
+          '<div>'+vocabList([
+            ['faire les devoirs','to do homework','📝'],
+            ['faire le ménage','to do the housekeeping','🧼'],
+            ['faire la vaisselle','to wash the dishes','🍽️'],
+            ['ranger','to organize / tidy up','🗄️']
+          ])+'</div>'+
+          '<div>'+vocabList([
+            ['nettoyer','to clean','🧽'],
+            ['balayer','to sweep','🧹'],
+            ['passer la serpillière','to mop','🪣'],
+            ['laver les vêtements','to wash the clothes','🧺']
+          ])+'</div>'+
+        '</div>'+
+        '<div class="callout">Notice the pattern with «faire» (to do/make): faire les devoirs, faire le ménage, faire la vaisselle — many chores in French are built with «faire» plus a noun.</div>'+
+        '<div class="section-block">'+
+        quiz('Which verb means "to sweep"?', ['balayer','nettoyer','ranger'], 0, {audio:'balayer'})+
+        quiz('How do you say "to wash the dishes"?', ['faire le ménage','faire la vaisselle','laver les vêtements'], 1, {audio:'faire la vaisselle'})+
+        '</div>';
+    }
+  });
+
+  // 5 — La fin de la journée
+  S.push({
+    tag:'Stop 5', minutes:3, kicker:'LA FIN DE LA JOURNÉE',
+    title:'🌙 Winding down',
+    lede:'Three short reflexive verbs take you from the end of the evening to sleep.',
+    body:function(){
+      return '<div class="section-block">'+vocabList([
+          ['se coucher — je me couche','to go to bed — I go to bed','🛏️'],
+          ['s\'endormir — je m\'endors','to fall asleep — I fall asleep','😴'],
+          ['dormir — je dors','to sleep — I sleep (not reflexive!)','💤']
+        ])+'</div>'+
+        '<div class="callout"><strong>Sequence:</strong> se coucher (get into bed) &rarr; s\'endormir (drift off) &rarr; dormir (be asleep). Only the first two are reflexive — once you\'re actually asleep, «dormir» just describes a state.</div>'+
+        '<div class="section-block">'+
+        quiz('Put these in order: which happens first?', ["s'endormir","se coucher","dormir"], 1, {audio:'se coucher'})+
+        '</div>';
+    }
+  });
+
+  // 6 — Lecture
+  S.push({
+    tag:'Stop 6', minutes:7, kicker:'LECTURE · PARLER DE SES HABITUDES',
+    title:'📰 "Les (multi)médias rythment votre journée !"',
+    lede:'A real short magazine piece (TVMag) about how the Gontrand family spends its day around screens. Read each testimony — or click Listen to hear it — before moving on to the comprehension check.',
+    body:function(){
+      return '<div class="intro-text">📡 Le multimédia occupe une place de plus en plus importante dans notre vie. 92&nbsp;% des internautes en France se connectent chaque jour, mais la télévision et la radio restent des médias privilégiés. Le témoignage de la famille Gontrand illustre cette réalité.</div>'+
+        testimony('N','Nicolas Gontrand','le père, 45 ans',
+          'À la maison, tous les médias sont importants&nbsp;: la télé, la radio, Internet&hellip; Cela dépend des personnes et des moments de la journée. Le matin, j\'allume la radio quand je me réveille, à 7&nbsp;heures. Ensuite, ma femme Nathalie et moi, nous nous préparons tranquillement et notre fils de 11&nbsp;ans prend le petit-déjeuner devant la télé, jusqu\'à 8&nbsp;heures. Le soir, il regarde un peu la télé ou joue sur l\'ordinateur mais il se couche tôt. Avec ma femme, nous regardons toujours le 20&nbsp;heures. Ensuite, quand il y a un bon film, nous regardons la télé ensemble. Mais quand il y a un match, ma femme préfère aller sur Internet&nbsp;: elle regarde ses mails, elle surfe, elle fait des achats ou des réservations en ligne&hellip; Et moi, je reste devant la télé, je suis un fan de foot&nbsp;! Notre grande fille, elle, passe la soirée dans sa chambre, devant son ordinateur.',
+          '📺⚽')+
+        testimony('Mo','Morgane','la fille, 20 ans',
+          'Je ne regarde pas la télé&nbsp;! Le soir, j\'allume l\'ordi quand je rentre&nbsp;: je me connecte à Facebook, je regarde des vidéos, j\'écoute de la musique sur Internet&hellip; Je me couche tard, vers une heure du matin.',
+          '💻🎧')+
+        testimony('Ma','Maël','le fils, 11 ans',
+          'Le matin, je regarde les clips sur M6 avant l\'école. Après l\'école, je m\'amuse jusqu\'à 6&nbsp;heures&nbsp;: je regarde des dessins animés et des séries à la télé ou je vais sur Internet et je joue en ligne. Après, je fais mes devoirs.',
+          '📺🎮')+
+        testimony('C','Colette','la grand-mère, 70 ans',
+          'Je me réveille vers 6&nbsp;h&nbsp;30 et j\'allume la télé. D\'abord, je regarde les informations, puis il y a mon émission de cuisine préférée. L\'après-midi, je regarde mon feuilleton à 14&nbsp;heures, je me repose ou je vais sur Internet pour écrire à ma famille et mes amis qui habitent loin, je m\'informe&hellip; Le soir, je regarde les actualités puis je choisis un bon film ou un documentaire intéressant. Mais souvent, je m\'endors devant l\'écran&nbsp;!',
+          '📺🍳')+
+        '<div class="callout" style="margin-top:6px;"><strong>Exercice 12 (source text):</strong> Relisez les témoignages de la famille Gontrand. 1. Identifiez les différentes utilisations d\'Internet pour chaque personne. 2. Identifiez les autres activités quotidiennes de chaque personne et les moments cités.</div>';
+    }
+  });
+
+  // 7 — Exercice de compréhension
+  S.push({
+    tag:'Stop 7', minutes:6, kicker:'EXERCICE DE COMPRÉHENSION',
+    title:'✅ Check your understanding of the reading',
+    lede:'Based on the four testimonies you just read — go back and re-read a paragraph if you need to.',
+    body:function(){
+      return '<div class="section-block">'+
+        quiz('At what time does Nicolas turn on the radio in the morning?', ['6 heures','7 heures','8 heures'], 1)+
+        quiz('What does Morgane do on the internet in the evening?', ['She checks her email and makes online purchases','She logs onto Facebook, watches videos, and listens to music','She reads the news and writes to family'], 1)+
+        quiz('What does Maël watch on TV before school?', ['Les informations','Son émission de cuisine','Les clips sur M6'], 2)+
+        quiz('Who uses the internet to make online purchases and reservations?', ['Nathalie (Nicolas\'s wife)','Morgane','Colette'], 0)+
+        quiz('What time does Colette watch her soap opera («son feuilleton») in the afternoon?', ['12 heures','14 heures','20 heures'], 1)+
+        quiz('Who goes to bed around one in the morning?', ['Maël','Morgane','Colette'], 1)+
+        quiz('What do Nicolas and his wife always watch together in the evening?', ['Le 20 heures (the evening news)','Un match de foot','Des dessins animés'], 0)+
+        quiz('What often happens to Colette in the evening, in front of the screen?', ['Elle sort avec ses amis','Elle s\'endort devant l\'écran','Elle fait le ménage'], 1)+
+        '</div>';
+    }
+  });
+
+  // 8 — wrap up
+  S.push({
+    tag:'Stop 8', minutes:2, kicker:'WRAP-UP',
+    title:'🎉 One more day, start to finish',
+    lede:'A final mixed round covering the whole day.',
+    body:function(){
+      return '<div class="section-block">'+
+        quiz('How do you say "I get up"?', ['Je me lève','Je me couche','Je me lave'], 0, {audio:'Je me lève'})+
+        quiz('Which chore phrase means "to tidy up"?', ['ranger','balayer','laver'], 0, {audio:'ranger'})+
+        quiz('Which greeting fits «la nuit»?', ['Bonjour !','Bonne nuit !','Bonne journée !'], 1, {audio:'Bonne nuit !'})+
+        '</div>'+
+        '<div class="section-block" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">'+
+        '<div class="final-score"><span class="num" id="finalScoreNum">0/0</span><span style="color:var(--ink-soft); font-size:13px;">practice questions correct today</span></div>'+
+        '</div>'+
+        '<div class="section-block callout" style="border-color:var(--coral); border-left-color:var(--coral);">'+
+        '<strong>🎯 Keep practicing</strong><br>'+
+        'Try narrating your own real morning out loud in French, using «je me réveille&hellip; je me lève&hellip; je me douche&hellip;» — the reflexive pronoun pattern (me / te / se / nous / vous / se) is the one thing worth over-practicing before next class.'+
+        '</div>';
+    }
+  });
+
+  /* ---------------- Render ---------------- */
+  var current = 0;
+  var rail = document.getElementById('rail');
+  var stage = document.getElementById('stage');
+  var cum = [];
+  (function(){ var t=0; S.forEach(function(s){ cum.push(t); t+=s.minutes; }); })();
+
+  function mm(n){ return (n<10?'0':'')+n+':00'; }
+
+  function renderRail(){
+    rail.innerHTML = S.map(function(s,i){
+      var cls = 'rail-item' + (i===current?' active':'') + (i<current?' done':'');
+      return '<button class="'+cls+'" onclick="goTo('+i+')">'+
+        '<span class="rail-num">'+(i+1)+'</span>'+
+        '<span class="rail-text"><span class="rail-title">'+s.kicker.replace(/«|»/g,'')+'</span>'+
+        '<span class="rail-time">'+mm(cum[i])+'&ndash;'+mm(cum[i]+s.minutes)+'</span></span>'+
+        '</button>';
+    }).join('');
+  }
+
+  function renderStage(){
+    var s = S[current];
+    stage.innerHTML =
+      '<div class="kicker">'+s.tag.toUpperCase()+' &nbsp;·&nbsp; '+s.kicker+'<span class="badge-time">'+s.minutes+' min</span></div>'+
+      '<h2>'+s.title+'</h2>'+
+      '<p class="stage-lede">'+s.lede+'</p>'+
+      s.body()+
+      '<div class="stage-nav">'+
+        '<button class="nav-btn ghost" onclick="goTo('+(current-1)+')" '+(current===0?'disabled':'')+'>&larr; Back</button>'+
+        '<span class="score-pill" id="scorePill">Practice score: '+score.correct+'/'+score.answered+'</span>'+
+        (current===S.length-1 ?
+          '<button class="nav-btn" onclick="goTo(0)">Restart lesson &#8635;</button>' :
+          '<button class="nav-btn" onclick="goTo('+(current+1)+')">Next stop &rarr;</button>')+
+      '</div>';
+    var fs = document.getElementById('finalScoreNum');
+    if(fs) fs.textContent = score.correct+'/'+score.answered;
+    var fillEl = document.getElementById('progressFill');
+    if(fillEl) fillEl.style.width = (((current+1)/S.length)*100)+'%';
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  window.goTo = function(i){
+    if(i<0 || i>=S.length) return;
+    current = i;
+    renderRail();
+    renderStage();
+  };
+
+  renderRail();
+  renderStage();
+
+})();
+</script>
+
+</body></html>
