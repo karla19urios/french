@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>La Nourriture</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+  :root{
+    --bg:#f4f5f7;
+    --paper:#ffffff;
+    --paper-2:#f4f5f7;
+    --ink:#1a1a2e;
+    --ink-soft:#6b7280;
+    --line:#e5e7eb;
+    --bleu:#002395;
+    --rouge:#ED2939;
+    --accent:#002395;
+    --accent-ink:#002395;
+    --green:#3f8f6d;
+    --green-bg:#e7f3ed;
+    --red:#ED2939;
+    --red-bg:#fdecec;
+    --shadow: 0 1px 2px rgba(26,26,46,.06), 0 8px 24px -12px rgba(26,26,46,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#12141c;
+      --paper:#1b1e2b;
+      --paper-2:#20232f;
+      --ink:#f1f2f6;
+      --ink-soft:#9aa0b4;
+      --line:#2a2e40;
+      --bleu:#002395;
+      --rouge:#ED2939;
+      --accent:#5b7fe0;
+      --accent-ink:#7c9df2;
+      --green:#63c299;
+      --green-bg:#173226;
+      --red:#ED2939;
+      --red-bg:#3a1418;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#12141c;
+    --paper:#1b1e2b;
+    --paper-2:#20232f;
+    --ink:#f1f2f6;
+    --ink-soft:#9aa0b4;
+    --line:#2a2e40;
+    --bleu:#002395;
+    --rouge:#ED2939;
+    --accent:#5b7fe0;
+    --accent-ink:#7c9df2;
+    --green:#63c299;
+    --green-bg:#173226;
+    --red:#ED2939;
+    --red-bg:#3a1418;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.6);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'Work Sans', ui-sans-serif, system-ui, sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:0 20px 90px;}
+  h1,h2,h3{font-family:'Fraunces', Georgia, serif; text-wrap:balance; margin:0; color:var(--ink);}
+  .eyebrow{font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-ink); font-weight:600;}
+  code, .mono{font-family:'IBM Plex Mono', monospace;}
+
+  /* ---- Tricolor stripe ---- */
+  .stripe{height:8px; background:linear-gradient(90deg, var(--bleu) 33%, #ffffff 33%, #ffffff 66%, var(--rouge) 66%);}
+
+  /* ---- Hero ---- */
+  .hero{
+    background: linear-gradient(180deg, var(--bleu) 0%, #000f42 100%);
+    color:#f3f5ff; padding:40px 20px 40px;
+  }
+  .hero-inner{max-width:900px; margin:0 auto;}
+  .hero h1{font-size:clamp(30px,4.4vw,44px); font-weight:600; color:#ffffff; letter-spacing:-.01em;}
+  .hero-meta{display:flex; gap:22px; margin-top:22px; flex-wrap:wrap;}
+  .hero-meta div{font-family:'IBM Plex Mono',monospace; font-size:12px; color:#a9b6e8;}
+  .hero-meta b{display:block; color:#f3f5ff; font-size:14px; font-family:'Work Sans',sans-serif; font-weight:600; margin-top:2px;}
+
+  section{margin-top:46px;}
+  .wrap > section:first-of-type{margin-top:36px;}
+  .sec-head{display:flex; align-items:baseline; gap:12px; margin-bottom:16px;}
+  .sec-num{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent-ink); font-weight:600;}
+  section h2{font-size:25px; font-weight:600;}
+  .sec-intro{color:var(--ink-soft); font-size:15px; max-width:66ch; margin-top:6px;}
+
+  .card{background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:22px; box-shadow:var(--shadow);}
+  .card + .card{margin-top:14px;}
+
+  table.poss{width:100%; border-collapse:collapse; margin-top:12px; font-size:14.5px;}
+  table.poss th{text-align:left; font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); padding:6px 10px; border-bottom:2px solid var(--line);}
+  table.poss td{padding:8px 10px; border-bottom:1px solid var(--line);}
+  table.poss tr:last-child td{border-bottom:none;}
+  table.poss .pron{color:var(--ink-soft); width:150px;}
+  table.poss .pos{font-weight:700; color:var(--accent-ink);}
+
+  .instr-box{border-left:3px solid var(--accent); background:var(--paper-2); border-radius:0 10px 10px 0; padding:14px 18px; margin:16px 0; font-size:14.5px;}
+  .instr-box b{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-ink); display:block; margin-bottom:6px;}
+  .instr-box s{color:var(--ink-soft);}
+
+  .note-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px;}
+  @media (max-width:640px){.note-grid{grid-template-columns:1fr;}}
+  .note{background:var(--paper-2); border-radius:10px; padding:14px 16px; font-size:13.8px;}
+  .note b{display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--accent-ink); margin-bottom:6px;}
+  .note .fr{font-style:italic; color:var(--ink); display:block; margin-top:4px;}
+
+  /* vocab reference */
+  .vocab-cols{display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-top:6px;}
+  @media (max-width:720px){.vocab-cols{grid-template-columns:1fr;}}
+  .vocab-col-h{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--accent-ink); font-weight:600; margin-bottom:8px; padding-bottom:6px; border-bottom:2px solid var(--line);}
+  .vocab-item{padding:4px 0; font-size:13.8px; border-bottom:1px dashed var(--line);}
+  .vocab-item:last-child{border-bottom:none;}
+  .vocab-item .g{color:var(--ink-soft); font-size:12px; margin-left:3px;}
+
+  /* exercises */
+  .ex-block{margin-top:16px;}
+  .ex-tag{
+    display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%;
+    background:var(--bleu); color:#ffffff; font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:13px;
+    margin-right:8px; flex:0 0 auto;
+  }
+  .ex-title{font-weight:600; font-size:15.5px; display:flex; align-items:center; margin-bottom:4px;}
+  .ex-sub{color:var(--ink-soft); font-size:13.3px; margin:2px 0 14px 34px;}
+  .ex-part{font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:600; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.06em; margin:16px 0 6px;}
+  .ex-part:first-of-type{margin-top:4px;}
+  .prod-q{font-weight:600; font-size:14.5px; color:var(--ink); margin:16px 0 6px;}
+  .prod-q:first-of-type{margin-top:6px;}
+
+  .fill-line{
+    display:flex; align-items:baseline; flex-wrap:wrap; gap:6px 4px; padding:9px 0; font-size:15px; border-bottom:1px dashed var(--line);
+  }
+  .fill-line:last-child{border-bottom:none;}
+  .fill-line .qn{font-family:'IBM Plex Mono',monospace; color:var(--ink-soft); font-size:12.5px; width:16px;}
+  .blank{
+    padding:5px 8px; border-radius:6px; border:1px solid var(--line); background:var(--paper-2);
+    color:var(--ink); font-family:'Work Sans',sans-serif; font-size:14.5px;
+  }
+  .blank.w-full{width:100%; margin-top:4px;}
+  .blank.w-med{width:220px;}
+  .blank.w-sm{width:80px; text-align:center;}
+  .blank:focus{outline:2px solid var(--accent); outline-offset:1px;}
+  .blank.ok{border-color:var(--green); background:var(--green-bg);}
+  .blank.no{border-color:var(--red); background:var(--red-bg);}
+  .given{font-weight:600; color:var(--accent-ink);}
+
+  .hint-chip{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:600; color:var(--accent-ink); background:var(--paper-2); border:1px solid var(--line); border-radius:6px; padding:2px 7px; margin-right:6px; white-space:nowrap;}
+
+  .btn{font-family:'Work Sans',sans-serif; font-weight:600; font-size:14px; padding:10px 18px; border-radius:9px; border:none; cursor:pointer; background:var(--bleu); color:#ffffff;}
+  .btn:hover{background:var(--rouge);}
+  .btn.secondary{background:transparent; color:var(--ink); border:1px solid var(--line);}
+  .btn.secondary:hover{border-color:var(--accent); color:var(--accent-ink);}
+  .btn-row{display:flex; gap:10px; margin-top:16px; flex-wrap:wrap;}
+
+  /* phrase bank / production */
+  .phrase-bank{display:flex; gap:8px; flex-wrap:wrap; margin:12px 0;}
+  .phrase{font-family:'IBM Plex Mono',monospace; font-size:12.5px; background:var(--paper-2); border:1px solid var(--line); border-radius:20px; padding:6px 12px; cursor:pointer;}
+  .phrase:hover{border-color:var(--accent);}
+  .phrase .g{color:var(--ink-soft); margin-left:3px;}
+  textarea, input[type="text"].free{width:100%; min-height:44px; border-radius:10px; border:1px solid var(--line); background:var(--paper-2); color:var(--ink); font-family:'Work Sans',sans-serif; font-size:14.5px; padding:11px 13px; resize:vertical;}
+  textarea:focus, input[type="text"].free:focus{outline:2px solid var(--accent); outline-offset:1px;}
+  .model-answer{display:none; margin-top:10px; background:var(--green-bg); border-radius:10px; padding:13px 16px; font-size:14px;}
+  .model-answer.show{display:block;}
+  .model-answer b{display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--green); margin-bottom:7px;}
+  .model-answer p{margin:3px 0;}
+
+  /* select drill */
+  .sel-line{display:flex; align-items:baseline; flex-wrap:wrap; gap:6px; font-size:15px; padding:8px 0; border-bottom:1px dashed var(--line);}
+  .sel-line:last-child{border-bottom:none;}
+  select.blank{appearance:auto; cursor:pointer;}
+
+  .score-banner{margin-top:16px; padding:14px 18px; border-radius:12px; background:var(--paper-2); border:1px solid var(--line); display:none; align-items:center; gap:14px;}
+  .score-banner.show{display:flex;}
+  .score-num{font-family:'Fraunces',serif; font-size:30px; font-weight:600; color:var(--accent-ink);}
+
+  footer{max-width:900px; margin:60px auto 0; padding:20px; text-align:center; color:var(--ink-soft); font-size:12.5px; font-family:'IBM Plex Mono',monospace;}
+</style>
+
+<div class="stripe"></div>
+<div class="hero">
+  <div class="hero-inner">
+    <h1>La Nourriture</h1>
+    <div class="hero-meta">
+      <div>Language<b>French · A1</b></div>
+      <div>Focus<b>Partitive articles &amp; food vocabulary</b></div>
+      <div>Time<b>~20 minutes</b></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section id="sec-intro">
+    <div class="sec-head"><span class="sec-num">01</span><h2>How this lesson works</h2></div>
+    <p class="sec-intro">To talk about food in French you almost always need a <b style="color:var(--ink)">partitive article</b> — <em>du, de la, de l', des</em> — meaning "some." First the theory, then the vocabulary from your slides, then practice using them together.</p>
+  </section>
+
+  <!-- THEORY: PARTITIVE ARTICLES -->
+  <section id="sec-partitif">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Parler des quantités</h2></div>
+    <div class="card">
+      <p class="sec-intro" style="margin-top:0;">To say "some" of something — an unspecified amount — French uses <b style="color:var(--ink)">de</b> combined with the article, matching the noun's gender.</p>
+      <table class="poss">
+        <tr><th></th><th>Article</th><th>Exemple</th></tr>
+        <tr><td class="pron">Masculin (de + le)</td><td class="pos">du</td><td>Je mange <b style="color:var(--ink)">du</b> riz.</td></tr>
+        <tr><td class="pron">Féminin (de + la)</td><td class="pos">de la</td><td>Je mange <b style="color:var(--ink)">de la</b> confiture.</td></tr>
+        <tr><td class="pron">Devant une voyelle</td><td class="pos">de l'</td><td>Je bois <b style="color:var(--ink)">de l'</b>eau.</td></tr>
+        <tr><td class="pron">Pluriel</td><td class="pos">des</td><td>Je mange <b style="color:var(--ink)">des</b> pâtes.</td></tr>
+      </table>
+      <p class="sec-intro" style="margin-top:10px;">Same idea as <span class="mono">un/une/des</span> for countable things — but for food and drink, you usually can't count it, so <span class="mono">du/de la/de l'</span> mark "some of it" instead.</p>
+    </div>
+  </section>
+
+  <!-- THEORY: NEGATION -->
+  <section id="sec-neg">
+    <div class="sec-head"><span class="sec-num">03</span><h2>La négation</h2></div>
+    <div class="card">
+      <p class="sec-intro" style="margin-top:0;">In a negative sentence, <b style="color:var(--ink)">every</b> partitive article — du, de la, de l', des — collapses to a plain <b style="color:var(--ink)">de</b> (or <b style="color:var(--ink)">d'</b> before a vowel).</p>
+      <table class="poss">
+        <tr><th>Affirmative</th><th>Négative</th><th>Exemple</th></tr>
+        <tr><td class="pos">du</td><td class="pos">→ de</td><td>Je ne mange pas <b style="color:var(--ink)">de</b> riz.</td></tr>
+        <tr><td class="pos">de la</td><td class="pos">→ de</td><td>Je ne mange pas <b style="color:var(--ink)">de</b> confiture.</td></tr>
+        <tr><td class="pos">de l'</td><td class="pos">→ d'</td><td>Je ne bois pas <b style="color:var(--ink)">d'</b>eau.</td></tr>
+        <tr><td class="pos">des</td><td class="pos">→ de</td><td>Je ne mange pas <b style="color:var(--ink)">de</b> pâtes.</td></tr>
+      </table>
+      <div class="instr-box">
+        <b>Why</b>
+        You're no longer talking about "some" of a specific amount — you're saying there's <em>none at all</em>, so the article that marked the quantity disappears.
+      </div>
+    </div>
+  </section>
+
+  <!-- VOCAB REFERENCE -->
+  <section id="sec-vocab">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Vocabulaire</h2></div>
+    <div class="card">
+      <div class="vocab-cols">
+        <div>
+          <div class="vocab-col-h">Les légumes</div>
+          <div class="vocab-item">🥕 la carotte <span class="g">(f)</span></div>
+          <div class="vocab-item">🥒 le concombre <span class="g">(m)</span></div>
+          <div class="vocab-item">🧅 l'oignon <span class="g">(m)</span></div>
+          <div class="vocab-item">🍅 la tomate <span class="g">(f)</span></div>
+          <div class="vocab-item">🥦 le brocoli <span class="g">(m)</span></div>
+          <div class="vocab-item">🥬 la laitue <span class="g">(f)</span></div>
+          <div class="vocab-item">🥔 la pomme de terre <span class="g">(f)</span></div>
+          <div class="vocab-item">🌿 le céleri <span class="g">(m)</span></div>
+          <div class="vocab-item">🌽 le maïs <span class="g">(m)</span></div>
+          <div class="vocab-item">🌶️ le piment <span class="g">(m)</span></div>
+          <div class="vocab-item">🫛 les petits pois <span class="g">(m, pl)</span></div>
+          <div class="vocab-item">🍄 le champignon <span class="g">(m)</span></div>
+        </div>
+        <div>
+          <div class="vocab-col-h">Les fruits</div>
+          <div class="vocab-item">🍎 la pomme <span class="g">(f)</span></div>
+          <div class="vocab-item">🍌 la banane <span class="g">(f)</span></div>
+          <div class="vocab-item">🫐 la mûre <span class="g">(f)</span></div>
+          <div class="vocab-item">🍒 la cerise <span class="g">(f)</span></div>
+          <div class="vocab-item">🍑 la pêche <span class="g">(f)</span></div>
+          <div class="vocab-item">🥑 l'avocat <span class="g">(m)</span></div>
+          <div class="vocab-item">🍇 le raisin <span class="g">(m)</span></div>
+          <div class="vocab-item">🍋 le citron <span class="g">(m)</span></div>
+          <div class="vocab-item">🥭 la mangue <span class="g">(f)</span></div>
+          <div class="vocab-item">🍈 le melon <span class="g">(m)</span></div>
+          <div class="vocab-item">🍐 la poire <span class="g">(f)</span></div>
+          <div class="vocab-item">🍍 l'ananas <span class="g">(m)</span></div>
+          <div class="vocab-item">🟣 la prune <span class="g">(f)</span></div>
+          <div class="vocab-item">🍊 la mandarine <span class="g">(f)</span></div>
+          <div class="vocab-item">🍓 la fraise <span class="g">(f)</span></div>
+        </div>
+        <div>
+          <div class="vocab-col-h">La nourriture</div>
+          <div class="vocab-item">🥩 la viande <span class="g">(f)</span></div>
+          <div class="vocab-item">🍞 le pain <span class="g">(m)</span></div>
+          <div class="vocab-item">🥛 le lait <span class="g">(m)</span></div>
+          <div class="vocab-item">🧀 le fromage <span class="g">(m)</span></div>
+          <div class="vocab-item">🐟 le poisson <span class="g">(m)</span></div>
+          <div class="vocab-item">🍗 le poulet <span class="g">(m)</span></div>
+          <div class="vocab-item">🐄 le bœuf <span class="g">(m)</span></div>
+          <div class="vocab-item">🍚 le riz <span class="g">(m)</span></div>
+          <div class="vocab-item">🧈 le beurre <span class="g">(m)</span></div>
+          <div class="vocab-item">🍝 les pâtes <span class="g">(f, pl)</span></div>
+          <div class="vocab-item">🍰 le gâteau <span class="g">(m)</span></div>
+          <div class="vocab-item">🍦 la glace <span class="g">(f)</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRACTICE -->
+  <section id="sec-practice">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Practice</h2></div>
+    <p class="sec-intro">Your slides didn't include a separate exercise sheet, so these are built from the grammar and vocabulary above.</p>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">1</span>Du, de la, de l' ou des ?</div>
+      <div class="ex-sub">Pick the right partitive article for each word.</div>
+      <div id="ex1"></div>
+      <div class="btn-row" style="align-items:center;">
+        <button class="btn" data-check="ex1">Check my answers</button>
+        <button class="btn secondary" data-reveal="ex1">Show answers</button>
+        <button class="btn secondary" id="ex1-continue">Next page →</button>
+        <span id="ex1-page" class="hint-chip" style="margin-left:auto;">Page 1 of 2</span>
+      </div>
+      <div class="score-banner" id="ex1-score"><div class="score-num" id="ex1-score-num">0/8</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">2</span>Mettez à la forme négative.</div>
+      <div class="ex-sub"><span class="given">Je mange du riz. → Je ne mange pas de riz.</span></div>
+      <div id="ex2"></div>
+      <div class="btn-row"><button class="btn" data-check="ex2">Check my answers</button><button class="btn secondary" data-reveal="ex2">Show answers</button></div>
+      <div class="score-banner" id="ex2-score"><div class="score-num" id="ex2-score-num">0/8</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">3</span>Qu'est-ce que vous mangez et buvez ?</div>
+      <div class="ex-sub">Open practice — click a word to insert it into whichever box you're writing in, then give it the right partitive article.</div>
+      <div class="phrase-bank" id="bank3"></div>
+
+      <div class="prod-q">Qu'est-ce que vous mangez et buvez pour le petit-déjeuner ?</div>
+      <textarea id="produce3-pdj" placeholder="Je mange… / Je bois…"></textarea>
+
+      <div class="prod-q">Qu'est-ce que vous mangez et buvez pour le déjeuner ?</div>
+      <textarea id="produce3-dej" placeholder="Je mange… / Je bois…"></textarea>
+
+      <div class="prod-q">Qu'est-ce que vous mangez et buvez pour le dîner ?</div>
+      <textarea id="produce3-din" placeholder="Je mange… / Je bois…"></textarea>
+
+      <div class="prod-q">Qu'est-ce que vous mangez et buvez pour l'apéritif ?</div>
+      <textarea id="produce3-ape" placeholder="Je mange… / Je bois…"></textarea>
+
+      <div class="btn-row"><button class="btn secondary" data-model="model3">Show the pattern</button></div>
+      <div class="model-answer" id="model3">
+        <b>Pattern — not the answer, just the shape</b>
+        <p><b>du</b> + nom masculin &nbsp;·&nbsp; <b>de la</b> + nom féminin &nbsp;·&nbsp; <b>de l'</b> + nom devant une voyelle &nbsp;·&nbsp; <b>des</b> + nom pluriel</p>
+        <p class="sec-intro" style="margin-top:6px;">In the negative, all four become <b style="color:var(--ink)">de</b>/<b style="color:var(--ink)">d'</b>.</p>
+      </div>
+    </div>
+
+  </section>
+
+</div>
+
+<footer>Adapted from the uploaded slides &middot; Leçon — La nourriture</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  function norm(s){
+    return (s||"").normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim()
+      .replace(/\s+/g,' ').replace(/['’]/g,"'").replace(/[?!.]+$/g,'').trim();
+  }
+  function matches(val, answers){
+    var v = norm(val);
+    if(!v) return false;
+    return answers.some(function(a){ return norm(a) === v; });
+  }
+
+  function buildFillExercise(containerId, items){
+    var container = document.getElementById(containerId);
+    items.forEach(function(item, i){
+      var line = document.createElement('div');
+      line.className = 'fill-line';
+      var html = '<span class="qn">'+(i+1)+'.</span> ';
+      html += item.hint ? '<span class="hint-chip">'+item.hint+'</span>' : '';
+      html += item.pre ? '<span>'+item.pre+'</span> ' : '';
+      if(item.given){
+        html += '<span class="given">'+item.given+'</span>';
+      } else {
+        html += '<input class="blank '+(item.width||'w-med')+'" type="text" autocomplete="off" data-idx="'+i+'">';
+      }
+      html += item.post ? ' <span>'+item.post+'</span>' : '';
+      line.innerHTML = html;
+      container.appendChild(line);
+    });
+
+    function allInputs(){ return container.querySelectorAll('input.blank'); }
+
+    document.querySelector('[data-check="'+containerId+'"]').addEventListener('click', function(){
+      var score = 0, total = 0;
+      allInputs().forEach(function(input){
+        var idx = +input.dataset.idx;
+        var item = items[idx];
+        total++;
+        input.classList.remove('ok','no');
+        if(matches(input.value, item.answers)){ input.classList.add('ok'); score++; }
+        else { input.classList.add('no'); }
+      });
+      var sb = document.getElementById(containerId+'-score');
+      if(sb){ sb.classList.add('show'); document.getElementById(containerId+'-score-num').textContent = score+'/'+total; }
+    });
+    document.querySelector('[data-reveal="'+containerId+'"]').addEventListener('click', function(){
+      allInputs().forEach(function(input){
+        var idx = +input.dataset.idx;
+        input.value = items[idx].answers[0];
+        input.classList.remove('no'); input.classList.add('ok');
+      });
+      var sb = document.getElementById(containerId+'-score');
+      var totalBlanks = allInputs().length;
+      if(sb){ sb.classList.add('show'); document.getElementById(containerId+'-score-num').textContent = totalBlanks+'/'+totalBlanks; }
+    });
+  }
+
+  /* ---------------- Ex1: du / de la / de l' / des ---------------- */
+  (function(){
+    var container = document.getElementById('ex1');
+    var items = [
+      {word:"riz", emoji:"🍚", answer:"du"},
+      {word:"viande", emoji:"🥩", answer:"de la"},
+      {word:"eau", emoji:"💧", answer:"de l'"},
+      {word:"pâtes", emoji:"🍝", answer:"des"},
+      {word:"pain", emoji:"🍞", answer:"du"},
+      {word:"tomate", emoji:"🍅", answer:"de la"},
+      {word:"oignon", emoji:"🧅", answer:"de l'"},
+      {word:"petits pois", emoji:"🫛", answer:"des"},
+      {word:"fromage", emoji:"🧀", answer:"du"},
+      {word:"glace", emoji:"🍦", answer:"de la"},
+      {word:"avocat", emoji:"🥑", answer:"de l'"},
+      {word:"carottes", emoji:"🥕", answer:"des"},
+      {word:"poulet", emoji:"🍗", answer:"du"},
+      {word:"mangue", emoji:"🥭", answer:"de la"},
+      {word:"ananas", emoji:"🍍", answer:"de l'"},
+      {word:"fraises", emoji:"🍓", answer:"des"}
+    ];
+
+    var BATCH = 8;
+    var totalPages = Math.ceil(items.length / BATCH);
+    var page = 0;
+    var continueBtn = document.getElementById('ex1-continue');
+    var pageLabel = document.getElementById('ex1-page');
+    var scoreBanner = document.getElementById('ex1-score');
+
+    function renderPage(p){
+      container.innerHTML = '';
+      var start = p * BATCH;
+      var end = Math.min(start + BATCH, items.length);
+      for(var i = start; i < end; i++){
+        var item = items[i];
+        var line = document.createElement('div');
+        line.className = 'sel-line';
+        line.innerHTML = '<span class="qn">'+(i+1)+'.</span> Je mange ' +
+          '<select class="blank" data-idx="'+i+'"><option value="">…</option>' +
+          '<option value="du">du</option><option value="de la">de la</option>' +
+          '<option value="de l\'">de l\'</option><option value="des">des</option></select> ' +
+          '<span style="font-size:18px;">'+item.emoji+'</span> '+item.word;
+        container.appendChild(line);
+      }
+      scoreBanner.classList.remove('show');
+      pageLabel.textContent = 'Page '+(p+1)+' of '+totalPages;
+      continueBtn.textContent = (p+1 < totalPages) ? 'Next page →' : 'Restart from page 1';
+    }
+
+    renderPage(page);
+
+    continueBtn.addEventListener('click', function(){
+      page = (page + 1) % totalPages;
+      renderPage(page);
+    });
+
+    document.querySelector('[data-check="ex1"]').addEventListener('click', function(){
+      var score = 0, total = 0;
+      container.querySelectorAll('select.blank').forEach(function(sel){
+        var idx = +sel.dataset.idx;
+        total++;
+        sel.classList.remove('ok','no');
+        if(sel.value === items[idx].answer){ sel.classList.add('ok'); score++; }
+        else { sel.classList.add('no'); }
+      });
+      scoreBanner.classList.add('show');
+      document.getElementById('ex1-score-num').textContent = score+'/'+total;
+    });
+    document.querySelector('[data-reveal="ex1"]').addEventListener('click', function(){
+      var total = 0;
+      container.querySelectorAll('select.blank').forEach(function(sel){
+        var idx = +sel.dataset.idx;
+        total++;
+        sel.value = items[idx].answer;
+        sel.classList.remove('no'); sel.classList.add('ok');
+      });
+      scoreBanner.classList.add('show');
+      document.getElementById('ex1-score-num').textContent = total+'/'+total;
+    });
+  })();
+
+  /* ---------------- Ex2: negation ---------------- */
+  buildFillExercise('ex2', [
+    {pre:"Je mange du pain. 🍞", answers:["je ne mange pas de pain"], width:"w-med"},
+    {pre:"Je mange de la viande. 🥩", answers:["je ne mange pas de viande"], width:"w-med"},
+    {pre:"Je bois de l'eau. 💧", answers:["je ne bois pas d'eau","je ne bois pas deau"], width:"w-med"},
+    {pre:"Je mange des pâtes. 🍝", answers:["je ne mange pas de pâtes","je ne mange pas de pates"], width:"w-med"},
+    {pre:"Je mange du fromage. 🧀", answers:["je ne mange pas de fromage"], width:"w-med"},
+    {pre:"Je mange de la glace. 🍦", answers:["je ne mange pas de glace"], width:"w-med"},
+    {pre:"Je mange de l'avocat. 🥑", answers:["je ne mange pas d'avocat","je ne mange pas davocat"], width:"w-med"},
+    {pre:"Je mange des carottes. 🥕", answers:["je ne mange pas de carottes"], width:"w-med"}
+  ]);
+
+  /* ---------------- Ex3 phrase bank ---------------- */
+  var words3 = [["pain","m","🍞"],["viande","f","🥩"],["eau","vowel","💧"],["fromage","m","🧀"],["pâtes","pl","🍝"],["carottes","pl","🥕"],["poulet","m","🍗"],["glace","f","🍦"],["riz","m","🍚"],["fraises","pl","🍓"]];
+  (function(){
+    var bank = document.getElementById('bank3');
+    var areas = [
+      document.getElementById('produce3-pdj'),
+      document.getElementById('produce3-dej'),
+      document.getElementById('produce3-din'),
+      document.getElementById('produce3-ape')
+    ];
+    var activeArea = areas[0];
+    areas.forEach(function(a){
+      a.addEventListener('focus', function(){ activeArea = a; });
+    });
+    words3.forEach(function(w){
+      var b = document.createElement('button');
+      b.className = 'phrase'; b.type = 'button';
+      b.innerHTML = w[2]+' '+w[0]+'<span class="g">('+w[1]+')</span>';
+      b.addEventListener('click', function(){
+        activeArea.value += (activeArea.value.length ? ' ' : '') + w[0];
+        activeArea.focus();
+      });
+      bank.appendChild(b);
+    });
+  })();
+
+  /* ---------------- Model-answer toggles ---------------- */
+  document.querySelectorAll('[data-model]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.getElementById(btn.dataset.model).classList.toggle('show');
+    });
+  });
+
+})();
+</script>
+
+</body></html>
