@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>L'Heure en Français</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700;800&family=Caveat:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root{
+    --bleu:#002395;
+    --blanc:#ffffff;
+    --rouge:#ED2939;
+    --teal:var(--bleu);
+    --bleu-text:var(--bleu);
+    --teal-soft:#e8ecf7;
+    --orange:var(--rouge);
+    --orange-soft:#fbe4e6;
+    --bg:#f4f5f7;
+    --page-bg:#dde1e6;
+    --card:#ffffff;
+    --ink:#1a1a2e;
+    --ink-soft:#6b7280;
+    --line:#e5e7eb;
+    --shadow:rgba(26,26,46,.10);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bleu-text:#7c9eff;
+      --teal-soft:#1c2340;
+      --orange-soft:#3a1d22;
+      --bg:#12141c;
+      --page-bg:#05060a;
+      --card:#1b1e2b;
+      --ink:#f1f2f6;
+      --ink-soft:#9aa0b4;
+      --line:#2a2e40;
+      --shadow:rgba(0,0,0,.45);
+    }
+  }
+  *{box-sizing:border-box;}
+  .page{
+    font-family:'Nunito Sans',sans-serif;
+    color:var(--ink);
+    background:var(--page-bg);
+    padding:24px 14px 50px;
+    line-height:1.55;
+  }
+  .flag-stripe{
+    max-width:880px; margin:0 auto; height:8px; border-radius:14px 14px 0 0; overflow:hidden;
+    background:linear-gradient(90deg, var(--bleu) 33%, var(--blanc) 33%, var(--blanc) 66%, var(--rouge) 66%);
+  }
+  .shell{
+    max-width:880px; margin:0 auto; background:var(--bg); border-radius:0 0 14px 14px;
+    box-shadow:0 24px 50px rgba(20,30,35,.3); padding:30px 30px 40px;
+  }
+  @media (max-width:560px){ .shell{padding:22px 16px 30px;} }
+
+  h1,h2,h3{font-family:'Baloo 2',cursive;margin:0;color:var(--ink);}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  .hand{font-family:'Caveat',cursive;}
+  p{margin:0 0 8px;}
+  em{font-style:italic;}
+  strong{font-weight:800;}
+
+  .hero{text-align:center; margin-bottom:22px;}
+  .hero h1{font-size:2.1rem;}
+  .hero .sub{color:var(--ink-soft); font-size:.98rem; max-width:580px; margin:8px auto 0;}
+
+  .note-banner{
+    background:var(--teal-soft); border:1px solid var(--teal); border-left:4px solid var(--teal);
+    border-radius:8px; padding:14px 18px; margin-bottom:24px;
+  }
+  .note-banner .kicker{color:var(--bleu-text); font-family:'Baloo 2'; font-weight:700; margin-bottom:4px; font-size:1rem;}
+  .note-banner .flag-note{font-size:.82rem; color:var(--ink-soft); font-style:italic; margin-top:8px; border-top:1px dashed var(--line); padding-top:8px;}
+
+  section{margin-bottom:34px;}
+  .section-head{display:flex; align-items:center; gap:12px; margin-bottom:12px;}
+  .num{
+    display:flex; align-items:center; justify-content:center;
+    width:30px;height:30px;border-radius:50%;
+    background:var(--teal); color:#fff;
+    font-family:'Baloo 2'; font-weight:700; font-size:.95rem; flex:none;
+  }
+  .hint{color:var(--ink-soft); font-size:.9rem; margin-bottom:14px;}
+
+  .listen-btn{
+    appearance:none; cursor:pointer; border:none;
+    width:28px;height:28px;border-radius:50%;
+    background:var(--teal); color:#fff;
+    font-size:.9rem; display:inline-flex; align-items:center; justify-content:center; flex:none;
+    box-shadow:0 3px 8px rgba(0,35,149,.35);
+  }
+  .listen-btn:hover{filter:brightness(1.15);}
+  .listen-btn:focus-visible{outline:2px solid var(--ink); outline-offset:2px;}
+
+  .btn{
+    appearance:none; cursor:pointer; border-radius:20px; padding:8px 18px;
+    font-family:'Baloo 2'; font-weight:600; font-size:.88rem; border:1px solid var(--line);
+    background:var(--card); color:var(--ink);
+  }
+  .btn.ghost{background:transparent; color:var(--ink-soft);}
+  .btn.primary{background:var(--teal); color:#fff; border-color:var(--teal);}
+
+  /* ---------- clock tool ---------- */
+  .clock-tool{
+    background:var(--card); border-radius:14px; padding:24px; box-shadow:0 8px 20px var(--shadow);
+    display:flex; gap:28px; flex-wrap:wrap; align-items:center; justify-content:center;
+  }
+  .clock-svg{width:190px; height:190px; flex:none;}
+  .clock-circle{fill:var(--bg); stroke:var(--line); stroke-width:3;}
+  .clock-tick{stroke:var(--ink-soft); stroke-width:2;}
+  .clock-num{font-family:'Baloo 2'; font-size:13px; fill:var(--ink); text-anchor:middle; dominant-baseline:middle;}
+  .hour-hand{stroke:var(--ink); stroke-width:5; stroke-linecap:round;}
+  .minute-hand{stroke:var(--rouge); stroke-width:3.5; stroke-linecap:round;}
+  .clock-center{fill:var(--ink);}
+
+  .clock-controls{display:flex; flex-direction:column; gap:14px; min-width:220px;}
+  .stepper{display:flex; align-items:center; gap:10px;}
+  .stepper .lbl{width:64px; font-size:.85rem; color:var(--ink-soft); font-weight:700;}
+  .stepper button{
+    appearance:none; cursor:pointer; border:1px solid var(--line); background:var(--bg);
+    color:var(--ink); width:30px; height:30px; border-radius:8px; font-size:1rem; font-family:'Baloo 2';
+  }
+  .stepper button:hover{border-color:var(--teal);}
+  .stepper .val{
+    font-family:'IBM Plex Mono'; font-size:1.1rem; font-weight:600; min-width:52px; text-align:center;
+  }
+  .digital{
+    font-family:'IBM Plex Mono'; font-size:1.3rem; font-weight:600; color:var(--bleu-text);
+    background:var(--teal-soft); border-radius:8px; padding:6px 14px; text-align:center;
+  }
+  .phrase-box{
+    background:var(--teal-soft); border-radius:8px; padding:10px 14px; display:flex; flex-direction:column; gap:6px;
+  }
+  .phrase-box .line{display:flex; align-items:center; gap:8px; font-size:.98rem;}
+  .phrase-box .zone-tag{
+    font-size:.7rem; text-transform:uppercase; letter-spacing:.04em; color:var(--ink-soft);
+  }
+
+  .rule-note{font-size:.82rem; color:var(--ink-soft); font-style:italic; margin-top:12px; text-align:center;}
+
+  /* ---------- reference cards (Q&A) ---------- */
+  .qa-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:10px; margin-bottom:18px;}
+  .qa-card{
+    background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 16px;
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    box-shadow:0 3px 8px var(--shadow);
+  }
+  .qa-card .digital-mini{font-family:'IBM Plex Mono'; color:var(--rouge); font-weight:700; font-size:.85rem;}
+  .qa-card .txt{font-size:.92rem;}
+
+  /* ---------- quiz ---------- */
+  .quiz-shell{background:var(--card); border-radius:12px; padding:20px 22px; box-shadow:0 8px 20px var(--shadow);}
+  .quiz-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;}
+  .quiz-score{background:var(--teal); color:#fff; padding:4px 12px; border-radius:20px; font-size:.85rem;}
+  .quiz-prompt{font-size:1.3rem; text-align:center; margin-bottom:16px; font-family:'IBM Plex Mono'; font-weight:600; color:var(--rouge);}
+  .quiz-options{display:flex; gap:10px; justify-content:center; flex-wrap:wrap;}
+  .quiz-options button{
+    appearance:none; cursor:pointer; border:2px solid var(--line); background:var(--card);
+    border-radius:10px; padding:10px 18px; font-family:'Nunito Sans'; font-weight:700; font-size:.92rem; color:var(--ink);
+  }
+  .quiz-options button:hover{border-color:var(--teal);}
+  .quiz-options button.correct{background:var(--teal); border-color:var(--teal); color:#fff;}
+  .quiz-options button.wrong{background:var(--rouge); border-color:var(--rouge); color:#fff;}
+  .quiz-feedback{text-align:center; margin-top:14px; font-size:.9rem; color:var(--ink-soft); min-height:20px;}
+
+  /* ---------- routine builder ---------- */
+  .routine-card{
+    background:var(--card); border-radius:10px; padding:14px 16px; margin-bottom:10px;
+    box-shadow:0 4px 12px var(--shadow); display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  }
+  .routine-card .who{display:flex; align-items:center; gap:10px; min-width:220px; flex:1;}
+  .routine-card .icon{font-size:1.4rem;}
+  .routine-card .je{font-family:'Baloo 2'; font-weight:700; font-size:.92rem;}
+  .routine-card .en{font-size:.78rem; color:var(--ink-soft); font-style:italic;}
+  .mini-stepper{display:flex; align-items:center; gap:6px;}
+  .mini-stepper button{
+    appearance:none; cursor:pointer; border:1px solid var(--line); background:var(--bg); color:var(--ink);
+    width:24px; height:24px; border-radius:6px; font-size:.85rem;
+  }
+  .mini-stepper .val{font-family:'IBM Plex Mono'; font-size:.85rem; min-width:22px; text-align:center;}
+  .routine-clear{
+    background:transparent; border:none; color:var(--ink-soft); cursor:pointer; font-size:.75rem; text-decoration:underline;
+  }
+
+  /* ---------- 12h/24h chart ---------- */
+  .conv-wrap{background:var(--card); border-radius:12px; padding:20px 22px; box-shadow:0 8px 20px var(--shadow); overflow-x:auto;}
+  table.conv-table{border-collapse:collapse; width:100%; min-width:520px;}
+  table.conv-table th, table.conv-table td{padding:8px 6px; text-align:center; font-size:.82rem;}
+  table.conv-table thead th{background:var(--teal); color:#fff; font-family:'IBM Plex Mono'; border-radius:4px;}
+  table.conv-table tbody th{text-align:left; font-weight:700; font-size:.78rem; color:var(--ink-soft);}
+  table.conv-table td{font-family:'IBM Plex Mono'; font-weight:600;}
+  .ampm-row td{padding-top:4px;}
+  .ampm-tag{
+    display:inline-block; font-family:'Baloo 2'; font-size:.85rem; color:var(--rouge);
+    border-top:2px solid var(--rouge); padding-top:3px;
+  }
+  .conv-mini{
+    display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-top:18px;
+    border-top:1px solid var(--line); padding-top:16px; justify-content:center;
+  }
+  .conv-result{font-family:'IBM Plex Mono'; font-size:1.05rem; color:var(--bleu-text); font-weight:600;}
+
+  /* ---------- final card ---------- */
+  .final-card{
+    background:var(--teal-soft); border:1px solid var(--teal); border-radius:12px; padding:20px 22px;
+  }
+  .final-lines{display:flex; flex-direction:column; gap:8px; margin-bottom:14px;}
+  .final-lines .line-item{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    background:var(--card); border-radius:6px; padding:8px 12px; font-size:.92rem;
+  }
+  .final-lines .placeholder{color:var(--ink-soft); font-style:italic; text-align:center; padding:12px 0;}
+  .final-actions{display:flex; gap:10px; justify-content:center;}
+
+  footer{text-align:center; color:var(--ink-soft); font-size:.82rem; margin-top:10px;}
+
+  @media (prefers-reduced-motion:reduce){ *{transition:none !important; animation:none !important;} }
+</style>
+
+<div class="page">
+<div class="flag-stripe"></div>
+<div class="shell">
+
+  <header class="hero">
+    <h1>L'Heure en Français</h1>
+    <p class="sub">Telling time in French — the two ways to count minutes, the 12-hour/24-hour conversion, and putting it all into your own daily routine.</p>
+  </header>
+
+  <div class="note-banner">
+    <div class="kicker">🎯 Objectif</div>
+    <p>Be able to express the time in French — read a clock, ask and answer <em>Quelle heure est-il ?</em>, and describe your daily routine with times attached.</p>
+    <p class="flag-note">Note: this lesson uses the 24-hour clock throughout (like your slides — <em>dix-neuf heures</em> = 19:00), which is how time is usually told formally in French. One exception to watch for: <strong>1:00</strong> is <em>une heure</em>, not <em>un heure</em> — <em>heure</em> is a feminine word.</p>
+  </div>
+
+  <section id="clock">
+    <div class="section-head"><span class="num">1</span><h2>Compter les Minutes</h2></div>
+    <p class="hint">Set an hour and a minute — watch the clock, and hear how the French changes. Up to the half hour, you count minutes forward; past it, French counts backward from the next hour.</p>
+    <div class="clock-tool">
+      <svg class="clock-svg" viewBox="0 0 200 200">
+        <circle class="clock-circle" cx="100" cy="100" r="94"></circle>
+        <g id="clockTicks"></g>
+        <g id="clockNums"></g>
+        <line id="hourHand" class="hour-hand" x1="100" y1="100" x2="100" y2="62"></line>
+        <line id="minuteHand" class="minute-hand" x1="100" y1="100" x2="100" y2="34"></line>
+        <circle class="clock-center" cx="100" cy="100" r="4"></circle>
+      </svg>
+      <div class="clock-controls">
+        <div class="stepper">
+          <span class="lbl">Heure</span>
+          <button type="button" id="hourDown">−</button>
+          <span class="val mono" id="hourVal">19</span>
+          <button type="button" id="hourUp">+</button>
+        </div>
+        <div class="stepper">
+          <span class="lbl">Minutes</span>
+          <button type="button" id="minDown">−</button>
+          <span class="val mono" id="minVal">00</span>
+          <button type="button" id="minUp">+</button>
+        </div>
+        <div class="digital" id="digitalOut">19:00</div>
+        <div class="phrase-box" id="phraseBox"></div>
+      </div>
+    </div>
+    <p class="rule-note">0–30 min: <em>heure(s)</em> + minutes (<em>et quart</em> at :15, <em>et demie</em> at :30) · 31–59 min: next hour <em>moins</em> the minutes left (<em>moins le quart</em> at :45) — both styles are correct, the "moins" style is just more common when speaking.</p>
+  </section>
+
+  <section id="qa">
+    <div class="section-head"><span class="num">2</span><h2>Quelle Heure Est-il ?</h2></div>
+    <p class="hint">The question-and-answer pattern from your slides — then a quick practice round.</p>
+    <div class="qa-grid" id="qaGrid"></div>
+    <div class="quiz-shell">
+      <div class="quiz-top">
+        <span class="quiz-score mono" id="quizScore">Score : 0 / 0</span>
+        <button class="btn ghost" id="quizSkip" type="button">Skip →</button>
+      </div>
+      <div class="quiz-prompt" id="quizPrompt"></div>
+      <div class="quiz-options" id="quizOptions"></div>
+      <div class="quiz-feedback" id="quizFeedback"></div>
+    </div>
+  </section>
+
+  <section id="routine">
+    <div class="section-head"><span class="num">3</span><h2>À + l'Heure : Ta Routine</h2></div>
+    <p class="hint">Just like <em>Je me réveille à 8:00 heures. Je me lève à 8:05 heures.</em> — set a time for each part of your day (leave any of them blank).</p>
+    <div id="routineHost"></div>
+  </section>
+
+  <section id="conv">
+    <div class="section-head"><span class="num">4</span><h2>12 Heures et 24 Heures</h2></div>
+    <p class="hint">Minuit to midi to minuit again — the 24-hour clock lines up with AM and PM like this.</p>
+    <div class="conv-wrap">
+      <table class="conv-table" id="convTable"></table>
+      <div class="conv-mini">
+        <div class="stepper">
+          <span class="lbl">24h</span>
+          <button type="button" id="convDown">−</button>
+          <span class="val mono" id="convVal">19</span>
+          <button type="button" id="convUp">+</button>
+        </div>
+        <div class="conv-result" id="convResult"></div>
+        <span id="convListen"></span>
+      </div>
+    </div>
+  </section>
+
+  <section id="final">
+    <div class="section-head"><span class="num">5</span><h2>Ma Routine Quotidienne</h2></div>
+    <p class="hint">Everything you set in section 3, in order.</p>
+    <div class="final-card">
+      <div class="final-lines" id="finalLines"></div>
+      <div class="final-actions">
+        <button class="btn primary" id="playAll" type="button">🔊 Écouter tout</button>
+        <button class="btn ghost" id="resetAll" type="button">Recommencer</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>Adapted from your "L'heure en français" slides — the minute clock, the 12h/24h chart, and the à + l'heure daily-routine pattern.</footer>
+
+</div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------------- speech ---------------- */
+  var cachedVoices = [];
+  function loadVoices(){
+    try{ if('speechSynthesis' in window){ cachedVoices = window.speechSynthesis.getVoices() || []; } }catch(e){}
+  }
+  loadVoices();
+  try{ if('speechSynthesis' in window){ window.speechSynthesis.onvoiceschanged = loadVoices; } }catch(e){}
+  function pickFrenchVoice(){
+    if(!cachedVoices.length) loadVoices();
+    if(!cachedVoices.length) return null;
+    var exact = cachedVoices.find(function(v){ return v.lang && v.lang.toLowerCase() === 'fr-fr'; });
+    if(exact) return exact;
+    var starts = cachedVoices.find(function(v){ return v.lang && v.lang.toLowerCase().indexOf('fr') === 0; });
+    if(starts) return starts;
+    var byName = cachedVoices.find(function(v){ return /fran[cç]ais|french/i.test(v.name || ''); });
+    if(byName) return byName;
+    return null;
+  }
+  function speak(text){
+    try{
+      if(!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      var say = function(){
+        var u = new SpeechSynthesisUtterance(text);
+        u.lang = 'fr-FR';
+        u.rate = 0.92;
+        var v = pickFrenchVoice();
+        if(v){ u.voice = v; u.lang = v.lang; }
+        window.speechSynthesis.speak(u);
+      };
+      if(!cachedVoices.length){ setTimeout(say, 150); } else { say(); }
+    }catch(e){}
+  }
+  function mkListenBtn(text){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'listen-btn';
+    b.setAttribute('aria-label', 'Listen');
+    b.innerHTML = '🔊';
+    b.addEventListener('click', function(){ speak(text); });
+    return b;
+  }
+  function pad2(n){ return (n < 10 ? '0' : '') + n; }
+
+  /* ---------------- number + time words ---------------- */
+  var ONES = ["zéro","un","deux","trois","quatre","cinq","six","sept","huit","neuf","dix",
+    "onze","douze","treize","quatorze","quinze","seize"];
+  var TENS = {20:"vingt",30:"trente"};
+  function under100(n){
+    if(n < 17) return ONES[n];
+    if(n < 20) return "dix-" + ONES[n-10];
+    if(n < 30){ var r = n - 20; return r === 0 ? "vingt" : (r === 1 ? "vingt et un" : "vingt-" + ONES[r]); }
+    var r2 = n - 30; return r2 === 0 ? "trente" : (r2 === 1 ? "trente et un" : "trente-" + ONES[r2]);
+  }
+  function heureLabel(h){
+    var hh = ((h % 24) + 24) % 24;
+    if(hh === 0) return 'minuit';
+    if(hh === 12) return 'midi';
+    if(hh === 1) return 'une heure';
+    return under100(hh) + ' heures';
+  }
+  function frenchTime(h, minute){
+    if(minute === 0) return heureLabel(h);
+    if(minute <= 30){
+      var suf = minute === 15 ? 'et quart' : minute === 30 ? 'et demie' : under100(minute);
+      return heureLabel(h) + ' ' + suf;
+    }
+    var nextH = (h + 1) % 24;
+    var remainder = 60 - minute;
+    var suf2 = remainder === 15 ? 'moins le quart' : 'moins ' + under100(remainder);
+    return heureLabel(nextH) + ' ' + suf2;
+  }
+  function frenchTimeLiteral(h, minute){
+    if(minute === 0) return heureLabel(h);
+    var suf = minute === 15 ? 'et quart' : minute === 30 ? 'et demie' : under100(minute);
+    return heureLabel(h) + ' ' + suf;
+  }
+
+  /* ---------------- section 1: interactive clock ---------------- */
+  var curHour = 19, curMin = 0;
+
+  function buildClockFace(){
+    var ticks = document.getElementById('clockTicks');
+    var nums = document.getElementById('clockNums');
+    for(var i = 0; i < 12; i++){
+      var angle = (i === 0 ? 12 : i) * 30 * Math.PI / 180;
+      var x1 = 100 + 84 * Math.sin(angle), y1 = 100 - 84 * Math.cos(angle);
+      var x2 = 100 + 94 * Math.sin(angle), y2 = 100 - 94 * Math.cos(angle);
+      var tick = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      tick.setAttribute('x1', x1); tick.setAttribute('y1', y1);
+      tick.setAttribute('x2', x2); tick.setAttribute('y2', y2);
+      tick.setAttribute('class', 'clock-tick');
+      ticks.appendChild(tick);
+
+      var nx = 100 + 72 * Math.sin(angle), ny = 100 - 72 * Math.cos(angle);
+      var num = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      num.setAttribute('x', nx); num.setAttribute('y', ny);
+      num.setAttribute('class', 'clock-num');
+      num.textContent = (i === 0 ? 12 : i);
+      nums.appendChild(num);
+    }
+  }
+
+  function updateClock(){
+    curHour = ((curHour % 24) + 24) % 24;
+    curMin = ((curMin % 60) + 60) % 60;
+    document.getElementById('hourVal').textContent = pad2(curHour);
+    document.getElementById('minVal').textContent = pad2(curMin);
+    document.getElementById('digitalOut').textContent = pad2(curHour) + ':' + pad2(curMin);
+
+    var hourDeg = (curHour % 12) * 30 + curMin * 0.5;
+    var minDeg = curMin * 6;
+    document.getElementById('hourHand').setAttribute('transform', 'rotate(' + hourDeg + ' 100 100)');
+    document.getElementById('minuteHand').setAttribute('transform', 'rotate(' + minDeg + ' 100 100)');
+
+    var box = document.getElementById('phraseBox');
+    box.innerHTML = '';
+    var mainPhrase = frenchTime(curHour, curMin);
+    var line1 = document.createElement('div');
+    line1.className = 'line';
+    var tag1 = curMin > 30 ? 'style courant' : (curMin === 0 ? '' : 'style courant');
+    line1.innerHTML = '<strong>' + mainPhrase + '</strong>';
+    line1.appendChild(mkListenBtn('Il est ' + mainPhrase + '.'));
+    box.appendChild(line1);
+
+    if(curMin > 30){
+      var altPhrase = frenchTimeLiteral(curHour, curMin);
+      var line2 = document.createElement('div');
+      line2.className = 'line';
+      line2.innerHTML = '<span class="zone-tag">aussi correct :</span> ' + altPhrase;
+      line2.appendChild(mkListenBtn('Il est ' + altPhrase + '.'));
+      box.appendChild(line2);
+    }
+  }
+
+  document.getElementById('hourUp').addEventListener('click', function(){ curHour++; updateClock(); });
+  document.getElementById('hourDown').addEventListener('click', function(){ curHour--; updateClock(); });
+  document.getElementById('minUp').addEventListener('click', function(){ curMin += 5; if(curMin >= 60){ curMin -= 60; curHour++; } updateClock(); });
+  document.getElementById('minDown').addEventListener('click', function(){ curMin -= 5; if(curMin < 0){ curMin += 60; curHour--; } updateClock(); });
+
+  /* ---------------- section 2: reference cards + quiz ---------------- */
+  var QA_EXAMPLES = [
+    {h:21, m:0}, {h:21, m:15}, {h:21, m:30}, {h:21, m:45}
+  ];
+
+  function renderQA(){
+    var grid = document.getElementById('qaGrid');
+    grid.innerHTML = '';
+    QA_EXAMPLES.forEach(function(t){
+      var phrase = frenchTime(t.h, t.m);
+      var card = document.createElement('div');
+      card.className = 'qa-card';
+      card.innerHTML =
+        '<div><div class="digital-mini">' + pad2(t.h) + ':' + pad2(t.m) + '</div><div class="txt">Il est ' + phrase + '.</div></div>';
+      card.appendChild(mkListenBtn('Il est ' + phrase + '.'));
+      grid.appendChild(card);
+    });
+  }
+
+  var QUIZ_POOL = [
+    {h:8, m:0}, {h:8, m:5}, {h:9, m:15}, {h:10, m:30}, {h:12, m:0},
+    {h:14, m:45}, {h:16, m:20}, {h:17, m:50}, {h:19, m:40}, {h:23, m:55}, {h:0, m:0}, {h:1, m:0}
+  ];
+
+  var quizOrder = [], quizIdx = 0, quizCorrect = 0, quizTotal = 0, quizAnswered = false;
+
+  function shuffle(arr){
+    var a = arr.slice();
+    for(var i = a.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
+  function newQuizRound(){
+    if(quizIdx >= quizOrder.length){
+      quizOrder = shuffle(QUIZ_POOL.map(function(_, i){ return i; }));
+      quizIdx = 0;
+    }
+    quizAnswered = false;
+    var t = QUIZ_POOL[quizOrder[quizIdx]];
+    document.getElementById('quizPrompt').textContent = pad2(t.h) + ':' + pad2(t.m);
+    var correct = frenchTime(t.h, t.m);
+
+    var distractorMins = shuffle([t.m + 5, t.m - 5, t.m + 10, t.m - 10].map(function(m){ return ((m % 60) + 60) % 60; }));
+    var options = [correct];
+    var used = {};
+    used[correct] = true;
+    for(var i = 0; i < distractorMins.length && options.length < 4; i++){
+      var dh = t.h + (t.m + (distractorMins[i] - t.m) >= 60 || t.m + (distractorMins[i] - t.m) < 0 ? 0 : 0);
+      var opt = frenchTime(t.h, distractorMins[i]);
+      if(!used[opt]){ used[opt] = true; options.push(opt); }
+    }
+    options = shuffle(options);
+
+    var opts = document.getElementById('quizOptions');
+    opts.innerHTML = '';
+    options.forEach(function(choice){
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = choice;
+      btn.addEventListener('click', function(){ answerQuiz(correct, choice, btn); });
+      opts.appendChild(btn);
+    });
+    document.getElementById('quizFeedback').textContent = '';
+  }
+
+  function answerQuiz(correct, choice, btn){
+    if(quizAnswered) return;
+    quizAnswered = true;
+    quizTotal++;
+    var isCorrect = choice === correct;
+    if(isCorrect) quizCorrect++;
+    document.querySelectorAll('#quizOptions button').forEach(function(b){
+      if(b.textContent === correct) b.classList.add('correct');
+      else if(b === btn) b.classList.add('wrong');
+    });
+    document.getElementById('quizScore').textContent = 'Score : ' + quizCorrect + ' / ' + quizTotal;
+    document.getElementById('quizFeedback').textContent = (isCorrect ? '✅ ' : '💡 Réponse : ') + 'Il est ' + correct + '.';
+    speak('Il est ' + correct + '.');
+    quizIdx++;
+    setTimeout(newQuizRound, 2000);
+  }
+
+  document.getElementById('quizSkip').addEventListener('click', function(){ quizIdx++; newQuizRound(); });
+
+  /* ---------------- section 3: routine builder ---------------- */
+  var ROUTINE_VERBS = [
+    {je:'je me réveille', en:'to wake up', icon:'⏰'},
+    {je:'je me lève', en:'to get up', icon:'🛏️'},
+    {je:'je me douche', en:'to shower', icon:'🚿'},
+    {je:'je me prépare', en:'to get ready', icon:'🪞'},
+    {je:'je prends le petit-déjeuner', en:'to have breakfast', icon:'🥐'},
+    {je:'je pars de la maison', en:'to leave the house', icon:'🚪'},
+    {je:'je déjeune', en:'to have lunch', icon:'🍽️'},
+    {je:'je dîne', en:'to have dinner', icon:'🍲'},
+    {je:'je me couche', en:'to go to bed', icon:'🌙'}
+  ];
+  var routineState = ROUTINE_VERBS.map(function(){ return {set:false, h:8, m:0}; });
+
+  function routineSentence(i){
+    var st = routineState[i];
+    if(!st.set) return null;
+    return capFirst(ROUTINE_VERBS[i].je) + ' à ' + frenchTime(st.h, st.m) + '.';
+  }
+  function capFirst(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+
+  function renderRoutine(){
+    var host = document.getElementById('routineHost');
+    host.innerHTML = '';
+    ROUTINE_VERBS.forEach(function(v, i){
+      var st = routineState[i];
+      var card = document.createElement('div');
+      card.className = 'routine-card';
+
+      var who = document.createElement('div');
+      who.className = 'who';
+      who.innerHTML = '<span class="icon">' + v.icon + '</span><span><span class="je">' + capFirst(v.je) + '</span><br><span class="en">' + v.en + '</span></span>';
+      card.appendChild(who);
+
+      var hourStep = document.createElement('div');
+      hourStep.className = 'mini-stepper';
+      var hDown = document.createElement('button'); hDown.type = 'button'; hDown.textContent = '−';
+      var hVal = document.createElement('span'); hVal.className = 'val mono'; hVal.textContent = pad2(st.h);
+      var hUp = document.createElement('button'); hUp.type = 'button'; hUp.textContent = '+';
+      hDown.addEventListener('click', function(){ st.set = true; st.h = ((st.h - 1) % 24 + 24) % 24; renderRoutine(); });
+      hUp.addEventListener('click', function(){ st.set = true; st.h = (st.h + 1) % 24; renderRoutine(); });
+      hourStep.appendChild(hDown); hourStep.appendChild(hVal); hourStep.appendChild(hUp);
+      card.appendChild(hourStep);
+
+      var sep = document.createElement('span');
+      sep.textContent = 'h';
+      sep.style.color = 'var(--ink-soft)';
+      card.appendChild(sep);
+
+      var minStep = document.createElement('div');
+      minStep.className = 'mini-stepper';
+      var mDown = document.createElement('button'); mDown.type = 'button'; mDown.textContent = '−';
+      var mVal = document.createElement('span'); mVal.className = 'val mono'; mVal.textContent = pad2(st.m);
+      var mUp = document.createElement('button'); mUp.type = 'button'; mUp.textContent = '+';
+      mDown.addEventListener('click', function(){
+        st.set = true; st.m -= 5;
+        if(st.m < 0){ st.m += 60; st.h = ((st.h - 1) % 24 + 24) % 24; }
+        renderRoutine();
+      });
+      mUp.addEventListener('click', function(){
+        st.set = true; st.m += 5;
+        if(st.m >= 60){ st.m -= 60; st.h = (st.h + 1) % 24; }
+        renderRoutine();
+      });
+      minStep.appendChild(mDown); minStep.appendChild(mVal); minStep.appendChild(mUp);
+      card.appendChild(minStep);
+
+      if(st.set){
+        var clear = document.createElement('button');
+        clear.type = 'button';
+        clear.className = 'routine-clear';
+        clear.textContent = 'effacer';
+        clear.addEventListener('click', function(){ st.set = false; renderRoutine(); });
+        card.appendChild(clear);
+
+        card.appendChild(mkListenBtn(routineSentence(i)));
+      }
+
+      host.appendChild(card);
+    });
+    updateFinalCard();
+  }
+
+  /* ---------------- section 4: 12h / 24h conversion ---------------- */
+  var CONV_24 = [0, 3, 6, 9, 12, 15, 18, 21, 24];
+  function to12(h24){
+    var hh = h24 % 24;
+    var ampm = hh < 12 ? 'AM' : 'PM';
+    var h12 = hh % 12; if(h12 === 0) h12 = 12;
+    return h12 + ':00 ' + ampm;
+  }
+
+  function renderConvTable(){
+    var table = document.getElementById('convTable');
+    table.innerHTML = '';
+    var thead = document.createElement('thead');
+    var labelRow = document.createElement('tr');
+    var corner = document.createElement('th'); corner.textContent = '';
+    labelRow.appendChild(corner);
+    var minuitTh = document.createElement('th'); minuitTh.textContent = 'Minuit'; minuitTh.colSpan = 1;
+    thead.appendChild(labelRow);
+    table.appendChild(thead);
+
+    var tbody = document.createElement('tbody');
+    var row24 = document.createElement('tr');
+    var th24 = document.createElement('th'); th24.textContent = '24h';
+    row24.appendChild(th24);
+    CONV_24.forEach(function(h){
+      var td = document.createElement('td');
+      td.textContent = pad2(h % 24) + ':00';
+      row24.appendChild(td);
+    });
+    tbody.appendChild(row24);
+
+    var row12 = document.createElement('tr');
+    var th12 = document.createElement('th'); th12.textContent = '12h';
+    row12.appendChild(th12);
+    CONV_24.forEach(function(h){
+      var td = document.createElement('td');
+      td.textContent = to12(h);
+      row12.appendChild(td);
+    });
+    tbody.appendChild(row12);
+    table.appendChild(tbody);
+
+    var tfoot = document.createElement('tfoot');
+    var ampmRow = document.createElement('tr');
+    ampmRow.className = 'ampm-row';
+    var blankTh = document.createElement('td'); blankTh.textContent = '';
+    ampmRow.appendChild(blankTh);
+    var amTd = document.createElement('td'); amTd.colSpan = 4;
+    amTd.innerHTML = '<span class="ampm-tag">AM</span>';
+    ampmRow.appendChild(amTd);
+    var pmTd = document.createElement('td'); pmTd.colSpan = 4;
+    pmTd.innerHTML = '<span class="ampm-tag">PM</span>';
+    ampmRow.appendChild(pmTd);
+    tfoot.appendChild(ampmRow);
+    table.appendChild(tfoot);
+  }
+
+  var convHour = 19;
+  function updateConv(){
+    convHour = ((convHour % 24) + 24) % 24;
+    document.getElementById('convVal').textContent = pad2(convHour);
+    var result = pad2(convHour) + ':00 (24h) = ' + to12(convHour) + '  ·  ' + heureLabel(convHour);
+    document.getElementById('convResult').textContent = result;
+    var listenHost = document.getElementById('convListen');
+    listenHost.innerHTML = '';
+    listenHost.appendChild(mkListenBtn('Il est ' + heureLabel(convHour) + '.'));
+  }
+  document.getElementById('convUp').addEventListener('click', function(){ convHour++; updateConv(); });
+  document.getElementById('convDown').addEventListener('click', function(){ convHour--; updateConv(); });
+
+  /* ---------------- section 5: final card ---------------- */
+  function updateFinalCard(){
+    var lines = document.getElementById('finalLines');
+    var items = [];
+    routineState.forEach(function(st, i){
+      if(st.set) items.push({minutes: st.h * 60 + st.m, sentence: routineSentence(i)});
+    });
+    items.sort(function(a, b){ return a.minutes - b.minutes; });
+    lines.innerHTML = '';
+    if(!items.length){
+      var ph = document.createElement('div');
+      ph.className = 'placeholder';
+      ph.textContent = 'Set a time for a few parts of your day in section 3 — they will show up here, in order.';
+      lines.appendChild(ph);
+      return;
+    }
+    items.forEach(function(it){
+      var row = document.createElement('div');
+      row.className = 'line-item';
+      var txt = document.createElement('span');
+      txt.textContent = it.sentence;
+      row.appendChild(txt);
+      row.appendChild(mkListenBtn(it.sentence));
+      lines.appendChild(row);
+    });
+  }
+
+  document.getElementById('playAll').addEventListener('click', function(){
+    var items = [];
+    routineState.forEach(function(st, i){
+      if(st.set) items.push({minutes: st.h * 60 + st.m, sentence: routineSentence(i)});
+    });
+    items.sort(function(a, b){ return a.minutes - b.minutes; });
+    if(items.length) speak(items.map(function(it){ return it.sentence; }).join(' '));
+  });
+  document.getElementById('resetAll').addEventListener('click', function(){
+    routineState.forEach(function(st){ st.set = false; st.h = 8; st.m = 0; });
+    renderRoutine();
+    document.getElementById('routine').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+
+  /* ---------------- init ---------------- */
+  buildClockFace();
+  updateClock();
+  renderQA();
+  quizOrder = shuffle(QUIZ_POOL.map(function(_, i){ return i; }));
+  newQuizRound();
+  renderRoutine();
+  renderConvTable();
+  updateConv();
+})();
+</script>
+
+</body></html>
