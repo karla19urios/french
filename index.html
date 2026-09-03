@@ -162,6 +162,29 @@
     background:var(--rouge);
     transform:translateY(-2px);
   }
+  .block-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+    background:var(--bleu);
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    font-size:.92rem;
+    padding:.7rem 1.5rem;
+    border-radius:999px;
+    margin-top:1rem;
+    transition:transform .14s ease, background .14s ease;
+  }
+  .block-btn:hover{
+    background:var(--rouge);
+    transform:translateY(-2px);
+  }
+  .block-btn.disabled{
+    background:var(--border);
+    color:var(--muted);
+    pointer-events:none;
+  }
   footer{
     text-align:center;
     color:var(--muted);
@@ -181,23 +204,13 @@
   <section class="block">
     <div class="step">1 · Learning Rules</div>
     <h2>📋 Learning Rules</h2>
-    <ul class="rules">
-      <li><span class="n">1</span>Practice a little every day — a few minutes daily beats one long session a week.</li>
-      <li><span class="n">2</span>Listen before you read — let your ear catch the rhythm and sounds first.</li>
-      <li><span class="n">3</span>Don't skip the exercises — actually producing French is what makes it stick.</li>
-      <li><span class="n">4</span>Mistakes are part of learning — revisit any lesson as many times as you need.</li>
-    </ul>
+    <a class="block-btn disabled">Bientôt disponible</a>
   </section>
 
   <section class="block">
     <div class="step">2 · What to Expect</div>
     <h2>🔍 What to Expect</h2>
-    <ul class="expect-list">
-      <li>Levels go from A1 to B2, following the CEFR scale — start at your level and move up.</li>
-      <li>Each level is organized into Grammaire, Lectures, Audios (and Vidéo where available).</li>
-      <li>Lessons mix interactive activities with reference PDFs — click to open, right in your browser.</li>
-      <li>Nothing is locked — jump around, skip ahead, or go back whenever you like.</li>
-    </ul>
+    <a class="block-btn" href="what-to-expect.html">Lire →</a>
   </section>
 
   <section class="block ready-block">

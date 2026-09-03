@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Learning Is Not a Race</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200;0,6..72,300;0,6..72,400;1,6..72,300&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap">
+
+<style>
+:root{
+  --nuit:#12141c;
+  --surface:#1b1e2b;
+  --hairline:#2a2e40;
+  --encre:#f1f2f6;
+  --muted:#9aa0b4;
+  --bleu:#002395;
+  --bleu-vif:#3f6bd6;
+  --rouge:#ED2939;
+  --blanc:#ffffff;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --pad:clamp(26px,4.6vw,88px);
+  --gap-v:clamp(38px,6vh,76px);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--nuit);
+  color:var(--encre);
+  font-family:var(--sans);
+  font-weight:300;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ---------- tricolore progress ---------- */
+.tricolore{
+  position:fixed;top:0;left:0;right:0;height:5px;z-index:40;
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  background:var(--hairline);
+}
+.tricolore span{transform-origin:left;transition:transform .45s cubic-bezier(.22,.61,.36,1)}
+.tricolore span:nth-child(1){background:var(--bleu)}
+.tricolore span:nth-child(2){background:var(--blanc)}
+.tricolore span:nth-child(3){background:var(--rouge)}
+
+/* ---------- deck ---------- */
+.deck{
+  height:100svh;overflow-y:auto;scroll-snap-type:y proximity;
+  scroll-behavior:smooth;padding-bottom:72px;
+}
+.slide{
+  scroll-snap-align:start;
+  padding:var(--gap-v) var(--pad);
+  display:flex;flex-direction:column;gap:clamp(18px,2vw,30px);
+  position:relative;
+  border-bottom:1px solid var(--hairline);
+}
+.slide > *{max-width:1180px;width:100%;margin-inline:auto}
+
+/* ---------- eyebrow / numbering ---------- */
+.eyebrow{
+  font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);display:flex;align-items:center;gap:14px;
+}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--hairline)}
+.eyebrow b{color:var(--encre);font-weight:500}
+
+/* ---------- type scale ---------- */
+h1,h2{font-family:var(--serif);font-weight:200;margin:0;text-wrap:balance;line-height:1.06;letter-spacing:-.015em}
+h1{font-size:clamp(38px,6.4vw,86px)}
+h2{font-size:clamp(30px,4.6vw,60px)}
+h3{font-family:var(--serif);font-weight:300;font-size:clamp(19px,1.7vw,25px);margin:0;letter-spacing:-.01em}
+p{margin:0;font-size:clamp(15px,1.15vw,18px);line-height:1.62;color:var(--muted);max-width:62ch}
+p strong{color:var(--encre);font-weight:400}
+.lead{font-size:clamp(17px,1.5vw,22px);color:var(--encre);line-height:1.5;font-weight:300;max-width:34ch}
+
+/* ---------- quote ---------- */
+.quote{
+  font-family:var(--serif);font-style:italic;font-weight:300;
+  font-size:clamp(20px,2.2vw,30px);line-height:1.35;color:var(--encre);
+  border-left:2px solid var(--rouge);padding-left:clamp(16px,1.6vw,26px);max-width:24ch;
+}
+
+/* ---------- columns ---------- */
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:clamp(24px,3vw,56px)}
+.col{display:flex;flex-direction:column;gap:12px;padding-top:18px;border-top:1px solid var(--hairline)}
+.col.bleu{border-top-color:var(--bleu-vif)}
+.col.rouge{border-top-color:var(--rouge)}
+
+/* ---------- process chain ---------- */
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:8px 6px;font-family:var(--mono);font-size:12.5px;letter-spacing:.02em}
+.chain i{font-style:normal;padding:7px 12px;border:1px solid var(--hairline);border-radius:2px;background:var(--surface);color:var(--encre);white-space:nowrap}
+.chain i.dim{color:var(--muted);background:transparent;border-style:dashed}
+.chain u{text-decoration:none;color:var(--muted);padding:0 2px}
+
+/* ---------- waste list ---------- */
+.waste{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2px 40px}
+.waste li{
+  display:flex;gap:14px;align-items:baseline;padding:11px 0;
+  border-bottom:1px solid var(--hairline);color:var(--muted);
+  font-size:clamp(14.5px,1.05vw,17px);line-height:1.45;
+}
+.waste li::before{content:"×";color:var(--rouge);font-family:var(--mono);font-size:15px;flex:none}
+
+/* ---------- levels table ---------- */
+.levels{width:100%;border-collapse:collapse;max-width:560px;font-variant-numeric:tabular-nums}
+.levels caption{text-align:left;font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding-bottom:14px}
+.levels th,.levels td{text-align:left;padding:13px 0;border-bottom:1px solid var(--hairline);font-weight:400}
+.levels th{font-family:var(--mono);font-size:14px;color:var(--encre);width:5.5em;letter-spacing:.06em}
+.levels td{font-family:var(--sans);font-size:clamp(15px,1.1vw,17px);color:var(--muted)}
+.levels tr:last-child th,.levels tr:last-child td{border-bottom:0}
+.bar{display:inline-block;height:3px;background:linear-gradient(90deg,var(--bleu-vif),var(--rouge));vertical-align:middle;margin-left:14px;border-radius:2px;opacity:.75}
+
+/* ---------- roles ---------- */
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(24px,3vw,64px)}
+.roles ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+.roles li{font-size:clamp(15px,1.15vw,18px);color:var(--muted);padding-left:20px;position:relative}
+.roles li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:1px;background:var(--muted)}
+.roles .head{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--encre);padding-bottom:16px;margin-bottom:20px;border-bottom:1px solid var(--hairline)}
+.roles section:first-child .head{border-bottom-color:var(--bleu-vif)}
+.roles section:last-child .head{border-bottom-color:var(--rouge)}
+
+/* ---------- comprehension vs production ---------- */
+.split{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(18px,2.4vw,40px);align-items:stretch}
+.split .side{display:flex;flex-direction:column;gap:14px;padding:20px 0 0;border-top:2px solid var(--bleu-vif)}
+.split .side.out{border-top-color:var(--rouge)}
+.split .side .tag{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--encre)}
+.split .side .pills{display:flex;flex-wrap:wrap;gap:7px}
+.split .side .pills span{font-family:var(--mono);font-size:12.5px;padding:7px 12px;border:1px solid var(--hairline);border-radius:2px;background:var(--surface)}
+.split .side p{font-size:clamp(14.5px,1.05vw,17px)}
+.split .divider{display:flex;flex-direction:column;align-items:center;gap:10px;padding-top:20px}
+.split .divider .line{flex:1;width:1px;background:linear-gradient(180deg,var(--bleu-vif),var(--rouge))}
+.split .divider .word{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--rouge);writing-mode:vertical-rl;text-orientation:mixed}
+@media (max-width:720px){
+  .split{grid-template-columns:1fr}
+  .split .divider{flex-direction:row;padding-top:0}
+  .split .divider .line{width:100%;height:1px;flex:none;background:linear-gradient(90deg,var(--bleu-vif),var(--rouge))}
+  .split .divider .word{writing-mode:horizontal-tb}
+}
+
+/* ---------- rail ---------- */
+.rail{position:fixed;right:clamp(12px,1.6vw,26px);top:50%;transform:translateY(-50%);z-index:30;display:flex;flex-direction:column;gap:9px}
+.rail button{
+  width:9px;height:9px;padding:0;border-radius:50%;cursor:pointer;
+  border:1px solid var(--hairline);background:transparent;transition:background .2s,border-color .2s,transform .2s;
+}
+.rail button[aria-current="true"]{background:var(--rouge);border-color:var(--rouge);transform:scale(1.25)}
+.rail button:hover{border-color:var(--muted)}
+.rail button:focus-visible,a:focus-visible{outline:2px solid var(--bleu-vif);outline-offset:3px}
+
+.counter{
+  position:fixed;left:var(--pad);bottom:18px;z-index:30;margin:0;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;color:var(--muted);
+  background:var(--surface);border:1px solid var(--hairline);border-radius:2px;
+  padding:7px 12px;
+}
+.counter b{color:var(--encre);font-weight:500}
+
+@media (max-width:720px){
+  .rail{display:none}
+  .counter{position:static;padding:22px var(--pad) 30px}
+}
+@media (prefers-reduced-motion:reduce){
+  .deck{scroll-behavior:auto}
+  .tricolore span{transition:none}
+}
+</style>
+
+<div class="tricolore" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<main class="deck" id="deck" tabindex="-1">
+
+  <!-- 01 cover -->
+  <section class="slide">
+    <p class="eyebrow"><b>My vision</b> · designed by a polyglot</p>
+    <h1>Learning a language is a journey, not a race.</h1>
+    <p class="quote">I don't want to slow you down. I want to prevent you from wasting time.</p>
+  </section>
+
+  <!-- 02 · urgency -->
+  <section class="slide">
+    <p class="eyebrow">01 — 02 · The urgency</p>
+    <h2>“I need to learn this language. And I need to learn it fast.”</h2>
+    <div class="cols">
+      <div class="col bleu">
+        <h3>I understand it</h3>
+        <p>For work. For school. For moving abroad. For life. Wanting to progress quickly isn't a problem — it can actually be one of your greatest motivations.</p>
+      </div>
+      <div class="col rouge">
+        <h3>But there is a difference</h3>
+        <p>Between <strong>fast progress</strong> and <strong>instant fluency</strong>. You can accelerate the process. You cannot skip the process.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 · more lessons -->
+  <section class="slide">
+    <p class="eyebrow">03 — 04 · More lessons ≠ more fluency</p>
+    <h2>Your brain doesn't learn by the hour.</h2>
+    <div class="cols">
+      <div class="col bleu">
+        <h3>10, 20, 30 lessons a month</h3>
+        <p>More lessons can give you more opportunities to learn. They don't automatically make everything stick. Learning happens through exposure, repetition, practice and time.</p>
+      </div>
+      <div class="col rouge">
+        <h3>You build a system</h3>
+        <p>You don't memorize a language and simply “spit it out”. Something you understand today may take time before you can use it naturally. That's normal.</p>
+      </div>
+    </div>
+    <div class="chain" aria-label="Understand, practice, forget, review, use, automate">
+      <i>Understand</i><u>→</u><i>Practice</i><u>→</u><i>Forget</i><u>→</u><i>Review</i><u>→</u><i>Use</i><u>→</u><i>Automate</i>
+    </div>
+  </section>
+
+  <!-- 04 · knowing vs using -->
+  <section class="slide">
+    <p class="eyebrow">05 — 06 · Knowing ≠ being able to use</p>
+    <h2>“When am I ever going to use this?”</h2>
+    <div class="cols">
+      <div class="col bleu">
+        <h3>Everything connects</h3>
+        <p>Not everything you learn has to feel immediately useful. Some things are useful today. Some become useful later. And some prepare you for what comes next. A language isn't a list of isolated things to memorize.</p>
+      </div>
+      <div class="col rouge">
+        <h3>Different stages</h3>
+        <p>I can understand it. I can recognize it. I can explain the rule. And still not be able to use it spontaneously. That's normal.</p>
+      </div>
+    </div>
+    <div class="chain" aria-label="Understanding, recall, production, automaticity">
+      <i>Understanding</i><u>→</u><i>Recall</i><u>→</u><i>Production</i><u>→</u><i>Automaticity</i>
+    </div>
+  </section>
+
+  <!-- 05 · not linear -->
+  <section class="slide">
+    <p class="eyebrow">07 · Progress isn't linear</p>
+    <h2>Forgetting doesn't always mean you didn't learn.</h2>
+    <div class="chain" aria-label="Learn, forget, review, recognize, forget again, understand, practice, use">
+      <i>Learn</i><u>→</u><i class="dim">Forget</i><u>→</u><i>Review</i><u>→</u><i>Recognize</i><u>→</u><i class="dim">Forget again</i><u>→</u><i>Understand</i><u>→</u><i>Practice</i><u>→</u><i>Use</i>
+    </div>
+    <div class="cols">
+      <div class="col bleu">
+        <p>Sometimes your knowledge simply hasn't become automatic yet.</p>
+      </div>
+      <div class="col rouge">
+        <p>And sometimes progress is happening before you can actually feel it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 · don't restart -->
+  <section class="slide">
+    <p class="eyebrow">08 — 09 · Build. Don't restart.</p>
+    <h2>Feeling stuck doesn't always mean the methodology isn't working.</h2>
+    <div class="chain" aria-label="Teacher, textbook, app, method, teacher, method">
+      <i class="dim">Teacher</i><u>→</u><i class="dim">Textbook</i><u>→</u><i class="dim">App</i><u>→</u><i class="dim">Method</i><u>→</u><i class="dim">Teacher</i><u>→</u><i class="dim">Method…</i>
+    </div>
+    <div class="cols">
+      <div class="col bleu">
+        <p>Constantly changing makes you repeat things you've already studied. You may spend your time starting over instead of building forward.</p>
+      </div>
+      <div class="col rouge">
+        <p>Changing your methodology can be useful when there's a real reason. Changing constantly because progress doesn't feel fast enough can slow you down.</p>
+      </div>
+    </div>
+    <p class="lead">Sometimes the fastest way forward is to stop restarting.</p>
+  </section>
+
+  <!-- 07 · wasting time -->
+  <section class="slide">
+    <p class="eyebrow">10 · What is wasting time?</p>
+    <h2>If you want to progress as fast as realistically possible, know what actually wastes your time.</h2>
+    <ul class="waste">
+      <li>Constantly changing methodologies.</li>
+      <li>Rushing toward C1 before your foundations are strong.</li>
+      <li>Starting A1 again with every new teacher.</li>
+      <li>Abandoning something because you can't use it immediately.</li>
+      <li>Memorizing without context.</li>
+      <li>Expecting yesterday's lesson to become automatic overnight.</li>
+      <li>Taking endless lessons without practicing between them.</li>
+    </ul>
+    <p class="lead">Learning takes time. Restarting takes time too.</p>
+  </section>
+
+  <!-- 08 · how long -->
+  <section class="slide">
+    <p class="eyebrow">11 · How long does it actually take?</p>
+    <h2>There is no magic number of lessons.</h2>
+    <table class="levels">
+      <caption>With consistent lessons + independent practice + work through my learning platform</caption>
+      <tbody>
+        <tr><th scope="row">A1</th><td>2–3 months <span class="bar" style="width:34px"></span></td></tr>
+        <tr><th scope="row">A2</th><td>3–4 months <span class="bar" style="width:48px"></span></td></tr>
+        <tr><th scope="row">B1</th><td>4–6 months <span class="bar" style="width:68px"></span></td></tr>
+        <tr><th scope="row">B2</th><td>5–7 months <span class="bar" style="width:82px"></span></td></tr>
+        <tr><th scope="row">C1</th><td>6–9 months <span class="bar" style="width:104px"></span></td></tr>
+      </tbody>
+    </table>
+    <p>These are realistic guidelines, not promises. Your timeline depends on your native language, previous experience, exposure, study time and consistency. <strong>A1 → C1 is a journey, not a 3-month challenge.</strong></p>
+  </section>
+
+  <!-- levels · C1 note -->
+  <section class="slide">
+    <p class="eyebrow">Levels · A note on C1</p>
+    <h2>Studying the theory up to C1 is not the same as mastering the four skills.</h2>
+    <p>Many courses promise C1 as if it were fluency in everything. But covering all the theory of a level is not the same as owning it: you can study every rule up to C1 and still not be able to <strong>produce</strong> at C1. Very often the opposite happens — a gap opens between what you can understand and what you can actually use.</p>
+    <div class="split">
+      <div class="side">
+        <p class="tag">What you understand</p>
+        <div class="pills"><span>Listening</span><span>Reading</span></div>
+        <p>Grows fastest. Exposure alone keeps feeding it, so it runs ahead of everything else.</p>
+      </div>
+      <div class="divider" aria-hidden="true">
+        <span class="line"></span><span class="word">The gap</span><span class="line"></span>
+      </div>
+      <div class="side out">
+        <p class="tag">What you can produce</p>
+        <div class="pills"><span>Speaking</span><span>Writing</span></div>
+        <p>Grows only with use, mistakes, correction and time. Rushing through levels widens the distance instead of closing it.</p>
+      </div>
+    </div>
+    <p class="lead">The goal isn't to reach C1 on paper. It's to close the gap between what you understand and what you can use.</p>
+  </section>
+
+  <!-- 09 · my journey -->
+  <section class="slide">
+    <p class="eyebrow">12 — 13 · My own journey</p>
+    <h2>I've been speaking French for 6 years. Not 3 months. Not 30 lessons.</h2>
+    <div class="cols">
+      <div class="col bleu">
+        <p>Six years of exposure, practice, mistakes, repetition and real use. And yes: I love the language. That matters too, because enjoying a language makes you want to come back to it.</p>
+      </div>
+      <div class="col rouge">
+        <p>My advice isn't just a teaching philosophy. It comes from learning multiple languages, trying different methods, making mistakes, finding what works — and staying with the process.</p>
+      </div>
+    </div>
+    <p class="lead">Motivation can accelerate the journey. It can't eliminate the journey.</p>
+  </section>
+
+  <!-- 10 · no magic -->
+  <section class="slide">
+    <p class="eyebrow">14 — 15 · There is no magic methodology</p>
+    <h2>I didn't get here because I found a magical method.</h2>
+    <div class="cols">
+      <div class="col bleu">
+        <h3>I got here because</h3>
+        <p>I stayed with the language. I kept learning. I kept using it. I kept making mistakes. I kept coming back.</p>
+      </div>
+      <div class="col rouge">
+        <h3>So I don't simply offer lessons</h3>
+        <p>I built a learning journey: <strong>structure, continuity, purpose, progress</strong>. My platform complements our lessons, outside the classroom.</p>
+      </div>
+    </div>
+    <div class="chain" aria-label="Learn, practice, review, apply, connect">
+      <i>Learn</i><u>→</u><i>Practice</i><u>→</u><i>Review</i><u>→</u><i>Apply</i><u>→</u><i>Connect</i>
+    </div>
+  </section>
+
+  <!-- 11 · roles -->
+  <section class="slide">
+    <p class="eyebrow">16 · My role / Your role</p>
+    <div class="roles">
+      <section>
+        <p class="head">My role</p>
+        <ul>
+          <li>Design the path</li><li>Explain</li><li>Guide</li><li>Correct</li>
+          <li>Challenge</li><li>Connect concepts</li><li>Track progress</li>
+        </ul>
+      </section>
+      <section>
+        <p class="head">Your role</p>
+        <ul>
+          <li>Practice</li><li>Review</li><li>Make mistakes</li><li>Use the language</li>
+          <li>Stay consistent</li><li>Give yourself time</li>
+        </ul>
+      </section>
+    </div>
+    <p class="lead">I can guide your learning. I can't do the learning for you.</p>
+  </section>
+
+  <!-- 12 · philosophy -->
+  <section class="slide">
+    <p class="eyebrow">17 — 18 · My philosophy</p>
+    <h1>You are not memorizing a language. You are building one.</h1>
+    <p>You don't need to learn slowly. You need to learn intentionally. Take advantage of your motivation, practice consistently, use your time outside the classroom, trust the process, build on what you already know. <strong>The goal isn't to spend more time learning — it's to make the time you spend learning count.</strong></p>
+  </section>
+
+  <!-- 13 · final -->
+  <section class="slide">
+    <p class="eyebrow">19 · Final</p>
+    <h1>I built a learning journey, not a lesson.</h1>
+    <p class="quote">I don't want to slow you down. I want to prevent you from wasting time.</p>
+  </section>
+
+</main>
+
+<nav class="rail" id="rail" aria-label="Slides"></nav>
+<p class="counter"><b id="cur">01</b> / <span id="total">13</span> · ↑ ↓ to move</p>
+
+<script>
+(function(){
+  var deck = document.getElementById('deck');
+  var slides = Array.prototype.slice.call(deck.querySelectorAll('.slide'));
+  var rail = document.getElementById('rail');
+  var cur = document.getElementById('cur');
+  var bars = document.querySelectorAll('.tricolore span');
+  var pad = function(n){ return (n < 10 ? '0' : '') + n; };
+  document.getElementById('total').textContent = pad(slides.length);
+
+  slides.forEach(function(s, i){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('aria-label', 'Slide ' + (i + 1));
+    b.addEventListener('click', function(){ s.scrollIntoView({block:'start'}); });
+    rail.appendChild(b);
+  });
+  var dots = Array.prototype.slice.call(rail.children);
+
+  var active = 0;
+  function setActive(i){
+    if (i === active) return;
+    active = i;
+    cur.textContent = pad(i + 1);
+    dots.forEach(function(d, j){ d.setAttribute('aria-current', j === i ? 'true' : 'false'); });
+    var p = slides.length > 1 ? i / (slides.length - 1) : 1;
+    for (var k = 0; k < bars.length; k++){
+      var seg = Math.min(1, Math.max(0, p * bars.length - k));
+      bars[k].style.transform = 'scaleX(' + seg + ')';
+    }
+  }
+  dots[0].setAttribute('aria-current', 'true');
+  for (var k = 0; k < bars.length; k++) bars[k].style.transform = 'scaleX(0)';
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) setActive(slides.indexOf(e.target));
+      });
+    }, {root: deck, rootMargin: '-40% 0px -55% 0px', threshold: 0});
+    slides.forEach(function(s){ io.observe(s); });
+  }
+
+  function go(step){
+    var next = Math.min(slides.length - 1, Math.max(0, active + step));
+    slides[next].scrollIntoView({block:'start'});
+  }
+  document.addEventListener('keydown', function(e){
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    var k = e.key;
+    if (k === 'ArrowRight' || k === 'PageDown'){ e.preventDefault(); go(1); }
+    else if (k === 'ArrowLeft' || k === 'PageUp'){ e.preventDefault(); go(-1); }
+    else if (k === 'Home'){ e.preventDefault(); slides[0].scrollIntoView({block:'start'}); }
+    else if (k === 'End'){ e.preventDefault(); slides[slides.length - 1].scrollIntoView({block:'start'}); }
+  });
+})();
+</script>
+
+</body></html>
