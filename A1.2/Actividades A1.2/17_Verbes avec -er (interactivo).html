@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Verbes en -er</title>
+<style>
+  :root{
+    --bleu:#002395; --blanc:#ffffff; --rouge:#ED2939;
+    --bg:#f4f5f7; --card:#ffffff; --card-2:#fafbfc;
+    --text:#1a1a2e; --muted:#6b7280; --border:#e5e7eb;
+    --ok:#0f7b52; --ok-bg:#eaf6f0; --ko:#c2202f; --ko-bg:#fdeced;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#12141c; --card:#1b1e2b; --card-2:#202433;
+      --text:#f1f2f6; --muted:#9aa0b4; --border:#2a2e40;
+      --bleu:#5b7cff; --rouge:#ff6b78;
+      --ok:#4ade80; --ok-bg:#16281f; --ko:#ff8a94; --ko-bg:#2b1a1e;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#12141c; --card:#1b1e2b; --card-2:#202433;
+    --text:#f1f2f6; --muted:#9aa0b4; --border:#2a2e40;
+    --bleu:#5b7cff; --rouge:#ff6b78;
+    --ok:#4ade80; --ok-bg:#16281f; --ko:#ff8a94; --ko-bg:#2b1a1e;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding-bottom:4.5rem;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg); color:var(--text); line-height:1.5;
+  }
+  header.flag{
+    background:linear-gradient(90deg,#002395 33%,#ffffff 33%,#ffffff 66%,#ED2939 66%);
+    height:8px; width:100%;
+  }
+  nav.tabs{ display:flex; justify-content:center; gap:.5rem; flex-wrap:wrap; padding:1.2rem 1rem 0; }
+  nav.tabs a{
+    text-decoration:none; color:var(--muted); font-size:.88rem; font-weight:600;
+    padding:.5rem 1rem; border-radius:999px;
+    border:1px solid var(--border); background:var(--card);
+    transition:border-color .12s ease, color .12s ease;
+  }
+  nav.tabs a:hover{ border-color:var(--bleu); color:var(--bleu); }
+  nav.tabs .here{
+    font-size:.88rem; font-weight:600; padding:.5rem 1rem; border-radius:999px;
+    background:var(--bleu); border:1px solid var(--bleu); color:#fff;
+  }
+
+  .hero{ padding:2.4rem 1.5rem 1.2rem; text-align:center; }
+  .eyebrow{
+    font-size:.75rem; font-weight:700; text-transform:uppercase;
+    letter-spacing:.08em; color:var(--bleu); margin:0 0 .5rem;
+  }
+  .hero h1{ margin:0 0 .4rem; font-size:2.4rem; letter-spacing:-0.02em; text-wrap:balance; }
+  .hero .sub{ margin:0 auto; max-width:56ch; color:var(--muted); font-size:1.05rem; }
+
+  main{
+    max-width:1000px; margin:0 auto; padding:0 1.5rem 3rem;
+    display:flex; flex-direction:column; gap:1.2rem;
+  }
+  .card{
+    background:var(--card); border:1px solid var(--border);
+    border-radius:16px; padding:1.6rem; position:relative; overflow:hidden;
+    scroll-margin-top:1rem;
+  }
+  .card::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:4px;
+    background:linear-gradient(90deg,#002395 33%,#ffffff 33%,#ffffff 66%,#ED2939 66%);
+  }
+  .sec-label{
+    font-size:.78rem; font-weight:700; text-transform:uppercase;
+    letter-spacing:.06em; color:var(--bleu); margin:0 0 .2rem;
+  }
+  .card h2{ margin:0 0 .5rem; font-size:1.3rem; letter-spacing:-0.01em; }
+  .consigne{ margin:0 0 1rem; color:var(--muted); font-size:.95rem; }
+  .modele{
+    background:var(--card-2); border:1px solid var(--border);
+    border-left:3px solid var(--bleu); border-radius:0 10px 10px 0;
+    padding:.7rem .9rem; margin:0 0 1rem; font-size:.95rem;
+  }
+  .modele .lab{
+    font-size:.68rem; font-weight:700; text-transform:uppercase;
+    letter-spacing:.05em; color:var(--bleu); display:block; margin-bottom:.2rem;
+  }
+  .modele em{ color:var(--muted); }
+
+  /* --- sommaire --- */
+  .toc{ display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:.5rem; }
+  .toc a{
+    display:flex; align-items:center; gap:.5rem;
+    background:var(--card-2); border:1px solid var(--border); border-radius:10px;
+    padding:.5rem .7rem; text-decoration:none; color:var(--text); font-size:.9rem;
+    transition:border-color .12s ease;
+  }
+  .toc a:hover{ border-color:var(--bleu); }
+  .toc a .n{
+    font-size:.7rem; font-weight:700; color:#fff; background:var(--bleu);
+    width:22px; height:22px; border-radius:50%;
+    display:inline-flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .toc a .pts{ margin-left:auto; font-size:.75rem; color:var(--muted); font-variant-numeric:tabular-nums; }
+
+  /* --- objectif --- */
+  .goals{ margin:0; padding-left:1.1rem; display:flex; flex-direction:column; gap:.35rem; }
+  .goals li::marker{ color:var(--rouge); }
+
+  /* --- règle --- */
+  .formule{
+    display:flex; flex-wrap:wrap; align-items:center; gap:.5rem;
+    background:var(--card-2); border:1px solid var(--border);
+    border-radius:12px; padding:1rem; font-size:1.05rem;
+  }
+  .chip-radical{ font-weight:700; color:var(--bleu); border-bottom:2px solid var(--bleu); padding-bottom:1px; }
+  .chip-fin{ font-weight:700; color:var(--rouge); border-bottom:2px solid var(--rouge); padding-bottom:1px; }
+  .op{ color:var(--muted); }
+  .fin-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:.5rem; margin-top:1rem; }
+  .fin-item{
+    background:var(--card-2); border:1px solid var(--border);
+    border-radius:12px; padding:.6rem .7rem; display:flex; flex-direction:column; gap:.1rem;
+  }
+  .fin-item .pron{ font-size:.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; font-weight:600; }
+  .fin-item .end{ font-size:1.2rem; font-weight:700; color:var(--rouge); }
+
+  .rappel-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:.7rem; margin-top:1rem; }
+  .rappel{ background:var(--card-2); border:1px solid var(--border); border-radius:12px; padding:.9rem 1rem; }
+  .rappel h3{ margin:0 0 .35rem; font-size:.78rem; text-transform:uppercase; letter-spacing:.05em; color:var(--rouge); }
+  .rappel p{ margin:0; font-size:.92rem; }
+  .rappel b{ color:var(--bleu); }
+
+  /* --- conjugueur --- */
+  .chips{ display:flex; flex-wrap:wrap; gap:.45rem; margin-bottom:1.1rem; }
+  .chip{
+    font:inherit; font-size:.88rem; font-weight:600; color:var(--muted);
+    background:var(--card-2); border:1px solid var(--border); border-radius:999px;
+    padding:.45rem 1rem; cursor:pointer;
+    transition:background .12s ease, color .12s ease, border-color .12s ease;
+  }
+  .chip:hover{ border-color:var(--bleu); color:var(--bleu); }
+  .chip[aria-pressed="true"]{ background:var(--bleu); border-color:var(--bleu); color:#fff; }
+  .conj-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(225px,1fr)); gap:.5rem; }
+  .conj-row{
+    display:flex; align-items:center; gap:.5rem;
+    background:var(--card-2); border:1px solid var(--border);
+    border-radius:10px; padding:.55rem .85rem; font-size:1.02rem;
+  }
+  .conj-row .pn{ color:var(--muted); min-width:5.6em; font-size:.95rem; }
+  .conj-row.elide{ gap:0; }
+  .conj-row.elide .pn{ text-align:right; }
+  .conj-row .vb b{ color:var(--rouge); }
+  .conj-row.good{ border-color:var(--ok); background:var(--ok-bg); }
+  .conj-row.bad{ border-color:var(--ko); background:var(--ko-bg); }
+  .conj-row.good .verdict{ color:var(--ok); }
+  .conj-row.bad .verdict{ color:var(--ko); }
+  .notes{ margin-top:1rem; display:flex; flex-direction:column; gap:.5rem; }
+  .note{
+    display:flex; gap:.6rem; align-items:flex-start; font-size:.92rem;
+    background:var(--card-2); border:1px solid var(--border);
+    border-left:3px solid var(--rouge); border-radius:0 10px 10px 0; padding:.7rem .9rem;
+  }
+  .note .tag{
+    font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em;
+    color:var(--rouge); white-space:nowrap; padding-top:.15rem;
+  }
+
+  /* --- items --- */
+  .ex-list{
+    display:flex; flex-direction:column; gap:.6rem;
+    margin:0 0 1rem; padding:0; list-style:none; counter-reset:q;
+  }
+  .q{
+    display:flex; flex-wrap:wrap; align-items:center; gap:.4rem;
+    background:var(--card-2); border:1px solid var(--border);
+    border-radius:10px; padding:.7rem .9rem; font-size:1rem;
+  }
+  .q::before{
+    counter-increment:q; content:counter(q);
+    font-size:.7rem; font-weight:700; color:#fff; background:var(--bleu);
+    width:22px; height:22px; border-radius:50%;
+    display:inline-flex; align-items:center; justify-content:center;
+    flex-shrink:0; margin-right:.2rem;
+  }
+  .q .inf{ color:var(--muted); font-size:.85rem; }
+  .q .full{ flex:1 1 100%; }
+  input.gap, select.pick, textarea.free{
+    font:inherit; font-size:1rem; padding:.3rem .5rem;
+    border-radius:8px; border:1px solid var(--border);
+    background:var(--card); color:var(--text);
+  }
+  input.gap{ width:7.5em; }
+  input.gap.short{ width:4.2em; }
+  input.gap.wide{ width:11em; }
+  textarea.free{ width:100%; min-height:3.2em; resize:vertical; margin-top:.4rem; }
+  input.gap:focus-visible, select.pick:focus-visible, textarea.free:focus-visible,
+  button:focus-visible, .chip:focus-visible, .toc a:focus-visible{
+    outline:2px solid var(--bleu); outline-offset:2px;
+  }
+  .q.good{ border-color:var(--ok); background:var(--ok-bg); }
+  .q.bad{ border-color:var(--ko); background:var(--ko-bg); }
+  .verdict{ font-size:.85rem; font-weight:600; margin-left:auto; white-space:nowrap; }
+  .q.good .verdict{ color:var(--ok); }
+  .q.bad .verdict{ color:var(--ko); }
+  .commentaire{
+    flex:1 1 100%; font-size:.9rem; font-style:italic; color:var(--muted);
+    display:none; padding-top:.3rem; border-top:1px dashed var(--border); margin-top:.3rem;
+  }
+  .q.good .commentaire, .q.bad .commentaire{ display:block; }
+
+  /* --- textes à trous --- */
+  .cloze{
+    background:var(--card-2); border:1px solid var(--border);
+    border-radius:12px; padding:1.1rem 1.2rem;
+    font-size:1.05rem; line-height:2.4; margin-bottom:1rem;
+  }
+  .blank{
+    display:inline-flex; align-items:center; gap:.35rem;
+    padding:.2rem .45rem; border:1px solid transparent; border-radius:8px;
+  }
+  .blank .verdict{ margin-left:0; }
+  .blank .inf{ color:var(--muted); font-size:.85rem; }
+  .blank.good{ border-color:var(--ok); background:var(--ok-bg); }
+  .blank.bad{ border-color:var(--ko); background:var(--ko-bg); }
+  .blank.good .verdict{ color:var(--ok); }
+  .blank.bad .verdict{ color:var(--ko); }
+
+  /* --- production --- */
+  .prompt-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:.6rem; }
+  .prompt{ background:var(--card-2); border:1px solid var(--border); border-radius:12px; padding:.9rem 1rem; }
+  .prompt .h{ font-weight:700; font-size:.95rem; margin-bottom:.25rem; }
+  .prompt .ex{ color:var(--muted); font-size:.9rem; font-style:italic; }
+
+  .actions{ display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; }
+  button.btn{
+    font:inherit; font-size:.9rem; font-weight:600;
+    padding:.55rem 1.1rem; border-radius:999px;
+    border:1px solid var(--bleu); background:var(--bleu); color:#fff; cursor:pointer;
+  }
+  button.btn.ghost{ background:transparent; color:var(--bleu); }
+  button.btn:hover{ filter:brightness(1.08); }
+  .score{ font-size:.88rem; font-weight:700; color:var(--muted); font-variant-numeric:tabular-nums; }
+
+  /* --- barre de score --- */
+  .scorebar{
+    position:fixed; left:0; right:0; bottom:0; z-index:20;
+    background:var(--card); border-top:1px solid var(--border);
+    padding:.6rem 1rem;
+    display:flex; align-items:center; gap:1rem;
+    max-width:100%;
+  }
+  .scorebar .inner{
+    max-width:1000px; margin:0 auto; width:100%;
+    display:flex; align-items:center; gap:1rem;
+  }
+  .scorebar .big{ font-size:1.05rem; font-weight:700; color:var(--bleu); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .bar{ flex:1 1 120px; height:8px; border-radius:999px; background:var(--border); overflow:hidden; }
+  .bar > span{ display:block; height:100%; width:0%; background:var(--bleu); transition:width .3s ease; }
+
+  footer{ text-align:center; color:var(--muted); font-size:.82rem; padding:0 1.5rem 2rem; }
+  footer a{ color:var(--bleu); text-decoration:none; font-weight:600; }
+  footer a:hover{ text-decoration:underline; }
+  @media (prefers-reduced-motion: reduce){ *{ transition:none !important; scroll-behavior:auto !important; } }
+  html{ scroll-behavior:smooth; }
+</style>
+
+<header class="flag"></header>
+<nav class="tabs">
+  <a href="https://karla19urios.github.io/french/A1.2/index.html">🏠 Accueil A1.2</a>
+  <a href="https://karla19urios.github.io/french/A1.2/grammaire.html">🧪 Grammaire</a>
+  <a href="https://karla19urios.github.io/french/A1.2/Grammaire%20A1.2/Verbes%20-er/index.html">🖼️ La fiche</a>
+  <span class="here">📘 Leçon + exercices</span>
+</nav>
+
+<div class="hero">
+  <p class="eyebrow">A1.2 · Leçon 17 · Fiche « Verbes -er »</p>
+  <h1>Les verbes en -er au présent</h1>
+  <p class="sub">La règle, le conjugueur des sept verbes du cours, dix exercices autocorrectifs et deux activités d'expression — tout au même endroit.</p>
+</div>
+
+<main>
+
+  <section class="card">
+    <p class="sec-label">Sommaire</p>
+    <h2>70 points à gagner</h2>
+    <div class="toc">
+      <a href="#s1"><span class="n">1</span>Complète la terminaison<span class="pts">10 pts</span></a>
+      <a href="#s2"><span class="n">2</span>La conjugaison complète<span class="pts">6 pts</span></a>
+      <a href="#s3"><span class="n">3</span>Choisis la bonne forme<span class="pts">8 pts</span></a>
+      <a href="#s4"><span class="n">4</span>Muette ou sonore ?<span class="pts">6 pts</span></a>
+      <a href="#s5"><span class="n">5</span>Je ou j' ?<span class="pts">6 pts</span></a>
+      <a href="#s6"><span class="n">6</span>Posez la question<span class="pts">6 pts</span></a>
+      <a href="#s7"><span class="n">7</span>Vrai ou faux ?<span class="pts">6 pts</span></a>
+      <a href="#s8"><span class="n">8</span>Le texte de Léa<span class="pts">8 pts</span></a>
+      <a href="#s9"><span class="n">9</span>Mettez au pluriel<span class="pts">6 pts</span></a>
+      <a href="#s10"><span class="n">10</span>Je ↔ nous : l'orthographe<span class="pts">8 pts</span></a>
+      <a href="#s11"><span class="n">11</span>Répondez librement<span class="pts">libre</span></a>
+      <a href="#s12"><span class="n">12</span>Décris ta journée<span class="pts">à l'oral</span></a>
+    </div>
+  </section>
+
+  <section class="card">
+    <p class="sec-label">Objectif</p>
+    <h2>Connaître la conjugaison des verbes qui finissent en -er</h2>
+    <ul class="goals">
+      <li>Trouver le <strong>radical</strong> d'un verbe en -er et y ajouter la bonne terminaison.</li>
+      <li>Conjuguer au présent : <em>manger, regarder, jouer, écouter, parler, demander, poser</em>.</li>
+      <li>Entendre que <em>je parle</em>, <em>tu parles</em>, <em>il parle</em> et <em>ils parlent</em> se prononcent pareil.</li>
+      <li>Reconnaître les verbes qui changent d'orthographe : <em>commencer, voyager, espérer, appeler, jeter, envoyer</em>.</li>
+      <li>Raconter sa journée avec ces verbes.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <p class="sec-label">La règle</p>
+    <h2>Radical + terminaison</h2>
+    <p class="consigne">On enlève le <strong>-er</strong> de l'infinitif : ce qui reste est le radical. Il ne change pas.</p>
+    <div class="formule">
+      <span>parl<span class="op">er</span></span>
+      <span class="op">→</span>
+      <span class="chip-radical">parl</span>
+      <span class="op">+</span>
+      <span class="chip-fin">-ons</span>
+      <span class="op">=</span>
+      <span><strong>nous parlons</strong></span>
+    </div>
+    <div class="fin-grid">
+      <div class="fin-item"><span class="pron">je</span><span class="end">-e</span></div>
+      <div class="fin-item"><span class="pron">tu</span><span class="end">-es</span></div>
+      <div class="fin-item"><span class="pron">il / elle / on</span><span class="end">-e</span></div>
+      <div class="fin-item"><span class="pron">nous</span><span class="end">-ons</span></div>
+      <div class="fin-item"><span class="pron">vous</span><span class="end">-ez</span></div>
+      <div class="fin-item"><span class="pron">ils / elles</span><span class="end">-ent</span></div>
+    </div>
+    <div class="rappel-grid">
+      <div class="rappel"><h3>Prononciation</h3><p>Sauf avec <b>nous</b> et <b>vous</b>, la finale est muette : on entend seulement le radical. <em>je parle · tu parles · ils parlent</em> → [paʁl]</p></div>
+      <div class="rappel"><h3>Élision</h3><p><b>je</b> devient <b>j'</b> devant une voyelle ou un h muet : <em>j'arrive, j'habite, j'écoute</em>.</p></div>
+      <div class="rappel"><h3>Verbes en -ier</h3><p>On garde le <b>i</b> : <em>étudier → j'étudie</em>, <em>apprécier → j'apprécie</em>.</p></div>
+      <div class="rappel"><h3>Négation</h3><p>Le verbe se place entre <b>ne</b> et <b>pas</b> : <em>je ne parle pas</em>, <em>vous ne travaillez pas</em>.</p></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <p class="sec-label">Conjugueur</p>
+    <h2>Choisis un verbe</h2>
+    <div class="chips" id="chips" role="group" aria-label="Choisir un verbe"></div>
+    <div class="conj-grid" id="conj"></div>
+    <div class="notes" id="notes"></div>
+  </section>
+
+  <section class="card" id="s1">
+    <p class="sec-label">Exercice 1</p>
+    <h2>Complète la terminaison</h2>
+    <p class="consigne">Écris seulement la fin du verbe (par exemple : <strong>ons</strong>). Le radical est déjà là.</p>
+    <ul class="ex-list" id="ex1"></ul>
+    <div class="actions">
+      <button class="btn" data-check="ex1">Vérifier</button>
+      <button class="btn ghost" data-reset="ex1">Recommencer</button>
+      <span class="score" id="sc-ex1">— / 10</span>
+    </div>
+  </section>
+
+  <section class="card" id="s2">
+    <p class="sec-label">Exercice 2</p>
+    <h2>La conjugaison complète</h2>
+    <p class="consigne">Écris le verbe <strong>travailler</strong> à toutes les personnes.</p>
+    <div class="conj-grid" id="ex2" style="margin-bottom:1rem;"></div>
+    <div class="actions">
+      <button class="btn" data-check="ex2">Vérifier</button>
+      <button class="btn ghost" data-reset="ex2">Recommencer</button>
+      <span class="score" id="sc-ex2">— / 6</span>
+    </div>
+  </section>
+
+  <section class="card" id="s3">
+    <p class="sec-label">Exercice 3</p>
+    <h2>Choisis la bonne forme</h2>
+    <p class="consigne">Attention au pronom : c'est lui qui commande la terminaison.</p>
+    <ul class="ex-list" id="ex3"></ul>
+    <div class="actions">
+      <button class="btn" data-check="ex3">Vérifier</button>
+      <button class="btn ghost" data-reset="ex3">Recommencer</button>
+      <span class="score" id="sc-ex3">— / 8</span>
+    </div>
+  </section>
+
+  <section class="card" id="s4">
+    <p class="sec-label">Exercice 4</p>
+    <h2>Muette ou sonore ?</h2>
+    <p class="consigne">Est-ce qu'on entend la terminaison du verbe ?</p>
+    <ul class="ex-list" id="ex4"></ul>
+    <div class="actions">
+      <button class="btn" data-check="ex4">Vérifier</button>
+      <button class="btn ghost" data-reset="ex4">Recommencer</button>
+      <span class="score" id="sc-ex4">— / 6</span>
+    </div>
+  </section>
+
+  <section class="card" id="s5">
+    <p class="sec-label">Exercice 5</p>
+    <h2>Je ou j' ?</h2>
+    <p class="consigne">Écris le pronom et le verbe conjugué.</p>
+    <div class="modele"><span class="lab">Modèle</span>habiter → <em>J'habite à Lyon.</em></div>
+    <ul class="ex-list" id="ex5"></ul>
+    <div class="actions">
+      <button class="btn" data-check="ex5">Vérifier</button>
+      <button class="btn ghost" data-reset="ex5">Recommencer</button>
+      <span class="score" id="sc-ex5">— / 6</span>
+    </div>
+  </section>
+
+  <section class="card" id="s6">
+    <p class="sec-label">Exercice 6</p>
+    <h2>Posez la question</h2>
+    <p class="consigne">Transforme la phrase avec <strong>vous</strong>.</p>
+    <div class="modele"><span class="lab">Modèle</span>Je commence à neuf heures. — <em>Et vous, vous commencez à quelle heure ?</em></div>
+    <ul class="ex-list" id="ex6"></ul>
+    <div class="actions">
+      <button class="btn" data-check="ex6">Vérifier</button>
+      <button class="btn ghost" data-reset="ex6">Recommencer</button>
+      <span class="score" id="sc-ex6">— / 6</span>
+    </div>
+  </section>
+
+  <section class="card" id="s7">
+    <p class="sec-label">Exercice 7</p>
+    <h2>C'est vrai ou c'est faux ?</h2>
+    <p class="consigne">Choisis, puis lis le commentaire.</p>
+    <div class="modele"><span class="lab">Modèle</span>Les Colombiens parlent espagnol. — <em>C'est vrai. Ils parlent espagnol.</em></div>
+    <ul class="ex-list" id="ex7"></ul>
+    <div class="actions">
+      <button class="btn" data-check="ex7">Vérifier</button>
+      <button class="btn ghost" data-reset="ex7">Recommencer</button>
+      <span class="score" id="sc-ex7">— / 6</span>
+    </div>
+  </section>
+
+  <section class="card" id="s8">
+    <p class="sec-label">Exercice 8</p>
+    <h2>Le texte de Léa</h2>
+    <p class="consigne">Écris le verbe entier, conjugué. Ici, les accents sont tolérés.</p>
+    <div class="cloze" id="ex8"></div>
+    <div class="actions">
+      <button class="btn" data-check="ex8">Vérifier</button>
+      <button class="btn ghost" data-reset="ex8">Recommencer</button>
+      <span class="score" id="sc-ex8">— / 8</span>
+    </div>
+  </section>
+
+  <section class="card" id="s9">
+    <p class="sec-label">Exercice 9</p>
+    <h2>Mettez le texte au pluriel</h2>
+    <p class="consigne">« Mon voisin » devient « Mes voisins ». Écris les verbes.</p>
+    <div class="cloze" id="ex9"></div>
+    <div class="actions">
+      <button class="btn" data-check="ex9">Vérifier</button>
+      <button class="btn ghost" data-reset="ex9">Recommencer</button>
+      <span class="score" id="sc-ex9">— / 6</span>
+    </div>
+  </section>
+
+  <section class="card" id="s10">
+    <p class="sec-label">Exercice 10</p>
+    <h2>Je ↔ nous : attention à l'orthographe</h2>
+    <p class="consigne">Certains verbes en -er changent d'orthographe. Ici, les accents et la cédille comptent.</p>
+    <div class="rappel-grid" style="margin-top:0; margin-bottom:1rem;">
+      <div class="rappel"><h3>-cer / -ger</h3><p>nous commen<b>ç</b>ons · nous mang<b>e</b>ons · nous voyag<b>e</b>ons</p></div>
+      <div class="rappel"><h3>é + consonne + er</h3><p>j'esp<b>è</b>re · nous esp<b>é</b>rons — je préf<b>è</b>re · nous préf<b>é</b>rons</p></div>
+      <div class="rappel"><h3>-eler / -eter</h3><p>j'appe<b>ll</b>e · nous appelons — je je<b>tt</b>e · nous jetons</p></div>
+      <div class="rappel"><h3>-yer</h3><p>j'envo<b>i</b>e · nous envo<b>y</b>ons — je pa<b>i</b>e · nous pa<b>y</b>ons</p></div>
+    </div>
+    <ul class="ex-list" id="ex10"></ul>
+    <div class="actions">
+      <button class="btn" data-check="ex10">Vérifier</button>
+      <button class="btn ghost" data-reset="ex10">Recommencer</button>
+      <span class="score" id="sc-ex10">— / 8</span>
+    </div>
+  </section>
+
+  <section class="card" id="s11">
+    <p class="sec-label">Exercice 11 · Expression écrite</p>
+    <h2>Répondez librement</h2>
+    <p class="consigne">Vie quotidienne. Réponds par une phrase complète, puis compare avec le modèle.</p>
+    <ul class="ex-list" id="ex11"></ul>
+    <div class="actions">
+      <button class="btn ghost" id="showModels">Voir les modèles</button>
+      <span class="score">non noté</span>
+    </div>
+  </section>
+
+  <section class="card" id="s12">
+    <p class="sec-label">À l'oral</p>
+    <h2>Décris ta journée</h2>
+    <p class="consigne">Trois minutes par personne, puis on échange. Utilise au moins cinq verbes en -er et deux pronoms différents.</p>
+    <div class="prompt-grid">
+      <div class="prompt"><div class="h">Le matin</div><div class="ex">« J'écoute la radio et je parle avec ma mère. »</div></div>
+      <div class="prompt"><div class="h">À l'école / au travail</div><div class="ex">« Le professeur pose des questions et nous demandons des explications. »</div></div>
+      <div class="prompt"><div class="h">Le midi</div><div class="ex">« Nous mangeons à la cantine. »</div></div>
+      <div class="prompt"><div class="h">Le soir</div><div class="ex">« Mes amis et moi, nous jouons et nous regardons un film. »</div></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Prochaine leçon : <strong>L'heure en français</strong> · <a href="https://karla19urios.github.io/french/A1.2/grammaire.html">Laboratoire de grammaire A1.2</a>
+</footer>
+
+<div class="scorebar">
+  <div class="inner">
+    <span class="big" id="total">0 / 70</span>
+    <span class="bar"><span id="bar"></span></span>
+    <button class="btn ghost" id="resetAll">Tout recommencer</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  function stripAccents(s){ return s.normalize("NFD").replace(/[̀-ͯ]/g,""); }
+  function base(s){ return (s||"").toLowerCase().trim().replace(/’/g,"'").replace(/\s+/g," "); }
+  function loose(s){ return stripAccents(base(s)); }
+
+  /* ============ conjugueur ============ */
+  var VERBES = {
+    parler:   { rad:"parl",   elide:false, forms:["parle","parles","parle","parlons","parlez","parlent"] },
+    regarder: { rad:"regard", elide:false, forms:["regarde","regardes","regarde","regardons","regardez","regardent"] },
+    jouer:    { rad:"jou",    elide:false, forms:["joue","joues","joue","jouons","jouez","jouent"] },
+    ecouter:  { rad:"écout",  elide:true,  label:"écouter", forms:["écoute","écoutes","écoute","écoutons","écoutez","écoutent"] },
+    demander: { rad:"demand", elide:false, forms:["demande","demandes","demande","demandons","demandez","demandent"] },
+    poser:    { rad:"pos",    elide:false, forms:["pose","poses","pose","posons","posez","posent"] },
+    manger:   { rad:"mang",   elide:false, forms:["mange","manges","mange","mangeons","mangez","mangent"] }
+  };
+  var PRON = ["je","tu","il / elle / on","nous","vous","ils / elles"];
+  var NOTES = {
+    manger: [["Attention","Avec <em>nous</em>, on garde le <strong>e</strong> : <strong>nous mangeons</strong>. Sans lui, on lirait « mangons » avec le son [g]."]],
+    ecouter: [["Élision","Le verbe commence par une voyelle : <strong>j'écoute</strong>, et non « je écoute »."],
+              ["Liaison","On entend le <strong>z</strong> : <em>nous_écoutons</em>, <em>vous_écoutez</em>, <em>ils_écoutent</em>."]]
+  };
+  var NOTE_COMMUNE = ["Prononciation","<strong>je parle · tu parles · il parle · ils parlent</strong> se prononcent exactement pareil. Les terminaisons <em>-e</em>, <em>-es</em> et <em>-ent</em> ne s'entendent pas."];
+
+  var chipsEl = document.getElementById("chips");
+  var conjEl  = document.getElementById("conj");
+  var notesEl = document.getElementById("notes");
+  var ORDRE = ["parler","regarder","jouer","ecouter","demander","poser","manger"];
+
+  function render(key){
+    var v = VERBES[key];
+    conjEl.innerHTML = "";
+    for(var i=0;i<6;i++){
+      var form = v.forms[i];
+      var rest = form.slice(v.rad.length);
+      var row = document.createElement("div");
+      if(i===0 && v.elide){
+        row.className = "conj-row elide";
+        row.innerHTML = '<span class="pn">j’</span><span class="vb">'+v.rad+'<b>'+rest+'</b></span>';
+      } else {
+        row.className = "conj-row";
+        row.innerHTML = '<span class="pn">'+PRON[i]+'</span><span class="vb">'+v.rad+'<b>'+rest+'</b></span>';
+      }
+      conjEl.appendChild(row);
+    }
+    notesEl.innerHTML = "";
+    (NOTES[key] || []).concat([NOTE_COMMUNE]).forEach(function(n){
+      var d = document.createElement("div");
+      d.className = "note";
+      d.innerHTML = '<span class="tag">'+n[0]+'</span><span>'+n[1]+'</span>';
+      notesEl.appendChild(d);
+    });
+    Array.prototype.forEach.call(chipsEl.children, function(b){
+      b.setAttribute("aria-pressed", b.dataset.k === key ? "true" : "false");
+    });
+  }
+
+  ORDRE.forEach(function(k, idx){
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "chip"; b.dataset.k = k;
+    b.textContent = VERBES[k].label || k;
+    b.setAttribute("aria-pressed", idx===0 ? "true" : "false");
+    b.addEventListener("click", function(){ render(k); });
+    chipsEl.appendChild(b);
+  });
+  render("parler");
+
+  /* ============ ex1 : terminaisons ============ */
+  var EX1 = [
+    ["Nous","manger","mang","eons"], ["Tu","regarder","regard","es"],
+    ["Ils","jouer","jou","ent"],     ["Vous","parler","parl","ez"],
+    ["Elle","poser","pos","e"],      ["J'","écouter","écout","e"],
+    ["Nous","demander","demand","ons"], ["Elles","regarder","regard","ent"],
+    ["Je","parler","parl","e"],      ["Vous","jouer","jou","ez"]
+  ];
+  (function(){
+    var root = document.getElementById("ex1");
+    EX1.forEach(function(it,i){
+      var li = document.createElement("li");
+      li.className = "q"; li.dataset.answer = it[3];
+      li.innerHTML = '<span>'+it[0]+'</span><span>'+it[2]+'</span>'+
+        '<input class="gap short" type="text" autocomplete="off" spellcheck="false" aria-label="terminaison '+(i+1)+'">'+
+        '<span class="inf">('+it[1]+')</span><span class="verdict"></span>';
+      root.appendChild(li);
+    });
+  })();
+
+  /* ============ ex2 : conjugaison complète ============ */
+  var EX2 = [
+    ["je","travaille"], ["tu","travailles"], ["il / elle / on","travaille"],
+    ["nous","travaillons"], ["vous","travaillez"], ["ils / elles","travaillent"]
+  ];
+  (function(){
+    var root = document.getElementById("ex2");
+    EX2.forEach(function(it){
+      var d = document.createElement("div");
+      d.className = "conj-row"; d.dataset.answer = it[1];
+      d.innerHTML = '<span class="pn">'+it[0]+'</span>'+
+        '<input class="gap wide" type="text" autocomplete="off" spellcheck="false" aria-label="'+it[0]+'">'+
+        '<span class="verdict"></span>';
+      root.appendChild(d);
+    });
+  })();
+
+  /* ============ ex3 : QCM ============ */
+  var EX3 = [
+    ["Vous ___ la télévision le soir.", ["regarde","regardez","regardent"], "regardez"],
+    ["Nous ___ au football le samedi.", ["jouons","jouez","joue"], "jouons"],
+    ["Ils ___ de la musique.", ["écoute","écoutons","écoutent"], "écoutent"],
+    ["Je ___ français et espagnol.", ["parle","parles","parlons"], "parle"],
+    ["Tu ___ une question au professeur.", ["pose","poses","posez"], "poses"],
+    ["On ___ à midi.", ["mange","mangeons","mangent"], "mange"],
+    ["Elles ___ l'adresse.", ["demande","demandes","demandent"], "demandent"],
+    ["Nous ___ une pizza.", ["mangez","mangeons","mangent"], "mangeons"]
+  ];
+  (function(){
+    var root = document.getElementById("ex3");
+    EX3.forEach(function(it,i){
+      var parts = it[0].split("___");
+      var li = document.createElement("li");
+      li.className = "q"; li.dataset.answer = it[2];
+      li.innerHTML = '<span>'+parts[0]+'</span>'+
+        '<select class="pick" aria-label="question '+(i+1)+'"><option value="">— choisis —</option>'+
+        it[1].map(function(o){ return '<option value="'+o+'">'+o+'</option>'; }).join("")+
+        '</select><span>'+parts[1]+'</span><span class="verdict"></span>';
+      root.appendChild(li);
+    });
+  })();
+
+  /* ============ ex4 : prononciation ============ */
+  var EX4 = [
+    ["nous regardons","sonore"], ["ils regardent","muette"], ["je travaille","muette"],
+    ["vous étudiez","sonore"],   ["tu chantes","muette"],    ["elles arrivent","muette"]
+  ];
+  (function(){
+    var root = document.getElementById("ex4");
+    EX4.forEach(function(it,i){
+      var li = document.createElement("li");
+      li.className = "q"; li.dataset.answer = it[1];
+      li.innerHTML = '<span><strong>'+it[0]+'</strong></span>'+
+        '<select class="pick" aria-label="question '+(i+1)+'">'+
+        '<option value="">— choisis —</option>'+
+        '<option value="muette">terminaison muette</option>'+
+        '<option value="sonore">on entend la terminaison</option>'+
+        '</select><span class="verdict"></span>';
+      root.appendChild(li);
+    });
+  })();
+
+  /* ============ ex5 : je / j' ============ */
+  var EX5 = [
+    ["arriver","toujours en retard.","J'arrive"],
+    ["parler","espagnol et français.","Je parle"],
+    ["étudier","le soir, après le dîner.","J'étudie"],
+    ["habiter","dans le centre-ville.","J'habite"],
+    ["apprécier","beaucoup ce quartier.","J'apprécie"],
+    ["déjeuner","à la cantine à midi.","Je déjeune"]
+  ];
+  (function(){
+    var root = document.getElementById("ex5");
+    EX5.forEach(function(it,i){
+      var li = document.createElement("li");
+      li.className = "q"; li.dataset.answer = it[2];
+      li.innerHTML = '<input class="gap wide" type="text" autocomplete="off" spellcheck="false" aria-label="phrase '+(i+1)+'">'+
+        '<span>'+it[1]+'</span><span class="inf">('+it[0]+')</span><span class="verdict"></span>';
+      root.appendChild(li);
+    });
+  })();
+
+  /* ============ ex6 : posez la question ============ */
+  var EX6 = [
+    ["Je travaille le samedi.","le samedi ?","travaillez"],
+    ["Je dîne très tard.","à quelle heure ?","dînez"],
+    ["Je voyage souvent en train.","souvent en train ?","voyagez"],
+    ["J'étudie le soir.","le soir aussi ?","étudiez"],
+    ["Je mange à la cantine.","où, à midi ?","mangez"],
+    ["Je commence à huit heures.","à quelle heure ?","commencez"]
+  ];
+  (function(){
+    var root = document.getElementById("ex6");
+    EX6.forEach(function(it,i){
+      var li = document.createElement("li");
+      li.className = "q"; li.dataset.answer = it[2];
+      li.innerHTML = '<span class="full">'+it[0]+'</span><span>Et vous, vous</span>'+
+        '<input class="gap" type="text" autocomplete="off" spellcheck="false" aria-label="question '+(i+1)+'">'+
+        '<span>'+it[1]+'</span><span class="verdict"></span>';
+      root.appendChild(li);
+    });
+  })();
+
+  /* ============ ex7 : vrai / faux ============ */
+  var EX7 = [
+    ["Les Mexicains parlent espagnol.","vrai","C'est vrai. Ils parlent espagnol."],
+    ["La Seine traverse Lyon.","faux","C'est faux. Elle ne traverse pas Lyon, elle traverse Paris."],
+    ["L'été commence le 21 juin.","vrai","C'est vrai. Il commence le 21 juin."],
+    ["Les Français dînent à six heures.","faux","C'est faux. Ils ne dînent pas à six heures, ils dînent vers vingt heures."],
+    ["On parle français au Sénégal.","vrai","C'est vrai. On parle français au Sénégal."],
+    ["Les bébés marchent à trois mois.","faux","C'est faux. Ils ne marchent pas à trois mois, ils marchent vers un an."]
+  ];
+  (function(){
+    var root = document.getElementById("ex7");
+    EX7.forEach(function(it,i){
+      var li = document.createElement("li");
+      li.className = "q"; li.dataset.answer = it[1]; li.dataset.model = it[2];
+      li.innerHTML = '<span>'+it[0]+'</span>'+
+        '<select class="pick" aria-label="question '+(i+1)+'">'+
+        '<option value="">— choisis —</option>'+
+        '<option value="vrai">C\'est vrai</option>'+
+        '<option value="faux">C\'est faux</option>'+
+        '</select><span class="verdict"></span><span class="commentaire"></span>';
+      root.appendChild(li);
+    });
+  })();
+
+  /* ============ ex8 : texte de Léa ============ */
+  var EX8 = [["écouter","écoute"],["parler","parle"],["manger","mangeons"],["demander","demande"],
+             ["poser","pose"],["jouer","jouons"],["regarder","regardons"],["parler","parlent"]];
+  var TXT8 = [
+    "Le matin, j'", " la radio dans la cuisine. Ma sœur ",
+    " beaucoup, alors nous ", " vite. À l'école, le professeur ",
+    " le silence et il ", " une question à chaque élève. L'après-midi, mes amis et moi, nous ",
+    " au basket, puis nous ", " une série. Le soir, mes parents ", " de leur journée."
+  ];
+
+  /* ============ ex9 : au pluriel ============ */
+  var EX9 = [["aimer","aiment"],["acheter","achètent"],["travailler","travaillent"],
+             ["écouter","écoutent"],["dîner","dînent"],["inviter","invitent"]];
+  var TXT9 = [
+    "Mes voisins ", " beaucoup le jardinage. Ils ",
+    " des plantes au marché le dimanche. Ils ", " dans le jardin tout l'après-midi et ils ",
+    " la radio en même temps. Le soir, ils ", " sur la terrasse et ils ", " souvent leurs amis."
+  ];
+
+  function buildCloze(rootId, data, txt){
+    var root = document.getElementById(rootId);
+    var html = "";
+    for(var i=0;i<data.length;i++){
+      html += '<span>'+txt[i]+'</span>'+
+        '<span class="blank" data-answer="'+data[i][1]+'">'+
+        '<input class="gap" type="text" autocomplete="off" spellcheck="false" aria-label="trou '+(i+1)+'">'+
+        '<span class="inf">('+data[i][0]+')</span><span class="verdict"></span></span>';
+    }
+    html += '<span>'+txt[data.length]+'</span>';
+    root.innerHTML = html;
+  }
+  buildCloze("ex8", EX8, TXT8);
+  buildCloze("ex9", EX9, TXT9);
+
+  /* ============ ex10 : orthographe ============ */
+  var EX10 = [
+    ["Je commence le travail à neuf heures.","Nous","le travail à neuf heures.","commençons"],
+    ["Je voyage souvent en Europe.","Nous","souvent en Europe.","voyageons"],
+    ["Je change d'adresse en septembre.","Nous","d'adresse en septembre.","changeons"],
+    ["Je partage un appartement.","Nous","un appartement.","partageons"],
+    ["Nous espérons partir tôt.","J'","partir tôt.","espère"],
+    ["Nous appelons le médecin.","J'","le médecin.","appelle"],
+    ["Nous jetons les vieux papiers.","Je","les vieux papiers.","jette"],
+    ["Nous envoyons une carte postale.","J'","une carte postale.","envoie"]
+  ];
+  (function(){
+    var root = document.getElementById("ex10");
+    EX10.forEach(function(it,i){
+      var li = document.createElement("li");
+      li.className = "q"; li.dataset.answer = it[3]; li.dataset.strict = "1";
+      li.innerHTML = '<span class="full">'+it[0]+'</span><span>'+it[1]+'</span>'+
+        '<input class="gap wide" type="text" autocomplete="off" spellcheck="false" aria-label="phrase '+(i+1)+'">'+
+        '<span>'+it[2]+'</span><span class="verdict"></span>';
+      root.appendChild(li);
+    });
+  })();
+
+  /* ============ ex11 : expression libre ============ */
+  var EX11 = [
+    ["Où habitez-vous actuellement ?","J'habite à Séoul, dans le centre."],
+    ["Vous travaillez ou vous étudiez ?","J'étudie le français et je travaille le week-end."],
+    ["Quelle langue parlez-vous en classe ?","En classe, nous parlons français."],
+    ["Où déjeunez-vous à midi ?","Je déjeune à la cafétéria avec mes collègues."],
+    ["Où passez-vous vos vacances habituellement ?","Nous passons nos vacances à la campagne."],
+    ["Vous étudiez d'autres langues étrangères ?","Oui, j'étudie aussi l'anglais."]
+  ];
+  (function(){
+    var root = document.getElementById("ex11");
+    EX11.forEach(function(it,i){
+      var li = document.createElement("li");
+      li.className = "q";
+      li.innerHTML = '<span class="full">'+it[0]+'</span>'+
+        '<textarea class="free" aria-label="réponse '+(i+1)+'"></textarea>'+
+        '<span class="commentaire" style="display:none;">Modèle : '+it[1]+'</span>';
+      root.appendChild(li);
+    });
+  })();
+
+  /* ============ moteur ============ */
+  var TOTALS = { ex1:10, ex2:6, ex3:8, ex4:6, ex5:6, ex6:6, ex7:6, ex8:8, ex9:6, ex10:8 };
+  var MAX = 70;
+  var results = {};
+  Object.keys(TOTALS).forEach(function(k){ results[k] = null; });
+
+  function itemsOf(id){
+    return Array.prototype.slice.call(
+      document.getElementById(id).querySelectorAll(".q, .blank, .conj-row")
+    );
+  }
+
+  function check(id){
+    var good = 0;
+    itemsOf(id).forEach(function(item){
+      var field = item.querySelector("input, select");
+      if(!field || !item.dataset.answer) return;
+      var expected = item.dataset.answer.split("|");
+      var given = field.value;
+      var v = item.querySelector(".verdict");
+      var com = item.querySelector(".commentaire");
+      item.classList.remove("good","bad");
+
+      var exact  = expected.some(function(a){ return base(given) === base(a); });
+      var near   = expected.some(function(a){ return loose(given) === loose(a); });
+      var strict = item.dataset.strict === "1";
+
+      if(base(given) === ""){
+        item.classList.add("bad"); v.textContent = "→ " + expected[0];
+      } else if(exact || (near && !strict)){
+        item.classList.add("good"); v.textContent = "✓"; good++;
+      } else if(near && strict){
+        item.classList.add("bad"); v.textContent = "→ " + expected[0] + " (orthographe)";
+      } else {
+        item.classList.add("bad"); v.textContent = "→ " + expected[0];
+      }
+      if(com && item.dataset.model) com.textContent = item.dataset.model;
+    });
+    results[id] = good;
+    document.getElementById("sc-"+id).textContent = good + " / " + TOTALS[id];
+    updateTotal();
+  }
+
+  function reset(id){
+    itemsOf(id).forEach(function(item){
+      var field = item.querySelector("input, select");
+      if(!field) return;
+      item.classList.remove("good","bad");
+      item.querySelector(".verdict").textContent = "";
+      var com = item.querySelector(".commentaire");
+      if(com) com.textContent = "";
+      field.value = "";
+    });
+    results[id] = null;
+    document.getElementById("sc-"+id).textContent = "— / " + TOTALS[id];
+    updateTotal();
+  }
+
+  function updateTotal(){
+    var sum = 0;
+    Object.keys(results).forEach(function(k){ if(results[k] !== null) sum += results[k]; });
+    document.getElementById("total").textContent = sum + " / " + MAX;
+    document.getElementById("bar").style.width = Math.round(sum/MAX*100) + "%";
+  }
+
+  document.addEventListener("click", function(e){
+    var t = e.target;
+    if(t.dataset && t.dataset.check) check(t.dataset.check);
+    if(t.dataset && t.dataset.reset) reset(t.dataset.reset);
+  });
+
+  document.getElementById("showModels").addEventListener("click", function(){
+    var open = this.dataset.open === "1";
+    Array.prototype.forEach.call(document.querySelectorAll("#ex11 .commentaire"), function(c){
+      c.style.display = open ? "none" : "block";
+    });
+    this.dataset.open = open ? "0" : "1";
+    this.textContent = open ? "Voir les modèles" : "Cacher les modèles";
+  });
+
+  document.getElementById("resetAll").addEventListener("click", function(){
+    Object.keys(TOTALS).forEach(reset);
+    window.scrollTo({ top:0, behavior:"smooth" });
+  });
+
+  updateTotal();
+})();
+</script>
+
+</body></html>
