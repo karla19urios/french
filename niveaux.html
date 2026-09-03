@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Français — Niveaux</title>
+<style>
+  :root{
+    --bleu:#002395;
+    --blanc:#ffffff;
+    --rouge:#ED2939;
+    --bg:#f4f5f7;
+    --card:#ffffff;
+    --text:#1a1a2e;
+    --muted:#6b7280;
+    --border:#e5e7eb;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#12141c;
+      --card:#1b1e2b;
+      --text:#f1f2f6;
+      --muted:#9aa0b4;
+      --border:#2a2e40;
+    }
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+  }
+  header.flag{
+    background:linear-gradient(90deg, var(--bleu) 33%, var(--blanc) 33%, var(--blanc) 66%, var(--rouge) 66%);
+    height:8px;
+    width:100%;
+  }
+  .hero{
+    padding:3rem 1.5rem 1rem;
+    text-align:center;
+  }
+  .hero h1{
+    margin:0 0 .5rem;
+    font-size:2.2rem;
+    letter-spacing:-0.02em;
+  }
+  .hero p{
+    margin:0;
+    color:var(--muted);
+    font-size:1.05rem;
+  }
+  .back-link{
+    display:block;
+    text-align:center;
+    margin-top:1rem;
+    font-size:.85rem;
+    color:var(--muted);
+    text-decoration:none;
+  }
+  .back-link:hover{ color:var(--bleu); }
+  main{
+    max-width:900px;
+    margin:0 auto;
+    padding:1rem 1.5rem 3rem;
+  }
+  .cefr-block{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:1.6rem;
+    margin-top:1.4rem;
+    position:relative;
+    overflow:hidden;
+  }
+  .cefr-block::before{
+    content:"";
+    position:absolute;
+    top:0; left:0; right:0;
+    height:4px;
+    background:linear-gradient(90deg, var(--bleu) 33%, var(--blanc) 33%, var(--blanc) 66%, var(--rouge) 66%);
+  }
+  .cefr-block.disabled{
+    opacity:.55;
+  }
+  .cefr-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:.8rem;
+    flex-wrap:wrap;
+  }
+  .cefr-head h2{
+    margin:0;
+    font-size:1.5rem;
+  }
+  .cefr-head .status{
+    font-size:.72rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--muted);
+  }
+  .cefr-block p.desc{
+    margin:.4rem 0 0;
+    color:var(--muted);
+    font-size:.92rem;
+  }
+  .sub-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(220px,1fr));
+    gap:1rem;
+    margin-top:1.2rem;
+  }
+  .sub-card{
+    background:var(--bg);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:1.2rem;
+    display:flex;
+    flex-direction:column;
+    gap:.5rem;
+    text-decoration:none;
+    color:var(--text);
+    transition:transform .14s ease, box-shadow .14s ease, border-color .14s ease;
+  }
+  .sub-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
+    border-color:var(--bleu);
+  }
+  .sub-card .icon{
+    font-size:1.8rem;
+    line-height:1;
+  }
+  .sub-card h3{
+    margin:0;
+    font-size:1.1rem;
+  }
+  .sub-card p{
+    margin:0;
+    color:var(--muted);
+    font-size:.85rem;
+    line-height:1.35;
+  }
+  footer{
+    text-align:center;
+    color:var(--muted);
+    font-size:.8rem;
+    padding:1.5rem;
+  }
+</style>
+</head>
+<body>
+<header class="flag"></header>
+<div class="hero">
+  <h1>🇫🇷 Choisis ton niveau</h1>
+  <p>Les niveaux suivent l'échelle du CECR, de A1 (débutant) à B2 (avancé)</p>
+  <a class="back-link" href="index.html">← Accueil</a>
+</div>
+
+<main>
+  <section class="cefr-block">
+    <div class="cefr-head">
+      <h2>A1 — Débutant</h2>
+    </div>
+    <p class="desc">Les bases du français : alphabet, grammaire de base, vocabulaire du quotidien.</p>
+    <div class="sub-grid">
+      <a class="sub-card" href="A1.1/index.html">
+        <span class="icon">🌱</span>
+        <h3>A1.1</h3>
+        <p>Grammaire, lectures et audios du premier niveau — les bases du français.</p>
+      </a>
+      <a class="sub-card" href="A1.2/index.html">
+        <span class="icon">🌿</span>
+        <h3>A1.2</h3>
+        <p>Grammaire, lectures, audios et vidéo pour continuer à progresser.</p>
+      </a>
+      <a class="sub-card" href="A1.3/index.html">
+        <span class="icon">🌳</span>
+        <h3>A1.3</h3>
+        <p>Grammaire avancée — passé composé, futur proche et plus encore.</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="cefr-block disabled">
+    <div class="cefr-head">
+      <h2>A2 — Élémentaire</h2>
+      <span class="status">Bientôt disponible</span>
+    </div>
+    <p class="desc">La suite du parcours — pas encore de matériel publié pour ce niveau.</p>
+  </section>
+
+  <section class="cefr-block disabled">
+    <div class="cefr-head">
+      <h2>B1 — Intermédiaire</h2>
+      <span class="status">Bientôt disponible</span>
+    </div>
+    <p class="desc">La suite du parcours — pas encore de matériel publié pour ce niveau.</p>
+  </section>
+
+  <section class="cefr-block disabled">
+    <div class="cefr-head">
+      <h2>B2 — Intermédiaire avancé</h2>
+      <span class="status">Bientôt disponible</span>
+    </div>
+    <p class="desc">La suite du parcours — pas encore de matériel publié pour ce niveau.</p>
+  </section>
+</main>
+
+<footer>Site local généré pour consulter les fichiers de cours de français</footer>
+</body>
+</html>

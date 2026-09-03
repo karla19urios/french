@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Français — Niveaux</title>
+<title>Français — Accueil</title>
 <style>
   :root{
     --bleu:#002395;
@@ -37,7 +37,7 @@
     width:100%;
   }
   .hero{
-    padding:3.5rem 1.5rem 2rem;
+    padding:3.5rem 1.5rem 1rem;
     text-align:center;
   }
   .hero h1{
@@ -51,62 +51,116 @@
     font-size:1.05rem;
   }
   main{
-    max-width:1000px;
+    max-width:760px;
     margin:0 auto;
-    padding:0 1.5rem 3rem;
+    padding:1rem 1.5rem 3rem;
   }
-  .level-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill, minmax(260px,1fr));
-    gap:1.2rem;
-  }
-  .level-card{
+  section.block{
     background:var(--card);
     border:1px solid var(--border);
     border-radius:16px;
-    padding:1.6rem;
-    display:flex;
-    flex-direction:column;
-    gap:.6rem;
-    text-decoration:none;
-    color:var(--text);
-    transition:transform .14s ease, box-shadow .14s ease, border-color .14s ease;
+    padding:1.8rem;
+    margin-top:1.5rem;
     position:relative;
     overflow:hidden;
   }
-  .level-card::before{
+  section.block::before{
     content:"";
     position:absolute;
     top:0; left:0; right:0;
     height:4px;
     background:linear-gradient(90deg, var(--bleu) 33%, var(--blanc) 33%, var(--blanc) 66%, var(--rouge) 66%);
   }
-  .level-card:hover{
-    transform:translateY(-3px);
-    box-shadow:0 10px 24px rgba(0,0,0,.1);
-    border-color:var(--bleu);
+  section.block h2{
+    margin:0 0 .3rem;
+    font-size:1.4rem;
+    display:flex;
+    align-items:center;
+    gap:.5rem;
   }
-  .level-card .icon{
-    font-size:2.2rem;
-    line-height:1;
-  }
-  .level-card h2{
-    margin:0;
-    font-size:1.3rem;
-  }
-  .level-card p{
-    margin:0;
-    color:var(--muted);
-    font-size:.92rem;
-    line-height:1.4;
-  }
-  .level-card .tag{
-    margin-top:.4rem;
-    font-size:.75rem;
+  section.block .step{
+    font-size:.72rem;
     font-weight:700;
     text-transform:uppercase;
-    letter-spacing:.05em;
+    letter-spacing:.06em;
     color:var(--bleu);
+    margin-bottom:.4rem;
+  }
+  ul.rules{
+    margin:1rem 0 0;
+    padding:0;
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:.7rem;
+  }
+  ul.rules li{
+    display:flex;
+    gap:.7rem;
+    align-items:flex-start;
+    font-size:.95rem;
+    line-height:1.5;
+    color:var(--text);
+  }
+  ul.rules li .n{
+    flex:0 0 auto;
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    background:var(--bleu);
+    color:#fff;
+    font-size:.78rem;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .expect-list{
+    margin:1rem 0 0;
+    padding:0;
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:.6rem;
+  }
+  .expect-list li{
+    font-size:.95rem;
+    line-height:1.5;
+    color:var(--text);
+    padding-left:1.2rem;
+    position:relative;
+  }
+  .expect-list li::before{
+    content:"→";
+    position:absolute;
+    left:0;
+    color:var(--bleu);
+    font-weight:700;
+  }
+  .ready-block{
+    text-align:center;
+  }
+  .ready-block p{
+    color:var(--muted);
+    font-size:.95rem;
+    margin:.4rem 0 1.4rem;
+  }
+  .start-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+    background:var(--bleu);
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    font-size:1rem;
+    padding:.9rem 2rem;
+    border-radius:999px;
+    transition:transform .14s ease, background .14s ease;
+  }
+  .start-btn:hover{
+    background:var(--rouge);
+    transform:translateY(-2px);
   }
   footer{
     text-align:center;
@@ -120,29 +174,38 @@
 <header class="flag"></header>
 <div class="hero">
   <h1>🇫🇷 Français</h1>
-  <p>Choisis ton niveau pour accéder au matériel de cours</p>
+  <p>Un site pour apprendre le français, à ton rythme</p>
 </div>
 
 <main>
-  <div class="level-grid">
-    <a class="level-card" href="A1.1/index.html">
-      <span class="icon">🌱</span>
-      <h2>A1.1</h2>
-      <p>Grammaire, lectures et audios du premier niveau — les bases du français.</p>
-    </a>
+  <section class="block">
+    <div class="step">1 · Learning Rules</div>
+    <h2>📋 Learning Rules</h2>
+    <ul class="rules">
+      <li><span class="n">1</span>Practice a little every day — a few minutes daily beats one long session a week.</li>
+      <li><span class="n">2</span>Listen before you read — let your ear catch the rhythm and sounds first.</li>
+      <li><span class="n">3</span>Don't skip the exercises — actually producing French is what makes it stick.</li>
+      <li><span class="n">4</span>Mistakes are part of learning — revisit any lesson as many times as you need.</li>
+    </ul>
+  </section>
 
-    <a class="level-card" href="A1.2/index.html">
-      <span class="icon">🌿</span>
-      <h2>A1.2</h2>
-      <p>Grammaire, lectures, audios et vidéo pour continuer à progresser.</p>
-    </a>
+  <section class="block">
+    <div class="step">2 · What to Expect</div>
+    <h2>🔍 What to Expect</h2>
+    <ul class="expect-list">
+      <li>Levels go from A1 to B2, following the CEFR scale — start at your level and move up.</li>
+      <li>Each level is organized into Grammaire, Lectures, Audios (and Vidéo where available).</li>
+      <li>Lessons mix interactive activities with reference PDFs — click to open, right in your browser.</li>
+      <li>Nothing is locked — jump around, skip ahead, or go back whenever you like.</li>
+    </ul>
+  </section>
 
-    <a class="level-card" href="A1.3/index.html">
-      <span class="icon">🌳</span>
-      <h2>A1.3</h2>
-      <p>Grammaire avancée — passé composé, futur proche et plus encore.</p>
-    </a>
-  </div>
+  <section class="block ready-block">
+    <div class="step">3 · Ready to Learn</div>
+    <h2>🚀 Ready to Learn</h2>
+    <p>Choose your level and start exploring the lessons.</p>
+    <a class="start-btn" href="niveaux.html">Commencer → </a>
+  </section>
 </main>
 
 <footer>Site local généré pour consulter les fichiers de cours de français</footer>
