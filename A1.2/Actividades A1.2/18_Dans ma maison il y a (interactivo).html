@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>18 · Dans ma maison il y a…</title>
+<style>
+:root{
+  --bleu:#002395;
+  --blanc:#ffffff;
+  --rouge:#ED2939;
+  --bg:#f4f5f7;
+  --card:#ffffff;
+  --text:#1a1a2e;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --shadow:rgba(16,24,40,.08);
+  --shadow-lg:rgba(16,24,40,.14);
+  --bleu-soft:rgba(0,35,149,.08);
+  --rouge-soft:rgba(237,41,57,.10);
+  --vert:#1a7f4f;
+  --vert-soft:rgba(26,127,79,.12);
+  --radius:16px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#12141c;
+    --card:#1b1e2b;
+    --text:#f1f2f6;
+    --muted:#9aa0b4;
+    --border:#2a2e40;
+    --shadow:rgba(0,0,0,.35);
+    --shadow-lg:rgba(0,0,0,.5);
+    --bleu-soft:rgba(90,125,255,.14);
+    --rouge-soft:rgba(237,41,57,.16);
+    --vert:#4ec98a;
+    --vert-soft:rgba(78,201,138,.15);
+  }
+}
+
+:root[data-theme="dark"]{
+    --bg:#12141c;
+    --card:#1b1e2b;
+    --text:#f1f2f6;
+    --muted:#9aa0b4;
+    --border:#2a2e40;
+    --shadow:rgba(0,0,0,.35);
+    --shadow-lg:rgba(0,0,0,.5);
+    --bleu-soft:rgba(90,125,255,.14);
+    --rouge-soft:rgba(237,41,57,.16);
+    --vert:#4ec98a;
+    --vert-soft:rgba(78,201,138,.15);
+}
+
+:root[data-theme="dark"] .eyebrow{color:#9db2ff}
+:root[data-theme="dark"] .floor-label .fr{color:#9db2ff}
+:root[data-theme="dark"] .phrase b{color:#9db2ff}
+:root[data-theme="dark"] .g.m{color:#9db2ff}
+:root[data-theme="dark"] .listen{color:#9db2ff}
+:root[data-theme="dark"] .btn:hover{color:#9db2ff}
+:root[data-theme="dark"] .ex-meta .sc{color:#9db2ff}
+:root[data-theme="dark"] .bilan .big{color:#9db2ff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.flagbar{height:8px;background:linear-gradient(to right,var(--bleu) 0 33.33%,var(--blanc) 33.33% 66.66%,var(--rouge) 66.66% 100%)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 72px}
+
+/* ---------- hero ---------- */
+.hero{padding:3.5rem 0 2rem;text-align:center}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--bleu);background:var(--bleu-soft);
+  padding:.35rem .75rem;border-radius:999px;
+}
+@media (prefers-color-scheme: dark){.eyebrow{color:#9db2ff}}
+.hero h1{font-size:clamp(1.9rem,5vw,2.9rem);margin:.9rem 0 .4rem;letter-spacing:-.02em;line-height:1.12}
+.hero p{color:var(--muted);margin:0 auto;max-width:60ch;font-size:1.02rem}
+
+/* ---------- sections ---------- */
+section{margin-top:3rem}
+.sec-head{display:flex;align-items:baseline;gap:.75rem;flex-wrap:wrap;margin-bottom:.35rem}
+.sec-head h2{font-size:1.4rem;margin:0;letter-spacing:-.01em}
+.sec-num{
+  font-size:.72rem;font-weight:800;letter-spacing:.1em;color:var(--rouge);
+  background:var(--rouge-soft);padding:.2rem .55rem;border-radius:6px;
+}
+.sec-sub{color:var(--muted);margin:0 0 1.25rem;font-size:.95rem}
+
+/* ---------- maison ---------- */
+.house{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:18px;box-shadow:0 1px 3px var(--shadow);overflow:hidden;
+}
+.roof{
+  height:56px;width:min(74%,620px);background:var(--rouge);margin:0 auto -1px;
+  clip-path:polygon(50% 0,100% 100%,0 100%);
+}
+.floor{
+  border:1px solid var(--border);border-top:none;padding:14px 14px 16px;background:var(--bg);
+}
+.floor:first-of-type{border-top:1px solid var(--border);border-radius:10px 10px 0 0}
+.floor:last-of-type{border-radius:0 0 10px 10px}
+.floor-label{
+  display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;
+  font-size:.7rem;font-weight:800;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:.7rem;
+}
+.floor-label .fr{color:var(--bleu);font-size:.82rem;letter-spacing:.02em;text-transform:none}
+@media (prefers-color-scheme: dark){.floor-label .fr{color:#9db2ff}}
+.rooms{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.room{
+  display:flex;align-items:center;gap:.6rem;text-align:left;
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:.7rem .8rem;cursor:pointer;font:inherit;color:var(--text);
+  transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease;
+  position:relative;
+}
+.room:hover{transform:translateY(-2px);box-shadow:0 6px 16px var(--shadow);border-color:var(--bleu)}
+.room[aria-pressed="true"]{border-color:var(--bleu);box-shadow:inset 0 0 0 1px var(--bleu),0 6px 16px var(--shadow)}
+.room .ico{font-size:1.5rem;line-height:1}
+.room .nm{font-weight:700;font-size:.94rem;display:block}
+.room .es{font-size:.76rem;color:var(--muted);display:block}
+.room .count{
+  position:absolute;top:6px;right:8px;font-size:.65rem;font-weight:800;
+  color:var(--muted);
+}
+
+/* ---------- detail panel ---------- */
+.detail{
+  margin-top:16px;background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:20px;box-shadow:0 1px 3px var(--shadow);
+  border-top:3px solid var(--bleu);
+}
+.detail.empty{border-top-color:var(--border);text-align:center;color:var(--muted);padding:34px 20px}
+.detail-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1rem}
+.detail-head h3{margin:0;font-size:1.25rem}
+.detail-head .es{color:var(--muted);font-size:.9rem;font-weight:500}
+.phrase{
+  background:var(--bleu-soft);border-radius:10px;padding:.75rem .9rem;margin-bottom:1rem;
+  font-size:1rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;
+}
+.phrase b{color:var(--bleu);font-weight:800}
+@media (prefers-color-scheme: dark){.phrase b{color:#9db2ff}}
+
+/* ---------- word cards ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+.word{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:.8rem .85rem;position:relative;transition:transform .15s ease,box-shadow .15s ease;
+}
+.detail .word{background:var(--bg)}
+.word:hover{transform:translateY(-2px);box-shadow:0 6px 16px var(--shadow)}
+.word .fr{font-weight:800;font-size:1rem;display:block;letter-spacing:-.01em;padding-right:30px;overflow-wrap:break-word}
+.word .ph{font-size:.78rem;padding-right:30px;color:var(--muted);font-style:italic;display:block;margin-top:1px}
+.word .es{font-size:.85rem;color:var(--muted);display:block;margin-top:.35rem}
+.g{
+  display:inline-block;font-size:.62rem;font-weight:900;letter-spacing:.08em;
+  padding:.12rem .38rem;border-radius:5px;vertical-align:middle;margin-left:.45rem;white-space:nowrap;font-style:normal;
+}
+.g.m{background:var(--bleu-soft);color:var(--bleu)}
+.g.f{background:var(--rouge-soft);color:var(--rouge)}
+.g.p{background:rgba(107,114,128,.15);color:var(--muted)}
+@media (prefers-color-scheme: dark){.g.m{color:#9db2ff}}
+.listen{
+  position:absolute;top:.6rem;right:.6rem;width:30px;height:30px;border-radius:50%;
+  border:1px solid var(--border);background:var(--card);cursor:pointer;
+  display:grid;place-items:center;font-size:.85rem;color:var(--bleu);
+  transition:background .15s ease,transform .15s ease;padding:0;
+}
+.listen:hover{background:var(--bleu);color:#fff;transform:scale(1.08)}
+.listen.on{background:var(--bleu);color:#fff}
+@media (prefers-color-scheme: dark){.listen{color:#9db2ff}}
+
+/* ---------- controls ---------- */
+.controls{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin-bottom:1.1rem}
+.search{
+  flex:1 1 200px;min-width:170px;padding:.6rem .85rem;border-radius:10px;
+  border:1px solid var(--border);background:var(--card);color:var(--text);font:inherit;font-size:.92rem;
+}
+.search::placeholder{color:var(--muted)}
+.chip{
+  border:1px solid var(--border);background:var(--card);color:var(--text);
+  border-radius:999px;padding:.45rem .85rem;font:inherit;font-size:.85rem;font-weight:600;
+  cursor:pointer;transition:all .15s ease;
+}
+.chip:hover{border-color:var(--bleu)}
+.chip[aria-pressed="true"]{background:var(--bleu);border-color:var(--bleu);color:#fff}
+.btn{
+  border:1px solid var(--border);background:var(--card);color:var(--text);
+  border-radius:10px;padding:.5rem .9rem;font:inherit;font-size:.86rem;font-weight:700;
+  cursor:pointer;transition:all .15s ease;display:inline-flex;align-items:center;gap:.4rem;
+}
+.btn:hover{border-color:var(--bleu);color:var(--bleu)}
+.btn.primary{background:var(--bleu);border-color:var(--bleu);color:#fff}
+.btn.primary:hover{opacity:.9;color:#fff}
+@media (prefers-color-scheme: dark){.btn:hover{color:#9db2ff}}
+
+.note{
+  margin-top:1.25rem;font-size:.86rem;color:var(--muted);
+  border-left:3px solid var(--rouge);padding:.15rem 0 .15rem .8rem;
+}
+.empty-msg{color:var(--muted);font-size:.9rem;padding:1rem 0}
+
+/* ---------- exercices ---------- */
+.ex{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:20px;box-shadow:0 1px 3px var(--shadow);margin-bottom:16px;border-top:3px solid var(--rouge);
+}
+.ex-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:.25rem}
+.ex-head h3{margin:0;font-size:1.1rem;display:flex;align-items:center;gap:.5rem}
+.ex-head .tag{
+  font-size:.62rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;
+  background:var(--rouge-soft);color:var(--rouge);padding:.2rem .5rem;border-radius:5px;
+}
+.ex-sub{color:var(--muted);font-size:.85rem;margin:.15rem 0 1rem}
+.ex-meta{display:flex;align-items:center;gap:.6rem;font-size:.8rem;color:var(--muted);font-weight:700}
+.ex-meta .sc{background:var(--bleu-soft);color:var(--bleu);padding:.2rem .55rem;border-radius:999px}
+@media (prefers-color-scheme: dark){.ex-meta .sc{color:#9db2ff}}
+.bar{height:5px;background:var(--border);border-radius:999px;overflow:hidden;margin:.9rem 0 1.1rem}
+.bar i{display:block;height:100%;width:0;background:var(--bleu);transition:width .3s ease}
+.ex-q{
+  background:var(--bg);border:1px solid var(--border);border-radius:12px;
+  padding:1rem 1.1rem;font-size:1.15rem;font-weight:700;display:flex;align-items:center;
+  gap:.6rem;flex-wrap:wrap;min-height:64px;
+}
+.ex-q .hint{font-size:.85rem;font-weight:600;color:var(--muted)}
+.blank{color:var(--rouge);letter-spacing:.06em}
+.opts{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.opt{
+  flex:1 1 140px;border:1px solid var(--border);background:var(--card);color:var(--text);
+  border-radius:12px;padding:.75rem .9rem;font:inherit;font-size:.98rem;font-weight:700;
+  cursor:pointer;transition:all .15s ease;text-align:center;
+}
+.opt:hover:not(:disabled){border-color:var(--bleu);transform:translateY(-2px);box-shadow:0 6px 16px var(--shadow)}
+.opt:disabled{cursor:default;opacity:.75}
+.opt.good{background:var(--vert-soft);border-color:var(--vert);color:var(--vert);opacity:1}
+.opt.bad{background:var(--rouge-soft);border-color:var(--rouge);color:var(--rouge);opacity:1}
+.fb{margin-top:.9rem;font-size:.92rem;font-weight:700;min-height:1.4em}
+.fb.good{color:var(--vert)}
+.fb.bad{color:var(--rouge)}
+.fb small{display:block;font-weight:500;color:var(--muted);margin-top:.15rem}
+.answer-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;align-items:center}
+.answer-row input{
+  flex:1 1 220px;padding:.7rem .9rem;border-radius:10px;border:1px solid var(--border);
+  background:var(--card);color:var(--text);font:inherit;font-size:1rem;
+}
+.answer-row input.good{border-color:var(--vert)}
+.answer-row input.bad{border-color:var(--rouge)}
+.bilan{
+  background:var(--card);border:1px solid var(--border);border-left:4px solid var(--bleu);
+  border-radius:var(--radius);padding:20px;display:flex;align-items:center;
+  justify-content:space-between;gap:1rem;flex-wrap:wrap;box-shadow:0 1px 3px var(--shadow);
+}
+.bilan .big{font-size:1.9rem;font-weight:900;color:var(--bleu);letter-spacing:-.02em}
+@media (prefers-color-scheme: dark){.bilan .big{color:#9db2ff}}
+.bilan .lbl{font-size:.8rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.bilan-list{display:flex;gap:1.4rem;flex-wrap:wrap}
+
+footer{
+  margin-top:3.5rem;padding-top:1.5rem;border-top:1px solid var(--border);
+  color:var(--muted);font-size:.85rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+}
+footer b{color:var(--text)}
+:focus-visible{outline:2px solid var(--bleu);outline-offset:2px;border-radius:6px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto}}
+@media (max-width:560px){
+  .hero{padding:2.5rem 0 1.5rem}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+}
+</style>
+<div class="flagbar"></div>
+<div class="wrap">
+
+  <header class="hero">
+    <span class="eyebrow">A1.2 · Leçon 18</span>
+    <h1>Dans ma maison il y a…</h1>
+    <p>Cliquez sur une pièce du plan pour découvrir son vocabulaire, puis écoutez chaque mot en français. Haz clic en cada habitación y escucha la pronunciación.</p>
+  </header>
+
+  <section id="plan">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Le plan de la maison</h2></div>
+    <p class="sec-sub">De la cave au grenier — <em>del sótano al desván</em>.</p>
+
+    <div class="house">
+      <div class="roof"></div>
+      <div id="floors"></div>
+    </div>
+
+    <div id="detail" class="detail empty">Choisissez une pièce sur le plan ↑</div>
+  </section>
+
+  <section id="mur">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Le mur de vocabulaire</h2></div>
+    <p class="sec-sub">26 mots de la leçon. Cherchez, filtrez par genre et écoutez.</p>
+
+    <div class="controls">
+      <input id="q" class="search" type="search" placeholder="Chercher un mot… (fr / es)" aria-label="Chercher un mot">
+      <button class="chip" data-f="all" aria-pressed="true">Tous</button>
+      <button class="chip" data-f="m" aria-pressed="false">un / le · masculin</button>
+      <button class="chip" data-f="f" aria-pressed="false">une / la · féminin</button>
+      <button class="chip" data-f="p" aria-pressed="false">des / les · pluriel</button>
+      <button class="btn" id="playAll">▶ Tout écouter</button>
+    </div>
+
+    <div id="wall" class="grid"></div>
+    <p class="note"><b>Attention :</b> on écrit <b>une baignoire</b> (et non « baignière »). Le mot <b>cuisine</b> = la pièce ; <b>cuisinière</b> = l'appareil pour cuire.</p>
+  </section>
+
+  <section id="exercices">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Exercices — vérifiez vos connaissances</h2></div>
+    <p class="sec-sub">Quatre activités pour contrôler le vocabulaire de la leçon. <em>Cuatro ejercicios para comprobar lo aprendido.</em></p>
+
+    <div class="ex" id="ex1">
+      <div class="ex-head">
+        <h3><span class="tag">Ex. 1</span> Un ou une ?</h3>
+        <div class="ex-meta"><span class="sc" id="sc1">0 / 0</span><button class="btn" type="button" data-reset="1">↻ Recommencer</button></div>
+      </div>
+      <p class="ex-sub">Choisissez le bon article. <em>Elige el artículo correcto.</em></p>
+      <div class="bar"><i id="bar1"></i></div>
+      <div class="ex-q" id="q1"></div>
+      <div class="opts" id="o1"></div>
+      <div class="fb" id="f1"></div>
+    </div>
+
+    <div class="ex" id="ex2">
+      <div class="ex-head">
+        <h3><span class="tag">Ex. 2</span> Dans quelle pièce ?</h3>
+        <div class="ex-meta"><span class="sc" id="sc2">0 / 0</span><button class="btn" type="button" data-reset="2">↻ Recommencer</button></div>
+      </div>
+      <p class="ex-sub">Où trouve-t-on cet objet ? <em>¿En qué habitación está este objeto?</em></p>
+      <div class="bar"><i id="bar2"></i></div>
+      <div class="ex-q" id="q2"></div>
+      <div class="opts" id="o2"></div>
+      <div class="fb" id="f2"></div>
+    </div>
+
+    <div class="ex" id="ex3">
+      <div class="ex-head">
+        <h3><span class="tag">Ex. 3</span> Écoutez et choisissez</h3>
+        <div class="ex-meta"><span class="sc" id="sc3">0 / 0</span><button class="btn" type="button" data-reset="3">↻ Recommencer</button></div>
+      </div>
+      <p class="ex-sub">Cliquez sur 🔊, écoutez le mot et choisissez la bonne réponse. <em>Escucha y elige.</em></p>
+      <div class="bar"><i id="bar3"></i></div>
+      <div class="ex-q" id="q3"></div>
+      <div class="opts" id="o3"></div>
+      <div class="fb" id="f3"></div>
+    </div>
+
+    <div class="ex" id="ex4">
+      <div class="ex-head">
+        <h3><span class="tag">Ex. 4</span> Complétez la phrase</h3>
+        <div class="ex-meta"><span class="sc" id="sc4">0 / 0</span><button class="btn" type="button" data-reset="4">↻ Recommencer</button></div>
+      </div>
+      <p class="ex-sub">Écrivez le mot en français, avec son article. <em>Escribe la palabra en francés con su artículo (los acentos no cuentan).</em></p>
+      <div class="bar"><i id="bar4"></i></div>
+      <div class="ex-q" id="q4"></div>
+      <div class="answer-row">
+        <input id="in4" type="text" placeholder="un / une / des + mot…" autocomplete="off" spellcheck="false" aria-label="Votre réponse">
+        <button class="btn primary" type="button" id="check4">Vérifier</button>
+        <button class="btn" type="button" id="show4">Voir la réponse</button>
+      </div>
+      <div class="fb" id="f4"></div>
+    </div>
+
+    <div class="bilan">
+      <div class="bilan-list">
+        <div><div class="lbl">Total</div><div class="big" id="bTotal">0 / 0</div></div>
+        <div><div class="lbl">Réussite</div><div class="big" id="bPct">—</div></div>
+      </div>
+      <button class="btn primary" type="button" id="resetAll">↻ Tout recommencer</button>
+    </div>
+  </section>
+
+  <footer>
+    <span>Source : <b>18_Dans ma maison il y a….pdf</b> · A1.2</span>
+    <span>Prochaine leçon → <b>les loisirs</b></span>
+  </footer>
+</div>
+
+<script>
+/* ---------------- data ---------------- */
+var WORDS = [
+  {k:'fenetre',   fr:'la fenêtre',            ph:'fə-nètr',            es:'la ventana',                 g:'f', ico:'🪟'},
+  {k:'entree',    fr:'une entrée',            ph:'an-tré',             es:'una entrada, un recibidor',  g:'f', ico:'🚪'},
+  {k:'salon',     fr:'un salon',              ph:'sa-lon',             es:'una sala, un salón',         g:'m', ico:'🛋️'},
+  {k:'canape',    fr:'un canapé',             ph:'ka-na-pé',           es:'un sofá',                    g:'m', ico:'🛋️'},
+  {k:'etagere',   fr:'une étagère',           ph:'é-ta-jèr',           es:'una estantería, un librero', g:'f', ico:'📚'},
+  {k:'sam',       fr:'une salle à manger',    ph:'sal a man-jé',       es:'un comedor',                 g:'f', ico:'🍽️'},
+  {k:'table',     fr:'une table',             ph:'tabl',               es:'una mesa',                   g:'f', ico:'🪑'},
+  {k:'cuisine',   fr:'une cuisine',           ph:'kui-zin',            es:'una cocina (la pieza)',      g:'f', ico:'🍳'},
+  {k:'cuisiniere',fr:'une cuisinière',        ph:'kui-zi-nièr',        es:'una estufa, una cocina',     g:'f', ico:'🔥'},
+  {k:'frigo',     fr:'un réfrigérateur (un frigo)', ph:'ré-fri-jé-ra-teur', es:'un refrigerador, una nevera', g:'m', ico:'🧊'},
+  {k:'couloir',   fr:'un couloir',            ph:'ku-luar',            es:'un pasillo',                 g:'m', ico:'🚶'},
+  {k:'escalier',  fr:'un escalier',           ph:'es-ka-lié',          es:'una escalera',               g:'m', ico:'🪜'},
+  {k:'chambre',   fr:'une chambre',           ph:'shanbr',             es:'una recámara, un dormitorio',g:'f', ico:'🛏️'},
+  {k:'tapis',     fr:'un tapis',              ph:'ta-pi',              es:'una alfombra',               g:'m', ico:'🟫'},
+  {k:'lit',       fr:'un lit',                ph:'li',                 es:'una cama',                   g:'m', ico:'🛏️'},
+  {k:'armoire',   fr:'une armoire',           ph:'ar-muar',            es:'un armario, un ropero',      g:'f', ico:'🚪'},
+  {k:'sdb',       fr:'une salle de bain',     ph:'sal de ban',         es:'un baño',                    g:'f', ico:'🛁'},
+  {k:'baignoire', fr:'une baignoire',         ph:'bè-ñuar',            es:'una bañera, una tina',       g:'f', ico:'🛁'},
+  {k:'lavabos',   fr:'des lavabos',           ph:'lavabo',             es:'unos lavabos',               g:'p', ico:'🚰'},
+  {k:'velo',      fr:'un vélo',               ph:'vé-lo',              es:'una bicicleta',              g:'m', ico:'🚲'},
+  {k:'garage',    fr:'un garage',             ph:'ga-raj',             es:'una cochera, un garaje',     g:'m', ico:'🅿️'},
+  {k:'voiture',   fr:'une voiture',           ph:'vua-tür',            es:'un coche, un carro',         g:'f', ico:'🚗'},
+  {k:'grenier',   fr:'le grenier',            ph:'gre-nié',            es:'el desván, el ático',        g:'m', ico:'📦'},
+  {k:'etage2',    fr:'le deuxième étage',     ph:'dë-zièm é-taj',      es:'el segundo piso',            g:'m', ico:'2️⃣'},
+  {k:'rdc',       fr:'le rez-de-chaussée',    ph:'ré-de-sho-sé',       es:'la planta baja',             g:'m', ico:'0️⃣'},
+  {k:'cave',      fr:'la cave',               ph:'kav',                es:'el sótano',                  g:'f', ico:'🕯️'}
+];
+var BY = {};
+WORDS.forEach(function(w){ BY[w.k] = w; });
+
+var FLOORS = [
+  {id:'grenier', label:'Sous le toit', fr:'Le grenier', rooms:[
+    {id:'r_grenier', ico:'📦', nm:'Le grenier', es:'el desván', items:['grenier']}
+  ]},
+  {id:'etage', label:'En haut', fr:'Le deuxième étage', rooms:[
+    {id:'r_chambre', ico:'🛏️', nm:'La chambre',      es:'la recámara', items:['chambre','lit','armoire','tapis','fenetre']},
+    {id:'r_sdb',     ico:'🛁', nm:'La salle de bain', es:'el baño',     items:['sdb','baignoire','lavabos']},
+    {id:'r_etage',   ico:'2️⃣', nm:'L’étage',      es:'el piso',     items:['etage2','escalier','couloir']}
+  ]},
+  {id:'rdc', label:'Au niveau de la rue', fr:'Le rez-de-chaussée', rooms:[
+    {id:'r_entree',  ico:'🚪', nm:'L’entrée',        es:'el recibidor', items:['entree','couloir','escalier']},
+    {id:'r_salon',   ico:'🛋️', nm:'Le salon',           es:'la sala',      items:['salon','canape','etagere','tapis','fenetre']},
+    {id:'r_sam',     ico:'🍽️', nm:'La salle à manger',  es:'el comedor',   items:['sam','table']},
+    {id:'r_cuisine', ico:'🍳', nm:'La cuisine',         es:'la cocina',    items:['cuisine','cuisiniere','frigo','table']},
+    {id:'r_rdc',     ico:'0️⃣', nm:'Le rez-de-chaussée', es:'la planta baja', items:['rdc']}
+  ]},
+  {id:'exterieur', label:'Dehors', fr:'Le garage', rooms:[
+    {id:'r_garage', ico:'🚗', nm:'Le garage', es:'la cochera', items:['garage','voiture','velo']}
+  ]},
+  {id:'cave', label:'En bas', fr:'La cave', rooms:[
+    {id:'r_cave', ico:'🕯️', nm:'La cave', es:'el sótano', items:['cave']}
+  ]}
+];
+
+/* ---------------- speech ---------------- */
+var frVoice = null;
+function pickVoice(){
+  if(!('speechSynthesis' in window)) return;
+  var vs = window.speechSynthesis.getVoices() || [];
+  frVoice = vs.filter(function(v){ return v.lang === 'fr-FR'; })[0]
+         || vs.filter(function(v){ return (v.lang||'').indexOf('fr') === 0; })[0]
+         || vs.filter(function(v){ return /fran|french/i.test(v.name||''); })[0]
+         || null;
+}
+if('speechSynthesis' in window){
+  pickVoice();
+  window.speechSynthesis.onvoiceschanged = pickVoice;
+}
+function speak(text, btn){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  var u = new SpeechSynthesisUtterance(text);
+  u.lang = 'fr-FR';
+  u.rate = 0.9;
+  if(frVoice) u.voice = frVoice;
+  if(btn){
+    btn.classList.add('on');
+    u.onend = u.onerror = function(){ btn.classList.remove('on'); };
+  }
+  window.speechSynthesis.speak(u);
+}
+function speakSeq(list, i){
+  if(!('speechSynthesis' in window)) return;
+  i = i || 0;
+  if(i === 0) window.speechSynthesis.cancel();
+  if(i >= list.length) return;
+  var u = new SpeechSynthesisUtterance(list[i]);
+  u.lang = 'fr-FR'; u.rate = 0.9;
+  if(frVoice) u.voice = frVoice;
+  u.onend = function(){ speakSeq(list, i + 1); };
+  window.speechSynthesis.speak(u);
+}
+
+/* ---------------- render helpers ---------------- */
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function sayable(fr){ return fr.replace(/\s*\(.*?\)\s*/g,' ').trim(); }
+function gLabel(g){ return g === 'm' ? 'm.' : (g === 'f' ? 'f.' : 'pl.'); }
+
+function wordCard(w){
+  return '<div class="word">'
+    + '<button class="listen" type="button" data-say="' + esc(sayable(w.fr)) + '" aria-label="Écouter ' + esc(w.fr) + '">🔊</button>'
+    + '<span class="fr">' + w.ico + ' ' + esc(w.fr) + '</span>'
+    + '<span class="ph">[' + esc(w.ph) + ']<span class="g ' + w.g + '">' + gLabel(w.g) + '</span></span>'
+    + '<span class="es">' + esc(w.es) + '</span>'
+    + '</div>';
+}
+
+/* ---------------- plan ---------------- */
+var floorsEl = document.getElementById('floors');
+var detailEl = document.getElementById('detail');
+
+floorsEl.innerHTML = FLOORS.map(function(f){
+  return '<div class="floor">'
+    + '<div class="floor-label">' + esc(f.label) + ' <span class="fr">· ' + esc(f.fr) + '</span></div>'
+    + '<div class="rooms">' + f.rooms.map(function(r){
+        return '<button class="room" type="button" data-room="' + r.id + '" aria-pressed="false">'
+          + '<span class="count">' + r.items.length + '</span>'
+          + '<span class="ico">' + r.ico + '</span>'
+          + '<span><span class="nm">' + esc(r.nm) + '</span><span class="es">' + esc(r.es) + '</span></span>'
+          + '</button>';
+      }).join('') + '</div>'
+    + '</div>';
+}).join('');
+
+var ROOMS = {};
+FLOORS.forEach(function(f){ f.rooms.forEach(function(r){ ROOMS[r.id] = r; }); });
+
+function openRoom(id, btn){
+  var r = ROOMS[id];
+  if(!r) return;
+  document.querySelectorAll('.room').forEach(function(b){ b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+  var list = r.items.map(function(k){ return BY[k]; }).filter(Boolean);
+  var phrase = 'Dans ma maison il y a ' + list[0].fr.replace(/^(le|la|les)\s/,'') + '.';
+  detailEl.className = 'detail';
+  detailEl.innerHTML = '<div class="detail-head">'
+      + '<h3>' + r.ico + ' ' + esc(r.nm) + ' <span class="es">— ' + esc(r.es) + '</span></h3>'
+      + '<button class="btn primary" type="button" id="roomAll">▶ Écouter la pièce</button>'
+    + '</div>'
+    + '<div class="phrase">🗣️ <b>Il y a</b> ' + esc(phrase.replace('Dans ma maison il y a ','')) + ' <span class="es" style="color:var(--muted);font-size:.85rem">· hay…</span>'
+      + '<button class="listen" style="position:static;margin-left:auto" type="button" data-say="' + esc(phrase) + '" aria-label="Écouter la phrase">🔊</button></div>'
+    + '<div class="grid">' + list.map(wordCard).join('') + '</div>';
+  document.getElementById('roomAll').addEventListener('click', function(){
+    speakSeq(list.map(function(w){ return sayable(w.fr); }));
+  });
+  detailEl.scrollIntoView({block:'nearest'});
+}
+
+floorsEl.addEventListener('click', function(e){
+  var btn = e.target.closest('.room');
+  if(btn) openRoom(btn.getAttribute('data-room'), btn);
+});
+
+/* ---------------- mur de vocabulaire ---------------- */
+var wallEl = document.getElementById('wall');
+var qEl = document.getElementById('q');
+var filter = 'all';
+
+function renderWall(){
+  var q = qEl.value.trim().toLowerCase();
+  var list = WORDS.filter(function(w){
+    if(filter !== 'all' && w.g !== filter) return false;
+    if(!q) return true;
+    return (w.fr + ' ' + w.es + ' ' + w.ph).toLowerCase().indexOf(q) !== -1;
+  });
+  wallEl.innerHTML = list.length
+    ? list.map(wordCard).join('')
+    : '<p class="empty-msg">Aucun mot trouvé. / No se encontró ninguna palabra.</p>';
+}
+
+qEl.addEventListener('input', renderWall);
+document.querySelectorAll('.chip').forEach(function(c){
+  c.addEventListener('click', function(){
+    filter = c.getAttribute('data-f');
+    document.querySelectorAll('.chip').forEach(function(x){ x.setAttribute('aria-pressed', x === c ? 'true' : 'false'); });
+    renderWall();
+  });
+});
+document.getElementById('playAll').addEventListener('click', function(){
+  var cards = wallEl.querySelectorAll('.listen');
+  var arr = [];
+  cards.forEach(function(b){ arr.push(b.getAttribute('data-say')); });
+  speakSeq(arr);
+});
+
+/* global listen delegation */
+document.addEventListener('click', function(e){
+  var b = e.target.closest('.listen');
+  if(b) speak(b.getAttribute('data-say'), b);
+});
+
+renderWall();
+
+/* ================= EXERCICES ================= */
+var NOUN = {
+  fenetre:'fenêtre', entree:'entrée', salon:'salon', canape:'canapé', etagere:'étagère',
+  sam:'salle à manger', table:'table', cuisine:'cuisine', cuisiniere:'cuisinière',
+  frigo:'réfrigérateur', couloir:'couloir', escalier:'escalier', chambre:'chambre',
+  tapis:'tapis', lit:'lit', armoire:'armoire', sdb:'salle de bain', baignoire:'baignoire',
+  lavabos:'lavabos', velo:'vélo', garage:'garage', voiture:'voiture', grenier:'grenier',
+  etage2:'deuxième étage', rdc:'rez-de-chaussée', cave:'cave'
+};
+var PLACES = ['le salon','la salle à manger','la cuisine','la chambre','la salle de bain','le garage'];
+var PLACEMENT = [
+  {k:'canape',    p:'le salon'},
+  {k:'etagere',   p:'le salon'},
+  {k:'table',     p:'la salle à manger'},
+  {k:'cuisiniere',p:'la cuisine'},
+  {k:'frigo',     p:'la cuisine'},
+  {k:'lit',       p:'la chambre'},
+  {k:'armoire',   p:'la chambre'},
+  {k:'tapis',     p:'la chambre'},
+  {k:'baignoire', p:'la salle de bain'},
+  {k:'lavabos',   p:'la salle de bain'},
+  {k:'voiture',   p:'le garage'},
+  {k:'velo',      p:'le garage'}
+];
+
+function shuffle(a){
+  a = a.slice();
+  for(var i = a.length - 1; i > 0; i--){
+    var j = Math.floor(Math.random() * (i + 1));
+    var t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+function norm(s){
+  return String(s).toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[’']/g,"'").replace(/[.,!?;:]/g,'')
+    .replace(/\s+/g,' ').trim();
+}
+function stripArt(s){ return norm(s).replace(/^(un|une|des|le|la|les|l')\s*/,'').trim(); }
+
+var ROUNDS = 8;
+var EX = {
+  1:{i:0,ok:0,list:[]},
+  2:{i:0,ok:0,list:[]},
+  3:{i:0,ok:0,list:[]},
+  4:{i:0,ok:0,list:[]}
+};
+
+function setBar(n){
+  var st = EX[n];
+  document.getElementById('bar' + n).style.width = Math.round(st.i / ROUNDS * 100) + '%';
+  document.getElementById('sc' + n).textContent = st.ok + ' / ' + st.i;
+  updateBilan();
+}
+function updateBilan(){
+  var ok = 0, tot = 0;
+  for(var n = 1; n <= 4; n++){ ok += EX[n].ok; tot += EX[n].i; }
+  document.getElementById('bTotal').textContent = ok + ' / ' + tot;
+  document.getElementById('bPct').textContent = tot ? Math.round(ok / tot * 100) + ' %' : '—';
+}
+function fb(n, good, msg, sub){
+  var el = document.getElementById('f' + n);
+  el.className = 'fb ' + (good ? 'good' : 'bad');
+  el.innerHTML = (good ? '✅ ' : '❌ ') + esc(msg) + (sub ? '<small>' + sub + '</small>' : '');
+}
+function done(n){
+  var st = EX[n];
+  document.getElementById('q' + n).innerHTML = '🎉 <span>Terminé — ' + st.ok + ' / ' + ROUNDS + ' bonnes réponses.</span>';
+  document.getElementById('o' + n).innerHTML = '';
+  var el = document.getElementById('f' + n);
+  el.className = 'fb';
+  el.textContent = st.ok >= ROUNDS - 1 ? 'Excellent ! 👏' : (st.ok >= ROUNDS / 2 ? 'Bien ! Recommencez pour progresser.' : 'Révisez le mur de vocabulaire et recommencez.');
+}
+
+/* ---- Ex.1 : un ou une ---- */
+function start1(){
+  EX[1] = {i:0, ok:0, list: shuffle(WORDS.filter(function(w){ return w.g !== 'p'; })).slice(0, ROUNDS)};
+  setBar(1); next1();
+}
+function next1(){
+  var st = EX[1];
+  if(st.i >= ROUNDS){ done(1); return; }
+  var w = st.list[st.i];
+  document.getElementById('q1').innerHTML = '<span>' + w.ico + '</span><span><span class="blank">___</span> ' + esc(NOUN[w.k]) + '</span>'
+    + '<span class="hint">· ' + esc(w.es) + '</span>';
+  document.getElementById('o1').innerHTML =
+      '<button class="opt" type="button" data-v="m">un</button>'
+    + '<button class="opt" type="button" data-v="f">une</button>';
+  document.getElementById('f1').textContent = '';
+}
+document.getElementById('o1').addEventListener('click', function(e){
+  var b = e.target.closest('.opt'); if(!b || b.disabled) return;
+  var st = EX[1], w = st.list[st.i], good = b.getAttribute('data-v') === w.g;
+  document.querySelectorAll('#o1 .opt').forEach(function(x){
+    x.disabled = true;
+    if(x.getAttribute('data-v') === w.g) x.classList.add('good');
+  });
+  if(!good) b.classList.add('bad');
+  if(good) st.ok++;
+  st.i++;
+  fb(1, good, good ? (w.fr + ' — c’est correct !') : ('On dit : ' + w.fr), '[' + w.ph + '] · ' + w.es);
+  speak(sayable(w.fr));
+  setBar(1);
+  setTimeout(next1, 1500);
+});
+
+/* ---- Ex.2 : dans quelle pièce ---- */
+function start2(){
+  EX[2] = {i:0, ok:0, list: shuffle(PLACEMENT).slice(0, ROUNDS)};
+  setBar(2); next2();
+}
+function next2(){
+  var st = EX[2];
+  if(st.i >= ROUNDS){ done(2); return; }
+  var r = st.list[st.i], w = BY[r.k];
+  document.getElementById('q2').innerHTML = '<span>' + w.ico + '</span><span>Où est <b>' + esc(sayable(w.fr)) + '</b> ?</span>'
+    + '<span class="hint">· ' + esc(w.es) + '</span>';
+  var opts = shuffle(PLACES.filter(function(p){ return p !== r.p; })).slice(0, 3).concat([r.p]);
+  document.getElementById('o2').innerHTML = shuffle(opts).map(function(p){
+    return '<button class="opt" type="button" data-v="' + esc(p) + '">' + esc(p) + '</button>';
+  }).join('');
+  document.getElementById('f2').textContent = '';
+}
+document.getElementById('o2').addEventListener('click', function(e){
+  var b = e.target.closest('.opt'); if(!b || b.disabled) return;
+  var st = EX[2], r = st.list[st.i], w = BY[r.k], good = b.getAttribute('data-v') === r.p;
+  document.querySelectorAll('#o2 .opt').forEach(function(x){
+    x.disabled = true;
+    if(x.getAttribute('data-v') === r.p) x.classList.add('good');
+  });
+  if(!good) b.classList.add('bad');
+  if(good) st.ok++;
+  st.i++;
+  var phrase = 'Dans ' + r.p + ' il y a ' + w.fr + '.';
+  fb(2, good, phrase, w.es);
+  speak(sayable(phrase));
+  setBar(2);
+  setTimeout(next2, 1900);
+});
+
+/* ---- Ex.3 : écoute ---- */
+function start3(){
+  EX[3] = {i:0, ok:0, list: shuffle(WORDS).slice(0, ROUNDS)};
+  setBar(3); next3();
+}
+function next3(){
+  var st = EX[3];
+  if(st.i >= ROUNDS){ done(3); return; }
+  var w = st.list[st.i];
+  document.getElementById('q3').innerHTML = '<button class="btn primary" type="button" id="play3">🔊 Écouter le mot</button>'
+    + '<span class="hint">Question ' + (st.i + 1) + ' / ' + ROUNDS + '</span>';
+  var opts = shuffle(WORDS.filter(function(x){ return x.k !== w.k; })).slice(0, 3).concat([w]);
+  document.getElementById('o3').innerHTML = shuffle(opts).map(function(x){
+    return '<button class="opt" type="button" data-v="' + x.k + '">' + esc(x.fr) + '</button>';
+  }).join('');
+  document.getElementById('f3').textContent = '';
+  document.getElementById('play3').addEventListener('click', function(){ speak(sayable(w.fr)); });
+  speak(sayable(w.fr));
+}
+document.getElementById('o3').addEventListener('click', function(e){
+  var b = e.target.closest('.opt'); if(!b || b.disabled) return;
+  var st = EX[3], w = st.list[st.i], good = b.getAttribute('data-v') === w.k;
+  document.querySelectorAll('#o3 .opt').forEach(function(x){
+    x.disabled = true;
+    if(x.getAttribute('data-v') === w.k) x.classList.add('good');
+  });
+  if(!good) b.classList.add('bad');
+  if(good) st.ok++;
+  st.i++;
+  fb(3, good, w.fr, '[' + w.ph + '] · ' + w.es);
+  setBar(3);
+  setTimeout(next3, 1600);
+});
+
+/* ---- Ex.4 : complétez ---- */
+function start4(){
+  EX[4] = {i:0, ok:0, list: shuffle(WORDS).slice(0, ROUNDS), tried:false};
+  setBar(4); next4();
+}
+function next4(){
+  var st = EX[4];
+  if(st.i >= ROUNDS){
+    done(4);
+    document.getElementById('in4').disabled = true;
+    return;
+  }
+  st.tried = false;
+  var w = st.list[st.i];
+  document.getElementById('q4').innerHTML = '<span>' + w.ico + '</span><span>Dans ma maison il y a <span class="blank">_______</span></span>'
+    + '<span class="hint">· ' + esc(w.es) + ' — question ' + (st.i + 1) + ' / ' + ROUNDS + '</span>';
+  var inp = document.getElementById('in4');
+  inp.value = ''; inp.className = ''; inp.disabled = false; inp.focus();
+  document.getElementById('f4').textContent = '';
+}
+function check4(){
+  var st = EX[4];
+  if(st.i >= ROUNDS || st.tried) return;
+  var w = st.list[st.i], inp = document.getElementById('in4');
+  var v = norm(inp.value);
+  if(!v) return;
+  var full = norm(sayable(w.fr));
+  var good = (v === full) || (stripArt(v) === stripArt(w.fr) && stripArt(v) !== '');
+  st.tried = true;
+  inp.className = good ? 'good' : 'bad';
+  inp.disabled = true;
+  if(good) st.ok++;
+  st.i++;
+  fb(4, good, good ? ('Dans ma maison il y a ' + sayable(w.fr) + '.') : ('Réponse : ' + w.fr), '[' + w.ph + '] · ' + w.es);
+  speak(sayable(w.fr));
+  setBar(4);
+  setTimeout(next4, 1900);
+}
+document.getElementById('check4').addEventListener('click', check4);
+document.getElementById('in4').addEventListener('keydown', function(e){ if(e.key === 'Enter') check4(); });
+document.getElementById('show4').addEventListener('click', function(){
+  var st = EX[4];
+  if(st.i >= ROUNDS || st.tried) return;
+  var w = st.list[st.i], inp = document.getElementById('in4');
+  st.tried = true; st.i++;
+  inp.value = sayable(w.fr); inp.className = 'bad'; inp.disabled = true;
+  fb(4, false, 'Réponse : ' + w.fr, '[' + w.ph + '] · ' + w.es);
+  speak(sayable(w.fr));
+  setBar(4);
+  setTimeout(next4, 1700);
+});
+
+var STARTERS = {1:start1, 2:start2, 3:start3, 4:start4};
+document.querySelectorAll('[data-reset]').forEach(function(b){
+  b.addEventListener('click', function(){ STARTERS[b.getAttribute('data-reset')](); });
+});
+document.getElementById('resetAll').addEventListener('click', function(){
+  start1(); start2(); start3(); start4();
+  document.getElementById('exercices').scrollIntoView({block:'start'});
+});
+start1(); start2(); start3(); start4();
+</script>
+
+</body></html>
