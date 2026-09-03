@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>How We Work Together</title>
+<style>
+  :root{
+    --bleu:#002395;
+    --rouge:#ED2939;
+    --bg:#f4f5f7;
+    --card:#ffffff;
+    --text:#1a1a2e;
+    --muted:#6b7280;
+    --border:#e5e7eb;
+    --accent-soft:rgba(0,35,149,.06);
+    --rouge-soft:rgba(237,41,57,.07);
+    --shadow:0 1px 2px rgba(16,20,40,.04), 0 8px 24px rgba(16,20,40,.06);
+    --radius:16px;
+    --sans:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bleu:#7d97ff;
+      --rouge:#ff6b74;
+      --bg:#12141c;
+      --card:#1b1e2b;
+      --text:#e9ebf3;
+      --muted:#9aa2b6;
+      --border:#2b3043;
+      --accent-soft:rgba(125,151,255,.10);
+      --rouge-soft:rgba(255,107,116,.10);
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.28);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bleu:#7d97ff;
+    --rouge:#ff6b74;
+    --bg:#12141c;
+    --card:#1b1e2b;
+    --text:#e9ebf3;
+    --muted:#9aa2b6;
+    --border:#2b3043;
+    --accent-soft:rgba(125,151,255,.10);
+    --rouge-soft:rgba(255,107,116,.10);
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.28);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .stripe{
+    height:6px;
+    background:linear-gradient(to right,
+      #002395 0 33.333%,
+      #ffffff 33.333% 66.666%,
+      #ED2939 66.666% 100%);
+  }
+  .wrap{
+    max-width:760px;
+    margin:0 auto;
+    padding:40px 20px 72px;
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+  }
+
+  header.masthead{display:flex;flex-direction:column;gap:14px;}
+  .eyebrow{
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--bleu);
+    margin:0;
+  }
+  h1{
+    margin:0;
+    font-size:clamp(30px,5.2vw,42px);
+    line-height:1.15;
+    letter-spacing:-.02em;
+    font-weight:800;
+    text-wrap:balance;
+  }
+  .lead{margin:0;color:var(--muted);font-size:18px;}
+
+  .intro{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:24px 26px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .intro p{margin:0;}
+
+  .rules{display:flex;flex-direction:column;gap:18px;}
+  section.rule{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:24px 26px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  section.rule.flag{
+    border-left:4px solid var(--bleu);
+  }
+  section.rule.flag.stop{
+    border-left-color:var(--rouge);
+  }
+  .rule-head{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .mark{font-size:20px;line-height:1;}
+  h2{
+    margin:0;
+    font-size:19px;
+    font-weight:700;
+    letter-spacing:-.01em;
+    text-wrap:balance;
+  }
+  .pill{
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    padding:4px 10px;
+    border-radius:999px;
+    background:var(--accent-soft);
+    color:var(--bleu);
+    white-space:nowrap;
+  }
+  .pill.stop{background:var(--rouge-soft);color:var(--rouge);}
+  section.rule p{margin:0;}
+
+  footer{
+    display:flex;
+    justify-content:center;
+  }
+  footer .stripe-mini{
+    width:80px;height:4px;border-radius:2px;
+    background:linear-gradient(to right,#002395 0 33.333%,#ffffff 33.333% 66.666%,#ED2939 66.666% 100%);
+    border:1px solid var(--border);
+  }
+  .band{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-top:10px;
+  }
+  .band h3{
+    margin:0;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+    white-space:nowrap;
+  }
+  .band::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--border);
+  }
+
+  section.rule.feature{
+    background:linear-gradient(var(--accent-soft),var(--accent-soft)),var(--card);
+    border-color:color-mix(in srgb, var(--bleu) 30%, var(--border));
+  }
+  .promise{
+    margin:0;
+    padding:14px 18px;
+    border-left:3px solid var(--bleu);
+    font-size:18px;
+    font-weight:600;
+    line-height:1.5;
+  }
+
+  .roles{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:16px;
+  }
+  .role-col{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    padding:18px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    background:var(--bg);
+  }
+  .role-col h3{
+    margin:0;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--bleu);
+  }
+  .role-col.yours h3{color:var(--rouge);}
+  .role-col p{margin:0;font-size:16px;}
+
+  .note{
+    margin:0;
+    padding:14px 16px;
+    border-radius:12px;
+    background:var(--accent-soft);
+    font-size:16px;
+  }
+  .note strong{font-weight:700;}
+
+  @media (max-width:520px){
+    body{font-size:16px;}
+    .intro,section.rule,.closing{padding:20px;}
+  }
+</style>
+
+<div class="stripe"></div>
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">French lessons &middot; Student guidelines</p>
+    <h1>How We Work Together</h1>
+    <p class="lead">Punctuality, pricing and expectations &mdash; a few clear guidelines so we can both make the most of our time together.</p>
+  </header>
+
+  <div class="intro">
+    <p>These guidelines are an improvement I'm introducing to strengthen the student&ndash;teacher relationship, avoid misunderstandings, and make sure we can both manage our time in a fair and respectful way.</p>
+    <p>My goal is to continue providing a flexible and comfortable learning environment, while also keeping things organized. For our student&ndash;teacher relationship to be positive and sustainable, it's important that both our time and commitment are valued equally.</p>
+  </div>
+
+  <div class="rules">
+
+    <div class="band"><h3>Punctuality &amp; rescheduling</h3></div>
+
+    <section class="rule flag">
+      <div class="rule-head">
+        <span class="mark" aria-hidden="true">⏰</span>
+        <h2>Up to 15 minutes late</h2>
+        <span class="pill">Lesson goes ahead</span>
+      </div>
+      <p>If you are up to 15 minutes late, we can still have the lesson during the remaining time. The lesson will not automatically be extended to make up for the delay, as I may have other students scheduled after you.</p>
+    </section>
+
+    <section class="rule flag stop">
+      <div class="rule-head">
+        <span class="mark" aria-hidden="true">🚫</span>
+        <h2>More than 15 minutes late without prior notice</h2>
+        <span class="pill stop">Counts as taken</span>
+      </div>
+      <p>If more than 15 minutes have passed and I haven't received any message from you, I will consider the lesson cancelled and completed, so it cannot be rescheduled.</p>
+    </section>
+
+    <section class="rule">
+      <div class="rule-head">
+        <span class="mark" aria-hidden="true">📩</span>
+        <h2>Need to cancel or reschedule?</h2>
+      </div>
+      <p>If an emergency or genuinely unexpected situation comes up, you can contact me even up to 1 hour before the lesson. In these cases, I will do my best to help you find another time.</p>
+      <p>Normally, the platform only allows changes to be made up to 12 hours before the lesson. However, I completely understand that unexpected situations can sometimes happen, so whenever possible, I prefer to give you a little extra flexibility and find a solution together.</p>
+    </section>
+
+    <section class="rule">
+      <div class="rule-head">
+        <span class="mark" aria-hidden="true">⚠️</span>
+        <h2>If you forgot about the lesson or couldn't attend</h2>
+      </div>
+      <p>If you forgot that you had a lesson or were unable to attend and I did not receive any prior notice, the lesson will be considered cancelled and cannot be rescheduled.</p>
+      <p>It's completely understandable if something unexpected happens from time to time. What matters most is keeping good communication. If you can let me know in advance, even at short notice, it will always make it much easier for us to find a solution.</p>
+    </section>
+
+    <section class="rule">
+      <div class="rule-head">
+        <span class="mark" aria-hidden="true">🤝</span>
+        <h2>Both our time matters</h2>
+      </div>
+      <p>When a student doesn't show up without notice, that time has been reserved for them and I can no longer offer it to another student. So even if the lesson doesn't take place, that time represents availability that was specifically set aside for you.</p>
+      <p>Your time matters, and so does mine. Just as I respect your time and circumstances, I hope we can mutually respect our commitments.</p>
+    </section>
+
+    <div class="band"><h3>Pricing</h3></div>
+
+    <section class="rule feature">
+      <div class="rule-head">
+        <span class="mark" aria-hidden="true">💰</span>
+        <h2>Pricing &amp; price stability</h2>
+        <span class="pill">Your rate is locked</span>
+      </div>
+      <p>One of the advantages of studying with me is that I value consistency and transparency, not only in the lessons themselves, but also when it comes to pricing.</p>
+      <p class="promise">The price you book at will remain your price &mdash; I will respect the same rate for you as long as you continue your lessons with me, even if my standard price for new students changes in the future.</p>
+      <p>I believe this is important because building a long-term learning relationship should come with a sense of stability and trust. You shouldn't have to worry about your lesson price changing unexpectedly just because my general rates are updated.</p>
+      <p>At the same time, this means that the price you see when booking reflects the value of the lessons, preparation, materials, and time I dedicate to your learning.</p>
+      <p>My goal is to build long-term relationships with my students, rather than constantly changing prices. I want you to feel that when you choose to continue learning with me, you are also choosing a stable and predictable learning experience. 🤍</p>
+    </section>
+
+    <div class="band"><h3>Working together</h3></div>
+
+    <section class="rule">
+      <div class="rule-head">
+        <span class="mark" aria-hidden="true">🎯</span>
+        <h2>Your role &amp; my role</h2>
+        <span class="pill">TEF / TCF prep</span>
+      </div>
+      <p>Especially for TEF/TCF preparation, my role is to provide you with a clear structure, personalized materials, strategies, feedback, and guidance throughout your preparation.</p>
+
+      <div class="roles">
+        <div class="role-col mine">
+          <h3>What I bring</h3>
+          <p>An important part of my job as your tutor is to identify and highlight the areas that need improvement, including recurring mistakes, weaknesses, and gaps in your French. I will provide you with as many tools, explanations, exercises, corrections, and resources as possible to help you understand these mistakes and actively work on them.</p>
+          <p>My goal is not simply to correct you during class, but to help you understand <em>why</em> you are making certain mistakes and give you the tools to avoid repeating them.</p>
+        </div>
+        <div class="role-col yours">
+          <h3>What you bring</h3>
+          <p>Your progress also depends on the work you put in outside of our lessons. Our classes are an important part of the process, but consistent practice, reviewing corrections, completing assigned work, and using French regularly will make a significant difference in your results.</p>
+          <p>I will always do my best to give you the guidance and resources you need, but your progress is a shared effort.</p>
+        </div>
+      </div>
+
+      <p>On my side, I commit to providing every student with all the resources, materials, and knowledge needed for their preparation. What I cannot guarantee is a specific exam result, as your results also depend on your consistency, starting level, available time, and individual progress.</p>
+      <p class="note">For more information about my methodology, lessons, materials, expectations, and how we will work together, please read <strong>&ldquo;What to Expect&rdquo;</strong> before starting your lessons. 💛</p>
+    </section>
+
+  </div>
+
+
+  <footer><div class="stripe-mini"></div></footer>
+
+</div>
+
+</body></html>
