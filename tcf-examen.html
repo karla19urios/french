@@ -281,6 +281,56 @@ footer b{color:var(--text)}
 .skel b{color:var(--accent)}
 .phase{font-size:.72rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .timer .phase.prep{color:#b7791f}
+/* évaluation */
+.att{width:100%;border-collapse:separate;border-spacing:0;font-size:.85rem;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:14px}
+.att th{padding:.6rem .8rem;text-align:left;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--border)}
+.att th.b1{background:var(--bleu-soft);color:var(--accent)} .att th.b2{background:rgba(183,121,31,.14);color:#b7791f} .att th.c1{background:var(--rouge-soft);color:var(--rouge)}
+.att td{padding:.6rem .8rem;vertical-align:top;border-top:1px solid var(--border);width:33.3%}
+.att ul{margin:0;padding-left:1rem} .att li{margin:.15rem 0}
+.att caption{text-align:left;font-weight:800;font-size:.95rem;padding:.5rem 0}
+.evcard{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:0 1px 3px var(--shadow);margin-bottom:14px}
+.evcard h3{margin:0 0 .2rem;font-size:1.05rem;display:flex;justify-content:space-between;gap:.6rem;flex-wrap:wrap;align-items:center}
+.evsuj{font-size:.8rem;color:var(--muted);margin:0 0 .8rem}
+.evres{font-size:.82rem;font-weight:800;padding:.2rem .6rem;border-radius:999px;background:var(--bg);border:1px solid var(--border)}
+.evres.lv0{color:var(--muted)} .evres.lv1{color:var(--accent);border-color:var(--bleu)} .evres.lv2{color:#b7791f;border-color:#b7791f} .evres.lv3{color:var(--rouge);border-color:var(--rouge)}
+.ev{display:flex;flex-direction:column;gap:.5rem}
+.evc{display:grid;grid-template-columns:170px 1fr;gap:.6rem;align-items:start}
+@media (max-width:640px){.evc{grid-template-columns:1fr}}
+.evn{font-size:.84rem;font-weight:800;padding-top:.35rem}
+.evl{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+@media (max-width:640px){.evl{grid-template-columns:repeat(2,1fr)}}
+.evb{border:1px solid var(--border);background:var(--bg);color:var(--text);border-radius:9px;padding:.4rem .5rem;font:inherit;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:.1rem;transition:all .15s ease;min-height:54px}
+.evb b{font-size:.72rem;letter-spacing:.06em;color:var(--muted)}
+.evb span{font-size:.74rem;line-height:1.3;color:var(--muted)}
+.evb:hover{border-color:var(--accent)}
+.evb.on{background:var(--card);box-shadow:0 0 0 2px currentColor inset}
+.evb.on.l0{color:#6b7280} .evb.on.l1{color:var(--bleu)} .evb.on.l2{color:#b7791f} .evb.on.l3{color:var(--rouge)}
+.evb.on b,.evb.on span{color:inherit}
+.evnote{width:100%;padding:.5rem .7rem;border-radius:9px;border:1px solid var(--border);background:var(--card);color:var(--text);font:inherit;font-size:.86rem;margin-top:.2rem}
+.evglobal{display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap}
+.evglobal .big{font-size:2.6rem;font-weight:900;letter-spacing:-.02em;line-height:1}
+.evglobal .big.lv0{color:var(--muted)} .evglobal .big.lv1{color:var(--accent)} .evglobal .big.lv2{color:#b7791f} .evglobal .big.lv3{color:var(--rouge)}
+.evglobal .lbl{font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.evbox{border:1px solid #b7791f;border-radius:12px;padding:.6rem .8rem;background:var(--card)}
+.evbox summary{cursor:pointer;font-weight:800;font-size:.9rem;display:flex;align-items:center;gap:.5rem;list-style:none}
+.evbox summary::-webkit-details-marker{display:none}
+.evbox summary::after{content:'▾';margin-left:auto;color:var(--muted)} .evbox:not([open]) summary::after{content:'▸'}
+.evbox .vtag{background:#b7791f;color:#fff}
+.steps3{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:14px}
+.st{display:flex;align-items:center;gap:.6rem;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.6rem .8rem}
+.st b{width:28px;height:28px;border-radius:50%;background:var(--bg);border:1px solid var(--border);display:grid;place-items:center;font-size:.8rem;flex:0 0 28px}
+.st span{font-size:.84rem;font-weight:700;flex:1}
+.st i{font-size:.74rem;color:var(--muted);font-style:normal;font-weight:700}
+.st.ok{border-color:var(--vert)} .st.ok b{background:var(--vert);color:#fff;border-color:var(--vert)} .st.ok i{color:var(--vert)}
+.st.res{border-color:var(--bleu)} .st.res b{background:var(--bleu);color:#fff;border-color:var(--bleu)} .st.res i{color:var(--accent);font-size:.9rem}
+.evpick{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin:.2rem 0 .8rem;font-size:.85rem}
+.evpick label{font-weight:700;color:var(--muted)}
+.evsel{padding:.45rem .6rem;border-radius:9px;border:1px solid var(--border);background:var(--card);color:var(--text);font:inherit;font-size:.86rem;max-width:100%}
+.bareme{margin-top:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;font-size:.86rem}
+.bar-h{padding:.55rem .9rem;font-weight:800;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;background:var(--bleu-soft);color:var(--accent)}
+.bar-row{display:grid;grid-template-columns:90px 90px 1fr;gap:.6rem;padding:.4rem .9rem;border-top:1px solid var(--border);align-items:center}
+.bar-row b{font-variant-numeric:tabular-nums} .bar-row span{font-weight:800} .bar-row i{color:var(--muted);font-style:normal}
+.bar-row.hit{background:var(--vert-soft);outline:2px solid var(--vert);outline-offset:-2px}
 </style>
 
 <div class="flagbar"></div>
@@ -299,6 +349,7 @@ footer b{color:var(--text)}
       <a href="#t2">Tâche 2</a>
       <a href="#t3">Tâche 3</a>
       <a href="#entrainement">Simulation</a>
+      <a href="#evaluation">Évaluation</a>
     </nav>
   </header>
 
@@ -504,6 +555,54 @@ footer b{color:var(--text)}
     </div>
   </section>
 
+  <section id="evaluation">
+    <div class="sec-head"><span class="sec-num">09</span><h2>Grille d'évaluation — B1, B2, C1</h2></div>
+    <p class="sec-sub">Ce que l'examinateur attend à chaque niveau, tâche par tâche, puis une grille pour évaluer un candidat : le professeur choisit, pour chaque tâche et chaque critère, la performance observée — depuis cette section ou directement dans la fenêtre du sujet travaillé — et la page estime le niveau global. <em>Estimation pédagogique : le TCF ne publie pas sa grille de notation.</em></p>
+    <div id="attendus"></div>
+
+    <h3 style="margin:1.6rem 0 .6rem;font-size:1.1rem">Évaluer un candidat et calculer ses points</h3>
+    <div class="steps3">
+      <div class="st" id="st1"><b>1</b><span>Tâche 1 — entretien général</span><i id="stR1">à évaluer</i></div>
+      <div class="st" id="st2"><b>2</b><span>Tâche 2 — choisir le sujet fait</span><i id="stR2">à évaluer</i></div>
+      <div class="st" id="st3"><b>3</b><span>Tâche 3 — choisir le sujet fait</span><i id="stR3">à évaluer</i></div>
+      <div class="st res" id="st4"><b>=</b><span>Mes points</span><i id="stR4">—</i></div>
+    </div>
+
+    <div class="evcard"><h3>Tâche 1 — entretien dirigé <span class="evres" id="evRes1">— non évaluée</span></h3><p class="evsuj" id="evSuj1">Entretien général : pas de sujet à choisir. Évaluez l'ensemble des réponses.</p><div data-evhost="1"></div></div>
+    <div class="evcard"><h3>Tâche 2 — exercice en interaction <span class="evres" id="evRes2">— non évaluée</span></h3>
+      <div class="evpick"><label for="sel2">Sujet travaillé :</label><select id="sel2" class="evsel"><option value="">— choisir le sujet —</option></select><span class="evsuj" id="evSuj2" style="margin:0"></span></div>
+      <div data-evhost="2"></div></div>
+    <div class="evcard"><h3>Tâche 3 — expression d'un point de vue <span class="evres" id="evRes3">— non évaluée</span></h3>
+      <div class="evpick"><label for="sel3">Sujet travaillé :</label><select id="sel3" class="evsel"><option value="">— choisir le sujet —</option></select><span class="evsuj" id="evSuj3" style="margin:0"></span></div>
+      <div data-evhost="3"></div></div>
+
+    <div class="bilan" id="points">
+      <div class="evglobal">
+        <div><div class="lbl">Note estimée</div><div class="big" id="evNote">—</div></div>
+        <div><div class="lbl">Niveau</div><div class="big" id="evGlobal">—</div></div>
+        <div><div class="lbl">NCLC</div><div class="big" id="evNclc">—</div></div>
+        <div style="font-size:.86rem;color:var(--muted);max-width:40ch" id="evGlobalSub">Évaluez les trois tâches pour obtenir vos points.</div>
+      </div>
+      <div class="row" style="margin:0">
+        <button class="btn primary" type="button" id="evCopy">📋 Copier le bilan</button>
+        <button class="btn" type="button" id="evReset">↻ Effacer</button>
+        <span id="evMsg" style="font-size:.85rem;color:var(--muted)"></span>
+      </div>
+    </div>
+    <div class="bareme">
+      <div class="bar-h">Barème TCF Canada — expression orale (note sur 20)</div>
+      <div class="bar-row" data-lv="C1"><b>16 – 20</b><span>C1 / C2</span><i>NCLC 10+</i></div>
+      <div class="bar-row" data-lv="C1"><b>14 – 15</b><span>C1</span><i>NCLC 9</i></div>
+      <div class="bar-row" data-lv="B2"><b>12 – 13</b><span>B2</span><i>NCLC 8</i></div>
+      <div class="bar-row" data-lv="B2"><b>10 – 11</b><span>B2</span><i>NCLC 7 · seuil des programmes fédéraux</i></div>
+      <div class="bar-row" data-lv="B1"><b>7 – 9</b><span>B1</span><i>NCLC 6</i></div>
+      <div class="bar-row" data-lv="B1"><b>6</b><span>B1</span><i>NCLC 5</i></div>
+      <div class="bar-row" data-lv="A2"><b>4 – 5</b><span>A2</span><i>NCLC 4</i></div>
+      <div class="bar-row" data-lv="A1"><b>&lt; 4</b><span>A1</span><i>sous NCLC 4</i></div>
+    </div>
+    <p class="note"><b>Comment les points sont calculés :</b> chaque critère vaut A2 = 1, B1 = 2, B2 = 3, C1 = 4. Moyenne par tâche, puis moyenne pondérée (T1 ×1, T2 ×1,5, T3 ×2) multipliée par 4 → note sur 20, convertie avec le barème officiel ci-dessus. Tant que la tâche 3 n'atteint pas B2, la note est plafonnée à 9 / 20 (B1) : c'est la tâche 3 qui permet de démontrer les niveaux supérieurs. <em>Estimation pédagogique : le TCF ne publie pas sa grille de notation.</em></p>
+  </section>
+
   <footer>
     <span>Sources : <b>TCF.pdf</b> (banque de questions T1, sujets T2 et T3, plans argumentatifs) · <b>Connecteurs logiques</b> (francepodcasts.com / iSLCollective) · format de l'épreuve : France Éducation international</span>
     <span>T1 2 min · T2 5 min 30 · T3 4 min 30 · épreuve enregistrée</span>
@@ -537,6 +636,7 @@ footer b{color:var(--text)}
     <details class="voc" id="vocBox1" open><summary><span class="vtag">B1 / B2</span> Vocabulaire <small id="nB1"></small></summary><div class="vl" id="vocB1"></div></details>
     <details class="voc v2" id="vocBox2" open><summary><span class="vtag">B2 / C1</span> Vocabulaire <small id="nB2"></small></summary><div class="vl" id="vocB2"></div></details>
     <textarea class="notes" id="dlNotes" placeholder="Mes notes : idées, questions, arguments…"></textarea>
+    <details class="evbox" id="dlEval"><summary><span class="vtag">Professeur</span> Évaluer cette performance <small id="dlEvalRes" style="margin-left:.4rem;color:var(--muted);font-weight:700"></small></summary><div id="dlEvalHost" data-evhost="1" data-sujet=""></div></details>
     <div class="row" style="margin:0">
       <button class="btn" type="button" id="dlDone">✓ Sujet travaillé</button>
       <button class="btn" type="button" id="dlNext">Suivant →</button>
@@ -1593,6 +1693,7 @@ function openItem(task,i,autostart){
   tStop(); ph=0; tLeft=phases[0].d; tRender(); cRender();
   document.getElementById('dlNotes').value=notes[cur.task+cur.i]||'';
   document.getElementById('dlDone').textContent=done[cur.task+cur.i]?'✓ Travaillé':'✓ Sujet travaillé';
+  mountDlEval(task, String(task)==='1'?'Entretien général':document.getElementById('dlNum').textContent);
   document.getElementById('dlSimNext').style.display=sim?'':'none';
   if(!dlg.open) dlg.showModal();
   document.querySelector('.dl1').scrollTop=0;
@@ -1636,6 +1737,201 @@ document.getElementById('dlSimNext').addEventListener('click', function(){
   document.getElementById('dlSimNext').textContent=sim.step===3?'Terminer la simulation':'Tâche suivante →';
 });
 document.getElementById('resetDone').addEventListener('click', function(){ done={}; renderGrids(); });
+
+/* ---------------- grille d'évaluation ---------------- */
+var LEVELS=['A2','B1','B2','C1'];
+var ATTENDUS = {
+ '1':{t:'Tâche 1 — entretien dirigé',
+   B1:["Répond à toutes les questions par des phrases simples mais développées (2-3 phrases)","Raconte au passé, parle de ses projets au futur ou au conditionnel","Quelques hésitations et erreurs qui ne gênent pas la compréhension","Comprend les questions sans reformulation"],
+   B2:["Réponses développées et nuancées, exemples donnés spontanément","Aisance : peu d'hésitations, enchaîne sans aide de l'examinateur","Bon contrôle grammatical, se corrige seul","Lexique varié et précis sur les thèmes personnels"],
+   C1:["S'exprime avec aisance et spontanéité, nuances et humour","Réponses structurées qui vont au-delà de la question","Lexique riche et idiomatique, erreurs rares","Adapte le registre à l'interlocuteur avec naturel"]},
+ '2':{t:'Tâche 2 — exercice en interaction',
+   B1:["Comprend le rôle et la situation ; registre globalement adapté (vouvoiement, politesse)","Pose 6 à 8 questions simples mais pertinentes (ou 2 arguments)","Comprend les réponses et réagit brièvement","Utilise le conditionnel de politesse et quelques connecteurs"],
+   B2:["Une dizaine de questions variées, introduites et justifiées (formule complète)","Rebondit sur les réponses, reformule, enchaîne naturellement","Registre adapté au rôle du début à la fin","Pour convaincre : 3-4 arguments avec exemples, répond aux objections"],
+   C1:["Mène l'échange avec souplesse et naturel, questions précises et implicites","Anticipe les objections, négocie, nuance","Gestion fine du registre et des codes sociaux","Lexique précis, structures complexes sans effort"]},
+ '3':{t:"Tâche 3 — expression d'un point de vue",
+   B1:["Donne son opinion clairement et la justifie simplement","Deux arguments avec des exemples concrets","Connecteurs de base : d'abord, ensuite, parce que, mais","Discours parfois linéaire, tient 2-3 minutes"],
+   B2:["Point de vue clair et argumenté ; plan annoncé et suivi","Avantages et inconvénients, nuances et concessions (certes… mais)","Connecteurs variés ; subjonctif, conditionnel, hypothèses","Tient les 4 min 30 avec fluidité"],
+   C1:["Argumentation structurée et convaincante, contre-arguments anticipés","Discours long, fluide et naturel, sans effort apparent","Lexique abstrait précis et nuancé","Transitions sophistiquées, reformulations, ironie maîtrisée"]}
+};
+var CRITERES = {
+ '1':[
+  {k:'dev', n:'Développement des réponses', d:["Mots ou phrases isolées","Réponses simples mais développées","Réponses nuancées avec exemples","Réponses riches, structurées, spontanées"]},
+  {k:'int', n:'Interaction', d:["A besoin de reformulations","Comprend et réagit, quelques relances","Échange naturel, rebondit","Aisance totale, nuances, humour"]},
+  {k:'lex', n:'Lexique', d:["Limité, répétitif","Suffisant, quelques imprécisions","Varié et précis","Riche et idiomatique"]},
+  {k:'gra', n:'Morphosyntaxe', d:["Erreurs fréquentes, présent surtout","Passé et futur, erreurs non gênantes","Bon contrôle, autocorrection","Structures complexes, erreurs rares"]},
+  {k:'flu', n:'Phonologie · fluidité', d:["Hésitations nombreuses","Compréhensible, pauses","Fluide, accent léger","Naturel, intonation expressive"]}],
+ '2':[
+  {k:'sit', n:'Respect de la situation et du rôle', d:["Consigne partiellement respectée","Rôle compris, registre globalement adapté","Rôle et registre adaptés du début à la fin","Gestion fine du registre et des codes"]},
+  {k:'obj', n:'Obtenir l\'information / convaincre', d:["3-5 questions simples","6-8 questions pertinentes · 2 arguments","≈10 questions variées et justifiées · 3-4 arguments avec exemples","Questions précises et implicites · objections anticipées"]},
+  {k:'int', n:'Interaction', d:["N'exploite pas les réponses","Réagit, quelques enchaînements","Rebondit, reformule, enchaîne naturellement","Mène l'échange avec souplesse"]},
+  {k:'lex', n:'Lexique', d:["Limité, répétitif","Suffisant, quelques imprécisions","Varié et précis","Riche et idiomatique"]},
+  {k:'gra', n:'Morphosyntaxe', d:["Erreurs fréquentes","Conditionnel de politesse, erreurs non gênantes","Bon contrôle, interrogation indirecte maîtrisée","Structures complexes, erreurs rares"]},
+  {k:'flu', n:'Phonologie · fluidité', d:["Hésitations nombreuses","Compréhensible, pauses","Fluide, accent léger","Naturel, intonation expressive"]}],
+ '3':[
+  {k:'pos', n:'Prise de position', d:["Opinion absente ou confuse","Opinion claire, justifiée simplement","Point de vue clair et nuancé","Position affirmée et nuancée avec finesse"]},
+  {k:'arg', n:'Argumentation et exemples', d:["Idées juxtaposées","2 arguments + exemples simples","3 arguments développés, exemples pertinents, concession","Argumentation convaincante, contre-arguments anticipés"]},
+  {k:'org', n:'Organisation et connecteurs', d:["Pas de plan ; et, mais","Plan simple, connecteurs de base","Plan annoncé et suivi, connecteurs variés","Structure élaborée, transitions sophistiquées"]},
+  {k:'lex', n:'Lexique', d:["Concret, limité","Adapté au thème, parfois imprécis","Abstrait et précis","Riche, nuancé, idiomatique"]},
+  {k:'gra', n:'Morphosyntaxe', d:["Erreurs fréquentes","Temps de base corrects","Subjonctif, conditionnel, hypothèses","Structures complexes maîtrisées"]},
+  {k:'flu', n:'Fluidité · durée', d:["Ne tient pas 2 min","Tient 3 min avec pauses","4 min 30 fluides","Discours long, naturel, sans effort"]}]
+};
+var WEIGHTS={'1':1,'2':1.5,'3':2};
+var EVAL={'1':{sujet:'',lv:{},note:''},'2':{sujet:'',lv:{},note:''},'3':{sujet:'',lv:{},note:''}};
+
+function lvFromScore(x){ return x<1.5?'A2':(x<2.5?'B1':(x<3.5?'B2':'C1')); }
+function taskScore(t){
+  var cs=CRITERES[t], tot=0, n=0;
+  cs.forEach(function(c){ if(EVAL[t].lv[c.k]!==undefined){ tot+=EVAL[t].lv[c.k]+1; n++; } });
+  return n?{avg:tot/n, n:n, total:cs.length}:null;
+}
+function noteToLevel(n){
+  if(n>=16) return {lv:'C1',cefr:'C1 / C2',nclc:'10+'};
+  if(n>=14) return {lv:'C1',cefr:'C1',nclc:'9'};
+  if(n>=12) return {lv:'B2',cefr:'B2',nclc:'8'};
+  if(n>=10) return {lv:'B2',cefr:'B2',nclc:'7'};
+  if(n>=7)  return {lv:'B1',cefr:'B1',nclc:'6'};
+  if(n>=6)  return {lv:'B1',cefr:'B1',nclc:'5'};
+  if(n>=4)  return {lv:'A2',cefr:'A2',nclc:'4'};
+  return {lv:'A1',cefr:'A1',nclc:'< 4'};
+}
+function globalScore(){
+  var tot=0, w=0, tasks=[];
+  ['1','2','3'].forEach(function(t){ var s=taskScore(t); if(s){ tot+=s.avg*WEIGHTS[t]; w+=WEIGHTS[t]; tasks.push(t); } });
+  if(!w) return null;
+  var avg=tot/w, note=Math.round(avg*4*2)/2;   // note /20 au demi-point
+  var s3=taskScore('3'), capped=false;
+  if((!s3 || s3.avg<2.5) && note>9){ note=9; capped=true; }
+  var L=noteToLevel(note);
+  return {avg:avg, note:note, lv:L.lv, cefr:L.cefr, nclc:L.nclc, tasks:tasks, capped:capped};
+}
+function evalWidget(t, sujetLabel){
+  var cs=CRITERES[t];
+  return '<div class="ev" data-task="'+t+'">'
+    + cs.map(function(c){
+        return '<div class="evc"><div class="evn">'+esc(c.n)+'</div><div class="evl">'
+          + c.d.map(function(d,i){ var on=EVAL[t].lv[c.k]===i; return '<button class="evb'+(on?' on l'+i:'')+'" type="button" data-k="'+c.k+'" data-i="'+i+'" title="'+esc(d)+'"><b>'+LEVELS[i]+'</b><span>'+esc(d)+'</span></button>'; }).join('')
+          + '</div></div>';
+      }).join('')
+    + '<input class="evnote" type="text" placeholder="Remarque du professeur (points forts, à travailler)…" value="'+esc(EVAL[t].note)+'">'
+    + '</div>';
+}
+function bindEval(root, t, sujetLabel){
+  root.addEventListener('click', function(e){
+    var b=e.target.closest('.evb'); if(!b) return;
+    var k=b.getAttribute('data-k'), i=parseInt(b.getAttribute('data-i'),10);
+    if(EVAL[t].lv[k]===i) delete EVAL[t].lv[k]; else EVAL[t].lv[k]=i;
+    if(sujetLabel) EVAL[t].sujet=sujetLabel;
+    refreshEval();
+  });
+  root.addEventListener('input', function(e){
+    var n=e.target.closest('.evnote'); if(!n) return;
+    EVAL[t].note=n.value; if(sujetLabel) EVAL[t].sujet=sujetLabel;
+    refreshEvalSummary();
+  });
+}
+function refreshEval(){
+  // re-render all widgets currently on the page
+  document.querySelectorAll('[data-evhost]').forEach(function(h){
+    var t=h.getAttribute('data-evhost'), lbl=h.getAttribute('data-sujet')||'';
+    h.innerHTML=evalWidget(t, lbl);
+  });
+  refreshEvalSummary();
+}
+function refreshEvalSummary(){
+  ['1','2','3'].forEach(function(t){
+    var s=taskScore(t), el=document.getElementById('evRes'+t), sj=document.getElementById('evSuj'+t), st=document.getElementById('st'+t), sr=document.getElementById('stR'+t);
+    if(!el) return;
+    el.textContent = s ? lvFromScore(s.avg)+' · '+s.avg.toFixed(1)+' / 4 · '+s.n+'/'+s.total+' critères' : '— non évaluée';
+    el.className='evres'+(s?' lv'+LEVELS.indexOf(lvFromScore(s.avg)):'');
+    if(sj && t!=='1') sj.textContent = EVAL[t].sujet ? '' : 'Choisissez le sujet que le candidat a travaillé.';
+    if(st){ var complete=s&&s.n===s.total; st.classList.toggle('ok', !!complete); sr.textContent = s ? (complete?'évaluée · '+lvFromScore(s.avg):s.n+'/'+s.total+' critères') : 'à évaluer'; }
+  });
+  if(typeof syncSelects==='function') syncSelects();
+  var g=globalScore(), big=document.getElementById('evGlobal'), sub=document.getElementById('evGlobalSub'), nt=document.getElementById('evNote'), nc=document.getElementById('evNclc'), s4=document.getElementById('stR4');
+  document.querySelectorAll('.bar-row').forEach(function(rw){ rw.classList.remove('hit'); });
+  if(!big) return;
+  if(!g){ big.textContent='—'; big.className='big'; nt.textContent='—'; nt.className='big'; nc.textContent='—'; nc.className='big'; sub.textContent='Évaluez les trois tâches pour obtenir vos points.'; if(s4) s4.textContent='—'; return; }
+  var cls='big lv'+Math.max(0,LEVELS.indexOf(g.lv));
+  nt.textContent=(g.note%1?g.note.toFixed(1):g.note)+' / 20'; nt.className=cls;
+  big.textContent=g.cefr; big.className=cls;
+  nc.textContent=g.nclc; nc.className=cls;
+  sub.textContent='Moyenne pondérée '+g.avg.toFixed(2)+' / 4 × 4'+(g.tasks.length<3?' · '+g.tasks.length+' tâche(s) sur 3 évaluée(s) — résultat provisoire':'')+(g.capped?' · plafonnée à 9 / 20 : la tâche 3 n\'atteint pas B2':'');
+  if(s4) s4.textContent=(g.note%1?g.note.toFixed(1):g.note)+' / 20 · '+g.cefr;
+  document.querySelectorAll('.bar-row').forEach(function(rw){
+    var b=rw.querySelector('b').textContent.replace('<','').trim(), lo,hi;
+    if(b.indexOf('–')>=0){ var p=b.split('–'); lo=parseFloat(p[0]); hi=parseFloat(p[1]); } else if(rw.textContent.indexOf('< 4')>=0||b==='4'&&rw.getAttribute('data-lv')==='A1'){ lo=0; hi=3.99; } else { lo=hi=parseFloat(b); }
+    if(rw.getAttribute('data-lv')==='A1'){ lo=0; hi=3.99; }
+    if(g.note>=lo && g.note<=hi+0.99 && !(rw.getAttribute('data-lv')==='A1' && g.note>=4)) rw.classList.add('hit');
+  });
+}
+function evalReport(){
+  var lines=['Bilan TCF Canada — expression orale'];
+  ['1','2','3'].forEach(function(t){
+    var s=taskScore(t);
+    lines.push(''); lines.push(ATTENDUS[t].t+(EVAL[t].sujet?' — '+EVAL[t].sujet:''));
+    if(!s){ lines.push('  non évaluée'); return; }
+    CRITERES[t].forEach(function(c){ var i=EVAL[t].lv[c.k]; if(i!==undefined) lines.push('  '+c.n+' : '+LEVELS[i]+' — '+c.d[i]); });
+    lines.push('  → '+lvFromScore(s.avg)+' ('+s.avg.toFixed(1)+' / 4)');
+    if(EVAL[t].note) lines.push('  Remarque : '+EVAL[t].note);
+  });
+  var g=globalScore();
+  lines.push(''); lines.push('Note estimée : '+(g?(g.note+' / 20 — '+g.cefr+' — NCLC '+g.nclc):'—')+(g&&g.capped?' — plafonnée à 9/20, tâche 3 sous B2':''));
+  return lines.join('\n');
+}
+
+
+/* ---------------- évaluation : rendu ---------------- */
+document.getElementById('attendus').innerHTML=['1','2','3'].map(function(t){
+  var a=ATTENDUS[t];
+  return '<table class="att"><caption>'+esc(a.t)+'</caption><thead><tr><th class="b1">B1 — attendu</th><th class="b2">B2 — attendu</th><th class="c1">C1 — attendu</th></tr></thead><tbody><tr>'
+    + ['B1','B2','C1'].map(function(l){ return '<td><ul>'+a[l].map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul></td>'; }).join('')
+    + '</tr></tbody></table>';
+}).join('');
+document.querySelectorAll('#evaluation [data-evhost]').forEach(function(h){ bindEval(h, h.getAttribute('data-evhost'), null); });
+function sujetLabel(t,i){ return t==='2' ? ('Sujet '+(i+1)+' / '+T2.length+' · '+T2[i].t) : ('Sujet '+(i+1)+' / '+T3.length+' · '+T3[i].t); }
+['2','3'].forEach(function(t){
+  var sel=document.getElementById('sel'+t), list=t==='2'?T2:T3;
+  list.forEach(function(x,i){ var o=document.createElement('option'); o.value=i; o.textContent=sujetLabel(t,i); sel.appendChild(o); });
+  sel.addEventListener('change', function(){
+    EVAL[t].sujet = sel.value===''?'':sujetLabel(t,parseInt(sel.value,10));
+    EVAL[t].idx = sel.value===''?undefined:parseInt(sel.value,10);
+    refreshEvalSummary();
+  });
+});
+function syncSelects(){
+  ['2','3'].forEach(function(t){ var sel=document.getElementById('sel'+t); if(!sel) return; sel.value = EVAL[t].idx===undefined?'':String(EVAL[t].idx); });
+}
+var dlHost=document.getElementById('dlEvalHost');
+dlHost.addEventListener('click', function(e){
+  var b=e.target.closest('.evb'); if(!b) return;
+  var t=dlHost.getAttribute('data-evhost'), k=b.getAttribute('data-k'), i=parseInt(b.getAttribute('data-i'),10);
+  if(EVAL[t].lv[k]===i) delete EVAL[t].lv[k]; else EVAL[t].lv[k]=i;
+  EVAL[t].sujet=dlHost.getAttribute('data-sujet'); if(t!=='1') EVAL[t].idx=cur.i;
+  refreshEval(); dlEvalRes();
+});
+dlHost.addEventListener('input', function(e){
+  var n=e.target.closest('.evnote'); if(!n) return;
+  var t=dlHost.getAttribute('data-evhost'); EVAL[t].note=n.value; EVAL[t].sujet=dlHost.getAttribute('data-sujet'); if(t!=='1') EVAL[t].idx=cur.i; refreshEvalSummary();
+});
+function dlEvalRes(){
+  var t=dlHost.getAttribute('data-evhost'), s=taskScore(t);
+  document.getElementById('dlEvalRes').textContent=s?('→ '+lvFromScore(s.avg)+' · '+s.n+'/'+s.total):'';
+}
+function mountDlEval(task, label){
+  dlHost.setAttribute('data-evhost', String(task)); dlHost.setAttribute('data-sujet', label);
+  dlHost.innerHTML=evalWidget(String(task), label); dlEvalRes();
+}
+document.getElementById('evCopy').addEventListener('click', function(){
+  var txt=evalReport(), msg=document.getElementById('evMsg');
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(function(){ msg.textContent='Bilan copié.'; }, function(){ msg.textContent='Copie impossible : sélectionnez le texte à la main.'; });
+  } else { msg.textContent='Copie impossible : sélectionnez le texte à la main.'; }
+});
+document.getElementById('evReset').addEventListener('click', function(){
+  EVAL={'1':{sujet:'',lv:{},note:''},'2':{sujet:'',lv:{},note:''},'3':{sujet:'',lv:{},note:''}}; refreshEval(); dlEvalRes(); syncSelects();
+});
+refreshEval();
 
 /* ---------------- grammaire : auto-évaluation ---------------- */
 var gPct={}, gWhy={};

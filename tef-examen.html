@@ -1,4 +1,5 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+
 <title>TEF · Expression orale</title>
 <style>
 :root{
@@ -232,6 +233,67 @@ footer b{color:var(--text)}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto}}
 @media (max-width:560px){.hero{padding:2.5rem 0 1.5rem}.sujets{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
 </style>
+<style>
+/* grilles d'évaluation */
+h3.blk{font-size:1.08rem;margin:2rem 0 .7rem;padding-bottom:.35rem;border-bottom:2px solid var(--bleu);letter-spacing:-.01em}
+.att{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;box-shadow:0 1px 3px var(--shadow);border-top:4px solid var(--bleu)}
+.att.b{border-top-color:var(--rouge)}
+.att h4{margin:0 0 .2rem;font-size:1.08rem;display:flex;align-items:center;gap:.55rem;flex-wrap:wrap}
+.att .lead{font-size:.9rem;color:var(--muted);margin:.3rem 0 .8rem;font-style:italic}
+.att ul{margin:0;padding-left:1.1rem;font-size:.9rem}
+.att li{margin:.32rem 0}
+.att li b{color:var(--accent)}
+.att.b li b{color:var(--rouge)}
+.att .goal{background:var(--bg);border-left:3px solid var(--border);padding:.5rem .75rem;border-radius:8px;font-size:.86rem;margin-top:.8rem;color:var(--muted)}
+.att .goal b{color:var(--text)}
+
+.setup{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-bottom:.7rem}
+.setup label{display:flex;flex-direction:column;gap:.25rem;font-size:.74rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.setup input,.setup select{padding:.5rem .65rem;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text);font:inherit;font-size:.9rem;font-weight:500;letter-spacing:0;text-transform:none}
+.consA{font-size:.86rem;color:var(--muted);font-style:italic;margin:.15rem 0;padding-left:.7rem;border-left:3px solid var(--bleu)}
+.consA.b{border-left-color:var(--rouge)}
+
+.gscore{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;box-shadow:0 1px 3px var(--shadow);display:flex;gap:1.4rem;flex-wrap:wrap;align-items:center;border-left:5px solid var(--bleu);margin-top:.9rem}
+.gs-l{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.gs-n{font-size:1.9rem;font-weight:900;line-height:1.1;letter-spacing:-.02em;color:var(--accent)}
+.gs-bar-w{flex:1 1 240px;min-width:200px}
+.gs-bar{height:8px;background:var(--border);border-radius:999px;overflow:hidden}
+.gs-bar i{display:block;height:100%;width:0;background:linear-gradient(to right,var(--bleu),var(--vert));transition:width .3s ease}
+.gs-band{font-size:.88rem;font-weight:600;margin-top:.5rem;color:var(--muted);line-height:1.45}
+.gs-band b{color:var(--text)}
+.gs-t{display:flex;gap:1.2rem}
+.gs-t .gs-tl{display:block;font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.gs-t b{font-size:1.05rem}
+
+.crits{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px}
+.crit{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--border);border-radius:12px;padding:.9rem 1rem;display:flex;flex-direction:column;gap:.55rem}
+.crit.v1{border-left-color:var(--rouge)} .crit.v2{border-left-color:#d97706} .crit.v3{border-left-color:var(--vert)} .crit.v4{border-left-color:var(--bleu)}
+.crit .ch{display:flex;gap:.7rem;align-items:flex-start}
+.crit .cn{flex:0 0 24px;height:24px;border-radius:50%;background:var(--bleu);color:#fff;font-size:.72rem;font-weight:900;display:grid;place-items:center;margin-top:.1rem}
+.crits.tB .crit .cn{background:var(--rouge)}
+.crit b.ct{display:block;font-size:.97rem;line-height:1.25}
+.crit .ci{display:block;font-size:.8rem;color:var(--muted);margin-top:.15rem}
+.lvls{display:flex;flex-direction:column;gap:5px}
+.lvls button{display:flex;gap:.6rem;align-items:flex-start;text-align:left;border:1px solid var(--border);background:var(--bg);color:var(--text);border-radius:9px;padding:.45rem .6rem;font:inherit;font-size:.85rem;line-height:1.4;cursor:pointer;transition:all .15s ease}
+.lvls button:hover{border-color:var(--accent)}
+.lvls button .lb{flex:0 0 2.1rem;font-size:.68rem;font-weight:900;letter-spacing:.06em;padding:.12rem 0;border-radius:5px;text-align:center;background:var(--border);color:var(--muted)}
+.lvls button[aria-pressed="true"]{background:var(--bleu-soft);border-color:var(--accent);font-weight:600}
+.lvls button[aria-pressed="true"] .lb{background:var(--bleu);color:#fff}
+.crits.tB .lvls button[aria-pressed="true"]{background:var(--rouge-soft);border-color:var(--rouge)}
+.crits.tB .lvls button[aria-pressed="true"] .lb{background:var(--rouge)}
+.crit .cnote{width:100%;padding:.42rem .6rem;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);font:inherit;font-size:.85rem}
+.crit .cnote::placeholder{color:var(--muted)}
+
+.diff{margin-top:1.4rem;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;box-shadow:0 1px 3px var(--shadow);border-top:4px solid var(--rouge)}
+.diff h3{margin:0 0 .6rem;font-size:1.05rem}
+.diff .dg{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem}
+.diff h4{margin:0 0 .3rem;font-size:.78rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.diff .dg>div:last-child h4{color:var(--rouge)}
+.diff ul{margin:0;padding-left:1.1rem;font-size:.89rem}
+.diff li{margin:.3rem 0}
+</style>
+<style>.att.b .pill{background:var(--rouge-soft);color:var(--rouge)}</style>
+
 
 <div class="flagbar"></div>
 <div class="wrap">
@@ -248,6 +310,7 @@ footer b{color:var(--text)}
       <a href="#sujetsA">Sujets A</a>
       <a href="#sujetsB">Sujets B</a>
       <a href="#entrainement">Entraînement</a>
+      <a href="#grilles">Grilles d'évaluation</a>
     </nav>
   </header>
 
@@ -372,6 +435,84 @@ footer b{color:var(--text)}
         <button class="btn" type="button" id="resetDone">↻ Réinitialiser</button>
       </div>
     </div>
+  </section>
+
+  <section id="grilles">
+    <div class="sec-head"><span class="sec-num">08</span><h2>Grilles d'évaluation et bilan de session</h2></div>
+    <p class="sec-sub">Deux outils. D'abord la <b>référence</b> : ce qui est attendu, tâche par tâche, au B1, au B2 et au C1. Ensuite le <b>bilan</b> : choisissez le sujet travaillé en tâche 1 et celui de la tâche 2, notez chaque critère au niveau réellement atteint, et la page calcule le niveau de la session et la fourchette de score correspondante.</p>
+
+    <h3 class="blk">A · Ce qui est attendu à chaque niveau</h3>
+    <div class="filters">
+      <button class="chip" type="button" data-att="B1" aria-pressed="true">Attentes B1</button>
+      <button class="chip" type="button" data-att="B2" aria-pressed="false">Attentes B2</button>
+      <button class="chip" type="button" data-att="C1" aria-pressed="false">Attentes C1</button>
+    </div>
+    <div class="two" id="attBox"></div>
+
+    <h3 class="blk">B · Bilan d'une session</h3>
+
+    <div class="setup">
+      <label>Élève<input id="stName" placeholder="Prénom"></label>
+      <label>Date<input id="stDate" type="date"></label>
+      <label>Tâche 1 · sujet (numéro de la page)<select id="selA"></select></label>
+      <label>Tâche 2 · sujet (numéro de la page)<select id="selB"></select></label>
+    </div>
+    <p class="consA" id="consA"></p>
+    <p class="consA b" id="consB"></p>
+
+    <div class="gscore" id="gsBox">
+      <div>
+        <div class="gs-l">Niveau de la session</div>
+        <div class="gs-n" id="gsLvl">—</div>
+      </div>
+      <div class="gs-bar-w">
+        <div class="gs-bar"><i id="gsBar"></i></div>
+        <div class="gs-band" id="gsBand">Notez les six critères de chaque tâche pour obtenir le niveau.</div>
+      </div>
+      <div class="gs-t">
+        <div><span class="gs-tl">Tâche 1 · A</span><b id="gsT1">—</b></div>
+        <div><span class="gs-tl">Tâche 2 · B</span><b id="gsT2">—</b></div>
+      </div>
+    </div>
+
+    <div class="filters" style="margin:1rem 0 .8rem">
+      <button class="chip" type="button" data-t="A" aria-pressed="true">Tâche 1 · obtenir des renseignements</button>
+      <button class="chip" type="button" data-t="B" aria-pressed="false">Tâche 2 · convaincre</button>
+      <span style="font-size:.82rem;color:var(--muted);font-weight:600" id="tProg"></span>
+    </div>
+    <div class="crits" id="crits"></div>
+
+    <div class="row" style="margin-top:1rem">
+      <button class="btn primary" type="button" id="gsCopy">📋 Copier le bilan</button>
+      <button class="btn" type="button" id="gsReset">↻ Nouvelle session</button>
+      <span id="gsMsg" style="font-size:.85rem;color:var(--muted);font-weight:600"></span>
+    </div>
+
+    <div class="diff">
+      <h3>Les deux marches à monter</h3>
+      <div class="dg">
+        <div>
+          <h4>B1 → B2</h4>
+          <ul>
+            <li><b>La relance.</b> Au B1 on pose la question suivante ; au B2 on rebondit sur la réponse qu'on vient d'entendre.</li>
+            <li><b>La nuance.</b> <em>C'est bien, ce n'est pas cher</em> devient <em>c'est un très bon rapport qualité-prix, surtout si on compare avec…</em></li>
+            <li><b>La concession.</b> On donne raison à l'autre avant de le contredire : <em>tu as raison sur le prix, cela dit…</em></li>
+            <li><b>Le contrôle.</b> Subjonctif, hypothèses, <em>y / en / dont / où</em> employés spontanément.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>B2 → C1</h4>
+          <ul>
+            <li><b>La stratégie.</b> On n'aligne plus des arguments : on construit un chemin vers l'accord et on anticipe les objections.</li>
+            <li><b>L'implicite.</b> On fait comprendre sans dire, par l'intonation, l'allusion, l'humour.</li>
+            <li><b>Le registre.</b> Choisi consciemment et tenu : soutenu au téléphone, complice avec l'ami(e).</li>
+            <li><b>L'idiomaticité.</b> Les expressions viennent sans effort et sont toujours employées à bon escient.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <p class="note">Grille <b>pédagogique</b> : Le français des affaires ne publie pas sa grille interne. Elle reprend les critères annoncés pour l'épreuve d'expression orale (efficacité communicative, interaction, cohérence, lexique, morphosyntaxe, phonologie) et les descripteurs du CECRL. La tâche 2 pèse deux fois plus que la tâche 1 dans le calcul, comme dans la durée de l'épreuve (10 min contre 5). Les fourchettes suivent la correspondance <b>score TEF Canada → NCLC → CECRL</b> pour l'expression orale, sur 450 points.</p>
   </section>
 
   <footer>
@@ -2020,5 +2161,260 @@ document.getElementById('gCopy').addEventListener('click', function(){
   } else { msg.textContent='Copie impossible : sélectionnez le texte à la main.'; }
 });
 </script>
+<script>
+(function(){
+var L=['A2','B1','B2','C1'];
+
+var ATT={
+ B1:{A:{lead:"Le candidat obtient l'information ; l'examinateur n'a jamais besoin de reformuler ses réponses.",
+      li:["<b>Une dizaine de questions</b> couvrant au moins six thèmes différents (horaires, lieu, prix, inscription, matériel, public).",
+          "Ouverture complète : saluer, se présenter, dire d'où vient l'annonce, dire pourquoi on appelle.",
+          "Une <b>courte réaction</b> après chaque réponse : <em>ah d'accord · très bien · je vois</em>.",
+          "Le <b>conditionnel de politesse</b> et le vouvoiement tenus du début à la fin.",
+          "Clôture : remercier, dire ce qu'on va faire, prendre congé."],
+      goal:"Les 5 minutes sont remplies sans blanc de plus de quelques secondes."},
+   B:{lead:"L'ami(e) comprend la proposition et les raisons pour lesquelles il (elle) devrait accepter.",
+      li:["Présentation du document en deux ou trois phrases, puis <b>avis personnel clair</b>.",
+          "<b>Trois arguments</b>, chacun avec une raison (<em>parce que…</em>) et si possible un exemple.",
+          "Prise en compte des objections : on répond, même simplement.",
+          "Tutoiement tenu ; connecteurs de base : <em>d'abord, ensuite, aussi, donc, enfin</em>.",
+          "Conclusion avec une <b>proposition concrète</b> : <em>on y va ensemble samedi ?</em>"],
+      goal:"Les 10 minutes sont tenues avec 3 arguments développés."}},
+ B2:{A:{lead:"Le candidat conduit l'appel comme un client exigeant : rien n'est demandé deux fois.",
+      li:["Questions <b>ciblées et non redondantes</b> ; on obtient les conditions, les exceptions, les démarches.",
+          "<b>Relances</b> à partir de la réponse entendue : <em>vous dites qu'il reste des places — jusqu'à quelle date exactement ?</em>",
+          "Demandes de précision et de confirmation : <em>si je comprends bien, le matériel est fourni, c'est bien ça ?</em>",
+          "Connecteurs variés et lexique précis (<em>tarif dégressif, conditions d'annulation, niveau requis</em>).",
+          "Subjonctif, hypothèses et pronoms <em>y / en / dont</em> employés sans y penser."],
+      goal:"L'examinateur a l'impression de parler à un vrai client, pas à un candidat."},
+   B:{lead:"L'argumentation est construite et adaptée : elle vise cette personne-là, pas n'importe qui.",
+      li:["<b>Quatre arguments hiérarchisés</b>, chacun illustré d'un exemple concret.",
+          "Arguments <b>adaptés au profil</b> de l'ami(e) (stressé(e), sportif(ve), petit budget…).",
+          "<b>Concession avant contradiction</b> : <em>tu as raison sur ce point, cela dit…</em>",
+          "Connecteurs de niveau : <em>en effet, c'est pourquoi, en revanche, or, d'ailleurs, non seulement… mais encore</em>.",
+          "Reformulation au lieu de la répétition ; lexique d'opinion nuancé."],
+      goal:"Les objections de l'examinateur ne font pas dérailler le plan."}},
+ C1:{A:{lead:"L'appel devient une vraie négociation d'information, menée avec aisance et naturel.",
+      li:["Le candidat <b>hiérarchise ses besoins</b> : il obtient d'abord ce qui conditionne sa décision.",
+          "Il <b>reformule ce qu'il a compris</b> pour le faire valider, et repère les non-dits de l'annonce.",
+          "Registre soutenu tenu sans raideur ; formules idiomatiques employées à bon escient.",
+          "Structures complexes spontanées ; les rares lapsus sont corrigés en passant.",
+          "Débit naturel, liaisons et accent d'insistance maîtrisés."],
+      goal:"Rien ne rappelle un exercice : c'est un appel réel."},
+   B:{lead:"Le candidat ne défend pas une position : il conduit son interlocuteur vers un accord.",
+      li:["<b>Stratégie de persuasion</b> visible : ordre des arguments choisi, meilleur gardé pour la fin.",
+          "Les objections sont <b>anticipées</b> avant d'être formulées, ou <b>retournées</b> à son avantage.",
+          "Recours à l'implicite, à l'humour, à l'allusion ; ton complice mais maîtrisé.",
+          "Nuance constante : <em>ce n'est pas tant le prix qui compte que ce qu'on en retire</em>.",
+          "Conclusion sur un <b>compromis</b> qui laisse l'autre décider tout en ayant dit oui."],
+      goal:"L'ami(e) fictif(ve) aurait effectivement accepté."}}
+};
+
+var CRIT=[
+ {t:"Réalisation de la tâche",
+  i:{A:"Efficacité communicative — l'information est-elle obtenue ?",B:"Efficacité communicative — le point de vue passe-t-il ?"},
+  d:{A:["Quelques questions isolées, souvent répétitives ; l'examinateur doit relancer.",
+        "Une dizaine de questions couvrant au moins six thèmes ; l'essentiel est obtenu.",
+        "Questions ciblées et jamais redondantes ; obtient conditions, exceptions et démarches.",
+        "Mène l'appel comme un vrai client : hiérarchise, vérifie, reformule, conclut sur une action."],
+     B:["Donne son avis en quelques phrases ; les arguments ne sont pas développés.",
+        "Présente le document, donne son avis, développe trois arguments avec une raison, propose une action.",
+        "Quatre arguments hiérarchisés, illustrés d'exemples et adaptés au profil de l'ami(e).",
+        "Construit une stratégie de persuasion : anticipe les objections, négocie, propose un compromis."]}},
+ {t:"Interaction et registre",
+  i:{A:"Vouvoiement, politesse, réaction aux réponses",B:"Tutoiement, gestion des objections"},
+  d:{A:["Suit son plan sans réagir aux réponses ; les silences sont gérés par l'examinateur.",
+        "Réagit à chaque réponse par une courte relance ; vouvoiement et conditionnel de politesse tenus.",
+        "Rebondit sur le contenu des réponses et relance à partir de ce qui vient d'être dit.",
+        "Garde l'initiative de bout en bout : fait préciser, reformule, sans jamais couper."],
+     B:["Répond aux objections en répétant l'argument déjà donné.",
+        "Prend en compte l'objection et propose une réponse simple ; tutoiement sans rupture.",
+        "Concède avant de contredire (« tu as raison, cela dit… ») ; ne se laisse pas déstabiliser.",
+        "Retourne l'objection à son avantage et fait avancer l'échange vers un accord."]}},
+ {t:"Cohérence et cohésion",
+  i:{A:"Organisation de l'appel",B:"Organisation de l'argumentation"},
+  d:{A:["Idées juxtaposées, reliées par « et / mais / parce que » ; ordre des questions aléatoire.",
+        "Introduction, développement et conclusion audibles ; connecteurs de base (d'abord, ensuite, donc, enfin).",
+        "Discours hiérarchisé ; connecteurs variés (en effet, en revanche, or, d'ailleurs, cela dit).",
+        "Structure invisible mais parfaite : l'articulation logique passe par le sens autant que par les mots."],
+     B:null}},
+ {t:"Lexique",
+  i:{A:"Étendue et précision",B:"Étendue et précision"},
+  d:{A:["Vocabulaire limité au concret ; répétitions constantes, mots manquants.",
+        "Vocabulaire suffisant pour le thème ; périphrases efficaces quand un mot manque.",
+        "Lexique étendu et nuancé (rapport qualité-prix, budget serré, se ressourcer) ; reformule au lieu de répéter.",
+        "Précision et idiomaticité constantes ; registre choisi consciemment selon l'interlocuteur."],
+     B:null}},
+ {t:"Morphosyntaxe",
+  i:{A:"Correction grammaticale",B:"Correction grammaticale"},
+  d:{A:["Présent et phrases courtes ; erreurs fréquentes sur les questions et les accords.",
+        "Questions bien formées ; présent, passé composé, futur proche, conditionnel de politesse ; erreurs sans gêne.",
+        "Subjonctif, hypothèses, pronoms y / en / dont / où, gérondif ; erreurs rares et auto-corrigées.",
+        "Contrôle constant, y compris sur les structures complexes ; les lapsus n'appartiennent pas au système."],
+     B:null}},
+ {t:"Phonologie, débit et fluidité",
+  i:{A:"Prononciation et rythme",B:"Prononciation et rythme"},
+  d:{A:["Débit haché ; l'accent gêne parfois la compréhension.",
+        "Prononciation claire malgré l'accent ; pauses de recherche lexicale ; intonation des questions correcte.",
+        "Débit régulier ; hésitations comblées à voix haute ; intonation au service de l'argumentation.",
+        "Débit naturel et souple ; rythme, liaisons et accent d'insistance maîtrisés."],
+     B:null}}
+];
+
+var BANDS=[
+ {max:1.5,  l:"A2 ou en dessous", r:"≤ 180 / 450", c:"Le socle n'est pas encore en place : reprenez la grammaire (points 1-15) et la formule par question avant de refaire des passages complets."},
+ {max:2.0,  l:"B1 en construction", r:"181-225 · NCLC 4", c:"La tâche passe, mais la couverture des thèmes et la relance manquent encore."},
+ {max:2.5,  l:"B1 confirmé", r:"226-270 · NCLC 5", c:"Le B1 est tenu. La marche suivante se joue sur la nuance et les connecteurs."},
+ {max:3.0,  l:"B1 solide — seuil du B2", r:"271-309 · NCLC 6", c:"Presque au B2 : travaillez la concession et les structures complexes en production spontanée."},
+ {max:3.5,  l:"B2 confirmé", r:"310-348 · NCLC 7", c:"Niveau B2 atteint. Il s'agit maintenant de le tenir sur les quinze minutes, sans creux."},
+ {max:3.8,  l:"B2 solide", r:"349-370 · NCLC 8", c:"Très bon B2 : la précision lexicale et l'auto-correction feront la différence."},
+ {max:3.95, l:"Seuil du C1", r:"371-392 · NCLC 9", c:"À la frontière du C1 : il reste l'idiomaticité et la souplesse du débit."},
+ {max:99,   l:"C1", r:"393-450 · NCLC 10+", c:"Niveau C1 : stratégie, implicite et registre sont maîtrisés."}
+];
+
+function desc(c,t){ return c.d[t] || c.d.A; }
+
+var attLv='B1', tache='A';
+var val={A:{},B:{}}, note={A:{},B:{}};
+
+function renderAtt(){
+  var a=ATT[attLv];
+  document.getElementById('attBox').innerHTML=
+    ['A','B'].map(function(k){
+      var x=a[k];
+      return '<div class="att'+(k==='B'?' b':'')+'">'
+        +'<h4><span class="pill">'+(k==='A'?'Tâche 1 · Section A':'Tâche 2 · Section B')+'</span> '+attLv+'</h4>'
+        +'<p class="lead">'+x.lead+'</p><ul>'+x.li.map(function(l){return '<li>'+l+'</li>';}).join('')+'</ul>'
+        +'<div class="goal"><b>Objectif de durée :</b> '+x.goal+'</div></div>';
+    }).join('');
+}
+
+function renderCrits(){
+  var w=document.getElementById('crits');
+  w.className='crits t'+tache;
+  w.innerHTML=CRIT.map(function(c,i){
+    var d=desc(c,tache), v=val[tache][i]||0;
+    return '<div class="crit'+(v?' v'+v:'')+'" data-i="'+i+'">'
+      +'<div class="ch"><span class="cn">'+(i+1)+'</span><div><b class="ct">'+c.t+'</b><span class="ci">'+c.i[tache]+'</span></div></div>'
+      +'<div class="lvls">'+d.map(function(txt,k){
+          return '<button type="button" data-v="'+(k+1)+'" aria-pressed="'+(v===k+1)+'"><span class="lb">'+L[k]+'</span><span>'+txt+'</span></button>';
+        }).join('')+'</div>'
+      +'<input class="cnote" data-note="'+i+'" placeholder="Exemple entendu, mot à retravailler…" value="'+(note[tache][i]||'').replace(/"/g,'&quot;')+'">'
+      +'</div>';
+  }).join('');
+  var n=Object.keys(val[tache]).length;
+  document.getElementById('tProg').textContent=n+' / 6 critères notés';
+}
+
+function avg(t){
+  var s=0,n=0;
+  for(var i=0;i<6;i++){ if(val[t][i]){ s+=val[t][i]; n++; } }
+  return n===6? s/6 : null;
+}
+function band(x){ for(var i=0;i<BANDS.length;i++){ if(x<BANDS[i].max) return BANDS[i]; } return BANDS[BANDS.length-1]; }
+function shortLvl(x){ if(x===null) return '—'; return band(x).l.split(' —')[0]; }
+
+function total(){
+  var a=avg('A'), b=avg('B');
+  document.getElementById('gsT1').textContent=shortLvl(a);
+  document.getElementById('gsT2').textContent=shortLvl(b);
+  var el=document.getElementById('gsBand'), lv=document.getElementById('gsLvl');
+  if(a===null||b===null){
+    lv.textContent='—';
+    document.getElementById('gsBar').style.width='0%';
+    var miss=[]; if(a===null) miss.push('tâche 1'); if(b===null) miss.push('tâche 2');
+    el.innerHTML='Notez les six critères de la '+miss.join(' et de la ')+' pour obtenir le niveau.';
+    return;
+  }
+  var g=(a+2*b)/3, bd=band(g);
+  lv.textContent=bd.l.split(' —')[0];
+  document.getElementById('gsBar').style.width=Math.round((g-1)/3*100)+'%';
+  var low=null, lowI=-1;
+  for(var i=0;i<6;i++){ var m=(val.A[i]+2*val.B[i])/3; if(low===null||m<low){ low=m; lowI=i; } }
+  el.innerHTML='<b>'+bd.l+'</b> · moyenne pondérée '+g.toFixed(2)+' / 4 — fourchette indicative <b>'+bd.r+'</b><br>'
+    +bd.c+'<br>Critère le plus faible : <b>'+CRIT[lowI].t+'</b>.';
+}
+
+document.querySelectorAll('[data-att]').forEach(function(ch){
+  ch.addEventListener('click', function(){
+    document.querySelectorAll('[data-att]').forEach(function(o){ o.setAttribute('aria-pressed', o===ch); });
+    attLv=ch.getAttribute('data-att'); renderAtt();
+  });
+});
+document.querySelectorAll('[data-t]').forEach(function(ch){
+  ch.addEventListener('click', function(){
+    document.querySelectorAll('[data-t]').forEach(function(o){ o.setAttribute('aria-pressed', o===ch); });
+    tache=ch.getAttribute('data-t'); renderCrits();
+  });
+});
+var wrap=document.getElementById('crits');
+wrap.addEventListener('click', function(e){
+  var b=e.target.closest('.lvls button'); if(!b) return;
+  var card=b.closest('.crit'), i=card.getAttribute('data-i');
+  val[tache][i]=+b.getAttribute('data-v');
+  card.className='crit v'+val[tache][i];
+  card.querySelectorAll('.lvls button').forEach(function(o){ o.setAttribute('aria-pressed', o===b); });
+  document.getElementById('tProg').textContent=Object.keys(val[tache]).length+' / 6 critères notés';
+  total();
+});
+wrap.addEventListener('input', function(e){
+  var n=e.target.closest('[data-note]'); if(n) note[tache][n.getAttribute('data-note')]=n.value;
+});
+
+function fill(sel,list,cons,sec){
+  var s=document.getElementById(sel);
+  s.innerHTML='<option value="">— choisir un sujet —</option>'+list.map(function(x,i){
+    return '<option value="'+i+'">'+sec+' · '+(i+1)+' — '+x.t.replace(/</g,'&lt;')+'</option>';
+  }).join('');
+  s.addEventListener('change', function(){
+    var p=document.getElementById(cons);
+    p.textContent = s.value==='' ? '' : list[+s.value].cons;
+  });
+}
+if(window.SUJETS_A) fill('selA', SUJETS_A, 'consA', 'A');
+if(window.SUJETS_B) fill('selB', SUJETS_B, 'consB', 'B');
+document.getElementById('stDate').value=new Date().toISOString().slice(0,10);
+
+document.getElementById('gsReset').addEventListener('click', function(){
+  val={A:{},B:{}}; note={A:{},B:{}};
+  document.getElementById('selA').value=''; document.getElementById('selB').value='';
+  document.getElementById('consA').textContent=''; document.getElementById('consB').textContent='';
+  document.getElementById('stName').value='';
+  renderCrits(); total(); document.getElementById('gsMsg').textContent='';
+});
+
+document.getElementById('gsCopy').addEventListener('click', function(){
+  var sa=document.getElementById('selA'), sb=document.getElementById('selB');
+  var nm=document.getElementById('stName').value||'—', dt=document.getElementById('stDate').value||'';
+  var lines=['Bilan TEF — expression orale','Élève : '+nm+(dt?' · '+dt:''),''];
+  [['A','Tâche 1 · Section A (obtenir des renseignements)',sa,window.SUJETS_A],
+   ['B','Tâche 2 · Section B (convaincre)',sb,window.SUJETS_B]].forEach(function(p){
+    var t=p[0], idx=(p[2].value!==''&&p[3])? +p[2].value : -1, suj=idx>=0? p[3][idx] : null;
+    lines.push(p[1]+(suj? ' — sujet '+t+' · '+(idx+1)+' : '+suj.t : ''));
+    CRIT.forEach(function(c,i){
+      var v=val[t][i];
+      lines.push('  '+(i+1)+'. '+c.t+' : '+(v? L[v-1] : '–')+(note[t][i]?' — '+note[t][i]:''));
+    });
+    var m=avg(t);
+    lines.push('  → '+(m===null?'incomplet':band(m).l+' ('+m.toFixed(2)+'/4)'));
+    lines.push('');
+  });
+  var a=avg('A'), b=avg('B');
+  if(a!==null&&b!==null){
+    var g=(a+2*b)/3, bd=band(g);
+    lines.push('NIVEAU DE LA SESSION : '+bd.l+' · '+g.toFixed(2)+'/4 · fourchette indicative '+bd.r);
+    lines.push(bd.c);
+  } else { lines.push('NIVEAU : bilan incomplet.'); }
+  var msg=document.getElementById('gsMsg'), txt=lines.join('\n');
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(function(){ msg.textContent='Bilan copié — collez-le dans votre retour à l\'élève.'; },
+      function(){ msg.textContent='Copie impossible : sélectionnez le texte à la main.'; });
+  } else { msg.textContent='Copie impossible : sélectionnez le texte à la main.'; }
+});
+
+renderAtt(); renderCrits(); total();
+})();
+</script>
+
 
 </body></html>
