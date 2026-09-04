@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Estudiantes — Français</title>
+<title>Étudiants — Français</title>
 <style>
   :root{
     --bleu:#002395;
@@ -240,20 +240,20 @@
 <body>
 <header class="flag"></header>
 <div class="hero">
-  <h1>👥 Estudiantes</h1>
-  <p>Busca tu progreso con tu código y tu PIN personal — solo tú puedes ver tu información.</p>
+  <h1>👥 Étudiants</h1>
+  <p>Consulte ton suivi avec ton code et ton PIN personnel — toi seul·e peux voir tes informations.</p>
   <a class="back-link" href="niveaux.html">← Niveaux</a>
 </div>
 
 <main>
   <div class="card" id="loginCard">
-    <label for="codeInput">Tu código</label>
-    <input id="codeInput" type="text" placeholder="Ej. A1B2C3" autocomplete="off" spellcheck="false" maxlength="6">
-    <label for="pinInput">Tu PIN</label>
-    <input id="pinInput" type="text" inputmode="numeric" placeholder="4 dígitos" autocomplete="off" maxlength="4">
-    <button class="submit-btn" id="searchBtn" type="button">Buscar mi progreso</button>
-    <p class="error-msg" id="errorMsg">Código o PIN incorrecto. Verifica con tu profesora.</p>
-    <p class="privacy-note">Solo puedes ver tu propia información — nunca se muestra una lista de estudiantes.</p>
+    <label for="codeInput">Ton code</label>
+    <input id="codeInput" type="text" placeholder="Ex. A1B2C3" autocomplete="off" spellcheck="false" maxlength="6">
+    <label for="pinInput">Ton PIN</label>
+    <input id="pinInput" type="text" inputmode="numeric" placeholder="4 chiffres" autocomplete="off" maxlength="4">
+    <button class="submit-btn" id="searchBtn" type="button">Voir mon suivi</button>
+    <p class="error-msg" id="errorMsg">Code ou PIN incorrect. Vérifie avec ta professeure.</p>
+    <p class="privacy-note">Tu ne peux voir que tes propres informations — aucune liste d'étudiants n'est jamais affichée.</p>
   </div>
 
   <div class="card result" id="resultCard">
@@ -264,9 +264,9 @@
     </div>
     <div class="progress-bar"><i id="resProgressBar"></i></div>
     <div class="next-row" id="resNextRow"></div>
-    <div class="obj-label">Objetivo</div>
+    <div class="obj-label">Objectif</div>
     <p class="obj-text" id="resObjective"></p>
-    <button class="logout-link" id="backBtn" type="button">← Buscar con otro código</button>
+    <button class="logout-link" id="backBtn" type="button">← Chercher avec un autre code</button>
   </div>
 </main>
 
