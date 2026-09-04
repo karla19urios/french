@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estudiantes — Français</title>
+<style>
+  :root{
+    --bleu:#002395;
+    --blanc:#ffffff;
+    --rouge:#ED2939;
+    --bg:#f4f5f7;
+    --card:#ffffff;
+    --text:#1a1a2e;
+    --muted:#6b7280;
+    --border:#e5e7eb;
+    --ok:#1a7f4f;
+    --ok-bg:#e7f3ed;
+    --ko:#c2202f;
+    --ko-bg:#fdecec;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#12141c;
+      --card:#1b1e2b;
+      --text:#f1f2f6;
+      --muted:#9aa0b4;
+      --border:#2a2e40;
+      --ok:#4ade80;
+      --ok-bg:#16281f;
+      --ko:#ff8a94;
+      --ko-bg:#2b1a1e;
+    }
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+  }
+  header.flag{
+    background:linear-gradient(90deg, var(--bleu) 33%, var(--blanc) 33%, var(--blanc) 66%, var(--rouge) 66%);
+    height:8px;
+    width:100%;
+  }
+  .hero{
+    padding:3rem 1.5rem 1rem;
+    text-align:center;
+  }
+  .hero h1{
+    margin:0 0 .5rem;
+    font-size:2rem;
+    letter-spacing:-0.02em;
+  }
+  .hero p{
+    margin:0 auto;
+    max-width:52ch;
+    color:var(--muted);
+    font-size:1rem;
+  }
+  .back-link{
+    display:block;
+    text-align:center;
+    margin-top:1rem;
+    font-size:.85rem;
+    color:var(--muted);
+    text-decoration:none;
+  }
+  .back-link:hover{ color:var(--bleu); }
+  main{
+    max-width:480px;
+    margin:0 auto;
+    padding:1rem 1.5rem 4rem;
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:1.8rem;
+    margin-top:1.4rem;
+    position:relative;
+    overflow:hidden;
+  }
+  .card::before{
+    content:"";
+    position:absolute;
+    top:0; left:0; right:0;
+    height:4px;
+    background:linear-gradient(90deg, var(--bleu) 33%, var(--blanc) 33%, var(--blanc) 66%, var(--rouge) 66%);
+  }
+  label{
+    display:block;
+    font-size:.8rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    color:var(--muted);
+    margin:1rem 0 .4rem;
+  }
+  label:first-of-type{ margin-top:0; }
+  input{
+    width:100%;
+    padding:.8rem 1rem;
+    border-radius:10px;
+    border:1px solid var(--border);
+    background:var(--bg);
+    color:var(--text);
+    font-size:1.1rem;
+    font-family:inherit;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+  }
+  input::placeholder{ text-transform:none; letter-spacing:normal; color:var(--muted); }
+  input:focus{ outline:2px solid var(--bleu); outline-offset:1px; }
+  .submit-btn{
+    width:100%;
+    margin-top:1.4rem;
+    background:var(--bleu);
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    padding:.9rem;
+    font-size:1rem;
+    font-weight:700;
+    font-family:inherit;
+    cursor:pointer;
+    transition:background .14s ease;
+  }
+  .submit-btn:hover{ background:var(--rouge); }
+  .error-msg{
+    margin-top:1rem;
+    padding:.8rem 1rem;
+    border-radius:10px;
+    background:var(--ko-bg);
+    color:var(--ko);
+    font-size:.9rem;
+    font-weight:600;
+    display:none;
+  }
+  .error-msg.show{ display:block; }
+  .privacy-note{
+    margin-top:1.2rem;
+    font-size:.78rem;
+    color:var(--muted);
+    text-align:center;
+    line-height:1.4;
+  }
+
+  /* result card */
+  .result{ display:none; }
+  .result.show{ display:block; }
+  .result .greeting{
+    font-size:1.4rem;
+    font-weight:700;
+    margin:0 0 .3rem;
+  }
+  .result .obj-label{
+    font-size:.75rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    color:var(--bleu);
+    margin:1.2rem 0 .3rem;
+  }
+  .result .obj-text{
+    margin:0;
+    font-size:.95rem;
+    color:var(--text);
+  }
+  .result .obj-text.pending{
+    color:var(--muted);
+    font-style:italic;
+  }
+  .progress-row{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    margin:1.2rem 0 .5rem;
+  }
+  .progress-row .lbl{
+    font-size:.75rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    color:var(--bleu);
+  }
+  .progress-row .val{
+    font-size:.95rem;
+    font-weight:700;
+    color:var(--text);
+    font-variant-numeric:tabular-nums;
+  }
+  .progress-bar{
+    height:10px;
+    background:var(--bg);
+    border:1px solid var(--border);
+    border-radius:999px;
+    overflow:hidden;
+  }
+  .progress-bar i{
+    display:block;
+    height:100%;
+    background:linear-gradient(90deg, var(--bleu), var(--rouge));
+    border-radius:999px;
+    transition:width .4s ease;
+  }
+  .next-row{
+    margin-top:1.2rem;
+    padding:.8rem 1rem;
+    border-radius:10px;
+    background:var(--bg);
+    border:1px solid var(--border);
+    font-size:.9rem;
+  }
+  .next-row b{ color:var(--bleu); }
+  .logout-link{
+    display:block;
+    text-align:center;
+    margin-top:1.4rem;
+    font-size:.85rem;
+    color:var(--muted);
+    text-decoration:none;
+    cursor:pointer;
+    background:none;
+    border:none;
+    font-family:inherit;
+    width:100%;
+    padding:.5rem;
+  }
+  .logout-link:hover{ color:var(--bleu); }
+  footer{
+    text-align:center;
+    color:var(--muted);
+    font-size:.8rem;
+    padding:1.5rem;
+  }
+</style>
+</head>
+<body>
+<header class="flag"></header>
+<div class="hero">
+  <h1>👥 Estudiantes</h1>
+  <p>Busca tu progreso con tu código y tu PIN personal — solo tú puedes ver tu información.</p>
+  <a class="back-link" href="niveaux.html">← Niveaux</a>
+</div>
+
+<main>
+  <div class="card" id="loginCard">
+    <label for="codeInput">Tu código</label>
+    <input id="codeInput" type="text" placeholder="Ej. A1B2C3" autocomplete="off" spellcheck="false" maxlength="6">
+    <label for="pinInput">Tu PIN</label>
+    <input id="pinInput" type="text" inputmode="numeric" placeholder="4 dígitos" autocomplete="off" maxlength="4">
+    <button class="submit-btn" id="searchBtn" type="button">Buscar mi progreso</button>
+    <p class="error-msg" id="errorMsg">Código o PIN incorrecto. Verifica con tu profesora.</p>
+    <p class="privacy-note">Solo puedes ver tu propia información — nunca se muestra una lista de estudiantes.</p>
+  </div>
+
+  <div class="card result" id="resultCard">
+    <p class="greeting" id="resName"></p>
+    <div class="progress-row">
+      <span class="lbl">Progreso</span>
+      <span class="val" id="resProgressVal"></span>
+    </div>
+    <div class="progress-bar"><i id="resProgressBar"></i></div>
+    <div class="next-row" id="resNextRow"></div>
+    <div class="obj-label">Objetivo</div>
+    <p class="obj-text" id="resObjective"></p>
+    <button class="logout-link" id="backBtn" type="button">← Buscar con otro código</button>
+  </div>
+</main>
+
+<footer>Site local généré pour consulter les fichiers de cours de français</footer>
+
+<script>
+const STUDENTS = [
+  {"name":"Abdulaziz G.","done":0,"total":10,"next":"-","code":"H4KTNR","pin":"7392"},
+  {"name":"Adrian C.","done":2,"total":9,"next":"Sep 5","code":"MX72QB","pin":"4815"},
+  {"name":"Alba L.","done":9,"total":9,"next":"Sep 6","code":"P9RZKD","pin":"2637"},
+  {"name":"Anna D.","done":16,"total":16,"next":"Sep 6","code":"T3NHXQ","pin":"9184"},
+  {"name":"Anna M.","done":9,"total":14,"next":"Sep 6","code":"K6WYPZ","pin":"5723"},
+  {"name":"Anthony H.","done":0,"total":1,"next":"-","code":"D8MRTX","pin":"3946"},
+  {"name":"Antonia K.","done":6,"total":8,"next":"Sep 7","code":"Q2VNHB","pin":"6258"},
+  {"name":"Bernadetta A.","done":8,"total":10,"next":"Sep 5","code":"Z7XKPM","pin":"8471"},
+  {"name":"Denis F.","done":3.5,"total":5.5,"next":"Sep 9","code":"R5TQWN","pin":"2963"},
+  {"name":"Efren R.","done":19,"total":28,"next":"Sep 8","code":"B4HXZK","pin":"7154"},
+  {"name":"Elena B.","done":4,"total":4,"next":"Sep 8","code":"N9QMRT","pin":"3827"},
+  {"name":"Ella D.","done":4,"total":4,"next":"Sep 8","code":"W3ZKVH","pin":"6492"},
+  {"name":"Elvina","done":14,"total":27,"next":"Sep 4","code":"X8PNQD","pin":"1758"},
+  {"name":"Ernesto C.","done":4,"total":8,"next":"Sep 16","code":"K5TRZM","pin":"4926"},
+  {"name":"Gillian R.","done":5,"total":7,"next":"Sep 8","code":"H7WQXB","pin":"8317"},
+  {"name":"Grace B.","done":11,"total":11,"next":"Sep 6","code":"M2VNKT","pin":"5749"},
+  {"name":"Hannah R.","done":13,"total":13,"next":"Sep 5","code":"Q9ZRHX","pin":"2681"},
+  {"name":"Ivan T.","done":5,"total":5,"next":"Sep 8","code":"T4KPMB","pin":"9375"},
+  {"name":"Jagjit S.","done":12,"total":12,"next":"Sep 7","code":"D6XQNZ","pin":"3164"},
+  {"name":"Jaime","done":2,"total":4,"next":"Sep 13","code":"R8HWKT","pin":"7852"},
+  {"name":"Jaiveer G.","done":14,"total":18,"next":"Sep 6","code":"N3PZMQ","pin":"4297"},
+  {"name":"Janice A.","done":6,"total":6,"next":"Sep 5","code":"K7VXRT","pin":"6538"},
+  {"name":"Joa L.","done":8,"total":8,"next":"Sep 10","code":"Z2QHNB","pin":"9146"},
+  {"name":"Karen Daliana R.","done":6,"total":8,"next":"Sep 11","code":"X5TMWK","pin":"2879"},
+  {"name":"Karla G.","done":4,"total":4,"next":"Sep 10","code":"B9RNZQ","pin":"5327"},
+  {"name":"Laura B.","done":1.5,"total":4,"next":"Sep 8","code":"H3PKXT","pin":"8654"},
+  {"name":"Madelina R.","done":6,"total":6,"next":"Sep 8","code":"M8QWZH","pin":"1739"},
+  {"name":"Marcela Isabel M.","done":8,"total":8,"next":"Sep 5","code":"T6NRVK","pin":"4285"},
+  {"name":"Maria Jose R.","done":5,"total":6,"next":"Sep 6","code":"D9ZXHQ","pin":"7913"},
+  {"name":"Martina H.","done":0,"total":4,"next":"-","code":"K4WMTB","pin":"3568"},
+  {"name":"Mateo Emilio P.","done":1,"total":4,"next":"Sep 7","code":"P7RNQZ","pin":"9284"},
+  {"name":"Mon A.","done":0,"total":8,"next":"-","code":"X9HKVT","pin":"6417"},
+  {"name":"Natalie G.","done":3,"total":4,"next":"Sep 8","code":"Q3TZMB","pin":"2795"},
+  {"name":"Orvill A.","done":5,"total":13,"next":"Sep 5","code":"N7WPKR","pin":"8462"},
+  {"name":"Parambir Singh A.","done":0,"total":1,"next":"-","code":"H2VXQT","pin":"5931"},
+  {"name":"Rajni S.","done":13,"total":15,"next":"Sep 12","code":"Z6RNHK","pin":"3748"},
+  {"name":"Raye M.","done":0,"total":4,"next":"-","code":"M9TXPQ","pin":"6285"},
+  {"name":"Sam","done":4,"total":8,"next":"-","code":"K8ZWNR","pin":"4172"},
+  {"name":"Sam H.","done":10,"total":15,"next":"Sep 8","code":"B5QHTX","pin":"9536"},
+  {"name":"Silke D.","done":5,"total":5,"next":"-","code":"R3PVKZ","pin":"1864"},
+  {"name":"Sophia B.","done":0,"total":4,"next":"-","code":"T9NWMH","pin":"7295"},
+  {"name":"Srinath W.","done":5,"total":5,"next":"Sep 6","code":"X4RQBK","pin":"3612"},
+  {"name":"Stephen P.","done":0,"total":0,"next":"-","code":"H6ZTVN","pin":"8457"},
+  {"name":"Surya","done":4,"total":4,"next":"Sep 8","code":"Q8MKRX","pin":"2748"},
+  {"name":"UB","done":4.5,"total":4.5,"next":"Sep 5","code":"D2WNHZ","pin":"9163"},
+  {"name":"Valeria C.","done":4,"total":6,"next":"Sep 11","code":"K9TXBQ","pin":"5827"},
+  {"name":"Vipul","done":7,"total":13,"next":"Sep 10","code":"N6RVMZ","pin":"4739"}
+];
+
+const codeInput = document.getElementById('codeInput');
+const pinInput = document.getElementById('pinInput');
+const searchBtn = document.getElementById('searchBtn');
+const errorMsg = document.getElementById('errorMsg');
+const loginCard = document.getElementById('loginCard');
+const resultCard = document.getElementById('resultCard');
+
+function doSearch(){
+  errorMsg.classList.remove('show');
+  const code = codeInput.value.trim().toUpperCase();
+  const pin = pinInput.value.trim();
+  const match = STUDENTS.find(s => s.code === code && s.pin === pin);
+  if(!match){
+    errorMsg.classList.add('show');
+    return;
+  }
+  showResult(match);
+}
+
+function showResult(s){
+  document.getElementById('resName').textContent = 'Bonjour, ' + s.name.replace(/\.$/, '') + ' !';
+  document.getElementById('resProgressVal').textContent = s.done + ' / ' + s.total + ' leçons';
+  const pct = s.total > 0 ? Math.min(100, Math.round((s.done / s.total) * 100)) : 0;
+  document.getElementById('resProgressBar').style.width = pct + '%';
+  const nextRow = document.getElementById('resNextRow');
+  nextRow.innerHTML = s.next && s.next !== '-'
+    ? 'Prochaine leçon : <b>' + s.next + '</b>'
+    : 'Aucune leçon programmée pour le moment.';
+  const objEl = document.getElementById('resObjective');
+  objEl.textContent = 'À venir — ta professeure ajoutera bientôt ton objectif ici.';
+  objEl.classList.add('pending');
+  loginCard.style.display = 'none';
+  resultCard.classList.add('show');
+}
+
+searchBtn.addEventListener('click', doSearch);
+[codeInput, pinInput].forEach(el => {
+  el.addEventListener('keydown', e => { if(e.key === 'Enter') doSearch(); });
+});
+
+document.getElementById('backBtn').addEventListener('click', () => {
+  resultCard.classList.remove('show');
+  loginCard.style.display = '';
+  codeInput.value = '';
+  pinInput.value = '';
+  errorMsg.classList.remove('show');
+  codeInput.focus();
+});
+</script>
+</body>
+</html>
