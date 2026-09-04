@@ -1,0 +1,1699 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>TCF Canada · Expression orale</title>
+<style>
+:root{
+  --bleu:#002395;
+  --blanc:#ffffff;
+  --rouge:#ED2939;
+  --bg:#f4f5f7;
+  --card:#ffffff;
+  --text:#1a1a2e;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --shadow:rgba(16,24,40,.08);
+  --bleu-soft:rgba(0,35,149,.08);
+  --rouge-soft:rgba(237,41,57,.10);
+  --vert:#1a7f4f;
+  --vert-soft:rgba(26,127,79,.12);
+  --accent:var(--bleu);
+  --radius:16px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#12141c;--card:#1b1e2b;--text:#f1f2f6;--muted:#9aa0b4;--border:#2a2e40;
+    --shadow:rgba(0,0,0,.35);--bleu-soft:rgba(90,125,255,.14);--rouge-soft:rgba(237,41,57,.16);
+    --vert:#4ec98a;--vert-soft:rgba(78,201,138,.15);--accent:#9db2ff;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#12141c;--card:#1b1e2b;--text:#f1f2f6;--muted:#9aa0b4;--border:#2a2e40;
+  --shadow:rgba(0,0,0,.35);--bleu-soft:rgba(90,125,255,.14);--rouge-soft:rgba(237,41,57,.16);
+  --vert:#4ec98a;--vert-soft:rgba(78,201,138,.15);--accent:#9db2ff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+.flagbar{height:8px;background:linear-gradient(to right,var(--bleu) 0 33.33%,var(--blanc) 33.33% 66.66%,var(--rouge) 66.66% 100%)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 72px}
+
+.hero{padding:3.5rem 0 2rem;text-align:center}
+.eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--bleu-soft);padding:.35rem .75rem;border-radius:999px}
+.hero h1{font-size:clamp(1.9rem,5vw,2.9rem);margin:.9rem 0 .4rem;letter-spacing:-.02em;line-height:1.12;text-wrap:balance}
+.hero p{color:var(--muted);margin:0 auto;max-width:64ch;font-size:1.02rem}
+nav.toc{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin-top:1.4rem}
+nav.toc a{text-decoration:none;color:var(--text);border:1px solid var(--border);background:var(--card);border-radius:999px;padding:.4rem .85rem;font-size:.84rem;font-weight:700;transition:all .15s ease}
+nav.toc a:hover{border-color:var(--accent);color:var(--accent)}
+
+section{margin-top:3rem}
+.sec-head{display:flex;align-items:baseline;gap:.75rem;flex-wrap:wrap;margin-bottom:.35rem}
+.sec-head h2{font-size:1.4rem;margin:0;letter-spacing:-.01em}
+.sec-num{font-size:.72rem;font-weight:800;letter-spacing:.1em;color:var(--rouge);background:var(--rouge-soft);padding:.2rem .55rem;border-radius:6px}
+.sec-sub{color:var(--muted);margin:0 0 1.25rem;font-size:.95rem;max-width:80ch}
+
+/* épreuve */
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:0 1px 3px var(--shadow);border-top:4px solid var(--bleu)}
+.panel.b{border-top-color:var(--rouge)}
+.panel h3{margin:0;font-size:1.2rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.pill{font-size:.7rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .55rem;border-radius:999px;background:var(--bleu-soft);color:var(--accent)}
+.panel.b .pill{background:var(--rouge-soft);color:var(--rouge)}
+.kpis{display:flex;gap:1.4rem;flex-wrap:wrap;margin:.9rem 0 .6rem}
+.kpi .n{font-size:1.7rem;font-weight:900;letter-spacing:-.02em;color:var(--accent);line-height:1;font-variant-numeric:tabular-nums}
+.panel.b .kpi .n{color:var(--rouge)}
+.kpi .l{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.panel p{margin:.4rem 0;font-size:.95rem}
+.panel .consigne{background:var(--bg);border-left:3px solid var(--border);padding:.6rem .8rem;border-radius:8px;font-style:italic;color:var(--muted);font-size:.9rem;margin:.7rem 0}
+.tips{margin:.6rem 0 0;padding-left:1.1rem;font-size:.92rem}
+.tips li{margin:.25rem 0}
+
+/* méthode */
+.formula{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.fcard{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:0 1px 3px var(--shadow)}
+.fcard h3{margin:0 0 .3rem;font-size:1.1rem}
+.fcard .sub{font-size:.85rem;color:var(--muted);margin:0 0 .9rem}
+.slot{border:1px solid var(--border);border-radius:12px;padding:.7rem .85rem;margin-bottom:8px;background:var(--bg)}
+.slot.fixed{border-style:dashed}
+.slot-h{display:flex;align-items:center;justify-content:space-between;gap:.5rem;cursor:pointer}
+.slot-h b{font-size:.92rem;display:flex;align-items:center;gap:.5rem}
+.slot-h .k{width:22px;height:22px;border-radius:50%;background:var(--bleu);color:#fff;font-size:.72rem;font-weight:900;display:grid;place-items:center;flex:0 0 22px}
+.fcard.b .slot-h .k{background:var(--rouge)}
+.slot-h .ex{font-size:.82rem;color:var(--muted);font-style:italic;flex:1;text-align:right}
+.slot-h .tg{font-size:.75rem;color:var(--muted);font-weight:700}
+.bank{display:none;margin-top:.6rem;display:none;flex-wrap:wrap;gap:6px}
+.slot.open .bank{display:flex}
+.ph{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:999px;padding:.3rem .7rem;font:inherit;font-size:.84rem;cursor:pointer;transition:all .15s ease}
+.ph:hover{border-color:var(--accent);color:var(--accent)}
+.gen{margin-top:.8rem;background:var(--bleu-soft);border-radius:12px;padding:.85rem 1rem;font-size:1rem;line-height:1.7;min-height:3.2em}
+.fcard.b .gen{background:var(--rouge-soft)}
+.gen span{padding:0 .15em;border-bottom:2px solid transparent}
+.gen span.s1{border-color:var(--bleu)} .gen span.s2{border-color:var(--rouge)} .gen span.s3{border-color:var(--vert)} .gen span.s4{border-color:#b7791f} .gen span.s5{border-color:#7c3aed} .gen span.s6{border-color:#0891b2}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:.8rem;align-items:center}
+.btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:10px;padding:.5rem .9rem;font:inherit;font-size:.86rem;font-weight:700;cursor:pointer;transition:all .15s ease;display:inline-flex;align-items:center;gap:.4rem}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.primary{background:var(--bleu);border-color:var(--bleu);color:#fff}
+.btn.primary:hover{opacity:.9;color:#fff}
+.btn.danger{background:var(--rouge);border-color:var(--rouge);color:#fff}
+.btn.danger:hover{opacity:.9;color:#fff}
+.listen{width:30px;height:30px;border-radius:50%;border:1px solid var(--border);background:var(--card);cursor:pointer;display:grid;place-items:center;font-size:.85rem;color:var(--accent);transition:background .15s ease,transform .15s ease;padding:0}
+.listen:hover{background:var(--bleu);color:#fff;transform:scale(1.08)}
+.listen.on{background:var(--bleu);color:#fff}
+
+/* sujets */
+.filters{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin-bottom:1rem}
+.chip{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:999px;padding:.42rem .85rem;font:inherit;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .15s ease}
+.chip:hover{border-color:var(--accent)}
+.chip[aria-pressed="true"]{background:var(--bleu);border-color:var(--bleu);color:#fff}
+.sujets{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.sujet{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;text-align:left;padding:0;font:inherit;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease;display:flex;flex-direction:column}
+.sujet:hover{transform:translateY(-3px);box-shadow:0 10px 24px var(--shadow);border-color:var(--accent)}
+.sujet .th{aspect-ratio:4/3;background:#e9ebf0;overflow:hidden;position:relative}
+.sujet .th img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.sujet .badge{position:absolute;top:8px;left:8px;font-size:.66rem;font-weight:900;letter-spacing:.08em;padding:.2rem .5rem;border-radius:6px;background:var(--bleu);color:#fff}
+.sujet.B .badge{background:var(--rouge)}
+.sujet .done{position:absolute;top:8px;right:8px;background:var(--vert);color:#fff;font-size:.7rem;font-weight:900;padding:.15rem .45rem;border-radius:6px}
+.sujet .bd{padding:.7rem .8rem .8rem}
+.sujet .t{font-weight:800;font-size:.95rem;display:block;line-height:1.25}
+.sujet .c{font-size:.78rem;color:var(--muted);display:block;margin-top:.3rem}
+
+/* dialog */
+dialog{border:none;border-radius:var(--radius);padding:0;max-width:min(1040px,94vw);width:100%;background:var(--card);color:var(--text);box-shadow:0 30px 80px rgba(0,0,0,.35)}
+dialog::backdrop{background:rgba(10,12,30,.6);backdrop-filter:blur(3px)}
+.dl{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:0}
+@media (max-width:820px){.dl{grid-template-columns:1fr}}
+.dl-img{background:var(--bg);padding:18px;display:flex;align-items:flex-start;justify-content:center;max-height:82vh;overflow:auto}
+.dl-img img{max-width:100%;height:auto;border-radius:10px;border:1px solid var(--border);display:block}
+.dl-side{padding:18px 20px 20px;display:flex;flex-direction:column;gap:.8rem;max-height:82vh;overflow:auto;border-left:1px solid var(--border)}
+.dl-side .cons{font-size:.95rem;line-height:1.5}
+.dl-side .cons b{color:var(--accent)}
+.timer{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:.8rem .9rem}
+.timer .t{font-size:2.3rem;font-weight:900;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1;color:var(--accent)}
+.timer.warn .t{color:var(--rouge)}
+.timer .tb{height:6px;background:var(--border);border-radius:999px;overflow:hidden;margin:.55rem 0}
+.timer .tb i{display:block;height:100%;width:100%;background:var(--bleu);transition:width 1s linear}
+.timer.warn .tb i{background:var(--rouge)}
+.count{display:flex;align-items:center;justify-content:space-between;gap:.6rem;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:.6rem .9rem}
+.count .n{font-size:1.5rem;font-weight:900;font-variant-numeric:tabular-nums;color:var(--accent)}
+.count .l{font-size:.78rem;color:var(--muted);font-weight:700}
+.dots{display:flex;gap:4px;flex-wrap:wrap}
+.dots i{width:12px;height:12px;border-radius:50%;background:var(--border);display:block}
+.dots i.on{background:var(--vert)}
+.infos{font-size:.86rem;color:var(--muted);margin:0;padding-left:1.1rem}
+.infos li{margin:.15rem 0}
+.hintbox{font-size:.86rem;background:var(--bleu-soft);border-radius:10px;padding:.6rem .8rem}
+.hintbox b{color:var(--accent)}
+.voc{border:1px solid var(--border);border-radius:12px;padding:.55rem .75rem;background:var(--card)}
+.voc summary{cursor:pointer;font-weight:800;font-size:.9rem;display:flex;align-items:center;gap:.5rem;list-style:none}
+.voc summary::-webkit-details-marker{display:none}
+.voc summary::after{content:'▾';margin-left:auto;color:var(--muted);font-size:.85rem}
+.voc:not([open]) summary::after{content:'▸'}
+.vtag{font-size:.64rem;font-weight:900;letter-spacing:.08em;padding:.15rem .45rem;border-radius:5px;background:var(--bleu-soft);color:var(--accent)}
+.voc.v2 .vtag{background:var(--rouge-soft);color:var(--rouge)}
+.voc summary small{font-size:.72rem;color:var(--muted);font-weight:700}
+.vl{display:flex;flex-direction:column;margin-top:.5rem}
+.vr{padding:.4rem 0;border-top:1px solid var(--border);font-size:.86rem;line-height:1.4}
+.vr:first-child{border-top:none}
+.vr b{display:block;color:var(--accent)}
+.voc.v2 .vr b{color:var(--rouge)}
+.vr i{display:block;color:var(--muted);font-size:.82rem}
+.modele{border:1px solid var(--bleu);border-radius:12px;padding:.6rem .8rem;background:var(--card)}
+.modele summary{cursor:pointer;font-weight:800;font-size:.9rem;display:flex;align-items:center;gap:.5rem;list-style:none}
+.modele summary::-webkit-details-marker{display:none}
+.modele summary::after{content:'▾';margin-left:auto;color:var(--muted);font-size:.85rem}
+.modele:not([open]) summary::after{content:'▸'}
+.modele .vtag{background:var(--bleu);color:#fff}
+.mleg{display:flex;flex-wrap:wrap;gap:.35rem .7rem;margin:.55rem 0 .3rem;font-size:.7rem;font-weight:700;color:var(--muted)}
+.mleg span{border-bottom:2px solid;padding-bottom:1px}
+.mh{font-size:.7rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:.8rem 0 .3rem}
+.mp{font-size:.88rem;line-height:1.55;margin:.25rem 0}
+.mq{font-size:.86rem;line-height:1.6;padding:.4rem 0 .4rem .5rem;border-left:3px solid var(--border);margin:.3rem 0;display:flex;gap:.45rem}
+.mq .n{flex:0 0 1.6em;font-weight:900;color:var(--muted);font-size:.75rem;padding-top:.2em}
+.mq span.p{border-bottom:2px solid;padding:0 .1em}
+.mq span.p1,.mleg .p1{border-bottom-color:var(--bleu)} .mq span.p2,.mleg .p2{border-bottom-color:var(--rouge)} .mq span.p3,.mleg .p3{border-bottom-color:var(--vert)}
+.mq span.p4,.mleg .p4{border-bottom-color:#b7791f} .mq span.p5,.mleg .p5{border-bottom-color:#7c3aed} .mq span.p6,.mleg .p6{border-bottom-color:#0891b2}
+.mleg .p1{color:var(--bleu)} .mleg .p2{color:var(--rouge)} .mleg .p3{color:var(--vert)} .mleg .p4{color:#b7791f} .mleg .p5{color:#7c3aed} .mleg .p6{color:#0891b2}
+.mo{font-size:.86rem;margin:.35rem 0;padding:.45rem .6rem;border-radius:8px;background:var(--bg)}
+.mo b{display:block;color:var(--rouge);font-weight:700}
+.sujet .mtag{position:absolute;bottom:8px;left:8px;font-size:.62rem;font-weight:900;letter-spacing:.06em;padding:.15rem .45rem;border-radius:6px;background:rgba(255,255,255,.92);color:var(--bleu);border:1px solid var(--bleu)}
+textarea.notes{width:100%;min-height:90px;padding:.6rem .75rem;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text);font:inherit;font-size:.9rem;resize:vertical}
+.dl-close{position:absolute;top:10px;right:12px;width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:1.1rem;cursor:pointer;display:grid;place-items:center}
+.dl-close:hover{border-color:var(--rouge);color:var(--rouge)}
+
+/* entraînement */
+.train{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:0 1px 3px var(--shadow);display:flex;gap:1rem;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.train p{margin:0;color:var(--muted);font-size:.92rem;max-width:56ch}
+
+/* grammaire */
+.gram{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.gram{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.lvl-head{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin:1.4rem 0 .7rem;padding-bottom:.4rem;border-bottom:2px solid var(--bleu)}
+.lvl-head:first-of-type{margin-top:0}
+.lvl-head h3{margin:0;font-size:1.05rem;flex:1}
+.lvl-head .lvl-avg{font-weight:900;color:var(--accent);font-variant-numeric:tabular-nums}
+.lvl-head.b2{border-bottom-color:var(--rouge)}
+.lvl-head.b2 .pill{background:var(--rouge-soft);color:var(--rouge)}
+.lvl-head.b2 .lvl-avg{color:var(--rouge)}
+.g.b2 .gn{background:var(--rouge)}
+.g{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--border);border-radius:12px;padding:.85rem .95rem;display:flex;flex-direction:column;gap:.55rem;transition:border-color .2s ease}
+.g.lo{border-left-color:var(--rouge)} .g.mid{border-left-color:#d97706} .g.hi{border-left-color:var(--vert)}
+.g .top{display:flex;gap:.7rem;align-items:flex-start}
+.g .gn{flex:0 0 24px;height:24px;border-radius:50%;background:var(--bleu);color:#fff;font-size:.72rem;font-weight:900;display:grid;place-items:center;margin-top:.1rem}
+.g b{display:block;font-size:.95rem}
+.g i{display:block;font-size:.86rem;color:var(--muted);margin-top:.2rem}
+.g .pct{display:flex;align-items:center;gap:.7rem}
+.g .pct input[type=range]{flex:1;accent-color:var(--bleu);height:22px}
+.g .pct output{font-weight:900;font-variant-numeric:tabular-nums;min-width:3.2ch;text-align:right;color:var(--accent)}
+.g.lo .pct output{color:var(--rouge)} .g.mid .pct output{color:#d97706} .g.hi .pct output{color:var(--vert)}
+.g .why{width:100%;padding:.45rem .65rem;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);font:inherit;font-size:.86rem}
+.g .why::placeholder{color:var(--muted)}
+.gsum{margin-top:1rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;font-size:.9rem;color:var(--muted);font-weight:700}
+.gsum .big{font-size:1.6rem;font-weight:900;color:var(--accent);font-variant-numeric:tabular-nums}
+.gsum .gb{flex:1 1 180px;height:8px;background:var(--border);border-radius:999px;overflow:hidden}
+.gsum .gb i{display:block;height:100%;width:0;background:var(--bleu);transition:width .3s ease}
+
+/* connecteurs */
+.cfilters{display:flex;gap:.45rem;flex-wrap:wrap;align-items:center;margin-bottom:1rem}
+.legend{display:flex;gap:1rem;flex-wrap:wrap;font-size:.82rem;color:var(--muted);margin:0 0 1rem}
+.legend span{display:inline-flex;align-items:center;gap:.4rem}
+.legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.ctable{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.cat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.85rem .95rem}
+.cat h4{margin:0 0 .5rem;font-size:.95rem;display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.cat h4 small{font-size:.72rem;color:var(--muted);font-weight:700}
+.cat .cl{display:flex;flex-wrap:wrap;gap:6px}
+.cw{font-size:.86rem;padding:.25rem .6rem;border-radius:999px;border:1px solid var(--border);background:var(--bg)}
+.cw.sub{border-color:var(--rouge);color:var(--rouge);background:var(--rouge-soft);font-weight:700}
+.cw.mix{border-color:#7c3aed;color:#7c3aed;background:rgba(124,58,237,.10);font-weight:700}
+.cw.hit{outline:2px solid var(--bleu);outline-offset:1px}
+
+.note{margin-top:1.25rem;font-size:.86rem;color:var(--muted);border-left:3px solid var(--rouge);padding:.15rem 0 .15rem .8rem}
+footer{margin-top:3.5rem;padding-top:1.5rem;border-top:1px solid var(--border);color:var(--muted);font-size:.85rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+footer b{color:var(--text)}
+:focus-visible{outline:2px solid var(--bleu);outline-offset:2px;border-radius:6px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto}}
+@media (max-width:560px){.hero{padding:2.5rem 0 1.5rem}.sujets{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
+</style>
+<style>
+/* --- ajouts TCF --- */
+.three{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.panel.t1{border-top-color:var(--bleu)} .panel.t2{border-top-color:#b7791f} .panel.t3{border-top-color:var(--rouge)}
+.panel.t2 .pill{background:rgba(183,121,31,.14);color:#b7791f} .panel.t2 .kpi .n{color:#b7791f}
+.panel.t3 .pill{background:var(--rouge-soft);color:var(--rouge)} .panel.t3 .kpi .n{color:var(--rouge)}
+.total{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.8rem 1rem;margin-bottom:14px;font-size:.92rem}
+.total b{font-size:1.4rem;color:var(--accent);font-variant-numeric:tabular-nums}
+.plans{width:100%;border-collapse:separate;border-spacing:0;font-size:.86rem;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.plans th{background:var(--bleu-soft);color:var(--accent);padding:.6rem .7rem;text-align:left;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase}
+.plans td{padding:.55rem .7rem;border-top:1px solid var(--border);vertical-align:top;line-height:1.45}
+.plans td.i,.plans td.c{color:var(--rouge);font-weight:800}
+.plans .sel{outline:2px solid var(--bleu);outline-offset:-2px}
+.oreo{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:12px}
+.oreo div{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.7rem .8rem}
+.oreo b{display:block;font-size:1.3rem;color:var(--accent);line-height:1}
+.oreo span{font-size:.82rem;color:var(--muted);display:block;margin-top:.25rem}
+.oreo i{display:block;font-size:.84rem;margin-top:.4rem}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.tcard{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.9rem 1rem;cursor:pointer;text-align:left;font:inherit;color:var(--text);position:relative;transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease;display:flex;flex-direction:column;gap:.4rem;border-top:4px solid var(--bleu)}
+.tcard:hover{transform:translateY(-3px);box-shadow:0 10px 24px var(--shadow);border-color:var(--accent)}
+.tcard.t2{border-top-color:#b7791f} .tcard.t3{border-top-color:var(--rouge)}
+.tcard .k{font-size:.66rem;font-weight:900;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;display:flex;justify-content:space-between;align-items:center}
+.tcard .k .done{background:var(--vert);color:#fff;padding:.1rem .4rem;border-radius:5px;font-size:.62rem}
+.tcard .t{font-weight:800;font-size:.98rem;line-height:1.3}
+.tcard .c{font-size:.8rem;color:var(--muted);line-height:1.4}
+.tcard .typ{align-self:flex-start;font-size:.62rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;padding:.15rem .45rem;border-radius:5px;background:var(--bleu-soft);color:var(--accent)}
+.tcard .typ.conv{background:var(--rouge-soft);color:var(--rouge)}
+.tcard .ico{font-size:1.5rem;line-height:1}
+/* dialog TCF : une colonne */
+.dl1{padding:22px 24px 24px;max-height:84vh;overflow:auto;display:flex;flex-direction:column;gap:.85rem}
+.dl1 .consb{background:var(--bg);border:1px solid var(--border);border-left:4px solid var(--bleu);border-radius:12px;padding:1rem 1.1rem;font-size:1.05rem;line-height:1.55;font-weight:600}
+.dl1 .consb.t2{border-left-color:#b7791f} .dl1 .consb.t3{border-left-color:var(--rouge)}
+.dl1 .row2{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+@media (max-width:720px){.dl1 .row2{grid-template-columns:1fr}}
+.qlist{display:flex;flex-direction:column;gap:6px}
+.qi{display:flex;align-items:center;gap:.6rem;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:.5rem .7rem;font-size:.9rem}
+.qi .n{flex:0 0 1.6em;font-weight:900;color:var(--muted);font-size:.75rem}
+.qi .listen{margin-left:auto;flex:0 0 30px}
+.qi.cur{border-color:var(--bleu);background:var(--bleu-soft)}
+.pistes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.7rem;margin-top:.8rem}
+.pp{background:var(--bg);border-radius:10px;padding:.6rem .8rem;font-size:.86rem;border-top:3px solid var(--rouge)}
+.pp b{display:block;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.3rem;color:var(--rouge)}
+.pp ul{margin:0;padding-left:1.1rem} .pp li{margin:.15rem 0}
+.planpick{display:flex;gap:.4rem;flex-wrap:wrap}
+.skel{background:var(--bleu-soft);border-radius:10px;padding:.7rem .9rem;font-size:.88rem;line-height:1.6}
+.skel b{color:var(--accent)}
+.phase{font-size:.72rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.timer .phase.prep{color:#b7791f}
+</style>
+
+<div class="flagbar"></div>
+<div class="wrap">
+
+  <header class="hero">
+    <span class="eyebrow">TCF Canada · Expression orale</span>
+    <h1>Trois tâches, douze minutes : s'entretenir, interagir, argumenter</h1>
+    <p>La grammaire et les connecteurs à maîtriser d'abord, puis la méthode de chaque tâche, la banque de questions de la tâche 1, les sujets des tâches 2 et 3 avec chronomètre et vocabulaire B1/B2 et B2/C1. <em>Todo en una página, para practicar en clase y en casa.</em></p>
+    <nav class="toc">
+      <a href="#epreuve">L'épreuve</a>
+      <a href="#grammaire">Grammaire</a>
+      <a href="#connecteurs">Connecteurs</a>
+      <a href="#methode">La méthode</a>
+      <a href="#t1">Tâche 1</a>
+      <a href="#t2">Tâche 2</a>
+      <a href="#t3">Tâche 3</a>
+      <a href="#entrainement">Simulation</a>
+    </nav>
+  </header>
+
+  <section id="epreuve">
+    <div class="sec-head"><span class="sec-num">01</span><h2>L'épreuve en bref</h2></div>
+    <p class="sec-sub">Un entretien de <b>12 minutes</b> en face à face avec un examinateur, enregistré et évalué par des correcteurs habilités par France Éducation international. Trois tâches qui s'enchaînent, du plus personnel au plus abstrait.</p>
+    <div class="total"><span>Durée totale</span><b>12 min</b><span>· 2 min + 5 min 30 + 4 min 30 · une seule note d'expression orale (niveaux A1 → C2)</span></div>
+    <div class="three">
+      <div class="panel t1">
+        <h3><span class="pill">Tâche 1</span> Entretien dirigé</h3>
+        <div class="kpis">
+          <div class="kpi"><div class="n">2 min</div><div class="l">durée</div></div>
+          <div class="kpi"><div class="n">0</div><div class="l">préparation</div></div>
+          <div class="kpi"><div class="n">A1 → B1</div><div class="l">niveaux visés</div></div>
+        </div>
+        <div class="consigne">« Depuis combien de temps vivez-vous au Canada ? Que faites-vous actuellement ? Quels sont vos projets ? »</div>
+        <p>L'examinateur vous pose des questions sur <b>vous</b> : votre vie au Canada, votre travail, votre quotidien, votre parcours d'immigration, vos projets. Vous montrez que vous savez échanger avec une personne que vous ne connaissez pas.</p>
+        <ul class="tips">
+          <li>Répondez en <b>trois temps</b> : réponse directe → détail ou raison → exemple ou ouverture.</li>
+          <li>Ne répondez jamais par un seul mot ; ne récitez pas un texte appris.</li>
+          <li>Variez les temps : présent, passé composé, imparfait, futur, conditionnel.</li>
+        </ul>
+      </div>
+      <div class="panel t2">
+        <h3><span class="pill">Tâche 2</span> Exercice en interaction</h3>
+        <div class="kpis">
+          <div class="kpi"><div class="n">5 min 30</div><div class="l">durée totale</div></div>
+          <div class="kpi"><div class="n">2 min</div><div class="l">de préparation</div></div>
+          <div class="kpi"><div class="n">B1 → B2</div><div class="l">niveaux visés</div></div>
+        </div>
+        <div class="consigne">« Vous souhaitez … Vous ne savez pas … Posez-moi des questions pour obtenir des informations. » / « Votre ami ne veut pas. Vous essayez de le convaincre. »</div>
+        <p>Vous tirez un sujet, vous avez deux minutes pour préparer, puis vous <b>menez l'échange</b> : c'est vous qui posez les questions (ou qui argumentez) ; l'examinateur joue le rôle indiqué.</p>
+        <ul class="tips">
+          <li>Même formule que la tâche A du TEF : <b>interaction + connecteur + introduction + question + raison</b>.</li>
+          <li>Posez une dizaine de questions variées ; réagissez à chaque réponse.</li>
+          <li>Pour les sujets « convaincre », utilisez la formule par argument (6 à 11).</li>
+        </ul>
+      </div>
+      <div class="panel t3">
+        <h3><span class="pill">Tâche 3</span> Expression d'un point de vue</h3>
+        <div class="kpis">
+          <div class="kpi"><div class="n">4 min 30</div><div class="l">durée</div></div>
+          <div class="kpi"><div class="n">0</div><div class="l">préparation</div></div>
+          <div class="kpi"><div class="n">B2 → C2</div><div class="l">niveaux visés</div></div>
+        </div>
+        <div class="consigne">« … Qu'en pensez-vous ? » / « Êtes-vous d'accord avec cette affirmation ? »</div>
+        <p>Vous découvrez une question de société et vous parlez <b>en continu</b>, sans préparation, de manière organisée et convaincante. L'examinateur peut relancer à la fin.</p>
+        <ul class="tips">
+          <li>Choisissez un <b>plan</b> (OREO, dialectique, analytique, thématique, comparatif) et annoncez-le.</li>
+          <li>Trois arguments développés valent mieux que six idées effleurées.</li>
+          <li>Utilisez le subjonctif, le conditionnel, les connecteurs de concession et d'opposition.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="grammaire">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Grammaire à mobiliser pendant l'épreuve</h2></div>
+    <p class="sec-sub">À maîtriser <b>avant</b> de travailler la méthode et les sujets des trois tâches. Les points <b>1 à 15</b> sont le socle attendu pour un <b>niveau B1</b> ; les points <b>16 à 20</b> sont ceux qui font passer au <b>B2</b>. Pour chaque point, indiquez <b>votre pourcentage de maîtrise</b> et <b>pourquoi</b> (ce qui est clair, ce qui bloque). Le bouton « Copier mon bilan » prépare un résumé à envoyer à votre professeure.</p>
+    <div class="lvl-head"><span class="pill">Niveau B1</span><h3>Le socle — points 1 à 15</h3><span class="lvl-avg" id="avgB1">0 %</span></div>
+    <div class="gram" id="gramB1"></div>
+    <div class="lvl-head b2"><span class="pill">Vers le B2</span><h3>Pour monter d'un niveau — points 16 à 20</h3><span class="lvl-avg" id="avgB2">0 %</span></div>
+    <div class="gram" id="gramB2"></div>
+    <div class="gsum">
+      <span>Maîtrise globale (20 points)</span><span class="big" id="gAvg">0 %</span>
+      <div class="gb"><i id="gBar"></i></div>
+      <button class="btn" type="button" id="gCopy">📋 Copier mon bilan</button>
+      <span id="gMsg" style="font-weight:500"></span>
+    </div>
+  </section>
+  <section id="connecteurs">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Connecteurs logiques</h2></div>
+    <p class="sec-sub">Les mots qui structurent vos réponses (tâche 1), vos questions (tâche 2) et votre argumentation (tâche 3). Filtrez par fonction ou cherchez un connecteur ; en rouge, ceux qui exigent le <b>subjonctif</b>.</p>
+    <div class="legend">
+      <span><i style="background:var(--rouge)"></i> subjonctif requis</span>
+      <span><i style="background:#7c3aed"></i> indicatif si la condition est remplie, sinon subjonctif</span>
+      <span><i style="background:var(--border)"></i> indicatif</span>
+    </div>
+    <div class="cfilters">
+      <input id="cq" class="search" type="search" placeholder="Chercher un connecteur…" aria-label="Chercher" style="flex:1 1 200px;min-width:170px;padding:.55rem .85rem;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text);font:inherit;font-size:.9rem">
+      <button class="chip" data-c="all" aria-pressed="true">Tous</button>
+      <button class="chip" data-c="A">Utiles en tâche 2</button>
+      <button class="chip" data-c="B">Utiles en tâche 3</button>
+      <button class="chip" data-c="S">Subjonctif</button>
+    </div>
+    <div class="ctable" id="ctable"></div>
+    <p class="note">Tableau d'après <b>Connecteurs logiques</b> (francepodcasts.com, via iSLCollective). En tâche 2, privilégiez <em>liaison, addition, cause, temps</em> ; en tâche 3, <em>cause, conséquence, concession, opposition, illustration, conclusion</em>.</p>
+  </section>
+
+  <section id="methode">
+    <div class="sec-head"><span class="sec-num">04</span><h2>La méthode, tâche par tâche</h2></div>
+    <p class="sec-sub">Ouvrez chaque étape pour voir la banque de phrases (cliquez sur une phrase pour l'écouter). Les boutons <b>Générer</b> assemblent un exemple complet au hasard.</p>
+
+    <div class="formula">
+      <div class="fcard a" id="fT1">
+        <h3>🎙️ Tâche 1 — répondre en trois temps</h3>
+        <p class="sub">Réponse directe → développement (détail, raison, comparaison) → exemple ou ouverture</p>
+        <div id="slotsT1"></div>
+        <div class="gen" id="genT1" aria-live="polite">Cliquez sur « Générer une réponse »…</div>
+        <div class="row">
+          <button class="btn primary" type="button" id="btnGenT1">🎲 Générer une réponse</button>
+          <button class="btn" type="button" id="btnSayT1">🔊 Écouter</button>
+        </div>
+      </div>
+
+      <div class="fcard a" id="fA">
+        <h3>❓ Tâche 2 — la formule par question <span class="pill" style="font-size:.6rem">= tâche A du TEF</span></h3>
+        <p class="sub">Introduction → Développement (≈ 10 questions, chacune en 5 temps) → Conclusion</p>
+        <div id="slotsA"></div>
+        <div class="gen" id="genA" aria-live="polite">Cliquez sur « Générer une question »…</div>
+        <div class="row">
+          <button class="btn primary" type="button" id="btnGenA">🎲 Générer une question</button>
+          <button class="btn" type="button" id="btnSayA">🔊 Écouter</button>
+        </div>
+      </div>
+
+      <div class="fcard b" id="fB">
+        <h3>🗣️ Tâche 2 « convaincre » — la formule par argument</h3>
+        <p class="sub">Pour les sujets 2 et 4 (votre ami refuse) : introduction → 3 – 4 arguments en 6 temps → conclusion</p>
+        <div id="slotsB"></div>
+        <div class="gen" id="genB" aria-live="polite">Cliquez sur « Générer un argument »…</div>
+        <div class="row">
+          <button class="btn primary" type="button" id="btnGenB">🎲 Générer un argument</button>
+          <button class="btn" type="button" id="btnSayB">🔊 Écouter</button>
+        </div>
+      </div>
+
+      <div class="fcard b" id="fT3">
+        <h3>💬 Tâche 3 — donner et défendre un point de vue</h3>
+        <p class="sub">Introduction (reformuler + annoncer le plan) → développement selon le plan → conclusion (bilan + opinion)</p>
+        <div id="slotsT3"></div>
+        <div class="gen" id="genT3" aria-live="polite">Cliquez sur « Générer un paragraphe OREO »…</div>
+        <div class="row">
+          <button class="btn primary" type="button" id="btnGenT3">🎲 Générer un paragraphe OREO</button>
+          <button class="btn" type="button" id="btnSayT3">🔊 Écouter</button>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin:1.8rem 0 .5rem;font-size:1.1rem">Les plans argumentatifs de la tâche 3</h3>
+    <div style="overflow-x:auto">
+    <table class="plans" id="plansTable">
+      <thead><tr><th>Plan analytique</th><th>Plan dialectique</th><th>Plan thématique</th><th>Plan comparatif</th></tr></thead>
+      <tbody>
+        <tr><td class="i">Introduction</td><td class="i">Introduction</td><td class="i">Introduction</td><td class="i">Introduction</td></tr>
+        <tr>
+          <td>Les faits<br>Les causes<br>Les conséquences : positives et négatives<br>Les solutions ou recommandations</td>
+          <td>Thèse : les avantages<br><br>Antithèse : les inconvénients<br><br>(Synthèse : votre position)</td>
+          <td>Argument 1<br><br>Argument 2<br><br>Argument 3</td>
+          <td>Caractéristiques de A<br><br>Caractéristiques de B<br><br>Ce qui les distingue</td>
+        </tr>
+        <tr><td class="c">Conclusion</td><td class="c">Conclusion</td><td class="c">Conclusion</td><td class="c">Conclusion</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <h3 style="margin:1.4rem 0 .5rem;font-size:1.05rem">Quel plan pour quelle question ?</h3>
+    <div class="rules">
+      <div class="rule"><b>« Êtes-vous d'accord avec cette affirmation ? »</b><span>affirmation tranchée à discuter</span><i>→ plan <b>dialectique</b> : thèse, antithèse, synthèse</i></div>
+      <div class="rule"><b>« … Qu'en pensez-vous ? » sur un phénomène</b><span>quelque chose qui évolue, qu'on constate</span><i>→ plan <b>analytique</b> : faits, causes, conséquences, solutions</i></div>
+      <div class="rule"><b>« … Qu'en pensez-vous ? » question ouverte</b><span>un principe, une valeur, un objectif</span><i>→ plan <b>thématique</b> : trois axes (économique, social, personnel…)</i></div>
+      <div class="rule"><b>« A plutôt que B ? »</b><span>deux éléments mis en balance</span><i>→ plan <b>comparatif</b> : A, B, ce qui les distingue</i></div>
+      <div class="rule warn"><b>« Pensez-vous que … ? »</b><span>on attend une position nette</span><i>→ <b>OREO</b> : opinion, raisons, exemple, opinion reformulée</i></div>
+    </div>
+    <p class="note">Le plan se choisit d'après la <b>formulation</b> de la question, pas d'après le thème. Dans chaque sujet de la tâche 3, la page recommande un plan (et une alternative) et structure les pistes en conséquence.</p>
+    <div class="oreo">
+      <div><b>O</b><span>Opinion</span><i>« Personnellement, je pense que… »</i></div>
+      <div><b>R</b><span>Raisons</span><i>« D'abord, parce que… Ensuite, … »</i></div>
+      <div><b>E</b><span>Exemple</span><i>« Par exemple, dans mon pays… »</i></div>
+      <div><b>O</b><span>Opinion (reformulée)</span><i>« C'est pourquoi je reste convaincu(e) que… »</i></div>
+    </div>
+    <p class="note"><b>OREO</b> = un paragraphe complet par argument. Enchaînez deux ou trois OREO et vous tenez vos 4 minutes 30 sans effort — le plan thématique n'est rien d'autre que trois OREO à la suite.</p>
+  </section>
+
+  <section id="t1">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Tâche 1 — la banque de questions</h2></div>
+    <p class="sec-sub">Sept thèmes, 75 questions. Cliquez sur un thème : la liste complète, un chronomètre de 2 minutes, le tirage d'une question au hasard (lue par « l'examinateur ») et le vocabulaire utile par niveau.</p>
+    <div class="tgrid" id="gridT1"></div>
+  </section>
+
+  <section id="t2">
+    <div class="sec-head"><span class="sec-num">06</span><h2>Tâche 2 — les sujets en interaction</h2></div>
+    <p class="sec-sub">Les neuf sujets du dossier. Le chronomètre enchaîne <b>2 min de préparation</b> puis <b>3 min 30 d'échange</b> ; un compteur suit vos questions (ou vos arguments pour les sujets « convaincre »).</p>
+    <div class="tgrid" id="gridT2"></div>
+  </section>
+
+  <section id="t3">
+    <div class="sec-head"><span class="sec-num">07</span><h2>Tâche 3 — les sujets de point de vue</h2></div>
+    <p class="sec-sub">Les dix sujets du dossier (11 à 20). Chronomètre de 4 min 30 sans préparation, <b>plan recommandé d'après la formulation de la question</b> avec pistes structurées selon ce plan, squelette de phrases, et <b>vocabulaire B2/C1</b> plus technique, chaque terme avec sa phrase.</p>
+    <div class="tgrid" id="gridT3"></div>
+  </section>
+
+  <section id="entrainement">
+    <div class="sec-head"><span class="sec-num">08</span><h2>Simulation complète</h2></div>
+    <div class="train">
+      <p>Enchaînez les trois tâches comme le jour de l'examen : une question de tâche 1 au hasard, puis un sujet de tâche 2, puis un sujet de tâche 3. Les chronomètres démarrent seuls.</p>
+      <div class="row" style="margin:0">
+        <button class="btn primary" type="button" id="simStart">▶ Lancer la simulation</button>
+        <button class="btn" type="button" id="rand1">🎲 Question T1</button>
+        <button class="btn" type="button" id="rand2">🎲 Sujet T2</button>
+        <button class="btn" type="button" id="rand3">🎲 Sujet T3</button>
+        <button class="btn" type="button" id="resetDone">↻ Réinitialiser</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Sources : <b>TCF.pdf</b> (banque de questions T1, sujets T2 et T3, plans argumentatifs) · <b>Connecteurs logiques</b> (francepodcasts.com / iSLCollective) · format de l'épreuve : France Éducation international</span>
+    <span>T1 2 min · T2 5 min 30 · T3 4 min 30 · épreuve enregistrée</span>
+  </footer>
+</div>
+
+<dialog id="dlg">
+  <button class="dl-close" type="button" id="dlClose" aria-label="Fermer">✕</button>
+  <div class="dl1">
+    <div><span class="pill" id="dlPill">Tâche 1</span> <span style="font-size:.78rem;color:var(--muted);font-weight:700" id="dlNum"></span></div>
+    <div class="consb" id="dlCons"></div>
+    <div class="row2">
+      <div class="timer" id="timer">
+        <div class="phase" id="tPhase">Chronomètre</div>
+        <div class="t" id="tT">02:00</div>
+        <div class="tb"><i id="tBar"></i></div>
+        <div class="row" style="margin-top:.2rem">
+          <button class="btn primary" type="button" id="tStart">▶ Démarrer</button>
+          <button class="btn" type="button" id="tReset">↻</button>
+        </div>
+      </div>
+      <div class="count" id="countBox">
+        <div><div class="n" id="cN">0</div><div class="l" id="cL">questions posées · objectif 10</div></div>
+        <div style="display:flex;flex-direction:column;gap:.4rem;align-items:flex-end">
+          <div class="dots" id="cDots"></div>
+          <div class="row" style="margin:0"><button class="btn" type="button" id="cMinus">−</button><button class="btn primary" type="button" id="cPlus">+1</button></div>
+        </div>
+      </div>
+    </div>
+    <div id="dlBody"></div>
+    <details class="voc" id="vocBox1" open><summary><span class="vtag">B1 / B2</span> Vocabulaire <small id="nB1"></small></summary><div class="vl" id="vocB1"></div></details>
+    <details class="voc v2" id="vocBox2" open><summary><span class="vtag">B2 / C1</span> Vocabulaire <small id="nB2"></small></summary><div class="vl" id="vocB2"></div></details>
+    <textarea class="notes" id="dlNotes" placeholder="Mes notes : idées, questions, arguments…"></textarea>
+    <div class="row" style="margin:0">
+      <button class="btn" type="button" id="dlDone">✓ Sujet travaillé</button>
+      <button class="btn" type="button" id="dlNext">Suivant →</button>
+      <button class="btn primary" type="button" id="dlSimNext" style="display:none">Tâche suivante →</button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+/* ---------------- Tâche 1 : thèmes et questions ---------------- */
+var T1 = [
+ {id:'canada', ico:'🇨🇦', t:'Vie au Canada', q:[
+  "Depuis combien de temps vivez-vous au Canada ?","Dans quelle ville habitez-vous ?","Pourquoi avez-vous choisi cette ville ?",
+  "Qu'est-ce que vous aimez le plus dans votre ville ?","Qu'est-ce qui vous plaît moins ?","Comment trouvez-vous la vie au Canada ?",
+  "Quelle est la plus grande différence entre le Canada et votre pays d'origine ?","Qu'est-ce qui vous a le plus surpris depuis votre arrivée ?",
+  "Est-ce que votre adaptation a été facile ?","Qu'est-ce qui a été le plus difficile au début ?","Qu'est-ce qui vous manque le plus de votre pays ?",
+  "Qu'est-ce que vous appréciez davantage au Canada ?","Est-ce que vous avez découvert de nouvelles habitudes depuis votre arrivée ?",
+  "Qu'est-ce que vous avez appris grâce à votre expérience d'immigration ?","Est-ce que votre quotidien a beaucoup changé depuis votre arrivée ?"],
+  b1:[
+   {w:"s'installer", ex:"Je me suis installé(e) à Montréal il y a deux ans."},
+   {w:"s'adapter à", ex:"Je me suis vite adapté(e) au rythme de vie d'ici."},
+   {w:"le climat", ex:"Le climat a été un vrai choc au début, surtout l'hiver."},
+   {w:"le mode de vie", ex:"Le mode de vie est plus calme que dans ma ville d'origine."},
+   {w:"la qualité de vie", ex:"Ce que j'apprécie le plus, c'est la qualité de vie."},
+   {w:"le pays d'origine", ex:"Dans mon pays d'origine, les journées de travail sont plus longues."},
+   {w:"manquer à quelqu'un", ex:"Ma famille me manque, surtout pendant les fêtes."},
+   {w:"une habitude", ex:"J'ai pris l'habitude de saluer mes voisins tous les matins."}],
+  b2:[
+   {w:"le dépaysement", ex:"Le dépaysement a été total les premiers mois."},
+   {w:"le choc culturel", ex:"J'ai vécu un petit choc culturel, mais il a été positif."},
+   {w:"s'acclimater", ex:"Il m'a fallu un hiver entier pour m'acclimater."},
+   {w:"la convivialité", ex:"J'ai été frappé(e) par la convivialité des gens."},
+   {w:"le sentiment d'appartenance", ex:"Petit à petit, j'ai développé un sentiment d'appartenance."},
+   {w:"prendre ses marques", ex:"J'ai mis six mois à prendre mes marques."},
+   {w:"la diversité", ex:"La diversité culturelle de la ville m'enrichit chaque jour."},
+   {w:"relativiser", ex:"Cette expérience m'a appris à relativiser les difficultés."}]},
+ {id:'travail', ico:'💼', t:'Travail / études', q:[
+  "Que faites-vous actuellement au Canada ?","Est-ce que vous travaillez ou vous étudiez ?","Depuis combien de temps faites-vous ce travail ?",
+  "Comment avez-vous trouvé votre emploi ?","Est-ce que vous exercez le même métier que dans votre pays ?",
+  "Quelles sont les principales différences entre votre travail actuel et votre ancien travail ?","Qu'est-ce que vous aimez dans votre travail ?",
+  "Quelle est votre journée de travail habituelle ?","Est-ce que vous avez rencontré des difficultés pour trouver un emploi ?",
+  "Est-ce que votre expérience professionnelle dans votre pays vous a été utile au Canada ?","Qu'aimeriez-vous faire professionnellement dans quelques années ?"],
+  b1:[
+   {w:"exercer un métier", ex:"J'exerce le métier d'infirmier depuis huit ans."},
+   {w:"un emploi à temps plein / partiel", ex:"J'ai d'abord trouvé un emploi à temps partiel."},
+   {w:"postuler", ex:"J'ai postulé à une vingtaine d'offres avant d'être embauché(e)."},
+   {w:"un entretien d'embauche", ex:"Mon premier entretien d'embauche s'est fait en français."},
+   {w:"une équipe", ex:"Je travaille dans une équipe de dix personnes."},
+   {w:"les horaires", ex:"Mes horaires sont plus réguliers qu'avant."},
+   {w:"les responsabilités", ex:"J'ai plus de responsabilités qu'à mes débuts."},
+   {w:"évoluer", ex:"J'aimerais évoluer vers un poste de gestion."}],
+  b2:[
+   {w:"la reconnaissance des diplômes", ex:"La reconnaissance de mes diplômes a pris presque un an."},
+   {w:"une reconversion professionnelle", ex:"J'ai dû envisager une reconversion professionnelle."},
+   {w:"le marché du travail", ex:"Le marché du travail est dynamique dans mon secteur."},
+   {w:"la hiérarchie", ex:"La hiérarchie est beaucoup moins marquée qu'en Amérique latine."},
+   {w:"l'équilibre vie professionnelle / vie privée", ex:"L'équilibre entre vie professionnelle et vie privée est mieux respecté ici."},
+   {w:"valoriser son expérience", ex:"J'ai appris à valoriser mon expérience dans mon CV."},
+   {w:"la polyvalence", ex:"On attend de nous beaucoup de polyvalence."},
+   {w:"un réseau professionnel", ex:"Mon réseau professionnel m'a ouvert des portes."}]},
+ {id:'quotidien', ico:'🏠', t:'Vie quotidienne', q:[
+  "À quoi ressemble une journée typique pour vous ?","Que faites-vous généralement le week-end ?","Comment vous déplacez-vous au quotidien ?",
+  "Est-ce que vous utilisez les transports en commun ?","Est-ce que vous avez une voiture ?","Comment trouvez-vous le coût de la vie ?",
+  "Quelles dépenses sont les plus importantes pour vous ?","Où faites-vous généralement vos courses ?","Qu'est-ce que vous aimez faire après le travail ?",
+  "Quelles activités avez-vous découvertes depuis votre arrivée ?"],
+  b1:[
+   {w:"se déplacer", ex:"Je me déplace surtout en métro et à vélo."},
+   {w:"les transports en commun", ex:"Les transports en commun sont pratiques mais chers."},
+   {w:"le coût de la vie", ex:"Le coût de la vie est plus élevé que je ne pensais."},
+   {w:"le loyer", ex:"Le loyer représente ma plus grosse dépense."},
+   {w:"faire les courses", ex:"Je fais mes courses le samedi matin au marché."},
+   {w:"une routine", ex:"J'ai une routine assez simple en semaine."},
+   {w:"se détendre", ex:"Après le travail, j'aime me détendre en marchant."},
+   {w:"un loisir", ex:"J'ai découvert un nouveau loisir : la raquette."}],
+  b2:[
+   {w:"le budget", ex:"Je gère mon budget plus attentivement qu'avant."},
+   {w:"les dépenses courantes", ex:"Les dépenses courantes ont augmenté avec l'inflation."},
+   {w:"l'épicerie", ex:"Ici, on dit « faire l'épicerie » plutôt que « faire les courses »."},
+   {w:"le rythme effréné", ex:"Le rythme est moins effréné que dans ma ville natale."},
+   {w:"concilier", ex:"J'essaie de concilier travail, sport et vie sociale."},
+   {w:"les activités de plein air", ex:"Les activités de plein air font partie de la culture d'ici."},
+   {w:"s'organiser", ex:"Je me suis organisé(e) pour cuisiner le dimanche."},
+   {w:"le pouvoir d'achat", ex:"Mon pouvoir d'achat a légèrement baissé."}]},
+ {id:'francais', ico:'🗣️', t:'Français / intégration', q:[
+  "Pourquoi avez-vous appris le français ?","Depuis combien de temps parlez-vous français ?","Est-ce que vous utilisez le français au travail ?",
+  "Dans quelles situations utilisez-vous le français ?","Est-ce que vous avez l'occasion de parler français tous les jours ?",
+  "Qu'est-ce qui est le plus difficile pour vous en français ?","Est-ce que votre français a progressé depuis votre arrivée ?",
+  "Comment pratiquez-vous le français en dehors des cours ?","Est-ce que vous avez des amis francophones ?",
+  "Est-ce que vous avez rencontré des personnes d'autres nationalités au Canada ?","Qu'est-ce qui vous a aidé à vous intégrer ?"],
+  b1:[
+   {w:"apprendre une langue", ex:"J'ai commencé à apprendre le français il y a trois ans."},
+   {w:"pratiquer", ex:"Je pratique le français tous les jours au travail."},
+   {w:"progresser", ex:"J'ai beaucoup progressé à l'oral depuis mon arrivée."},
+   {w:"la prononciation", ex:"La prononciation reste ma plus grande difficulté."},
+   {w:"l'accent", ex:"Au début, l'accent québécois me semblait difficile."},
+   {w:"comprendre", ex:"Je comprends presque tout maintenant."},
+   {w:"francophone", ex:"J'ai plusieurs amis francophones."},
+   {w:"s'intégrer", ex:"Le français m'a aidé(e) à m'intégrer plus vite."}],
+  b2:[
+   {w:"la maîtrise de la langue", ex:"La maîtrise de la langue est la clé de l'intégration."},
+   {w:"l'aisance", ex:"J'ai gagné en aisance à l'oral."},
+   {w:"une expression idiomatique", ex:"J'adore apprendre les expressions idiomatiques québécoises."},
+   {w:"les registres de langue", ex:"Je fais encore des erreurs de registre de langue."},
+   {w:"l'immersion", ex:"L'immersion quotidienne accélère l'apprentissage."},
+   {w:"se faire comprendre", ex:"Au début, je me faisais comprendre, sans plus."},
+   {w:"le multiculturalisme", ex:"Le multiculturalisme canadien facilite les rencontres."},
+   {w:"tisser des liens", ex:"J'ai tissé des liens grâce à un club de conversation."}]},
+ {id:'relations', ico:'👥', t:'Relations / communauté', q:[
+  "Est-ce que votre famille vit avec vous au Canada ?","Est-ce que vous avez gardé beaucoup de contacts avec votre pays d'origine ?",
+  "À quelle fréquence retournez-vous dans votre pays ?","Est-ce que vous avez rencontré beaucoup de nouvelles personnes au Canada ?",
+  "Comment avez-vous rencontré vos amis au Canada ?","Est-ce que vous participez à des activités dans votre communauté ?",
+  "Est-ce que vous vous sentez intégré(e) dans la société canadienne ?","Qu'est-ce qui vous aide à vous sentir chez vous au Canada ?"],
+  b1:[
+   {w:"garder le contact", ex:"Je garde le contact avec ma famille par appels vidéo."},
+   {w:"rendre visite à", ex:"Je rends visite à mes parents une fois par an."},
+   {w:"se faire des amis", ex:"Je me suis fait des amis grâce au sport."},
+   {w:"un voisin / une voisine", ex:"Mes voisins m'ont beaucoup aidé(e) au début."},
+   {w:"la communauté", ex:"Je participe aux activités de ma communauté."},
+   {w:"se sentir chez soi", ex:"Je commence à me sentir chez moi ici."},
+   {w:"un(e) collègue", ex:"Mes collègues sont devenus des amis."},
+   {w:"partager", ex:"J'aime partager la cuisine de mon pays avec eux."}],
+  b2:[
+   {w:"le lien social", ex:"Le bénévolat crée du lien social."},
+   {w:"l'entraide", ex:"L'entraide entre nouveaux arrivants est précieuse."},
+   {w:"la solitude", ex:"La solitude a été difficile les premiers mois."},
+   {w:"s'impliquer", ex:"Je m'implique dans l'association de mon quartier."},
+   {w:"les retrouvailles", ex:"Les retrouvailles avec ma famille sont toujours émouvantes."},
+   {w:"le déracinement", ex:"Le déracinement est moins lourd quand on est entouré."},
+   {w:"l'appartenance", ex:"Je ressens un vrai sentiment d'appartenance."},
+   {w:"une double culture", ex:"Mes enfants grandissent avec une double culture."}]},
+ {id:'immigration', ico:'🌎', t:"Expérience d'immigration", q:[
+  "Pourquoi avez-vous décidé de quitter votre pays ?","Comment avez-vous vécu votre arrivée au Canada ?","Quelle a été votre première impression du pays ?",
+  "Quelle a été votre première difficulté ?","Est-ce qu'il y a quelque chose que vous auriez aimé savoir avant de venir ?",
+  "Qu'est-ce qui vous a le plus aidé pendant votre installation ?","Quelle expérience vous a le plus marqué depuis votre arrivée ?",
+  "Est-ce que vous avez changé depuis votre immigration ?","Est-ce que votre façon de voir votre pays d'origine a changé ?",
+  "Est-ce que vous recommanderiez le Canada à quelqu'un qui souhaite immigrer ?","Quel conseil donneriez-vous à quelqu'un qui vient d'arriver ?",
+  "Si vous pouviez recommencer votre installation, est-ce que vous feriez quelque chose différemment ?"],
+  b1:[
+   {w:"quitter son pays", ex:"J'ai quitté mon pays pour offrir un meilleur avenir à mes enfants."},
+   {w:"immigrer", ex:"Nous avons immigré en famille en 2023."},
+   {w:"une première impression", ex:"Ma première impression a été la propreté des rues."},
+   {w:"les démarches", ex:"Les démarches administratives ont été longues."},
+   {w:"un conseil", ex:"Mon conseil : apprendre le français avant d'arriver."},
+   {w:"recommander", ex:"Je recommanderais le Canada sans hésiter."},
+   {w:"marquer", ex:"Ma première tempête de neige m'a marqué(e)."},
+   {w:"changer", ex:"J'ai changé : je suis plus patient(e)."}],
+  b2:[
+   {w:"le parcours migratoire", ex:"Mon parcours migratoire a duré presque trois ans."},
+   {w:"les formalités", ex:"Les formalités d'immigration demandent beaucoup de rigueur."},
+   {w:"la résilience", ex:"L'immigration m'a appris la résilience."},
+   {w:"remettre en question", ex:"Cette expérience m'a fait remettre en question mes certitudes."},
+   {w:"avec le recul", ex:"Avec le recul, je referais le même choix."},
+   {w:"un nouveau départ", ex:"C'était un nouveau départ, professionnel et personnel."},
+   {w:"les préjugés", ex:"J'ai abandonné certains préjugés sur mon propre pays."},
+   {w:"s'épanouir", ex:"Je m'épanouis davantage ici qu'avant."}]},
+ {id:'projets', ico:'🔮', t:'Projets', q:[
+  "Quels sont vos projets pour les prochaines années ?","Est-ce que vous souhaitez rester au Canada à long terme ?","Aimeriez-vous changer de ville ?",
+  "Est-ce que vous souhaitez acheter un logement au Canada ?","Quels sont vos objectifs professionnels ?","Qu'aimeriez-vous accomplir cette année ?",
+  "Est-ce que vous aimeriez retourner vivre dans votre pays un jour ?","Où vous imaginez-vous dans cinq ans ?"],
+  b1:[
+   {w:"un projet", ex:"Mon projet principal est d'obtenir la résidence permanente."},
+   {w:"à long terme", ex:"À long terme, je souhaite rester au Canada."},
+   {w:"un objectif", ex:"Mon objectif cette année est de réussir le TCF !"},
+   {w:"acheter un logement", ex:"J'aimerais acheter un logement d'ici cinq ans."},
+   {w:"déménager", ex:"Je n'ai pas l'intention de déménager."},
+   {w:"accomplir", ex:"J'aimerais accomplir une formation complémentaire."},
+   {w:"espérer", ex:"J'espère faire venir ma mère l'année prochaine."},
+   {w:"s'imaginer", ex:"Dans cinq ans, je m'imagine propriétaire et bien installé(e)."}],
+  b2:[
+   {w:"la résidence permanente", ex:"La résidence permanente est ma priorité."},
+   {w:"la citoyenneté", ex:"Ensuite, j'envisage de demander la citoyenneté."},
+   {w:"envisager", ex:"J'envisage de reprendre des études."},
+   {w:"à moyen terme", ex:"À moyen terme, j'aimerais créer ma propre entreprise."},
+   {w:"une perspective", ex:"Les perspectives d'évolution sont bonnes dans mon domaine."},
+   {w:"se projeter", ex:"Je me projette ici avec ma famille."},
+   {w:"l'ambition", ex:"Mon ambition est de devenir gestionnaire de projet."},
+   {w:"faire le bilan", ex:"Chaque année, je fais le bilan de mes objectifs."}]}
+];
+
+/* ---------------- Tâche 2 : exercice en interaction ---------------- */
+var T2 = [
+ {n:2, type:'convaincre', t:'Vacances sportives en pleine nature',
+  cons:"Vous souhaitez passer, l'été prochain, des vacances sportives en pleine nature dans un pays francophone avec un ami. Votre ami ne veut pas. Vous essayez de le convaincre. L'examinateur joue le rôle de l'ami.",
+  hint:"Formule « argument » (6–11). Arguments : santé, déconnexion, budget, souvenirs, découverte d'un pays francophone, pratique du français. Objections attendues : fatigue, prix, confort.",
+  b1:[
+   {w:"des vacances sportives", ex:"Des vacances sportives, ça nous changerait des plages bondées."},
+   {w:"en pleine nature", ex:"On serait en pleine nature, loin du bruit."},
+   {w:"une randonnée", ex:"Imagine une randonnée au lever du soleil."},
+   {w:"le camping", ex:"On peut faire du camping ou dormir en refuge."},
+   {w:"se dépenser", ex:"Se dépenser toute la journée, ça fait un bien fou."},
+   {w:"un pays francophone", ex:"En plus, on pratiquerait notre français dans un pays francophone."},
+   {w:"le budget", ex:"Le budget est plus raisonnable qu'un séjour à l'hôtel."},
+   {w:"l'équipement", ex:"L'équipement se loue sur place."},
+   {w:"le paysage", ex:"Les paysages sont à couper le souffle."},
+   {w:"se détendre", ex:"On peut aussi se détendre le soir au bord du lac."}],
+  b2:[
+   {w:"se ressourcer", ex:"On a besoin de se ressourcer après cette année."},
+   {w:"sortir de sa zone de confort", ex:"Sortir de ta zone de confort, ça te ferait du bien."},
+   {w:"l'adrénaline", ex:"Un peu d'adrénaline, ça ne fait pas de mal."},
+   {w:"un séjour actif", ex:"Un séjour actif, c'est plus mémorable qu'un séjour passif."},
+   {w:"le dépassement de soi", ex:"Le dépassement de soi, c'est ça qui rend des vacances inoubliables."},
+   {w:"l'immersion linguistique", ex:"C'est une immersion linguistique gratuite."},
+   {w:"un compromis", ex:"On peut trouver un compromis : trois jours de sport, deux jours de repos."},
+   {w:"les sentiers battus", ex:"Pour une fois, sortons des sentiers battus."},
+   {w:"le tourisme durable", ex:"C'est du tourisme durable, respectueux de la nature."},
+   {w:"faire des concessions", ex:"Je suis prêt(e) à faire des concessions sur l'hébergement."}]},
+ {n:3, type:'informer', t:'Vacances dans le sud de la France',
+  cons:"Vous souhaitez partir en vacances dans le sud de la France mais vous ne savez pas exactement dans quelle région. Posez-moi des questions sur les différentes possibilités (mer, montagne, campagne, ville, village…).",
+  hint:"Formule « question » (1–5). Thèmes : climat, budget, hébergement, transports, activités, gastronomie, période idéale, famille, foule touristique.",
+  b1:[
+   {w:"une région", ex:"Quelle région du sud me conseillez-vous en famille ?"},
+   {w:"le bord de mer", ex:"Le bord de mer est-il très fréquenté en août ?"},
+   {w:"la montagne", ex:"La montagne est-elle agréable en été ?"},
+   {w:"la campagne", ex:"Qu'est-ce qu'on peut faire à la campagne ?"},
+   {w:"un village", ex:"Y a-t-il des villages typiques à visiter ?"},
+   {w:"le climat", ex:"Comment est le climat en septembre ?"},
+   {w:"l'hébergement", ex:"Quel type d'hébergement est le moins cher ?"},
+   {w:"se déplacer", ex:"Peut-on se déplacer sans voiture ?"},
+   {w:"la gastronomie", ex:"Quelles spécialités faut-il goûter ?"},
+   {w:"la période", ex:"Quelle est la meilleure période pour éviter la foule ?"}],
+  b2:[
+   {w:"l'arrière-pays", ex:"L'arrière-pays est-il plus calme que la côte ?"},
+   {w:"la haute saison", ex:"Les prix doublent-ils en haute saison ?"},
+   {w:"un gîte / une chambre d'hôtes", ex:"Vaut-il mieux louer un gîte ou une chambre d'hôtes ?"},
+   {w:"le patrimoine", ex:"Quelles villes ont le patrimoine le plus riche ?"},
+   {w:"l'affluence touristique", ex:"Où l'affluence touristique est-elle la plus faible ?"},
+   {w:"un itinéraire", ex:"Pourriez-vous me suggérer un itinéraire d'une semaine ?"},
+   {w:"le rapport qualité-prix", ex:"Quelle région offre le meilleur rapport qualité-prix ?"},
+   {w:"les activités nautiques", ex:"Les activités nautiques sont-elles accessibles aux débutants ?"},
+   {w:"la canicule", ex:"Faut-il craindre la canicule en juillet ?"},
+   {w:"desservi(e) par", ex:"Ces villages sont-ils desservis par le train ?"}]},
+ {n:4, type:'convaincre', t:'Dîner dans un quartier animé de Paris',
+  cons:"Vous avez envie de dîner avec votre meilleur ami dans un quartier animé de Paris. Votre ami préfère un endroit calme. Vous essayez de le convaincre. L'examinateur joue le rôle de l'ami.",
+  hint:"Formule « argument » (6–11). Arguments : ambiance, choix de restaurants, terrasses, découverte, on peut trouver un coin tranquille dans un quartier animé. Objections : bruit, attente, prix.",
+  b1:[
+   {w:"un quartier animé", ex:"Un quartier animé, c'est justement ce qui rend une soirée mémorable."},
+   {w:"l'ambiance", ex:"L'ambiance est incroyable le soir."},
+   {w:"une terrasse", ex:"On peut dîner en terrasse et regarder les gens passer."},
+   {w:"le choix", ex:"Il y a un choix énorme de restaurants."},
+   {w:"le bruit", ex:"Le bruit ? On choisit une petite rue à côté."},
+   {w:"réserver", ex:"Je réserve une table dans un coin tranquille."},
+   {w:"se promener", ex:"Après le dîner, on se promène le long de la Seine."},
+   {w:"la découverte", ex:"C'est l'occasion de découvrir une nouvelle cuisine."},
+   {w:"faire la fête", ex:"On n'est pas obligés de faire la fête, juste de profiter."},
+   {w:"un compromis", ex:"On dîne dans le quartier animé et on prend le dessert au calme."}],
+  b2:[
+   {w:"l'effervescence", ex:"J'adore l'effervescence de ce quartier le soir."},
+   {w:"un lieu branché", ex:"J'ai repéré un lieu branché mais intimiste."},
+   {w:"l'authenticité", ex:"On y trouve des bistrots d'une vraie authenticité."},
+   {w:"une adresse", ex:"J'ai une adresse qui va te réconcilier avec les quartiers animés."},
+   {w:"convivial", ex:"C'est convivial sans être bruyant."},
+   {w:"se laisser tenter", ex:"Laisse-toi tenter, juste pour une fois."},
+   {w:"la vie nocturne", ex:"La vie nocturne parisienne fait partie de l'expérience."},
+   {w:"à l'écart", ex:"Le restaurant est à l'écart de la foule, dans une cour intérieure."},
+   {w:"un cadre", ex:"Le cadre est charmant, avec des lumières tamisées."},
+   {w:"l'occasion", ex:"C'est une occasion rare de sortir ensemble."}]},
+ {n:5, type:'informer', t:"S'installer au Québec",
+  cons:"Vous allez vous installer au Québec dans quelques mois. Vous ne savez pas encore dans quelle ville. Posez-moi des questions pour obtenir des informations.",
+  hint:"Formule « question » (1–5). Thèmes : emploi, logement, coût de la vie, climat, transports, écoles, francophonie, communauté, taille de la ville.",
+  b1:[
+   {w:"s'installer", ex:"Dans quelle ville me conseillez-vous de m'installer ?"},
+   {w:"le logement", ex:"Est-il facile de trouver un logement ?"},
+   {w:"le loyer", ex:"Quel est le loyer moyen pour un appartement ?"},
+   {w:"le coût de la vie", ex:"Le coût de la vie est-il très différent entre Montréal et Québec ?"},
+   {w:"le climat", ex:"L'hiver est-il plus rude dans certaines villes ?"},
+   {w:"les transports en commun", ex:"Les transports en commun sont-ils efficaces ?"},
+   {w:"le marché de l'emploi", ex:"Comment est le marché de l'emploi dans mon domaine ?"},
+   {w:"une école", ex:"Les écoles sont-elles francophones ?"},
+   {w:"la communauté", ex:"Y a-t-il une communauté de mon pays ?"},
+   {w:"une grande ville / une petite ville", ex:"Vaut-il mieux une grande ville ou une petite ville pour commencer ?"}],
+  b2:[
+   {w:"le taux de chômage", ex:"Quel est le taux de chômage dans la région ?"},
+   {w:"l'accès aux soins", ex:"L'accès aux soins est-il plus facile en ville ?"},
+   {w:"la francisation", ex:"Existe-t-il des cours de francisation gratuits ?"},
+   {w:"les services d'accueil", ex:"Quels services d'accueil sont offerts aux nouveaux arrivants ?"},
+   {w:"le bassin d'emploi", ex:"Quelle ville a le bassin d'emploi le plus dynamique ?"},
+   {w:"la pénurie de logements", ex:"La pénurie de logements touche-t-elle toutes les villes ?"},
+   {w:"le réseau routier", ex:"Le réseau routier est-il praticable en hiver ?"},
+   {w:"la reconnaissance des acquis", ex:"Où faire reconnaître mes acquis professionnels ?"},
+   {w:"la proximité", ex:"La proximité de la nature est-elle un critère important ?"},
+   {w:"les perspectives", ex:"Quelles sont les perspectives pour une famille ?"}]},
+ {n:6, type:'informer', t:"Offrir un CD d'un(e) artiste francophone",
+  cons:"Vous souhaitez offrir un CD d'un chanteur ou d'une chanteuse francophone à vos parents. Vous ne savez quoi choisir. Demandez-moi des conseils.",
+  hint:"Formule « question » (1–5). Thèmes : goûts des parents, styles, artistes classiques vs actuels, textes compréhensibles, prix, où l'acheter, version numérique.",
+  b1:[
+   {w:"un chanteur / une chanteuse", ex:"Quel chanteur francophone me conseillez-vous ?"},
+   {w:"un style de musique", ex:"Quel style de musique plaît aux personnes de 60 ans ?"},
+   {w:"une chanson", ex:"Quelles chansons sont les plus connues ?"},
+   {w:"les paroles", ex:"Les paroles sont-elles faciles à comprendre ?"},
+   {w:"un album", ex:"Quel album choisir pour commencer ?"},
+   {w:"offrir", ex:"Est-ce un bon cadeau à offrir à des parents ?"},
+   {w:"les goûts", ex:"Mes parents aiment la musique douce : que me conseillez-vous ?"},
+   {w:"le prix", ex:"Combien coûte un CD en moyenne ?"},
+   {w:"acheter", ex:"Où peut-on l'acheter ?"},
+   {w:"la version numérique", ex:"Existe-t-il une version numérique ?"}],
+  b2:[
+   {w:"la chanson française", ex:"Quels sont les classiques de la chanson française ?"},
+   {w:"un(e) auteur(e)-compositeur(-trice)-interprète", ex:"Connaissez-vous un auteur-compositeur-interprète québécois ?"},
+   {w:"les textes engagés", ex:"Cet artiste écrit-il des textes engagés ?"},
+   {w:"la scène actuelle", ex:"Qui sont les artistes marquants de la scène actuelle ?"},
+   {w:"un(e) artiste incontournable", ex:"Quel artiste est incontournable pour découvrir la francophonie ?"},
+   {w:"une édition collector", ex:"Existe-t-il une édition collector avec le livret ?"},
+   {w:"la mélodie", ex:"Les mélodies sont-elles faciles à retenir ?"},
+   {w:"le répertoire", ex:"Son répertoire convient-il à un public plus âgé ?"},
+   {w:"la portée", ex:"Ses chansons ont-elles une portée universelle ?"},
+   {w:"nostalgique", ex:"Mes parents sont nostalgiques des années 80 : une idée ?"}]},
+ {n:7, type:'informer', t:'Visiter le Québec : quelle saison ?',
+  cons:"Vos amis et vous souhaitez visiter le Québec l'année prochaine. Vous ne savez pas quelle saison choisir pour passer les meilleures vacances possibles. Vous me demandez des informations à ce sujet.",
+  hint:"Formule « question » (1–5). Thèmes : température, activités par saison, festivals, prix, affluence, paysages, durée du séjour, équipement.",
+  b1:[
+   {w:"une saison", ex:"Quelle saison est la plus agréable pour un premier voyage ?"},
+   {w:"l'hiver", ex:"L'hiver est-il vraiment aussi froid qu'on le dit ?"},
+   {w:"l'été", ex:"L'été, y a-t-il beaucoup de festivals ?"},
+   {w:"l'automne", ex:"Les couleurs de l'automne, c'est à quelle période ?"},
+   {w:"la température", ex:"Quelle température fait-il en mai ?"},
+   {w:"une activité", ex:"Quelles activités peut-on faire en hiver ?"},
+   {w:"les prix", ex:"Les prix des hôtels changent-ils selon la saison ?"},
+   {w:"la foule", ex:"À quelle saison y a-t-il le moins de foule ?"},
+   {w:"les vêtements", ex:"Quels vêtements faut-il prévoir ?"},
+   {w:"la durée", ex:"Combien de jours faut-il prévoir ?"}],
+  b2:[
+   {w:"l'été indien", ex:"L'été indien vaut-il le déplacement ?"},
+   {w:"les activités hivernales", ex:"Les activités hivernales sont-elles accessibles aux débutants ?"},
+   {w:"la saison des sucres", ex:"La saison des sucres, c'est en mars ?"},
+   {w:"la basse saison", ex:"La basse saison permet-elle de vraies économies ?"},
+   {w:"les conditions climatiques", ex:"Les conditions climatiques compliquent-elles les déplacements en hiver ?"},
+   {w:"un festival", ex:"Quels festivals ne faut-il pas manquer en été ?"},
+   {w:"le feuillage", ex:"Où admirer le feuillage d'automne ?"},
+   {w:"l'ensoleillement", ex:"Quelle saison a le meilleur ensoleillement ?"},
+   {w:"un incontournable", ex:"Quels sont les incontournables de chaque saison ?"},
+   {w:"s'équiper", ex:"Faut-il s'équiper spécialement pour l'hiver ?"}]},
+ {n:8, type:'informer', t:'Améliorer son français pour raisons professionnelles',
+  cons:"Vous souhaitez améliorer votre français pour des raisons professionnelles urgentes. Vous me demandez conseil pour obtenir de bons résultats.",
+  hint:"Formule « question » (1–5). Thèmes : méthode, cours intensifs, ressources, pratique orale, vocabulaire professionnel, durée, certification, coût.",
+  b1:[
+   {w:"améliorer", ex:"Comment améliorer mon français rapidement ?"},
+   {w:"un cours intensif", ex:"Un cours intensif est-il plus efficace ?"},
+   {w:"la méthode", ex:"Quelle méthode me conseillez-vous ?"},
+   {w:"la pratique", ex:"Combien d'heures de pratique par jour faut-il ?"},
+   {w:"le vocabulaire", ex:"Comment apprendre le vocabulaire de mon métier ?"},
+   {w:"l'oral", ex:"Comment progresser à l'oral quand on travaille seul ?"},
+   {w:"une application", ex:"Quelles applications sont vraiment utiles ?"},
+   {w:"un professeur particulier", ex:"Un professeur particulier vaut-il le coût ?"},
+   {w:"le coût", ex:"Quel est le coût moyen d'un cours ?"},
+   {w:"les résultats", ex:"En combien de temps voit-on des résultats ?"}],
+  b2:[
+   {w:"le français professionnel", ex:"Existe-t-il des cours de français professionnel ?"},
+   {w:"une certification", ex:"Quelle certification est reconnue par les employeurs ?"},
+   {w:"l'immersion", ex:"L'immersion est-elle possible tout en travaillant ?"},
+   {w:"la régularité", ex:"La régularité compte-t-elle plus que la durée ?"},
+   {w:"les lacunes", ex:"Comment identifier mes lacunes ?"},
+   {w:"la fluidité", ex:"Comment gagner en fluidité à l'oral ?"},
+   {w:"un tandem linguistique", ex:"Un tandem linguistique est-il efficace ?"},
+   {w:"le registre professionnel", ex:"Comment maîtriser le registre professionnel ?"},
+   {w:"la prise de parole en public", ex:"Avez-vous des conseils pour la prise de parole en réunion ?"},
+   {w:"un objectif mesurable", ex:"Comment me fixer un objectif mesurable ?"}]},
+ {n:9, type:'informer', t:'Travailler à Montréal dans une grande entreprise',
+  cons:"Vous partez travailler à Montréal pour plusieurs mois dans une grande entreprise québécoise. Vous me posez des questions pour réussir au mieux votre intégration professionnelle.",
+  hint:"Formule « question » (1–5). Thèmes : culture d'entreprise, tutoiement, horaires, hiérarchie, réunions, codes vestimentaires, pauses, relations entre collègues, expressions québécoises.",
+  b1:[
+   {w:"l'intégration", ex:"Comment réussir mon intégration dès la première semaine ?"},
+   {w:"une entreprise", ex:"Comment fonctionne une grande entreprise québécoise ?"},
+   {w:"les horaires", ex:"Quels sont les horaires habituels ?"},
+   {w:"les collègues", ex:"Comment créer de bonnes relations avec les collègues ?"},
+   {w:"le tutoiement", ex:"Le tutoiement est-il courant au travail ?"},
+   {w:"une réunion", ex:"Comment se passent les réunions ?"},
+   {w:"la pause", ex:"Les pauses déjeuner sont-elles longues ?"},
+   {w:"les vêtements", ex:"Quel style de vêtements est attendu ?"},
+   {w:"le patron / la patronne", ex:"Comment s'adresse-t-on au patron ?"},
+   {w:"une erreur à éviter", ex:"Quelle erreur faut-il absolument éviter ?"}],
+  b2:[
+   {w:"la culture d'entreprise", ex:"Quelles sont les particularités de la culture d'entreprise québécoise ?"},
+   {w:"la hiérarchie", ex:"La hiérarchie est-elle très marquée ?"},
+   {w:"le code vestimentaire", ex:"Le code vestimentaire est-il formel ?"},
+   {w:"la ponctualité", ex:"La ponctualité est-elle aussi importante qu'on le dit ?"},
+   {w:"les codes implicites", ex:"Quels codes implicites dois-je connaître ?"},
+   {w:"le franc-parler", ex:"Le franc-parler est-il apprécié en réunion ?"},
+   {w:"la prise d'initiative", ex:"La prise d'initiative est-elle encouragée ?"},
+   {w:"le réseautage", ex:"Le réseautage se fait-il en dehors du bureau ?"},
+   {w:"les expressions québécoises", ex:"Quelles expressions québécoises entendrai-je le plus ?"},
+   {w:"le bilan de performance", ex:"Comment se déroule un bilan de performance ?"}]},
+ {n:10, type:'informer', t:'Vacances culturelles dans une région francophone',
+  cons:"Vous souhaitez passer des vacances culturelles dans une région francophone du monde. Vous m'interrogez sur les diverses possibilités qui s'offrent à vous.",
+  hint:"Formule « question » (1–5). Thèmes : destinations, musées, festivals, patrimoine, gastronomie, langue, période, budget, guides.",
+  b1:[
+   {w:"des vacances culturelles", ex:"Quelle destination conseillez-vous pour des vacances culturelles ?"},
+   {w:"une région francophone", ex:"Quelles régions francophones sont les plus intéressantes ?"},
+   {w:"un musée", ex:"Quels musées sont incontournables ?"},
+   {w:"un festival", ex:"Y a-t-il des festivals à cette période ?"},
+   {w:"le patrimoine", ex:"Quel patrimoine peut-on visiter ?"},
+   {w:"une visite guidée", ex:"Les visites guidées sont-elles en français ?"},
+   {w:"la gastronomie", ex:"La gastronomie fait-elle partie de la culture locale ?"},
+   {w:"le budget", ex:"Quel budget faut-il prévoir pour une semaine ?"},
+   {w:"la période", ex:"Quelle est la meilleure période pour y aller ?"},
+   {w:"la langue", ex:"Parle-t-on français partout dans la région ?"}],
+  b2:[
+   {w:"la francophonie", ex:"Quelles destinations de la francophonie sont méconnues ?"},
+   {w:"le patrimoine mondial", ex:"Quels sites sont classés au patrimoine mondial ?"},
+   {w:"une manifestation culturelle", ex:"Quelles manifestations culturelles ont lieu en été ?"},
+   {w:"l'héritage", ex:"Quel est l'héritage historique de la région ?"},
+   {w:"les traditions", ex:"Quelles traditions locales peut-on découvrir ?"},
+   {w:"un circuit culturel", ex:"Existe-t-il des circuits culturels organisés ?"},
+   {w:"l'artisanat", ex:"L'artisanat local est-il accessible aux visiteurs ?"},
+   {w:"la scène artistique", ex:"La scène artistique est-elle dynamique ?"},
+   {w:"la diversité", ex:"Quelle région offre la plus grande diversité culturelle ?"},
+   {w:"s'imprégner", ex:"Comment s'imprégner vraiment de la culture locale ?"}]}
+];
+
+/* ---------------- Tâche 3 : expression d'un point de vue ---------------- */
+var T3 = [
+ {n:11, t:'Maîtrise du français et intégration',
+  cons:"La maîtrise du français est indispensable pour une intégration réussie dans une société francophone. Qu'en pensez-vous ?",
+  pour:["Accès à l'emploi et aux services","Participation à la vie citoyenne","Compréhension des codes culturels"],
+  contre:["Intégration aussi économique et sociale","Le bilinguisme de certaines régions","Le temps d'apprentissage ne doit pas exclure"],
+  plan:'dialectique',
+  b2:[
+   {w:"la maîtrise de la langue", ex:"La maîtrise de la langue conditionne l'accès à l'emploi qualifié."},
+   {w:"un vecteur d'intégration", ex:"La langue est le premier vecteur d'intégration."},
+   {w:"la cohésion sociale", ex:"Une langue commune renforce la cohésion sociale."},
+   {w:"l'insertion professionnelle", ex:"Sans français, l'insertion professionnelle reste précaire."},
+   {w:"les codes culturels", ex:"La langue donne accès aux codes culturels implicites."},
+   {w:"la participation citoyenne", ex:"Elle permet une participation citoyenne pleine et entière."},
+   {w:"une condition nécessaire mais non suffisante", ex:"C'est une condition nécessaire, mais non suffisante."},
+   {w:"l'exclusion", ex:"Exiger un niveau trop élevé peut produire de l'exclusion."},
+   {w:"le bilinguisme", ex:"Dans certaines régions, le bilinguisme nuance cette exigence."},
+   {w:"l'apprentissage progressif", ex:"L'intégration se fait par un apprentissage progressif."},
+   {w:"la discrimination linguistique", ex:"Il faut éviter toute discrimination linguistique."},
+   {w:"l'autonomie", ex:"Parler la langue, c'est gagner en autonomie au quotidien."},
+   {w:"les dispositifs d'accueil", ex:"Les dispositifs d'accueil doivent accompagner cet effort."},
+   {w:"à mon sens", ex:"À mon sens, la langue ouvre des portes que rien d'autre n'ouvre."}]},
+ {n:12, t:'Parité homme-femme et démocratie',
+  cons:"Un pays qui ne respecte pas la parité homme-femme dans ses institutions n'est pas une démocratie. Êtes-vous d'accord avec cette affirmation ?",
+  pour:["Représentativité des institutions","Égalité des droits comme fondement démocratique","Les quotas ont fait progresser l'égalité"],
+  contre:["La démocratie repose d'abord sur le vote libre","La parité est un objectif, pas une condition","Le risque de réduire la démocratie à un seul critère"],
+  plan:'dialectique',
+  b2:[
+   {w:"la parité", ex:"La parité vise une représentation égale des femmes et des hommes."},
+   {w:"la représentativité", ex:"Des institutions sans femmes manquent de représentativité."},
+   {w:"l'égalité des droits", ex:"L'égalité des droits est un pilier de la démocratie."},
+   {w:"un quota", ex:"Les quotas ont accéléré la présence des femmes en politique."},
+   {w:"le plafond de verre", ex:"Le plafond de verre persiste dans les postes de pouvoir."},
+   {w:"le suffrage universel", ex:"La démocratie repose d'abord sur le suffrage universel."},
+   {w:"légitime", ex:"Une institution paritaire est perçue comme plus légitime."},
+   {w:"une démocratie imparfaite", ex:"On peut parler de démocratie imparfaite plutôt que d'absence de démocratie."},
+   {w:"un critère", ex:"La parité est un critère parmi d'autres."},
+   {w:"les stéréotypes de genre", ex:"Les stéréotypes de genre freinent l'accès aux responsabilités."},
+   {w:"l'émancipation", ex:"L'émancipation des femmes a transformé la vie politique."},
+   {w:"nuancer", ex:"Je nuancerais : l'affirmation est trop catégorique."},
+   {w:"la volonté politique", ex:"Tout dépend de la volonté politique."},
+   {w:"en définitive", ex:"En définitive, la parité renforce la démocratie sans la définir."}]},
+ {n:13, t:'Réseaux sociaux et vraies amitiés',
+  cons:"Pensez-vous que les réseaux sociaux permettent de se faire de vrais amis ?",
+  pour:["Rencontres autour d'intérêts communs","Maintien du lien à distance","Première étape vers une rencontre réelle"],
+  contre:["Relations superficielles","Image idéalisée de soi","Le nombre remplace la qualité"],
+  plan:'OREO',
+  b2:[
+   {w:"les réseaux sociaux", ex:"Les réseaux sociaux ont bouleversé nos façons de nouer des liens."},
+   {w:"une amitié virtuelle", ex:"Une amitié virtuelle peut devenir réelle."},
+   {w:"superficiel", ex:"Beaucoup de contacts restent superficiels."},
+   {w:"nouer des liens", ex:"On peut nouer des liens sincères autour d'une passion commune."},
+   {w:"la proximité", ex:"L'amitié se nourrit de proximité et de temps partagé."},
+   {w:"une communauté en ligne", ex:"Les communautés en ligne rassemblent des gens isolés."},
+   {w:"la mise en scène de soi", ex:"La mise en scène de soi fausse la relation."},
+   {w:"l'entraide", ex:"J'ai vu de vraies formes d'entraide naître en ligne."},
+   {w:"le lien social", ex:"Ces plateformes maintiennent le lien social à distance."},
+   {w:"la confiance", ex:"La confiance se construit difficilement derrière un écran."},
+   {w:"un tremplin", ex:"Le réseau est un tremplin, pas une fin en soi."},
+   {w:"l'isolement", ex:"Paradoxalement, l'hyperconnexion peut accentuer l'isolement."},
+   {w:"la qualité plutôt que la quantité", ex:"En amitié, la qualité compte plus que la quantité."},
+   {w:"à condition que", ex:"Oui, à condition que la relation sorte de l'écran."}]},
+ {n:14, t:"Langues étrangères dès la maternelle",
+  cons:"L'enseignement des langues étrangères devrait commencer dès l'école maternelle. Êtes-vous d'accord avec cette affirmation ?",
+  pour:["Plasticité du cerveau et prononciation","Ouverture culturelle précoce","Avantage futur sur le marché du travail"],
+  contre:["Priorité à la langue maternelle","Surcharge des enfants","Manque d'enseignants formés"],
+  plan:'dialectique',
+  b2:[
+   {w:"l'apprentissage précoce", ex:"L'apprentissage précoce facilite la prononciation."},
+   {w:"la plasticité cérébrale", ex:"La plasticité cérébrale des jeunes enfants est un atout."},
+   {w:"l'éveil aux langues", ex:"L'éveil aux langues développe la curiosité."},
+   {w:"le bilinguisme", ex:"Le bilinguisme précoce améliore la flexibilité mentale."},
+   {w:"la langue maternelle", ex:"Il ne faut pas négliger la langue maternelle."},
+   {w:"la surcharge", ex:"Certains craignent une surcharge des programmes."},
+   {w:"des enseignants qualifiés", ex:"Cela suppose des enseignants qualifiés en nombre suffisant."},
+   {w:"ludique", ex:"À cet âge, l'apprentissage doit rester ludique."},
+   {w:"l'ouverture culturelle", ex:"Les langues favorisent l'ouverture culturelle."},
+   {w:"un atout professionnel", ex:"C'est un atout professionnel considérable à long terme."},
+   {w:"les inégalités", ex:"Sans moyens publics, cela creuse les inégalités."},
+   {w:"la continuité pédagogique", ex:"La continuité pédagogique est essentielle jusqu'au secondaire."},
+   {w:"acquérir", ex:"Les enfants acquièrent les sons sans effort apparent."},
+   {w:"je suis plutôt favorable", ex:"Je suis plutôt favorable, avec quelques réserves."}]},
+ {n:15, t:'Écologie et société moderne',
+  cons:"L'écologie est nécessaire pour bâtir une société moderne. Qu'en pensez-vous ?",
+  pour:["Urgence climatique","Innovation et emplois verts","Santé publique et qualité de vie"],
+  contre:["Coût de la transition","Inégalités entre pays","Risque de décroissance"],
+  plan:'analytique',
+  b2:[
+   {w:"la transition écologique", ex:"La transition écologique est un chantier de société."},
+   {w:"le réchauffement climatique", ex:"Le réchauffement climatique impose des choix urgents."},
+   {w:"le développement durable", ex:"Le développement durable concilie économie et environnement."},
+   {w:"les énergies renouvelables", ex:"Les énergies renouvelables créent des emplois."},
+   {w:"l'empreinte carbone", ex:"Réduire notre empreinte carbone relève de la responsabilité collective."},
+   {w:"la biodiversité", ex:"La biodiversité s'effondre à un rythme inquiétant."},
+   {w:"la sobriété", ex:"La sobriété énergétique n'est pas synonyme de régression."},
+   {w:"les ressources naturelles", ex:"Nos ressources naturelles ne sont pas illimitées."},
+   {w:"l'innovation verte", ex:"L'innovation verte est un moteur de modernité."},
+   {w:"le coût de la transition", ex:"Le coût de la transition pèse sur les ménages modestes."},
+   {w:"les générations futures", ex:"Nous avons une dette envers les générations futures."},
+   {w:"les politiques publiques", ex:"Les politiques publiques doivent accompagner les citoyens."},
+   {w:"la justice climatique", ex:"La justice climatique exige de partager l'effort."},
+   {w:"incontournable", ex:"L'écologie est devenue incontournable."}]},
+ {n:16, t:'Technologie et vie quotidienne',
+  cons:"La technologie (téléphone, Internet, réseaux sociaux…) a pris une place trop importante dans notre vie quotidienne. Qu'en pensez-vous ?",
+  pour:["Dépendance et perte d'attention","Impact sur le sommeil et les relations","Surveillance et données personnelles"],
+  contre:["Accès à l'information et au savoir","Gain de temps et télétravail","Lien avec les proches éloignés"],
+  plan:'dialectique',
+  b2:[
+   {w:"l'omniprésence", ex:"L'omniprésence des écrans modifie nos comportements."},
+   {w:"la dépendance", ex:"La dépendance au téléphone touche tous les âges."},
+   {w:"la capacité de concentration", ex:"Notre capacité de concentration diminue."},
+   {w:"la déconnexion", ex:"Le droit à la déconnexion devient une revendication."},
+   {w:"les données personnelles", ex:"Nos données personnelles sont exploitées à notre insu."},
+   {w:"l'accès au savoir", ex:"Internet démocratise l'accès au savoir."},
+   {w:"le télétravail", ex:"Le télétravail n'existerait pas sans ces outils."},
+   {w:"la sédentarité", ex:"Les écrans favorisent la sédentarité."},
+   {w:"un usage raisonné", ex:"Tout dépend d'un usage raisonné."},
+   {w:"la sphère privée", ex:"La technologie envahit la sphère privée."},
+   {w:"faciliter", ex:"Elle facilite les démarches du quotidien."},
+   {w:"l'esprit critique", ex:"Il faut développer l'esprit critique face aux contenus."},
+   {w:"une double face", ex:"La technologie a une double face."},
+   {w:"trouver un équilibre", ex:"L'enjeu est de trouver un équilibre."}]},
+ {n:17, t:'Services publics : moins performants ?',
+  cons:"Les services publics (poste, hôpitaux, administrations) sont moins performants aujourd'hui qu'il y a quelques années. Êtes-vous d'accord avec cette affirmation ?",
+  pour:["Délais d'attente plus longs","Fermetures en zone rurale","Manque de personnel"],
+  contre:["Numérisation des démarches","Attentes des usagers plus élevées","Différences selon les régions"],
+  plan:'analytique',
+  b2:[
+   {w:"les services publics", ex:"Les services publics garantissent l'égalité d'accès."},
+   {w:"la performance", ex:"La performance se mesure aussi à la qualité humaine."},
+   {w:"les délais d'attente", ex:"Les délais d'attente à l'hôpital se sont allongés."},
+   {w:"la pénurie de personnel", ex:"La pénurie de personnel soignant est criante."},
+   {w:"la dématérialisation", ex:"La dématérialisation simplifie certaines démarches."},
+   {w:"la fracture numérique", ex:"Mais elle creuse la fracture numérique."},
+   {w:"les zones rurales", ex:"Les zones rurales perdent leurs bureaux de poste."},
+   {w:"les restrictions budgétaires", ex:"Les restrictions budgétaires expliquent en partie ce recul."},
+   {w:"un usager", ex:"Les usagers sont plus exigeants qu'autrefois."},
+   {w:"la proximité", ex:"La proximité des services est un enjeu d'égalité."},
+   {w:"la modernisation", ex:"La modernisation ne doit pas exclure les plus fragiles."},
+   {w:"le financement", ex:"Tout dépend du financement accordé."},
+   {w:"les inégalités territoriales", ex:"Les inégalités territoriales se creusent."},
+   {w:"à mon avis", ex:"À mon avis, la situation est contrastée."}]},
+ {n:18, t:"Expérience professionnelle avant l'université",
+  cons:"Tous les jeunes devraient avoir une expérience professionnelle avant d'entrer à l'université. Qu'en pensez-vous ?",
+  pour:["Maturité et orientation plus claire","Autonomie financière","Compétences pratiques"],
+  contre:["Risque d'abandon des études","Inégalités selon les milieux","Certaines filières exigent la continuité"],
+  plan:'dialectique',
+  b2:[
+   {w:"une année de césure", ex:"Une année de césure aide à mûrir un projet."},
+   {w:"l'orientation", ex:"Beaucoup de jeunes choisissent leur orientation par défaut."},
+   {w:"la maturité", ex:"Le travail apporte une maturité précieuse."},
+   {w:"l'autonomie financière", ex:"L'autonomie financière responsabilise."},
+   {w:"les compétences transversales", ex:"On y développe des compétences transversales."},
+   {w:"le monde du travail", ex:"Découvrir le monde du travail tôt évite les désillusions."},
+   {w:"le décrochage", ex:"Le risque, c'est le décrochage : certains ne reprennent jamais."},
+   {w:"les inégalités sociales", ex:"Tous n'ont pas les mêmes opportunités d'emploi."},
+   {w:"un stage", ex:"Un stage encadré peut remplacer une expérience longue."},
+   {w:"la continuité des études", ex:"Certaines filières exigent la continuité des études."},
+   {w:"la motivation", ex:"Les étudiants qui ont travaillé sont souvent plus motivés."},
+   {w:"généraliser", ex:"Faut-il pour autant généraliser cette obligation ?"},
+   {w:"le parcours", ex:"Chaque parcours est différent."},
+   {w:"je pense au contraire que", ex:"Je pense au contraire que cela devrait rester un choix."}]},
+ {n:19, t:'Expérience vs diplômes à l\'embauche',
+  cons:"Lorsqu'elles embauchent des salariés, les entreprises devraient donner plus d'importance à l'expérience professionnelle qu'aux diplômes obtenus. Qu'en pensez-vous ?",
+  pour:["Compétences prouvées sur le terrain","Adaptabilité et savoir-être","Diplômes parfois déconnectés"],
+  contre:["Le diplôme garantit des bases solides","Certains métiers l'exigent","Risque d'exclure les jeunes diplômés"],
+  plan:'comparatif',
+  b2:[
+   {w:"l'embauche", ex:"À l'embauche, les critères varient selon les secteurs."},
+   {w:"les compétences", ex:"L'expérience prouve les compétences réelles."},
+   {w:"le savoir-être", ex:"Le savoir-être ne s'apprend pas à l'université."},
+   {w:"un diplôme", ex:"Le diplôme atteste des connaissances théoriques."},
+   {w:"le terrain", ex:"Le terrain révèle des qualités invisibles sur un CV."},
+   {w:"l'adaptabilité", ex:"L'adaptabilité est devenue essentielle."},
+   {w:"les métiers réglementés", ex:"Les métiers réglementés exigent un diplôme."},
+   {w:"un jeune diplômé", ex:"Les jeunes diplômés seraient pénalisés."},
+   {w:"la formation continue", ex:"La formation continue réconcilie les deux."},
+   {w:"complémentaire", ex:"Expérience et diplôme sont complémentaires."},
+   {w:"le potentiel", ex:"Recruter, c'est aussi miser sur le potentiel."},
+   {w:"la validation des acquis", ex:"La validation des acquis reconnaît l'expérience."},
+   {w:"privilégier", ex:"Je privilégierais l'expérience pour les postes opérationnels."},
+   {w:"tout dépend de", ex:"Tout dépend du poste et du secteur."}]},
+ {n:20, t:'Voyager pour connaître le monde ?',
+  cons:"Il n'est pas nécessaire de voyager pour connaître le monde. Êtes-vous d'accord avec cette affirmation ?",
+  pour:["Livres, documentaires, Internet","Rencontrer l'autre chez soi","Impact écologique du tourisme"],
+  contre:["L'expérience directe est irremplaçable","Les sens et les émotions","Confronter ses préjugés"],
+  plan:'OREO',
+  b2:[
+   {w:"connaître le monde", ex:"Connaître le monde, c'est aussi comprendre ses habitants."},
+   {w:"l'expérience directe", ex:"L'expérience directe reste irremplaçable."},
+   {w:"la découverte", ex:"La découverte passe par tous les sens."},
+   {w:"les préjugés", ex:"Voyager confronte nos préjugés à la réalité."},
+   {w:"le tourisme de masse", ex:"Le tourisme de masse n'apprend pas grand-chose."},
+   {w:"un documentaire", ex:"Un bon documentaire vaut parfois un voyage."},
+   {w:"la curiosité", ex:"Tout commence par la curiosité."},
+   {w:"l'ouverture d'esprit", ex:"L'ouverture d'esprit ne dépend pas du kilométrage."},
+   {w:"l'empreinte écologique", ex:"L'empreinte écologique des voyages pose question."},
+   {w:"la rencontre", ex:"La rencontre peut avoir lieu dans son propre quartier."},
+   {w:"le dépaysement", ex:"Le dépaysement stimule la réflexion."},
+   {w:"s'informer", ex:"S'informer, c'est déjà voyager."},
+   {w:"vécu", ex:"Le savoir vécu diffère du savoir lu."},
+   {w:"je ne partage pas cet avis", ex:"Je ne partage pas cet avis, ou seulement en partie."}]}
+];
+
+/* ---------------- Tâche 3 : plan recommandé et pistes par sujet ---------------- */
+var PLAN_WHY = {
+  'dialectique':"La question demande si vous êtes d'accord avec une affirmation tranchée : pesez le pour et le contre, puis tranchez.",
+  'analytique':"La question porte sur un phénomène de société : décrivez les faits, expliquez les causes, mesurez les conséquences, proposez des solutions.",
+  'thématique':"La question est ouverte : organisez votre réponse autour de trois axes (économique, social, personnel…).",
+  'comparatif':"La question oppose deux éléments : caractérisez chacun, puis montrez ce qui les distingue et lequel vous privilégiez.",
+  'OREO':"La question appelle une prise de position nette : annoncez votre opinion, justifiez-la, illustrez-la, reformulez-la."
+};
+var PISTES = {
+ 11:{plan:'dialectique', alt:'OREO',
+     parts:[{h:'Thèse — oui, indispensable',items:["Accès à l'emploi qualifié et aux services","Compréhension des codes culturels implicites","Participation à la vie citoyenne"]},
+            {h:'Antithèse — pas suffisant, parfois excessif',items:["L'intégration est aussi économique et sociale","Le bilinguisme de certaines régions relativise l'exigence","Un niveau trop élevé exigé trop tôt exclut"]},
+            {h:'Synthèse',items:["Condition nécessaire mais non suffisante","À accompagner par des dispositifs d'accueil"]}]},
+ 12:{plan:'dialectique', alt:'thématique',
+     parts:[{h:'Thèse — oui',items:["Des institutions sans femmes manquent de représentativité","L'égalité des droits est un pilier démocratique","Les quotas ont fait progresser l'égalité"]},
+            {h:'Antithèse — l\'affirmation est trop catégorique',items:["La démocratie repose d'abord sur le suffrage libre","La parité est un objectif, pas une condition d'existence","Réduire la démocratie à un seul critère est simplificateur"]},
+            {h:'Synthèse',items:["Démocratie imparfaite plutôt qu'absence de démocratie","La parité renforce la démocratie sans la définir"]}]},
+ 13:{plan:'OREO', alt:'dialectique',
+     parts:[{h:'Opinion',items:["Oui, à condition que la relation sorte de l'écran"]},
+            {h:'Raisons',items:["Rencontres autour d'intérêts communs","Maintien du lien à distance","Premier pas vers une rencontre réelle"]},
+            {h:'Exemples',items:["Une communauté en ligne devenue groupe d'amis réels","Une amitié maintenue entre deux pays grâce aux réseaux"]},
+            {h:'Nuance puis opinion reformulée',items:["Beaucoup de contacts restent superficiels ; la mise en scène de soi fausse la relation","Le réseau est un tremplin, pas une fin en soi"]}]},
+ 14:{plan:'dialectique', alt:'analytique',
+     parts:[{h:'Thèse — oui, dès la maternelle',items:["Plasticité cérébrale : prononciation et sons","Ouverture culturelle précoce","Atout futur sur le marché du travail"]},
+            {h:'Antithèse — avec prudence',items:["Priorité à la langue maternelle","Risque de surcharge des programmes","Manque d'enseignants formés et inégalités entre écoles"]},
+            {h:'Synthèse',items:["Oui, si l'approche reste ludique et si la continuité est assurée jusqu'au secondaire"]}]},
+ 15:{plan:'thématique', alt:'analytique',
+     parts:[{h:'Axe 1 — environnemental',items:["Urgence climatique, effondrement de la biodiversité","Ressources naturelles limitées"]},
+            {h:'Axe 2 — économique',items:["Énergies renouvelables et emplois verts","Innovation verte comme moteur de modernité","Mais coût de la transition pour les ménages modestes"]},
+            {h:'Axe 3 — social et sanitaire',items:["Qualité de l'air, santé publique","Justice climatique : partager l'effort","Dette envers les générations futures"]}]},
+ 16:{plan:'analytique', alt:'dialectique',
+     parts:[{h:'Les faits',items:["Omniprésence des écrans à tout âge","Temps d'écran quotidien en hausse"]},
+            {h:'Les causes',items:["Télétravail, démarches en ligne, réseaux sociaux","Applications conçues pour capter l'attention"]},
+            {h:'Les conséquences',items:["Négatives : dépendance, concentration, sommeil, données personnelles","Positives : accès au savoir, lien avec les proches éloignés, gain de temps"]},
+            {h:'Les solutions',items:["Droit à la déconnexion, usage raisonné","Éducation à l'esprit critique dès l'école"]}]},
+ 17:{plan:'analytique', alt:'dialectique',
+     parts:[{h:'Les faits',items:["Délais d'attente plus longs à l'hôpital","Fermetures de bureaux de poste en zone rurale"]},
+            {h:'Les causes',items:["Restrictions budgétaires, pénurie de personnel","Dématérialisation qui remplace l'accueil physique"]},
+            {h:'Les conséquences',items:["Négatives : fracture numérique, inégalités territoriales","Positives : certaines démarches en ligne plus rapides"]},
+            {h:'Les solutions',items:["Financement, maisons de services de proximité","Modernisation qui n'exclut pas les plus fragiles"]}]},
+ 18:{plan:'dialectique', alt:'OREO',
+     parts:[{h:'Thèse — avantages',items:["Maturité et orientation plus claire","Autonomie financière","Compétences transversales et savoir-être"]},
+            {h:'Antithèse — limites',items:["Risque de décrochage : certains ne reprennent jamais","Inégalités selon les milieux sociaux","Certaines filières exigent la continuité"]},
+            {h:'Synthèse',items:["Encourager (année de césure, stage) plutôt qu'imposer"]}]},
+ 19:{plan:'comparatif', alt:'dialectique',
+     parts:[{h:'A — l\'expérience professionnelle',items:["Compétences prouvées sur le terrain","Adaptabilité, savoir-être, autonomie"]},
+            {h:'B — les diplômes',items:["Bases théoriques solides et vérifiables","Obligatoires dans les métiers réglementés","Protègent les jeunes diplômés sans expérience"]},
+            {h:'Ce qui les distingue · votre choix',items:["Tout dépend du poste : opérationnel vs expertise","Complémentaires : formation continue, validation des acquis"]}]},
+ 20:{plan:'OREO', alt:'dialectique',
+     parts:[{h:'Opinion',items:["Je ne partage pas cet avis, ou seulement en partie"]},
+            {h:'Raisons',items:["L'expérience directe et les sens sont irremplaçables","Voyager confronte nos préjugés à la réalité","Mais livres, documentaires et rencontres locales ouvrent déjà l'esprit"]},
+            {h:'Exemples',items:["Ce que j'ai compris de mon pays d'accueil en y vivant, et pas en le lisant","Un documentaire qui a changé ma vision d'un pays"]},
+            {h:'Nuance puis opinion reformulée',items:["Le tourisme de masse n'apprend rien ; l'empreinte écologique pose question","Connaître le monde demande curiosité et rencontre — le voyage en est le chemin le plus direct"]}]}
+};
+
+var GRAM = [
+  {lv:'B1', t:'Le pronom « y »',                 e:"J'y vais avec toi si tu veux !"},
+  {lv:'B1', t:'Le pronom « en »',                e:"Des ateliers ? Il y en a plusieurs, tu en trouveras un pour toi."},
+  {lv:'B1', t:'Les verbes pronominaux + COD / COI', e:"Je m'y suis inscrit(e) hier et je te le recommande : tu t'en souviendras longtemps !"},
+  {lv:'B1', t:'Les verbes + prépositions « à » et « de »', e:"J'ai décidé de m'inscrire : ça permet de rencontrer des gens et j'ai commencé à y prendre goût."},
+  {lv:'B1', t:'La négation et la restriction',   e:"Je ne fume plus, je ne bois que de l'eau et je ne l'ai jamais regretté."},
+  {lv:'B1', t:'Le conditionnel',                 e:"Je voudrais savoir… / Tu pourrais essayer une séance."},
+  {lv:'B1', t:"L'imparfait",                     e:"Avant, je faisais du sport tous les jours."},
+  {lv:'B1', t:"L'imparfait vs le passé composé", e:"Je regardais l'annonce quand je t'ai appelé(e)."},
+  {lv:'B1', t:'Le futur simple',                 e:"Tu verras, tu ne le regretteras pas."},
+  {lv:'B1', t:"L'hypothèse futur",               e:"Si tu viens avec moi, on s'amusera bien."},
+  {lv:'B1', t:"L'hypothèse simple",              e:"Si j'avais le temps, je m'inscrirais tout de suite."},
+  {lv:'B1', t:'Les relatifs simples et composés',e:"Une activité qui détend, une association dont on parle beaucoup, le club auquel je pense."},
+  {lv:'B1', t:'Le gérondif',                     e:"Tu peux apprendre en t'amusant."},
+  {lv:'B1', t:'Le subjonctif',                   e:"Il faut que tu essaies ! Je ne pense pas que ce soit cher."},
+  {lv:'B1', t:"La comparaison et l'opposition",  e:"C'est moins cher que le restaurant et aussi bon ; par contre, il faut réserver."},
+  {lv:'B2', t:'Les connecteurs avec le subjonctif', e:"Bien que ce soit un peu loin, ça vaut le coup, pourvu que tu réserves à l'avance."},
+  {lv:'B2', t:'Le conditionnel passé',           e:"J'aurais dû t'en parler plus tôt : tu aurais adoré !"},
+  {lv:'B2', t:'Le plus-que-parfait',             e:"Quand je t'ai appelé(e), j'avais déjà lu l'annonce trois fois."},
+  {lv:'B2', t:"L'hypothèse passé",               e:"Si tu étais venu(e) l'année dernière, tu aurais rencontré des gens formidables."},
+  {lv:'B2', t:"La comparaison et l'opposition avancées", e:"Plus tu pratiques, plus tu progresses — et c'est d'autant plus intéressant que, contrairement aux idées reçues, ça ne demande aucune expérience."}
+];
+
+var SLOTS_A = [
+  {k:'I', fixed:true, name:'Introduction', tag:'une fois', bank:[
+    "Bonjour Madame / Monsieur, je m'appelle … Je vous appelle parce que j'ai lu votre annonce concernant … et je suis très intéressé(e).",
+    "J'aurais quelques questions à vous poser, si vous avez un moment.",
+    "Allô, bonjour ! Est-ce que je suis bien au … ? Je vous téléphone au sujet de votre annonce."]},
+  {k:1, name:"Phrase d'interaction", tag:'réagir à la réponse', bank:[
+    "D'accord, je vois.", "Très bien, merci.", "Ah, c'est intéressant !", "Parfait, c'est noté.", "Je comprends.",
+    "Super, merci pour la précision.", "Ah bon ? Je ne savais pas.", "Entendu.", "Ça marche."]},
+  {k:2, name:'Connecteur ou émotion', tag:'enchaîner', bank:[
+    "Par ailleurs,", "Ensuite,", "De plus,", "Autre chose :", "Justement,", "Ça me rassure, mais",
+    "Ça m'inquiète un peu, alors", "J'ai une autre question :", "Une dernière chose,", "Sinon,"]},
+  {k:3, name:'Introduire la question', tag:'politesse', bank:[
+    "j'aimerais savoir", "pourriez-vous me dire", "est-ce que vous pourriez me préciser", "je voudrais savoir",
+    "j'aurais voulu savoir", "serait-il possible de savoir", "pouvez-vous m'indiquer", "je me demandais"]},
+  {k:4, name:'Poser la question', tag:'question indirecte', bank:[
+    "quels sont les horaires", "combien ça coûte exactement", "où se trouve exactement le lieu", "quelles sont les dates",
+    "comment on s'inscrit", "quels sont les modes de paiement", "s'il y a une réduction pour les étudiants ou les familles",
+    "combien de personnes il y a par groupe", "à partir de quel âge on peut participer", "si le matériel est fourni",
+    "quelle est la durée de l'activité", "si c'est accessible en transports en commun", "qui encadre l'activité",
+    "ce qui se passe en cas d'annulation", "s'il y a un parking", "si on peut venir avec des enfants"]},
+  {k:5, name:'Raison', tag:'justifier', bank:[
+    "parce que je travaille en semaine.", "car j'ai un budget limité.", "parce que je n'ai pas de voiture.",
+    "car je viendrais avec ma famille.", "parce que je suis débutant(e).", "car je voudrais m'organiser à l'avance.",
+    "parce que c'est important pour moi.", "car je dois prévenir mon employeur.", "parce que je suis étudiant(e).",
+    "car j'habite assez loin."]},
+  {k:'C', fixed:true, name:'Conclusion', tag:'une fois', bank:[
+    "Je vous remercie beaucoup pour toutes ces informations, c'était très clair.",
+    "Je vais réfléchir et je vous rappelle très bientôt pour confirmer.",
+    "Merci encore, bonne journée, au revoir !"]}
+];
+
+var SLOTS_B = [
+  {k:'I', fixed:true, name:'Introduction', tag:'une fois', bank:[
+    "Salut … ! Tu vas bien ? Écoute, je viens de lire une annonce qui va vraiment t'intéresser.",
+    "Tu sais que tu cherches … ? Eh bien, j'ai trouvé exactement ce qu'il te faut !",
+    "Regarde ce document : c'est une annonce pour … et je suis sûr(e) que c'est fait pour toi."]},
+  {k:6, name:"Phrase d'interaction", tag:'capter l\'attention', bank:[
+    "Tu sais quoi ?", "Écoute,", "Tu vois,", "Franchement,", "Je t'assure,", "Crois-moi,",
+    "Attends, ce n'est pas tout :", "Tu ne vas pas me croire, mais", "Sérieusement,"]},
+  {k:7, name:'Connecteur ou émotion', tag:'structurer', bank:[
+    "D'abord,", "Ensuite,", "De plus,", "En plus,", "Par ailleurs,", "Ce qui est génial, c'est que",
+    "Ce que j'adore, c'est que", "Le plus intéressant, c'est que", "Enfin,"]},
+  {k:8, name:"Présenter l'argument", tag:'l\'idée', bank:[
+    "c'est une activité très conviviale", "c'est vraiment pratique", "ce n'est pas cher du tout", "c'est bon pour la santé",
+    "c'est une expérience unique", "c'est adapté aux débutants", "c'est très flexible", "c'est utile pour les autres",
+    "c'est bon pour la planète", "c'est parfait pour se détendre", "c'est une occasion de rencontrer des gens"]},
+  {k:9, name:'Raison', tag:'pourquoi', bank:[
+    "parce que tout est organisé sur place.", "car les horaires sont flexibles.", "parce que le matériel est fourni.",
+    "car c'est tout près de chez toi.", "parce que l'inscription est gratuite.", "car tu rencontres de nouvelles personnes.",
+    "parce que tu peux y aller en famille.", "car il y a des professionnels pour t'accompagner.", "parce que tu peux essayer sans t'engager."]},
+  {k:10, name:'Exemple', tag:'concret', bank:[
+    "Par exemple, mon cousin l'a fait l'année dernière et il a adoré.", "Tu te souviens de Marie ? Elle y va tous les mois.",
+    "Moi-même, j'ai essayé une fois et c'était super.", "Regarde, dans l'annonce, ils disent que …",
+    "Imagine : un samedi, tu y vas avec les enfants et …", "J'ai lu des avis en ligne : les gens sont ravis."]},
+  {k:11, name:"Renforcer l'argument", tag:'conclure l\'argument', bank:[
+    "Donc, tu n'as vraiment rien à perdre !", "Bref, c'est tout bénéfice pour toi.", "Tu vois, ça vaut vraiment le coup.",
+    "Alors, ça change tout, non ?", "Autrement dit, c'est exactement ce qu'il te faut.", "Franchement, ce serait dommage de rater ça."]},
+  {k:'C', fixed:true, name:'Conclusion', tag:'une fois', bank:[
+    "Alors, tu vois, c'est vraiment une occasion à ne pas manquer.",
+    "Je pense que tu devrais essayer — et si tu veux, on y va ensemble !",
+    "Qu'est-ce que tu en dis ? Je t'envoie le lien ce soir ?"]}
+];
+
+
+var SLOTS_T1 = [
+  {k:1, name:'Réponse directe', tag:'la phrase clé', bank:[
+    "Ça fait maintenant deux ans que je vis à Montréal.", "Actuellement, je travaille comme … dans une entreprise de …",
+    "Oui, plutôt, même si ça n'a pas été facile au début.", "Ce que j'aime le plus, c'est …", "Ce qui m'a le plus surpris, c'est …",
+    "J'ai choisi cette ville surtout pour …", "Pour l'instant, mon projet principal est de …"]},
+  {k:2, name:'Développement', tag:'détail · raison · comparaison', bank:[
+    "parce que", "car", "c'est-à-dire que", "en fait,", "par rapport à mon pays,", "contrairement à ce que je pensais,",
+    "au début, … mais maintenant,", "ce qui m'a aidé, c'est", "grâce à", "à cause de"]},
+  {k:3, name:'Exemple ou ouverture', tag:'concret · projection', bank:[
+    "Par exemple, la semaine dernière, …", "Je me souviens qu'à mon arrivée, …", "Concrètement, ça veut dire que …",
+    "D'ailleurs, j'aimerais bien …", "À l'avenir, je compte …", "Si c'était à refaire, je …", "Ce qui me manque parfois, c'est …"]}
+];
+
+var SLOTS_T3 = [
+  {k:'I', fixed:true, name:'Introduction', tag:'reformuler + annoncer', bank:[
+    "C'est une question qui fait débat aujourd'hui : …",
+    "Avant de donner mon avis, j'aimerais préciser ce qu'on entend par …",
+    "Je vais d'abord présenter les avantages, puis les limites, avant de donner ma position."]},
+  {k:'O', name:'Opinion', tag:'se positionner', bank:[
+    "Personnellement, je pense que", "À mon avis,", "Je suis convaincu(e) que", "Il me semble que",
+    "Je suis plutôt d'accord avec cette affirmation, même si", "Je ne partage pas complètement cet avis :", "Selon moi,"]},
+  {k:'R', name:'Raisons', tag:'justifier', bank:[
+    "d'abord parce que", "tout simplement parce que", "dans la mesure où", "étant donné que", "car, de nos jours,",
+    "en effet,", "puisque", "d'autant plus que"]},
+  {k:'E', name:'Exemple', tag:'illustrer', bank:[
+    "Par exemple, dans mon pays,", "Prenons le cas de", "Je pense notamment à", "C'est ce que j'ai vécu moi-même quand",
+    "Une étude récente montre que", "Il suffit de regarder", "Concrètement,"]},
+  {k:'N', name:'Nuancer / concéder', tag:'montrer le B2', bank:[
+    "Certes, … mais", "Il est vrai que … ; cependant,", "Même si", "Bien que ce soit", "On pourrait objecter que … ; pourtant,",
+    "Cela dit,", "Tout dépend de", "Il faut toutefois reconnaître que"]},
+  {k:'O2', name:'Opinion reformulée', tag:'boucler', bank:[
+    "C'est pourquoi je reste convaincu(e) que", "Voilà pourquoi, selon moi,", "En ce sens, je maintiens que",
+    "Autrement dit,", "C'est la raison pour laquelle je pense que"]},
+  {k:'C', fixed:true, name:'Conclusion', tag:'bilan + ouverture', bank:[
+    "Pour conclure, je dirais que …",
+    "En définitive, la question n'est pas de savoir si …, mais comment …",
+    "Finalement, tout dépend de … ; et vous, qu'en pensez-vous ?"]}
+];
+
+/* ---------------- utilitaires ---------------- */
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
+function pad(n){ return (n<10?'0':'')+n; }
+function shuffle(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+var frVoice=null;
+function pickVoice(){
+  if(!('speechSynthesis' in window)) return;
+  var vs=window.speechSynthesis.getVoices()||[];
+  frVoice=vs.filter(function(v){return v.lang==='fr-FR';})[0]||vs.filter(function(v){return (v.lang||'').indexOf('fr')===0;})[0]||null;
+}
+if('speechSynthesis' in window){ pickVoice(); window.speechSynthesis.onvoiceschanged=pickVoice; }
+function speak(text){
+  if(!('speechSynthesis' in window)||!text) return;
+  window.speechSynthesis.cancel();
+  var u=new SpeechSynthesisUtterance(text); u.lang='fr-FR'; u.rate=0.92; if(frVoice) u.voice=frVoice;
+  window.speechSynthesis.speak(u);
+}
+
+
+document.addEventListener('click', function(e){
+  var b=e.target.closest('.listen');
+  if(b){ speak(b.getAttribute('data-say')); return; }
+  var h=e.target.closest('.slot-h');
+  if(h){ h.parentNode.classList.toggle('open'); return; }
+  var p=e.target.closest('.ph');
+  if(p){ speak(p.getAttribute('data-say')); }
+});
+
+/* ---------------- connecteurs logiques ---------------- */
+var CONN = [
+  {c:'Addition', use:'AB', w:['Et','De plus','Non seulement… mais encore']},
+  {c:'Alternative', use:'B', w:['Ou (bien)','Soit… soit',"D'un côté… de l'autre"]},
+  {c:'But', use:'B', w:['Afin que*','Pour que*','De peur que*','En vue de','De façon à ce que*',"Jusqu'à ce que*"]},
+  {c:'Cause', use:'AB', w:['Car','En effet','Comme','Parce que','Puisque','Étant donné / Vu que','Grâce à','Par suite de','Effectivement','En raison de','Du fait que','Dans la mesure où']},
+  {c:'Comparaison', use:'B', w:['Comme','De même que','Ainsi que','Autant que','Aussi… que','De la même façon que','Pareillement','Plus que','Moins que','Non moins que','Selon que','Comme si']},
+  {c:'Concession', use:'B', w:['Malgré','Quoique*','Alors que','En dépit de','Même si','Bien sûr','Évidemment','Bien que*','Il est vrai que']},
+  {c:'Conclusion', use:'AB', w:['En conclusion','Pour conclure','En somme','Bref','Ainsi','Donc','En résumé','En un mot','Finalement','Enfin','En définitive','Par conséquent']},
+  {c:'Condition, supposition', use:'B', w:['Si','Au cas où','À condition que*','Pourvu que*','À moins que*','En admettant que*','À supposer que*','En supposant que*',"Dans l'hypothèse où",'Dans le cas où','Probablement','Sans doute','Apparemment']},
+  {c:'Conséquence', use:'B', w:['Donc','Aussi','Alors','Ainsi','Par conséquent',"D'où",'En conséquence',"C'est pourquoi",'De sorte que°','De façon que°','De manière que°','Si bien que°']},
+  {c:'Classification, énumération', use:'AB', w:["(Tout) d'abord",'En premier lieu','Premièrement','Après','Ensuite','De plus','Puis','Pour conclure','Enfin']},
+  {c:'Illustration', use:'B', w:['Par exemple','Comme','Ainsi',"C'est ainsi que","C'est le cas de",'Notamment','Entre autres','En particulier']},
+  {c:'Justification', use:'AB', w:['Car','En effet','Parce que','Puisque','Ainsi',"C'est ainsi que",'Non seulement… mais encore','Du fait de',"C'est-à-dire"]},
+  {c:'Liaison', use:'AB', w:['Alors','Ainsi','Aussi',"D'ailleurs",'En fait','En effet','De même','Également','Puis','Ensuite']},
+  {c:'Opposition', use:'B', w:['Mais','Cependant','Or','En revanche','Pourtant','Par contre','Néanmoins','Au contraire',"D'un autre côté",'En dépit de','Malgré','Au lieu de']},
+  {c:'Restriction', use:'B', w:['Cependant','Néanmoins','Pourtant','Mis à part','Ne… que','En dehors de','Hormis','Excepté','Sauf','Uniquement','Simplement']},
+  {c:'Temps', use:'A', w:['Quand','Lorsque','Comme','Avant (que)*','Après (que)','Alors (que)','Tandis que','Depuis (que)','En même temps que','Pendant (que)','Au moment où']}
+];
+var cFilter='all';
+function normC(s){ return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+function renderConn(){
+  var q=normC(document.getElementById('cq').value.trim());
+  document.getElementById('ctable').innerHTML=CONN.map(function(cat){
+    if(cFilter==='A'&&cat.use.indexOf('A')<0) return '';
+    if(cFilter==='B'&&cat.use.indexOf('B')<0) return '';
+    var words=cat.w.map(function(w){
+      var sub=/\*$/.test(w), mix=/°$/.test(w), label=w.replace(/[*°]$/,'');
+      return {label:label, sub:sub, mix:mix, hit:q&&normC(label).indexOf(q)>=0};
+    });
+    if(cFilter==='S') words=words.filter(function(w){return w.sub||w.mix;});
+    if(q) words=words.filter(function(w){return w.hit;});
+    if(!words.length) return '';
+    return '<div class="cat"><h4>'+esc(cat.c)+'<small>'+(cat.use==='AB'?'T2 · T3':(cat.use==='A'?'tâche 2':'tâche 3'))+'</small></h4><div class="cl">'
+      + words.map(function(w){ return '<span class="cw'+(w.sub?' sub':'')+(w.mix?' mix':'')+(w.hit?' hit':'')+'">'+esc(w.label)+'</span>'; }).join('')
+      + '</div></div>';
+  }).join('') || '<p class="sec-sub">Aucun connecteur ne correspond.</p>';
+}
+renderConn();
+document.getElementById('cq').addEventListener('input', renderConn);
+document.querySelectorAll('.cfilters .chip').forEach(function(c){
+  c.addEventListener('click', function(){
+    cFilter=c.getAttribute('data-c');
+    document.querySelectorAll('.cfilters .chip').forEach(function(x){ x.setAttribute('aria-pressed', x===c?'true':'false'); });
+    renderConn();
+  });
+});
+
+
+/* ---------------- formules : rendu ---------------- */
+function renderSlots(id, slots){
+  document.getElementById(id).innerHTML = slots.map(function(s,i){
+    return '<div class="slot'+(s.fixed?' fixed':'')+'" data-i="'+i+'">'
+      +'<div class="slot-h"><b><span class="k">'+s.k+'</span>'+esc(s.name)+'</b><span class="ex">'+esc(s.bank[0].length>42?s.bank[0].slice(0,42)+'…':s.bank[0])+'</span><span class="tg">'+esc(s.tag)+' ▾</span></div>'
+      +'<div class="bank">'+s.bank.map(function(p){ return '<button class="ph" type="button" data-say="'+esc(p)+'">'+esc(p)+'</button>'; }).join('')+'</div>'
+      +'</div>';
+  }).join('');
+}
+renderSlots('slotsT1', SLOTS_T1);
+renderSlots('slotsA', SLOTS_A);
+renderSlots('slotsB', SLOTS_B);
+renderSlots('slotsT3', SLOTS_T3);
+
+var last={T1:'',A:'',B:'',T3:''};
+function lc(s){ return s.charAt(0).toLowerCase()+s.slice(1); }
+function genT1(){
+  var p=SLOTS_T1.map(function(x){return pick(x.bank);});
+  var dev=p[1], ex=p[2];
+  var html='<span class="s1">'+esc(p[0])+'</span> <span class="s2">'+esc(dev.charAt(0).toUpperCase()+dev.slice(1))+' …</span> <span class="s3">'+esc(ex)+'</span>';
+  document.getElementById('genT1').innerHTML=html; last.T1=p[0]+' '+dev+' … '+ex;
+}
+function genA(){
+  var s=SLOTS_A.filter(function(x){return !x.fixed;}), p=s.map(function(x){return pick(x.bank);});
+  document.getElementById('genA').innerHTML='<span class="s1">'+esc(p[0])+'</span> <span class="s2">'+esc(p[1])+'</span> <span class="s3">'+esc(p[2])+'</span> <span class="s4">'+esc(p[3])+',</span> <span class="s5">'+esc(p[4])+'</span>';
+  last.A=p[0]+' '+p[1]+' '+p[2]+' '+p[3]+', '+p[4];
+}
+function genB(){
+  var s=SLOTS_B.filter(function(x){return !x.fixed;}), p=s.map(function(x){return pick(x.bank);});
+  if(/,$/.test(p[0])) p[1]=lc(p[1]);
+  document.getElementById('genB').innerHTML='<span class="s1">'+esc(p[0])+'</span> <span class="s2">'+esc(p[1])+'</span> <span class="s3">'+esc(p[2])+',</span> <span class="s4">'+esc(p[3])+'</span> <span class="s5">'+esc(p[4])+'</span> <span class="s6">'+esc(p[5])+'</span>';
+  last.B=p[0]+' '+p[1]+' '+p[2]+', '+p[3]+' '+p[4]+' '+p[5];
+}
+function genT3(){
+  var s=SLOTS_T3.filter(function(x){return !x.fixed;}), p=s.map(function(x){return pick(x.bank);});
+  document.getElementById('genT3').innerHTML='<span class="s1">'+esc(p[0])+' …,</span> <span class="s2">'+esc(p[1])+' …</span> <span class="s3">'+esc(p[2])+' …</span> <span class="s4">'+esc(p[3])+' …</span> <span class="s5">'+esc(p[4])+' …</span>';
+  last.T3=p[0]+' … '+p[1]+' … '+p[2]+' … '+p[3]+' … '+p[4]+' …';
+}
+document.getElementById('btnGenT1').addEventListener('click', genT1);
+document.getElementById('btnGenA').addEventListener('click', genA);
+document.getElementById('btnGenB').addEventListener('click', genB);
+document.getElementById('btnGenT3').addEventListener('click', genT3);
+document.getElementById('btnSayT1').addEventListener('click', function(){ speak(last.T1); });
+document.getElementById('btnSayA').addEventListener('click', function(){ speak(last.A); });
+document.getElementById('btnSayB').addEventListener('click', function(){ speak(last.B); });
+document.getElementById('btnSayT3').addEventListener('click', function(){ speak(last.T3); });
+genT1(); genA(); genB(); genT3();
+
+/* ---------------- grilles ---------------- */
+var done={};
+function renderGrids(){
+  document.getElementById('gridT1').innerHTML=T1.map(function(t,i){
+    return '<button class="tcard" type="button" data-task="1" data-i="'+i+'"><span class="k"><span>Tâche 1 · thème '+(i+1)+'</span>'+(done['1'+i]?'<span class="done">✓</span>':'')+'</span><span class="ico">'+t.ico+'</span><span class="t">'+esc(t.t)+'</span><span class="c">'+t.q.length+' questions</span></button>';
+  }).join('');
+  document.getElementById('gridT2').innerHTML=T2.map(function(s,i){
+    return '<button class="tcard t2" type="button" data-task="2" data-i="'+i+'"><span class="k"><span>Tâche 2 · sujet '+(i+1)+'</span>'+(done['2'+i]?'<span class="done">✓</span>':'')+'</span><span class="typ'+(s.type==='convaincre'?' conv':'')+'">'+(s.type==='convaincre'?'convaincre':'s\'informer')+'</span><span class="t">'+esc(s.t)+'</span><span class="c">'+esc(s.cons.length>110?s.cons.slice(0,110)+'…':s.cons)+'</span></button>';
+  }).join('');
+  document.getElementById('gridT3').innerHTML=T3.map(function(s,i){
+    return '<button class="tcard t3" type="button" data-task="3" data-i="'+i+'"><span class="k"><span>Tâche 3 · sujet '+(i+1)+'</span>'+(done['3'+i]?'<span class="done">✓</span>':'')+'</span><span class="typ conv">point de vue</span><span class="t">'+esc(s.t)+'</span><span class="c">'+esc(s.cons)+'</span></button>';
+  }).join('');
+}
+renderGrids();
+document.querySelectorAll('.tgrid').forEach(function(g){
+  g.addEventListener('click', function(e){
+    var b=e.target.closest('.tcard'); if(!b) return;
+    openItem(b.getAttribute('data-task'), parseInt(b.getAttribute('data-i'),10), false);
+  });
+});
+
+/* ---------------- chrono à phases ---------------- */
+var dlg=document.getElementById('dlg'), cur={task:'1',i:0}, tInt=null, phases=[], ph=0, tLeft=0, cnt=0, notes={}, sim=null;
+function beep(f,d){
+  try{
+    var ctx=beep.ctx||(beep.ctx=new (window.AudioContext||window.webkitAudioContext)());
+    var o=ctx.createOscillator(), g=ctx.createGain();
+    o.frequency.value=f||880; o.connect(g); g.connect(ctx.destination);
+    g.gain.setValueAtTime(.15,ctx.currentTime); g.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+(d||.35));
+    o.start(); o.stop(ctx.currentTime+(d||.35));
+  }catch(e){}
+}
+function fmt(s){ return pad(Math.floor(s/60))+':'+pad(s%60); }
+function tRender(){
+  var p=phases[ph];
+  document.getElementById('tT').textContent=fmt(tLeft);
+  document.getElementById('tBar').style.width=Math.round(tLeft/p.d*100)+'%';
+  document.getElementById('timer').classList.toggle('warn', tLeft<=30 && !p.prep);
+  var el=document.getElementById('tPhase'); el.textContent=p.label; el.className='phase'+(p.prep?' prep':'');
+}
+function tStop(){ if(tInt){ clearInterval(tInt); tInt=null; } document.getElementById('tStart').textContent='▶ Démarrer'; }
+function tStart(){
+  if(tInt){ tStop(); return; }
+  document.getElementById('tStart').textContent='⏸ Pause';
+  tInt=setInterval(function(){
+    tLeft--; tRender();
+    if(tLeft===30 && !phases[ph].prep) beep(660,.25);
+    if(tLeft<=0){
+      if(ph<phases.length-1){ ph++; tLeft=phases[ph].d; beep(990,.4); tRender(); }
+      else { tStop(); beep(880,.6); setTimeout(function(){beep(880,.6);},400); }
+    }
+  },1000);
+}
+function tReset(){ tStop(); ph=0; tLeft=phases[0].d; tRender(); }
+document.getElementById('tStart').addEventListener('click', function(){ if(ph===phases.length-1 && tLeft<=0) tReset(); tStart(); });
+document.getElementById('tReset').addEventListener('click', tReset);
+
+var TARGET={'1':3,'2':10,'2c':4,'3':3};
+function cRender(){
+  var key=cur.task==='2'&&T2[cur.i].type==='convaincre'?'2c':cur.task, tg=TARGET[key];
+  var lbl={'1':'temps de la réponse · objectif 3','2':'questions posées · objectif 10','2c':'arguments développés · objectif 4','3':'arguments développés · objectif 3'}[key];
+  document.getElementById('cN').textContent=cnt;
+  document.getElementById('cL').textContent=lbl;
+  var d=''; for(var i=0;i<tg;i++){ d+='<i class="'+(i<cnt?'on':'')+'"></i>'; }
+  document.getElementById('cDots').innerHTML=d;
+}
+document.getElementById('cPlus').addEventListener('click', function(){ cnt++; cRender(); });
+document.getElementById('cMinus').addEventListener('click', function(){ if(cnt>0) cnt--; cRender(); });
+
+/* ---------------- ouverture d'un item ---------------- */
+function vrow(e){ return '<div class="vr"><b>'+esc(e.w)+'</b><i>'+esc(e.ex)+'</i></div>'; }
+function setVocab(b1,b2){
+  var x1=document.getElementById('vocBox1'), x2=document.getElementById('vocBox2');
+  x1.style.display=b1&&b1.length?'':'none'; x2.style.display=b2&&b2.length?'':'none';
+  document.getElementById('vocB1').innerHTML=(b1||[]).map(vrow).join('');
+  document.getElementById('vocB2').innerHTML=(b2||[]).map(vrow).join('');
+  document.getElementById('nB1').textContent=(b1||[]).length+' mots';
+  document.getElementById('nB2').textContent=(b2||[]).length+' mots';
+}
+function saveNotes(){ notes[cur.task+cur.i]=document.getElementById('dlNotes').value; }
+var curQ=null;
+function pickQuestion(theme){
+  var t=T1[theme], idx=Math.floor(Math.random()*t.q.length);
+  curQ=idx;
+  document.querySelectorAll('#dlBody .qi').forEach(function(el,k){ el.classList.toggle('cur', k===idx); });
+  document.getElementById('dlCons').innerHTML='🎙️ '+esc(t.q[idx]);
+  speak(t.q[idx]);
+}
+function openItem(task,i,autostart){
+  saveNotes();
+  cur={task:String(task), i:i}; cnt=0;
+  var pill=document.getElementById('dlPill'), cons=document.getElementById('dlCons'), body=document.getElementById('dlBody');
+  cons.className='consb t'+task;
+  var colors={'1':['var(--bleu-soft)','var(--accent)'],'2':['rgba(183,121,31,.14)','#b7791f'],'3':['var(--rouge-soft)','var(--rouge)']}[String(task)];
+  pill.style.background=colors[0]; pill.style.color=colors[1];
+  if(String(task)==='1'){
+    var t=T1[i];
+    pill.textContent='Tâche 1 · entretien dirigé';
+    document.getElementById('dlNum').textContent='Thème '+(i+1)+' / '+T1.length+' · '+t.t;
+    cons.innerHTML=t.ico+' '+esc(t.t)+' — cliquez sur « Question au hasard » ou sur une question de la liste.';
+    phases=[{label:'Réponse · 2 min pour tout l\'entretien',d:120}];
+    body.innerHTML='<div class="row" style="margin:0 0 .6rem"><button class="btn primary" type="button" id="qRand">🎲 Question au hasard</button><span style="font-size:.85rem;color:var(--muted)">Répondez en trois temps : réponse · développement · exemple.</span></div>'
+      +'<div class="qlist">'+t.q.map(function(q,k){ return '<div class="qi" data-q="'+k+'"><span class="n">'+(k+1)+'</span><span>'+esc(q)+'</span><button class="listen" type="button" data-say="'+esc(q)+'" aria-label="Écouter">🔊</button></div>'; }).join('')+'</div>';
+    document.getElementById('qRand').addEventListener('click', function(){ pickQuestion(i); });
+    body.querySelectorAll('.qi').forEach(function(el){ el.addEventListener('click', function(e){ if(e.target.closest('.listen')) return; var k=parseInt(el.getAttribute('data-q'),10); curQ=k; body.querySelectorAll('.qi').forEach(function(x){x.classList.toggle('cur',x===el);}); cons.innerHTML='🎙️ '+esc(t.q[k]); }); });
+    setVocab(t.b1,t.b2);
+  } else if(String(task)==='2'){
+    var s=T2[i];
+    pill.textContent='Tâche 2 · exercice en interaction';
+    document.getElementById('dlNum').textContent='Sujet '+(i+1)+' / '+T2.length+' · '+s.t+' · '+(s.type==='convaincre'?'convaincre':'s\'informer');
+    cons.innerHTML=esc(s.cons);
+    phases=[{label:'Préparation · 2 min',d:120,prep:true},{label:'Interaction · 3 min 30',d:210}];
+    body.innerHTML='<div class="hintbox"><b>Pistes :</b> '+esc(s.hint)+'</div>';
+    setVocab(s.b1,s.b2);
+  } else {
+    var s3=T3[i];
+    pill.textContent='Tâche 3 · expression d\'un point de vue';
+    document.getElementById('dlNum').textContent='Sujet '+(i+1)+' / '+T3.length+' · '+s3.t;
+    cons.innerHTML=esc(s3.cons);
+    phases=[{label:'Expression en continu · 4 min 30 · sans préparation',d:270}];
+    var ps=PISTES[s3.n], rec=ps?ps.plan:s3.plan;
+    body.innerHTML='<div class="hintbox"><b>Plan recommandé : '+esc(rec)+'</b>'+(ps&&ps.alt?' <span style="color:var(--muted)">(alternative : '+esc(ps.alt)+')</span>':'')+'<br>'+esc(PLAN_WHY[rec]||'')+'</div>'
+      +(ps?'<div class="pistes">'+ps.parts.map(function(pt){ return '<div class="pp"><b>'+esc(pt.h)+'</b><ul>'+pt.items.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul></div>'; }).join('')+'</div>':'')
+      +'<div style="margin-top:.8rem"><div class="phase" style="margin-bottom:.4rem">Squelette du plan</div><div class="planpick" id="planPick">'
+      +['OREO','dialectique','analytique','thématique','comparatif'].map(function(p){ return '<button class="chip" type="button" data-plan="'+p+'" aria-pressed="'+(p===rec?'true':'false')+'">'+p+(p===rec?' ★':'')+'</button>'; }).join('')
+      +'</div><div class="skel" id="skel" style="margin-top:.6rem"></div></div>';
+    renderSkel(rec, s3);
+    body.querySelector('#planPick').addEventListener('click', function(e){
+      var b=e.target.closest('[data-plan]'); if(!b) return;
+      body.querySelectorAll('#planPick .chip').forEach(function(x){ x.setAttribute('aria-pressed', x===b?'true':'false'); });
+      renderSkel(b.getAttribute('data-plan'), s3);
+    });
+    setVocab(null,s3.b2);
+  }
+  tStop(); ph=0; tLeft=phases[0].d; tRender(); cRender();
+  document.getElementById('dlNotes').value=notes[cur.task+cur.i]||'';
+  document.getElementById('dlDone').textContent=done[cur.task+cur.i]?'✓ Travaillé':'✓ Sujet travaillé';
+  document.getElementById('dlSimNext').style.display=sim?'':'none';
+  if(!dlg.open) dlg.showModal();
+  document.querySelector('.dl1').scrollTop=0;
+  if(autostart){ if(String(task)==='1') pickQuestion(i); tStart(); }
+}
+function renderSkel(plan, s){
+  var q=s.cons.replace(/\s*(Qu'en pensez-vous \?|Êtes-vous d'accord avec cette affirmation \?)\s*$/,'');
+  var S={
+    'OREO':'<b>Intro :</b> « On entend souvent dire que '+esc(lc(q))+' Personnellement, je pense que … »<br><b>OREO 1 :</b> Opinion → Raison → Exemple → Opinion reformulée.<br><b>OREO 2 :</b> deuxième argument, même structure.<br><b>Nuance :</b> « Certes, … mais … »<br><b>Conclusion :</b> « C\'est pourquoi je reste convaincu(e) que … »',
+    'dialectique':'<b>Intro :</b> reformuler la question + « Je présenterai d\'abord les avantages, puis les limites, avant de donner mon avis. »<br><b>Thèse :</b> « D\'un côté, … En effet, … Par exemple, … »<br><b>Antithèse :</b> « D\'un autre côté, … Cependant, … Il ne faut pas oublier que … »<br><b>Synthèse :</b> « Finalement, tout dépend de … Pour ma part, … »<br><b>Conclusion :</b> bilan + ouverture.',
+    'analytique':'<b>Intro :</b> situer le phénomène.<br><b>Les faits :</b> « Aujourd\'hui, on constate que … »<br><b>Les causes :</b> « Cela s\'explique par … / en raison de … »<br><b>Les conséquences :</b> « positives : … ; négatives : … »<br><b>Les solutions :</b> « Il faudrait que … / On pourrait … »<br><b>Conclusion :</b> « En définitive, … »',
+    'thématique':'<b>Intro :</b> annoncer trois axes.<br><b>Argument 1 :</b> « Tout d\'abord, sur le plan économique, … »<br><b>Argument 2 :</b> « Ensuite, sur le plan social, … »<br><b>Argument 3 :</b> « Enfin, sur le plan personnel, … »<br><b>Conclusion :</b> « Pour toutes ces raisons, … »',
+    'comparatif':'<b>Intro :</b> poser les deux termes de la comparaison.<br><b>A :</b> « D\'une part, … présente l\'avantage de … »<br><b>B :</b> « D\'autre part, … se distingue par … »<br><b>Ce qui les distingue :</b> « Alors que …, … ; contrairement à …, … »<br><b>Conclusion :</b> « À mon sens, … l\'emporte parce que … »'
+  };
+  document.getElementById('skel').innerHTML=S[plan]||'';
+}
+document.getElementById('dlClose').addEventListener('click', function(){ saveNotes(); tStop(); sim=null; dlg.close(); });
+dlg.addEventListener('close', function(){ saveNotes(); tStop(); });
+document.getElementById('dlDone').addEventListener('click', function(){
+  done[cur.task+cur.i]=true; renderGrids(); document.getElementById('dlDone').textContent='✓ Travaillé';
+});
+document.getElementById('dlNext').addEventListener('click', function(){
+  var list={'1':T1,'2':T2,'3':T3}[cur.task];
+  openItem(cur.task, (cur.i+1)%list.length, false);
+});
+function randomItem(task, autostart){
+  var list={'1':T1,'2':T2,'3':T3}[String(task)], pool=[];
+  list.forEach(function(s,i){ if(!done[String(task)+i]) pool.push(i); });
+  if(!pool.length) list.forEach(function(s,i){ pool.push(i); });
+  openItem(String(task), pick(pool), autostart);
+}
+document.getElementById('rand1').addEventListener('click', function(){ sim=null; randomItem(1,true); });
+document.getElementById('rand2').addEventListener('click', function(){ sim=null; randomItem(2,true); });
+document.getElementById('rand3').addEventListener('click', function(){ sim=null; randomItem(3,true); });
+document.getElementById('simStart').addEventListener('click', function(){ sim={step:1}; randomItem(1,true); });
+document.getElementById('dlSimNext').addEventListener('click', function(){
+  if(!sim) return;
+  sim.step++;
+  if(sim.step>3){ sim=null; saveNotes(); tStop(); dlg.close(); return; }
+  randomItem(sim.step, true);
+  document.getElementById('dlSimNext').textContent=sim.step===3?'Terminer la simulation':'Tâche suivante →';
+});
+document.getElementById('resetDone').addEventListener('click', function(){ done={}; renderGrids(); });
+
+/* ---------------- grammaire : auto-évaluation ---------------- */
+var gPct={}, gWhy={};
+function gClass(v){ return v===undefined?'':(v<40?'lo':(v<75?'mid':'hi')); }
+function gCard(g,i){
+  var v=gPct[i]||0;
+  return '<div class="g '+gClass(gPct[i])+(g.lv==='B2'?' b2':'')+'" data-i="'+i+'">'
+    +'<div class="top"><span class="gn">'+(i+1)+'</span><span><b>'+esc(g.t)+'</b><i>'+esc(g.e)+'</i></span></div>'
+    +'<div class="pct"><input type="range" min="0" max="100" step="5" value="'+v+'" data-g="'+i+'" aria-label="Pourcentage de maîtrise"><output>'+v+' %</output></div>'
+    +'<input class="why" type="text" data-w="'+i+'" value="'+esc(gWhy[i]||'')+'" placeholder="Pourquoi ? (ex. : je confonds avec…, je l\'utilise sans y penser, jamais vu en cours…)">'
+    +'</div>';
+}
+function renderGram(){
+  document.getElementById('gramB1').innerHTML=GRAM.map(function(g,i){ return g.lv==='B1'?gCard(g,i):''; }).join('');
+  document.getElementById('gramB2').innerHTML=GRAM.map(function(g,i){ return g.lv==='B2'?gCard(g,i):''; }).join('');
+  gSummary();
+}
+function gAvgOf(lv){
+  var tot=0,n=0; GRAM.forEach(function(g,i){ if(!lv||g.lv===lv){ tot+=(gPct[i]||0); n++; } });
+  return n?Math.round(tot/n):0;
+}
+function gSummary(){
+  var avg=gAvgOf();
+  document.getElementById('gAvg').textContent=avg+' %';
+  document.getElementById('gBar').style.width=avg+'%';
+  document.getElementById('avgB1').textContent=gAvgOf('B1')+' %';
+  document.getElementById('avgB2').textContent=gAvgOf('B2')+' %';
+}
+renderGram();
+document.getElementById('grammaire').addEventListener('input', function(e){
+  var r=e.target.closest('input[data-g]');
+  if(r){
+    var i=r.getAttribute('data-g'), v=parseInt(r.value,10);
+    gPct[i]=v;
+    r.parentNode.querySelector('output').textContent=v+' %';
+    var card=r.closest('.g'); card.className='g '+gClass(v)+(GRAM[i].lv==='B2'?' b2':'');
+    gSummary(); return;
+  }
+  var w=e.target.closest('input[data-w]');
+  if(w){ gWhy[w.getAttribute('data-w')]=w.value; }
+});
+document.getElementById('gCopy').addEventListener('click', function(){
+  var lines=['Bilan grammaire — TCF Canada expression orale'], lv='';
+  GRAM.forEach(function(g,i){
+    if(g.lv!==lv){ lv=g.lv; lines.push(''); lines.push(lv==='B1'?'— Niveau B1 (socle) —':'— Vers le B2 —'); }
+    lines.push((i+1)+'. '+g.t+' — '+(gPct[i]||0)+' %'+(gWhy[i]?' — '+gWhy[i]:''));
+  });
+  lines.push('');
+  lines.push('B1 : '+gAvgOf('B1')+' % · B2 : '+gAvgOf('B2')+' % · global : '+gAvgOf()+' %');
+  var txt=lines.join('\n'), msg=document.getElementById('gMsg');
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(function(){ msg.textContent='Bilan copié — collez-le dans un message.'; },
+      function(){ msg.textContent='Copie impossible : sélectionnez le texte à la main.'; });
+  } else { msg.textContent='Copie impossible : sélectionnez le texte à la main.'; }
+});
+</script>
+
+
+</script>
+
+</body></html>
