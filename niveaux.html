@@ -161,6 +161,27 @@
     background:var(--rouge);
     transform:translateY(-2px);
   }
+  .exam-embed{
+    display:block;
+    width:100%;
+    height:min(80vh,900px);
+    margin-top:1rem;
+    border:1px solid var(--border);
+    border-radius:14px;
+    background:var(--card);
+  }
+  .exam-actions{
+    display:flex;
+    gap:.6rem;
+    flex-wrap:wrap;
+    align-items:center;
+    margin-top:1rem;
+  }
+  .exam-actions .exam-btn{margin-top:0;}
+  .exam-hint{
+    font-size:.8rem;
+    color:var(--muted);
+  }
   footer{
     text-align:center;
     color:var(--muted);
@@ -239,7 +260,11 @@
       <h2>📝 TCF examen</h2>
     </div>
     <p class="desc">Préparation à l'épreuve d'expression orale du TCF Canada — les trois tâches, grammaire, connecteurs, méthode, sujets avec chronomètre et vocabulaire B1/B2 et B2/C1.</p>
-    <a class="exam-btn" href="tcf-examen.html">Ouvrir →</a>
+    <iframe class="exam-embed" src="tcf-examen.html" title="TCF Canada — Expression orale" loading="lazy"></iframe>
+    <div class="exam-actions">
+      <a class="exam-btn" href="tcf-examen.html">Ouvrir en plein écran →</a>
+      <span class="exam-hint">L'activité fonctionne directement ici ; l'ouvrir en plein écran donne plus de place.</span>
+    </div>
   </section>
 </main>
 
