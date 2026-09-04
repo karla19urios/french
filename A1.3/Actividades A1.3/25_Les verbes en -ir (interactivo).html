@@ -1,0 +1,854 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>25 · Les verbes en -ir</title>
+<style>
+:root{
+  --bleu:#002395;
+  --blanc:#ffffff;
+  --rouge:#ED2939;
+  --bg:#f4f5f7;
+  --card:#ffffff;
+  --text:#1a1a2e;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --shadow:rgba(16,24,40,.08);
+  --bleu-soft:rgba(0,35,149,.08);
+  --rouge-soft:rgba(237,41,57,.10);
+  --vert:#1a7f4f;
+  --vert-soft:rgba(26,127,79,.12);
+  --accent:var(--bleu);
+  --radius:16px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#12141c;
+    --card:#1b1e2b;
+    --text:#f1f2f6;
+    --muted:#9aa0b4;
+    --border:#2a2e40;
+    --shadow:rgba(0,0,0,.35);
+    --bleu-soft:rgba(90,125,255,.14);
+    --rouge-soft:rgba(237,41,57,.16);
+    --vert:#4ec98a;
+    --vert-soft:rgba(78,201,138,.15);
+    --accent:#9db2ff;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#12141c;
+  --card:#1b1e2b;
+  --text:#f1f2f6;
+  --muted:#9aa0b4;
+  --border:#2a2e40;
+  --shadow:rgba(0,0,0,.35);
+  --bleu-soft:rgba(90,125,255,.14);
+  --rouge-soft:rgba(237,41,57,.16);
+  --vert:#4ec98a;
+  --vert-soft:rgba(78,201,138,.15);
+  --accent:#9db2ff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  line-height:1.55;-webkit-font-smoothing:antialiased;
+}
+.flagbar{height:8px;background:linear-gradient(to right,var(--bleu) 0 33.33%,var(--blanc) 33.33% 66.66%,var(--rouge) 66.66% 100%)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 72px}
+
+.hero{padding:3.5rem 0 2rem;text-align:center}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;font-weight:800;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--bleu-soft);
+  padding:.35rem .75rem;border-radius:999px;
+}
+.hero h1{font-size:clamp(1.9rem,5vw,2.9rem);margin:.9rem 0 .4rem;letter-spacing:-.02em;line-height:1.12;text-wrap:balance}
+.hero p{color:var(--muted);margin:0 auto;max-width:62ch;font-size:1.02rem}
+
+nav.toc{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin-top:1.4rem}
+nav.toc a{
+  text-decoration:none;color:var(--text);border:1px solid var(--border);background:var(--card);
+  border-radius:999px;padding:.4rem .85rem;font-size:.84rem;font-weight:700;transition:all .15s ease;
+}
+nav.toc a:hover{border-color:var(--accent);color:var(--accent)}
+
+section{margin-top:3rem}
+.sec-head{display:flex;align-items:baseline;gap:.75rem;flex-wrap:wrap;margin-bottom:.35rem}
+.sec-head h2{font-size:1.4rem;margin:0;letter-spacing:-.01em}
+.sec-num{font-size:.72rem;font-weight:800;letter-spacing:.1em;color:var(--rouge);background:var(--rouge-soft);padding:.2rem .55rem;border-radius:6px}
+.sec-sub{color:var(--muted);margin:0 0 1.25rem;font-size:.95rem}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.85rem .9rem;position:relative;transition:transform .15s ease,box-shadow .15s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 16px var(--shadow)}
+.card .fr{font-weight:800;font-size:1rem;display:block;padding-right:30px;overflow-wrap:break-word}
+.card .es{font-size:.85rem;color:var(--muted);display:block;margin-top:.3rem}
+.listen{
+  position:absolute;top:.6rem;right:.6rem;width:30px;height:30px;border-radius:50%;
+  border:1px solid var(--border);background:var(--card);cursor:pointer;display:grid;place-items:center;
+  font-size:.85rem;color:var(--accent);transition:background .15s ease,transform .15s ease;padding:0;
+}
+.listen:hover{background:var(--bleu);color:#fff;transform:scale(1.08)}
+.listen.on{background:var(--bleu);color:#fff}
+
+.ord{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
+.ord .o{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.7rem;text-align:center;
+  cursor:pointer;transition:all .15s ease;
+}
+.ord .o:hover{border-color:var(--accent);transform:translateY(-2px)}
+.ord .n{font-size:1.5rem;font-weight:900;color:var(--accent);line-height:1;font-variant-numeric:tabular-nums}
+.ord .w{font-size:.88rem;font-weight:700;margin-top:.25rem;display:block}
+
+.conjs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.conj{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;border-top:3px solid var(--bleu)}
+.conj h3{margin:0 0 .1rem;font-size:1.05rem;display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.conj .inf{font-size:.75rem;color:var(--muted);font-weight:600;display:block;margin-bottom:.7rem}
+.conj table{width:100%;border-collapse:collapse;font-size:.94rem}
+.conj td{padding:.28rem 0;border-bottom:1px solid var(--border)}
+.conj tr:last-child td{border-bottom:none}
+.conj td.p{color:var(--muted);width:42%}
+.conj td.v{font-weight:700}
+.conj td.v u{text-decoration:none;color:var(--rouge)}
+.conj .listen{position:static;width:26px;height:26px;font-size:.75rem}
+
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.rule{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--bleu);border-radius:10px;padding:.8rem .9rem}
+.rule b{display:block;font-size:1.05rem;color:var(--accent);margin-bottom:.15rem}
+.rule span{font-size:.9rem;color:var(--muted);display:block}
+.rule i{display:block;margin-top:.35rem;font-size:.92rem}
+.warn{border-left-color:var(--rouge)}
+.warn b{color:var(--rouge)}
+
+.mail{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;box-shadow:0 1px 3px var(--shadow);max-width:66ch}
+.mail p{margin:0 0 .7rem}
+.mail .k{background:var(--bleu-soft);color:var(--accent);font-weight:700;border-radius:4px;padding:0 .2em}
+.mail .sig{color:var(--muted);font-style:italic}
+
+.ex{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:0 1px 3px var(--shadow);margin-bottom:16px;border-top:3px solid var(--rouge)}
+.ex.free{border-top-color:var(--border)}
+.ex-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.ex-head h3{margin:0;font-size:1.1rem;display:flex;align-items:center;gap:.5rem}
+.tag{font-size:.62rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;background:var(--rouge-soft);color:var(--rouge);padding:.2rem .5rem;border-radius:5px}
+.tag.soft{background:var(--bleu-soft);color:var(--accent)}
+.ex-sub{color:var(--muted);font-size:.85rem;margin:.15rem 0 1rem}
+.ex-meta{display:flex;align-items:center;gap:.6rem;font-size:.8rem;color:var(--muted);font-weight:700}
+.sc{background:var(--bleu-soft);color:var(--accent);padding:.2rem .55rem;border-radius:999px;font-variant-numeric:tabular-nums}
+.bar{height:5px;background:var(--border);border-radius:999px;overflow:hidden;margin:.9rem 0 1.1rem}
+.bar i{display:block;height:100%;width:0;background:var(--bleu);transition:width .3s ease}
+.ex-q{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem;font-size:1.1rem;font-weight:700;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;min-height:64px}
+.ex-q .hint{font-size:.85rem;font-weight:600;color:var(--muted)}
+.blank{color:var(--rouge);letter-spacing:.06em}
+.opts{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.opt{flex:1 1 130px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;padding:.72rem .9rem;font:inherit;font-size:.97rem;font-weight:700;cursor:pointer;transition:all .15s ease;text-align:center}
+.opt.chip{flex:0 1 auto;min-width:76px}
+.opt:hover:not(:disabled){border-color:var(--accent);transform:translateY(-2px);box-shadow:0 6px 16px var(--shadow)}
+.opt:disabled{cursor:default;opacity:.7}
+.opt.good{background:var(--vert-soft);border-color:var(--vert);color:var(--vert);opacity:1}
+.opt.bad{background:var(--rouge-soft);border-color:var(--rouge);color:var(--rouge);opacity:1}
+.fb{margin-top:.9rem;font-size:.92rem;font-weight:700;min-height:1.4em}
+.fb.good{color:var(--vert)}
+.fb.bad{color:var(--rouge)}
+.fb small{display:block;font-weight:500;color:var(--muted);margin-top:.15rem}
+.answer-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;align-items:center}
+.answer-row input{flex:1 1 200px;padding:.7rem .9rem;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text);font:inherit;font-size:1rem}
+.answer-row input.good{border-color:var(--vert)}
+.answer-row input.bad{border-color:var(--rouge)}
+.btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:10px;padding:.5rem .9rem;font:inherit;font-size:.86rem;font-weight:700;cursor:pointer;transition:all .15s ease;display:inline-flex;align-items:center;gap:.4rem}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.primary{background:var(--bleu);border-color:var(--bleu);color:#fff}
+.btn.primary:hover{opacity:.9;color:#fff}
+
+.steps{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.step{display:flex;align-items:center;gap:.7rem;text-align:left;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.7rem .85rem;cursor:pointer;font:inherit;font-size:.95rem;color:var(--text);transition:all .15s ease}
+.step:hover:not(:disabled){border-color:var(--accent);transform:translateX(3px)}
+.step:disabled{cursor:default}
+.step .num{flex:0 0 26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--bg);border:1px solid var(--border);font-size:.78rem;font-weight:900;color:var(--muted)}
+.step.placed{background:var(--vert-soft);border-color:var(--vert)}
+.step.placed .num{background:var(--vert);border-color:var(--vert);color:#fff}
+.step.wrong{background:var(--rouge-soft);border-color:var(--rouge)}
+
+.write{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:0 1px 3px var(--shadow)}
+.write textarea{width:100%;min-height:150px;padding:.8rem .9rem;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text);font:inherit;font-size:.98rem;resize:vertical}
+.write .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:.8rem;align-items:center}
+.checklist{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.9rem}
+.checklist span{font-size:.78rem;font-weight:700;color:var(--muted);border:1px dashed var(--border);border-radius:999px;padding:.2rem .6rem}
+
+.bilan{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--bleu);border-radius:var(--radius);padding:20px;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;box-shadow:0 1px 3px var(--shadow)}
+.bilan .big{font-size:1.9rem;font-weight:900;color:var(--accent);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.bilan .lbl{font-size:.8rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.bilan-list{display:flex;gap:1.6rem;flex-wrap:wrap}
+
+.note{margin-top:1.25rem;font-size:.86rem;color:var(--muted);border-left:3px solid var(--rouge);padding:.15rem 0 .15rem .8rem}
+footer{margin-top:3.5rem;padding-top:1.5rem;border-top:1px solid var(--border);color:var(--muted);font-size:.85rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+footer b{color:var(--text)}
+:focus-visible{outline:2px solid var(--bleu);outline-offset:2px;border-radius:6px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto}}
+@media (max-width:560px){.hero{padding:2.5rem 0 1.5rem}.grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}}
+</style>
+<style>
+/* --- ajouts leçon 25 --- */
+.fam{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.fam .conj{border-top-color:var(--bleu)} .fam .conj.p{border-top-color:var(--rouge)}
+.conj td.v em{font-style:normal;color:var(--muted);font-weight:500}
+.conj td.v s{text-decoration:line-through;color:var(--rouge)}
+.verbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.vb{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.7rem .85rem;position:relative;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease}
+.vb:hover{transform:translateY(-2px);box-shadow:0 6px 16px var(--shadow)}
+.vb .adj{font-size:.78rem;color:var(--muted)} .vb .adj b{color:var(--rouge);font-weight:800}
+.vb .inf{font-weight:800;font-size:1.02rem;display:block}
+.vb .es{font-size:.82rem;color:var(--muted);display:block}
+.vb .listen{top:.55rem;right:.55rem}
+.dites{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:600px){.dites{grid-template-columns:1fr}}
+.dites div{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.8rem 1rem}
+.dites b{display:block;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem}
+.dites .ok b{color:var(--vert)} .dites .no b{color:var(--rouge)}
+.dites span{display:inline-block;margin:.15rem .5rem .15rem 0;font-weight:700}
+.dites .no span{text-decoration:line-through;color:var(--rouge)}
+.prep{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.pc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.85rem .95rem;border-top:4px solid var(--bleu)}
+.pc.f{border-top-color:var(--rouge)} .pc.pl{border-top-color:#7c3aed} .pc.v{border-top-color:var(--vert)}
+.pc h4{margin:0 0 .15rem;font-size:1.15rem} .pc h4 b{font-size:1.4rem;color:var(--accent)}
+.pc.f h4 b{color:var(--rouge)} .pc.pl h4 b{color:#7c3aed} .pc.v h4 b{color:var(--vert)}
+.pc .r{font-size:.8rem;color:var(--muted);margin:0 0 .5rem}
+.pc .cl{display:flex;flex-wrap:wrap;gap:5px}
+.cw{font-size:.84rem;padding:.2rem .55rem;border-radius:999px;border:1px solid var(--border);background:var(--bg);cursor:pointer}
+.cw:hover{border-color:var(--accent)}
+.emos{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.emo{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.8rem .9rem;position:relative}
+.emo .big{font-size:2rem;line-height:1}
+.emo .cat{font-size:.7rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--rouge);display:block;margin-top:.3rem}
+.emo .adj{font-weight:800;font-size:1rem;display:block}
+.emo .ex{font-size:.84rem;color:var(--muted);display:block;margin-top:.3rem;line-height:1.4}
+.emo .listen{top:.6rem;right:.6rem}
+.gen{background:var(--bleu-soft);border-radius:12px;padding:.9rem 1rem;font-size:1.05rem;margin-top:12px;min-height:3em;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.sel{padding:.5rem .7rem;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text);font:inherit;font-size:.92rem}
+.texte{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem;line-height:2;font-size:1rem}
+.texte select{padding:.15rem .4rem;border-radius:7px;border:1px solid var(--bleu);background:var(--bg);color:var(--text);font:inherit;font-size:.92rem;font-weight:700}
+.texte select.good{border-color:var(--vert);background:var(--vert-soft)} .texte select.bad{border-color:var(--rouge);background:var(--rouge-soft)}
+.write{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:0 1px 3px var(--shadow)}
+.write textarea{width:100%;min-height:120px;padding:.8rem .9rem;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text);font:inherit;font-size:.98rem;resize:vertical}
+.checklist{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.9rem}
+.blanks{display:flex;flex-direction:column;gap:.5rem;margin-top:10px}
+.bk{display:grid;grid-template-columns:110px 1fr;gap:.6rem;align-items:center;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:.5rem .7rem}
+@media (max-width:520px){.bk{grid-template-columns:1fr}}
+.bk .lb{font-size:.78rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.bk .ch{display:flex;gap:6px;flex-wrap:wrap}
+.bk .opt{flex:0 1 auto;min-width:64px;padding:.45rem .8rem}
+.bk .opt[aria-pressed="true"]{border-color:var(--bleu);background:var(--bleu-soft);color:var(--accent)}
+.rule i b,.rule i u{display:inline;font-size:inherit;margin:0;color:var(--accent)}
+.rule.warn i b{color:var(--rouge)}
+.avous{margin:1.6rem 0 .6rem;font-size:.8rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--rouge);display:flex;align-items:center;gap:.6rem}
+.avous::after{content:'';flex:1;height:1px;background:var(--border)}
+.checklist span{font-size:.78rem;font-weight:700;color:var(--muted);border:1px dashed var(--border);border-radius:999px;padding:.2rem .6rem}
+</style>
+
+<div class="flagbar"></div>
+<div class="wrap">
+
+  <header class="hero">
+    <span class="eyebrow">A1.3 · Leçons 25 – 27</span>
+    <h1>Les verbes en -ir : je finis, je pars, je me sens</h1>
+    <p>Deux familles de verbes en <b>-ir</b>, le verbe <b>partir</b> et ses prépositions de pays, puis <b>se sentir</b> pour dire ses émotions. Chaque point de grammaire est suivi de son exercice. <em>Tema, ejercicio, tema, ejercicio: paso a paso.</em></p>
+    <nav class="toc">
+      <a href="#familles">Deux familles</a>
+      <a href="#finir">Type finir</a>
+      <a href="#partir">Type partir</a>
+      <a href="#preps">Partir + pays</a>
+      <a href="#emotions">Émotions</a>
+      <a href="#exercices">Bilan</a>
+      <a href="#production">Production</a>
+    </nav>
+  </header>
+
+  <section id="familles">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Deux familles de verbes en -ir</h2></div>
+    <p class="sec-sub">Tous les verbes en <b>-ir</b> ont deux formes : une pour le singulier, une pour le pluriel. La différence, c'est ce qui se passe au pluriel.</p>
+    <div class="fam" id="famCards"></div>
+    <div class="rules" style="margin-top:14px">
+      <div class="rule"><b>Type « finir » : le i devient -iss- au pluriel</b><span>la mayoría de los verbos en -ir</span><i>je fin<u>is</u> → nous fin<u>iss</u>ons · je chois<u>is</u> → nous chois<u>iss</u>ons</i></div>
+      <div class="rule warn"><b>Type « partir » : la consonne finale tombe au singulier</b><span>partir, sortir, dormir, servir, sentir</span><i>par<u>t</u>-ir → je par<u>s</u>, nous par<u>t</u>ons · dor<u>m</u>-ir → je dor<u>s</u>, nous dor<u>m</u>ons</i></div>
+      <div class="rule"><b>À l'écrit, mêmes terminaisons</b><span>terminaciones iguales en las dos familias</span><i>-s, -s, -t · -ons, -ez, -ent — les finales du singulier sont muettes</i></div>
+    </div>
+    <h3 class="avous">✍️ À vous !</h3>
+    <div class="ex" id="exA">
+      <div class="ex-head"><h3><span class="tag">A</span> Quelle famille ?</h3><div class="ex-meta"><span class="sc" id="scA">0 / 0</span><button class="btn" type="button" data-reset="A">↻ Recommencer</button></div></div>
+      <p class="ex-sub">Type « finir » (nous …issons) ou type « partir » (la consonne tombe) ?</p>
+      <div class="bar"><i id="barA"></i></div>
+      <div class="ex-q" id="qA"></div><div class="opts" id="oA"></div><div class="fb" id="fA"></div>
+    </div>
+  </section>
+
+  <section id="finir">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Type « finir » — pluriel en -iss-</h2></div>
+    <p class="sec-sub">Beaucoup de ces verbes viennent d'un <b>adjectif</b> et expriment une <b>transformation</b> : rouge → rougir (devenir rouge), grand → grandir. Cliquez pour écouter.</p>
+    <div class="verbs" id="verbsF"></div>
+    <p class="note"><b>Astuce :</b> si vous pouvez dire « nous …<b>issons</b> », c'est un verbe du type finir. <em>Nous finissons, nous choisissons, nous réfléchissons.</em></p>
+    <h3 class="avous">✍️ À vous !</h3>
+    <div class="ex" id="exB">
+      <div class="ex-head"><h3><span class="tag">B</span> De l'adjectif au verbe</h3><div class="ex-meta"><span class="sc" id="scB">0 / 0</span><button class="btn" type="button" data-reset="B">↻ Recommencer</button></div></div>
+      <p class="ex-sub">Trouvez le verbe qui exprime la transformation.</p>
+      <div class="bar"><i id="barB"></i></div>
+      <div class="ex-q" id="qB"></div><div class="opts" id="oB"></div><div class="fb" id="fB"></div>
+    </div>
+    <div class="ex" id="exC">
+      <div class="ex-head"><h3><span class="tag">C</span> Conjuguez — type finir</h3><div class="ex-meta"><span class="sc" id="scC">0 / 0</span><button class="btn" type="button" data-reset="C">↻ Recommencer</button></div></div>
+      <p class="ex-sub">Écrivez la forme du verbe. <em>Escribe la forma correcta.</em></p>
+      <div class="bar"><i id="barC"></i></div>
+      <div class="ex-q" id="qC"></div>
+      <div class="answer-row"><input id="inC" type="text" placeholder="la forme du verbe…" autocomplete="off" spellcheck="false" aria-label="Votre réponse"><button class="btn primary" type="button" id="checkC">Vérifier</button><button class="btn" type="button" id="showC">Voir la réponse</button></div>
+      <div class="fb" id="fC"></div>
+    </div>
+  </section>
+
+  <section id="partir">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Type « partir » — la consonne tombe au singulier</h2></div>
+    <p class="sec-sub">Une petite famille, mais des verbes très fréquents. Au singulier, on enlève la dernière consonne du radical ; au pluriel, elle revient.</p>
+    <div class="verbs" id="verbsP"></div>
+    <div class="dites" style="margin-top:14px">
+      <div class="ok"><b>✅ Dites</b><span>je pars</span><span>je sors</span><span>je dors</span><span>je sers</span><span>je sens</span><span>je vis</span><span>je suis (suivre)</span></div>
+      <div class="no"><b>❌ Ne dites pas</b><span>je part</span><span>je sort</span><span>je dorm</span><span>je serv</span><span>je sent</span><span>je viv</span><span>je suiv</span></div>
+    </div>
+    <p class="note"><b>Vivre</b> et <b>suivre</b> ne sont pas en -ir, mais ils perdent aussi leur consonne au singulier : <em>je vis, tu vis, il vit — nous vivons · je suis, tu suis, il suit — nous suivons</em>. Attention : <em>je suis</em> = être <b>ou</b> suivre !</p>
+    <h3 class="avous">✍️ À vous !</h3>
+    <div class="ex" id="exD">
+      <div class="ex-head"><h3><span class="tag">D</span> Conjuguez — type partir</h3><div class="ex-meta"><span class="sc" id="scD">0 / 0</span><button class="btn" type="button" data-reset="D">↻ Recommencer</button></div></div>
+      <p class="ex-sub">Attention à la consonne qui tombe au singulier !</p>
+      <div class="bar"><i id="barD"></i></div>
+      <div class="ex-q" id="qD"></div>
+      <div class="answer-row"><input id="inD" type="text" placeholder="la forme du verbe…" autocomplete="off" spellcheck="false" aria-label="Votre réponse"><button class="btn primary" type="button" id="checkD">Vérifier</button><button class="btn" type="button" id="showD">Voir la réponse</button></div>
+      <div class="fb" id="fD"></div>
+    </div>
+  </section>
+
+  <section id="preps">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Partir + préposition : en, au, aux, à</h2></div>
+    <p class="sec-sub">Objectif de la leçon 26 : <b>maîtriser le verbe partir et ses prépositions</b>. La préposition dépend du genre et de la première lettre du pays. Cliquez sur un pays pour l'entendre dans une phrase.</p>
+    <div class="prep" id="prepCards"></div>
+    <div class="gen" id="genPartir">🎲 Cliquez sur « Générer » pour une phrase au hasard…</div>
+    <div class="row" style="margin-top:.8rem">
+      <button class="btn primary" type="button" id="btnGenPartir">🎲 Générer une phrase</button>
+      <button class="btn" type="button" id="btnSayPartir">🔊 Écouter</button>
+    </div>
+    <div class="rules" style="margin-top:14px">
+      <div class="rule"><b>Je connais <u>la</u> Colombie → j'habite <u>en</u> Colombie</b><span>el artículo del país anuncia la preposición</span><i><b>la / l'</b> (féminin) → <b>en</b> · <b>le</b> → <b>au</b> · <b>les</b> → <b>aux</b> · Je connais <u>le</u> Brésil → j'habite <u>au</u> Brésil</i></div>
+      <div class="rule warn"><b>« au » devient « en » devant une voyelle</b><span>países masculinos que empiezan por vocal</span><i>le Iran ✗ → <b>l'</b>Iran → j'habite <b>en</b> Iran, <b>en</b> Irak, <b>en</b> Équateur (jamais « au Iran »)</i></div>
+      <div class="rule"><b>Les pays en -e sont féminins</b><span>salvo cuatro excepciones masculinas</span><i>la France, l'Italie… → <b>en</b> · mais <b>le</b> Mexique, <b>le</b> Cambodge, <b>le</b> Mozambique, <b>le</b> Zimbabwe → <b>au</b></i></div>
+      <div class="rule"><b>À l'oral : la liaison</b><span>en plural se oye la « z »</span><i>aux‿Antilles, aux‿États-Unis → [oz‿antille], [oz‿étazuni]</i></div>
+    </div>
+    <p class="note"><b>Les villes</b> prennent toujours <b>à</b> : à Paris, à Tokyo, à Mexico — et pour situer une ville, on enchaîne : <em>Big Ben est <b>à</b> Londres, <b>en</b> Angleterre.</em></p>
+    <h3 class="avous">✍️ À vous !</h3>
+    <div class="ex" id="exE">
+      <div class="ex-head"><h3><span class="tag">E</span> Je pars… en, au, aux, à ?</h3><div class="ex-meta"><span class="sc" id="scE">0 / 0</span><button class="btn" type="button" data-reset="E">↻ Recommencer</button></div></div>
+      <p class="ex-sub">Choisissez la bonne préposition devant le pays ou la ville.</p>
+      <div class="bar"><i id="barE"></i></div>
+      <div class="ex-q" id="qE"></div><div class="opts" id="oE"></div><div class="fb" id="fE"></div>
+    </div>
+    <div class="ex" id="exH">
+      <div class="ex-head"><h3><span class="tag">H</span> Le, la, l', les → en, au, aux</h3><div class="ex-meta"><span class="sc" id="scH">0 / 0</span><button class="btn" type="button" data-reset="H">↻ Recommencer</button></div></div>
+      <p class="ex-sub">Choisissez l'article, puis la préposition. <em>Elige el artículo y después la preposición.</em></p>
+      <div class="bar"><i id="barH"></i></div>
+      <div class="ex-q" id="qH"></div>
+      <div id="wH"></div>
+      <div class="row" style="margin-top:.6rem"><button class="btn primary" type="button" id="checkH">Vérifier</button></div>
+      <div class="fb" id="fH"></div>
+    </div>
+    <div class="ex" id="exI">
+      <div class="ex-head"><h3><span class="tag">I</span> Situez les villes et les monuments</h3><div class="ex-meta"><span class="sc" id="scI">0 / 0</span><button class="btn" type="button" data-reset="I">↻ Recommencer</button></div></div>
+      <p class="ex-sub">À + ville, puis en / au / aux + pays. <em>Sitúa la ciudad y el país.</em></p>
+      <div class="bar"><i id="barI"></i></div>
+      <div class="ex-q" id="qI"></div>
+      <div id="wI"></div>
+      <div class="row" style="margin-top:.6rem"><button class="btn primary" type="button" id="checkI">Vérifier</button></div>
+      <div class="fb" id="fI"></div>
+    </div>
+  </section>
+
+  <section id="emotions">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Se sentir + les émotions</h2></div>
+    <p class="sec-sub"><b>Sentir</b> est un verbe du type partir. Sa forme pronominale, <b>se sentir</b>, sert à dire comment on va : <em>Comment est-ce que tu te sens aujourd'hui ?</em></p>
+    <div class="fam">
+      <div class="conj p">
+        <h3><span>💗 SE SENTIR</span><button class="listen" type="button" data-say="je me sens, tu te sens, il se sent, nous nous sentons, vous vous sentez, ils se sentent" aria-label="Écouter">🔊</button></h3>
+        <span class="inf">sentirse</span>
+        <table><tbody>
+          <tr><td class="p">je</td><td class="v"><b>me</b> sen<u>s</u></td></tr>
+          <tr><td class="p">tu</td><td class="v"><b>te</b> sen<u>s</u></td></tr>
+          <tr><td class="p">il / elle / on</td><td class="v"><b>se</b> sen<u>t</u></td></tr>
+          <tr><td class="p">nous</td><td class="v"><b>nous</b> sent<u>ons</u></td></tr>
+          <tr><td class="p">vous</td><td class="v"><b>vous</b> sent<u>ez</u></td></tr>
+          <tr><td class="p">ils / elles</td><td class="v"><b>se</b> sent<u>ent</u></td></tr>
+        </tbody></table>
+      </div>
+      <div class="conj">
+        <h3><span>🧭 ÊTRE ou SE SENTIR</span></h3>
+        <span class="inf">las dos construcciones son correctas</span>
+        <p style="margin:.2rem 0;font-size:.95rem">Je <b>suis</b> joyeux. = Je <b>me sens</b> joyeux.</p>
+        <p style="margin:.2rem 0;font-size:.95rem">Elle <b>est</b> fatiguée. = Elle <b>se sent</b> fatiguée.</p>
+        <p style="margin:.6rem 0 0;font-size:.88rem;color:var(--muted)">L'adjectif s'accorde : joyeu<b>x</b> / joyeu<b>se</b>, fatigu<b>é</b> / fatigu<b>ée</b>, fi<b>er</b> / fi<b>ère</b>.</p>
+        <p style="margin:.4rem 0 0;font-size:.88rem;color:var(--muted)">La peur se dit avec <b>avoir</b> : <em>j'ai peur de…</em> L'ennui se dit avec un verbe : <em>je m'ennuie</em>.</p>
+      </div>
+    </div>
+    <div class="emos" id="emoCards" style="margin-top:14px"></div>
+    <div class="gen" id="genEmo">
+      <span>Comment est-ce que tu te sens aujourd'hui ?</span>
+      <select class="sel" id="emoSubj"><option value="je">Je</option><option value="tu">Tu</option><option value="il">Il</option><option value="elle">Elle</option><option value="nous">Nous</option><option value="vous">Vous</option><option value="ils">Ils</option><option value="elles">Elles</option></select>
+      <select class="sel" id="emoPick"></select>
+      <span id="emoOut" style="font-weight:800;color:var(--accent)"></span>
+      <button class="listen" type="button" id="emoSay" style="position:static" aria-label="Écouter">🔊</button>
+    </div>
+    <h3 class="avous">✍️ À vous !</h3>
+    <div class="ex" id="exF">
+      <div class="ex-head"><h3><span class="tag">F</span> Quelle émotion ?</h3><div class="ex-meta"><span class="sc" id="scF">0 / 0</span><button class="btn" type="button" data-reset="F">↻ Recommencer</button></div></div>
+      <p class="ex-sub">Lisez la situation et choisissez la phrase qui convient.</p>
+      <div class="bar"><i id="barF"></i></div>
+      <div class="ex-q" id="qF"></div><div class="opts" id="oF"></div><div class="fb" id="fF"></div>
+    </div>
+  </section>
+
+  <section id="exercices">
+    <div class="sec-head"><span class="sec-num">06</span><h2>Bilan — tout mélanger</h2></div>
+    <p class="sec-sub">Un texte qui réunit les deux familles, partir et se sentir. Puis le total de tous les exercices de la page.</p>
+    <div class="ex" id="exG">
+      <div class="ex-head"><h3><span class="tag">G</span> Mon amie Léa — texte à trous</h3><div class="ex-meta"><span class="sc" id="scG">0 / 0</span><button class="btn" type="button" data-reset="G">↻ Recommencer</button></div></div>
+      <p class="ex-sub">Choisissez le bon verbe dans chaque menu, puis vérifiez. <em>partir · sortir · dormir · vivre · suivre · finir · choisir · se sentir</em></p>
+      <div class="bar"><i id="barG"></i></div>
+      <div class="texte" id="texteG"></div>
+      <div class="row" style="margin-top:.8rem"><button class="btn primary" type="button" id="checkG">Vérifier le texte</button><button class="btn" type="button" id="readG">🔊 Écouter le texte</button></div>
+      <div class="fb" id="fG"></div>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="bilan">
+      <div class="bilan-list">
+        <div><div class="lbl">Total</div><div class="big" id="bTotal">0 / 0</div></div>
+        <div><div class="lbl">Réussite</div><div class="big" id="bPct">—</div></div>
+      </div>
+      <button class="btn primary" type="button" id="resetAll">↻ Tout recommencer</button>
+    </div>
+  </section>
+
+  <section id="production">
+    <div class="sec-head"><span class="sec-num">07</span><h2>Production : mes vacances et mes émotions</h2></div>
+    <p class="sec-sub">Écrivez 5 phrases : où vous partez en vacances, avec qui, ce que vous choisissez de faire, et comment vous vous sentez. Puis écoutez votre texte.</p>
+    <div class="write">
+      <textarea id="devoir" placeholder="Cet été, je pars en… avec… Nous choisissons… Je me sens…"></textarea>
+      <div class="row"><button class="btn primary" type="button" id="readDevoir">▶ Écouter mon texte</button></div>
+      <div class="checklist"><span>je pars en / au / aux / à</span><span>nous choisissons</span><span>je finis</span><span>je dors</span><span>je sors</span><span>je me sens + adjectif</span><span>j'ai peur de</span></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Sources : <b>25_Verbes terminaison -ir</b> · <b>26_Verbe partir</b> · <b>27_Les émotions</b> (A1.3)</span>
+    <span>Prochaine leçon → <b>verbes -ir, -re et -oir</b></span>
+  </footer>
+</div>
+
+<script>
+/* ---------------- données ---------------- */
+var FINIR = [
+  {adj:'fin',      inf:'finir',      es:'terminar',        forms:['finis','finis','finit','finissons','finissez','finissent']},
+  {adj:null,       inf:'choisir',    es:'elegir',          forms:['choisis','choisis','choisit','choisissons','choisissez','choisissent']},
+  {adj:'grand',    inf:'grandir',    es:'crecer',          forms:['grandis','grandis','grandit','grandissons','grandissez','grandissent']},
+  {adj:'rouge',    inf:'rougir',     es:'ponerse rojo',    forms:['rougis','rougis','rougit','rougissons','rougissez','rougissent']},
+  {adj:'vieux',    inf:'vieillir',   es:'envejecer',       forms:['vieillis','vieillis','vieillit','vieillissons','vieillissez','vieillissent']},
+  {adj:'gros',     inf:'grossir',    es:'engordar',        forms:['grossis','grossis','grossit','grossissons','grossissez','grossissent']},
+  {adj:'maigre',   inf:'maigrir',    es:'adelgazar',       forms:['maigris','maigris','maigrit','maigrissons','maigrissez','maigrissent']},
+  {adj:'pâle',     inf:'pâlir',      es:'palidecer',       forms:['pâlis','pâlis','pâlit','pâlissons','pâlissez','pâlissent']},
+  {adj:'jaune',    inf:'jaunir',     es:'amarillear',      forms:['jaunis','jaunis','jaunit','jaunissons','jaunissez','jaunissent']},
+  {adj:'brun',     inf:'brunir',     es:'broncearse',      forms:['brunis','brunis','brunit','brunissons','brunissez','brunissent']},
+  {adj:'blanc',    inf:'blanchir',   es:'blanquear',       forms:['blanchis','blanchis','blanchit','blanchissons','blanchissez','blanchissent']},
+  {adj:'fleur',    inf:'fleurir',    es:'florecer',        forms:['fleuris','fleuris','fleurit','fleurissons','fleurissez','fleurissent']},
+  {adj:null,       inf:'réfléchir',  es:'reflexionar',     forms:['réfléchis','réfléchis','réfléchit','réfléchissons','réfléchissez','réfléchissent']},
+  {adj:null,       inf:'réussir',    es:'lograr, aprobar', forms:['réussis','réussis','réussit','réussissons','réussissez','réussissent']},
+  {adj:null,       inf:'guérir',     es:'curar(se)',       forms:['guéris','guéris','guérit','guérissons','guérissez','guérissent']},
+  {adj:null,       inf:'applaudir',  es:'aplaudir',        forms:['applaudis','applaudis','applaudit','applaudissons','applaudissez','applaudissent']},
+  {adj:'lent',     inf:'ralentir',   es:'frenar, ir más despacio', forms:['ralentis','ralentis','ralentit','ralentissons','ralentissez','ralentissent']},
+  {adj:null,       inf:'atterrir',   es:'aterrizar',       forms:['atterris','atterris','atterrit','atterrissons','atterrissez','atterrissent']},
+  {adj:null,       inf:'obéir',      es:'obedecer',        forms:['obéis','obéis','obéit','obéissons','obéissez','obéissent']},
+  {adj:null,       inf:'remplir',    es:'llenar',          forms:['remplis','remplis','remplit','remplissons','remplissez','remplissent']}
+];
+var PARTIR = [
+  {inf:'partir',  es:'irse, salir de viaje', rad:'part', forms:['pars','pars','part','partons','partez','partent']},
+  {inf:'sortir',  es:'salir',                rad:'sort', forms:['sors','sors','sort','sortons','sortez','sortent']},
+  {inf:'dormir',  es:'dormir',               rad:'dorm', forms:['dors','dors','dort','dormons','dormez','dorment']},
+  {inf:'servir',  es:'servir',               rad:'serv', forms:['sers','sers','sert','servons','servez','servent']},
+  {inf:'sentir',  es:'sentir, oler',         rad:'sent', forms:['sens','sens','sent','sentons','sentez','sentent']},
+  {inf:'vivre',   es:'vivir (pas en -ir !)', rad:'viv',  forms:['vis','vis','vit','vivons','vivez','vivent']},
+  {inf:'suivre',  es:'seguir (pas en -ir !)',rad:'suiv', forms:['suis','suis','suit','suivons','suivez','suivent']}
+];
+var PRON = ['je','tu','il / elle / on','nous','vous','ils / elles'];
+var PRON1 = ['je','tu','il','nous','vous','ils'];
+
+var PAYS = {
+  en:  {t:'EN', r:'pays féminins (terminés en -e)', list:['France','Espagne','Italie','Allemagne','Russie','Colombie','Bolivie','Argentine','Belgique','Pologne','Roumanie','Angleterre','Autriche','Australie','Chine','Corée du Sud','Indonésie','Inde','Norvège','Suède','Suisse','Grèce','Tunisie']},
+  env: {t:'EN', r:'pays masculins qui commencent par une voyelle', list:['Iran','Irak','Israël','Équateur','Ouganda','Afghanistan']},
+  au:  {t:'AU', r:'pays masculins', list:['Canada','Mexique','Japon','Danemark','Vietnam','Portugal','Brésil','Pérou','Chili','Maroc','Sénégal','Pakistan','Nigeria','Cameroun','Mali','Niger','Royaume-Uni']},
+  aux: {t:'AUX', r:'pays pluriels', list:['États-Unis','Pays-Bas','Philippines','Antilles','Maldives','Seychelles']},
+  a:   {t:'À', r:'villes', list:['Tokyo','Montréal','Toronto','Vancouver','Barcelone','Paris','Mexico','Séoul','Lisbonne','Rome','Bruxelles','Londres','Milan','New York','Quito','Hanoi']}
+};
+var PAYS_ART = {
+  'Norvège':'la','Pologne':'la','Grèce':'la','Suisse':'la','Belgique':'la','Colombie':'la','Bolivie':'la','Russie':'la','Tunisie':'la','Roumanie':'la',
+  'Allemagne':"l'",'Italie':"l'",'Espagne':"l'",'Argentine':"l'",'Angleterre':"l'",'Inde':"l'",'Autriche':"l'",
+  'Brésil':'le','Portugal':'le','Pakistan':'le','Canada':'le','Japon':'le','Mexique':'le','Maroc':'le','Pérou':'le','Chili':'le','Danemark':'le','Vietnam':'le','Sénégal':'le','Cameroun':'le','Nigeria':'le',
+  'Iran':"l'",'Irak':"l'",'Équateur':"l'",
+  'États-Unis':'les','Pays-Bas':'les','Antilles':'les','Philippines':'les'
+};
+
+var EMOS = [
+  {ico:'😄', cat:'la joie',            m:'joyeux',     f:'joyeuse',     es:'alegre',                 ex:'Je me sens joyeux : c\'est vendredi !'},
+  {ico:'😢', cat:'la tristesse',       m:'triste',     f:'triste',      es:'triste',                 ex:'Elle est triste, son ami part au Japon.'},
+  {ico:'😞', cat:'la tristesse',       m:'malheureux', f:'malheureuse', es:'infeliz',                ex:'Il se sent malheureux loin de sa famille.'},
+  {ico:'😡', cat:'la colère',          m:'furieux',    f:'furieuse',    es:'furioso/a',              ex:'Je suis furieux : le train part sans moi !'},
+  {ico:'😠', cat:'la colère',          m:'en colère',  f:'en colère',   es:'enfadado/a',             ex:'Nous sommes en colère contre le prof.'},
+  {ico:'😱', cat:'la peur',            m:'—',          f:'—',           es:'tener miedo',            ex:'J\'ai peur de parler en public.', avoir:true},
+  {ico:'😮', cat:'la surprise',        m:'surpris',    f:'surprise',    es:'sorprendido/a',          ex:'Tu es surpris ? Moi aussi !'},
+  {ico:'😲', cat:'la surprise',        m:'étonné',     f:'étonnée',     es:'asombrado/a',            ex:'Elle se sent étonnée par la réponse.'},
+  {ico:'🥱', cat:'l\'ennui',           m:'—',          f:'—',           es:'aburrirse',              ex:'Je m\'ennuie le dimanche après-midi.', ennuie:true},
+  {ico:'😴', cat:'la fatigue',         m:'fatigué',    f:'fatiguée',    es:'cansado/a',              ex:'Vous vous sentez fatigués après le sport.'},
+  {ico:'😌', cat:'le contentement',    m:'content',    f:'contente',    es:'contento/a',             ex:'Ils sont contents de leurs vacances.'},
+  {ico:'🙂', cat:'le contentement',    m:'satisfait',  f:'satisfaite',  es:'satisfecho/a',           ex:'Je me sens satisfaite de mon travail.'},
+  {ico:'🏆', cat:'la fierté',          m:'fier',       f:'fière',       es:'orgulloso/a',            ex:'Nous sommes fiers de nous : nous réussissons l\'examen !'}
+];
+
+/* ---------------- utilitaires ---------------- */
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function shuffle(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
+function norm(s){ return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[’']/g,"'").replace(/[.,!?;:]/g,'').replace(/\s+/g,' ').trim(); }
+function jeElide(p, form){ return (p==='je' && /^[aeiouéèêh]/i.test(form)) ? "j'"+form : p+' '+form; }
+
+var frVoice=null;
+function pickVoice(){ if(!('speechSynthesis' in window)) return; var vs=window.speechSynthesis.getVoices()||[]; frVoice=vs.filter(function(v){return v.lang==='fr-FR';})[0]||vs.filter(function(v){return (v.lang||'').indexOf('fr')===0;})[0]||null; }
+if('speechSynthesis' in window){ pickVoice(); window.speechSynthesis.onvoiceschanged=pickVoice; }
+function speak(text, btn){
+  if(!('speechSynthesis' in window)||!text) return;
+  window.speechSynthesis.cancel();
+  var u=new SpeechSynthesisUtterance(text); u.lang='fr-FR'; u.rate=0.9; if(frVoice) u.voice=frVoice;
+  if(btn){ btn.classList.add('on'); u.onend=u.onerror=function(){ btn.classList.remove('on'); }; }
+  window.speechSynthesis.speak(u);
+}
+document.addEventListener('click', function(e){ var b=e.target.closest('.listen'); if(b&&b.getAttribute('data-say')) speak(b.getAttribute('data-say'), b); });
+
+/* ---------------- rendu : familles ---------------- */
+function conjTable(v, cls, ico){
+  var all=v.forms.map(function(f,i){ return jeElide(PRON1[i], f); });
+  return '<div class="conj '+cls+'"><h3><span>'+ico+' '+v.inf.toUpperCase()+'</span><button class="listen" type="button" data-say="'+esc(all.join('. '))+'" aria-label="Écouter le verbe">🔊</button></h3>'
+    +'<span class="inf">'+esc(v.es)+'</span><table><tbody>'
+    + v.forms.map(function(f,i){
+        var html;
+        if(cls==='p'){ var rad=v.rad; var stem=(i<3)?rad.slice(0,-1):rad; var end=f.slice(stem.length); html=esc(stem)+'<u>'+esc(end)+'</u>'+(i<3?' <em>· sans « '+esc(rad.slice(-1))+' »</em>':''); }
+        else { var st=v.inf.slice(0,-2); html=esc(st)+'<u>'+esc(f.slice(st.length))+'</u>'; }
+        return '<tr><td class="p">'+esc(PRON[i])+'</td><td class="v"><button class="listen" style="position:static;width:auto;height:auto;border:none;background:none;padding:0;color:inherit;display:inline;font:inherit" type="button" data-say="'+esc(jeElide(PRON1[i],f))+'">'+html+'</button></td></tr>';
+      }).join('')+'</tbody></table></div>';
+}
+document.getElementById('famCards').innerHTML = conjTable(FINIR[0],'','🏁') + conjTable(PARTIR[0],'p','✈️');
+
+/* ---------------- rendu : verbes ---------------- */
+document.getElementById('verbsF').innerHTML = FINIR.map(function(v){
+  var say = v.inf+'. je '+v.forms[0]+', nous '+v.forms[3];
+  return '<div class="vb" data-say="'+esc(say)+'">'
+    +'<button class="listen" type="button" data-say="'+esc(say)+'" aria-label="Écouter">🔊</button>'
+    +(v.adj?'<span class="adj"><b>'+esc(v.adj)+'</b> → </span>':'<span class="adj">&nbsp;</span>')
+    +'<span class="inf">'+esc(v.inf)+'</span><span class="es">'+esc(v.es)+' · nous '+esc(v.forms[3])+'</span></div>';
+}).join('');
+document.getElementById('verbsP').innerHTML = PARTIR.map(function(v){
+  var say = v.inf+'. je '+v.forms[0]+', nous '+v.forms[3];
+  return '<div class="vb" data-say="'+esc(say)+'">'
+    +'<button class="listen" type="button" data-say="'+esc(say)+'" aria-label="Écouter">🔊</button>'
+    +'<span class="adj">'+esc(v.rad.slice(0,-1))+'<b>'+esc(v.rad.slice(-1))+'</b>-'+esc(v.inf.slice(v.rad.length))+'</span>'
+    +'<span class="inf">'+esc(v.inf)+'</span><span class="es">'+esc(v.es)+' · je '+esc(v.forms[0])+', nous '+esc(v.forms[3])+'</span></div>';
+}).join('');
+document.querySelectorAll('.vb').forEach(function(c){ c.addEventListener('click', function(e){ if(e.target.closest('.listen')) return; speak(c.getAttribute('data-say')); }); });
+
+/* ---------------- rendu : prépositions ---------------- */
+var PREP_CLS={en:'f',env:'f',au:'',aux:'pl',a:'v'};
+document.getElementById('prepCards').innerHTML = Object.keys(PAYS).map(function(k){
+  var p=PAYS[k];
+  return '<div class="pc '+PREP_CLS[k]+'"><h4>Je pars <b>'+p.t+'</b></h4><p class="r">'+esc(p.r)+'</p><div class="cl">'
+    + p.list.map(function(c){ return '<span class="cw" data-say="Je pars '+esc(p.t.toLowerCase())+' '+esc(c)+'.">'+esc(c)+'</span>'; }).join('')
+    + '</div></div>';
+}).join('');
+document.getElementById('prepCards').addEventListener('click', function(e){ var c=e.target.closest('.cw'); if(c) speak(c.getAttribute('data-say')); });
+var lastPartir='';
+function genPartir(){
+  var i=Math.floor(Math.random()*6), k=pick(Object.keys(PAYS)), c=pick(PAYS[k].list);
+  var subj=['Je','Tu','Elle','Nous','Vous','Ils'][i], f=PARTIR[0].forms[i];
+  lastPartir=subj+' '+f+' '+PAYS[k].t.toLowerCase()+' '+c+'.';
+  document.getElementById('genPartir').innerHTML='✈️ <b>'+esc(subj+' '+f)+'</b> <span style="color:var(--rouge);font-weight:800">'+esc(PAYS[k].t.toLowerCase())+'</span> '+esc(c)+'.';
+}
+document.getElementById('btnGenPartir').addEventListener('click', genPartir);
+document.getElementById('btnSayPartir').addEventListener('click', function(){ speak(lastPartir); });
+genPartir();
+
+/* ---------------- rendu : émotions ---------------- */
+document.getElementById('emoCards').innerHTML = EMOS.map(function(e){
+  var adj = e.avoir ? 'avoir peur de' : (e.ennuie ? 's\'ennuyer' : (e.m===e.f ? e.m : e.m+' / '+e.f));
+  return '<div class="emo"><button class="listen" type="button" data-say="'+esc(e.ex)+'" aria-label="Écouter">🔊</button>'
+    +'<span class="big">'+e.ico+'</span><span class="cat">'+esc(e.cat)+'</span><span class="adj">'+esc(adj)+'</span>'
+    +'<span class="ex"><em>'+esc(e.es)+'</em><br>'+esc(e.ex)+'</span></div>';
+}).join('');
+var SENTIR={je:'me sens',tu:'te sens',il:'se sent',elle:'se sent',nous:'nous sentons',vous:'vous sentez',ils:'se sentent',elles:'se sentent'};
+var AVOIR={je:'ai',tu:'as',il:'a',elle:'a',nous:'avons',vous:'avez',ils:'ont',elles:'ont'};
+var ENNUI={je:"m'ennuie",tu:"t'ennuies",il:"s'ennuie",elle:"s'ennuie",nous:'nous ennuyons',vous:'vous ennuyez',ils:"s'ennuient",elles:"s'ennuient"};
+var emoSel=document.getElementById('emoPick');
+EMOS.forEach(function(e,i){ var o=document.createElement('option'); o.value=i; o.textContent=e.ico+' '+(e.avoir?'avoir peur':(e.ennuie?'s\'ennuyer':e.m)); emoSel.appendChild(o); });
+function emoPhrase(){
+  var s=document.getElementById('emoSubj').value, e=EMOS[parseInt(emoSel.value,10)];
+  var fem = s==='elle'||s==='elles', plur = ['nous','vous','ils','elles'].indexOf(s)>=0;
+  var subj = s.charAt(0).toUpperCase()+s.slice(1), ph;
+  if(e.avoir){ ph = (s==='je'?"J'":subj+' ')+AVOIR[s]+' peur.'; }
+  else if(e.ennuie){ ph = subj+' '+ENNUI[s]+'.'; }
+  else {
+    var adj = fem ? e.f : e.m;
+    if(plur && e.m!=='en colère'){ adj = adj + (/(s|x)$/.test(adj)?'':'s'); }
+    ph = subj+' '+SENTIR[s]+' '+adj+'.';
+  }
+  document.getElementById('emoOut').textContent=ph;
+  return ph;
+}
+document.getElementById('emoSubj').addEventListener('change', emoPhrase);
+emoSel.addEventListener('change', emoPhrase);
+document.getElementById('emoSay').addEventListener('click', function(){ speak(emoPhrase()); });
+emoPhrase();
+
+/* ---------------- moteur d'exercices ---------------- */
+var ROUNDS=8;
+var EX={A:{i:0,ok:0},B:{i:0,ok:0},C:{i:0,ok:0},D:{i:0,ok:0},E:{i:0,ok:0},F:{i:0,ok:0},G:{i:0,ok:0},H:{i:0,ok:0},I:{i:0,ok:0}};
+var TOTALS={A:ROUNDS,B:ROUNDS,C:ROUNDS,D:ROUNDS,E:ROUNDS,F:ROUNDS,G:8,H:ROUNDS,I:ROUNDS};
+function setBar(n){
+  var st=EX[n];
+  document.getElementById('bar'+n).style.width=Math.round(st.i/TOTALS[n]*100)+'%';
+  document.getElementById('sc'+n).textContent=st.ok+' / '+st.i;
+  var ok=0,tot=0,k; for(k in EX){ ok+=EX[k].ok; tot+=EX[k].i; }
+  document.getElementById('bTotal').textContent=ok+' / '+tot;
+  document.getElementById('bPct').textContent=tot?Math.round(ok/tot*100)+' %':'—';
+}
+function fb(n,good,msg,sub){ var el=document.getElementById('f'+n); el.className='fb '+(good?'good':'bad'); el.innerHTML=(good?'✅ ':'❌ ')+esc(msg)+(sub?'<small>'+esc(sub)+'</small>':''); }
+function finish(n){
+  var st=EX[n], t=TOTALS[n], q=document.getElementById('q'+n), o=document.getElementById('o'+n);
+  if(q) q.innerHTML='🎉 <span>Terminé — '+st.ok+' / '+t+' bonnes réponses.</span>';
+  if(o) o.innerHTML='';
+  var el=document.getElementById('f'+n); el.className='fb';
+  el.textContent = st.ok>=t-1?'Excellent ! 👏':(st.ok>=t/2?'Bien ! Recommencez pour progresser.':'Révisez la leçon et recommencez.');
+}
+function mcqBind(n, onAnswer){
+  document.getElementById('o'+n).addEventListener('click', function(e){
+    var b=e.target.closest('.opt'); if(!b||b.disabled) return;
+    var st=EX[n], good=b.getAttribute('data-v')===st.answer;
+    document.querySelectorAll('#o'+n+' .opt').forEach(function(x){ x.disabled=true; if(x.getAttribute('data-v')===st.answer) x.classList.add('good'); });
+    if(!good) b.classList.add('bad');
+    if(good) st.ok++; st.i++;
+    onAnswer(good, st.cur);
+    setBar(n);
+    setTimeout(function(){ st.next(); }, 1700);
+  });
+}
+function optsHtml(list, chip){ return list.map(function(v){ return '<button class="opt'+(chip?' chip':'')+'" type="button" data-v="'+esc(v)+'">'+esc(v)+'</button>'; }).join(''); }
+
+/* A : quelle famille */
+function startA(){ EX.A={i:0,ok:0,list:shuffle(FINIR.map(function(v){return {inf:v.inf,fam:'finir',v:v};}).concat(PARTIR.slice(0,5).map(function(v){return {inf:v.inf,fam:'partir',v:v};}))).slice(0,ROUNDS),next:nextA}; setBar('A'); nextA(); }
+function nextA(){
+  var st=EX.A; if(st.i>=TOTALS.A){ finish('A'); return; }
+  var it=st.list[st.i]; st.cur=it; st.answer=it.fam;
+  document.getElementById('qA').innerHTML='<span>'+esc(it.inf)+'</span><span class="hint">· question '+(st.i+1)+' / '+TOTALS.A+'</span>';
+  document.getElementById('oA').innerHTML='<button class="opt" type="button" data-v="finir">type finir — nous …issons</button><button class="opt" type="button" data-v="partir">type partir — la consonne tombe</button>';
+  document.getElementById('fA').textContent='';
+}
+mcqBind('A', function(good,it){ fb('A',good,'je '+it.v.forms[0]+', nous '+it.v.forms[3], it.inf+' — '+it.v.es); speak('je '+it.v.forms[0]+', nous '+it.v.forms[3]); });
+
+/* B : adjectif → verbe */
+var ADJV=FINIR.filter(function(v){return v.adj;});
+function startB(){ EX.B={i:0,ok:0,list:shuffle(ADJV).slice(0,ROUNDS),next:nextB}; setBar('B'); nextB(); }
+function nextB(){
+  var st=EX.B; if(st.i>=TOTALS.B){ finish('B'); return; }
+  var it=st.list[st.i]; st.cur=it; st.answer=it.inf;
+  document.getElementById('qB').innerHTML='<span>'+esc(it.adj)+' → <span class="blank">______</span></span><span class="hint">· devenir '+esc(it.adj)+' — question '+(st.i+1)+' / '+TOTALS.B+'</span>';
+  var opts=shuffle(shuffle(FINIR.filter(function(x){return x.inf!==it.inf;})).slice(0,3).map(function(x){return x.inf;}).concat([it.inf]));
+  document.getElementById('oB').innerHTML=optsHtml(opts);
+  document.getElementById('fB').textContent='';
+}
+mcqBind('B', function(good,it){ fb('B',good,it.adj+' → '+it.inf, it.es+' · nous '+it.forms[3]); speak(it.inf); });
+
+/* C / D : conjugaison écrite */
+function typedEx(n, pool, inputId){
+  var st=EX[n];
+  function start(){ EX[n]={i:0,ok:0,tried:false,list:shuffle(pool).slice(0,ROUNDS),next:next}; document.getElementById(inputId).disabled=false; setBar(n); next(); }
+  function next(){
+    var s=EX[n]; if(s.i>=TOTALS[n]){ finish(n); document.getElementById(inputId).disabled=true; return; }
+    s.tried=false; var it=s.list[s.i];
+    document.getElementById('q'+n).innerHTML='<span>'+esc(it.p)+' <span class="blank">______</span> '+esc(it.rest)+'</span><span class="hint">· ('+esc(it.inf)+') — question '+(s.i+1)+' / '+TOTALS[n]+'</span>';
+    var inp=document.getElementById(inputId); inp.value=''; inp.className=''; inp.disabled=false; inp.focus();
+    document.getElementById('f'+n).textContent='';
+  }
+  function grade(reveal){
+    var s=EX[n]; if(s.i>=TOTALS[n]||s.tried) return;
+    var it=s.list[s.i], inp=document.getElementById(inputId);
+    var v=norm(inp.value).replace(/^(je|j'|tu|il|elle|on|nous|vous|ils|elles)\s*/,'');
+    if(!reveal&&!v) return;
+    var good=!reveal && v===norm(it.a);
+    s.tried=true; inp.value=it.a; inp.className=good?'good':'bad'; inp.disabled=true;
+    if(good) s.ok++; s.i++;
+    var phrase=jeElide(it.p.toLowerCase(), it.a)+' '+it.rest; phrase=phrase.charAt(0).toUpperCase()+phrase.slice(1);
+    fb(n,good,phrase,'verbe : '+it.inf);
+    speak(phrase); setBar(n); setTimeout(next,1800);
+  }
+  document.getElementById('check'+n).addEventListener('click', function(){ grade(false); });
+  document.getElementById('show'+n).addEventListener('click', function(){ grade(true); });
+  document.getElementById(inputId).addEventListener('keydown', function(e){ if(e.key==='Enter') grade(false); });
+  return start;
+}
+var POOL_C=[
+  {p:'Nous',v:'finir',i:3,rest:'les devoirs à huit heures.'},{p:'Tu',v:'choisir',i:1,rest:'le menu ou la carte ?'},{p:'Ils',v:'grandir',i:5,rest:'très vite, ces enfants !'},
+  {p:'Vous',v:'réfléchir',i:4,rest:'avant de répondre.'},{p:'Elle',v:'rougir',i:2,rest:'quand elle parle en public.'},{p:'Je',v:'finir',i:0,rest:'mon café et je pars.'},
+  {p:'Nous',v:'choisir',i:3,rest:'une glace au chocolat.'},{p:'Les spectateurs',v:'applaudir',i:5,rest:'le pianiste.'},{p:'Vous',v:'réussir',i:4,rest:'toujours vos examens.'},
+  {p:'Le pilote',v:'atterrir',i:2,rest:'en douceur.'},{p:'Je',v:'maigrir',i:0,rest:'un peu chaque été.'},{p:'Nous',v:'grossir',i:3,rest:'en hiver !'},
+  {p:'Les feuilles',v:'jaunir',i:5,rest:'en automne.'},{p:'Tu',v:'remplir',i:1,rest:'le formulaire.'},{p:'On',v:'ralentir',i:2,rest:'devant l\'école.'},{p:'Vous',v:'guérir',i:4,rest:'vite avec ce médicament.'}
+].map(function(x){ var v=FINIR.filter(function(f){return f.inf===x.v;})[0]; return {p:x.p,inf:x.v,a:v.forms[x.i],rest:x.rest}; });
+var POOL_D=[
+  {p:'Je',v:'partir',i:0,rest:'en vacances en juin.'},{p:'Tu',v:'sortir',i:1,rest:'tous les vendredis soir ?'},{p:'Il',v:'dormir',i:2,rest:'sept heures par nuit.'},
+  {p:'Nous',v:'partir',i:3,rest:'aux États-Unis.'},{p:'Vous',v:'servir',i:4,rest:'le dîner à quelle heure ?'},{p:'Elles',v:'sortir',i:5,rest:'du bureau à 18 h.'},
+  {p:'Je',v:'dormir',i:0,rest:'mal quand il fait chaud.'},{p:'Je',v:'vivre',i:0,rest:'en France depuis deux ans.'},{p:'Tu',v:'suivre',i:1,rest:'des cours d\'anglais ?'},
+  {p:'On',v:'sentir',i:2,rest:'le café dès le matin.'},{p:'Nous',v:'dormir',i:3,rest:'à l\'hôtel ce soir.'},{p:'Vous',v:'partir',i:4,rest:'en avion ou en voiture ?'},
+  {p:'Ils',v:'vivre',i:5,rest:'à Montréal.'},{p:'Elle',v:'partir',i:2,rest:'au Japon en septembre.'},{p:'Je',v:'servir',i:0,rest:'le petit-déjeuner.'},{p:'Nous',v:'suivre',i:3,rest:'un cours de français.'}
+].map(function(x){ var v=PARTIR.filter(function(f){return f.inf===x.v;})[0]; return {p:x.p,inf:x.v,a:v.forms[x.i],rest:x.rest}; });
+var startC=typedEx('C',POOL_C,'inC'), startD=typedEx('D',POOL_D,'inD');
+
+/* E : prépositions */
+var PREP_ITEMS=[]; Object.keys(PAYS).forEach(function(k){ PAYS[k].list.forEach(function(c){ PREP_ITEMS.push({c:c,a:PAYS[k].t.toLowerCase()}); }); });
+function startE(){ EX.E={i:0,ok:0,list:shuffle(PREP_ITEMS).slice(0,ROUNDS),next:nextE}; setBar('E'); nextE(); }
+function nextE(){
+  var st=EX.E; if(st.i>=TOTALS.E){ finish('E'); return; }
+  var it=st.list[st.i]; st.cur=it; st.answer=it.a;
+  var subj=pick([['Je','pars'],['Tu','pars'],['Elle','part'],['Nous','partons'],['Vous','partez'],['Ils','partent']]); st.subj=subj;
+  document.getElementById('qE').innerHTML='<span>'+esc(subj[0]+' '+subj[1])+' <span class="blank">___</span> '+esc(it.c)+'.</span><span class="hint">· question '+(st.i+1)+' / '+TOTALS.E+'</span>';
+  document.getElementById('oE').innerHTML=optsHtml(['en','au','aux','à'],true);
+  document.getElementById('fE').textContent='';
+}
+mcqBind('E', function(good,it){ var st=EX.E, ph=st.subj[0]+' '+st.subj[1]+' '+it.a+' '+it.c+'.'; var why={en:'pays féminin → en',au:'pays masculin → au',aux:'pays pluriel → aux','à':'ville → à'}[it.a]; fb('E',good,ph,why); speak(ph); });
+
+/* F : émotions */
+var SITS=[
+  {s:'C\'est mon anniversaire et tous mes amis sont là.', a:'Je me sens joyeux.'},
+  {s:'Mon meilleur ami part vivre en Australie.', a:'Je suis triste.'},
+  {s:'Quelqu\'un a pris ma place de parking sans demander.', a:'Je suis furieux.'},
+  {s:'Demain, je passe un examen important en français.', a:'J\'ai peur.'},
+  {s:'Je reçois un cadeau que je n\'attendais pas.', a:'Je suis surprise.'},
+  {s:'Il pleut, la télé ne marche pas, personne n\'est là.', a:'Je m\'ennuie.'},
+  {s:'J\'ai travaillé douze heures aujourd\'hui.', a:'Je me sens fatiguée.'},
+  {s:'Je réussis mon examen de français !', a:'Je suis fière de moi.'},
+  {s:'Le restaurant est bon et pas cher.', a:'Nous sommes contents.'},
+  {s:'Mon équipe perd le match à la dernière minute.', a:'Nous sommes en colère.'},
+  {s:'Ma fille finit ses études avec mention.', a:'Je suis fier d\'elle.'},
+  {s:'Ma grand-mère est malade et loin de moi.', a:'Je me sens malheureuse.'}
+];
+var SIT_OPTS=['Je me sens joyeux.','Je suis triste.','Je suis furieux.','J\'ai peur.','Je suis surprise.','Je m\'ennuie.','Je me sens fatiguée.','Je suis fière de moi.','Nous sommes contents.','Nous sommes en colère.','Je suis fier d\'elle.','Je me sens malheureuse.'];
+function startF(){ EX.F={i:0,ok:0,list:shuffle(SITS).slice(0,ROUNDS),next:nextF}; setBar('F'); nextF(); }
+function nextF(){
+  var st=EX.F; if(st.i>=TOTALS.F){ finish('F'); return; }
+  var it=st.list[st.i]; st.cur=it; st.answer=it.a;
+  document.getElementById('qF').innerHTML='<span>'+esc(it.s)+'</span><span class="hint">· question '+(st.i+1)+' / '+TOTALS.F+'</span>';
+  var opts=shuffle(shuffle(SIT_OPTS.filter(function(o){return o!==it.a;})).slice(0,3).concat([it.a]));
+  document.getElementById('oF').innerHTML=optsHtml(opts);
+  document.getElementById('fF').textContent='';
+}
+mcqBind('F', function(good,it){ fb('F',good,it.a); speak(it.a); });
+
+/* G : texte à trous */
+var TEXTE=[
+  "Mon amie Léa a vingt-deux ans et elle ", {a:'vit',o:['vit','vis','vivent']}, " encore chez ses parents, à Lyon. Elle ",
+  {a:'suit',o:['suit','suis','suivent']}, " des cours de théâtre le soir, parce qu'elle veut être actrice. Le matin, elle ",
+  {a:'dort',o:['dort','dors','dorment']}, " jusqu'à dix heures ; elle ", {a:'finit',o:['finit','finis','finissent']},
+  " son petit-déjeuner et elle ", {a:'sort',o:['sort','sors','sortent']}, " pour retrouver ses amis au café. Ils ",
+  {a:'choisissent',o:['choisissent','choisit','choisis']}, " toujours la même table près de la fenêtre. Cet été, Léa et moi, nous ",
+  {a:'partons',o:['partons','part','partez']}, " en Italie. Elle est un peu nerveuse avant le voyage, mais moi, je ",
+  {a:'me sens',o:['me sens','me sent','nous sentons']}, " très joyeuse !"
+];
+function startG(){
+  EX.G={i:0,ok:0,next:function(){}};
+  document.getElementById('texteG').innerHTML=TEXTE.map(function(t,k){
+    if(typeof t==='string') return esc(t);
+    return '<select data-k="'+k+'" data-a="'+esc(t.a)+'"><option value="">…</option>'+shuffle(t.o).map(function(o){return '<option value="'+esc(o)+'">'+esc(o)+'</option>';}).join('')+'</select>';
+  }).join('');
+  document.getElementById('fG').textContent=''; setBar('G');
+}
+document.getElementById('checkG').addEventListener('click', function(){
+  var sels=document.querySelectorAll('#texteG select'), ok=0, n=0;
+  sels.forEach(function(s){ n++; var good=s.value===s.getAttribute('data-a'); s.className=good?'good':'bad'; if(good) ok++; });
+  EX.G.i=n; EX.G.ok=ok; setBar('G');
+  fb('G', ok===n, ok+' / '+n+' verbes corrects.', ok===n?'Bravo !':'Les menus en rouge sont à corriger : cliquez à nouveau sur « Vérifier ».');
+});
+document.getElementById('readG').addEventListener('click', function(){
+  speak(TEXTE.map(function(t){ return typeof t==='string'?t:t.a; }).join(''));
+});
+
+
+/* H / I : exercices à plusieurs blancs */
+function multiEx(n, pool, build){
+  function start(){ EX[n]={i:0,ok:0,list:shuffle(pool).slice(0,ROUNDS),next:next,done:false}; setBar(n); next(); }
+  function next(){
+    var st=EX[n]; if(st.i>=TOTALS[n]){ finish(n); document.getElementById('w'+n).innerHTML=''; return; }
+    st.done=false; var it=st.list[st.i]; st.cur=it; var q=build(it);
+    document.getElementById('q'+n).innerHTML='<span>'+q.html+'</span><span class="hint">· question '+(st.i+1)+' / '+TOTALS[n]+'</span>';
+    document.getElementById('w'+n).innerHTML='<div class="blanks">'+q.blanks.map(function(b,k){
+      return '<div class="bk" data-k="'+k+'" data-a="'+esc(b.a)+'"><span class="lb">'+esc(b.lb)+'</span><div class="ch">'+b.opts.map(function(o){ return '<button class="opt" type="button" data-v="'+esc(o)+'" aria-pressed="false">'+esc(o)+'</button>'; }).join('')+'</div></div>';
+    }).join('')+'</div>';
+    document.getElementById('f'+n).textContent='';
+  }
+  document.getElementById('w'+n).addEventListener('click', function(e){
+    var b=e.target.closest('.opt'); if(!b||EX[n].done) return;
+    b.closest('.ch').querySelectorAll('.opt').forEach(function(x){ x.setAttribute('aria-pressed', x===b?'true':'false'); });
+  });
+  document.getElementById('check'+n).addEventListener('click', function(){
+    var st=EX[n]; if(st.done||st.i>=TOTALS[n]) return;
+    var bks=document.querySelectorAll('#w'+n+' .bk'), allGood=true, chosen=[], missing=false;
+    bks.forEach(function(bk){ var sel=bk.querySelector('.opt[aria-pressed="true"]'); if(!sel){ missing=true; return; } chosen.push(sel.getAttribute('data-v')); var good=sel.getAttribute('data-v')===bk.getAttribute('data-a'); if(!good) allGood=false;
+      bk.querySelectorAll('.opt').forEach(function(x){ x.disabled=true; if(x.getAttribute('data-v')===bk.getAttribute('data-a')) x.classList.add('good'); }); if(!good) sel.classList.add('bad'); });
+    if(missing){ bks.forEach(function(bk){ bk.querySelectorAll('.opt').forEach(function(x){ x.disabled=false; x.classList.remove('good','bad'); }); }); fb(n,false,'Choisissez une réponse pour chaque blanc.'); document.getElementById('f'+n).className='fb'; return; }
+    st.done=true; if(allGood) st.ok++; st.i++;
+    var q=build(st.cur); fb(n,allGood,q.full,q.why); speak(q.full); setBar(n); setTimeout(next,2000);
+  });
+  return start;
+}
+var ART_OPTS=['le','la',"l'",'les'], PREP_OPTS=['en','au','aux'];
+var POOL_H=Object.keys(PAYS_ART).map(function(c){ var art=PAYS_ART[c]; var prep=art==='les'?'aux':(art==='le'?'au':'en'); return {c:c,art:art,prep:prep}; });
+function artJoin(a,c){ return a==="l'"?"l'"+c:a+' '+c; }
+var startH=multiEx('H', POOL_H, function(it){
+  return {html:'Ils aiment <span class="blank">___</span> '+esc(it.c)+' → ils habitent <span class="blank">___</span> '+esc(it.c)+'.',
+          blanks:[{lb:'article',a:it.art,opts:ART_OPTS},{lb:'préposition',a:it.prep,opts:PREP_OPTS}],
+          full:'Ils aiment '+artJoin(it.art,it.c)+' ; ils habitent '+it.prep+' '+it.c+'.',
+          why:(it.art==='les'?'pluriel → aux':(it.art==='le'?'masculin → au':(/^[aeiouéèê]/i.test(it.c)&&PAYS.env.list.indexOf(it.c)>=0?'masculin + voyelle → en':'féminin → en')))};
+});
+var POOL_I=[
+  {m:'La tour Eiffel est',v:'Paris',p:'France',pp:'en'},{m:'Big Ben est',v:'Londres',p:'Angleterre',pp:'en'},{m:'La Scala est',v:'Milan',p:'Italie',pp:'en'},
+  {m:'La Petite Sirène est',v:'Copenhague',p:'Danemark',pp:'au'},{m:'La statue de la Liberté est',v:'New York',p:'États-Unis',pp:'aux'},
+  {m:'Le Christ Rédempteur est',v:'Rio',p:'Brésil',pp:'au'},{m:'La Sagrada Família est',v:'Barcelone',p:'Espagne',pp:'en'},{m:'Le Colisée est',v:'Rome',p:'Italie',pp:'en'},
+  {m:'Le Kremlin est',v:'Moscou',p:'Russie',pp:'en'},{m:'Le Machu Picchu est',v:'Cuzco',p:'Pérou',pp:'au'},{m:'Le Taj Mahal est',v:'Agra',p:'Inde',pp:'en'},
+  {m:'Le Conseil de l\'Europe est',v:'Bruxelles',p:'Belgique',pp:'en'},{m:'Le Zócalo est',v:'Mexico',p:'Mexique',pp:'au'},{m:'La tour CN est',v:'Toronto',p:'Canada',pp:'au'},
+  {m:'Quito est',v:null,p:'Équateur',pp:'en'},{m:'Bagdad est',v:null,p:'Irak',pp:'en'},{m:'Hanoi est',v:null,p:'Vietnam',pp:'au'},{m:'Acapulco est',v:null,p:'Mexique',pp:'au'},{m:'Manille est',v:null,p:'Philippines',pp:'aux'}
+];
+var startI=multiEx('I', POOL_I, function(it){
+  var blanks=[]; var html=esc(it.m)+' ';
+  if(it.v){ html+='<span class="blank">___</span> '+esc(it.v)+', '; blanks.push({lb:'ville',a:'à',opts:['à','en','au','aux']}); }
+  html+='<span class="blank">___</span> '+esc(it.p)+'.'; blanks.push({lb:'pays',a:it.pp,opts:['à','en','au','aux']});
+  var full=it.m+' '+(it.v?'à '+it.v+', ':'')+it.pp+' '+it.p+'.';
+  return {html:html, blanks:blanks, full:full, why:'ville → à · '+(it.pp==='aux'?'pays pluriel → aux':(it.pp==='au'?'pays masculin → au':'pays féminin ou voyelle → en'))};
+});
+
+/* ---- démarrage ---- */
+var STARTERS={A:startA,B:startB,C:startC,D:startD,E:startE,F:startF,G:startG,H:startH,I:startI};
+document.querySelectorAll('[data-reset]').forEach(function(b){ b.addEventListener('click', function(){ STARTERS[b.getAttribute('data-reset')](); }); });
+document.getElementById('resetAll').addEventListener('click', function(){ Object.keys(STARTERS).forEach(function(k){ STARTERS[k](); }); document.getElementById('exercices').scrollIntoView({block:'start'}); });
+Object.keys(STARTERS).forEach(function(k){ STARTERS[k](); });
+
+document.getElementById('readDevoir').addEventListener('click', function(){ speak(document.getElementById('devoir').value||"Écrivez d'abord vos phrases."); });
+</script>
+
+</body></html>

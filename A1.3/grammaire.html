@@ -200,13 +200,14 @@
 
 <script>
 function enc(path){
-  return path.split('/').map(encodeURIComponent).join('/');
+  const [file, hash] = path.split('#');
+  return file.split('/').map(encodeURIComponent).join('/') + (hash ? '#' + hash : '');
 }
 
 const lecons = [
-  ["25","Verbes en -ir","25_Verbes terminaison -ir.pdf"],
-  ["26","Le verbe partir","26_Verbe partir.pdf"],
-  ["27","Les émotions","27_Les émotions.pdf"],
+  ["25","Verbes en -ir","Actividades A1.3/25_Les verbes en -ir (interactivo).html"],
+  ["26","Le verbe partir","Actividades A1.3/25_Les verbes en -ir (interactivo).html#preps"],
+  ["27","Les émotions","Actividades A1.3/25_Les verbes en -ir (interactivo).html#emotions"],
   ["28","Verbes -ir, -re et -oir","28_ Verbes -ir, -re et -oir.pdf"],
   ["29","Le futur proche","29_Futur proche.pdf"],
   ["30","Les questions en français","30_les questions en français (4).pdf"],
@@ -224,7 +225,7 @@ const fiches = [
 ];
 
 function pdfCard([num, title, path]){
-  const isHtml = path.toLowerCase().endsWith('.html');
+  const isHtml = path.split('#')[0].toLowerCase().endsWith('.html');
   const div = document.createElement('div');
   div.className = 'card';
   div.dataset.search = (num + ' ' + title).toLowerCase();
