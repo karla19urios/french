@@ -143,6 +143,24 @@
     font-size:.85rem;
     line-height:1.35;
   }
+  .exam-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+    background:var(--bleu);
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    font-size:.92rem;
+    padding:.7rem 1.5rem;
+    border-radius:999px;
+    margin-top:1rem;
+    transition:transform .14s ease, background .14s ease;
+  }
+  .exam-btn:hover{
+    background:var(--rouge);
+    transform:translateY(-2px);
+  }
   footer{
     text-align:center;
     color:var(--muted);
@@ -206,6 +224,14 @@
       <span class="status">Bientôt disponible</span>
     </div>
     <p class="desc">La suite du parcours — pas encore de matériel publié pour ce niveau.</p>
+  </section>
+
+  <section class="cefr-block">
+    <div class="cefr-head">
+      <h2>🎙️ TEF examen</h2>
+    </div>
+    <p class="desc">Préparation à l'épreuve d'expression orale du TEF — grammaire, connecteurs, méthode et 36 sujets d'entraînement avec chronomètre.</p>
+    <a class="exam-btn" href="tef-examen.html">Ouvrir →</a>
   </section>
 </main>
 
