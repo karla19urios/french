@@ -1,0 +1,601 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>Le Futur Proche</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+  :root{
+    --bg:#f4f5f7;
+    --paper:#ffffff;
+    --paper-2:#f4f5f7;
+    --ink:#1a1a2e;
+    --ink-soft:#6b7280;
+    --line:#e5e7eb;
+    --bleu:#002395;
+    --rouge:#ED2939;
+    --accent:#002395;
+    --accent-ink:#002395;
+    --green:#3f8f6d;
+    --green-bg:#e7f3ed;
+    --red:#ED2939;
+    --red-bg:#fdecec;
+    --shadow: 0 1px 2px rgba(26,26,46,.06), 0 8px 24px -12px rgba(26,26,46,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#12141c;
+      --paper:#1b1e2b;
+      --paper-2:#20232f;
+      --ink:#f1f2f6;
+      --ink-soft:#9aa0b4;
+      --line:#2a2e40;
+      --bleu:#002395;
+      --rouge:#ED2939;
+      --accent:#5b7fe0;
+      --accent-ink:#7c9df2;
+      --green:#63c299;
+      --green-bg:#173226;
+      --red:#ED2939;
+      --red-bg:#3a1418;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#12141c;
+    --paper:#1b1e2b;
+    --paper-2:#20232f;
+    --ink:#f1f2f6;
+    --ink-soft:#9aa0b4;
+    --line:#2a2e40;
+    --bleu:#002395;
+    --rouge:#ED2939;
+    --accent:#5b7fe0;
+    --accent-ink:#7c9df2;
+    --green:#63c299;
+    --green-bg:#173226;
+    --red:#ED2939;
+    --red-bg:#3a1418;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.6);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'Work Sans', ui-sans-serif, system-ui, sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:0 20px 90px;}
+  h1,h2,h3{font-family:'Fraunces', Georgia, serif; text-wrap:balance; margin:0; color:var(--ink);}
+  .eyebrow{font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-ink); font-weight:600;}
+  code, .mono{font-family:'IBM Plex Mono', monospace;}
+
+  .stripe{height:8px; background:linear-gradient(90deg, var(--bleu) 33%, #ffffff 33%, #ffffff 66%, var(--rouge) 66%);}
+
+  .hero{
+    background: linear-gradient(180deg, var(--bleu) 0%, #000f42 100%);
+    color:#f3f5ff; padding:40px 20px 40px;
+  }
+  .hero-inner{max-width:900px; margin:0 auto;}
+  .hero h1{font-size:clamp(30px,4.4vw,44px); font-weight:600; color:#ffffff; letter-spacing:-.01em;}
+  .hero-meta{display:flex; gap:22px; margin-top:22px; flex-wrap:wrap;}
+  .hero-meta div{font-family:'IBM Plex Mono',monospace; font-size:12px; color:#a9b6e8;}
+  .hero-meta b{display:block; color:#f3f5ff; font-size:14px; font-family:'Work Sans',sans-serif; font-weight:600; margin-top:2px;}
+
+  section{margin-top:46px;}
+  .wrap > section:first-of-type{margin-top:36px;}
+  .sec-head{display:flex; align-items:baseline; gap:12px; margin-bottom:16px;}
+  .sec-num{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent-ink); font-weight:600;}
+  section h2{font-size:25px; font-weight:600;}
+  .sec-intro{color:var(--ink-soft); font-size:15px; max-width:66ch; margin-top:6px;}
+
+  .card{background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:22px; box-shadow:var(--shadow);}
+  .card + .card{margin-top:14px;}
+
+  table.poss{width:100%; border-collapse:collapse; margin-top:12px; font-size:14.5px;}
+  table.poss th{text-align:left; font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); padding:6px 10px; border-bottom:2px solid var(--line);}
+  table.poss td{padding:8px 10px; border-bottom:1px solid var(--line);}
+  table.poss tr:last-child td{border-bottom:none;}
+  table.poss .pron{color:var(--ink-soft); width:150px;}
+  table.poss .pos{font-weight:700; color:var(--accent-ink);}
+
+  .instr-box{border-left:3px solid var(--accent); background:var(--paper-2); border-radius:0 10px 10px 0; padding:14px 18px; margin:16px 0; font-size:14.5px;}
+  .instr-box b{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-ink); display:block; margin-bottom:6px;}
+  .instr-box s{color:var(--ink-soft);}
+
+  .note-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px;}
+  @media (max-width:640px){.note-grid{grid-template-columns:1fr;}}
+  .note-grid.cols-3{grid-template-columns:1fr 1fr 1fr;}
+  @media (max-width:760px){.note-grid.cols-3{grid-template-columns:1fr;}}
+  .note{background:var(--paper-2); border-radius:10px; padding:14px 16px; font-size:13.8px;}
+  .note b{display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--accent-ink); margin-bottom:6px;}
+  .note .fr{font-style:italic; color:var(--ink); display:block; margin-top:4px;}
+  .note p{margin:5px 0; font-size:13.5px;}
+  .note p .en{color:var(--ink-soft); font-size:12px; font-style:normal;}
+
+  .ex-block{margin-top:16px;}
+  .ex-tag{
+    display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%;
+    background:var(--bleu); color:#ffffff; font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:13px;
+    margin-right:8px; flex:0 0 auto;
+  }
+  .ex-title{font-weight:600; font-size:15.5px; display:flex; align-items:center; margin-bottom:4px;}
+  .ex-sub{color:var(--ink-soft); font-size:13.3px; margin:2px 0 14px 34px;}
+  .ex-part{font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:600; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.06em; margin:16px 0 6px;}
+  .ex-part:first-of-type{margin-top:4px;}
+  .part-label{font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#ffffff; background:var(--bleu); display:inline-block; padding:5px 12px; border-radius:20px; margin:34px 0 -2px;}
+  .card.ex-block:first-of-type{margin-top:0;}
+  .prod-q{font-weight:600; font-size:14.5px; color:var(--ink); margin:16px 0 6px;}
+  .prod-q:first-of-type{margin-top:6px;}
+
+  .fill-line{
+    display:flex; align-items:baseline; flex-wrap:wrap; gap:6px 4px; padding:9px 0; font-size:15px; border-bottom:1px dashed var(--line);
+  }
+  .fill-line:last-child{border-bottom:none;}
+  .fill-line .qn{font-family:'IBM Plex Mono',monospace; color:var(--ink-soft); font-size:12.5px; width:16px;}
+  .blank{
+    padding:5px 8px; border-radius:6px; border:1px solid var(--line); background:var(--paper-2);
+    color:var(--ink); font-family:'Work Sans',sans-serif; font-size:14.5px;
+  }
+  .blank.w-full{width:100%; margin-top:4px;}
+  .blank.w-med{width:190px;}
+  .blank.w-sm{width:100px; text-align:center;}
+  .blank.tiny{width:60px; text-align:center;}
+  .blank:focus{outline:2px solid var(--accent); outline-offset:1px;}
+  .blank.ok{border-color:var(--green); background:var(--green-bg);}
+  .blank.no{border-color:var(--red); background:var(--red-bg);}
+  .given{font-weight:600; color:var(--accent-ink);}
+
+  .hint-chip{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:600; color:var(--accent-ink); background:var(--paper-2); border:1px solid var(--line); border-radius:6px; padding:2px 7px; margin-right:6px; white-space:nowrap;}
+
+  .btn{font-family:'Work Sans',sans-serif; font-weight:600; font-size:14px; padding:10px 18px; border-radius:9px; border:none; cursor:pointer; background:var(--bleu); color:#ffffff;}
+  .btn:hover{background:var(--rouge);}
+  .btn.secondary{background:transparent; color:var(--ink); border:1px solid var(--line);}
+  .btn.secondary:hover{border-color:var(--accent); color:var(--accent-ink);}
+  .btn:disabled, .phrase:disabled{opacity:.35; cursor:default;}
+  .btn-row{display:flex; gap:10px; margin-top:16px; flex-wrap:wrap;}
+
+  .phrase-bank{display:flex; gap:8px; flex-wrap:wrap; margin:12px 0;}
+  .phrase{font-family:'IBM Plex Mono',monospace; font-size:12.5px; background:var(--paper-2); border:1px solid var(--line); border-radius:20px; padding:6px 12px; cursor:pointer;}
+  .phrase:hover{border-color:var(--accent);}
+  .phrase .g{color:var(--ink-soft); margin-left:3px;}
+  textarea, input[type="text"].free{width:100%; min-height:44px; border-radius:10px; border:1px solid var(--line); background:var(--paper-2); color:var(--ink); font-family:'Work Sans',sans-serif; font-size:14.5px; padding:11px 13px; resize:vertical;}
+  textarea:focus, input[type="text"].free:focus{outline:2px solid var(--accent); outline-offset:1px;}
+  .model-answer{display:none; margin-top:10px; background:var(--green-bg); border-radius:10px; padding:13px 16px; font-size:14px;}
+  .model-answer.show{display:block;}
+  .model-answer b{display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--green); margin-bottom:7px;}
+  .model-answer p{margin:3px 0;}
+
+  .sel-line{display:flex; align-items:baseline; flex-wrap:wrap; gap:6px; font-size:15px; padding:8px 0; border-bottom:1px dashed var(--line);}
+  .sel-line:last-child{border-bottom:none;}
+  select.blank{appearance:auto; cursor:pointer;}
+
+  .order-list{list-style:none; margin:12px 0 0; padding:0; display:flex; flex-direction:column; gap:8px; min-height:14px;}
+  .order-step{display:flex; align-items:center; gap:12px; background:var(--paper-2); border:1px solid var(--line); border-radius:10px; padding:9px 14px; font-size:14.5px;}
+  .order-num{font-family:'IBM Plex Mono',monospace; font-weight:700; width:22px; height:22px; border-radius:50%; background:var(--bleu); color:#fff; display:flex; align-items:center; justify-content:center; font-size:11.5px; flex:0 0 auto;}
+  .order-step.ok{border-color:var(--green); background:var(--green-bg);}
+  .order-step.no{border-color:var(--red); background:var(--red-bg);}
+
+  .score-banner{margin-top:16px; padding:14px 18px; border-radius:12px; background:var(--paper-2); border:1px solid var(--line); display:none; align-items:center; gap:14px;}
+  .score-banner.show{display:flex;}
+  .score-num{font-family:'Fraunces',serif; font-size:30px; font-weight:600; color:var(--accent-ink);}
+
+  footer{max-width:900px; margin:60px auto 0; padding:20px; text-align:center; color:var(--ink-soft); font-size:12.5px; font-family:'IBM Plex Mono',monospace;}
+</style>
+
+<div class="stripe"></div>
+<div class="hero">
+  <div class="hero-inner">
+    <h1>Le Futur Proche</h1>
+    <div class="hero-meta">
+      <div>Language<b>French · A1</b></div>
+      <div>Focus<b>« aller + infinitif »</b></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section id="sec-intro">
+    <div class="sec-head"><span class="sec-num">01</span><h2>How this lesson works</h2></div>
+    <p class="sec-intro">French has a wonderfully simple way to talk about the near future: <b style="color:var(--ink)">aller + infinitif</b>, the futur proche. It's the structure you reach for constantly — for plans, predictions, and anything about to happen.</p>
+  </section>
+
+  <!-- THEORY: FORMATION -->
+  <section id="sec-formation">
+    <div class="sec-head"><span class="sec-num">02</span><h2>« aller » + infinitif</h2></div>
+    <div class="card">
+      <p class="sec-intro" style="margin-top:0;">Formation is simple: conjugate <em>aller</em> to match your subject, then add any infinitive right after it — completely unchanged.</p>
+      <table class="poss">
+        <tr><th></th><th>aller</th><th></th></tr>
+        <tr><td class="pron">Je</td><td class="pos">vais</td><td>manger.</td></tr>
+        <tr><td class="pron">Tu</td><td class="pos">vas</td><td>dormir.</td></tr>
+        <tr><td class="pron">Il / Elle / On</td><td class="pos">va</td><td>jouer.</td></tr>
+        <tr><td class="pron">Nous</td><td class="pos">allons</td><td>écrire.</td></tr>
+        <tr><td class="pron">Vous</td><td class="pos">allez</td><td>chanter.</td></tr>
+        <tr><td class="pron">Ils / Elles</td><td class="pos">vont</td><td>danser.</td></tr>
+      </table>
+      <div class="instr-box">
+        <b>Attention</b>
+        The second verb stays a plain infinitive — never conjugate it, and never add « à ». <b style="color:var(--ink)">Je vais travailler.</b> Ne dites pas : <s>Je vais travaillé.</s> <s>Je vais à travailler.</s>
+      </div>
+    </div>
+  </section>
+
+  <!-- THEORY: USES -->
+  <section id="sec-usage">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Quand l'utiliser ?</h2></div>
+    <div class="card">
+      <p class="sec-intro" style="margin-top:0;">Futur proche covers two related situations: something about to happen right now, and a change you already know is coming.</p>
+      <div class="note-grid">
+        <div class="note"><b>⚡ Un événement immédiat ou prévisible</b>
+          <p>Attention, tu vas tomber ! <span class="en">(Watch out, you're about to fall!)</span></p>
+          <p>Le ciel est gris : il va pleuvoir. <span class="en">(The sky is grey: it's going to rain.)</span></p>
+        </div>
+        <div class="note"><b>🔮 Un changement à venir</b>
+          <p>Mon fils va partir à l'étranger. <span class="en">(My son is going to move abroad.)</span></p>
+          <p>Ma fille va avoir un bébé. <span class="en">(My daughter is going to have a baby.)</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THEORY: A DAY IN FUTUR PROCHE -->
+  <section id="sec-journee">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Une journée en futur proche</h2></div>
+    <div class="card">
+      <p class="sec-intro" style="margin-top:0;">Here's someone planning their whole day, sentence by sentence, entirely in futur proche.</p>
+      <div class="note-grid cols-3">
+        <div class="note"><b>🌅 Le matin</b>
+          <p>Je vais me réveiller et je vais m'habiller.</p>
+          <p>Après, je vais me brosser les dents et laver mon visage.</p>
+          <p>Je vais manger le petit-déjeuner.</p>
+          <p>À 8 heures, je vais aller à l'école.</p>
+        </div>
+        <div class="note"><b>🌤️ L'après-midi</b>
+          <p>Après l'école, je vais déjeuner.</p>
+          <p>Je vais ranger ma chambre et jouer dehors.</p>
+          <p>Je vais faire mes devoirs.</p>
+          <p>Peut-être, je vais lire un livre.</p>
+        </div>
+        <div class="note"><b>🌙 Le soir</b>
+          <p>Je vais prendre une douche.</p>
+          <p>Je vais dîner et regarder la télévision.</p>
+          <p>Enfin, je vais dormir à 21 heures.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK DRILL -->
+  <section id="sec-drill">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Quick drill — la bonne forme d'« aller »</h2></div>
+    <div class="card">
+      <p class="sec-intro" style="margin-top:0;">Choose the correct form of <em>aller</em> for each subject.</p>
+      <div id="drill"></div>
+      <div class="btn-row"><button class="btn" data-check="drill">Check my answers</button><button class="btn secondary" data-reveal="drill">Show answers</button></div>
+      <div class="score-banner" id="drill-score"><div class="score-num" id="drill-score-num">0/8</div><div>correct</div></div>
+    </div>
+  </section>
+
+  <!-- PRACTICE -->
+  <section id="sec-practice">
+    <div class="sec-head"><span class="sec-num">06</span><h2>Practice</h2></div>
+    <p class="sec-intro">Exercises adapted from your slides.</p>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">1</span>Transformez avec « aller + infinitif ».</div>
+      <div class="ex-sub"><span class="given">Je mange. → Je vais manger.</span></div>
+      <div id="ex1"></div>
+      <div class="btn-row"><button class="btn" data-check="ex1">Check my answers</button><button class="btn secondary" data-reveal="ex1">Show answers</button></div>
+      <div class="score-banner" id="ex1-score"><div class="score-num" id="ex1-score-num">0/8</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">2</span>Complétez avec le verbe manquant.</div>
+      <div id="ex2"></div>
+      <div class="btn-row"><button class="btn" data-check="ex2">Check my answers</button><button class="btn secondary" data-reveal="ex2">Show answers</button></div>
+      <div class="score-banner" id="ex2-score"><div class="score-num" id="ex2-score-num">0/4</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">3</span>Aujourd'hui → Demain. Mettez au futur proche.</div>
+      <div class="ex-sub"><span class="given">Aujourd'hui, je commence à huit heures. → Demain, je vais commencer à huit heures.</span></div>
+      <div id="ex3"></div>
+      <div class="btn-row"><button class="btn" data-check="ex3">Check my answers</button><button class="btn secondary" data-reveal="ex3">Show answers</button></div>
+      <div class="score-banner" id="ex3-score"><div class="score-num" id="ex3-score-num">0/5</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">4</span>Faites des phrases, selon le modèle.</div>
+      <div class="ex-sub"><span class="given">Nous avons faim : nous allons manger.</span></div>
+      <div id="ex4"></div>
+      <div class="btn-row"><button class="btn" data-check="ex4">Check my answers</button><button class="btn secondary" data-reveal="ex4">Show answers</button></div>
+      <div class="score-banner" id="ex4-score"><div class="score-num" id="ex4-score-num">0/3</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">5</span>Faites des phrases, selon le modèle.</div>
+      <div class="ex-sub"><span class="given">Elle entre dans un restaurant : elle va manger.</span></div>
+      <div id="ex5"></div>
+      <div class="btn-row"><button class="btn" data-check="ex5">Check my answers</button><button class="btn secondary" data-reveal="ex5">Show answers</button></div>
+      <div class="score-banner" id="ex5-score"><div class="score-num" id="ex5-score-num">0/2</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">6</span>Mettez dans l'ordre.</div>
+      <div class="ex-sub">Max va partir en voyage. Click the steps in the order they logically happen.</div>
+      <div class="phrase-bank" id="order-pool"></div>
+      <ol class="order-list" id="order-list"></ol>
+      <div class="btn-row"><button class="btn secondary" id="order-reset">Recommencer</button></div>
+      <div class="score-banner" id="ex6-score"><div class="score-num" id="ex6-score-num">0/4</div><div>dans le bon ordre</div></div>
+    </div>
+
+    <div class="part-label">Production libre</div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">7</span>Qu'est-ce que tu vas faire demain ?</div>
+      <div class="ex-sub">Open practice — click a word to insert it, then write full sentences.</div>
+      <div class="phrase-bank" id="bank7"></div>
+      <textarea id="produce7" placeholder="Demain, je vais…"></textarea>
+      <div class="btn-row"><button class="btn secondary" data-model="model7">Show the pattern</button></div>
+      <div class="model-answer" id="model7">
+        <b>Pattern — not the answer, just the shape</b>
+        <p><b>Demain, je vais</b> + infinitif. Add a time word if you like: d'abord, ensuite, puis, enfin.</p>
+      </div>
+    </div>
+
+  </section>
+
+</div>
+
+<footer>Adapted from the uploaded slides &middot; Leçon 29 — Le futur proche</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  function norm(s){
+    return (s||"").normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim()
+      .replace(/\s+/g,' ').replace(/['’]/g,"'").replace(/[?!.]+$/g,'').trim();
+  }
+  function matches(val, answers){
+    var v = norm(val);
+    if(!v) return false;
+    return answers.some(function(a){ return norm(a) === v; });
+  }
+
+  function buildMultiBlank(containerId, sentences){
+    var container = document.getElementById(containerId);
+    var answers = [];
+    sentences.forEach(function(s, i){
+      var line = document.createElement('div');
+      line.className = 'fill-line';
+      var html = '<span class="qn">'+(i+1)+'.</span> ';
+      if(s.hint) html += '<span class="hint-chip">'+s.hint+'</span>';
+      if(s.given){
+        html += '<span class="given">'+s.given+'</span>';
+      } else {
+        s.parts.forEach(function(part){
+          if(typeof part === 'string'){
+            html += '<span>'+part+'</span> ';
+          } else if(part.given){
+            html += '<span class="given">'+part.given+'</span> ';
+          } else {
+            html += '<input class="blank '+(part.width||'w-sm')+'" type="text" autocomplete="off" data-idx="'+answers.length+'"> ';
+            answers.push(part.answers);
+          }
+        });
+      }
+      line.innerHTML = html;
+      container.appendChild(line);
+    });
+    document.querySelector('[data-check="'+containerId+'"]').addEventListener('click', function(){
+      var score = 0;
+      container.querySelectorAll('input.blank').forEach(function(input){
+        var idx = +input.dataset.idx;
+        input.classList.remove('ok','no');
+        if(matches(input.value, answers[idx])){ input.classList.add('ok'); score++; }
+        else { input.classList.add('no'); }
+      });
+      var sb = document.getElementById(containerId+'-score');
+      if(sb){ sb.classList.add('show'); document.getElementById(containerId+'-score-num').textContent = score+'/'+answers.length; }
+    });
+    document.querySelector('[data-reveal="'+containerId+'"]').addEventListener('click', function(){
+      container.querySelectorAll('input.blank').forEach(function(input){
+        var idx = +input.dataset.idx;
+        input.value = answers[idx][0];
+        input.classList.remove('no'); input.classList.add('ok');
+      });
+      var sb = document.getElementById(containerId+'-score');
+      if(sb){ sb.classList.add('show'); document.getElementById(containerId+'-score-num').textContent = answers.length+'/'+answers.length; }
+    });
+  }
+
+  function buildMultiChoice(containerId, items){
+    var container = document.getElementById(containerId);
+    items.forEach(function(it, i){
+      var line = document.createElement('div');
+      line.className = 'sel-line';
+      var opts = '<option value="">…</option>';
+      it.options.forEach(function(o){ opts += '<option value="'+o+'">'+o+'</option>'; });
+      line.innerHTML = '<span class="qn">'+(i+1)+'.</span> '+it.prefix+' <select class="blank" data-idx="'+i+'">'+opts+'</select>'+(it.suffix ? ' '+it.suffix : '');
+      container.appendChild(line);
+    });
+    document.querySelector('[data-check="'+containerId+'"]').addEventListener('click', function(){
+      var score = 0;
+      container.querySelectorAll('select.blank').forEach(function(sel){
+        var idx = +sel.dataset.idx;
+        sel.classList.remove('ok','no');
+        if(sel.value === items[idx].correct){ sel.classList.add('ok'); score++; }
+        else { sel.classList.add('no'); }
+      });
+      var sb = document.getElementById(containerId+'-score');
+      if(sb){ sb.classList.add('show'); document.getElementById(containerId+'-score-num').textContent = score+'/'+items.length; }
+    });
+    document.querySelector('[data-reveal="'+containerId+'"]').addEventListener('click', function(){
+      container.querySelectorAll('select.blank').forEach(function(sel){
+        var idx = +sel.dataset.idx;
+        sel.value = items[idx].correct;
+        sel.classList.remove('no'); sel.classList.add('ok');
+      });
+      var sb = document.getElementById(containerId+'-score');
+      if(sb){ sb.classList.add('show'); document.getElementById(containerId+'-score-num').textContent = items.length+'/'+items.length; }
+    });
+  }
+
+  /* ---------------- Quick drill: la bonne forme d'aller ---------------- */
+  (function(){
+    var container = document.getElementById('drill');
+    var items = [
+      {subj:"Je", inf:"manger", correct:"vais", options:["vais","vas","va"]},
+      {subj:"Tu", inf:"dormir", correct:"vas", options:["vas","va","allons"]},
+      {subj:"Il", inf:"jouer", correct:"va", options:["va","vas","vont"]},
+      {subj:"Nous", inf:"écrire", correct:"allons", options:["allons","allez","vont"]},
+      {subj:"Vous", inf:"chanter", correct:"allez", options:["allez","allons","vont"]},
+      {subj:"Ils", inf:"danser", correct:"vont", options:["vont","va","allez"]},
+      {subj:"On", inf:"partir", correct:"va", options:["va","vais","vont"]},
+      {subj:"Elle", inf:"regarder", correct:"va", options:["va","vas","allons"]}
+    ];
+    items.forEach(function(item, i){
+      var line = document.createElement('div');
+      line.className = 'sel-line';
+      var opts = '<option value="">…</option>';
+      item.options.forEach(function(o){ opts += '<option value="'+o+'">'+o+'</option>'; });
+      line.innerHTML = '<span class="qn">'+(i+1)+'.</span> '+item.subj+' <select class="blank" data-idx="'+i+'">'+opts+'</select> '+item.inf+'.';
+      container.appendChild(line);
+    });
+    document.querySelector('[data-check="drill"]').addEventListener('click', function(){
+      var score = 0, total = 0;
+      container.querySelectorAll('select.blank').forEach(function(sel){
+        var idx = +sel.dataset.idx; total++; sel.classList.remove('ok','no');
+        if(sel.value === items[idx].correct){ sel.classList.add('ok'); score++; }
+        else { sel.classList.add('no'); }
+      });
+      document.getElementById('drill-score').classList.add('show');
+      document.getElementById('drill-score-num').textContent = score+'/'+total;
+    });
+    document.querySelector('[data-reveal="drill"]').addEventListener('click', function(){
+      var total = 0;
+      container.querySelectorAll('select.blank').forEach(function(sel){
+        var idx = +sel.dataset.idx; total++;
+        sel.value = items[idx].correct; sel.classList.remove('no'); sel.classList.add('ok');
+      });
+      document.getElementById('drill-score').classList.add('show');
+      document.getElementById('drill-score-num').textContent = total+'/'+total;
+    });
+  })();
+
+  /* ---------------- Ex1: transformez avec aller + infinitif ---------------- */
+  buildMultiBlank('ex1', [
+    {parts:["Je mange. →", {answers:["je vais manger"], width:"w-med"}, "."]},
+    {parts:["Tu dors. →", {answers:["tu vas dormir"], width:"w-med"}, "."]},
+    {parts:["Il joue. →", {answers:["il va jouer"], width:"w-med"}, "."]},
+    {parts:["Nous écrivons. →", {answers:["nous allons écrire"], width:"w-med"}, "."]},
+    {parts:["Vous chantez. →", {answers:["vous allez chanter"], width:"w-med"}, "."]},
+    {parts:["Ils dansent. →", {answers:["ils vont danser"], width:"w-med"}, "."]},
+    {parts:["On part. →", {answers:["on va partir"], width:"w-med"}, "."]},
+    {parts:["Elle regarde un film. →", {answers:["elle va regarder un film"], width:"w-med"}, "."]}
+  ]);
+
+  /* ---------------- Ex2: complétez avec le verbe manquant ---------------- */
+  buildMultiBlank('ex2', [
+    {hint:"tomber", parts:["Attention, tu", {answers:["vas tomber"], width:"w-med"}, "!"]},
+    {hint:"pleuvoir", parts:["Le ciel est gris : il", {answers:["va pleuvoir"], width:"w-med"}, "."]},
+    {hint:"partir", parts:["Mon fils", {answers:["va partir"], width:"w-med"}, "à l'étranger."]},
+    {hint:"avoir", parts:["Ma fille", {answers:["va avoir"], width:"w-med"}, "un bébé."]}
+  ]);
+
+  /* ---------------- Ex3: aujourd'hui -> demain ---------------- */
+  buildMultiBlank('ex3', [
+    {parts:["Aujourd'hui, je commence à huit heures. → Demain,", {answers:["je vais commencer à huit heures"], width:"w-full"}, "."]},
+    {parts:["Aujourd'hui, je déjeune à midi. → Demain,", {answers:["je vais déjeuner à midi"], width:"w-full"}, "."]},
+    {parts:["Aujourd'hui, je termine à six heures. → Demain,", {answers:["je vais terminer à six heures"], width:"w-full"}, "."]},
+    {parts:["Aujourd'hui, je rentre à sept heures. → Demain,", {answers:["je vais rentrer à sept heures"], width:"w-full"}, "."]},
+    {parts:["Aujourd'hui, je dîne à huit heures. → Demain,", {answers:["je vais dîner à huit heures"], width:"w-full"}, "."]}
+  ]);
+
+  /* ---------------- Ex4: sensations -> action ---------------- */
+  buildMultiChoice('ex4', [
+    {prefix:"Nous avons sommeil : nous", suffix:".", options:["allons dormir","allons manger","allons boire"], correct:"allons dormir"},
+    {prefix:"J'ai soif : je", suffix:".", options:["vais boire","vais manger","vais dormir"], correct:"vais boire"},
+    {prefix:"Il a chaud : il", suffix:".", options:["va aller à la plage","va dormir","va manger"], correct:"va aller à la plage"}
+  ]);
+
+  /* ---------------- Ex5: entrer + lieu -> action ---------------- */
+  buildMultiChoice('ex5', [
+    {prefix:"Tu entres dans un cinéma : tu", suffix:".", options:["vas regarder un film","vas nager","vas dormir"], correct:"vas regarder un film"},
+    {prefix:"Vous entrez dans un supermarché : vous", suffix:".", options:["allez faire les courses","allez dormir","allez nager"], correct:"allez faire les courses"}
+  ]);
+
+  /* ---------------- Ex6: ordering game ---------------- */
+  (function(){
+    var CORRECT = ["faire sa valise","aller à l'aéroport","enregistrer ses bagages","prendre l'avion"];
+    var pool = document.getElementById('order-pool');
+    var list = document.getElementById('order-list');
+    var scoreBanner = document.getElementById('ex6-score');
+    var clicked = [];
+
+    function renderPool(){
+      pool.innerHTML = '';
+      var shuffled = ["prendre l'avion","faire sa valise","enregistrer ses bagages","aller à l'aéroport"];
+      shuffled.forEach(function(step){
+        var b = document.createElement('button');
+        b.className = 'phrase'; b.type = 'button'; b.textContent = step;
+        b.addEventListener('click', function(){
+          b.disabled = true;
+          clicked.push(step);
+          var li = document.createElement('li');
+          li.className = 'order-step';
+          li.innerHTML = '<span class="order-num">'+clicked.length+'</span><span>'+step+'</span>';
+          list.appendChild(li);
+          if(clicked.length === CORRECT.length){ checkOrder(); }
+        });
+        pool.appendChild(b);
+      });
+    }
+    function checkOrder(){
+      var score = 0;
+      var lis = list.querySelectorAll('.order-step');
+      clicked.forEach(function(step, i){
+        var ok = step === CORRECT[i];
+        if(ok) score++;
+        lis[i].classList.add(ok ? 'ok' : 'no');
+      });
+      scoreBanner.classList.add('show');
+      document.getElementById('ex6-score-num').textContent = score+'/'+CORRECT.length;
+    }
+    document.getElementById('order-reset').addEventListener('click', function(){
+      clicked = [];
+      list.innerHTML = '';
+      scoreBanner.classList.remove('show');
+      renderPool();
+    });
+    renderPool();
+  })();
+
+  /* ---------------- Ex7: phrase bank + free production ---------------- */
+  var words7 = ["manger","dormir","jouer","écrire","chanter","danser","faire les courses","regarder un film","aller à la plage","partir en voyage","avoir un bébé","d'abord","ensuite","puis","enfin"];
+  (function(){
+    var bank = document.getElementById('bank7');
+    var area = document.getElementById('produce7');
+    words7.forEach(function(w){
+      var b = document.createElement('button');
+      b.className = 'phrase'; b.type = 'button'; b.textContent = w;
+      b.addEventListener('click', function(){
+        area.value += (area.value.length ? ' ' : '') + w;
+        area.focus();
+      });
+      bank.appendChild(b);
+    });
+  })();
+
+  /* ---------------- Model-answer toggles ---------------- */
+  document.querySelectorAll('[data-model]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.getElementById(btn.dataset.model).classList.toggle('show');
+    });
+  });
+
+})();
+</script>
+
+</body></html>
