@@ -215,17 +215,6 @@ const lecons = [
   ["24","Les vêtements","Actividades A1.2/24_Les vêtements (interactivo).html"],
 ];
 
-const fiches = [
-  {title:"Il y a", path:"Grammaire A1.2/Il y a /index.html", type:"folder"},
-  {title:"Pouvoir, devoir et vouloir", path:"Grammaire A1.2/Pouvoir, devoir et vouloir/index.html", type:"folder"},
-  {title:"Quantités déterminées et indéterminées", path:"Grammaire A1.2/Quantités determinées et indeterminées/index.html", type:"folder"},
-  {title:"Verbes -er", path:"Grammaire A1.2/Verbes -er/index.html", type:"folder"},
-  {title:"Verbes pronominaux", path:"Grammaire A1.2/Verbes pronominaux/index.html", type:"folder"},
-  {title:"Verbes au présent", path:"https://drive.google.com/open?id=1MKVnFQjt7Mqdg7lAOUj452EnOfO2yCF-", type:"external"},
-  {title:"Les prépositions de lieu", path:"Grammaire A1.2/21_les prépositions de lieu.pdf", type:"pdf"},
-  {title:"Le corps humain (fiche)", path:"Grammaire A1.2/23_le corps humain (2).pdf", type:"pdf"},
-];
-
 function pdfCard([num, title, path]){
   const isHtml = path.toLowerCase().endsWith('.html');
   const div = document.createElement('div');
@@ -242,33 +231,8 @@ function pdfCard([num, title, path]){
   return div;
 }
 
-function ficheCard(item){
-  const div = document.createElement('div');
-  div.className = 'card';
-  div.dataset.search = item.title.toLowerCase();
-  let pill, label, href;
-  if(item.type === 'folder'){
-    pill = 'Images'; label = '🖼️ Voir les images'; href = enc(item.path);
-  } else if(item.type === 'external'){
-    pill = 'Google Drive'; label = '🔗 Ouvrir le lien'; href = item.path;
-  } else {
-    pill = 'PDF'; label = '📄 Ouvrir le PDF'; href = enc(item.path);
-  }
-  div.innerHTML = `
-    <div class="title-row">
-      <span class="title">${item.title}</span>
-    </div>
-    <span class="pill">${pill}</span>
-    <a class="link" href="${href}" target="_blank">${label}</a>
-  `;
-  return div;
-}
-
 const lEl = document.getElementById('lecons');
 lecons.forEach(item => lEl.appendChild(pdfCard(item)));
-
-const fEl = document.getElementById('fiches');
-fiches.forEach(item => fEl.appendChild(ficheCard(item)));
 
 const searchInput = document.getElementById('search');
 const emptyMsg = document.getElementById('empty');
