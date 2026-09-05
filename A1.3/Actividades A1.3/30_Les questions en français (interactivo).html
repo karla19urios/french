@@ -1,0 +1,1000 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>30 · Poser des questions</title>
+<style>
+:root{
+  --bleu:#002395;
+  --blanc:#ffffff;
+  --rouge:#ED2939;
+  --bg:#f4f5f7;
+  --card:#ffffff;
+  --text:#1a1a2e;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --shadow:rgba(16,24,40,.08);
+  --bleu-soft:rgba(0,35,149,.08);
+  --rouge-soft:rgba(237,41,57,.10);
+  --vert:#1a7f4f;
+  --vert-soft:rgba(26,127,79,.12);
+  --accent:var(--bleu);
+  --radius:16px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#12141c;
+    --card:#1b1e2b;
+    --text:#f1f2f6;
+    --muted:#9aa0b4;
+    --border:#2a2e40;
+    --shadow:rgba(0,0,0,.35);
+    --bleu-soft:rgba(90,125,255,.14);
+    --rouge-soft:rgba(237,41,57,.16);
+    --vert:#4ec98a;
+    --vert-soft:rgba(78,201,138,.15);
+    --accent:#9db2ff;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#12141c;
+  --card:#1b1e2b;
+  --text:#f1f2f6;
+  --muted:#9aa0b4;
+  --border:#2a2e40;
+  --shadow:rgba(0,0,0,.35);
+  --bleu-soft:rgba(90,125,255,.14);
+  --rouge-soft:rgba(237,41,57,.16);
+  --vert:#4ec98a;
+  --vert-soft:rgba(78,201,138,.15);
+  --accent:#9db2ff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  line-height:1.55;-webkit-font-smoothing:antialiased;
+}
+.flagbar{height:8px;background:linear-gradient(to right,var(--bleu) 0 33.33%,var(--blanc) 33.33% 66.66%,var(--rouge) 66.66% 100%)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 72px}
+
+.hero{padding:3.5rem 0 2rem;text-align:center}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;font-weight:800;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--bleu-soft);
+  padding:.35rem .75rem;border-radius:999px;
+}
+.hero h1{font-size:clamp(1.9rem,5vw,2.9rem);margin:.9rem 0 .4rem;letter-spacing:-.02em;line-height:1.12;text-wrap:balance}
+.hero p{color:var(--muted);margin:0 auto;max-width:62ch;font-size:1.02rem}
+
+nav.toc{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin-top:1.4rem}
+nav.toc a{
+  text-decoration:none;color:var(--text);border:1px solid var(--border);background:var(--card);
+  border-radius:999px;padding:.4rem .85rem;font-size:.84rem;font-weight:700;transition:all .15s ease;
+}
+nav.toc a:hover{border-color:var(--accent);color:var(--accent)}
+
+section{margin-top:3rem}
+.sec-head{display:flex;align-items:baseline;gap:.75rem;flex-wrap:wrap;margin-bottom:.35rem}
+.sec-head h2{font-size:1.4rem;margin:0;letter-spacing:-.01em}
+.sec-num{font-size:.72rem;font-weight:800;letter-spacing:.1em;color:var(--rouge);background:var(--rouge-soft);padding:.2rem .55rem;border-radius:6px}
+.sec-sub{color:var(--muted);margin:0 0 1.25rem;font-size:.95rem}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.85rem .9rem;position:relative;transition:transform .15s ease,box-shadow .15s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 16px var(--shadow)}
+.card .fr{font-weight:800;font-size:1rem;display:block;padding-right:30px;overflow-wrap:break-word}
+.card .es{font-size:.85rem;color:var(--muted);display:block;margin-top:.3rem}
+.listen{
+  position:absolute;top:.6rem;right:.6rem;width:30px;height:30px;border-radius:50%;
+  border:1px solid var(--border);background:var(--card);cursor:pointer;display:grid;place-items:center;
+  font-size:.85rem;color:var(--accent);transition:background .15s ease,transform .15s ease;padding:0;
+}
+.listen:hover{background:var(--bleu);color:#fff;transform:scale(1.08)}
+.listen.on{background:var(--bleu);color:#fff}
+
+.ord{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
+.ord .o{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.7rem;text-align:center;
+  cursor:pointer;transition:all .15s ease;
+}
+.ord .o:hover{border-color:var(--accent);transform:translateY(-2px)}
+.ord .n{font-size:1.5rem;font-weight:900;color:var(--accent);line-height:1;font-variant-numeric:tabular-nums}
+.ord .w{font-size:.88rem;font-weight:700;margin-top:.25rem;display:block}
+
+.conjs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.conj{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;border-top:3px solid var(--bleu)}
+.conj h3{margin:0 0 .1rem;font-size:1.05rem;display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.conj .inf{font-size:.75rem;color:var(--muted);font-weight:600;display:block;margin-bottom:.7rem}
+.conj table{width:100%;border-collapse:collapse;font-size:.94rem}
+.conj td{padding:.28rem 0;border-bottom:1px solid var(--border)}
+.conj tr:last-child td{border-bottom:none}
+.conj td.p{color:var(--muted);width:42%}
+.conj td.v{font-weight:700}
+.conj td.v u{text-decoration:none;color:var(--rouge)}
+.conj .listen{position:static;width:26px;height:26px;font-size:.75rem}
+
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.rule{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--bleu);border-radius:10px;padding:.8rem .9rem}
+.rule b{display:block;font-size:1.05rem;color:var(--accent);margin-bottom:.15rem}
+.rule span{font-size:.9rem;color:var(--muted);display:block}
+.rule i{display:block;margin-top:.35rem;font-size:.92rem}
+.warn{border-left-color:var(--rouge)}
+.warn b{color:var(--rouge)}
+
+.mail{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;box-shadow:0 1px 3px var(--shadow);max-width:66ch}
+.mail p{margin:0 0 .7rem}
+.mail .k{background:var(--bleu-soft);color:var(--accent);font-weight:700;border-radius:4px;padding:0 .2em}
+.mail .sig{color:var(--muted);font-style:italic}
+
+.ex{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:0 1px 3px var(--shadow);margin-bottom:16px;border-top:3px solid var(--rouge)}
+.ex.free{border-top-color:var(--border)}
+.ex-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.ex-head h3{margin:0;font-size:1.1rem;display:flex;align-items:center;gap:.5rem}
+.tag{font-size:.62rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;background:var(--rouge-soft);color:var(--rouge);padding:.2rem .5rem;border-radius:5px}
+.tag.soft{background:var(--bleu-soft);color:var(--accent)}
+.ex-sub{color:var(--muted);font-size:.85rem;margin:.15rem 0 1rem}
+.ex-meta{display:flex;align-items:center;gap:.6rem;font-size:.8rem;color:var(--muted);font-weight:700}
+.sc{background:var(--bleu-soft);color:var(--accent);padding:.2rem .55rem;border-radius:999px;font-variant-numeric:tabular-nums}
+.bar{height:5px;background:var(--border);border-radius:999px;overflow:hidden;margin:.9rem 0 1.1rem}
+.bar i{display:block;height:100%;width:0;background:var(--bleu);transition:width .3s ease}
+.ex-q{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem;font-size:1.1rem;font-weight:700;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;min-height:64px}
+.ex-q .hint{font-size:.85rem;font-weight:600;color:var(--muted)}
+.blank{color:var(--rouge);letter-spacing:.06em}
+.opts{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.opt{flex:1 1 130px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;padding:.72rem .9rem;font:inherit;font-size:.97rem;font-weight:700;cursor:pointer;transition:all .15s ease;text-align:center}
+.opt.chip{flex:0 1 auto;min-width:76px}
+.opt:hover:not(:disabled){border-color:var(--accent);transform:translateY(-2px);box-shadow:0 6px 16px var(--shadow)}
+.opt:disabled{cursor:default;opacity:.7}
+.opt.good{background:var(--vert-soft);border-color:var(--vert);color:var(--vert);opacity:1}
+.opt.bad{background:var(--rouge-soft);border-color:var(--rouge);color:var(--rouge);opacity:1}
+.fb{margin-top:.9rem;font-size:.92rem;font-weight:700;min-height:1.4em}
+.fb.good{color:var(--vert)}
+.fb.bad{color:var(--rouge)}
+.fb small{display:block;font-weight:500;color:var(--muted);margin-top:.15rem}
+.answer-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;align-items:center}
+.answer-row input{flex:1 1 200px;padding:.7rem .9rem;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text);font:inherit;font-size:1rem}
+.answer-row input.good{border-color:var(--vert)}
+.answer-row input.bad{border-color:var(--rouge)}
+.btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:10px;padding:.5rem .9rem;font:inherit;font-size:.86rem;font-weight:700;cursor:pointer;transition:all .15s ease;display:inline-flex;align-items:center;gap:.4rem}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.primary{background:var(--bleu);border-color:var(--bleu);color:#fff}
+.btn.primary:hover{opacity:.9;color:#fff}
+
+.steps{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.step{display:flex;align-items:center;gap:.7rem;text-align:left;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.7rem .85rem;cursor:pointer;font:inherit;font-size:.95rem;color:var(--text);transition:all .15s ease}
+.step:hover:not(:disabled){border-color:var(--accent);transform:translateX(3px)}
+.step:disabled{cursor:default}
+.step .num{flex:0 0 26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--bg);border:1px solid var(--border);font-size:.78rem;font-weight:900;color:var(--muted)}
+.step.placed{background:var(--vert-soft);border-color:var(--vert)}
+.step.placed .num{background:var(--vert);border-color:var(--vert);color:#fff}
+.step.wrong{background:var(--rouge-soft);border-color:var(--rouge)}
+
+.write{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:0 1px 3px var(--shadow)}
+.write textarea{width:100%;min-height:150px;padding:.8rem .9rem;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text);font:inherit;font-size:.98rem;resize:vertical}
+.write .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:.8rem;align-items:center}
+.checklist{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.9rem}
+.checklist span{font-size:.78rem;font-weight:700;color:var(--muted);border:1px dashed var(--border);border-radius:999px;padding:.2rem .6rem}
+
+.bilan{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--bleu);border-radius:var(--radius);padding:20px;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;box-shadow:0 1px 3px var(--shadow)}
+.bilan .big{font-size:1.9rem;font-weight:900;color:var(--accent);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.bilan .lbl{font-size:.8rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.bilan-list{display:flex;gap:1.6rem;flex-wrap:wrap}
+
+.note{margin-top:1.25rem;font-size:.86rem;color:var(--muted);border-left:3px solid var(--rouge);padding:.15rem 0 .15rem .8rem}
+footer{margin-top:3.5rem;padding-top:1.5rem;border-top:1px solid var(--border);color:var(--muted);font-size:.85rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+footer b{color:var(--text)}
+:focus-visible{outline:2px solid var(--bleu);outline-offset:2px;border-radius:6px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto}}
+@media (max-width:560px){.hero{padding:2.5rem 0 1.5rem}.grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}}
+</style>
+<style>
+/* --- ajouts leçon 30 --- */
+.structs{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px}
+.st{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;border-top:4px solid var(--bleu);position:relative}
+.st.s2{border-top-color:var(--rouge)} .st.s3{border-top-color:var(--vert)}
+.st .num{font-size:.68rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:block}
+.st.s2 .num{color:var(--rouge)} .st.s3 .num{color:var(--vert)}
+.st h3{margin:.15rem 0 .6rem;font-size:1.05rem;line-height:1.35}
+.st .formula{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:.8rem}
+.seg{font-size:.78rem;font-weight:800;padding:.25rem .55rem;border-radius:8px;border:1px solid var(--border);background:var(--bg)}
+.seg.i{color:var(--rouge);border-color:var(--rouge)} .seg.v{color:var(--accent);border-color:var(--accent)} .seg.s{color:var(--vert);border-color:var(--vert)} .seg.c{color:var(--muted)}
+.exl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}
+.exl li{display:flex;align-items:center;justify-content:space-between;gap:.5rem;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:.45rem .7rem;font-size:.95rem;font-weight:600}
+.exl li .es{font-size:.78rem;color:var(--muted);font-weight:500;display:block}
+.exl .q .i{color:var(--rouge);font-weight:800} .exl .q .v{color:var(--accent);font-weight:800} .exl .q .s{color:var(--vert);font-weight:800}
+.exl .listen{position:static;flex:0 0 26px;width:26px;height:26px;font-size:.75rem}
+.gen{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;margin-top:16px;box-shadow:0 1px 3px var(--shadow)}
+.gen .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.sel{padding:.5rem .7rem;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text);font:inherit;font-size:.92rem}
+.regs{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin-top:12px}
+.reg{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:.7rem .85rem;position:relative}
+.reg .lb{font-size:.68rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:.2rem}
+.reg.f .lb{color:var(--accent)} .reg.c .lb{color:var(--rouge)} .reg.fa .lb{color:var(--vert)}
+.reg .q{font-size:1.05rem;font-weight:800;display:block;padding-right:34px}
+.reg .listen{top:.6rem;right:.6rem}
+.reg .es{font-size:.78rem;color:var(--muted);display:block}
+.mots{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.mot{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.8rem .9rem;position:relative;border-left:3px solid var(--rouge)}
+.mot .w{font-weight:900;font-size:1.15rem;display:block;color:var(--rouge)}
+.mot .es{font-size:.8rem;color:var(--muted);display:block;margin-bottom:.4rem}
+.mot .exm{font-size:.9rem;display:block;line-height:1.45}
+.mot .exm b{color:var(--accent)}
+.mot .listen{top:.6rem;right:.6rem}
+.regtab{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;font-size:.94rem}
+.regtab th{background:var(--bleu-soft);color:var(--accent);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:.55rem .7rem;text-align:left}
+.regtab td{padding:.55rem .7rem;border-top:1px solid var(--border);vertical-align:top}
+.regtab td:first-child{font-weight:800;color:var(--muted);white-space:nowrap}
+.regtab td button{font:inherit;background:none;border:none;padding:0;color:inherit;cursor:pointer;text-align:left;font-weight:700}
+.regtab td button:hover{color:var(--accent)}
+.regtab td b{color:var(--rouge)}
+.tabwrap{overflow-x:auto}
+.quel{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.qc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.85rem .95rem;border-top:4px solid var(--bleu);position:relative}
+.qc.f{border-top-color:var(--rouge)}
+.qc .g{font-size:.68rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block}
+.qc .w{font-size:1.5rem;font-weight:900;color:var(--accent);display:block;line-height:1.2}
+.qc.f .w{color:var(--rouge)}
+.qc .exm{font-size:.9rem;display:block;margin-top:.35rem;line-height:1.45}
+.qc .listen{top:.6rem;right:.6rem}
+.built{background:var(--bg);border:1px dashed var(--border);border-radius:12px;padding:.8rem 1rem;min-height:56px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:1.05rem;font-weight:700;margin-top:10px}
+.built .tk{background:var(--card);border:1px solid var(--accent);color:var(--accent);border-radius:8px;padding:.3rem .6rem}
+.built.good .tk{border-color:var(--vert);color:var(--vert)} .built.bad .tk{border-color:var(--rouge);color:var(--rouge)}
+.built .ph{color:var(--muted);font-weight:500;font-size:.9rem}
+.texte{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem;line-height:2;font-size:1rem}
+.texte p{margin:0 0 .2rem}
+.texte select{padding:.15rem .4rem;border-radius:7px;border:1px solid var(--bleu);background:var(--bg);color:var(--text);font:inherit;font-size:.92rem;font-weight:700}
+.texte select.good{border-color:var(--vert);background:var(--vert-soft)} .texte select.bad{border-color:var(--rouge);background:var(--rouge-soft)}
+.write textarea{min-height:130px}
+.blanks{display:flex;flex-direction:column;gap:.5rem;margin-top:10px}
+.bk{display:grid;grid-template-columns:150px 1fr;gap:.6rem;align-items:center;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:.5rem .7rem}
+@media (max-width:520px){.bk{grid-template-columns:1fr}}
+.bk .lb{font-size:.78rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.bk .ch{display:flex;gap:6px;flex-wrap:wrap}
+.bk .opt{flex:0 1 auto;min-width:64px;padding:.45rem .8rem}
+.bk .opt[aria-pressed="true"]{border-color:var(--bleu);background:var(--bleu-soft);color:var(--accent)}
+.rule i b,.rule i u{display:inline;font-size:inherit;margin:0;color:var(--accent)}
+.rule i u{text-decoration:none;color:var(--rouge)}
+.rule.warn i b{color:var(--rouge)}
+.avous{margin:1.6rem 0 .6rem;font-size:.8rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--rouge);display:flex;align-items:center;gap:.6rem}
+.avous::after{content:'';flex:1;height:1px;background:var(--border)}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+@media (max-width:600px){.compare{grid-template-columns:1fr}}
+.compare div{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.8rem 1rem;position:relative}
+.compare b{display:block;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.35rem;color:var(--accent)}
+.compare .r b{color:var(--rouge)}
+.compare span{display:block;font-weight:700;font-size:1rem}
+.compare small{display:block;color:var(--muted);font-size:.82rem;margin-top:.2rem}
+.compare .listen{top:.6rem;right:.6rem}
+</style>
+
+<div class="flagbar"></div>
+<div class="wrap">
+
+  <header class="hero">
+    <span class="eyebrow">A1.3 · Leçon 30</span>
+    <h1>Poser des questions : où, quand, qui, que, quel… ?</h1>
+    <p>Trois structures pour construire une question, les mots interrogatifs <b>où, quand, comment, combien, pourquoi</b>, puis <b>qui / que / quoi</b> et <b>quel, quelle, quels, quelles</b>. Chaque point est suivi de son exercice. <em>Tema, ejercicio, tema, ejercicio.</em></p>
+    <nav class="toc">
+      <a href="#structures">Trois structures</a>
+      <a href="#mots">Où, quand, comment…</a>
+      <a href="#qui">Qui, que, quoi</a>
+      <a href="#quel">Quel, quelle…</a>
+      <a href="#exercices">Bilan</a>
+      <a href="#production">Production</a>
+    </nav>
+  </header>
+
+  <!-- ============ 01 ============ -->
+  <section id="structures">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Trois structures pour poser une question</h2></div>
+    <p class="sec-sub">En français, une question peut se construire de trois façons. Repérez la place du <span class="seg i">mot interrogatif</span>, du <span class="seg v">verbe</span> et du <span class="seg s">sujet</span>. Cliquez sur 🔊 pour écouter.</p>
+    <div class="structs" id="structs"></div>
+    <div class="rules" style="margin-top:14px">
+      <div class="rule"><b>Structure 1 — l'inversion</b><span>formel / à l'écrit · <em>el verbo va antes del sujeto, unidos por un guion</em></span><i>Où <b>habites-tu</b> ? · Que <b>faites-vous</b> ? · Quel âge <b>as-tu</b> ?</i></div>
+      <div class="rule"><b>Structure 2 — quel + nom</b><span>quel s'accorde avec le nom · <em>concuerda con el sustantivo</em></span><i>Quel <b>âge</b> ? · Quelle <b>couleur</b> ? · Quels <b>sports</b> ? · Quelles <b>activités</b> ?</i></div>
+      <div class="rule"><b>Structure 3 — est-ce que</b><span>courant / à l'oral · <em>el orden no cambia: sujeto + verbo</em></span><i>Est-ce que <b>tu as</b> compris ? · Où est-ce que <b>tu habites</b> ?</i></div>
+      <div class="rule warn"><b>À l'oral familier — l'intonation</b><span>le mot interrogatif reste à la fin · <em>solo sube la entonación</em></span><i>Tu habites <u>où</u> ? · Tu fais <u>quoi</u> ? · Tu as compris ?</i></div>
+    </div>
+
+    <div class="gen">
+      <div class="row">
+        <span style="font-weight:800">🔧 Fabrique de questions :</span>
+        <select class="sel" id="gInt" aria-label="Mot interrogatif"></select>
+        <select class="sel" id="gSubj" aria-label="Sujet"><option value="tu">tu</option><option value="vous">vous</option></select>
+        <select class="sel" id="gVerb" aria-label="Verbe"></select>
+      </div>
+      <div class="regs" id="gOut"></div>
+      <p class="note" style="margin-top:.9rem"><b>Même question, trois registres.</b> <em>La misma pregunta en formal (inversión), corriente (est-ce que) y familiar (entonación).</em></p>
+    </div>
+
+    <h3 class="avous">✍️ À vous !</h3>
+    <div class="ex" id="exA">
+      <div class="ex-head"><h3><span class="tag">A</span> Remettez la question dans l'ordre</h3><div class="ex-meta"><span class="sc" id="scA">0 / 0</span><button class="btn" type="button" data-reset="A">↻ Recommencer</button></div></div>
+      <p class="ex-sub">Cliquez sur les mots dans le bon ordre. <em>Haz clic en las palabras en el orden correcto.</em></p>
+      <div class="bar"><i id="barA"></i></div>
+      <div class="ex-q" id="qA"></div>
+      <div class="built" id="builtA"></div>
+      <div class="opts" id="oA"></div>
+      <div class="row" style="display:flex;gap:10px;margin-top:10px"><button class="btn" type="button" id="undoA">⌫ Effacer</button></div>
+      <div class="fb" id="fA"></div>
+    </div>
+    <div class="ex" id="exB">
+      <div class="ex-head"><h3><span class="tag">B</span> Quel registre ?</h3><div class="ex-meta"><span class="sc" id="scB">0 / 0</span><button class="btn" type="button" data-reset="B">↻ Recommencer</button></div></div>
+      <p class="ex-sub">Formel (inversion), courant (est-ce que) ou familier (intonation) ?</p>
+      <div class="bar"><i id="barB"></i></div>
+      <div class="ex-q" id="qB"></div><div class="opts" id="oB"></div><div class="fb" id="fB"></div>
+    </div>
+  </section>
+
+  <!-- ============ 02 ============ -->
+  <section id="mots">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Où, quand, comment, combien, pourquoi</h2></div>
+    <p class="sec-sub">Les mots interrogatifs se placent <b>au début</b> de la question (avec inversion ou <em>est-ce que</em>) ou <b>à la fin</b> (familier). Cliquez pour écouter la question et sa réponse.</p>
+    <div class="mots" id="motsCards"></div>
+    <div class="rules" style="margin-top:14px">
+      <div class="rule"><b>Pourquoi… ? → Parce que… / Pour + infinitif</b><span><em>¿por qué? → porque… / para + infinitivo</em></span><i>Pourquoi partez-vous en train ? — <b>Parce que</b> c'est moins cher. — <b>Pour</b> voyager de nuit.</i></div>
+      <div class="rule"><b>Combien ? / Combien de + nom</b><span><em>¿cuánto? / ¿cuántos + sustantivo?</em></span><i>Combien <b>payez-vous</b> ? — 40 €. · Combien <b>de</b> personnes viennent ? — Douze.</i></div>
+      <div class="rule warn"><b>Préposition + interrogatif</b><span><em>la preposición va al principio, nunca al final como en inglés</em></span><i><u>À</u> quelle heure pars-tu ? · <u>Avec</u> qui voyages-tu ? · <u>De</u> quoi parlez-vous ?</i></div>
+    </div>
+
+    <h3 class="avous">✍️ À vous !</h3>
+    <div class="ex" id="exC">
+      <div class="ex-head"><h3><span class="tag">C</span> Quel mot interrogatif ?</h3><div class="ex-meta"><span class="sc" id="scC">0 / 0</span><button class="btn" type="button" data-reset="C">↻ Recommencer</button></div></div>
+      <p class="ex-sub">Lisez la réponse et choisissez le mot interrogatif. <em>Lee la respuesta y elige la palabra correcta.</em></p>
+      <div class="bar"><i id="barC"></i></div>
+      <div class="ex-q" id="qC"></div><div class="opts" id="oC"></div><div class="fb" id="fC"></div>
+    </div>
+    <div class="ex" id="exD">
+      <div class="ex-head"><h3><span class="tag">D</span> Associez les questions et les réponses</h3><div class="ex-meta"><span class="sc" id="scD">0 / 0</span><button class="btn" type="button" data-reset="D">↻ Recommencer</button></div></div>
+      <p class="ex-sub">À la gare, à l'aéroport, à l'hôtel… Quelle réponse correspond à la question ? <em>Elige la respuesta que corresponde.</em></p>
+      <div class="bar"><i id="barD"></i></div>
+      <div class="ex-q" id="qD"></div><div class="opts" id="oD"></div><div class="fb" id="fD"></div>
+    </div>
+    <div class="ex" id="exE">
+      <div class="ex-head"><h3><span class="tag">E</span> Posez la question</h3><div class="ex-meta"><span class="sc" id="scE">0 / 0</span><button class="btn" type="button" data-reset="E">↻ Recommencer</button></div></div>
+      <p class="ex-sub">Écrivez la question qui correspond aux deux réponses possibles. Les trois registres sont acceptés. <em>Ejemplo : (vous / partir) lundi ou mardi ? → Quand partez-vous ?</em></p>
+      <div class="bar"><i id="barE"></i></div>
+      <div class="ex-q" id="qE"></div>
+      <div class="answer-row"><input id="inE" type="text" placeholder="Écrivez la question…" autocomplete="off" spellcheck="false" aria-label="Votre question"><button class="btn primary" type="button" id="checkE">Vérifier</button><button class="btn" type="button" id="showE">Voir la réponse</button></div>
+      <div class="fb" id="fE"></div>
+    </div>
+  </section>
+
+  <!-- ============ 03 ============ -->
+  <section id="qui">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Qui ? Que ? Qu'est-ce que ? Quoi ?</h2></div>
+    <p class="sec-sub"><b>Qui</b> interroge sur une <b>personne</b>. <b>Que / qu'est-ce que / quoi</b> interrogent sur une <b>chose</b> : c'est le même mot, mais le registre change. Cliquez sur une question pour l'écouter.</p>
+    <div class="tabwrap"><table class="regtab">
+      <thead><tr><th></th><th>Formel — inversion</th><th>Courant — est-ce que</th><th>Familier — à la fin</th></tr></thead>
+      <tbody id="regRows"></tbody>
+    </table></div>
+    <div class="compare">
+      <div><b>👤 Personne → qui</b><button class="listen" type="button" data-say="Qui habite ici ? Ma voisine. Qui cherchez-vous ? Le directeur.">🔊</button><span>Qui habite ici ? — Ma voisine.</span><span>Qui cherchez-vous ? — Le directeur.</span><small>¿quién? — sujeto o complemento, siempre « qui »</small></div>
+      <div class="r"><b>📦 Chose → que / qu'est-ce que / quoi</b><button class="listen" type="button" data-say="Que cherchez-vous ? Qu'est-ce que vous cherchez ? Vous cherchez quoi ? Mes clés.">🔊</button><span>Que cherchez-vous ? — Mes clés.</span><span>Qu'est-ce que vous cherchez ? · Vous cherchez quoi ?</span><small>¿qué? — « quoi » solo después del verbo o de una preposición</small></div>
+    </div>
+    <p class="note"><b>Attention :</b> <em>Que</em> devient <em>Qu'</em> devant une voyelle : <b>Qu'</b>attendez-vous ? · <b>Qu'</b>est-ce que… Et <em>quoi</em> se met après une préposition : <b>De quoi</b> parlez-vous ? <b>À quoi</b> penses-tu ?</p>
+
+    <h3 class="avous">✍️ À vous !</h3>
+    <div class="ex" id="exF">
+      <div class="ex-head"><h3><span class="tag">F</span> Personne ou chose ?</h3><div class="ex-meta"><span class="sc" id="scF">0 / 0</span><button class="btn" type="button" data-reset="F">↻ Recommencer</button></div></div>
+      <p class="ex-sub">Complétez avec <em>qui, que, qu'est-ce que</em> ou <em>quoi</em>. Regardez la réponse et la place du blanc !</p>
+      <div class="bar"><i id="barF"></i></div>
+      <div class="ex-q" id="qF"></div><div class="opts" id="oF"></div><div class="fb" id="fF"></div>
+    </div>
+    <div class="ex" id="exG">
+      <div class="ex-head"><h3><span class="tag">G</span> Quelqu'un ? Quelque chose ? → Qui ? Que ?</h3><div class="ex-meta"><span class="sc" id="scG">0 / 0</span><button class="btn" type="button" data-reset="G">↻ Recommencer</button></div></div>
+      <p class="ex-sub">Transformez : <em>quelqu'un</em> → une question avec <b>qui</b> ; <em>quelque chose</em> → une question avec <b>que / qu'est-ce que / quoi</b>. <em>Ejemplo : Vous buvez quelque chose ? → Que buvez-vous ?</em></p>
+      <div class="bar"><i id="barG"></i></div>
+      <div class="ex-q" id="qG"></div>
+      <div class="answer-row"><input id="inG" type="text" placeholder="Écrivez la question…" autocomplete="off" spellcheck="false" aria-label="Votre question"><button class="btn primary" type="button" id="checkG">Vérifier</button><button class="btn" type="button" id="showG">Voir la réponse</button></div>
+      <div class="fb" id="fG"></div>
+    </div>
+  </section>
+
+  <!-- ============ 04 ============ -->
+  <section id="quel">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Quel, quelle, quels, quelles</h2></div>
+    <p class="sec-sub"><b>Quel</b> accompagne toujours un <b>nom</b> et s'accorde avec lui, comme un adjectif. Les quatre formes se prononcent de la même façon : /kɛl/.</p>
+    <div class="quel" id="quelCards"></div>
+    <div class="rules" style="margin-top:14px">
+      <div class="rule"><b>Quel + nom + verbe + sujet</b><span><em>¿qué / cuál + sustantivo?</em></span><i>Quel <b>âge</b> as-tu ? · Quelle <b>heure</b> est-il ? · Quels <b>sports</b> pratiques-tu ?</i></div>
+      <div class="rule"><b>Quel + être + nom</b><span>pour demander une information précise · <em>¿cuál es…?</em></span><i>Quelle <b>est</b> votre profession ? · Quel <b>est</b> ton numéro ? · Quelle <b>est</b> la capitale du Pérou ?</i></div>
+      <div class="rule warn"><b>Quel est… ≠ Qu'est-ce que…</b><span><em>« quel » va con un sustantivo ; « qu'est-ce que » va con un verbo</em></span><i>Quel<u>le</u> est votre profession ? ↔ Qu'est-ce que vous <u>faites</u> ?</i></div>
+    </div>
+
+    <h3 class="avous">✍️ À vous !</h3>
+    <div class="ex" id="exH">
+      <div class="ex-head"><h3><span class="tag">H</span> Quel, quelle, quels ou quelles ?</h3><div class="ex-meta"><span class="sc" id="scH">0 / 0</span><button class="btn" type="button" data-reset="H">↻ Recommencer</button></div></div>
+      <p class="ex-sub">Accordez avec le nom qui suit. <em>Fíjate en el género y el número del sustantivo.</em></p>
+      <div class="bar"><i id="barH"></i></div>
+      <div class="ex-q" id="qH"></div><div class="opts" id="oH"></div><div class="fb" id="fH"></div>
+    </div>
+    <div class="ex" id="exI">
+      <div class="ex-head"><h3><span class="tag">I</span> « Quelle nouvelle ? »</h3><div class="ex-meta"><span class="sc" id="scI">0 / 0</span><button class="btn" type="button" data-reset="I">↻ Recommencer</button></div></div>
+      <p class="ex-sub">Réagissez avec <em>quel + nom</em>, comme dans l'exemple : <em>Tu connais la nouvelle ? → Quelle nouvelle ?</em></p>
+      <div class="bar"><i id="barI"></i></div>
+      <div class="ex-q" id="qI"></div>
+      <div class="answer-row"><input id="inI" type="text" placeholder="Quel… ?" autocomplete="off" spellcheck="false" aria-label="Votre réponse"><button class="btn primary" type="button" id="checkI">Vérifier</button><button class="btn" type="button" id="showI">Voir la réponse</button></div>
+      <div class="fb" id="fI"></div>
+    </div>
+    <div class="ex" id="exJ">
+      <div class="ex-head"><h3><span class="tag">J</span> Quel est… ? ou Qu'est-ce que… ?</h3><div class="ex-meta"><span class="sc" id="scJ">0 / 0</span><button class="btn" type="button" data-reset="J">↻ Recommencer</button></div></div>
+      <p class="ex-sub">Deux questions, deux blancs : <b>quel / quelle</b> devant un nom, <b>qu'est-ce que</b> devant sujet + verbe. Choisissez puis vérifiez.</p>
+      <div class="bar"><i id="barJ"></i></div>
+      <div class="ex-q" id="qJ"></div>
+      <div id="wJ"></div>
+      <div class="row" style="display:flex;gap:10px;margin-top:10px"><button class="btn primary" type="button" id="checkJ">Vérifier</button></div>
+      <div class="fb" id="fJ"></div>
+    </div>
+  </section>
+
+  <!-- ============ 05 ============ -->
+  <section id="exercices">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Bilan — « Allô ? Je t'entends mal ! »</h2></div>
+    <p class="sec-sub">Un dialogue au téléphone qui mélange tous les mots interrogatifs de la leçon. Puis le total de tous les exercices de la page.</p>
+    <div class="ex" id="exK">
+      <div class="ex-head"><h3><span class="tag">K</span> Dialogue à trous</h3><div class="ex-meta"><span class="sc" id="scK">0 / 0</span><button class="btn" type="button" data-reset="K">↻ Recommencer</button></div></div>
+      <p class="ex-sub">Choisissez le bon mot dans chaque menu, puis vérifiez. <em>Lis d'abord la réponse : elle vous dit quel mot il faut !</em></p>
+      <div class="bar"><i id="barK"></i></div>
+      <div class="texte" id="texteK"></div>
+      <div class="row" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:.8rem"><button class="btn primary" type="button" id="checkK">Vérifier le dialogue</button><button class="btn" type="button" id="readK">🔊 Écouter le dialogue</button></div>
+      <div class="fb" id="fK"></div>
+    </div>
+    <div class="ex" id="exL">
+      <div class="ex-head"><h3><span class="tag">L</span> Quiz culture : qui, quel ou quelle ?</h3><div class="ex-meta"><span class="sc" id="scL">0 / 0</span><button class="btn" type="button" data-reset="L">↻ Recommencer</button></div></div>
+      <p class="ex-sub">La réponse vous aide : une personne → <b>qui</b> ; un nom masculin → <b>quel</b> ; un nom féminin → <b>quelle</b>.</p>
+      <div class="bar"><i id="barL"></i></div>
+      <div class="ex-q" id="qL"></div><div class="opts" id="oL"></div><div class="fb" id="fL"></div>
+    </div>
+    <div class="bilan">
+      <div class="bilan-list">
+        <div><div class="lbl">Total</div><div class="big" id="bTotal">0 / 0</div></div>
+        <div><div class="lbl">Réussite</div><div class="big" id="bPct">—</div></div>
+      </div>
+      <button class="btn primary" type="button" id="resetAll">↻ Tout recommencer</button>
+    </div>
+  </section>
+
+  <!-- ============ 06 ============ -->
+  <section id="production">
+    <div class="sec-head"><span class="sec-num">06</span><h2>Production : l'interview</h2></div>
+    <p class="sec-sub">Préparez <b>8 questions</b> pour interviewer un(e) camarade : son âge, sa ville, son travail ou ses études, ses loisirs, sa famille… Utilisez les trois structures. Puis écoutez vos questions et posez-les à l'oral !</p>
+    <div class="write">
+      <textarea id="devoir" placeholder="1. Comment t'appelles-tu ?&#10;2. Quel âge as-tu ?&#10;3. Où est-ce que tu habites ?&#10;4. Tu fais quoi le week-end ?&#10;5. …"></textarea>
+      <div class="row"><button class="btn primary" type="button" id="readDevoir">▶ Écouter mes questions</button><button class="btn" type="button" id="ideas">💡 Idée de question</button><span id="ideaOut" style="font-weight:700;color:var(--accent)"></span></div>
+      <div class="checklist"><span>une inversion (verbe-sujet)</span><span>un « est-ce que »</span><span>une question familière (mot à la fin)</span><span>quel / quelle / quels / quelles</span><span>qui</span><span>que / qu'est-ce que / quoi</span><span>pourquoi → parce que</span><span>combien de</span></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Sources : <b>30_Les questions en français</b> · leçons 51 – 52 (A1.3)</span>
+    <span>Leçon précédente ← <b>25 – 27 · les verbes en -ir</b></span>
+  </footer>
+</div>
+
+<script>
+/* ---------------- données ---------------- */
+var STRUCTS=[
+  {n:'Structure 1', cls:'s1', h:'Mot interrogatif + verbe + sujet (+ complément)',
+   f:[['i','interrogatif'],['v','verbe'],['s','sujet'],['c','complément']],
+   ex:[{q:'<i class="i">Que</i> <i class="v">fais</i>-<i class="s">tu</i> aujourd\'hui ?', s:"Que fais-tu aujourd'hui ?", es:'¿Qué haces hoy?'},
+       {q:'<i class="i">Qui</i> <i class="v">est</i> ta mère ?', s:'Qui est ta mère ?', es:'¿Quién es tu madre?'},
+       {q:'<i class="i">Où</i> <i class="v">déjeunes</i>-<i class="s">tu</i> ?', s:'Où déjeunes-tu ?', es:'¿Dónde almuerzas?'},
+       {q:'<i class="i">Quand</i> <i class="v">suis</i>-<i class="s">tu</i> tes cours de français ?', s:'Quand suis-tu tes cours de français ?', es:'¿Cuándo sigues tus clases de francés?'},
+       {q:'<i class="i">Comment</i> <i class="v">vas</i>-<i class="s">tu</i> ?', s:'Comment vas-tu ?', es:'¿Cómo estás?'},
+       {q:'<i class="i">Pourquoi</i> <i class="v">apprends</i>-<i class="s">tu</i> le français ?', s:'Pourquoi apprends-tu le français ?', es:'¿Por qué aprendes francés?'},
+       {q:'<i class="i">Combien</i> ça <i class="v">coûte</i> ?', s:'Combien ça coûte ?', es:'¿Cuánto cuesta?'},
+       {q:'<i class="i">Combien de</i> personnes <i class="v">sont</i> là ?', s:'Combien de personnes sont là ?', es:'¿Cuántas personas hay?'},
+       {q:'<i class="i">À qui</i> <i class="v">parles</i>-<i class="s">tu</i> ?', s:'À qui parles-tu ?', es:'¿Con quién hablas?'}]},
+  {n:'Structure 2', cls:'s2', h:'Quel(le)(s) + nom + verbe + sujet',
+   f:[['i','quel + nom'],['v','verbe'],['s','sujet']],
+   ex:[{q:'<i class="i">Quel âge</i> <i class="v">as</i>-<i class="s">tu</i> ?', s:'Quel âge as-tu ?', es:'¿Cuántos años tienes?'},
+       {q:'<i class="i">Quelle couleur</i> <i class="v">préfères</i>-<i class="s">tu</i> ?', s:'Quelle couleur préfères-tu ?', es:'¿Qué color prefieres?'},
+       {q:'<i class="i">Quels sports</i> <i class="v">pratiques</i>-<i class="s">tu</i> ?', s:'Quels sports pratiques-tu ?', es:'¿Qué deportes practicas?'},
+       {q:'<i class="i">Quelles autres activités</i> <i class="v">fais</i>-<i class="s">tu</i> ?', s:'Quelles autres activités fais-tu ?', es:'¿Qué otras actividades haces?'},
+       {q:'<i class="i">Quelle heure</i> <i class="v">est</i>-<i class="s">il</i> ?', s:'Quelle heure est-il ?', es:'¿Qué hora es?'}]},
+  {n:'Structure 3', cls:'s3', h:'Est-ce que + sujet + verbe + complément',
+   f:[['i','est-ce que'],['s','sujet'],['v','verbe'],['c','complément']],
+   ex:[{q:'<i class="i">Est-ce que</i> <i class="s">tu</i> <i class="v">as</i> compris ?', s:'Est-ce que tu as compris ?', es:'¿Has entendido?'},
+       {q:'<i class="i">Est-ce que</i> <i class="s">vous</i> <i class="v">parlez</i> espagnol ?', s:'Est-ce que vous parlez espagnol ?', es:'¿Habla usted español?'},
+       {q:'<i class="i">Où est-ce que</i> <i class="s">tu</i> <i class="v">habites</i> ?', s:'Où est-ce que tu habites ?', es:'¿Dónde vives?'},
+       {q:'<i class="i">Qu\'est-ce que</i> <i class="s">tu</i> <i class="v">fais</i> ce soir ?', s:"Qu'est-ce que tu fais ce soir ?", es:'¿Qué haces esta noche?'},
+       {q:'<i class="i">Quand est-ce que</i> <i class="s">vous</i> <i class="v">partez</i> ?', s:'Quand est-ce que vous partez ?', es:'¿Cuándo se van?'}]}
+];
+var GVERBS=[
+  {inf:'habiter',  tu:'habites',  vous:'habitez',  c:''},
+  {inf:'partir',   tu:'pars',     vous:'partez',   c:'en vacances'},
+  {inf:'travailler',tu:'travailles',vous:'travaillez',c:''},
+  {inf:'manger',   tu:'manges',   vous:'mangez',   c:'le soir'},
+  {inf:'faire',    tu:'fais',     vous:'faites',   c:'le week-end'},
+  {inf:'aller',    tu:'vas',      vous:'allez',    c:''},
+  {inf:'venir',    tu:'viens',    vous:'venez',    c:'au cours'},
+  {inf:'étudier',  tu:'étudies',  vous:'étudiez',  c:'le français'},
+  {inf:'payer',    tu:'paies',    vous:'payez',    c:''},
+  {inf:'préférer', tu:'préfères', vous:'préférez', c:''}
+];
+var GINTS=[
+  {k:'où', es:'dónde', v:['habiter','partir','travailler','manger','aller','venir','étudier']},
+  {k:'quand', es:'cuándo', v:['partir','travailler','manger','venir','étudier']},
+  {k:'comment', es:'cómo', v:['aller','venir','travailler','partir','payer']},
+  {k:'pourquoi', es:'por qué', v:['partir','travailler','étudier','venir']},
+  {k:'combien', es:'cuánto', v:['payer','manger']},
+  {k:'que', es:'qué', v:['faire','manger','étudier','préférer']},
+  {k:'—', es:'question oui / non', v:['partir','travailler','venir','étudier','manger']}
+];
+var MOTS=[
+  {w:'Où ?', es:'¿dónde?', q:'Où habitez-vous ?', r:'À Lyon, près de la gare.'},
+  {w:'Quand ?', es:'¿cuándo?', q:'Quand partez-vous ?', r:'Mardi matin.'},
+  {w:'À quelle heure ?', es:'¿a qué hora?', q:'À quelle heure commence le cours ?', r:'À neuf heures.'},
+  {w:'Comment ?', es:'¿cómo?', q:'Comment voyagez-vous ?', r:'En train.'},
+  {w:'Combien ?', es:'¿cuánto?', q:'Combien payez-vous ?', r:'Quarante euros.'},
+  {w:'Combien de… ?', es:'¿cuántos/as?', q:'Combien de jours restez-vous ?', r:'Trois jours.'},
+  {w:'Pourquoi ?', es:'¿por qué?', q:'Pourquoi partez-vous en train ?', r:'Parce que c\'est moins cher.'},
+  {w:'Avec qui ?', es:'¿con quién?', q:'Avec qui voyagez-vous ?', r:'Avec ma sœur.'}
+];
+var REGROWS=[
+  {t:'👤 personne', f:'Qui cherchez-vous ?', c:'Qui est-ce que vous cherchez ?', fa:'Vous cherchez qui ?'},
+  {t:'📦 chose', f:'Que cherchez-vous ?', c:'Qu\'est-ce que vous cherchez ?', fa:'Vous cherchez quoi ?'},
+  {t:'📦 chose', f:'Que fais-tu ?', c:'Qu\'est-ce que tu fais ?', fa:'Tu fais quoi ?'},
+  {t:'📦 + préposition', f:'De quoi parlez-vous ?', c:'De quoi est-ce que vous parlez ?', fa:'Vous parlez de quoi ?'}
+];
+var QUELS=[
+  {g:'masculin singulier', w:'quel', cls:'', ex:['Quel âge as-tu ?','Quel est ton numéro ?']},
+  {g:'féminin singulier', w:'quelle', cls:'f', ex:['Quelle heure est-il ?','Quelle est votre profession ?']},
+  {g:'masculin pluriel', w:'quels', cls:'', ex:['Quels sports pratiques-tu ?','Quels jours travaillez-vous ?']},
+  {g:'féminin pluriel', w:'quelles', cls:'f', ex:['Quelles langues parlez-vous ?','Quelles activités fais-tu ?']}
+];
+
+/* ---------------- utilitaires ---------------- */
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function shuffle(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
+function norm(s){ return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[’']/g,"'").replace(/\s*-\s*/g,' ').replace(/[.,!?;:]/g,'').replace(/\s+/g,' ').trim(); }
+function cap(s){ return s.charAt(0).toUpperCase()+s.slice(1); }
+
+var frVoice=null;
+function pickVoice(){ if(!('speechSynthesis' in window)) return; var vs=window.speechSynthesis.getVoices()||[]; frVoice=vs.filter(function(v){return v.lang==='fr-FR';})[0]||vs.filter(function(v){return (v.lang||'').indexOf('fr')===0;})[0]||null; }
+if('speechSynthesis' in window){ pickVoice(); window.speechSynthesis.onvoiceschanged=pickVoice; }
+function speak(text, btn){
+  if(!('speechSynthesis' in window)||!text) return;
+  window.speechSynthesis.cancel();
+  var u=new SpeechSynthesisUtterance(text); u.lang='fr-FR'; u.rate=0.9; if(frVoice) u.voice=frVoice;
+  if(btn){ btn.classList.add('on'); u.onend=u.onerror=function(){ btn.classList.remove('on'); }; }
+  window.speechSynthesis.speak(u);
+}
+document.addEventListener('click', function(e){ var b=e.target.closest('[data-say]'); if(b) speak(b.getAttribute('data-say'), b.classList.contains('listen')?b:null); });
+
+/* ---------------- rendu : structures ---------------- */
+document.getElementById('structs').innerHTML=STRUCTS.map(function(s){
+  return '<div class="st '+s.cls+'"><span class="num">'+esc(s.n)+'</span><h3>'+esc(s.h)+'</h3>'
+    +'<div class="formula">'+s.f.map(function(f){ return '<span class="seg '+f[0]+'">'+esc(f[1])+'</span>'; }).join('')+'</div>'
+    +'<ul class="exl">'+s.ex.map(function(e){ return '<li><span class="q">'+e.q.replace(/<i class="/g,'<span class="').replace(/<\/i>/g,'</span>')+'<span class="es">'+esc(e.es)+'</span></span><button class="listen" type="button" data-say="'+esc(e.s)+'" aria-label="Écouter">🔊</button></li>'; }).join('')+'</ul></div>';
+}).join('');
+
+/* ---------------- fabrique de questions ---------------- */
+var gInt=document.getElementById('gInt'), gSubj=document.getElementById('gSubj'), gVerb=document.getElementById('gVerb');
+GINTS.forEach(function(g,i){ var o=document.createElement('option'); o.value=i; o.textContent=g.k+' — '+g.es; gInt.appendChild(o); });
+function fillVerbs(){
+  var g=GINTS[parseInt(gInt.value,10)], cur=gVerb.value;
+  gVerb.innerHTML=g.v.map(function(inf){ return '<option value="'+esc(inf)+'">'+esc(inf)+'</option>'; }).join('');
+  if(g.v.indexOf(cur)>=0) gVerb.value=cur;
+}
+function buildQ(intK, subj, v){
+  var form=v[subj], c=v.c?' '+v.c:'', inv=form+'-'+subj;
+  var f,cq,fa;
+  if(intK==='—'){ f=cap(inv)+c+' ?'; cq='Est-ce que '+subj+' '+form+c+' ?'; fa=cap(subj)+' '+form+c+' ?'; }
+  else if(intK==='que'){ f='Que '+inv+c+' ?'; cq="Qu'est-ce que "+subj+' '+form+c+' ?'; fa=cap(subj)+' '+form+' quoi'+c+' ?'; }
+  else { f=cap(intK)+' '+inv+c+' ?'; cq=cap(intK)+' est-ce que '+subj+' '+form+c+' ?'; fa=cap(subj)+' '+form+c+' '+intK+' ?'; }
+  return {f:f,c:cq,fa:fa};
+}
+function genQ(){
+  var g=GINTS[parseInt(gInt.value,10)], v=GVERBS.filter(function(x){return x.inf===gVerb.value;})[0]||GVERBS[0];
+  var q=buildQ(g.k, gSubj.value, v);
+  document.getElementById('gOut').innerHTML=
+    '<div class="reg f"><span class="lb">Formel · inversion</span><span class="q">'+esc(q.f)+'</span><button class="listen" type="button" data-say="'+esc(q.f)+'">🔊</button></div>'
+   +'<div class="reg c"><span class="lb">Courant · est-ce que</span><span class="q">'+esc(q.c)+'</span><button class="listen" type="button" data-say="'+esc(q.c)+'">🔊</button></div>'
+   +'<div class="reg fa"><span class="lb">Familier · intonation</span><span class="q">'+esc(q.fa)+'</span><button class="listen" type="button" data-say="'+esc(q.fa)+'">🔊</button></div>';
+}
+gInt.addEventListener('change', function(){ fillVerbs(); genQ(); }); gSubj.addEventListener('change', genQ); gVerb.addEventListener('change', genQ);
+fillVerbs(); genQ();
+
+/* ---------------- rendu : mots interrogatifs ---------------- */
+document.getElementById('motsCards').innerHTML=MOTS.map(function(m){
+  return '<div class="mot"><button class="listen" type="button" data-say="'+esc(m.q+' '+m.r)+'" aria-label="Écouter">🔊</button><span class="w">'+esc(m.w)+'</span><span class="es">'+esc(m.es)+'</span><span class="exm"><b>'+esc(m.q)+'</b><br>— '+esc(m.r)+'</span></div>';
+}).join('');
+
+/* ---------------- rendu : registres qui/que ---------------- */
+document.getElementById('regRows').innerHTML=REGROWS.map(function(r){
+  function cell(t){ return '<td><button type="button" data-say="'+esc(t)+'">'+esc(t).replace(/^(Qui|Que|Qu&#39;est-ce que|Qu'est-ce que|De quoi)/,'<b>$1</b>').replace(/(qui|quoi) \?$/,'<b>$1</b> ?')+'</button></td>'; }
+  return '<tr><td>'+esc(r.t)+'</td>'+cell(r.f)+cell(r.c)+cell(r.fa)+'</tr>';
+}).join('');
+
+/* ---------------- rendu : quel ---------------- */
+document.getElementById('quelCards').innerHTML=QUELS.map(function(q){
+  return '<div class="qc '+q.cls+'"><button class="listen" type="button" data-say="'+esc(q.ex.join(' '))+'" aria-label="Écouter">🔊</button><span class="g">'+esc(q.g)+'</span><span class="w">'+esc(q.w)+'</span><span class="exm">'+q.ex.map(esc).join('<br>')+'</span></div>';
+}).join('');
+
+/* ---------------- moteur d'exercices ---------------- */
+var ROUNDS=8;
+var EX={}; 'ABCDEFGHIJKL'.split('').forEach(function(k){ EX[k]={i:0,ok:0}; });
+var TOTALS={}; 'ABCDEFGHIJKL'.split('').forEach(function(k){ TOTALS[k]=ROUNDS; }); TOTALS.K=11;
+function setBar(n){
+  var st=EX[n];
+  document.getElementById('bar'+n).style.width=Math.round(st.i/TOTALS[n]*100)+'%';
+  document.getElementById('sc'+n).textContent=st.ok+' / '+st.i;
+  var ok=0,tot=0,k; for(k in EX){ ok+=EX[k].ok; tot+=EX[k].i; }
+  document.getElementById('bTotal').textContent=ok+' / '+tot;
+  document.getElementById('bPct').textContent=tot?Math.round(ok/tot*100)+' %':'—';
+}
+function fb(n,good,msg,sub){ var el=document.getElementById('f'+n); el.className='fb '+(good?'good':'bad'); el.innerHTML=(good?'✅ ':'❌ ')+esc(msg)+(sub?'<small>'+esc(sub)+'</small>':''); }
+function finish(n){
+  var st=EX[n], t=TOTALS[n], q=document.getElementById('q'+n), o=document.getElementById('o'+n);
+  if(q) q.innerHTML='🎉 <span>Terminé — '+st.ok+' / '+t+' bonnes réponses.</span>';
+  if(o) o.innerHTML='';
+  var el=document.getElementById('f'+n); el.className='fb';
+  el.textContent = st.ok>=t-1?'Excellent ! 👏':(st.ok>=t/2?'Bien ! Recommencez pour progresser.':'Révisez la leçon et recommencez.');
+}
+function mcqBind(n, onAnswer){
+  document.getElementById('o'+n).addEventListener('click', function(e){
+    var b=e.target.closest('.opt'); if(!b||b.disabled) return;
+    var st=EX[n], good=b.getAttribute('data-v')===st.answer;
+    document.querySelectorAll('#o'+n+' .opt').forEach(function(x){ x.disabled=true; if(x.getAttribute('data-v')===st.answer) x.classList.add('good'); });
+    if(!good) b.classList.add('bad');
+    if(good) st.ok++; st.i++;
+    onAnswer(good, st.cur);
+    setBar(n);
+    setTimeout(function(){ st.next(); }, 1700);
+  });
+}
+function optsHtml(list, chip){ return list.map(function(v){ return '<button class="opt'+(chip?' chip':'')+'" type="button" data-v="'+esc(v)+'">'+esc(v)+'</button>'; }).join(''); }
+
+/* A : ordre des mots */
+var ORDER=[
+  {t:['Où','habites-tu','maintenant'], es:'¿Dónde vives ahora?'},
+  {t:['Quand','pars-tu','en vacances'], es:'¿Cuándo te vas de vacaciones?'},
+  {t:['Comment','allez-vous','ce matin'], es:'¿Cómo está usted esta mañana?'},
+  {t:['Pourquoi','apprends-tu','le français'], es:'¿Por qué aprendes francés?'},
+  {t:['Combien','ça','coûte'], es:'¿Cuánto cuesta?'},
+  {t:['Que','fais-tu','aujourd\'hui'], es:'¿Qué haces hoy?'},
+  {t:['Quel âge','a','ton frère'], es:'¿Cuántos años tiene tu hermano?'},
+  {t:['Quelle couleur','préfères-tu','pour le salon'], es:'¿Qué color prefieres para el salón?'},
+  {t:['Quels sports','pratiques-tu','le week-end'], es:'¿Qué deportes practicas el fin de semana?'},
+  {t:['Est-ce que','tu','as compris'], es:'¿Has entendido?'},
+  {t:['Est-ce que','vous','parlez','espagnol'], es:'¿Habla usted español?'},
+  {t:['Où est-ce que','tu','déjeunes'], es:'¿Dónde almuerzas?'},
+  {t:['Qu\'est-ce que','vous','cherchez'], es:'¿Qué busca usted?'},
+  {t:['Qui','est','ta mère'], es:'¿Quién es tu madre?'},
+  {t:['À qui','parles-tu','au téléphone'], es:'¿Con quién hablas por teléfono?'},
+  {t:['Quelle heure','est-il','à Tokyo'], es:'¿Qué hora es en Tokio?'},
+  {t:['Combien de','personnes','sont là'], es:'¿Cuántas personas hay?'}
+];
+function startA(){ EX.A={i:0,ok:0,list:shuffle(ORDER).slice(0,ROUNDS),next:nextA,placed:[],done:false}; setBar('A'); nextA(); }
+function nextA(){
+  var st=EX.A; if(st.i>=TOTALS.A){ finish('A'); document.getElementById('builtA').innerHTML=''; return; }
+  var it=st.list[st.i]; st.cur=it; st.placed=[]; st.done=false;
+  document.getElementById('qA').innerHTML='<span>'+esc(it.es)+'</span><span class="hint">· '+it.t.length+' morceaux — question '+(st.i+1)+' / '+TOTALS.A+'</span>';
+  var sh=shuffle(it.t); if(sh.join('|')===it.t.join('|')) sh=sh.slice(1).concat([sh[0]]);
+  document.getElementById('oA').innerHTML=sh.map(function(w,k){ return '<button class="opt chip" type="button" data-k="'+k+'">'+esc(w)+'</button>'; }).join('');
+  renderBuilt(); document.getElementById('fA').textContent='';
+}
+function renderBuilt(){
+  var st=EX.A, el=document.getElementById('builtA');
+  el.className='built'; el.innerHTML=st.placed.length?st.placed.map(function(w){ return '<span class="tk">'+esc(w)+'</span>'; }).join('')+'<span class="tk" style="border-style:dashed">?</span>':'<span class="ph">Cliquez sur les morceaux dans l\'ordre…</span>';
+}
+document.getElementById('oA').addEventListener('click', function(e){
+  var b=e.target.closest('.opt'); var st=EX.A; if(!b||b.disabled||st.done) return;
+  b.disabled=true; st.placed.push(b.textContent); renderBuilt();
+  if(st.placed.length===st.cur.t.length){
+    st.done=true; var good=st.placed.join(' ')===st.cur.t.join(' '); var full=st.cur.t.join(' ')+' ?';
+    document.getElementById('builtA').classList.add(good?'good':'bad');
+    if(good) st.ok++; st.i++; fb('A',good,full,st.cur.es); speak(full); setBar('A'); setTimeout(nextA,1900);
+  }
+});
+document.getElementById('undoA').addEventListener('click', function(){
+  var st=EX.A; if(st.done||!st.placed.length) return; var w=st.placed.pop();
+  var btns=document.querySelectorAll('#oA .opt'); for(var i=btns.length-1;i>=0;i--){ if(btns[i].disabled&&btns[i].textContent===w){ btns[i].disabled=false; break; } }
+  renderBuilt();
+});
+
+/* B : registre */
+var REG_OPTS=['formel — inversion','courant — est-ce que','familier — intonation'];
+var REGS=[
+  {q:'Où allez-vous ?',a:0},{q:'Où est-ce que vous allez ?',a:1},{q:'Vous allez où ?',a:2},
+  {q:'Que cherchez-vous ?',a:0},{q:'Qu\'est-ce que vous cherchez ?',a:1},{q:'Vous cherchez quoi ?',a:2},
+  {q:'Quand partez-vous ?',a:0},{q:'Quand est-ce que tu pars ?',a:1},{q:'Tu pars quand ?',a:2},
+  {q:'Comment vous appelez-vous ?',a:0},{q:'Comment est-ce que tu t\'appelles ?',a:1},{q:'Tu t\'appelles comment ?',a:2},
+  {q:'Pourquoi étudiez-vous le français ?',a:0},{q:'Pourquoi est-ce que tu étudies le français ?',a:1},{q:'Tu étudies le français pourquoi ?',a:2},
+  {q:'Combien payez-vous ?',a:0},{q:'Combien est-ce que vous payez ?',a:1},{q:'Vous payez combien ?',a:2},
+  {q:'Venez-vous ce soir ?',a:0},{q:'Est-ce que tu viens ce soir ?',a:1},{q:'Tu viens ce soir ?',a:2},
+  {q:'Avec qui voyagez-vous ?',a:0},{q:'Avec qui est-ce que tu voyages ?',a:1},{q:'Tu voyages avec qui ?',a:2}
+];
+var REG_WHY=['le verbe est avant le sujet, avec un trait d\'union','« est-ce que » + sujet + verbe','le mot interrogatif reste à la fin, seule l\'intonation monte'];
+function startB(){ EX.B={i:0,ok:0,list:shuffle(REGS).slice(0,ROUNDS),next:nextB}; setBar('B'); nextB(); }
+function nextB(){
+  var st=EX.B; if(st.i>=TOTALS.B){ finish('B'); return; }
+  var it=st.list[st.i]; st.cur=it; st.answer=REG_OPTS[it.a];
+  document.getElementById('qB').innerHTML='<span>'+esc(it.q)+'</span><button class="listen" type="button" style="position:static" data-say="'+esc(it.q)+'">🔊</button><span class="hint">· question '+(st.i+1)+' / '+TOTALS.B+'</span>';
+  document.getElementById('oB').innerHTML=optsHtml(REG_OPTS);
+  document.getElementById('fB').textContent='';
+}
+mcqBind('B', function(good,it){ fb('B',good,it.q+' → '+REG_OPTS[it.a], REG_WHY[it.a]); speak(it.q); });
+
+/* C : quel mot interrogatif */
+var MOT_OPTS=['Où','Quand','Comment','Combien','Pourquoi','Parce que'];
+var MOTQ=[
+  {q:'___ allez-vous ?',r:'À Lisbonne.',a:'Où'},{q:'___ partez-vous ?',r:'Mardi matin.',a:'Quand'},{q:'___ payez-vous ?',r:'Trente euros.',a:'Combien'},
+  {q:'___ voyagez-vous ?',r:'En train.',a:'Comment'},{q:'___ partez-vous en train ?',r:'Parce que c\'est moins cher.',a:'Pourquoi'},{q:'___ habites-tu ?',r:'Près de la gare.',a:'Où'},
+  {q:'___ vas-tu ?',r:'Très bien, merci !',a:'Comment'},{q:'___ apprends-tu le français ?',r:'Pour travailler au Canada.',a:'Pourquoi'},{q:'___ de personnes viennent ?',r:'Douze.',a:'Combien'},
+  {q:'___ commence le cours ?',r:'À neuf heures.',a:'Quand'},{q:'___ arrive le bus ?',r:'Devant la mairie.',a:'Où'},{q:'___ rentrez-vous ?',r:'Dimanche soir.',a:'Quand'},
+  {q:'___ coûte ce livre ?',r:'Quinze euros.',a:'Combien'},{q:'___ vas-tu au travail ?',r:'À vélo.',a:'Comment'},{q:'___ ne viens-tu pas ?',r:'Parce que je suis malade.',a:'Pourquoi'},
+  {q:'___ est la pharmacie ?',r:'En face de la poste.',a:'Où'},{q:'Pourquoi partez-vous en juillet ?',r:'___ il fait beau.',a:'Parce que'},{q:'Pourquoi tu prends le bus ?',r:'___ ma voiture est en panne.',a:'Parce que'},{q:'Pourquoi restez-vous à la maison ?',r:'___ il pleut.',a:'Parce que'},{q:'___ tu t\'appelles ?',r:'Sofía.',a:'Comment'},{q:'___ de frères as-tu ?',r:'Deux.',a:'Combien'}
+];
+function startC(){ EX.C={i:0,ok:0,list:shuffle(MOTQ).slice(0,ROUNDS),next:nextC}; setBar('C'); nextC(); }
+function nextC(){
+  var st=EX.C; if(st.i>=TOTALS.C){ finish('C'); return; }
+  var it=st.list[st.i]; st.cur=it; st.answer=it.a;
+  document.getElementById('qC').innerHTML='<span>'+esc(it.q).replace('___','<span class="blank">___</span>')+' <span style="color:var(--muted);font-weight:600">— '+esc(it.r).replace('___','<span class="blank">___</span>')+'</span></span><span class="hint">· question '+(st.i+1)+' / '+TOTALS.C+'</span>';
+  document.getElementById('oC').innerHTML=optsHtml(MOT_OPTS,true);
+  document.getElementById('fC').textContent='';
+}
+mcqBind('C', function(good,it){ var full=it.q.replace('___',it.a), r=it.r.replace('___',it.a); fb('C',good,full+' — '+r); speak(full+' '+r); });
+
+/* D : posez la question (écrit) */
+var POOL_E=[
+  {h:'lundi ou mardi ?', p:'vous', v:'partir', a:['quand partez-vous','quand est-ce que vous partez','vous partez quand']},
+  {h:'à Paris ou à Lyon ?', p:'vous', v:'habiter', a:['où habitez-vous','où est-ce que vous habitez','vous habitez où']},
+  {h:'en train ou en avion ?', p:'tu', v:'voyager', a:['comment voyages-tu','comment est-ce que tu voyages','tu voyages comment']},
+  {h:'10 € ou 20 € ?', p:'tu', v:'payer', a:['combien paies-tu','combien payes-tu','combien est-ce que tu paies','combien est-ce que tu payes','tu paies combien','tu payes combien']},
+  {h:'pour le travail ou pour le plaisir ?', p:'vous', v:'apprendre le français', a:['pourquoi apprenez-vous le français','pourquoi est-ce que vous apprenez le français','vous apprenez le français pourquoi']},
+  {h:'à midi ou à 13 h ?', p:'tu', v:'déjeuner', a:['quand déjeunes-tu','quand est-ce que tu déjeunes','tu déjeunes quand','à quelle heure déjeunes-tu','à quelle heure est-ce que tu déjeunes','tu déjeunes à quelle heure']},
+  {h:'au bureau ou à la maison ?', p:'vous', v:'travailler', a:['où travaillez-vous','où est-ce que vous travaillez','vous travaillez où']},
+  {h:'demain ou samedi ?', p:'tu', v:'venir', a:['quand viens-tu','quand est-ce que tu viens','tu viens quand']},
+  {h:'à pied ou en bus ?', p:'vous', v:'venir', a:['comment venez-vous','comment est-ce que vous venez','vous venez comment']},
+  {h:'deux ou trois enfants ?', p:'vous', v:'avoir', a:["combien d'enfants avez-vous","combien d'enfants est-ce que vous avez","vous avez combien d'enfants"]},
+  {h:'un café ou un thé ?', p:'tu', v:'vouloir', a:['que veux-tu',"qu'est-ce que tu veux",'tu veux quoi']},
+  {h:'un livre ou un film ?', p:'vous', v:'préférer', a:['que préférez-vous',"qu'est-ce que vous préférez",'vous préférez quoi']},
+  {h:'parce que c\'est joli ou parce que c\'est pratique ?', p:'tu', v:'choisir ce sac', a:['pourquoi choisis-tu ce sac','pourquoi est-ce que tu choisis ce sac','tu choisis ce sac pourquoi']},
+  {h:'au cinéma ou au restaurant ?', p:'vous', v:'aller', a:['où allez-vous','où est-ce que vous allez','vous allez où']}
+];
+function typedEx(n, pool, inputId, render){
+  function start(){ EX[n]={i:0,ok:0,tried:false,list:shuffle(pool).slice(0,ROUNDS),next:next}; document.getElementById(inputId).disabled=false; setBar(n); next(); }
+  function next(){
+    var s=EX[n]; if(s.i>=TOTALS[n]){ finish(n); document.getElementById(inputId).disabled=true; return; }
+    s.tried=false; var it=s.list[s.i]; s.cur=it;
+    document.getElementById('q'+n).innerHTML=render(it)+'<span class="hint">· question '+(s.i+1)+' / '+TOTALS[n]+'</span>';
+    var inp=document.getElementById(inputId); inp.value=''; inp.className=''; inp.disabled=false; inp.focus();
+    document.getElementById('f'+n).textContent='';
+  }
+  function grade(reveal){
+    var s=EX[n]; if(s.i>=TOTALS[n]||s.tried) return;
+    var it=s.list[s.i], inp=document.getElementById(inputId), v=norm(inp.value);
+    if(!reveal&&!v) return;
+    var answers=it.a.map(norm), good=!reveal && answers.indexOf(v)>=0;
+    var model=cap(it.a[0])+' ?';
+    s.tried=true; inp.value=model; inp.className=good?'good':'bad'; inp.disabled=true;
+    if(good) s.ok++; s.i++;
+    fb(n,good,model, good?'Bravo !':'Aussi possible : '+it.a.slice(1,3).map(function(x){return cap(x)+' ?';}).join(' · '));
+    speak(model); setBar(n); setTimeout(next,2000);
+  }
+  document.getElementById('check'+n).addEventListener('click', function(){ grade(false); });
+  document.getElementById('show'+n).addEventListener('click', function(){ grade(true); });
+  document.getElementById(inputId).addEventListener('keydown', function(e){ if(e.key==='Enter') grade(false); });
+  return start;
+}
+var startE=typedEx('E', POOL_E, 'inE', function(it){ return '<span>('+esc(it.p)+' / '+esc(it.v)+') <span class="blank">______</span> — '+esc(it.h)+'</span>'; });
+
+/* E : qui / que / qu'est-ce que / quoi */
+var QQ_OPTS=['Qui','Que','Qu\'est-ce que','quoi'];
+var QQ=[
+  {q:'___ habite ici ?',r:'Ma voisine, Madame Diallo.',a:'Qui',w:'une personne, sujet du verbe'},
+  {q:'___ cherchez-vous ?',r:'Mes lunettes.',a:'Que',w:'une chose + inversion → que'},
+  {q:'___ vous cherchez ?',r:'Le bureau du directeur.',a:'Qu\'est-ce que',w:'une chose, sans inversion → qu\'est-ce que'},
+  {q:'Vous mangez ___ ce soir ?',r:'Une soupe.',a:'quoi',w:'une chose, après le verbe → quoi'},
+  {q:'___ parle espagnol ici ?',r:'Moi !',a:'Qui',w:'une personne'},
+  {q:'___ tu fais dimanche ?',r:'Je vais au cinéma.',a:'Qu\'est-ce que',w:'une chose, sans inversion'},
+  {q:'___ voulez-vous boire ?',r:'Un jus d\'orange.',a:'Que',w:'une chose + inversion'},
+  {q:'Tu regardes ___ ?',r:'Un documentaire.',a:'quoi',w:'une chose, après le verbe'},
+  {q:'___ est ce monsieur ?',r:'C\'est mon professeur.',a:'Qui',w:'une personne'},
+  {q:'___ regardez-vous ?',r:'Le match de foot.',a:'Que',w:'une chose + inversion'},
+  {q:'Avec ___ pars-tu en vacances ?',r:'Avec ma sœur.',a:'Qui',w:'préposition + personne → qui'},
+  {q:'De ___ parlez-vous ?',r:'Du nouveau film.',a:'quoi',w:'préposition + chose → quoi'},
+  {q:'___ est-ce que tu invites ?',r:'Mes cousins.',a:'Qui',w:'une personne, complément'},
+  {q:'___ tu prends au petit-déjeuner ?',r:'Du pain et du café.',a:'Qu\'est-ce que',w:'une chose, sans inversion'},
+  {q:'___ vient avec nous ?',r:'Paul et Léa.',a:'Qui',w:'des personnes, sujet'},
+  {q:'À ___ penses-tu ?',r:'À mes vacances.',a:'quoi',w:'préposition + chose → quoi'}
+];
+function startF(){ EX.F={i:0,ok:0,list:shuffle(QQ).slice(0,ROUNDS),next:nextF}; setBar('F'); nextF(); }
+function nextF(){
+  var st=EX.F; if(st.i>=TOTALS.F){ finish('F'); return; }
+  var it=st.list[st.i]; st.cur=it; st.answer=it.a;
+  document.getElementById('qF').innerHTML='<span>'+esc(it.q).replace('___','<span class="blank">___</span>')+' <span style="color:var(--muted);font-weight:600">— '+esc(it.r)+'</span></span><span class="hint">· question '+(st.i+1)+' / '+TOTALS.F+'</span>';
+  document.getElementById('oF').innerHTML=optsHtml(QQ_OPTS,true);
+  document.getElementById('fF').textContent='';
+}
+mcqBind('F', function(good,it){ var a=it.a; if(it.q.indexOf('___')>0) a=a.toLowerCase(); var full=it.q.replace('___',a); fb('F',good,full+' — '+it.r, it.w); speak(full+' '+it.r); });
+
+/* F : accord de quel */
+var QUEL_OPTS=['Quel','Quelle','Quels','Quelles'];
+var QUELQ=[
+  {q:'___ heure est-il ?',a:'Quelle',w:'heure : féminin singulier'},{q:'___ âge as-tu ?',a:'Quel',w:'âge : masculin singulier'},{q:'___ sports pratiques-tu ?',a:'Quels',w:'sports : masculin pluriel'},
+  {q:'___ langues parlez-vous ?',a:'Quelles',w:'langues : féminin pluriel'},{q:'___ est votre profession ?',a:'Quelle',w:'profession : féminin singulier'},{q:'___ livre lis-tu ?',a:'Quel',w:'livre : masculin singulier'},
+  {q:'___ est ton numéro de téléphone ?',a:'Quel',w:'numéro : masculin singulier'},{q:'___ couleur préfères-tu ?',a:'Quelle',w:'couleur : féminin singulier'},{q:'___ jours travaillez-vous ?',a:'Quels',w:'jours : masculin pluriel'},
+  {q:'___ chaussures mets-tu ?',a:'Quelles',w:'chaussures : féminin pluriel'},{q:'___ est la capitale du Pérou ?',a:'Quelle',w:'capitale : féminin singulier'},{q:'___ films aimez-vous ?',a:'Quels',w:'films : masculin pluriel'},
+  {q:'___ musique écoutes-tu ?',a:'Quelle',w:'musique : féminin singulier'},{q:'___ acteur préfères-tu ?',a:'Quel',w:'acteur : masculin singulier'},{q:'___ activités fais-tu le week-end ?',a:'Quelles',w:'activités : féminin pluriel'},
+  {q:'___ temps fait-il ?',a:'Quel',w:'temps : masculin singulier'},{q:'___ sont tes plats préférés ?',a:'Quels',w:'plats : masculin pluriel'},{q:'___ villes connais-tu en France ?',a:'Quelles',w:'villes : féminin pluriel'}
+];
+function startH(){ EX.H={i:0,ok:0,list:shuffle(QUELQ).slice(0,ROUNDS),next:nextH}; setBar('H'); nextH(); }
+function nextH(){
+  var st=EX.H; if(st.i>=TOTALS.H){ finish('H'); return; }
+  var it=st.list[st.i]; st.cur=it; st.answer=it.a;
+  document.getElementById('qH').innerHTML='<span>'+esc(it.q).replace('___','<span class="blank">___</span>')+'</span><span class="hint">· question '+(st.i+1)+' / '+TOTALS.H+'</span>';
+  document.getElementById('oH').innerHTML=optsHtml(QUEL_OPTS,true);
+  document.getElementById('fH').textContent='';
+}
+mcqBind('H', function(good,it){ var full=it.q.replace('___',it.a); fb('H',good,full,it.w); speak(full); });
+
+/* G : Quelle nouvelle ? */
+var POOL_I=[
+  {s:'Tu connais la nouvelle ?', a:['quelle nouvelle']},{s:'J\'aime beaucoup ce film.', a:['quel film']},{s:'Elle achète des chaussures.', a:['quelles chaussures']},
+  {s:'Nous prenons le bus.', a:['quel bus']},{s:'Il regarde les photos.', a:['quelles photos']},{s:'Je cherche la clé.', a:['quelle clé']},
+  {s:'Ils adorent ces chansons.', a:['quelles chansons']},{s:'Tu connais ce restaurant ?', a:['quel restaurant']},{s:'Vous préférez les sports d\'hiver.', a:['quels sports','quels sports d\'hiver']},
+  {s:'On visite le musée demain.', a:['quel musée']},{s:'J\'ai vu tes amis hier.', a:['quels amis']},{s:'Elle aime la robe bleue.', a:['quelle robe','quelle robe bleue']},
+  {s:'Je lis un livre passionnant.', a:['quel livre']},{s:'Nous partons avec des voisins.', a:['quels voisins']}
+];
+var startI=typedEx('I', POOL_I, 'inI', function(it){ return '<span>'+esc(it.s)+' → <span class="blank">______</span> ?</span>'; });
+
+/* H : dialogue à trous */
+var DIAL=[
+  ['— Allô, Karim ? Je t\'entends très mal ! Tu es ', {a:'où',o:['où','quand','comment']}, ' ?', '— Je suis à la gare, il y a beaucoup de bruit.'],
+  ['— Tu pars ', {a:'quand',o:['quand','où','qui']}, ' ?', '— Dans dix minutes, le train est à 8 h 30.'],
+  ['— Et tu vas ', {a:'où',o:['où','combien','quoi']}, ' ?', '— À Marseille, chez ma sœur.'],
+  ['— ', {a:'Pourquoi',o:['Pourquoi','Comment','Quand']}, ' tu vas à Marseille ?', '— ', {a:'Parce que',o:['Parce que','Pour','Quand']}, ' c\'est son anniversaire samedi.'],
+  ['— Tu restes ', {a:'combien',o:['combien','comment','quel']}, ' de jours ?', '— Trois jours, je rentre lundi.'],
+  ['— ', {a:'Qu\'est-ce que',o:['Qu\'est-ce que','Qui','Quelle']}, ' tu lui offres ?', '— Un livre.'],
+  ['— ', {a:'Quel',o:['Quel','Quelle','Quels']}, ' livre ?', '— Un roman policier, elle adore ça.'],
+  ['— Et tu rentres ', {a:'comment',o:['comment','où','que']}, ' ?', '— En train aussi.'],
+  ['— ', {a:'Qui',o:['Qui','Que','Quoi']}, ' vient te chercher à la gare ?', '— Personne, je prends un taxi.'],
+  ['— ', {a:'Est-ce que',o:['Est-ce que','Qu\'est-ce que','Quelle']}, ' tu m\'appelles à ton arrivée ?', '— Oui, promis ! Allô ? Allô ?… La communication est coupée !']
+];
+function startK(){
+  EX.K={i:0,ok:0,next:function(){}};
+  var k=0;
+  document.getElementById('texteK').innerHTML=DIAL.map(function(line){
+    var html='', open=false;
+    line.forEach(function(t){
+      if(typeof t==='string'){ if(t.charAt(0)==='—'&&open){ html+='</p>'; open=false; } if(!open){ html+='<p>'; open=true; } html+=esc(t); }
+      else { k++; html+='<select data-a="'+esc(t.a)+'"><option value="">…</option>'+shuffle(t.o).map(function(o){return '<option value="'+esc(o)+'">'+esc(o)+'</option>';}).join('')+'</select>'; }
+    });
+    return html+(open?'</p>':'');
+  }).join('');
+  document.getElementById('fK').textContent=''; setBar('K');
+}
+document.getElementById('checkK').addEventListener('click', function(){
+  var sels=document.querySelectorAll('#texteK select'), ok=0, n=0;
+  sels.forEach(function(s){ n++; var good=s.value===s.getAttribute('data-a'); s.className=good?'good':'bad'; if(good) ok++; });
+  EX.K.i=n; EX.K.ok=ok; setBar('K');
+  fb('K', ok===n, ok+' / '+n+' réponses correctes.', ok===n?'Bravo, la communication est rétablie !':'Les menus en rouge sont à corriger : cliquez à nouveau sur « Vérifier ».');
+});
+document.getElementById('readK').addEventListener('click', function(){
+  speak(DIAL.map(function(line){ return line.map(function(t){ return typeof t==='string'?t.replace(/^— /,''):t.a; }).join(''); }).join(' '));
+});
+
+
+/* D : associez questions et réponses */
+var QA=[
+  {q:'Où arrive le train ?',r:'Gare du Nord, voie 4.'},{q:'Quand part le prochain bus ?',r:'Dans un quart d\'heure.'},{q:'Combien coûte le billet ?',r:'Douze euros.'},
+  {q:'Combien de temps dure le voyage ?',r:'Un peu moins de deux heures.'},{q:'Comment allez-vous à l\'aéroport ?',r:'En taxi.'},{q:'Pourquoi le train est-il en retard ?',r:'Parce qu\'il neige.'},
+  {q:'À quelle heure ferme la boulangerie ?',r:'À vingt heures.'},{q:'Où est la station de métro ?',r:'Juste derrière la mairie.'},{q:'Quand revenez-vous ?',r:'Dimanche soir.'},
+  {q:'Combien de bagages avez-vous ?',r:'Une valise et un sac.'},{q:'Comment s\'appelle votre hôtel ?',r:'L\'Hôtel du Port.'},{q:'Pourquoi tu prends le bateau ?',r:'Pour voir la côte.'},
+  {q:'Avec qui voyagez-vous ?',r:'Avec mes deux enfants.'},{q:'Où dormez-vous ce soir ?',r:'Chez des amis.'},{q:'Quand est-ce que le musée ouvre ?',r:'À dix heures.'},{q:'Combien de personnes êtes-vous ?',r:'Quatre.'}
+];
+function startD(){ EX.D={i:0,ok:0,list:shuffle(QA).slice(0,ROUNDS),next:nextD}; setBar('D'); nextD(); }
+function nextD(){
+  var st=EX.D; if(st.i>=TOTALS.D){ finish('D'); return; }
+  var it=st.list[st.i]; st.cur=it; st.answer=it.r;
+  document.getElementById('qD').innerHTML='<span>'+esc(it.q)+'</span><button class="listen" type="button" style="position:static" data-say="'+esc(it.q)+'">🔊</button><span class="hint">· question '+(st.i+1)+' / '+TOTALS.D+'</span>';
+  var opts=shuffle(shuffle(QA.filter(function(x){return x.r!==it.r;})).slice(0,3).map(function(x){return x.r;}).concat([it.r]));
+  document.getElementById('oD').innerHTML=optsHtml(opts);
+  document.getElementById('fD').textContent='';
+}
+mcqBind('D', function(good,it){ fb('D',good,it.q+' — '+it.r); speak(it.q+' '+it.r); });
+
+/* G : quelqu'un / quelque chose → qui / que */
+var POOL_G=[
+  {s:'Quelqu\'un habite à cet étage ?', a:['qui habite à cet étage']},
+  {s:'Quelqu\'un travaille le dimanche ?', a:['qui travaille le dimanche']},
+  {s:'Vous cherchez quelqu\'un ?', a:['qui cherchez-vous','qui est-ce que vous cherchez','vous cherchez qui']},
+  {s:'Vous attendez quelqu\'un ?', a:['qui attendez-vous','qui est-ce que vous attendez','vous attendez qui']},
+  {s:'Vous buvez quelque chose ?', a:['que buvez-vous',"qu'est-ce que vous buvez",'vous buvez quoi']},
+  {s:'Vous mangez quelque chose ?', a:['que mangez-vous',"qu'est-ce que vous mangez",'vous mangez quoi']},
+  {s:'Tu cherches quelque chose ?', a:['que cherches-tu',"qu'est-ce que tu cherches",'tu cherches quoi']},
+  {s:'Tu veux quelque chose ?', a:['que veux-tu',"qu'est-ce que tu veux",'tu veux quoi']},
+  {s:'Vous attendez quelque chose ?', a:["qu'attendez-vous","qu'est-ce que vous attendez",'vous attendez quoi']},
+  {s:'Quelqu\'un parle espagnol ici ?', a:['qui parle espagnol ici']},
+  {s:'Tu invites quelqu\'un samedi ?', a:['qui invites-tu samedi','qui est-ce que tu invites samedi','tu invites qui samedi']},
+  {s:'Tu regardes quelque chose ?', a:['que regardes-tu',"qu'est-ce que tu regardes",'tu regardes quoi']},
+  {s:'Quelqu\'un vient avec nous ?', a:['qui vient avec nous']},
+  {s:'Vous écoutez quelque chose ?', a:["qu'écoutez-vous","qu'est-ce que vous écoutez",'vous écoutez quoi']}
+];
+var startG=typedEx('G', POOL_G, 'inG', function(it){ return '<span>'+esc(it.s)+' → <span class="blank">______</span> ?</span>'; });
+
+/* J : quel est… / qu'est-ce que… (deux blancs) */
+function multiEx(n, pool, build){
+  function start(){ EX[n]={i:0,ok:0,list:shuffle(pool).slice(0,ROUNDS),next:next,done:false}; setBar(n); next(); }
+  function next(){
+    var st=EX[n]; if(st.i>=TOTALS[n]){ finish(n); document.getElementById('w'+n).innerHTML=''; return; }
+    st.done=false; var it=st.list[st.i]; st.cur=it; var q=build(it);
+    document.getElementById('q'+n).innerHTML='<span>'+q.html+'</span><span class="hint">· question '+(st.i+1)+' / '+TOTALS[n]+'</span>';
+    document.getElementById('w'+n).innerHTML='<div class="blanks">'+q.blanks.map(function(b,k){
+      return '<div class="bk" data-k="'+k+'" data-a="'+esc(b.a)+'"><span class="lb">'+esc(b.lb)+'</span><div class="ch">'+b.opts.map(function(o){ return '<button class="opt" type="button" data-v="'+esc(o)+'" aria-pressed="false">'+esc(o)+'</button>'; }).join('')+'</div></div>';
+    }).join('')+'</div>';
+    document.getElementById('f'+n).textContent='';
+  }
+  document.getElementById('w'+n).addEventListener('click', function(e){
+    var b=e.target.closest('.opt'); if(!b||EX[n].done) return;
+    b.closest('.ch').querySelectorAll('.opt').forEach(function(x){ x.setAttribute('aria-pressed', x===b?'true':'false'); });
+  });
+  document.getElementById('check'+n).addEventListener('click', function(){
+    var st=EX[n]; if(st.done||st.i>=TOTALS[n]) return;
+    var bks=document.querySelectorAll('#w'+n+' .bk'), allGood=true, missing=false;
+    bks.forEach(function(bk){ var sel=bk.querySelector('.opt[aria-pressed="true"]'); if(!sel){ missing=true; return; } var good=sel.getAttribute('data-v')===bk.getAttribute('data-a'); if(!good) allGood=false;
+      bk.querySelectorAll('.opt').forEach(function(x){ x.disabled=true; if(x.getAttribute('data-v')===bk.getAttribute('data-a')) x.classList.add('good'); }); if(!good) sel.classList.add('bad'); });
+    if(missing){ bks.forEach(function(bk){ bk.querySelectorAll('.opt').forEach(function(x){ x.disabled=false; x.classList.remove('good','bad'); }); }); fb(n,false,'Choisissez une réponse pour chaque blanc.'); document.getElementById('f'+n).className='fb'; return; }
+    st.done=true; if(allGood) st.ok++; st.i++;
+    var q=build(st.cur); fb(n,allGood,q.full,q.why); speak(q.full); setBar(n); setTimeout(next,2000);
+  });
+  return start;
+}
+var QE_OPTS=['Quel','Quelle','Qu\'est-ce que'];
+var POOL_J=[
+  {a:'Quelle',q1:'est votre profession ?',b:'Qu\'est-ce que',q2:'vous faites dans la vie ?',w:'profession : nom féminin · « vous faites » : sujet + verbe'},
+  {a:'Quelle',q1:'est votre adresse ?',b:'Quel',q2:'est votre âge ?',w:'adresse : féminin · âge : masculin'},
+  {a:'Qu\'est-ce que',q1:'vous faites ce week-end ?',b:'Quel',q2:'est votre programme ?',w:'« vous faites » : sujet + verbe · programme : masculin'},
+  {a:'Quel',q1:'est le plat du jour ?',b:'Qu\'est-ce que',q2:'nous mangeons ce soir ?',w:'plat : masculin · « nous mangeons » : sujet + verbe'},
+  {a:'Quel',q1:'temps fait-il à Montréal ?',b:'Qu\'est-ce que',q2:'je mets comme manteau ?',w:'temps : masculin · « je mets » : sujet + verbe'},
+  {a:'Quelle',q1:'est ta couleur préférée ?',b:'Qu\'est-ce que',q2:'tu préfères, le bleu ou le rouge ?',w:'couleur : féminin · « tu préfères » : sujet + verbe'},
+  {a:'Quel',q1:'est ton numéro ?',b:'Qu\'est-ce que',q2:'tu écris dans ce message ?',w:'numéro : masculin · « tu écris » : sujet + verbe'},
+  {a:'Quelle',q1:'heure est-il ?',b:'Qu\'est-ce que',q2:'tu fais à cette heure-ci ?',w:'heure : féminin · « tu fais » : sujet + verbe'},
+  {a:'Quelle',q1:'est la date aujourd\'hui ?',b:'Qu\'est-ce que',q2:'nous fêtons ?',w:'date : féminin · « nous fêtons » : sujet + verbe'},
+  {a:'Quelle',q1:'langue parlez-vous à la maison ?',b:'Qu\'est-ce que',q2:'vous étudiez ?',w:'langue : féminin · « vous étudiez » : sujet + verbe'},
+  {a:'Quel',q1:'film regardes-tu ?',b:'Qu\'est-ce que',q2:'tu penses de la fin ?',w:'film : masculin · « tu penses » : sujet + verbe'},
+  {a:'Quel',q1:'est le prix du menu ?',b:'Qu\'est-ce que',q2:'vous prenez en dessert ?',w:'prix : masculin · « vous prenez » : sujet + verbe'}
+];
+var startJ=multiEx('J', POOL_J, function(it){
+  return {html:'<span class="blank">___</span> '+esc(it.q1)+' &nbsp;·&nbsp; <span class="blank">___</span> '+esc(it.q2),
+          blanks:[{lb:'1re question',a:it.a,opts:QE_OPTS},{lb:'2e question',a:it.b,opts:QE_OPTS}],
+          full:it.a+' '+it.q1+' '+it.b+' '+it.q2, why:it.w};
+});
+
+/* L : quiz culture qui / quel / quelle */
+var CULT_OPTS=['Qui','Quel','Quelle'];
+var CULT=[
+  {q:'___ a peint la Joconde ?',r:'Léonard de Vinci.',a:'Qui'},{q:'___ est la capitale du Canada ?',r:'Ottawa.',a:'Quelle'},{q:'___ fleuve traverse Paris ?',r:'La Seine.',a:'Quel'},
+  {q:'___ a écrit « Les Misérables » ?',r:'Victor Hugo.',a:'Qui'},{q:'___ est la monnaie du Japon ?',r:'Le yen.',a:'Quelle'},{q:'___ pays a la forme d\'une botte ?',r:'L\'Italie.',a:'Quel'},
+  {q:'___ a marché le premier sur la Lune ?',r:'Neil Armstrong.',a:'Qui'},{q:'___ océan sépare la France et le Canada ?',r:'L\'Atlantique.',a:'Quel'},{q:'___ langue parle-t-on au Brésil ?',r:'Le portugais.',a:'Quelle'},
+  {q:'___ a inventé le téléphone ?',r:'Graham Bell.',a:'Qui'},{q:'___ est la capitale de l\'Australie ?',r:'Canberra.',a:'Quelle'},{q:'___ animal est le symbole de la France ?',r:'Le coq.',a:'Quel'},
+  {q:'___ chante « La Vie en rose » ?',r:'Édith Piaf.',a:'Qui'},{q:'___ montagne est la plus haute d\'Europe ?',r:'Le mont Blanc.',a:'Quelle'},
+  {q:'___ est la capitale de la Norvège ?',r:'Oslo.',a:'Quelle'},{q:'___ musée se trouve à Paris ?',r:'Le Louvre.',a:'Quel'},{q:'___ a découvert la pénicilline ?',r:'Alexander Fleming.',a:'Qui'}
+];
+function startL(){ EX.L={i:0,ok:0,list:shuffle(CULT).slice(0,ROUNDS),next:nextL}; setBar('L'); nextL(); }
+function nextL(){
+  var st=EX.L; if(st.i>=TOTALS.L){ finish('L'); return; }
+  var it=st.list[st.i]; st.cur=it; st.answer=it.a;
+  document.getElementById('qL').innerHTML='<span>'+esc(it.q).replace('___','<span class="blank">___</span>')+' <span style="color:var(--muted);font-weight:600">— '+esc(it.r)+'</span></span><span class="hint">· question '+(st.i+1)+' / '+TOTALS.L+'</span>';
+  document.getElementById('oL').innerHTML=optsHtml(CULT_OPTS,true);
+  document.getElementById('fL').textContent='';
+}
+mcqBind('L', function(good,it){ var full=it.q.replace('___',it.a); fb('L',good,full+' — '+it.r, it.a==='Qui'?'une personne → qui':(it.a==='Quel'?'nom masculin → quel':'nom féminin → quelle')); speak(full+' '+it.r); });
+
+/* ---- démarrage ---- */
+var STARTERS={A:startA,B:startB,C:startC,D:startD,E:startE,F:startF,G:startG,H:startH,I:startI,J:startJ,K:startK,L:startL};
+document.querySelectorAll('[data-reset]').forEach(function(b){ b.addEventListener('click', function(){ STARTERS[b.getAttribute('data-reset')](); }); });
+document.getElementById('resetAll').addEventListener('click', function(){ Object.keys(STARTERS).forEach(function(k){ STARTERS[k](); }); document.getElementById('exercices').scrollIntoView({block:'start'}); });
+Object.keys(STARTERS).forEach(function(k){ STARTERS[k](); });
+
+/* ---- production ---- */
+var IDEAS=['Comment t\'appelles-tu ?','Quel âge as-tu ?','Où est-ce que tu habites ?','Qu\'est-ce que tu fais dans la vie ?','Tu fais quoi le week-end ?','Quels sports pratiques-tu ?','Avec qui habites-tu ?','Pourquoi apprends-tu le français ?','Combien de frères et sœurs as-tu ?','Quelle est ta couleur préférée ?','Est-ce que tu aimes voyager ?','À quelle heure te lèves-tu ?','Quelles langues parles-tu ?','Qui est ton acteur préféré ?'];
+document.getElementById('ideas').addEventListener('click', function(){ var q=pick(IDEAS); document.getElementById('ideaOut').textContent=q; speak(q); });
+document.getElementById('readDevoir').addEventListener('click', function(){ speak(document.getElementById('devoir').value||"Écrivez d'abord vos questions."); });
+</script>
+
+</body></html>
