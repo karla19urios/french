@@ -1,0 +1,907 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>Le corps humain</title>
+<style>
+  :root{
+    --bleu:#002395; --blanc:#ffffff; --rouge:#ED2939;
+    --bg:#f4f5f7; --card:#ffffff; --card-2:#fafbfc;
+    --text:#1a1a2e; --muted:#6b7280; --border:#e5e7eb;
+    --ok:#0f7b52; --ok-bg:#eaf6f0; --ko:#c2202f; --ko-bg:#fdeced;
+    --skin:#eef1f6;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#12141c; --card:#1b1e2b; --card-2:#202433;
+      --text:#f1f2f6; --muted:#9aa0b4; --border:#2a2e40;
+      --bleu:#5b7cff; --rouge:#ff6b78;
+      --ok:#4ade80; --ok-bg:#16281f; --ko:#ff8a94; --ko-bg:#2b1a1e;
+      --skin:#262b3b;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#12141c; --card:#1b1e2b; --card-2:#202433;
+    --text:#f1f2f6; --muted:#9aa0b4; --border:#2a2e40;
+    --bleu:#5b7cff; --rouge:#ff6b78;
+    --ok:#4ade80; --ok-bg:#16281f; --ko:#ff8a94; --ko-bg:#2b1a1e;
+    --skin:#262b3b;
+  }
+
+  *{box-sizing:border-box;}
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0; padding-bottom:4.5rem;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg); color:var(--text); line-height:1.5;
+  }
+  header.flag{
+    background:linear-gradient(90deg,#002395 33%,#ffffff 33%,#ffffff 66%,#ED2939 66%);
+    height:8px; width:100%;
+  }
+  nav.tabs{ display:flex; justify-content:center; gap:.5rem; flex-wrap:wrap; padding:1.2rem 1rem 0; }
+  nav.tabs a{
+    text-decoration:none; color:var(--muted); font-size:.88rem; font-weight:600;
+    padding:.5rem 1rem; border-radius:999px;
+    border:1px solid var(--border); background:var(--card);
+    transition:border-color .12s ease, color .12s ease;
+  }
+  nav.tabs a:hover{ border-color:var(--bleu); color:var(--bleu); }
+  nav.tabs .here{
+    font-size:.88rem; font-weight:600; padding:.5rem 1rem; border-radius:999px;
+    background:var(--bleu); border:1px solid var(--bleu); color:#fff;
+  }
+
+  .hero{ padding:2.4rem 1.5rem 1.2rem; text-align:center; }
+  .eyebrow{
+    font-size:.75rem; font-weight:700; text-transform:uppercase;
+    letter-spacing:.08em; color:var(--bleu); margin:0 0 .5rem;
+  }
+  .hero h1{ margin:0 0 .4rem; font-size:2.4rem; letter-spacing:-0.02em; text-wrap:balance; }
+  .hero .sub{ margin:0 auto; max-width:56ch; color:var(--muted); font-size:1.05rem; }
+
+  main{
+    max-width:1000px; margin:0 auto; padding:0 1.5rem 3rem;
+    display:flex; flex-direction:column; gap:1.2rem;
+  }
+  .card{
+    background:var(--card); border:1px solid var(--border);
+    border-radius:16px; padding:1.6rem; position:relative; overflow:hidden;
+    scroll-margin-top:1rem;
+  }
+  .card::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:4px;
+    background:linear-gradient(90deg,#002395 33%,#ffffff 33%,#ffffff 66%,#ED2939 66%);
+  }
+  .sec-label{
+    font-size:.78rem; font-weight:700; text-transform:uppercase;
+    letter-spacing:.06em; color:var(--bleu); margin:0 0 .2rem;
+  }
+  .card h2{ margin:0 0 .5rem; font-size:1.3rem; letter-spacing:-0.01em; }
+  .consigne{ margin:0 0 1rem; color:var(--muted); font-size:.95rem; }
+  .modele{
+    background:var(--card-2); border:1px solid var(--border);
+    border-left:3px solid var(--bleu); border-radius:0 10px 10px 0;
+    padding:.7rem .9rem; margin:0 0 1rem; font-size:.95rem;
+  }
+  .modele .lab{
+    font-size:.68rem; font-weight:700; text-transform:uppercase;
+    letter-spacing:.05em; color:var(--bleu); display:block; margin-bottom:.2rem;
+  }
+  .modele em{ color:var(--muted); }
+  .banque{ display:flex; flex-wrap:wrap; gap:.4rem; margin:0 0 1rem; }
+  .banque .w{
+    font-size:.85rem; font-weight:600; color:var(--bleu);
+    background:var(--card-2); border:1px solid var(--border);
+    border-radius:999px; padding:.3rem .8rem;
+  }
+
+  .toc{ display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:.5rem; }
+  .toc a{
+    display:flex; align-items:center; gap:.5rem;
+    background:var(--card-2); border:1px solid var(--border); border-radius:10px;
+    padding:.5rem .7rem; text-decoration:none; color:var(--text); font-size:.9rem;
+    transition:border-color .12s ease;
+  }
+  .toc a:hover{ border-color:var(--bleu); }
+  .toc a .n{
+    font-size:.7rem; font-weight:700; color:#fff; background:var(--bleu);
+    width:22px; height:22px; border-radius:50%;
+    display:inline-flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .toc a .ic{
+    font-size:1rem; line-height:1; flex-shrink:0;
+    font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
+  }
+  .toc a .pts{ margin-left:auto; font-size:.75rem; color:var(--muted); font-variant-numeric:tabular-nums; }
+
+  .goals{ margin:0; padding-left:1.1rem; display:flex; flex-direction:column; gap:.35rem; }
+  .goals li::marker{ color:var(--rouge); }
+
+  /* --- anatomie cliquable --- */
+  .body-wrap{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:1rem; align-items:start;
+  }
+  .body-fig{
+    background:var(--card-2); border:1px solid var(--border);
+    border-radius:12px; padding:.8rem; text-align:center;
+  }
+  .body-fig svg{ display:block; width:100%; height:auto; max-height:340px; margin:0 auto; }
+  .body-fig .cap{
+    font-size:.75rem; text-transform:uppercase; letter-spacing:.05em;
+    color:var(--muted); font-weight:700; margin-bottom:.4rem;
+  }
+  svg .skin{ fill:var(--skin); stroke:var(--border); stroke-width:2; }
+  svg .part{ fill:var(--bleu); opacity:.82; cursor:pointer; transition:fill .12s ease, opacity .12s ease; }
+  svg .part:hover{ opacity:1; fill:var(--rouge); }
+  svg .part:focus-visible{ outline:2px solid var(--rouge); }
+  svg .part.on{ fill:var(--rouge); opacity:1; }
+  svg .part.ok{ fill:var(--ok); opacity:1; }
+  svg .part.ko{ fill:var(--ko); opacity:1; }
+  .readout{
+    margin-top:.8rem; text-align:center;
+    font-size:1.3rem; font-weight:700; color:var(--rouge); min-height:1.6em;
+  }
+  .readout .hint{ font-size:.92rem; font-weight:400; color:var(--muted); }
+
+  .mots{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:.7rem; margin-top:1rem; }
+  .mot-grp{ background:var(--card-2); border:1px solid var(--border); border-radius:12px; padding:.9rem 1rem; }
+  .mot-grp h3{ margin:0 0 .4rem; font-size:.78rem; text-transform:uppercase; letter-spacing:.05em; color:var(--rouge); }
+  .mot-grp ul{ margin:0; padding-left:1.1rem; font-size:.94rem; }
+  .mot-grp li{ margin-bottom:.18rem; }
+  .mot-grp li::marker{ color:var(--muted); }
+  .en{ color:var(--muted); font-size:.84rem; font-style:italic; }
+  .en::before{ content:"· "; }
+  .readout .en{ display:block; font-size:.95rem; font-weight:400; margin-top:.1rem; }
+  body.no-en .en{ display:none; }
+
+  .rappel-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:.7rem; margin-top:1rem; }
+  .rappel{ background:var(--card-2); border:1px solid var(--border); border-radius:12px; padding:.9rem 1rem; }
+  .rappel h3{ margin:0 0 .35rem; font-size:.78rem; text-transform:uppercase; letter-spacing:.05em; color:var(--rouge); }
+  .rappel p{ margin:0; font-size:.92rem; }
+  .rappel b{ color:var(--bleu); }
+
+  .art-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:.5rem; margin-top:.9rem; }
+  .art{
+    background:var(--card-2); border:1px solid var(--border);
+    border-radius:12px; padding:.7rem .8rem; display:flex; flex-direction:column; gap:.15rem;
+  }
+  .art .k{ font-size:.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; font-weight:600; }
+  .art .v{ font-size:1.1rem; font-weight:700; color:var(--rouge); }
+  .art .ex{ font-size:.85rem; color:var(--muted); font-style:italic; }
+
+  /* --- quiz clic --- */
+  .quiz-head{
+    display:flex; flex-wrap:wrap; align-items:center; gap:.6rem;
+    background:var(--card-2); border:1px solid var(--border);
+    border-radius:12px; padding:.8rem 1rem; margin-bottom:1rem;
+  }
+  .quiz-head .lab{ font-size:.8rem; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; font-weight:700; }
+  .quiz-head .cible{ font-size:1.35rem; font-weight:700; color:var(--bleu); }
+  .quiz-head .prog{ margin-left:auto; font-size:.85rem; font-weight:700; color:var(--muted); font-variant-numeric:tabular-nums; }
+  .quiz-msg{ text-align:center; font-weight:600; min-height:1.5em; margin-bottom:.6rem; }
+  .quiz-msg.ok{ color:var(--ok); }
+  .quiz-msg.ko{ color:var(--ko); }
+
+  /* --- items --- */
+  .ex-list{
+    display:flex; flex-direction:column; gap:.6rem;
+    margin:0 0 1rem; padding:0; list-style:none; counter-reset:q;
+  }
+  .q{
+    display:flex; flex-wrap:wrap; align-items:center; gap:.4rem;
+    background:var(--card-2); border:1px solid var(--border);
+    border-radius:10px; padding:.7rem .9rem; font-size:1rem;
+  }
+  .q::before{
+    counter-increment:q; content:counter(q);
+    font-size:.7rem; font-weight:700; color:#fff; background:var(--bleu);
+    width:22px; height:22px; border-radius:50%;
+    display:inline-flex; align-items:center; justify-content:center;
+    flex-shrink:0; margin-right:.2rem;
+  }
+  .q .inf{ color:var(--muted); font-size:.85rem; }
+  .q .full{ flex:1 1 100%; }
+  input.gap, select.pick, textarea.free{
+    font:inherit; font-size:1rem; padding:.3rem .5rem;
+    border-radius:8px; border:1px solid var(--border);
+    background:var(--card); color:var(--text);
+  }
+  input.gap{ width:7em; }
+  input.gap.wide{ width:11em; }
+  textarea.free{ width:100%; min-height:3.2em; resize:vertical; margin-top:.4rem; }
+  input.gap:focus-visible, select.pick:focus-visible, textarea.free:focus-visible,
+  button:focus-visible, .toc a:focus-visible, nav.tabs a:focus-visible{
+    outline:2px solid var(--bleu); outline-offset:2px;
+  }
+  .q.good{ border-color:var(--ok); background:var(--ok-bg); }
+  .q.bad{ border-color:var(--ko); background:var(--ko-bg); }
+  .verdict{ font-size:.85rem; font-weight:600; margin-left:auto; white-space:nowrap; }
+  .q.good .verdict{ color:var(--ok); }
+  .q.bad .verdict{ color:var(--ko); }
+  .commentaire{
+    flex:1 1 100%; font-size:.9rem; font-style:italic; color:var(--muted);
+    display:none; padding-top:.3rem; border-top:1px dashed var(--border); margin-top:.3rem;
+  }
+
+  .cloze{
+    background:var(--card-2); border:1px solid var(--border);
+    border-radius:12px; padding:1.1rem 1.2rem;
+    font-size:1.03rem; line-height:2.5; margin-bottom:1rem;
+  }
+  .cloze .who{ font-weight:700; color:var(--bleu); }
+  .blank{
+    display:inline-flex; align-items:center; gap:.35rem;
+    padding:.2rem .45rem; border:1px solid transparent; border-radius:8px;
+  }
+  .blank .verdict{ margin-left:0; }
+  .blank.good{ border-color:var(--ok); background:var(--ok-bg); }
+  .blank.bad{ border-color:var(--ko); background:var(--ko-bg); }
+  .blank.good .verdict{ color:var(--ok); }
+  .blank.bad .verdict{ color:var(--ko); }
+
+  .prompt-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:.6rem; }
+  .prompt{ background:var(--card-2); border:1px solid var(--border); border-radius:12px; padding:.9rem 1rem; }
+  .prompt .h{ font-weight:700; font-size:.95rem; margin-bottom:.25rem; }
+  .prompt .ex{ color:var(--muted); font-size:.9rem; font-style:italic; }
+
+  .actions{ display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; }
+  button.btn{
+    font:inherit; font-size:.9rem; font-weight:600;
+    padding:.55rem 1.1rem; border-radius:999px;
+    border:1px solid var(--bleu); background:var(--bleu); color:#fff; cursor:pointer;
+  }
+  button.btn.ghost{ background:transparent; color:var(--bleu); }
+  button.btn:hover{ filter:brightness(1.08); }
+  .score{ font-size:.88rem; font-weight:700; color:var(--muted); font-variant-numeric:tabular-nums; }
+
+  .scorebar{
+    position:fixed; left:0; right:0; bottom:0; z-index:20;
+    background:var(--card); border-top:1px solid var(--border); padding:.6rem 1rem;
+  }
+  .scorebar .inner{
+    max-width:1000px; margin:0 auto; width:100%;
+    display:flex; align-items:center; gap:1rem;
+  }
+  .scorebar .big{ font-size:1.05rem; font-weight:700; color:var(--bleu); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .bar{ flex:1 1 120px; height:8px; border-radius:999px; background:var(--border); overflow:hidden; }
+  .bar > span{ display:block; height:100%; width:0%; background:var(--bleu); transition:width .3s ease; }
+
+  footer{ text-align:center; color:var(--muted); font-size:.82rem; padding:0 1.5rem 2rem; }
+  footer a{ color:var(--bleu); text-decoration:none; font-weight:600; }
+  footer a:hover{ text-decoration:underline; }
+  @media (prefers-reduced-motion: reduce){ *{ transition:none !important; scroll-behavior:auto !important; } }
+</style>
+
+<header class="flag"></header>
+<nav class="tabs">
+  <a href="https://karla19urios.github.io/french/A1.2/index.html">🏠 Accueil A1.2</a>
+  <a href="https://karla19urios.github.io/french/A1.2/grammaire.html">🧪 Grammaire</a>
+  <a href="https://karla19urios.github.io/french/A1.2/23_le%20corps%20humain.pdf">📄 La leçon en PDF</a>
+  <a href="https://karla19urios.github.io/french/A1.2/Grammaire%20A1.2/23_le%20corps%20humain%20(2).pdf">🖼️ La fiche</a>
+  <span class="here">🫀 Leçon 23</span>
+</nav>
+
+<div class="hero">
+  <p class="eyebrow">A1.2 · Leçon 23</p>
+  <h1>Le corps humain</h1>
+  <p class="sub">Nommer les parties du corps, dire où on a mal, et bouger, lever, baisser — avec un corps sur lequel on clique pour s'entraîner.</p>
+</div>
+
+<main>
+
+  <section class="card">
+    <p class="sec-label">Sommaire</p>
+    <h2>60 points à gagner</h2>
+    <div class="toc">
+      <a href="#s1"><span class="n">1</span><span class="ic">👆</span>Clique sur la bonne partie<span class="pts">10 pts</span></a>
+      <a href="#s2"><span class="n">2</span><span class="ic">🔤</span>Le, la, l' ou les ?<span class="pts">8 pts</span></a>
+      <a href="#s3"><span class="n">3</span><span class="ic">👀</span>Un œil, des yeux<span class="pts">6 pts</span></a>
+      <a href="#s4"><span class="n">4</span><span class="ic">🤕</span>J'ai mal à…<span class="pts">8 pts</span></a>
+      <a href="#s5"><span class="n">5</span><span class="ic">🩺</span>Chez qui ?<span class="pts">6 pts</span></a>
+      <a href="#s6"><span class="n">6</span><span class="ic">💊</span>De quoi as-tu besoin ?<span class="pts">6 pts</span></a>
+      <a href="#s7"><span class="n">7</span><span class="ic">🙆</span>Bouger, lever, baisser<span class="pts">8 pts</span></a>
+      <a href="#s8"><span class="n">8</span><span class="ic">💬</span>Chez le médecin<span class="pts">8 pts</span></a>
+      <a href="#s9"><span class="n">9</span><span class="ic">✍️</span>Des situations réelles<span class="pts">libre</span></a>
+    </div>
+  </section>
+
+  <section class="card">
+    <p class="sec-label">Objectif</p>
+    <h2>🎯 Nommer son corps et dire où on a mal</h2>
+    <ul class="goals">
+      <li>Reconnaître et nommer une trentaine de parties du corps, avec le bon article.</li>
+      <li>Maîtriser les pluriels irréguliers : <em>un œil → des yeux</em>, <em>un genou → des genoux</em>.</li>
+      <li>Dire où on a mal : <strong>avoir mal au / à la / à l' / aux</strong>.</li>
+      <li>Employer <strong>bouger</strong>, <strong>lever</strong>, <strong>baisser</strong>, <strong>saigner</strong> et <strong>se blesser</strong>.</li>
+      <li>Tenir une petite conversation chez le médecin.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <p class="sec-label">Vocabulaire</p>
+    <h2>🖱️ Le corps, en cliquant</h2>
+    <p class="consigne">Clique sur une partie du visage ou du corps : son nom apparaît en dessous, avec sa traduction.</p>
+    <div class="body-wrap">
+      <div class="body-fig"><div class="cap">Le visage</div><div id="figVisage"></div></div>
+      <div class="body-fig"><div class="cap">Le corps</div><div id="figCorps"></div></div>
+    </div>
+    <div class="readout" id="readout"><span class="hint">Clique sur le schéma…</span></div>
+    <div class="actions" style="justify-content:center; margin-top:.4rem;">
+      <button class="btn ghost" id="toggleEn">Cacher l'anglais</button>
+    </div>
+    <div class="mots">
+      <div class="mot-grp"><h3>La tête</h3><ul>
+        <li>la tête <span class="en">the head</span></li>
+        <li>les cheveux <span class="en">the hair</span></li>
+        <li>le front <span class="en">the forehead</span></li>
+        <li>un œil / des yeux <span class="en">an eye / eyes</span></li>
+        <li>une oreille <span class="en">an ear</span></li>
+        <li>le nez <span class="en">the nose</span></li>
+        <li>la bouche <span class="en">the mouth</span></li>
+        <li>une dent <span class="en">a tooth</span></li>
+        <li>la gorge <span class="en">the throat</span></li>
+        <li>le cou <span class="en">the neck</span></li>
+      </ul></div>
+      <div class="mot-grp"><h3>Le tronc</h3><ul>
+        <li>une épaule <span class="en">a shoulder</span></li>
+        <li>la poitrine <span class="en">the chest</span></li>
+        <li>le dos <span class="en">the back</span></li>
+        <li>le ventre <span class="en">the belly</span></li>
+        <li>l'estomac <span class="en">the stomach</span></li>
+        <li>l'abdomen <span class="en">the abdomen</span></li>
+        <li>le nombril <span class="en">the navel</span></li>
+      </ul></div>
+      <div class="mot-grp"><h3>Les bras</h3><ul>
+        <li>le bras <span class="en">the arm</span></li>
+        <li>le coude <span class="en">the elbow</span></li>
+        <li>le poignet <span class="en">the wrist</span></li>
+        <li>la main <span class="en">the hand</span></li>
+        <li>un doigt <span class="en">a finger</span></li>
+        <li>un ongle <span class="en">a nail</span></li>
+      </ul></div>
+      <div class="mot-grp"><h3>Les jambes</h3><ul>
+        <li>la jambe <span class="en">the leg</span></li>
+        <li>la cuisse <span class="en">the thigh</span></li>
+        <li>le genou / les genoux <span class="en">the knee / the knees</span></li>
+        <li>le pied <span class="en">the foot</span></li>
+        <li>un orteil <span class="en">a toe</span></li>
+      </ul></div>
+      <div class="mot-grp"><h3>Les verbes</h3><ul>
+        <li>bouger <span class="en">to move</span></li>
+        <li>lever <span class="en">to lift, to raise</span></li>
+        <li>baisser <span class="en">to lower</span></li>
+        <li>se blesser <span class="en">to get injured</span></li>
+        <li>saigner <span class="en">to bleed</span></li>
+      </ul></div>
+      <div class="mot-grp"><h3>Les maux</h3><ul>
+        <li>être malade <span class="en">to be sick</span></li>
+        <li>avoir mal à… <span class="en">to have a sore…</span></li>
+        <li>une blessure <span class="en">an injury</span></li>
+        <li>la fièvre <span class="en">the fever</span></li>
+        <li>un médicament <span class="en">a medicine</span></li>
+      </ul></div>
+    </div>
+    <div class="rappel-grid">
+      <div class="rappel"><h3>Gauche et droite</h3><p>L'adjectif suit le nom : <em>le bras <b>gauche</b></em>, <em>la main <b>droite</b></em>, <em>l'œil <b>gauche</b></em>. Au féminin, <b>droit</b> devient <b>droite</b>.</p></div>
+      <div class="rappel"><h3>Pluriels irréguliers</h3><p>un <b>œil</b> → des <b>yeux</b> · un <b>cheveu</b> → des <b>cheveux</b> · un <b>genou</b> → des <b>genoux</b>. Les autres suivent la règle : un doigt → des doigts.</p></div>
+      <div class="rappel"><h3>Se blesser</h3><p><em>Je me suis blessé</em> → j'ai <b>une blessure</b>. Si ça saigne : <em>mon nez <b>saigne</b></em>.</p></div>
+      <div class="rappel"><h3>Je suis malade</h3><p><em>Je suis malade</em>, <em>je ne me sens pas bien</em>, <em>j'ai de la fièvre</em>. On va alors <b>chez le médecin</b>.</p></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <p class="sec-label">La règle</p>
+    <h2>🤕 J'ai mal à…</h2>
+    <p class="consigne">Après <strong>avoir mal</strong>, on met <strong>à</strong> + l'article défini. Et <strong>à</strong> se colle à l'article.</p>
+    <div class="art-grid">
+      <div class="art"><span class="k">à + la</span><span class="v">à la</span><span class="ex">j'ai mal à la tête</span></div>
+      <div class="art"><span class="k">à + le</span><span class="v">au</span><span class="ex">j'ai mal au ventre</span></div>
+      <div class="art"><span class="k">à + l'</span><span class="v">à l'</span><span class="ex">j'ai mal à l'estomac</span></div>
+      <div class="art"><span class="k">à + les</span><span class="v">aux</span><span class="ex">j'ai mal aux genoux</span></div>
+    </div>
+    <div class="rappel-grid">
+      <div class="rappel"><h3>Jamais de possessif</h3><p>On dit <em>j'ai mal <b>aux</b> pieds</em>. On ne dit pas « j'ai mal à mes pieds ».</p></div>
+      <div class="rappel"><h3>Trois verbes en -er</h3><p><b>bouger</b> (nous boug<b>e</b>ons), <b>lever</b> (je l<b>è</b>ve, nous levons), <b>baisser</b> (tout régulier).</p></div>
+    </div>
+  </section>
+
+  <section class="card" id="s1">
+    <p class="sec-label">Exercice 1</p>
+    <h2>👆 Clique sur la bonne partie</h2>
+    <p class="consigne">Dix questions. Clique directement sur le schéma.</p>
+    <div class="quiz-head">
+      <span class="lab">Clique sur</span>
+      <span class="cible" id="cible">—</span>
+      <span class="prog" id="prog">0 / 10</span>
+    </div>
+    <div class="quiz-msg" id="quizMsg">&nbsp;</div>
+    <div class="body-wrap">
+      <div class="body-fig"><div class="cap">Le visage</div><div id="qVisage"></div></div>
+      <div class="body-fig"><div class="cap">Le corps</div><div id="qCorps"></div></div>
+    </div>
+    <div class="actions" style="margin-top:1rem;">
+      <button class="btn ghost" data-reset="ex1">Recommencer</button>
+      <span class="score" id="sc-ex1">— / 10</span>
+    </div>
+  </section>
+
+  <section class="card" id="s2">
+    <p class="sec-label">Exercice 2</p>
+    <h2>🔤 Le, la, l' ou les ?</h2>
+    <p class="consigne">Écris l'article défini qui convient.</p>
+    <ul class="ex-list" id="ex2"></ul>
+    <div class="actions">
+      <button class="btn" data-check="ex2">Vérifier</button>
+      <button class="btn ghost" data-reset="ex2">Recommencer</button>
+      <span class="score" id="sc-ex2">— / 8</span>
+    </div>
+  </section>
+
+  <section class="card" id="s3">
+    <p class="sec-label">Exercice 3</p>
+    <h2>👀 Un œil, des yeux</h2>
+    <p class="consigne">Mets au pluriel. Attention aux pluriels irréguliers.</p>
+    <ul class="ex-list" id="ex3"></ul>
+    <div class="actions">
+      <button class="btn" data-check="ex3">Vérifier</button>
+      <button class="btn ghost" data-reset="ex3">Recommencer</button>
+      <span class="score" id="sc-ex3">— / 6</span>
+    </div>
+  </section>
+
+  <section class="card" id="s4">
+    <p class="sec-label">Exercice 4</p>
+    <h2>🤕 J'ai mal à…</h2>
+    <p class="consigne">Écris <strong>au</strong>, <strong>à la</strong>, <strong>à l'</strong> ou <strong>aux</strong>.</p>
+    <ul class="ex-list" id="ex4"></ul>
+    <div class="actions">
+      <button class="btn" data-check="ex4">Vérifier</button>
+      <button class="btn ghost" data-reset="ex4">Recommencer</button>
+      <span class="score" id="sc-ex4">— / 8</span>
+    </div>
+  </section>
+
+  <section class="card" id="s5">
+    <p class="sec-label">Exercice 5</p>
+    <h2>🩺 Chez qui ?</h2>
+    <p class="consigne">Chez quel spécialiste va cette personne ?</p>
+    <div class="modele"><span class="lab">Modèle</span>Il a mal au dos. — <em>Il est chez le kiné parce qu'il a mal au dos.</em></div>
+    <ul class="ex-list" id="ex5"></ul>
+    <div class="actions">
+      <button class="btn" data-check="ex5">Vérifier</button>
+      <button class="btn ghost" data-reset="ex5">Recommencer</button>
+      <span class="score" id="sc-ex5">— / 6</span>
+    </div>
+  </section>
+
+  <section class="card" id="s6">
+    <p class="sec-label">Exercice 6</p>
+    <h2>💊 De quoi as-tu besoin ?</h2>
+    <p class="consigne">Associe la douleur et le remède.</p>
+    <div class="modele"><span class="lab">Modèle</span><em>J'ai mal à la tête, j'ai besoin d'une aspirine.</em></div>
+    <ul class="ex-list" id="ex6"></ul>
+    <div class="actions">
+      <button class="btn" data-check="ex6">Vérifier</button>
+      <button class="btn ghost" data-reset="ex6">Recommencer</button>
+      <span class="score" id="sc-ex6">— / 6</span>
+    </div>
+  </section>
+
+  <section class="card" id="s7">
+    <p class="sec-label">Exercice 7</p>
+    <h2>🙆 Bouger, lever, baisser</h2>
+    <p class="consigne">Conjugue le verbe entre parenthèses au présent.</p>
+    <ul class="ex-list" id="ex7"></ul>
+    <div class="actions">
+      <button class="btn" data-check="ex7">Vérifier</button>
+      <button class="btn ghost" data-reset="ex7">Recommencer</button>
+      <span class="score" id="sc-ex7">— / 8</span>
+    </div>
+  </section>
+
+  <section class="card" id="s8">
+    <p class="sec-label">Exercice 8</p>
+    <h2>💬 Chez le médecin</h2>
+    <p class="consigne">Complète le dialogue avec les mots de la banque.</p>
+    <div class="banque">
+      <span class="w">malade</span><span class="w">à la</span><span class="w">au</span><span class="w">aux</span>
+      <span class="w">bouche</span><span class="w">bras</span><span class="w">nez</span><span class="w">sirop</span>
+    </div>
+    <div class="cloze" id="ex8"></div>
+    <div class="actions">
+      <button class="btn" data-check="ex8">Vérifier</button>
+      <button class="btn ghost" data-reset="ex8">Recommencer</button>
+      <span class="score" id="sc-ex8">— / 8</span>
+    </div>
+  </section>
+
+  <section class="card" id="s9">
+    <p class="sec-label">Exercice 9 · Expression écrite</p>
+    <h2>✍️ Des situations réelles</h2>
+    <p class="consigne">Six situations où on a vraiment besoin de ce vocabulaire. Réponds en deux ou trois phrases, puis compare avec le modèle.</p>
+    <ul class="ex-list" id="ex9"></ul>
+    <div class="actions">
+      <button class="btn ghost" id="showModels">Voir les modèles</button>
+      <span class="score">non noté</span>
+    </div>
+  </section>
+
+
+</main>
+
+<footer>
+  Prochaine leçon : <strong>Les vêtements</strong> · <a href="https://karla19urios.github.io/french/A1.2/grammaire.html">Laboratoire de grammaire A1.2</a>
+</footer>
+
+<div class="scorebar">
+  <div class="inner">
+    <span class="big" id="total">0 / 60</span>
+    <span class="bar"><span id="bar"></span></span>
+    <button class="btn ghost" id="resetAll">Tout recommencer</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  function stripAccents(s){ return s.normalize("NFD").replace(/[̀-ͯ]/g,""); }
+  function base(s){ return (s||"").toLowerCase().trim().replace(/’/g,"'").replace(/\s+/g," "); }
+  function loose(s){ return stripAccents(base(s)); }
+
+  /* ================= schémas anatomiques ================= */
+  function P(nom, forme){ return '<g class="part" data-p="'+nom+'" tabindex="0" role="button" aria-label="'+nom+'">'+forme+'</g>'; }
+
+  function visageSVG(){
+    return '<svg viewBox="0 0 200 210" role="img" aria-label="Le visage">' +
+      '<ellipse class="skin" cx="100" cy="112" rx="62" ry="72"/>' +
+      P("l\'oreille", '<ellipse cx="40" cy="124" rx="10" ry="17"/><ellipse cx="160" cy="124" rx="10" ry="17"/>') +
+      P("les cheveux", '<path d="M42 88 A62 72 0 0 1 158 88 Z"/>') +
+      P("le front", '<ellipse cx="100" cy="101" rx="30" ry="11"/>') +
+      P("l\'œil", '<ellipse cx="78" cy="122" rx="13" ry="8"/><ellipse cx="122" cy="122" rx="13" ry="8"/>') +
+      P("le nez", '<path d="M100 132 L91 154 L109 154 Z"/>') +
+      P("la bouche", '<ellipse cx="100" cy="168" rx="22" ry="8"/>') +
+      '</svg>';
+  }
+
+  function corpsSVG(){
+    return '<svg viewBox="0 0 200 420" role="img" aria-label="Le corps">' +
+      P("la tête", '<circle cx="100" cy="44" r="32"/>') +
+      P("le cou", '<rect x="90" y="72" width="20" height="18" rx="6"/>') +
+      P("l\'épaule", '<circle cx="66" cy="100" r="14"/><circle cx="134" cy="100" r="14"/>') +
+      P("la poitrine", '<rect x="70" y="94" width="60" height="44" rx="12"/>') +
+      P("le ventre", '<rect x="72" y="140" width="56" height="46" rx="12"/>') +
+      P("le bras", '<rect x="50" y="112" width="18" height="52" rx="9"/><rect x="132" y="112" width="18" height="52" rx="9"/>' +
+                   '<rect x="50" y="180" width="18" height="46" rx="9"/><rect x="132" y="180" width="18" height="46" rx="9"/>') +
+      P("le coude", '<circle cx="59" cy="172" r="11"/><circle cx="141" cy="172" r="11"/>') +
+      P("la main", '<ellipse cx="59" cy="240" rx="13" ry="16"/><ellipse cx="141" cy="240" rx="13" ry="16"/>') +
+      P("la cuisse", '<rect x="76" y="190" width="20" height="60" rx="10"/><rect x="104" y="190" width="20" height="60" rx="10"/>') +
+      P("le genou", '<circle cx="86" cy="258" r="12"/><circle cx="114" cy="258" r="12"/>') +
+      P("la jambe", '<rect x="78" y="268" width="17" height="64" rx="8"/><rect x="105" y="268" width="17" height="64" rx="8"/>') +
+      P("le pied", '<ellipse cx="83" cy="344" rx="18" ry="11"/><ellipse cx="117" cy="344" rx="18" ry="11"/>') +
+      '</svg>';
+  }
+
+  document.getElementById("figVisage").innerHTML = visageSVG();
+  document.getElementById("figCorps").innerHTML  = corpsSVG();
+  document.getElementById("qVisage").innerHTML   = visageSVG();
+  document.getElementById("qCorps").innerHTML    = corpsSVG();
+
+  /* --- explorateur --- */
+  var TRAD = {
+    "la tête":"the head", "les cheveux":"the hair", "le front":"the forehead",
+    "l'œil":"the eye", "l'oreille":"the ear", "le nez":"the nose", "la bouche":"the mouth",
+    "le cou":"the neck", "l'épaule":"the shoulder", "la poitrine":"the chest",
+    "le ventre":"the belly", "le bras":"the arm", "le coude":"the elbow", "la main":"the hand",
+    "la cuisse":"the thigh", "le genou":"the knee", "la jambe":"the leg", "le pied":"the foot"
+  };
+  var readout = document.getElementById("readout");
+  ["figVisage","figCorps"].forEach(function(id){
+    var root = document.getElementById(id);
+    function pick(g){
+      document.querySelectorAll("#figVisage .part, #figCorps .part").forEach(function(p){ p.classList.remove("on"); });
+      g.classList.add("on");
+      readout.innerHTML = g.dataset.p + '<span class="en">' + (TRAD[g.dataset.p] || "") + '</span>';
+    }
+    root.addEventListener("click", function(e){
+      var g = e.target.closest(".part"); if(g) pick(g);
+    });
+    root.addEventListener("keydown", function(e){
+      if(e.key !== "Enter" && e.key !== " ") return;
+      var g = e.target.closest(".part"); if(g){ e.preventDefault(); pick(g); }
+    });
+  });
+
+  /* ================= ex1 : quiz au clic ================= */
+  var CIBLES = ["le genou","l'épaule","le coude","la main","le pied",
+                "le ventre","la bouche","l'oreille","le front","la jambe"];
+  var qIndex = 0, qScore = 0, qLock = false;
+  var cibleEl = document.getElementById("cible");
+  var progEl  = document.getElementById("prog");
+  var msgEl   = document.getElementById("quizMsg");
+
+  function qParts(){
+    return Array.prototype.slice.call(document.querySelectorAll("#qVisage .part, #qCorps .part"));
+  }
+  function qShow(){
+    qParts().forEach(function(p){ p.classList.remove("ok","ko","on"); });
+    if(qIndex >= CIBLES.length){
+      cibleEl.textContent = "Terminé !";
+      msgEl.className = "quiz-msg ok";
+      msgEl.textContent = "Score : " + qScore + " / " + CIBLES.length;
+      return;
+    }
+    cibleEl.textContent = CIBLES[qIndex];
+    progEl.textContent = qIndex + " / " + CIBLES.length;
+  }
+  function qAnswer(g){
+    if(qLock || qIndex >= CIBLES.length) return;
+    qLock = true;
+    var attendu = CIBLES[qIndex];
+    if(base(g.dataset.p) === base(attendu)){
+      g.classList.add("ok");
+      msgEl.className = "quiz-msg ok"; msgEl.textContent = "✓ " + attendu;
+      qScore++;
+    } else {
+      g.classList.add("ko");
+      msgEl.className = "quiz-msg ko"; msgEl.textContent = "✗ ça, c'est " + g.dataset.p + " — cherche " + attendu;
+      qParts().forEach(function(p){ if(base(p.dataset.p) === base(attendu)) p.classList.add("ok"); });
+    }
+    results.ex1 = qScore;
+    document.getElementById("sc-ex1").textContent = qScore + " / " + CIBLES.length;
+    updateTotal();
+    setTimeout(function(){ qIndex++; qLock = false; qShow(); }, 1100);
+  }
+  ["qVisage","qCorps"].forEach(function(id){
+    var root = document.getElementById(id);
+    root.addEventListener("click", function(e){
+      var g = e.target.closest(".part"); if(g) qAnswer(g);
+    });
+    root.addEventListener("keydown", function(e){
+      if(e.key !== "Enter" && e.key !== " ") return;
+      var g = e.target.closest(".part"); if(g){ e.preventDefault(); qAnswer(g); }
+    });
+  });
+  function resetQuiz(){
+    qIndex = 0; qScore = 0; qLock = false;
+    msgEl.className = "quiz-msg"; msgEl.innerHTML = "&nbsp;";
+    results.ex1 = null;
+    document.getElementById("sc-ex1").textContent = "— / 10";
+    qShow(); updateTotal();
+  }
+
+  /* ================= ex2 : articles ================= */
+  var EX2 = [
+    ["","tête","la"], ["","bras","le"], ["","oreille","l'"], ["","yeux","les"],
+    ["","main","la"], ["","genou","le"], ["","estomac","l'"], ["","épaule","l'"]
+  ];
+  /* ================= ex3 : pluriels ================= */
+  var EX3 = [
+    ["un œil  →  des","","yeux"], ["un cheveu  →  des","","cheveux"], ["un genou  →  des","","genoux"],
+    ["un doigt  →  des","","doigts"], ["un orteil  →  des","","orteils"], ["un ongle  →  des","","ongles"]
+  ];
+  /* ================= ex4 : avoir mal à ================= */
+  var EX4 = [
+    ["Après le match, j'ai mal","jambes.","aux"],
+    ["Il a mal","dos depuis ce matin.","au"],
+    ["Elle a mal","gorge, elle ne peut pas parler.","à la"],
+    ["J'ai mal","estomac, j'ai trop mangé.","à l'"],
+    ["Nous avons mal","pieds après cette randonnée.","aux"],
+    ["Tu as mal","tête ?","à la"],
+    ["Le bébé a mal","dents.","aux"],
+    ["Il a mal","ventre.","au"]
+  ];
+  /* ================= ex7 : verbes ================= */
+  var EX7 = [
+    ["Je","la tête pour dire non. (bouger)","bouge"],
+    ["Nous","les bras en l'air. (lever)","levons"],
+    ["Vous","les yeux quand vous lisez. (baisser)","baissez"],
+    ["Mon nez","depuis dix minutes. (saigner)","saigne"],
+    ["Ils","les épaules, ils ne savent pas. (lever)","lèvent"],
+    ["Tu","trop, reste tranquille ! (bouger)","bouges"],
+    ["Nous","beaucoup pendant le cours de danse. (bouger)","bougeons"],
+    ["Elle","le bras pour répondre. (lever)","lève"]
+  ];
+
+  function simpleFill(rootId, data, cls){
+    var root = document.getElementById(rootId);
+    data.forEach(function(it,i){
+      var li = document.createElement("li");
+      li.className = "q"; li.dataset.answer = it[2];
+      li.innerHTML = '<span>'+it[0]+'</span>'+
+        '<input class="gap '+(cls||"")+'" type="text" autocomplete="off" spellcheck="false" aria-label="réponse '+(i+1)+'">'+
+        '<span>'+it[1]+'</span><span class="verdict"></span>';
+      root.appendChild(li);
+    });
+  }
+  simpleFill("ex2", EX2);
+  simpleFill("ex3", EX3, "wide");
+  simpleFill("ex4", EX4);
+  simpleFill("ex7", EX7, "wide");
+
+  /* ================= ex5 : chez qui ================= */
+  var SPE = ["le kiné","le dentiste","le médecin","l'ophtalmo","le pharmacien","le podologue"];
+  var EX5 = [
+    ["Il a mal au dos.","le kiné"],
+    ["Elle a mal aux dents.","le dentiste"],
+    ["Il a mal aux yeux quand il lit.","l'ophtalmo"],
+    ["Elle a mal à la gorge et de la fièvre.","le médecin"],
+    ["Il a mal aux pieds, ses chaussures sont trop petites.","le podologue"],
+    ["Elle a besoin d'un sirop contre la toux.","le pharmacien"]
+  ];
+  (function(){
+    var root = document.getElementById("ex5");
+    EX5.forEach(function(it,i){
+      var li = document.createElement("li");
+      li.className = "q"; li.dataset.answer = it[1];
+      li.innerHTML = '<span class="full">'+it[0]+'</span><span>Il / elle est chez</span>'+
+        '<select class="pick" aria-label="question '+(i+1)+'"><option value="">— choisis —</option>'+
+        SPE.map(function(o){ return '<option value="'+o+'">'+o+'</option>'; }).join("")+
+        '</select><span class="verdict"></span>';
+      root.appendChild(li);
+    });
+  })();
+
+  /* ================= ex6 : besoins ================= */
+  var BES = ["d'une aspirine","d'un sirop","d'un bain de pieds","d'un massage","de lunettes","d'une tisane"];
+  var EX6 = [
+    ["J'ai mal à la tête, j'ai besoin","d'une aspirine"],
+    ["J'ai mal à la gorge, j'ai besoin","d'un sirop"],
+    ["J'ai mal aux pieds, j'ai besoin","d'un bain de pieds"],
+    ["J'ai mal au dos, j'ai besoin","d'un massage"],
+    ["J'ai mal aux yeux, j'ai besoin","de lunettes"],
+    ["J'ai mal au ventre, j'ai besoin","d'une tisane"]
+  ];
+  (function(){
+    var root = document.getElementById("ex6");
+    EX6.forEach(function(it,i){
+      var li = document.createElement("li");
+      li.className = "q"; li.dataset.answer = it[1];
+      li.innerHTML = '<span>'+it[0]+'</span>'+
+        '<select class="pick" aria-label="question '+(i+1)+'"><option value="">— choisis —</option>'+
+        BES.map(function(o){ return '<option value="'+o+'">'+o+'</option>'; }).join("")+
+        '</select><span class="verdict"></span>';
+      root.appendChild(li);
+    });
+  })();
+
+  /* ================= ex8 : dialogue ================= */
+  var EX8 = ["malade","à la","à la","au","aux","bouche","bras","nez"];
+  var TXT8 = [
+    "— Bonjour docteur. Je suis ",
+    " depuis trois jours.<br>— Où est-ce que vous avez mal ?<br>— J'ai mal ",
+    " gorge et j'ai mal ",
+    " tête.<br>— Est-ce que vous avez mal ",
+    " ventre aussi ?<br>— Non, mais j'ai mal ",
+    " yeux quand je lis.<br>— Ouvrez la ",
+    ", s'il vous plaît. Levez les ",
+    ". Bien, c'est une angine.<br>— Et pour mon ",
+    " qui saigne ?<br>— Ce n'est rien du tout. Reposez-vous bien."
+  ];
+  (function(){
+    var root = document.getElementById("ex8");
+    var html = "";
+    for(var i=0;i<EX8.length;i++){
+      html += '<span>'+TXT8[i]+'</span>'+
+        '<span class="blank" data-answer="'+EX8[i]+'">'+
+        '<input class="gap" type="text" autocomplete="off" spellcheck="false" aria-label="trou '+(i+1)+'">'+
+        '<span class="verdict"></span></span>';
+    }
+    html += '<span>'+TXT8[EX8.length]+'</span>';
+    root.innerHTML = html;
+  })();
+
+  /* ================= ex9 : libre ================= */
+  var EX9 = [
+    ["Vous êtes chez le médecin. Décrivez trois symptômes.",
+     "Docteur, j'ai mal à la gorge, j'ai mal à la tête et j'ai de la fièvre depuis hier soir."],
+    ["Décrivez le visage d'une personne de votre famille : les cheveux, les yeux, le nez.",
+     "Ma sœur a les cheveux longs et bruns, les yeux verts et un petit nez. Elle a le front large, comme mon père."],
+    ["Votre ami veut courir un marathon, mais il a mal au dos. Donnez-lui deux conseils.",
+     "Tu ne dois pas courir cette semaine. Tu peux nager, c'est très bon pour le dos, et tu dois voir un kiné."],
+    ["Vous êtes malade et vous ne pouvez pas aller au travail. Écrivez un message à votre responsable.",
+     "Bonjour Madame, je suis malade : j'ai de la fièvre et très mal à la gorge. Je ne peux pas venir aujourd'hui. Je vais chez le médecin ce matin."],
+    ["À la pharmacie : expliquez votre problème et demandez un médicament.",
+     "Bonjour, j'ai mal à l'estomac depuis deux jours et je ne peux pas manger normalement. Est-ce que vous avez un médicament, s'il vous plaît ?"],
+    ["Pendant un match, un ami se blesse au genou. Qu'est-ce que vous faites ? Qu'est-ce que vous lui dites ?",
+     "Je lui dis de ne pas bouger la jambe. Je mets de la glace sur son genou et j'appelle un médecin."]
+  ];
+  (function(){
+    var root = document.getElementById("ex9");
+    EX9.forEach(function(it,i){
+      var li = document.createElement("li");
+      li.className = "q";
+      li.innerHTML = '<span class="full">'+it[0]+'</span>'+
+        '<textarea class="free" aria-label="réponse '+(i+1)+'"></textarea>'+
+        '<span class="commentaire" style="display:none;">Modèle : '+it[1]+'</span>';
+      root.appendChild(li);
+    });
+  })();
+
+  /* ================= moteur ================= */
+  var TOTALS = { ex1:10, ex2:8, ex3:6, ex4:8, ex5:6, ex6:6, ex7:8, ex8:8 };
+  var MAX = 60;
+  var results = {};
+  Object.keys(TOTALS).forEach(function(k){ results[k] = null; });
+
+  function itemsOf(id){
+    return Array.prototype.slice.call(
+      document.getElementById(id).querySelectorAll(".q, .blank")
+    );
+  }
+
+  function check(id){
+    var good = 0;
+    itemsOf(id).forEach(function(item){
+      var field = item.querySelector("input, select");
+      if(!field || !item.dataset.answer) return;
+      var expected = item.dataset.answer.split("|");
+      var given = field.value;
+      var v = item.querySelector(".verdict");
+      item.classList.remove("good","bad");
+      var exact = expected.some(function(a){ return base(given) === base(a); });
+      var near  = expected.some(function(a){ return loose(given) === loose(a); });
+      if(base(given) === ""){
+        item.classList.add("bad"); v.textContent = "→ " + expected[0];
+      } else if(exact || near){
+        item.classList.add("good"); v.textContent = "✓"; good++;
+      } else {
+        item.classList.add("bad"); v.textContent = "→ " + expected[0];
+      }
+    });
+    results[id] = good;
+    document.getElementById("sc-"+id).textContent = good + " / " + TOTALS[id];
+    updateTotal();
+  }
+
+  function reset(id){
+    if(id === "ex1"){ resetQuiz(); return; }
+    itemsOf(id).forEach(function(item){
+      var field = item.querySelector("input, select");
+      if(!field) return;
+      item.classList.remove("good","bad");
+      item.querySelector(".verdict").textContent = "";
+      field.value = "";
+    });
+    results[id] = null;
+    document.getElementById("sc-"+id).textContent = "— / " + TOTALS[id];
+    updateTotal();
+  }
+
+  function updateTotal(){
+    var sum = 0;
+    Object.keys(results).forEach(function(k){ if(results[k] !== null) sum += results[k]; });
+    document.getElementById("total").textContent = sum + " / " + MAX;
+    document.getElementById("bar").style.width = Math.round(sum/MAX*100) + "%";
+  }
+
+  document.addEventListener("click", function(e){
+    var t = e.target;
+    if(t.dataset && t.dataset.check) check(t.dataset.check);
+    if(t.dataset && t.dataset.reset) reset(t.dataset.reset);
+  });
+
+  document.getElementById("toggleEn").addEventListener("click", function(){
+    var hidden = document.body.classList.toggle("no-en");
+    this.textContent = hidden ? "Montrer l'anglais" : "Cacher l'anglais";
+  });
+
+  document.getElementById("showModels").addEventListener("click", function(){
+    var open = this.dataset.open === "1";
+    Array.prototype.forEach.call(document.querySelectorAll("#ex9 .commentaire"), function(c){
+      c.style.display = open ? "none" : "block";
+    });
+    this.dataset.open = open ? "0" : "1";
+    this.textContent = open ? "Voir les modèles" : "Cacher les modèles";
+  });
+
+  document.getElementById("resetAll").addEventListener("click", function(){
+    Object.keys(TOTALS).forEach(reset);
+    window.scrollTo({ top:0, behavior:"smooth" });
+  });
+
+  qShow();
+  updateTotal();
+})();
+</script>
+
+</body></html>
