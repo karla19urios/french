@@ -1,0 +1,1939 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>22 · Indiquer un itinéraire</title>
+<style>
+:root{
+  --bleu:#002395;
+  --blanc:#ffffff;
+  --rouge:#ED2939;
+  --bg:#f4f5f7;
+  --card:#ffffff;
+  --text:#1a1a2e;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --shadow:rgba(16,24,40,.08);
+  --bleu-soft:rgba(0,35,149,.08);
+  --rouge-soft:rgba(237,41,57,.10);
+  --vert:#1a7f4f;
+  --vert-soft:rgba(26,127,79,.12);
+  --accent:var(--bleu);
+  --radius:16px;
+  --map-bg:#fbf7ef;
+  --map-block:#f2ead9;
+  --map-street:#ffffff;
+  --map-line:#ddd0b6;
+  --map-green:#cfe3c2;
+  --map-water:#b9d6ef;
+  --map-label:#8a7a5c;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#12141c;
+    --card:#1b1e2b;
+    --text:#f1f2f6;
+    --muted:#9aa0b4;
+    --border:#2a2e40;
+    --shadow:rgba(0,0,0,.35);
+    --bleu-soft:rgba(90,125,255,.14);
+    --rouge-soft:rgba(237,41,57,.16);
+    --vert:#4ec98a;
+    --vert-soft:rgba(78,201,138,.15);
+    --accent:#9db2ff;
+    --map-bg:#171b27;
+    --map-block:#1f2433;
+    --map-street:#2f3750;
+    --map-line:#3b4460;
+    --map-green:#23402f;
+    --map-water:#1d3550;
+    --map-label:#8f97ae;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#12141c;
+  --card:#1b1e2b;
+  --text:#f1f2f6;
+  --muted:#9aa0b4;
+  --border:#2a2e40;
+  --shadow:rgba(0,0,0,.35);
+  --bleu-soft:rgba(90,125,255,.14);
+  --rouge-soft:rgba(237,41,57,.16);
+  --vert:#4ec98a;
+  --vert-soft:rgba(78,201,138,.15);
+  --accent:#9db2ff;
+  --map-bg:#171b27;
+  --map-block:#1f2433;
+  --map-street:#2f3750;
+  --map-line:#3b4460;
+  --map-green:#23402f;
+  --map-water:#1d3550;
+  --map-label:#8f97ae;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  line-height:1.55;-webkit-font-smoothing:antialiased;
+}
+.flagbar{height:8px;background:linear-gradient(to right,var(--bleu) 0 33.33%,var(--blanc) 33.33% 66.66%,var(--rouge) 66.66% 100%)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 72px}
+
+.hero{padding:3.5rem 0 2rem;text-align:center}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;font-weight:800;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--bleu-soft);
+  padding:.35rem .75rem;border-radius:999px;
+}
+.hero h1{font-size:clamp(1.9rem,5vw,2.9rem);margin:.9rem 0 .4rem;letter-spacing:-.02em;line-height:1.12;text-wrap:balance}
+.hero p{color:var(--muted);margin:0 auto;max-width:62ch;font-size:1.02rem}
+
+nav.toc{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin-top:1.4rem}
+nav.toc a{
+  text-decoration:none;color:var(--text);border:1px solid var(--border);background:var(--card);
+  border-radius:999px;padding:.4rem .85rem;font-size:.84rem;font-weight:700;transition:all .15s ease;
+}
+nav.toc a:hover{border-color:var(--accent);color:var(--accent)}
+
+nav.toc.sitenav{margin:1.1rem 0 0;padding-bottom:.2rem}
+nav.toc .here{border:1px solid var(--rouge);background:var(--rouge-soft);color:var(--rouge);border-radius:999px;padding:.4rem .85rem;font-size:.84rem;font-weight:700}
+section{margin-top:3rem}
+.sec-head{display:flex;align-items:baseline;gap:.75rem;flex-wrap:wrap;margin-bottom:.35rem}
+.sec-head h2{font-size:1.4rem;margin:0;letter-spacing:-.01em}
+.sec-num{font-size:.72rem;font-weight:800;letter-spacing:.1em;color:var(--rouge);background:var(--rouge-soft);padding:.2rem .55rem;border-radius:6px}
+.sec-sub{color:var(--muted);margin:0 0 1.25rem;font-size:.95rem}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.85rem .9rem;position:relative;transition:transform .15s ease,box-shadow .15s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 16px var(--shadow)}
+.card .fr{font-weight:800;font-size:1rem;display:block;padding-right:30px;overflow-wrap:break-word}
+.card .es{font-size:.85rem;color:var(--muted);display:block;margin-top:.3rem}
+.listen{
+  position:absolute;top:.6rem;right:.6rem;width:30px;height:30px;border-radius:50%;
+  border:1px solid var(--border);background:var(--card);cursor:pointer;display:grid;place-items:center;
+  font-size:.85rem;color:var(--accent);transition:background .15s ease,transform .15s ease;padding:0;
+}
+.listen:hover{background:var(--bleu);color:#fff;transform:scale(1.08)}
+.listen.on{background:var(--bleu);color:#fff}
+
+.ord{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
+.ord .o{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.7rem;text-align:center;
+  cursor:pointer;transition:all .15s ease;
+}
+.ord .o:hover{border-color:var(--accent);transform:translateY(-2px)}
+.ord .n{font-size:1.5rem;font-weight:900;color:var(--accent);line-height:1;font-variant-numeric:tabular-nums}
+.ord .w{font-size:.88rem;font-weight:700;margin-top:.25rem;display:block}
+
+.conjs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.conj{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;border-top:3px solid var(--bleu)}
+.conj h3{margin:0 0 .1rem;font-size:1.05rem;display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.conj .inf{font-size:.75rem;color:var(--muted);font-weight:600;display:block;margin-bottom:.7rem}
+.conj table{width:100%;border-collapse:collapse;font-size:.94rem}
+.conj td{padding:.28rem 0;border-bottom:1px solid var(--border)}
+.conj tr:last-child td{border-bottom:none}
+.conj td.p{color:var(--muted);width:42%}
+.conj td.v{font-weight:700}
+.conj td.v u{text-decoration:none;color:var(--rouge)}
+.conj .listen{position:static;width:26px;height:26px;font-size:.75rem}
+
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.rule{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--bleu);border-radius:10px;padding:.8rem .9rem}
+.rule b{display:block;font-size:1.05rem;color:var(--accent);margin-bottom:.15rem}
+.rule span{font-size:.9rem;color:var(--muted);display:block}
+.rule i{display:block;margin-top:.35rem;font-size:.92rem}
+.warn{border-left-color:var(--rouge)}
+.warn b{color:var(--rouge)}
+
+.mail{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;box-shadow:0 1px 3px var(--shadow);max-width:66ch}
+.mail p{margin:0 0 .7rem}
+.mail .k{background:var(--bleu-soft);color:var(--accent);font-weight:700;border-radius:4px;padding:0 .2em}
+.mail .sig{color:var(--muted);font-style:italic}
+
+.ex{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:0 1px 3px var(--shadow);margin-bottom:16px;border-top:3px solid var(--rouge)}
+.ex.free{border-top-color:var(--border)}
+.ex-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.ex-head h3{margin:0;font-size:1.1rem;display:flex;align-items:center;gap:.5rem}
+.tag{font-size:.62rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;background:var(--rouge-soft);color:var(--rouge);padding:.2rem .5rem;border-radius:5px}
+.tag.soft{background:var(--bleu-soft);color:var(--accent)}
+.ex-sub{color:var(--muted);font-size:.85rem;margin:.15rem 0 1rem}
+.ex-meta{display:flex;align-items:center;gap:.6rem;font-size:.8rem;color:var(--muted);font-weight:700}
+.sc{background:var(--bleu-soft);color:var(--accent);padding:.2rem .55rem;border-radius:999px;font-variant-numeric:tabular-nums}
+.bar{height:5px;background:var(--border);border-radius:999px;overflow:hidden;margin:.9rem 0 1.1rem}
+.bar i{display:block;height:100%;width:0;background:var(--bleu);transition:width .3s ease}
+.ex-q{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem;font-size:1.1rem;font-weight:700;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;min-height:64px}
+.ex-q .hint{font-size:.85rem;font-weight:600;color:var(--muted)}
+.blank{color:var(--rouge);letter-spacing:.06em}
+.opts{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.opt{flex:1 1 130px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;padding:.72rem .9rem;font:inherit;font-size:.97rem;font-weight:700;cursor:pointer;transition:all .15s ease;text-align:center}
+.opt.chip{flex:0 1 auto;min-width:76px}
+.opt:hover:not(:disabled){border-color:var(--accent);transform:translateY(-2px);box-shadow:0 6px 16px var(--shadow)}
+.opt:disabled{cursor:default;opacity:.7}
+.opt.good{background:var(--vert-soft);border-color:var(--vert);color:var(--vert);opacity:1}
+.opt.bad{background:var(--rouge-soft);border-color:var(--rouge);color:var(--rouge);opacity:1}
+.fb{margin-top:.9rem;font-size:.92rem;font-weight:700;min-height:1.4em}
+.fb.good{color:var(--vert)}
+.fb.bad{color:var(--rouge)}
+.fb small{display:block;font-weight:500;color:var(--muted);margin-top:.15rem}
+.answer-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;align-items:center}
+.answer-row input{flex:1 1 200px;padding:.7rem .9rem;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text);font:inherit;font-size:1rem}
+.answer-row input.good{border-color:var(--vert)}
+.answer-row input.bad{border-color:var(--rouge)}
+.btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:10px;padding:.5rem .9rem;font:inherit;font-size:.86rem;font-weight:700;cursor:pointer;transition:all .15s ease;display:inline-flex;align-items:center;gap:.4rem}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.primary{background:var(--bleu);border-color:var(--bleu);color:#fff}
+.btn.primary:hover{opacity:.9;color:#fff}
+.btn.on{background:var(--bleu);border-color:var(--bleu);color:#fff}
+
+.steps{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.step{display:flex;align-items:center;gap:.7rem;text-align:left;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.7rem .85rem;cursor:pointer;font:inherit;font-size:.95rem;color:var(--text);transition:all .15s ease}
+.step:hover:not(:disabled){border-color:var(--accent);transform:translateX(3px)}
+.step:disabled{cursor:default}
+.step .num{flex:0 0 26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--bg);border:1px solid var(--border);font-size:.78rem;font-weight:900;color:var(--muted)}
+.step.placed{background:var(--vert-soft);border-color:var(--vert)}
+.step.placed .num{background:var(--vert);border-color:var(--vert);color:#fff}
+.step.wrong{background:var(--rouge-soft);border-color:var(--rouge)}
+
+.write{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:0 1px 3px var(--shadow)}
+.write textarea{width:100%;min-height:150px;padding:.8rem .9rem;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text);font:inherit;font-size:.98rem;resize:vertical}
+.write .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:.8rem;align-items:center}
+.checklist{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.9rem}
+.checklist span{font-size:.78rem;font-weight:700;color:var(--muted);border:1px dashed var(--border);border-radius:999px;padding:.2rem .6rem}
+
+.bilan{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--bleu);border-radius:var(--radius);padding:20px;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;box-shadow:0 1px 3px var(--shadow)}
+.bilan .big{font-size:1.9rem;font-weight:900;color:var(--accent);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.bilan .lbl{font-size:.8rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.bilan-list{display:flex;gap:1.6rem;flex-wrap:wrap}
+
+.note{margin-top:1.25rem;font-size:.86rem;color:var(--muted);border-left:3px solid var(--rouge);padding:.15rem 0 .15rem .8rem}
+footer{margin-top:3.5rem;padding-top:1.5rem;border-top:1px solid var(--border);color:var(--muted);font-size:.85rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+footer b{color:var(--text)}
+:focus-visible{outline:2px solid var(--bleu);outline-offset:2px;border-radius:6px}
+
+/* ---------- le plan ---------- */
+.mapbox{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:12px;box-shadow:0 1px 3px var(--shadow)}
+.mapbox svg{width:100%;height:auto;display:block;border-radius:12px;touch-action:manipulation}
+.pmap .stname{fill:var(--map-label);font-size:11px;font-weight:600;letter-spacing:.02em;pointer-events:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.pmap .stname.sm{font-size:9.5px}
+.pmap .green-lbl{fill:#5f8a52;font-size:10px;font-style:italic;pointer-events:none}
+.pmap .water-lbl{fill:#5b87ad;font-size:12px;font-style:italic;letter-spacing:.18em;pointer-events:none}
+.pmap .pin{cursor:default}
+.pmap .pin .plabel{fill:var(--card);stroke:var(--border)}
+.pmap .pin .ptext{fill:var(--text);font-size:11.5px;font-weight:700;pointer-events:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.pmap .pin .pdot{fill:var(--bleu);stroke:#fff;stroke-width:2}
+.pmap .pin.start .pdot{fill:var(--rouge)}
+.pmap .pin.start .plabel{stroke:var(--rouge)}
+.pmap.clickable .pin{cursor:pointer}
+.pmap.clickable .pin:hover .plabel{stroke:var(--rouge);stroke-width:2}
+.pmap .pin.good .plabel{fill:var(--vert-soft);stroke:var(--vert);stroke-width:2}
+.pmap .pin.good .pdot{fill:var(--vert)}
+.pmap .pin.bad .plabel{fill:var(--rouge-soft);stroke:var(--rouge);stroke-width:2}
+.pmap .pin.target .plabel{stroke:var(--rouge);stroke-width:2.5}
+.pmap .route{fill:none;stroke:var(--rouge);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;opacity:.9}
+.pmap .walker{fill:var(--rouge);stroke:#fff;stroke-width:2}
+.route-steps{display:flex;flex-direction:column;gap:6px;margin-top:12px}
+.rstep{display:flex;gap:.6rem;align-items:flex-start;padding:.55rem .7rem;border-radius:10px;border:1px solid transparent;font-size:.93rem;color:var(--muted)}
+.rstep .n{flex:0 0 22px;height:22px;border-radius:50%;display:grid;place-items:center;background:var(--bg);border:1px solid var(--border);font-size:.72rem;font-weight:900}
+.rstep.done{color:var(--text)}
+.rstep.now{color:var(--text);background:var(--rouge-soft);border-color:var(--rouge);font-weight:700}
+.rstep.now .n{background:var(--rouge);border-color:var(--rouge);color:#fff}
+.dests{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.dialog{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+.line{display:flex;gap:.6rem;align-items:flex-start;font-size:.98rem}
+.line .who{flex:0 0 30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--bleu-soft);font-size:1rem}
+.line .txt{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:.55rem .85rem;flex:1}
+.line.b .who{background:var(--rouge-soft)}
+.line .gap{display:inline-block;min-width:110px;border-bottom:2px dashed var(--rouge);color:var(--rouge);font-weight:800;text-align:center}
+.line .gap.filled{border-bottom-color:var(--vert);color:var(--vert)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto}}
+@media (max-width:560px){.hero{padding:2.5rem 0 1.5rem}.grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}.pmap .ptext{font-size:14px}.pmap .stname{font-size:13px}}
+.addr-list{list-style:none;padding:0;margin:1rem 0 0;display:flex;flex-direction:column;gap:.7rem}
+.addr-item{display:flex;gap:12px;padding:.85rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:12px}
+.addr-num{flex:0 0 28px;height:28px;border-radius:50%;background:var(--rouge);color:#fff;display:grid;place-items:center;font-weight:900;font-size:.85rem}
+.addr-name{font-weight:800}
+.addr-quote{color:var(--muted);font-style:italic;font-size:.88rem;margin:.15rem 0}
+</style>
+
+<div class="flagbar"></div>
+<div class="wrap"><nav class="toc sitenav" aria-label="Navigation du cours">
+  <a href="https://karla19urios.github.io/french/A1.2/index.html">🏠 Accueil A1.2</a>
+  <a href="https://karla19urios.github.io/french/A1.2/grammaire.html">🧪 Grammaire</a>
+  <a href="https://karla19urios.github.io/french/A1.2/22_l_itin%C3%A9raire.pdf">📄 La leçon en PDF</a>
+  <a href="https://karla19urios.github.io/french/A1.2/Lectures%20A1.2/22_l_itin%C3%A9raire%20(1).pdf">📖 La lecture en PDF</a>
+  <span class="here">🧭 Leçon 22</span>
+</nav></div>
+<div class="wrap">
+
+  <header class="hero">
+    <span class="eyebrow">A1.2 · Leçon 22</span>
+    <h1>Je vais chez moi&nbsp;! Indiquer un itinéraire</h1>
+    <p>Les formules pour dire le chemin, les verbes <b>aller</b>, <b>prendre</b> et <b>descendre</b>, l'<b>impératif</b> pour donner des indications et un <b>plan du centre de Paris</b> pour s'orienter. <em>Escucha, practica en el mapa y comprueba lo aprendido.</em></p>
+    <nav class="toc">
+      <a href="#formules">Les formules</a>
+      <a href="#ordinaux">Nombres ordinaux</a>
+      <a href="#verbes">Conjugaisons</a>
+      <a href="#grammaire">aller + lieu</a>
+      <a href="#chemin">Demander le chemin</a>
+      <a href="#lecture">Le mail de Sophie</a>
+      <a href="#plan">Le plan</a>
+      <a href="#exercices">Exercices</a>
+      <a href="#pontoise">Lecture : Pontoise Infos</a>
+    </nav>
+  </header>
+
+  <section id="formules">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Les formules de l'itinéraire</h2></div>
+    <p class="sec-sub">Objectif de la leçon : <b>indiquer un itinéraire</b>. Cliquez sur 🔊 pour écouter chaque formule.</p>
+    <div id="wall" class="grid"></div>
+  </section>
+
+  <section id="ordinaux">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Les nombres ordinaux</h2></div>
+    <p class="sec-sub">Pour dire quelle rue prendre : « prendre la <b>deuxième</b> à gauche ». Cliquez pour écouter.</p>
+    <div id="ords" class="ord"></div>
+    <p class="note"><b>1</b> a deux formes : <b>premier</b> (masculin) et <b>première</b> (féminin) — <em>la première rue à droite</em>. À partir de 2, une seule forme pour les deux genres.</p>
+  </section>
+
+  <section id="verbes">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Trois verbes pour se déplacer</h2></div>
+    <p class="sec-sub">Cliquez sur une forme pour l'écouter, ou sur 🔊 pour tout le verbe.</p>
+    <div id="conjs" class="conjs"></div>
+  </section>
+
+  <section id="grammaire">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Aller + le lieu : à, au, à la, à l', aux, en, chez</h2></div>
+    <p class="sec-sub">« Aller » est presque toujours suivi d'un lieu. La préposition dépend du mot qui suit.</p>
+    <div class="rules" id="rules"></div>
+    <p class="note"><b>À</b> indique le lieu où <b>on est</b> et aussi le lieu où <b>on va</b> : <em>Je suis à Rome. Je vais à Rome.</em></p>
+  </section>
+
+  <section id="chemin">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Demander et donner son chemin</h2></div>
+    <p class="sec-sub">Dans la rue, on <b>demande</b> poliment et on <b>donne</b> les indications à l'impératif. Cliquez sur 🔊 pour écouter.</p>
+
+    <h3 style="font-size:1rem;margin:0 0 .6rem">🙋 Demander — <span style="color:var(--muted);font-weight:600">preguntar el camino</span></h3>
+    <div id="askWall" class="grid"></div>
+
+    <h3 style="font-size:1rem;margin:1.6rem 0 .6rem">🧭 Donner les indications : l'impératif</h3>
+    <div id="imperatifs" class="rules"></div>
+    <p class="note">L'impératif = le présent <b>sans le pronom sujet</b>. On utilise surtout la forme <b>vous</b> (poli) avec un inconnu : <em>Prenez la première rue à droite.</em> Avec un ami, la forme <b>tu</b> — et les verbes en <b>-er</b> perdent le <b>-s</b> : <em>tu tournes → <b>Tourne</b> à gauche !</em> Attention : <b>aller → Va !</b> (mais <em>Allez !</em> avec vous).</p>
+  </section>
+
+  <section id="lecture">
+    <div class="sec-head"><span class="sec-num">06</span><h2>Le mail de Sophie</h2></div>
+    <p class="sec-sub">Lisez l'itinéraire, puis remettez les étapes dans l'ordre dans l'exercice E.</p>
+    <div class="mail">
+      <p>Salut,</p>
+      <p>Tu es libre samedi ? Il y a un nouveau <b>restaurant japonais</b> à côté de mon appartement : il est très bon !</p>
+      <p>Pour venir, c'est très simple : tu <span class="k">descends</span> à l'arrêt de bus rue Serviez ; <span class="k">au bout de la rue</span>, tu <span class="k">prends à droite</span> la rue Maréchal Foch, tu <span class="k">continues</span> et tu <span class="k">prends la première à droite</span>. <span class="k">Au bout de la rue</span>, tu <span class="k">tournes à gauche</span>, c'est la rue Tran : le restaurant est au numéro 10, <span class="k">en face d'</span>un petit jardin.</p>
+      <p>Nous allons voir un film après le restaurant (séance de 22 heures) ? Appelle-moi pour me dire si tu es d'accord avec ce programme.</p>
+      <p class="sig">Bisous, Sophie</p>
+      <div class="row" style="margin-top:1rem"><button class="btn primary" type="button" id="readMail">▶ Écouter l'itinéraire</button></div>
+    </div>
+  </section>
+
+  <section id="plan">
+    <div class="sec-head"><span class="sec-num">07</span><h2>Le plan du quartier</h2></div>
+    <p class="sec-sub">Le restaurant de Sophie est au nord du plan 🍣. Choisissez une destination : l'itinéraire se dessine étape par étape et se lit à voix haute. <em>Elige un destino y sigue el camino en el mapa.</em></p>
+
+    <div class="mapbox">
+      <div class="dests" id="dests"></div>
+      <div id="mapMain"></div>
+      <div class="route-steps" id="routeSteps"></div>
+      <div class="row" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+        <button class="btn primary" type="button" id="nextStep">▶ Étape suivante</button>
+        <button class="btn" type="button" id="allSteps">🔊 Tout l'itinéraire</button>
+        <button class="btn" type="button" id="resetRoute">↻ Recommencer</button>
+      </div>
+    </div>
+
+    <div class="ex" id="exH" style="margin-top:22px">
+      <div class="ex-head">
+        <h3><span class="tag">H</span> Où se trouve… ?</h3>
+        <div class="ex-meta"><span class="sc" id="scH">0 / 0</span><button class="btn" type="button" data-reset="H">↻ Recommencer</button></div>
+      </div>
+      <p class="ex-sub">Lisez la description et <b>cliquez sur le bon endroit du plan</b>. <em>Haz clic en el lugar correcto del mapa.</em></p>
+      <div class="bar"><i id="barH"></i></div>
+      <div class="ex-q" id="qH"></div>
+      <div id="mapH" style="margin-top:12px"></div>
+      <div class="fb" id="fH"></div>
+    </div>
+
+    <div class="ex" id="exI">
+      <div class="ex-head">
+        <h3><span class="tag">I</span> Comment aller à… ? Où arrivez-vous ?</h3>
+        <div class="ex-meta"><span class="sc" id="scI">0 / 0</span><button class="btn" type="button" data-reset="I">↻ Recommencer</button></div>
+      </div>
+      <p class="ex-sub">Suivez les indications sur le plan, puis <b>cliquez sur votre destination</b>.</p>
+      <div class="bar"><i id="barI"></i></div>
+      <div class="ex-q" id="qI" style="flex-direction:column;align-items:flex-start;gap:.4rem"></div>
+      <div class="row" style="display:flex;gap:10px;margin-top:10px"><button class="btn" type="button" id="listenI">🔊 Écouter les indications</button></div>
+      <div id="mapI" style="margin-top:12px"></div>
+      <div class="fb" id="fI"></div>
+    </div>
+
+    <div class="ex" id="exK">
+      <div class="ex-head">
+        <h3><span class="tag">K</span> Donnez l'itinéraire</h3>
+        <div class="ex-meta"><span class="sc" id="scK">0 / 0</span><button class="btn" type="button" data-reset="K">↻ Recommencer</button></div>
+      </div>
+      <p class="ex-sub">Un ami est au restaurant et veut aller à l'<b>Opéra</b> en passant par l'<b>église de la Madeleine</b>. Cliquez sur les indications dans le bon ordre : le chemin se dessine sur le plan.</p>
+      <div class="bar"><i id="barK"></i></div>
+      <div id="mapK"></div>
+      <div class="steps" id="stepsK"></div>
+      <div class="fb" id="fK"></div>
+    </div>
+  </section>
+
+  <section id="exercices">
+    <div class="sec-head"><span class="sec-num">08</span><h2>Exercices</h2></div>
+    <p class="sec-sub">Exercices notés A–E, J, L, M et N, plus deux activités libres. <em>Los ejercicios H, I y K están arriba, sobre el plano; O, P y Q están más abajo, con la lectura de Pontoise.</em></p>
+
+    <div class="ex" id="exA">
+      <div class="ex-head">
+        <h3><span class="tag">A</span> Les formules</h3>
+        <div class="ex-meta"><span class="sc" id="scA">0 / 0</span><button class="btn" type="button" data-reset="A">↻ Recommencer</button></div>
+      </div>
+      <p class="ex-sub">Comment dit-on en français ? <em>¿Cómo se dice en francés?</em></p>
+      <div class="bar"><i id="barA"></i></div>
+      <div class="ex-q" id="qA"></div>
+      <div class="opts" id="oA"></div>
+      <div class="fb" id="fA"></div>
+    </div>
+
+    <div class="ex" id="exB">
+      <div class="ex-head">
+        <h3><span class="tag">B</span> Les nombres ordinaux</h3>
+        <div class="ex-meta"><span class="sc" id="scB">0 / 0</span><button class="btn" type="button" data-reset="B">↻ Recommencer</button></div>
+      </div>
+      <p class="ex-sub">Choisissez le mot qui correspond au chiffre.</p>
+      <div class="bar"><i id="barB"></i></div>
+      <div class="ex-q" id="qB"></div>
+      <div class="opts" id="oB"></div>
+      <div class="fb" id="fB"></div>
+    </div>
+
+    <div class="ex" id="exC">
+      <div class="ex-head">
+        <h3><span class="tag">C</span> Conjugaison : aller, prendre, descendre</h3>
+        <div class="ex-meta"><span class="sc" id="scC">0 / 0</span><button class="btn" type="button" data-reset="C">↻ Recommencer</button></div>
+      </div>
+      <p class="ex-sub">Écrivez la forme correcte du verbe. <em>Escribe la forma correcta (los acentos no cuentan).</em></p>
+      <div class="bar"><i id="barC"></i></div>
+      <div class="ex-q" id="qC"></div>
+      <div class="answer-row">
+        <input id="inC" type="text" placeholder="la forme du verbe…" autocomplete="off" spellcheck="false" aria-label="Votre réponse">
+        <button class="btn primary" type="button" id="checkC">Vérifier</button>
+        <button class="btn" type="button" id="showC">Voir la réponse</button>
+      </div>
+      <div class="fb" id="fC"></div>
+    </div>
+
+    <div class="ex" id="exM">
+      <div class="ex-head">
+        <h3><span class="tag">M</span> « Aller » dans le dialogue</h3>
+        <div class="ex-meta"><span class="sc" id="scM">0 / 0</span><button class="btn" type="button" data-reset="M">↻ Recommencer</button></div>
+      </div>
+      <p class="ex-sub">Complétez selon le modèle : le verbe <b>aller</b> à la bonne personne. <em>Ejercicio 3 del PDF « le verbe aller » (con o sin pronombre, las dos formas valen).</em></p>
+      <div class="bar"><i id="barM"></i></div>
+      <div class="ex-q" id="qM" style="flex-direction:column;align-items:flex-start;gap:.35rem"></div>
+      <div class="answer-row">
+        <input id="inM" type="text" placeholder="ex. : il va…" autocomplete="off" spellcheck="false" aria-label="Votre réponse">
+        <button class="btn primary" type="button" id="checkM">Vérifier</button>
+        <button class="btn" type="button" id="showM">Voir la réponse</button>
+      </div>
+      <div class="fb" id="fM"></div>
+    </div>
+
+    <div class="ex" id="exJ">
+      <div class="ex-head">
+        <h3><span class="tag">J</span> L'impératif : donnez les indications</h3>
+        <div class="ex-meta"><span class="sc" id="scJ">0 / 0</span><button class="btn" type="button" data-reset="J">↻ Recommencer</button></div>
+      </div>
+      <p class="ex-sub">Choisissez le verbe à l'impératif (forme <b>vous</b>). <em>Elige el verbo correcto en imperativo.</em></p>
+      <div class="bar"><i id="barJ"></i></div>
+      <div class="ex-q" id="qJ"></div>
+      <div class="opts" id="oJ"></div>
+      <div class="fb" id="fJ"></div>
+    </div>
+
+    <div class="ex" id="exD">
+      <div class="ex-head">
+        <h3><span class="tag">D</span> à · au · à la · à l' · aux · en · chez</h3>
+        <div class="ex-meta"><span class="sc" id="scD">0 / 0</span><button class="btn" type="button" data-reset="D">↻ Recommencer</button></div>
+      </div>
+      <p class="ex-sub">Complétez avec la bonne préposition. <em>Ejercicios 3 y 4 del PDF « le verbe aller ».</em></p>
+      <div class="bar"><i id="barD"></i></div>
+      <div class="ex-q" id="qD"></div>
+      <div class="opts" id="oD"></div>
+      <div class="fb" id="fD"></div>
+    </div>
+
+    <div class="ex" id="exN">
+      <div class="ex-head">
+        <h3><span class="tag">N</span> Mon emploi du temps</h3>
+        <div class="ex-meta"><span class="sc" id="scN">0 / 0</span><button class="btn" type="button" data-reset="N">↻ Recommencer</button></div>
+      </div>
+      <p class="ex-sub">Complétez l'emploi du temps modèle, puis écrivez le vôtre. <em>Ejercicio 2 del PDF « le verbe aller ».</em></p>
+      <div class="bar"><i id="barN"></i></div>
+      <div id="emploiList" class="route-steps"></div>
+      <div class="ex-q" id="qN" style="margin-top:12px"></div>
+      <div class="opts" id="oN"></div>
+      <div class="fb" id="fN"></div>
+      <div class="write" style="margin-top:16px;box-shadow:none;padding:16px">
+        <p class="ex-sub" style="margin:0 0 .6rem"><b>À vous :</b> écrivez votre emploi du temps (cinq moments de la journée).</p>
+        <textarea id="emploi" style="min-height:120px" placeholder="Le matin, je vais…&#10;À midi, je vais…&#10;L'après-midi, je vais…&#10;À dix-huit heures, je vais…&#10;Le soir, je vais…"></textarea>
+        <div class="row">
+          <button class="btn primary" type="button" id="readEmploi">▶ Écouter mon emploi du temps</button>
+          <button class="btn" type="button" id="copyEmploi">Copier</button>
+          <span id="copyMsg2" style="font-size:.85rem;color:var(--muted)"></span>
+        </div>
+        <div class="checklist">
+          <span>le matin · à midi · l'après-midi · le soir</span><span>à la piscine</span><span>au cinéma</span><span>à l'université</span><span>chez Marie</span><span>en bus · à pied</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ex" id="exE">
+      <div class="ex-head">
+        <h3><span class="tag">E</span> L'itinéraire de Sophie</h3>
+        <div class="ex-meta"><span class="sc" id="scE">0 / 0</span><button class="btn" type="button" data-reset="E">↻ Recommencer</button></div>
+      </div>
+      <p class="ex-sub">Cliquez sur les étapes dans le bon ordre, du bus au restaurant.</p>
+      <div class="bar"><i id="barE"></i></div>
+      <div class="steps" id="stepsE"></div>
+      <div class="fb" id="fE"></div>
+    </div>
+
+    <div class="ex" id="exL">
+      <div class="ex-head">
+        <h3><span class="tag">L</span> Dans la rue : le dialogue</h3>
+        <div class="ex-meta"><span class="sc" id="scL">0 / 0</span><button class="btn" type="button" data-reset="L">↻ Recommencer</button></div>
+      </div>
+      <p class="ex-sub">Complétez le dialogue : une touriste demande son chemin. <em>Completa el diálogo, una frase cada vez.</em></p>
+      <div class="bar"><i id="barL"></i></div>
+      <div class="dialog" id="dialogL"></div>
+      <div class="opts" id="oL"></div>
+      <div class="fb" id="fL"></div>
+      <div class="row" style="display:flex;gap:10px;margin-top:12px"><button class="btn" type="button" id="playL">🔊 Écouter le dialogue complet</button></div>
+    </div>
+
+    <div class="ex free" id="exF">
+      <div class="ex-head">
+        <h3><span class="tag soft">Libre</span> Répondez selon le modèle</h3>
+        <div class="ex-meta"><span style="font-weight:600">à l'oral</span></div>
+      </div>
+      <p class="ex-sub">Choisissez une destination : la phrase modèle apparaît et se lit à voix haute. <em>Ejercicio 1 del PDF, para practicar en clase.</em></p>
+      <div id="modelList"></div>
+    </div>
+
+    <div class="ex free" id="exG">
+      <div class="ex-head">
+        <h3><span class="tag soft">Libre</span> Transports : en ou à ?</h3>
+        <div class="ex-meta"><span class="sc" id="scG">0 / 0</span><button class="btn" type="button" data-reset="G">↻ Recommencer</button></div>
+      </div>
+      <p class="ex-sub">« En » + véhicule fermé ; « à » pied, à bicyclette, à cheval. <em>Ejercicio 5 del PDF.</em></p>
+      <div class="bar"><i id="barG"></i></div>
+      <div class="ex-q" id="qG"></div>
+      <div class="opts" id="oG"></div>
+      <div class="fb" id="fG"></div>
+    </div>
+
+    <div class="bilan">
+      <div class="bilan-list">
+        <div><div class="lbl">Total</div><div class="big" id="bTotal">0 / 0</div></div>
+        <div><div class="lbl">Réussite</div><div class="big" id="bPct">—</div></div>
+      </div>
+      <button class="btn primary" type="button" id="resetAll">↻ Tout recommencer</button>
+    </div>
+  </section>
+
+  <section id="pontoise">
+    <div class="sec-head"><span class="sec-num">09</span><h2>Lecture : les bonnes adresses de Pontoise</h2></div>
+    <p class="sec-sub">Un article du magazine <b><em>Pontoise Infos</em></b> : Mélanie recommande ses adresses préférées du centre-ville. <em>Vocabulario, lectura, comprensión y el plano — a partir du texte du cours.</em></p>
+
+    <h3 style="font-size:1rem;margin:0 0 .6rem">📖 Prépositions de lieu</h3>
+    <div id="pontPreps" class="grid"></div>
+    <h3 style="font-size:1rem;margin:1.4rem 0 .6rem">🏙️ Les lieux de la ville</h3>
+    <div id="pontLieux" class="grid"></div>
+    <h3 style="font-size:1rem;margin:1.4rem 0 .6rem">✨ Adjectifs et expressions</h3>
+    <div id="pontAdj" class="grid"></div>
+
+    <div class="mail" style="margin-top:1.6rem">
+      <p class="sig" style="margin:0 0 .2rem">Magazine <em>Pontoise Infos</em></p>
+      <p style="font-weight:800;font-size:1.05rem;margin-bottom:.1rem">Les bonnes adresses des Pontoisiens</p>
+      <p style="color:var(--muted);font-size:.88rem;margin-top:0">Les adresses de Mélanie dans le centre-ville</p>
+      <ol class="addr-list" id="pontAddrList"></ol>
+      <div class="row" style="margin-top:1rem"><button class="btn primary" type="button" id="readPont">▶ Écouter la lecture</button></div>
+    </div>
+
+    <div class="ex" id="exO" style="margin-top:22px">
+      <div class="ex-head">
+        <h3><span class="tag">O</span> Compréhension : la lecture</h3>
+        <div class="ex-meta"><span class="sc" id="scO">0 / 0</span><button class="btn" type="button" data-reset="O">↻ Recommencer</button></div>
+      </div>
+      <p class="ex-sub">Lisez la page du magazine et répondez. <em>Exercice 8 du manuel.</em></p>
+      <div class="bar"><i id="barO"></i></div>
+      <div class="ex-q" id="qO"></div>
+      <div class="opts" id="oO"></div>
+      <div class="fb" id="fO"></div>
+    </div>
+
+    <div class="ex" id="exP">
+      <div class="ex-head">
+        <h3><span class="tag">P</span> Le plan : à quel numéro ?</h3>
+        <div class="ex-meta"><span class="sc" id="scP">0 / 0</span><button class="btn" type="button" data-reset="P">↻ Recommencer</button></div>
+      </div>
+      <p class="ex-sub">Relisez la page et regardez le plan : associez chaque adresse à son numéro. <em>Exercice 9 du manuel.</em></p>
+      <div class="mapbox" style="margin-bottom:14px" id="pontMap"></div>
+      <div class="bar"><i id="barP"></i></div>
+      <div class="ex-q" id="qP"></div>
+      <div class="opts" id="oP"></div>
+      <div class="fb" id="fP"></div>
+    </div>
+
+    <div class="ex" id="exQ">
+      <div class="ex-head">
+        <h3><span class="tag">Q</span> Les prépositions de lieu</h3>
+        <div class="ex-meta"><span class="sc" id="scQ">0 / 0</span><button class="btn" type="button" data-reset="Q">↻ Recommencer</button></div>
+      </div>
+      <p class="ex-sub">Complétez chaque phrase avec la préposition qui convient, d'après le texte.</p>
+      <div class="bar"><i id="barQ"></i></div>
+      <div class="ex-q" id="qQ"></div>
+      <div class="opts" id="oQ"></div>
+      <div class="fb" id="fQ"></div>
+    </div>
+  </section>
+
+  <footer>
+    <span><a href="https://karla19urios.github.io/french/" style="color:var(--accent);font-weight:700;text-decoration:none">← Retour au cours</a> · Sources : <b>22_l'itinéraire.pdf</b> · <b>le verbe « aller ».pdf</b> (Grammaire A1.2) · magazine <b>Pontoise Infos</b> · plan dessiné pour le cours</span>
+    <span>Prochaine leçon → <b>le corps humain</b></span>
+  </footer>
+</div>
+
+<script>
+/* ---------------- données ---------------- */
+var FORMULES = [
+  {fr:"prendre la rue…",                 es:"tomar la calle…",                      ico:"🛣️"},
+  {fr:"prendre la première à droite",    es:"tomar la primera a la derecha",        ico:"1️⃣"},
+  {fr:"prendre la deuxième à gauche",    es:"tomar la segunda a la izquierda",      ico:"2️⃣"},
+  {fr:"tourner à gauche",                es:"girar a la izquierda",                 ico:"⬅️"},
+  {fr:"tourner à droite",                es:"girar a la derecha",                   ico:"➡️"},
+  {fr:"continuer tout droit",            es:"seguir todo recto",                    ico:"⬆️"},
+  {fr:"traverser la rue",                es:"cruzar la calle",                      ico:"🚸"},
+  {fr:"descendre à l'arrêt de bus",      es:"bajarse en la parada del autobús",     ico:"🚌"},
+  {fr:"au bout de la rue",               es:"al final de la calle",                 ico:"🏁"},
+  {fr:"jusqu'à la place",                es:"hasta la plaza",                       ico:"🎯"},
+  {fr:"en face de",                      es:"enfrente de",                          ico:"↔️"},
+  {fr:"à côté de",                       es:"al lado de",                           ico:"👉"},
+  {fr:"entre… et…",                      es:"entre… y…",                            ico:"↔️"},
+  {fr:"Où se trouve… ?",                 es:"¿Dónde está…?",                        ico:"❓"},
+  {fr:"Comment aller à… ?",              es:"¿Cómo se llega a…?",                   ico:"🧭"},
+  {fr:"Excusez-moi, je suis perdu(e).",  es:"Perdone, estoy perdido(a).",           ico:"🙋"},
+  {fr:"Je cherche…",                     es:"Estoy buscando…",                      ico:"🔎"}
+];
+
+/* section 05 : demander le chemin */
+var DEMANDER = [
+  {fr:"Excusez-moi, monsieur / madame…",        es:"Perdone, señor / señora…",             ico:"🙋"},
+  {fr:"Pardon, je suis perdu(e).",              es:"Perdón, estoy perdido(a).",            ico:"🧍"},
+  {fr:"Où se trouve la gare, s'il vous plaît ?",es:"¿Dónde está la estación, por favor?",  ico:"❓"},
+  {fr:"Comment aller au musée ?",               es:"¿Cómo se llega al museo?",             ico:"🧭"},
+  {fr:"Je cherche la rue Tronchet.",            es:"Busco la calle Tronchet.",             ico:"🔎"},
+  {fr:"C'est loin d'ici ?",                     es:"¿Está lejos de aquí?",                 ico:"📏"},
+  {fr:"C'est à combien de minutes à pied ?",    es:"¿A cuántos minutos a pie?",            ico:"⏱️"},
+  {fr:"Merci beaucoup ! — Je vous en prie.",    es:"¡Muchas gracias! — De nada.",          ico:"🙏"}
+];
+
+var IMPERATIFS = [
+  {t:'Prenez !',      s:'prendre → vous prenez',        e:'<b>Prenez</b> la première rue à droite. <em>(tu : Prends !)</em>'},
+  {t:'Tournez !',     s:'tourner → vous tournez',       e:'<b>Tournez</b> à gauche après la pharmacie. <em>(tu : Tourne !)</em>'},
+  {t:'Continuez !',   s:'continuer → vous continuez',   e:'<b>Continuez</b> tout droit pendant 200 mètres. <em>(tu : Continue !)</em>'},
+  {t:'Traversez !',   s:'traverser → vous traversez',   e:'<b>Traversez</b> la place et le pont. <em>(tu : Traverse !)</em>'},
+  {t:'Suivez !',      s:'suivre → vous suivez',         e:'<b>Suivez</b> le boulevard jusqu\'à l\'Opéra. <em>(tu : Suis !)</em>'},
+  {t:'Descendez !',   s:'descendre → vous descendez',   e:'<b>Descendez</b> à l\'arrêt « Madeleine ». <em>(tu : Descends !)</em>'},
+  {t:'Allez !',       s:'aller → vous allez',           e:'<b>Allez</b> jusqu\'au feu rouge. <em>(tu : <b>Va</b> ! — irrégulier)</em>', warn:true}
+];
+
+var ORDINAUX = [
+  {n:'1er', w:'premier / première'}, {n:'2e', w:'deuxième'}, {n:'3e', w:'troisième'},
+  {n:'4e', w:'quatrième'}, {n:'5e', w:'cinquième'}, {n:'6e', w:'sixième'},
+  {n:'7e', w:'septième'}, {n:'8e', w:'huitième'}, {n:'9e', w:'neuvième'}, {n:'10e', w:'dixième'}
+];
+
+var VERBES = [
+  {inf:'ALLER', es:'ir', ico:'🚶', forms:[
+    ['je','vais',''],['tu','vas',''],['il / elle','va',''],
+    ['nous','all','ons'],['vous','all','ez'],['ils / elles','v','ont']]},
+  {inf:'PRENDRE', es:'tomar, coger', ico:'🚏', forms:[
+    ['je','prend','s'],['tu','prend','s'],['il / elle','prend',''],
+    ['nous','pren','ons'],['vous','pren','ez'],['ils / elles','prenn','ent']]},
+  {inf:'DESCENDRE', es:'bajar(se)', ico:'🪜', forms:[
+    ['je','descend','s'],['tu','descend','s'],['il / elle','descend',''],
+    ['nous','descend','ons'],['vous','descend','ez'],['ils / elles','descend','ent']]}
+];
+
+var RULES = [
+  {t:'à + ville',              s:'una ciudad',                 e:'Je vais <b>à</b> Paris. / Je suis <b>à</b> Rome.'},
+  {t:'au + lieu masculin',     s:'lugar o país masculino',     e:'Je vais <b>au</b> cinéma, <b>au</b> restaurant, <b>au</b> Maroc.'},
+  {t:'à la + lieu féminin',    s:'lugar femenino',             e:'Je vais <b>à la</b> plage, <b>à la</b> montagne, <b>à la</b> piscine.'},
+  {t:"à l' + voyelle ou h",    s:'empieza por vocal o h muda', e:"Je vais <b>à l'</b>hôtel, <b>à l'</b>université, <b>à l'</b>école."},
+  {t:'en + pays féminin',      s:'país femenino',              e:'Je vais <b>en</b> France, <b>en</b> Espagne, <b>en</b> Angleterre.'},
+  {t:'aux + pluriel',          s:'país o lugar en plural',     e:'Je vais <b>aux</b> États-Unis, <b>aux</b> Pays-Bas.'},
+  {t:'chez + personne',        s:'a casa de alguien',          e:'Je vais <b>chez</b> Paul, <b>chez</b> le médecin, <b>chez</b> des amis.'},
+  {t:'en + véhicule fermé',    s:'medio de transporte',        e:'Je vais à Rome <b>en</b> train, <b>en</b> voiture, <b>en</b> avion.'},
+  {t:'à pied, à bicyclette, à cheval', s:'sin vehículo cerrado', e:'Je vais au bureau <b>à</b> pied !', warn:true}
+];
+
+/* exercice D : prépositions (PDF « le verbe aller », ex. 3 et 4) */
+var PREPS = ['à', 'au', "à l'", 'à la', 'aux', 'en', 'chez'];
+var PREP_ITEMS = [
+  {b:'Quand tu vas ___ mer, tu vas au camping des Mimosas.',            a:'à la'},
+  {b:'Quand tu vas à la mer, tu vas ___ camping des Mimosas.',          a:'au'},
+  {b:'Quand Jean va ___ montagne, il va chez son ami Pierrot.',         a:'à la'},
+  {b:'Quand Jean va à la montagne, il va ___ son ami Pierrot.',         a:'chez'},
+  {b:'Quand mes enfants vont ___ campagne, ils vont chez leur oncle.',  a:'à la'},
+  {b:'Quand Julia va ___ Venise, elle va à la pension « Flora ».',      a:'à'},
+  {b:'Quand nous allons à Londres, nous allons ___ auberge « Sweet Shadow ».', a:"à l'"},
+  {b:'Notre fils va ___ États-Unis, à New York.',                       a:'aux'},
+  {b:'Rachel va ___ Angleterre, à Londres.',                            a:'en'},
+  {b:'Ce soir, nous allons ___ restaurant.',                            a:'au'},
+  {b:'Vous allez ___ « Pietro » ou chez « Lulu » ?',                    a:'chez'},
+  {b:'Les voisins vont ___ montagne, à l\'hôtel.',                      a:'à la'},
+  {b:'Quand je vais à Paris, je vais ___ hôtel Luxor.',                 a:"à l'"},
+  {b:'Le matin, je vais ___ université.',                               a:"à l'"},
+  {b:"L'après-midi, je vais ___ Marie.",                                a:'chez'},
+  {b:'À dix-huit heures, je vais ___ piscine.',                         a:'à la'}
+];
+
+/* exercice C : conjugaison */
+var CONJ_ITEMS = [
+  {p:'Nous',        v:'aller',     a:'allons'},
+  {p:'Ils',         v:'aller',     a:'vont'},
+  {p:'Tu',          v:'aller',     a:'vas'},
+  {p:'Vous',        v:'aller',     a:'allez'},
+  {p:'Elle',        v:'aller',     a:'va'},
+  {p:'Je',          v:'aller',     a:'vais'},
+  {p:'Vous',        v:'prendre',   a:'prenez'},
+  {p:'Nous',        v:'prendre',   a:'prenons'},
+  {p:'Elles',       v:'prendre',   a:'prennent'},
+  {p:'Tu',          v:'prendre',   a:'prends'},
+  {p:'Il',          v:'prendre',   a:'prend'},
+  {p:'Je',          v:'descendre', a:'descends'},
+  {p:'Nous',        v:'descendre', a:'descendons'},
+  {p:'Vous',        v:'descendre', a:'descendez'},
+  {p:'Ils',         v:'descendre', a:'descendent'},
+  {p:'On',          v:'descendre', a:'descend'}
+];
+
+/* exercice J : l'impératif */
+var IMP_OPTS = ['Prenez', 'Tournez', 'Continuez', 'Traversez', 'Allez', 'Descendez', 'Suivez'];
+var IMP_ITEMS = [
+  {b:'___ la première rue à droite, après la banque.',            a:'Prenez',     w:'prendre une rue'},
+  {b:'___ à gauche devant la pharmacie.',                         a:'Tournez',    w:'tourner à gauche / à droite'},
+  {b:'___ tout droit pendant deux cents mètres.',                 a:'Continuez',  w:'continuer tout droit'},
+  {b:'___ la rue au feu rouge, c\'est plus prudent.',             a:'Traversez',  w:'traverser la rue, la place, le pont'},
+  {b:'___ à l\'arrêt de bus « Madeleine ».',                      a:'Descendez',  w:'descendre du bus, du métro'},
+  {b:'___ jusqu\'à la place de la Concorde.',                     a:'Allez',      w:'aller jusqu\'à un lieu'},
+  {b:'___ le boulevard Haussmann jusqu\'à l\'Opéra.',             a:'Suivez',     w:'suivre une rue = continuer sur cette rue'},
+  {b:'___ le métro ligne 8, direction Balard.',                   a:'Prenez',     w:'prendre le métro, le bus, un taxi'},
+  {b:'___ le pont pour aller sur l\'autre rive de la Seine.',     a:'Traversez',  w:'traverser le pont'},
+  {b:'___ tout droit, ne tournez pas !',                          a:'Continuez',  w:'continuer = ne pas tourner'}
+];
+
+/* exercice G : en / à */
+var TRANSPORTS = [
+  {b:'Je vais au bureau ___ voiture.',      a:'en'},
+  {b:'Tu vas à la piscine ___ métro.',      a:'en'},
+  {b:'Elle va à Lisbonne ___ train.',       a:'en'},
+  {b:'Nous allons au Brésil ___ avion.',    a:'en'},
+  {b:'Vous allez en Pologne ___ voiture.',  a:'en'},
+  {b:'Elles vont à l\'école ___ pied.',     a:'à'},
+  {b:'Il va au parc ___ bicyclette.',       a:'à'},
+  {b:'On va au marché ___ bus.',            a:'en'}
+];
+
+/* exercice F : modèle libre (PDF ex. 1) */
+var MODELES = [
+  {q:'Vous allez à Varsovie ou à Poznań ?',            a:['à Varsovie','à Poznań']},
+  {q:'Vous allez à la mer ou à la montagne ?',         a:['à la mer','à la montagne']},
+  {q:'Vous allez au cinéma ou au théâtre ?',           a:['au cinéma','au théâtre']},
+  {q:'Vous allez au restaurant ou à la cafétéria ?',   a:['au restaurant','à la cafétéria']},
+  {q:'Vous allez en Espagne ou au Portugal ?',         a:['en Espagne','au Portugal']},
+  {q:'Vous allez à Grenade ou à Cordoue ?',            a:['à Grenade','à Cordoue']}
+];
+
+/* exercice E : les étapes du mail */
+var ETAPES = [
+  "Tu descends à l'arrêt de bus rue Serviez.",
+  "Au bout de la rue, tu prends à droite la rue Maréchal Foch.",
+  "Tu continues et tu prends la première à droite.",
+  "Au bout de la rue, tu tournes à gauche : c'est la rue Tran.",
+  "Le restaurant est au numéro 10, en face d'un petit jardin."
+];
+
+/* ---------------- le plan ---------------- */
+var PLACES = [
+  {id:'resto',      n:'Le restaurant',          x:400, y:66,  ico:'🍣', start:true},
+  {id:'lazare',     n:'Gare Saint-Lazare',      x:676, y:52,  ico:'🚉'},
+  {id:'madeleine',  n:'Église de la Madeleine', x:612, y:208, ico:'⛪', side:'l'},
+  {id:'opera',      n:'Opéra',                  x:795, y:150, ico:'🎭'},
+  {id:'palais',     n:'Palais Royal',           x:900, y:286, ico:'🏛️', side:'l', lo:-28},
+  {id:'louvre',     n:'Musée du Louvre',        x:846, y:398, ico:'🖼️'},
+  {id:'orangerie',  n:'Orangerie',              x:646, y:392, ico:'🎨', side:'l'},
+  {id:'concorde',   n:'Place de la Concorde',   x:578, y:330, ico:'🗿', side:'l', lo:30},
+  {id:'grand',      n:'Grand Palais',           x:452, y:322, ico:'🏛️', side:'l'},
+  {id:'orsay',      n:"Musée d'Orsay",          x:598, y:548, ico:'🖼️'},
+  {id:'eiffel',     n:'Tour Eiffel',            x:96,  y:498, ico:'🗼'},
+  {id:'arc',        n:'Arc de Triomphe',        x:112, y:132, ico:'🏛️'},
+  {id:'invalides',  n:'Invalides',              x:392, y:588, ico:'⛪'}
+];
+
+var STREETS = [
+  {n:'Boulevard Haussmann',        p:[[296,90],[470,100],[620,114],[760,138]], lx:420, ly:92,  rot:4},
+  {n:'rue Tran',                   p:[[400,66],[404,104]],                      lx:414, ly:92,  rot:84, sm:true},
+  {n:'Rue Tronchet',               p:[[640,116],[634,152],[616,198]],           lx:652, ly:150, rot:74, sm:true},
+  {n:'Rue Royale',                 p:[[612,214],[600,268],[586,322]],           lx:604, ly:252, rot:78, sm:true},
+  {n:'Boulevard des Capucines',    p:[[626,192],[706,168],[786,152]],           lx:648, ly:180, rot:-14},
+  {n:"Avenue de l'Opéra",          p:[[800,166],[850,222],[894,280]],           lx:822, ly:194, rot:48},
+  {n:'Rue Saint-Honoré',           p:[[600,268],[700,280],[800,290],[898,302]], lx:686, ly:274, rot:5},
+  {n:'Rue de Rivoli',              p:[[586,338],[700,372],[820,390],[976,398]], lx:706, ly:368, rot:9},
+  {n:'Avenue des Champs-Élysées',  p:[[142,152],[300,214],[430,272],[560,320]], lx:268, ly:200, rot:21},
+  {n:'Rue Saint-Lazare',           p:[[676,66],[652,96],[640,116]],             lx:672, ly:92,  rot:56, sm:true},
+  {n:'Rue La Fayette',             p:[[800,96],[900,112],[986,126]],            lx:856, ly:100, rot:8},
+  {n:'Quai des Tuileries',         p:[[540,470],[700,442],[860,416],[990,404]], lx:696, ly:436, rot:-10},
+  {n:"Quai d'Orsay",               p:[[110,582],[330,556],[520,530],[646,512]], lx:290, ly:552, rot:-7},
+  {n:'Boulevard Saint-Germain',    p:[[420,616],[600,592],[770,568]],           lx:520, ly:600, rot:-8},
+  {n:'Pont de la Concorde',        p:[[582,342],[588,470],[592,524]],           lx:574, ly:440, rot:88, sm:true},
+  {n:'Pont Alexandre III',         p:[[452,336],[468,480],[476,540]],           lx:444, ly:452, rot:84, sm:true},
+  {n:'Avenue Montaigne',           p:[[398,258],[356,352],[336,420]],           lx:372, ly:318, rot:66, sm:true},
+  {n:"Avenue d'Iéna",              p:[[124,148],[188,266],[228,352]],           lx:170, ly:236, rot:62, sm:true}
+];
+
+var GREENS = [
+  {d:'M604,352 L840,396 L866,424 L700,452 L566,474 Z',  n:'Jardin des Tuileries', lx:668, ly:412},
+  {d:'M420,296 L556,330 L520,382 L392,346 Z',           n:'Champs-Élysées',       lx:432, ly:342},
+  {d:'M58,522 L182,542 L152,612 L38,592 Z',             n:'Champ de Mars',        lx:66,  ly:572},
+  {d:'M872,256 L920,266 L912,296 L864,286 Z',           n:'',                     lx:0,   ly:0},
+  {d:'M352,42 L392,46 L388,78 L348,74 Z',               n:'petit jardin',         lx:326, ly:34}
+];
+
+var SEINE = 'M0,604 C200,588 380,544 560,506 C740,470 880,450 1000,438';
+
+/* les itinéraires du plan (départ : le restaurant) */
+var ROUTES = [
+  {id:'r1', to:'madeleine', ico:'⛪', lbl:'Église de la Madeleine',
+   pts:[[400,66],[404,104],[500,108],[640,116],[634,152],[616,200]],
+   steps:[
+     "Sortez du restaurant et descendez la rue Tran jusqu'au boulevard Haussmann.",
+     "Tournez à gauche et continuez tout droit sur le boulevard Haussmann.",
+     "Prenez la rue Tronchet, à droite.",
+     "Allez tout droit : l'église de la Madeleine est au bout de la rue."]},
+  {id:'r2', to:'opera', ico:'🎭', lbl:'Opéra',
+   pts:[[400,66],[404,104],[560,110],[700,126],[760,138],[792,150]],
+   steps:[
+     "Descendez la rue Tran jusqu'au boulevard Haussmann.",
+     "Tournez à gauche et suivez le boulevard Haussmann.",
+     "Continuez tout droit, ne tournez pas.",
+     "L'Opéra est au bout du boulevard, sur la place."]},
+  {id:'r3', to:'palais', ico:'🏛️', lbl:'Palais Royal',
+   pts:[[400,66],[404,104],[640,116],[760,138],[800,166],[850,222],[894,282]],
+   steps:[
+     "Prenez le boulevard Haussmann et allez jusqu'à l'Opéra.",
+     "Devant l'Opéra, tournez à droite dans l'avenue de l'Opéra.",
+     "Continuez tout droit pendant un kilomètre.",
+     "Le Palais Royal est au bout de l'avenue, à gauche."]},
+  {id:'r4', to:'louvre', ico:'🖼️', lbl:'Musée du Louvre',
+   pts:[[400,66],[404,104],[640,116],[634,152],[616,200],[600,268],[586,330],[640,352],[760,380],[842,394]],
+   steps:[
+     "Descendez le boulevard Haussmann et prenez la rue Tronchet, à droite.",
+     "Passez devant l'église de la Madeleine et continuez dans la rue Royale.",
+     "Au bout de la rue Royale, vous arrivez à la place de la Concorde.",
+     "Traversez la place et prenez la rue de Rivoli, à gauche.",
+     "Longez le jardin des Tuileries : le musée du Louvre est au bout, à droite."]},
+  {id:'r5', to:'arc', ico:'🏛️', lbl:'Arc de Triomphe',
+   pts:[[400,66],[404,104],[640,116],[634,152],[616,200],[586,330],[560,320],[430,272],[300,214],[144,152]],
+   steps:[
+     "Allez jusqu'à la place de la Concorde par la rue Royale.",
+     "Traversez la place et prenez l'avenue des Champs-Élysées, à droite.",
+     "Continuez tout droit, toujours tout droit, pendant deux kilomètres.",
+     "L'Arc de Triomphe est au bout de l'avenue : c'est à trente minutes à pied."]},
+  {id:'r6', to:'eiffel', ico:'🗼', lbl:'Tour Eiffel',
+   pts:[[400,66],[404,104],[640,116],[616,200],[586,330],[588,470],[592,524],[520,530],[330,556],[110,582],[100,514]],
+   steps:[
+     "Descendez jusqu'à la place de la Concorde.",
+     "Traversez la Seine par le pont de la Concorde.",
+     "Tournez à droite et suivez le quai d'Orsay.",
+     "Allez tout droit le long du fleuve : la tour Eiffel est devant vous."]}
+];
+
+/* exercice H : où se trouve… ? (clic sur le plan) */
+var OU_ITEMS = [
+  {dest:'madeleine', q:"Elle se trouve au bout de la rue Tronchet, entre le boulevard des Capucines et la rue Royale."},
+  {dest:'opera',     q:"Il se trouve au bout du boulevard Haussmann, au début de l'avenue de l'Opéra."},
+  {dest:'louvre',    q:"Il se trouve entre la rue de Rivoli et la Seine, à côté du jardin des Tuileries."},
+  {dest:'arc',       q:"Il se trouve à l'ouest du plan, au bout de l'avenue des Champs-Élysées."},
+  {dest:'orsay',     q:"Il se trouve de l'autre côté de la Seine, en face du jardin des Tuileries."},
+  {dest:'lazare',    q:"Elle se trouve au nord du plan, au bout de la rue Saint-Lazare."},
+  {dest:'concorde',  q:"Elle se trouve entre le jardin des Tuileries et les Champs-Élysées ; il y a un obélisque au centre."},
+  {dest:'eiffel',    q:"Elle se trouve au sud-ouest, à côté du Champ de Mars, au bout du quai d'Orsay."},
+  {dest:'palais',    q:"Il se trouve au bout de l'avenue de l'Opéra, au nord de la rue de Rivoli."},
+  {dest:'resto',     q:"Il se trouve rue Tran, au nord du boulevard Haussmann, en face d'un petit jardin."}
+];
+
+/* exercice I : comment aller à… ? (clic sur le plan) */
+var ITI_ITEMS = [
+  {dest:'madeleine', steps:["Vous êtes au restaurant. Descendez la rue Tran et tournez à gauche sur le boulevard Haussmann.","Prenez la rue Tronchet, à droite.","Allez tout droit : c'est au bout de la rue, devant vous."]},
+  {dest:'opera',     steps:["Vous êtes au restaurant. Suivez le boulevard Haussmann vers l'est.","Continuez tout droit, ne tournez pas.","C'est au bout du boulevard, sur la place."]},
+  {dest:'louvre',    steps:["Vous êtes à la Madeleine. Descendez la rue Royale.","Traversez la grande place et prenez la rue de Rivoli, à gauche.","Longez le jardin des Tuileries : c'est le grand bâtiment au bout, à droite."]},
+  {dest:'arc',       steps:["Vous êtes place de la Concorde. Prenez la grande avenue à l'ouest.","Continuez tout droit pendant deux kilomètres.","C'est au bout de l'avenue, au centre de la place."]},
+  {dest:'palais',    steps:["Vous êtes devant l'Opéra. Prenez l'avenue qui descend vers le sud-est.","Continuez tout droit jusqu'au bout de l'avenue.","C'est le bâtiment avec les colonnes et le jardin, à gauche."]},
+  {dest:'eiffel',    steps:["Vous êtes place de la Concorde. Traversez le pont.","Tournez à droite et suivez le quai d'Orsay.","Allez tout droit, tout droit : c'est au bout, à côté du Champ de Mars."]},
+  {dest:'orsay',     steps:["Vous êtes place de la Concorde. Traversez la Seine par le pont.","Tournez à gauche et suivez le quai.","C'est le musée dans l'ancienne gare, en face du jardin des Tuileries."]}
+];
+
+/* exercice K : donner l'itinéraire (restaurant → Madeleine → Opéra) */
+var K_STEPS = [
+  {t:"Sortez du restaurant et descendez la rue Tran.",                      seg:[[400,66],[404,104]]},
+  {t:"Au bout de la rue, tournez à gauche sur le boulevard Haussmann.",     seg:[[404,104],[520,108],[640,116]]},
+  {t:"Prenez la rue Tronchet, à droite, et allez tout droit.",              seg:[[640,116],[634,152],[616,198]]},
+  {t:"Vous arrivez devant l'église de la Madeleine.",                       seg:[[616,198],[614,206]]},
+  {t:"Tournez à gauche et suivez le boulevard des Capucines.",              seg:[[620,196],[626,192],[706,168],[786,152]]},
+  {t:"L'Opéra est au bout du boulevard, en face de vous.",                  seg:[[786,152],[793,150]]}
+];
+
+/* exercice M : « aller » dans le dialogue (PDF « le verbe aller », ex. 3) */
+var ALLER_DIAL = [
+  {d:1, ctx:'— Notre fils va aux États-Unis.',      q:'— Il ______ à New York ?',            a:['va','il va']},
+  {d:1, ctx:'— Il va à New York ?',                 q:'— Non, ______ à Boston.',             a:['il va','va']},
+  {d:2, ctx:'',                                     q:'— Rachel ______ en Angleterre.',      a:['va','elle va']},
+  {d:2, ctx:'— Rachel va en Angleterre.',           q:'— Elle ______ à Londres ?',           a:['va','elle va']},
+  {d:2, ctx:'— Elle va à Londres ?',                q:'— Non, ______ à Manchester.',         a:['elle va','va']},
+  {d:3, ctx:'',                                     q:'— Ce soir, nous ______ au restaurant.', a:['allons','nous allons']},
+  {d:3, ctx:'— Ce soir, nous allons au restaurant.',q:'— Vous ______ chez « Pietro » ?',      a:['allez','vous allez']},
+  {d:3, ctx:'— Vous allez chez « Pietro » ?',       q:'— Non, ______ chez « Lulu ».',        a:['nous allons','allons','on va']},
+  {d:4, ctx:'',                                     q:'— Les voisins ______ à la montagne.',  a:['vont','ils vont']},
+  {d:4, ctx:'— Les voisins vont à la montagne.',    q:'— Ils ______ à l\'hôtel ?',           a:['vont','ils vont']},
+  {d:4, ctx:'— Ils vont à l\'hôtel ?',             q:'— Non, ______ chez des amis.',        a:['ils vont','vont']}
+];
+
+/* exercice N : emploi du temps (PDF « le verbe aller », ex. 2) */
+var EMPLOI_OPTS = ['je vais à la', 'je vais au', "je vais à l'", 'je vais chez'];
+var EMPLOI = [
+  {t:'Le matin, <b>je vais à l\'</b>université.', fixe:true},
+  {t:'À midi, ___ cafétéria.',            a:'je vais à la'},
+  {t:"L'après-midi, ___ Marie.",          a:'je vais chez'},
+  {t:'À dix-huit heures, ___ piscine.',   a:'je vais à la'},
+  {t:'Le soir, ___ cinéma.',              a:'je vais au'}
+];
+
+/* exercice L : le dialogue */
+var DIALOGUE = [
+  {who:'🧍', b:false, txt:"Excusez-moi, madame, je suis perdue. ___ la gare Saint-Lazare, s'il vous plaît ?",
+   a:"Où se trouve", opts:["Où se trouve","Comment allez","Qu'est-ce que c'est","Je vous en prie"]},
+  {who:'👩', b:true,  txt:"Ce n'est pas loin. ___ le boulevard Haussmann jusqu'au bout.",
+   a:"Suivez", opts:["Suivez","Suivre","Vous suivez pas","Suivi"]},
+  {who:'🧍', b:false, txt:"Et après le boulevard ?", a:null},
+  {who:'👩', b:true,  txt:"___ à gauche dans la rue Tronchet, puis prenez la première à droite.",
+   a:"Tournez", opts:["Tournez","Tourner","Tournons","Je tourne"]},
+  {who:'🧍', b:false, txt:"D'accord. ___ d'ici ?",
+   a:"C'est loin", opts:["C'est loin","Il fait loin","C'est long temps","Je suis loin"]},
+  {who:'👩', b:true,  txt:"Non, c'est ___ dix minutes à pied.",
+   a:"à", opts:["à","en","dans","par"]},
+  {who:'🧍', b:false, txt:"Merci beaucoup, madame !", a:null},
+  {who:'👩', b:true,  txt:"___ . Bonne journée !",
+   a:"Je vous en prie", opts:["Je vous en prie","S'il vous plaît","Excusez-moi","Au revoir merci"]}
+];
+
+/* section 09 : lecture Pontoise Infos */
+var PONT_PREPS = [
+  {fr:"à côté de",     es:"al lado de"},
+  {fr:"en face de",    es:"enfrente de"},
+  {fr:"dans",          es:"en (una calle)"},
+  {fr:"sur",           es:"en (una plaza)"},
+  {fr:"à gauche de",   es:"a la izquierda de"},
+  {fr:"près de",       es:"cerca de"}
+];
+var PONT_LIEUX = [
+  {fr:"une adresse",         es:"una dirección"},
+  {fr:"un marché",           es:"un mercado"},
+  {fr:"une épicerie fine",   es:"una tienda de comestibles fina"},
+  {fr:"une pharmacie",       es:"una farmacia"},
+  {fr:"une mairie",          es:"un ayuntamiento"},
+  {fr:"une bibliothèque",    es:"una biblioteca"},
+  {fr:"une place / une rue", es:"una plaza / una calle"}
+];
+var PONT_ADJ = [
+  {fr:"sympathique",       es:"simpático, agradable"},
+  {fr:"traditionnel(le)",  es:"tradicional"},
+  {fr:"intéressant(e)",    es:"interesante"},
+  {fr:"de qualité",        es:"de calidad"},
+  {fr:"le samedi matin",   es:"los sábados por la mañana"},
+  {fr:"une bonne adresse", es:"un buen lugar al que ir"}
+];
+var PONT_ADDRESSES = [
+  {num:1, name:"Le restaurant L'Audience", quote:"un bon restaurant traditionnel",
+   loc:"Il est <b>sur la place de l'Hôtel de Ville</b>, <b>en face de la mairie</b>, <b>à côté de la pharmacie</b>."},
+  {num:2, name:"Le cinéma Royal Utopia", quote:"une programmation intéressante",
+   loc:"Il est <b>dans la rue Alexandre Prachay</b>, <b>à gauche de la bibliothèque</b> Guillaume-Apollinaire."},
+  {num:3, name:"Le marché du centre", quote:"des commerçants sympathiques",
+   loc:"Il est <b>dans la rue de l'Hôtel de Ville</b> et <b>sur la place</b>, <b>le samedi matin</b>."},
+  {num:4, name:"L'épicerie fine L'Arbre blanc", quote:"des produits de qualité et une galerie d'art !",
+   loc:"Elle est <b>dans la rue Alexandre Prachay</b>, <b>près du cinéma</b>."}
+];
+/* exercice O : compréhension de la lecture */
+var PONT_COMP = [
+  {q:"Qui est Mélanie ?", opts:["Une habitante de Pontoise qui recommande des adresses","La maire de Pontoise","Une touriste en visite"], a:0},
+  {q:"Les bonnes adresses de Mélanie concernent quels types de lieux ?", opts:["Un restaurant, un cinéma, un marché et une épicerie","Un hôtel, une gare et un aéroport","Une école et un hôpital"], a:0},
+  {q:"Le magazine donne quels types d'informations pour chaque lieu ?", opts:["Le nom du lieu, une citation et sa position dans la ville","Le prix et les horaires d'ouverture","Le numéro de téléphone et l'adresse e-mail"], a:0}
+];
+/* exercice P : le plan (associer adresse -> numéro) */
+var PONT_PLAN = [
+  {b:"Le restaurant L'Audience →", opts:["Numéro 1","Numéro 2","Numéro 3","Numéro 4"], a:"Numéro 1"},
+  {b:"Le marché du centre →",      opts:["Numéro 1","Numéro 2","Numéro 3","Numéro 4"], a:"Numéro 2"},
+  {b:"Le cinéma Royal Utopia →",   opts:["Numéro 1","Numéro 2","Numéro 3","Numéro 4"], a:"Numéro 3"},
+  {b:"L'épicerie fine L'Arbre blanc →", opts:["Numéro 1","Numéro 2","Numéro 3","Numéro 4"], a:"Numéro 4"}
+];
+/* exercice Q : prépositions de lieu (practice) */
+var PONT_PREP_DRILL = [
+  {b:"Le restaurant est ___ la pharmacie.", opts:["à côté de","loin de","en face de"], a:"à côté de"},
+  {b:"La bibliothèque se trouve ___ la rue Alexandre Prachay.", opts:["dans","sur","près"], a:"dans"},
+  {b:"Le marché est ___ la place, le samedi matin.", opts:["sur","dans","à gauche de"], a:"sur"},
+  {b:"L'épicerie est ___ du cinéma.", opts:["près","loin","à côté"], a:"près"},
+  {b:"Le cinéma est ___ la bibliothèque.", opts:["à gauche de","à droite de","derrière"], a:"à gauche de"}
+];
+
+/* ---------------- utilitaires ---------------- */
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function shuffle(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+function norm(s){
+  return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[’']/g,"'").replace(/[.,!?;:]/g,'').replace(/\s+/g,' ').trim();
+}
+function placeById(id){ for(var i=0;i<PLACES.length;i++){ if(PLACES[i].id===id) return PLACES[i]; } return null; }
+
+/* ---------------- synthèse vocale ---------------- */
+var frVoice = null;
+function pickVoice(){
+  if(!('speechSynthesis' in window)) return;
+  var vs = window.speechSynthesis.getVoices() || [];
+  frVoice = vs.filter(function(v){ return v.lang === 'fr-FR'; })[0]
+         || vs.filter(function(v){ return (v.lang||'').indexOf('fr') === 0; })[0]
+         || vs.filter(function(v){ return /fran|french/i.test(v.name||''); })[0] || null;
+}
+if('speechSynthesis' in window){ pickVoice(); window.speechSynthesis.onvoiceschanged = pickVoice; }
+function speak(text, btn){
+  if(!('speechSynthesis' in window) || !text) return;
+  window.speechSynthesis.cancel();
+  var u = new SpeechSynthesisUtterance(text);
+  u.lang = 'fr-FR'; u.rate = 0.9;
+  if(frVoice) u.voice = frVoice;
+  if(btn){ btn.classList.add('on'); u.onend = u.onerror = function(){ btn.classList.remove('on'); }; }
+  window.speechSynthesis.speak(u);
+}
+function speakSeq(list, i){
+  if(!('speechSynthesis' in window)) return;
+  i = i || 0;
+  if(i === 0) window.speechSynthesis.cancel();
+  if(i >= list.length) return;
+  var u = new SpeechSynthesisUtterance(list[i]);
+  u.lang = 'fr-FR'; u.rate = 0.9;
+  if(frVoice) u.voice = frVoice;
+  u.onend = function(){ speakSeq(list, i + 1); };
+  window.speechSynthesis.speak(u);
+}
+document.addEventListener('click', function(e){
+  var b = e.target.closest ? e.target.closest('.listen') : null;
+  if(b) speak(b.getAttribute('data-say'), b);
+});
+
+/* ---------------- rendu : formules ---------------- */
+function wallHTML(list){
+  return list.map(function(f){
+    return '<div class="card">'
+      + '<button class="listen" type="button" data-say="' + esc(f.fr) + '" aria-label="Écouter">🔊</button>'
+      + '<span class="fr">' + f.ico + ' ' + esc(f.fr) + '</span>'
+      + '<span class="es">' + esc(f.es) + '</span></div>';
+  }).join('');
+}
+document.getElementById('wall').innerHTML = wallHTML(FORMULES);
+document.getElementById('askWall').innerHTML = wallHTML(DEMANDER);
+
+/* ---------------- rendu : ordinaux ---------------- */
+document.getElementById('ords').innerHTML = ORDINAUX.map(function(o){
+  return '<button class="o" type="button" data-say="' + esc(o.w.replace(' / ', ', ')) + '">'
+    + '<span class="n">' + o.n + '</span><span class="w">' + esc(o.w) + '</span></button>';
+}).join('');
+document.getElementById('ords').addEventListener('click', function(e){
+  var b = e.target.closest('.o');
+  if(b) speak(b.getAttribute('data-say'));
+});
+
+/* ---------------- rendu : conjugaisons ---------------- */
+document.getElementById('conjs').innerHTML = VERBES.map(function(v){
+  var all = v.forms.map(function(f){ return f[0].split(' / ')[0] + ' ' + f[1] + f[2]; });
+  return '<div class="conj">'
+    + '<h3><span>' + v.ico + ' ' + v.inf + '</span>'
+    + '<button class="listen" type="button" data-say="' + esc(all.join('. ')) + '" aria-label="Écouter le verbe">🔊</button></h3>'
+    + '<span class="inf">' + esc(v.es) + '</span>'
+    + '<table><tbody>' + v.forms.map(function(f){
+        return '<tr><td class="p">' + esc(f[0]) + '</td><td class="v"><button class="listen" style="position:static;width:auto;height:auto;border:none;background:none;padding:0;color:inherit;display:inline" type="button" data-say="' + esc(f[0].split(' / ')[0] + ' ' + f[1] + f[2]) + '">'
+          + esc(f[1]) + '<u>' + esc(f[2]) + '</u></button></td></tr>';
+      }).join('') + '</tbody></table></div>';
+}).join('');
+
+/* ---------------- rendu : règles + impératifs ---------------- */
+function ruleHTML(list){
+  return list.map(function(r){
+    return '<div class="rule' + (r.warn ? ' warn' : '') + '"><b>' + esc(r.t) + '</b><span>' + esc(r.s) + '</span><i>' + r.e + '</i></div>';
+  }).join('');
+}
+document.getElementById('rules').innerHTML = ruleHTML(RULES);
+document.getElementById('imperatifs').innerHTML = ruleHTML(IMPERATIFS);
+document.getElementById('imperatifs').addEventListener('click', function(e){
+  var b = e.target.closest('.rule');
+  if(b) speak(b.querySelector('i').textContent);
+});
+
+/* ---------------- lecture du mail ---------------- */
+document.getElementById('readMail').addEventListener('click', function(){ speakSeq(ETAPES); });
+
+/* ---------------- rendu : lecture Pontoise Infos ---------------- */
+function vocabHTML(list){
+  return list.map(function(v){
+    return '<div class="card">'
+      + '<button class="listen" type="button" data-say="' + esc(v.fr) + '" aria-label="Écouter">🔊</button>'
+      + '<span class="fr">' + esc(v.fr) + '</span>'
+      + '<span class="es">' + esc(v.es) + '</span></div>';
+  }).join('');
+}
+document.getElementById('pontPreps').innerHTML = vocabHTML(PONT_PREPS);
+document.getElementById('pontLieux').innerHTML = vocabHTML(PONT_LIEUX);
+document.getElementById('pontAdj').innerHTML = vocabHTML(PONT_ADJ);
+
+document.getElementById('pontAddrList').innerHTML = PONT_ADDRESSES.map(function(a){
+  return '<li class="addr-item"><span class="addr-num">' + a.num + '</span><div>'
+    + '<div class="addr-name">' + esc(a.name) + '</div>'
+    + '<div class="addr-quote">« ' + esc(a.quote) + ' »</div>'
+    + '<div>' + a.loc + '</div>'
+    + '</div></li>';
+}).join('');
+document.getElementById('readPont').addEventListener('click', function(){
+  speakSeq(PONT_ADDRESSES.map(function(a){ return a.name + '. ' + a.loc.replace(/<[^>]+>/g, ''); }));
+});
+
+document.getElementById('pontMap').innerHTML =
+    '<svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">'
+  + '<rect x="0" y="0" width="700" height="300" rx="10" fill="var(--bg)"/>'
+  + '<rect x="200" y="24" width="320" height="120" rx="8" fill="var(--card)" stroke="var(--border)"/>'
+  + '<text x="360" y="42" text-anchor="middle" font-size="10.5" font-weight="700" letter-spacing=".05em" fill="var(--muted)">PLACE DE L\'HÔTEL DE VILLE</text>'
+  + '<rect x="300" y="56" width="100" height="48" rx="6" fill="var(--bg)" stroke="var(--border)"/>'
+  + '<text x="350" y="84" text-anchor="middle" font-size="11" font-weight="700" fill="var(--text)">Hôtel de Ville</text>'
+  + '<rect x="420" y="60" width="76" height="40" rx="6" fill="var(--bg)" stroke="var(--border)"/>'
+  + '<text x="458" y="84" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--text)">Pharmacie</text>'
+  + '<circle cx="458" cy="120" r="14" fill="var(--rouge)"/><text x="458" y="125" text-anchor="middle" font-size="13" font-weight="800" fill="#fff">1</text>'
+  + '<circle cx="260" cy="120" r="14" fill="var(--rouge)"/><text x="260" y="125" text-anchor="middle" font-size="13" font-weight="800" fill="#fff">2</text>'
+  + '<rect x="210" y="164" width="80" height="130" rx="8" fill="var(--card)" stroke="var(--border)"/>'
+  + '<text x="250" y="286" text-anchor="middle" font-size="9.5" letter-spacing=".04em" fill="var(--muted)">RUE ALEXANDRE PRACHAY</text>'
+  + '<rect x="110" y="220" width="90" height="46" rx="6" fill="var(--bg)" stroke="var(--border)"/>'
+  + '<text x="155" y="240" text-anchor="middle" font-size="10" font-weight="700" fill="var(--text)">Bibliothèque</text>'
+  + '<text x="155" y="253" text-anchor="middle" font-size="8.5" fill="var(--muted)">G.-Apollinaire</text>'
+  + '<circle cx="250" cy="200" r="14" fill="var(--rouge)"/><text x="250" y="205" text-anchor="middle" font-size="13" font-weight="800" fill="#fff">3</text>'
+  + '<circle cx="250" cy="248" r="14" fill="var(--rouge)"/><text x="250" y="253" text-anchor="middle" font-size="13" font-weight="800" fill="#fff">4</text>'
+  + '<line x1="310" y1="144" x2="250" y2="164" stroke="var(--border)" stroke-width="3"/>'
+  + '</svg>'
+  + '<p class="note" style="margin-top:.6rem">Les numéros 1 à 4 marquent quatre emplacements sur le plan du centre-ville.</p>';
+
+/* ================= LE PLAN ================= */
+function poly(pts){
+  return pts.map(function(p, i){ return (i ? 'L' : 'M') + p[0] + ',' + p[1]; }).join(' ');
+}
+function mapSVG(uid, clickable){
+  var s = '<svg viewBox="0 0 1000 640" class="pmap' + (clickable ? ' clickable' : '') + '" role="img" aria-label="Plan du centre de Paris">';
+  s += '<rect x="0" y="0" width="1000" height="640" rx="14" fill="var(--map-bg)"/>';
+  GREENS.forEach(function(g){
+    s += '<path d="' + g.d + '" fill="var(--map-green)" opacity=".9"/>';
+    if(g.n) s += '<text class="green-lbl" x="' + g.lx + '" y="' + g.ly + '">' + esc(g.n) + '</text>';
+  });
+  s += '<path d="' + SEINE + '" stroke="var(--map-water)" stroke-width="30" fill="none" stroke-linecap="round"/>';
+  s += '<text class="water-lbl" x="196" y="576" transform="rotate(-9 196 576)">LA SEINE</text>';
+  STREETS.forEach(function(st){
+    var d = poly(st.p);
+    s += '<path d="' + d + '" stroke="var(--map-line)" stroke-width="' + (st.sm ? 11 : 15) + '" fill="none" stroke-linecap="round" stroke-linejoin="round"/>';
+    s += '<path d="' + d + '" stroke="var(--map-street)" stroke-width="' + (st.sm ? 8 : 12) + '" fill="none" stroke-linecap="round" stroke-linejoin="round"/>';
+  });
+  STREETS.forEach(function(st){
+    if(st.lx == null) return;
+    s += '<text class="stname' + (st.sm ? ' sm' : '') + '" x="' + st.lx + '" y="' + st.ly + '" transform="rotate(' + (st.rot || 0) + ' ' + st.lx + ' ' + st.ly + ')">' + esc(st.n) + '</text>';
+  });
+  s += '<path id="rt-' + uid + '" class="route" d=""/>';
+  s += '<circle id="wk-' + uid + '" class="walker" cx="-99" cy="-99" r="7" style="display:none"/>';
+  PLACES.forEach(function(p){
+    var w = p.n.length * 6.5 + 34, lx = (p.side === 'l') ? p.x - 12 - w : p.x + 12;
+    var ly = p.y + (p.lo || 0);
+    s += '<g class="pin' + (p.start ? ' start' : '') + '" data-place="' + p.id + '" tabindex="0" role="button" aria-label="' + esc(p.n) + '">';
+    if(p.lo) s += '<path d="M' + p.x + ',' + p.y + ' L' + (p.side === 'l' ? lx + w - 14 : lx + 14) + ',' + ly + '" stroke="var(--map-line)" stroke-width="2" fill="none"/>';
+    s += '<rect class="plabel" x="' + lx + '" y="' + (ly - 12) + '" width="' + w + '" height="24" rx="8"/>'
+      + '<text class="ptext" x="' + (lx + 9) + '" y="' + (ly + 5) + '">' + p.ico + ' ' + esc(p.n) + '</text>'
+      + '<circle class="pdot" cx="' + p.x + '" cy="' + p.y + '" r="5.5"/>'
+      + '</g>';
+  });
+  return s + '</svg>';
+}
+function drawRoute(uid, pts, prevLen){
+  var path = document.getElementById('rt-' + uid);
+  if(!path) return 0;
+  if(!pts || pts.length < 2){
+    path.setAttribute('d', '');
+    var w0 = document.getElementById('wk-' + uid); if(w0) w0.style.display = 'none';
+    return 0;
+  }
+  path.setAttribute('d', poly(pts));
+  var L = path.getTotalLength();
+  path.style.transition = 'none';
+  path.style.strokeDasharray = L;
+  path.style.strokeDashoffset = Math.max(0, L - (prevLen || 0));
+  path.getBoundingClientRect();
+  path.style.transition = 'stroke-dashoffset .9s ease';
+  path.style.strokeDashoffset = 0;
+  var wk = document.getElementById('wk-' + uid), last = pts[pts.length - 1];
+  if(wk){ wk.style.display = ''; wk.setAttribute('cx', last[0]); wk.setAttribute('cy', last[1]); }
+  return L;
+}
+function clearPins(hostId){
+  document.querySelectorAll('#' + hostId + ' .pin').forEach(function(g){ g.classList.remove('good','bad','target'); });
+}
+
+/* ---- lecteur d'itinéraires (section 07) ---- */
+var BR = {r1:[2,4,5,6], r2:[2,4,5,6], r3:[4,5,6,7], r4:[5,6,7,8,10], r5:[6,8,9,10], r6:[5,7,9,11]};
+var RP = {r:null, step:0, len:0};
+
+document.getElementById('mapMain').innerHTML = mapSVG('M', false);
+document.getElementById('mapH').innerHTML = '<div style="max-width:820px;margin:0 auto">' + mapSVG('H', true) + '</div>';
+document.getElementById('mapI').innerHTML = '<div style="max-width:820px;margin:0 auto">' + mapSVG('I', true) + '</div>';
+document.getElementById('mapK').innerHTML = '<div style="max-width:820px;margin:0 auto">' + mapSVG('K', false) + '</div>';
+
+document.getElementById('dests').innerHTML = ROUTES.map(function(r){
+  return '<button class="btn" type="button" data-route="' + r.id + '">' + r.ico + ' ' + esc(r.lbl) + '</button>';
+}).join('');
+
+function paintRouteSteps(){
+  var host = document.getElementById('routeSteps');
+  if(!RP.r){ host.innerHTML = '<p class="ex-sub" style="margin:0">Choisissez une destination ci-dessus. 👆</p>'; return; }
+  host.innerHTML = RP.r.steps.map(function(t, i){
+    var cls = i < RP.step - 1 ? 'done' : (i === RP.step - 1 ? 'now' : '');
+    return '<div class="rstep ' + cls + '"><span class="n">' + (i + 1) + '</span><span>' + esc(t) + '</span></div>';
+  }).join('');
+}
+function selectRoute(id){
+  RP.r = ROUTES.filter(function(r){ return r.id === id; })[0];
+  RP.step = 0; RP.len = 0;
+  drawRoute('M', null, 0);
+  clearPins('mapMain');
+  document.querySelectorAll('#dests .btn').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-route') === id); });
+  var pin = document.querySelector('#mapMain .pin[data-place="' + RP.r.to + '"]');
+  if(pin) pin.classList.add('target');
+  paintRouteSteps();
+  nextRouteStep();
+}
+function nextRouteStep(){
+  if(!RP.r) return;
+  if(RP.step >= RP.r.steps.length){
+    var pin = document.querySelector('#mapMain .pin[data-place="' + RP.r.to + '"]');
+    if(pin){ pin.classList.remove('target'); pin.classList.add('good'); }
+    return;
+  }
+  var n = BR[RP.r.id][RP.step];
+  RP.step++;
+  RP.len = drawRoute('M', RP.r.pts.slice(0, n), RP.len);
+  paintRouteSteps();
+  speak(RP.r.steps[RP.step - 1]);
+  if(RP.step >= RP.r.steps.length){
+    var p2 = document.querySelector('#mapMain .pin[data-place="' + RP.r.to + '"]');
+    if(p2){ p2.classList.remove('target'); p2.classList.add('good'); }
+  }
+}
+document.getElementById('dests').addEventListener('click', function(e){
+  var b = e.target.closest('[data-route]');
+  if(b) selectRoute(b.getAttribute('data-route'));
+});
+document.getElementById('nextStep').addEventListener('click', function(){
+  if(!RP.r){ selectRoute(ROUTES[0].id); return; }
+  nextRouteStep();
+});
+document.getElementById('allSteps').addEventListener('click', function(){
+  if(!RP.r) selectRoute(ROUTES[0].id);
+  RP.step = RP.r.steps.length;
+  RP.len = drawRoute('M', RP.r.pts, 0);
+  paintRouteSteps();
+  var pin = document.querySelector('#mapMain .pin[data-place="' + RP.r.to + '"]');
+  if(pin){ pin.classList.remove('target'); pin.classList.add('good'); }
+  speakSeq(RP.r.steps);
+});
+document.getElementById('resetRoute').addEventListener('click', function(){
+  if(RP.r) selectRoute(RP.r.id);
+});
+paintRouteSteps();
+
+/* ---------------- moteur d'exercices ---------------- */
+var ROUNDS = 8;
+var EX = {A:{i:0,ok:0}, B:{i:0,ok:0}, C:{i:0,ok:0}, D:{i:0,ok:0}, E:{i:0,ok:0}, G:{i:0,ok:0},
+          H:{i:0,ok:0}, I:{i:0,ok:0}, J:{i:0,ok:0}, K:{i:0,ok:0}, L:{i:0,ok:0}, M:{i:0,ok:0}, N:{i:0,ok:0},
+          O:{i:0,ok:0}, P:{i:0,ok:0}, Q:{i:0,ok:0}};
+var L_GAPS = DIALOGUE.filter(function(d){ return d.a; }).length;
+var TOTALS = {A:ROUNDS, B:6, C:ROUNDS, D:ROUNDS, E:ETAPES.length, G:TRANSPORTS.length,
+              H:6, I:5, J:ROUNDS, K:K_STEPS.length, L:L_GAPS,
+              M:ALLER_DIAL.length, N:EMPLOI.filter(function(e){ return !e.fixe; }).length,
+              O:PONT_COMP.length, P:PONT_PLAN.length, Q:PONT_PREP_DRILL.length};
+
+function setBar(n){
+  var st = EX[n];
+  var bar = document.getElementById('bar' + n);
+  if(bar) bar.style.width = Math.round(st.i / TOTALS[n] * 100) + '%';
+  var sc = document.getElementById('sc' + n);
+  if(sc) sc.textContent = st.ok + ' / ' + st.i;
+  var ok = 0, tot = 0, k;
+  for(k in EX){ ok += EX[k].ok; tot += EX[k].i; }
+  document.getElementById('bTotal').textContent = ok + ' / ' + tot;
+  document.getElementById('bPct').textContent = tot ? Math.round(ok / tot * 100) + ' %' : '—';
+}
+function fb(n, good, msg, sub){
+  var el = document.getElementById('f' + n);
+  el.className = 'fb ' + (good ? 'good' : 'bad');
+  el.innerHTML = (good ? '✅ ' : '❌ ') + esc(msg) + (sub ? '<small>' + esc(sub) + '</small>' : '');
+}
+function finish(n){
+  var st = EX[n], t = TOTALS[n];
+  var q = document.getElementById('q' + n), o = document.getElementById('o' + n);
+  if(q) q.innerHTML = '🎉 <span>Terminé — ' + st.ok + ' / ' + t + ' bonnes réponses.</span>';
+  if(o) o.innerHTML = '';
+  var el = document.getElementById('f' + n);
+  el.className = 'fb';
+  el.textContent = st.ok >= t - 1 ? 'Excellent ! 👏' : (st.ok >= t / 2 ? 'Bien ! Recommencez pour progresser.' : 'Révisez la leçon et recommencez.');
+}
+
+/* ---- A : formules ---- */
+function startA(){ EX.A = {i:0, ok:0, list: shuffle(FORMULES).slice(0, ROUNDS)}; setBar('A'); nextA(); }
+function nextA(){
+  var st = EX.A;
+  if(st.i >= TOTALS.A){ finish('A'); return; }
+  var f = st.list[st.i];
+  document.getElementById('qA').innerHTML = '<span>' + f.ico + '</span><span>' + esc(f.es) + '</span>'
+    + '<span class="hint">· question ' + (st.i + 1) + ' / ' + TOTALS.A + '</span>';
+  var opts = shuffle(FORMULES.filter(function(x){ return x.fr !== f.fr; })).slice(0, 3).concat([f]);
+  document.getElementById('oA').innerHTML = shuffle(opts).map(function(x){
+    return '<button class="opt" type="button" data-v="' + esc(x.fr) + '">' + esc(x.fr) + '</button>';
+  }).join('');
+  document.getElementById('fA').textContent = '';
+}
+document.getElementById('oA').addEventListener('click', function(e){
+  var b = e.target.closest('.opt'); if(!b || b.disabled) return;
+  var st = EX.A, f = st.list[st.i], good = b.getAttribute('data-v') === f.fr;
+  document.querySelectorAll('#oA .opt').forEach(function(x){
+    x.disabled = true;
+    if(x.getAttribute('data-v') === f.fr) x.classList.add('good');
+  });
+  if(!good) b.classList.add('bad');
+  if(good) st.ok++;
+  st.i++;
+  fb('A', good, f.fr, f.es);
+  speak(f.fr);
+  setBar('A');
+  setTimeout(nextA, 1600);
+});
+
+/* ---- B : ordinaux ---- */
+function startB(){ EX.B = {i:0, ok:0, list: shuffle(ORDINAUX).slice(0, TOTALS.B)}; setBar('B'); nextB(); }
+function nextB(){
+  var st = EX.B;
+  if(st.i >= TOTALS.B){ finish('B'); return; }
+  var o = st.list[st.i];
+  document.getElementById('qB').innerHTML = '<span>Comment dit-on <b class="blank">' + o.n + '</b> ?</span>'
+    + '<span class="hint">· question ' + (st.i + 1) + ' / ' + TOTALS.B + '</span>';
+  var opts = shuffle(ORDINAUX.filter(function(x){ return x.n !== o.n; })).slice(0, 3).concat([o]);
+  document.getElementById('oB').innerHTML = shuffle(opts).map(function(x){
+    return '<button class="opt" type="button" data-v="' + esc(x.n) + '">' + esc(x.w) + '</button>';
+  }).join('');
+  document.getElementById('fB').textContent = '';
+}
+document.getElementById('oB').addEventListener('click', function(e){
+  var b = e.target.closest('.opt'); if(!b || b.disabled) return;
+  var st = EX.B, o = st.list[st.i], good = b.getAttribute('data-v') === o.n;
+  document.querySelectorAll('#oB .opt').forEach(function(x){
+    x.disabled = true;
+    if(x.getAttribute('data-v') === o.n) x.classList.add('good');
+  });
+  if(!good) b.classList.add('bad');
+  if(good) st.ok++;
+  st.i++;
+  fb('B', good, o.n + ' = ' + o.w);
+  speak(o.w.replace(' / ', ', '));
+  setBar('B');
+  setTimeout(nextB, 1500);
+});
+
+/* ---- C : conjugaison ---- */
+function startC(){
+  EX.C = {i:0, ok:0, tried:false, list: shuffle(CONJ_ITEMS).slice(0, ROUNDS)};
+  document.getElementById('inC').disabled = false;
+  setBar('C'); nextC();
+}
+function nextC(){
+  var st = EX.C;
+  if(st.i >= TOTALS.C){ finish('C'); document.getElementById('inC').disabled = true; return; }
+  st.tried = false;
+  var it = st.list[st.i];
+  document.getElementById('qC').innerHTML = '<span>' + esc(it.p) + ' <span class="blank">______</span></span>'
+    + '<span class="hint">· (' + esc(it.v) + ') — question ' + (st.i + 1) + ' / ' + TOTALS.C + '</span>';
+  var inp = document.getElementById('inC');
+  inp.value = ''; inp.className = ''; inp.disabled = false;
+  document.getElementById('fC').textContent = '';
+}
+function gradeC(reveal){
+  var st = EX.C;
+  if(st.i >= TOTALS.C || st.tried) return;
+  var it = st.list[st.i], inp = document.getElementById('inC');
+  var v = norm(inp.value).replace(/^(je|j'|tu|il|elle|on|nous|vous|ils|elles)\s*/, '');
+  if(!reveal && !v) return;
+  var good = !reveal && v === norm(it.a);
+  st.tried = true;
+  inp.value = it.a; inp.className = good ? 'good' : 'bad'; inp.disabled = true;
+  if(good) st.ok++;
+  st.i++;
+  fb('C', good, it.p + ' ' + it.a + '.', 'verbe : ' + it.v);
+  speak(it.p + ' ' + it.a);
+  setBar('C');
+  setTimeout(nextC, 1700);
+}
+document.getElementById('checkC').addEventListener('click', function(){ gradeC(false); });
+document.getElementById('showC').addEventListener('click', function(){ gradeC(true); });
+document.getElementById('inC').addEventListener('keydown', function(e){ if(e.key === 'Enter') gradeC(false); });
+
+/* ---- D : prépositions ---- */
+function startD(){ EX.D = {i:0, ok:0, list: shuffle(PREP_ITEMS).slice(0, ROUNDS)}; setBar('D'); nextD(); }
+function nextD(){
+  var st = EX.D;
+  if(st.i >= TOTALS.D){ finish('D'); return; }
+  var it = st.list[st.i];
+  document.getElementById('qD').innerHTML = '<span>' + esc(it.b).replace('___', '<span class="blank">___</span>') + '</span>'
+    + '<span class="hint">· question ' + (st.i + 1) + ' / ' + TOTALS.D + '</span>';
+  document.getElementById('oD').innerHTML = PREPS.map(function(p){
+    return '<button class="opt chip" type="button" data-v="' + esc(p) + '">' + esc(p) + '</button>';
+  }).join('');
+  document.getElementById('fD').textContent = '';
+}
+document.getElementById('oD').addEventListener('click', function(e){
+  var b = e.target.closest('.opt'); if(!b || b.disabled) return;
+  var st = EX.D, it = st.list[st.i], good = b.getAttribute('data-v') === it.a;
+  document.querySelectorAll('#oD .opt').forEach(function(x){
+    x.disabled = true;
+    if(x.getAttribute('data-v') === it.a) x.classList.add('good');
+  });
+  if(!good) b.classList.add('bad');
+  if(good) st.ok++;
+  st.i++;
+  var phrase = it.b.replace('___', it.a === "à l'" ? "à l'" : it.a + ' ').replace(/\s+/g, ' ');
+  fb('D', good, phrase);
+  speak(phrase);
+  setBar('D');
+  setTimeout(nextD, 1900);
+});
+
+/* ---- E : remettre l'itinéraire dans l'ordre ---- */
+function startE(){
+  EX.E = {i:0, ok:0, order: shuffle(ETAPES.map(function(t, idx){ return {t:t, idx:idx}; }))};
+  document.getElementById('fE').textContent = '';
+  document.getElementById('stepsE').innerHTML = EX.E.order.map(function(s){
+    return '<button class="step" type="button" data-idx="' + s.idx + '"><span class="num">?</span><span>' + esc(s.t) + '</span></button>';
+  }).join('');
+  setBar('E');
+}
+document.getElementById('stepsE').addEventListener('click', function(e){
+  var b = e.target.closest('.step'); if(!b || b.disabled) return;
+  var st = EX.E, idx = parseInt(b.getAttribute('data-idx'), 10);
+  if(idx === st.i){
+    b.disabled = true; b.classList.add('placed');
+    b.querySelector('.num').textContent = st.i + 1;
+    st.ok++; st.i++;
+    speak(ETAPES[idx]);
+    if(st.i >= TOTALS.E){
+      var el = document.getElementById('fE');
+      el.className = 'fb good';
+      el.innerHTML = '✅ Bravo ! Vous êtes arrivé(e) au restaurant. 🍣';
+    } else {
+      fb('E', true, 'Étape ' + st.i + ' — continuez.');
+    }
+  } else {
+    b.classList.add('wrong');
+    setTimeout(function(){ b.classList.remove('wrong'); }, 700);
+    st.i++;
+    fb('E', false, 'Pas encore : cherchez l\'étape numéro ' + (st.ok + 1) + '.');
+  }
+  setBar('E');
+});
+
+/* ---- F : modèle libre ---- */
+document.getElementById('modelList').innerHTML = MODELES.map(function(m, i){
+  return '<div class="ex-q" style="margin-top:10px;flex-direction:column;align-items:flex-start;gap:.5rem">'
+    + '<span>' + esc(m.q) + '</span>'
+    + '<div class="opts" style="margin-top:0">'
+    + m.a.map(function(d){ return '<button class="opt" type="button" data-model="' + esc(d) + '" data-row="' + i + '">' + esc(d) + '</button>'; }).join('')
+    + '</div><div class="fb" id="mf' + i + '" style="min-height:0"></div></div>';
+}).join('');
+document.getElementById('modelList').addEventListener('click', function(e){
+  var b = e.target.closest('[data-model]'); if(!b) return;
+  var row = b.getAttribute('data-row'), dest = b.getAttribute('data-model');
+  var phrase = 'Je vais ' + dest + '.';
+  var el = document.getElementById('mf' + row);
+  el.className = 'fb good';
+  el.innerHTML = '🗣️ ' + esc(phrase);
+  speak(phrase);
+});
+
+/* ---- G : en / à ---- */
+function startG(){ EX.G = {i:0, ok:0, list: shuffle(TRANSPORTS)}; setBar('G'); nextG(); }
+function nextG(){
+  var st = EX.G;
+  if(st.i >= TOTALS.G){ finish('G'); return; }
+  var it = st.list[st.i];
+  document.getElementById('qG').innerHTML = '<span>' + esc(it.b).replace('___', '<span class="blank">___</span>') + '</span>'
+    + '<span class="hint">· question ' + (st.i + 1) + ' / ' + TOTALS.G + '</span>';
+  document.getElementById('oG').innerHTML =
+      '<button class="opt" type="button" data-v="en">en</button>'
+    + '<button class="opt" type="button" data-v="à">à</button>';
+  document.getElementById('fG').textContent = '';
+}
+document.getElementById('oG').addEventListener('click', function(e){
+  var b = e.target.closest('.opt'); if(!b || b.disabled) return;
+  var st = EX.G, it = st.list[st.i], good = b.getAttribute('data-v') === it.a;
+  document.querySelectorAll('#oG .opt').forEach(function(x){
+    x.disabled = true;
+    if(x.getAttribute('data-v') === it.a) x.classList.add('good');
+  });
+  if(!good) b.classList.add('bad');
+  if(good) st.ok++;
+  st.i++;
+  var phrase = it.b.replace('___', it.a);
+  fb('G', good, phrase, it.a === 'à' ? 'sans véhicule fermé → à' : 'véhicule fermé → en');
+  speak(phrase);
+  setBar('G');
+  setTimeout(nextG, 1800);
+});
+
+/* ---- H : où se trouve… ? (clic sur le plan) ---- */
+function startH(){
+  EX.H = {i:0, ok:0, busy:false, list: shuffle(OU_ITEMS).slice(0, TOTALS.H)};
+  clearPins('mapH');
+  document.getElementById('fH').textContent = '';
+  setBar('H'); nextH();
+}
+function nextH(){
+  var st = EX.H;
+  clearPins('mapH');
+  if(st.i >= TOTALS.H){ finish('H'); return; }
+  st.busy = false;
+  var it = st.list[st.i];
+  document.getElementById('qH').innerHTML = '<span>' + esc(it.q) + '</span>'
+    + '<span class="hint">· question ' + (st.i + 1) + ' / ' + TOTALS.H + ' — cliquez sur le plan</span>';
+}
+document.getElementById('mapH').addEventListener('click', function(e){
+  var g = e.target.closest ? e.target.closest('.pin') : null;
+  var st = EX.H;
+  if(!g || st.busy || st.i >= TOTALS.H) return;
+  st.busy = true;
+  var it = st.list[st.i], id = g.getAttribute('data-place'), good = id === it.dest;
+  var target = document.querySelector('#mapH .pin[data-place="' + it.dest + '"]');
+  if(target) target.classList.add('good');
+  if(!good) g.classList.add('bad');
+  if(good) st.ok++;
+  st.i++;
+  var p = placeById(it.dest);
+  fb('H', good, p.n + ' — ' + it.q);
+  speak(p.n + '. ' + it.q);
+  setBar('H');
+  setTimeout(nextH, 2100);
+});
+
+/* ---- I : comment aller à… ? (clic sur le plan) ---- */
+function startI(){
+  EX.I = {i:0, ok:0, busy:false, list: shuffle(ITI_ITEMS).slice(0, TOTALS.I)};
+  clearPins('mapI');
+  document.getElementById('fI').textContent = '';
+  setBar('I'); nextI();
+}
+function nextI(){
+  var st = EX.I;
+  clearPins('mapI');
+  if(st.i >= TOTALS.I){ finish('I'); return; }
+  st.busy = false;
+  var it = st.list[st.i];
+  document.getElementById('qI').innerHTML = it.steps.map(function(t, k){
+    return '<span style="font-size:.98rem">' + (k + 1) + '. ' + esc(t) + '</span>';
+  }).join('') + '<span class="hint">· itinéraire ' + (st.i + 1) + ' / ' + TOTALS.I + ' — où arrivez-vous ?</span>';
+}
+document.getElementById('listenI').addEventListener('click', function(){
+  var st = EX.I;
+  if(st.i < TOTALS.I) speakSeq(st.list[st.i].steps);
+});
+document.getElementById('mapI').addEventListener('click', function(e){
+  var g = e.target.closest ? e.target.closest('.pin') : null;
+  var st = EX.I;
+  if(!g || st.busy || st.i >= TOTALS.I) return;
+  st.busy = true;
+  var it = st.list[st.i], id = g.getAttribute('data-place'), good = id === it.dest;
+  var target = document.querySelector('#mapI .pin[data-place="' + it.dest + '"]');
+  if(target) target.classList.add('good');
+  if(!good) g.classList.add('bad');
+  if(good) st.ok++;
+  st.i++;
+  var p = placeById(it.dest);
+  fb('I', good, 'Vous arrivez : ' + p.n + '.');
+  speak('Vous arrivez ' + (p.id === 'resto' ? 'au restaurant' : 'ici : ' + p.n) + '.');
+  setBar('I');
+  setTimeout(nextI, 1900);
+});
+
+/* ---- J : l'impératif ---- */
+function startJ(){ EX.J = {i:0, ok:0, list: shuffle(IMP_ITEMS).slice(0, ROUNDS)}; setBar('J'); nextJ(); }
+function nextJ(){
+  var st = EX.J;
+  if(st.i >= TOTALS.J){ finish('J'); return; }
+  var it = st.list[st.i];
+  document.getElementById('qJ').innerHTML = '<span>' + esc(it.b).replace('___', '<span class="blank">___</span>') + '</span>'
+    + '<span class="hint">· question ' + (st.i + 1) + ' / ' + TOTALS.J + '</span>';
+  document.getElementById('oJ').innerHTML = IMP_OPTS.map(function(v){
+    return '<button class="opt chip" type="button" data-v="' + esc(v) + '">' + esc(v) + '</button>';
+  }).join('');
+  document.getElementById('fJ').textContent = '';
+}
+document.getElementById('oJ').addEventListener('click', function(e){
+  var b = e.target.closest('.opt'); if(!b || b.disabled) return;
+  var st = EX.J, it = st.list[st.i], good = b.getAttribute('data-v') === it.a;
+  document.querySelectorAll('#oJ .opt').forEach(function(x){
+    x.disabled = true;
+    if(x.getAttribute('data-v') === it.a) x.classList.add('good');
+  });
+  if(!good) b.classList.add('bad');
+  if(good) st.ok++;
+  st.i++;
+  var phrase = it.b.replace('___', it.a);
+  fb('J', good, phrase, it.w);
+  speak(phrase);
+  setBar('J');
+  setTimeout(nextJ, 1900);
+});
+
+/* ---- K : donner l'itinéraire (le plan se dessine) ---- */
+function startK(){
+  EX.K = {i:0, ok:0, len:0, order: shuffle(K_STEPS.map(function(s, idx){ return {t:s.t, idx:idx}; }))};
+  drawRoute('K', null, 0);
+  clearPins('mapK');
+  var pin = document.querySelector('#mapK .pin[data-place="opera"]');
+  if(pin) pin.classList.add('target');
+  document.getElementById('fK').textContent = '';
+  document.getElementById('stepsK').innerHTML = EX.K.order.map(function(s){
+    return '<button class="step" type="button" data-idx="' + s.idx + '"><span class="num">?</span><span>' + esc(s.t) + '</span></button>';
+  }).join('');
+  setBar('K');
+}
+function kPoints(upTo){
+  var pts = [];
+  for(var i = 0; i < upTo; i++){
+    K_STEPS[i].seg.forEach(function(p, j){
+      if(i > 0 && j === 0) return;
+      pts.push(p);
+    });
+  }
+  return pts;
+}
+document.getElementById('stepsK').addEventListener('click', function(e){
+  var b = e.target.closest('.step'); if(!b || b.disabled) return;
+  var st = EX.K, idx = parseInt(b.getAttribute('data-idx'), 10);
+  if(idx === st.ok){
+    b.disabled = true; b.classList.add('placed');
+    b.querySelector('.num').textContent = st.ok + 1;
+    st.ok++; st.i++;
+    st.len = drawRoute('K', kPoints(st.ok), st.len);
+    speak(K_STEPS[idx].t);
+    if(st.ok >= TOTALS.K){
+      var pin = document.querySelector('#mapK .pin[data-place="opera"]');
+      if(pin){ pin.classList.remove('target'); pin.classList.add('good'); }
+      var el = document.getElementById('fK');
+      el.className = 'fb good';
+      el.innerHTML = '✅ Parfait ! Votre ami est arrivé à l\'Opéra. 🎭';
+    } else {
+      fb('K', true, 'Étape ' + st.ok + ' — continuez.');
+    }
+  } else {
+    b.classList.add('wrong');
+    setTimeout(function(){ b.classList.remove('wrong'); }, 700);
+    st.i++;
+    fb('K', false, 'Pas encore : cherchez l\'étape numéro ' + (st.ok + 1) + '.');
+  }
+  setBar('K');
+});
+
+/* ---- L : le dialogue ---- */
+function gapIndexes(){
+  var r = [];
+  DIALOGUE.forEach(function(d, i){ if(d.a) r.push(i); });
+  return r;
+}
+function paintL(){
+  var st = EX.L;
+  document.getElementById('dialogL').innerHTML = DIALOGUE.map(function(d, i){
+    var t = esc(d.txt);
+    if(d.a){
+      var g = st.filled[i];
+      var rep = g ? '<b class="gap filled">' + esc(d.a) + '</b>' : '<span class="gap">?</span>';
+      t = t.replace('___', rep);
+    }
+    return '<div class="line' + (d.b ? ' b' : '') + '"><span class="who">' + d.who + '</span><span class="txt">' + t + '</span></div>';
+  }).join('');
+}
+function startL(){
+  EX.L = {i:0, ok:0, filled:{}, gaps: gapIndexes()};
+  document.getElementById('fL').textContent = '';
+  setBar('L'); paintL(); nextL();
+}
+function nextL(){
+  var st = EX.L;
+  if(st.i >= TOTALS.L){
+    document.getElementById('oL').innerHTML = '';
+    var el = document.getElementById('fL');
+    el.className = 'fb';
+    el.textContent = st.ok >= TOTALS.L - 1 ? 'Excellent ! Écoutez le dialogue complet. 👏' : 'Bien ! Recommencez pour progresser.';
+    return;
+  }
+  var d = DIALOGUE[st.gaps[st.i]];
+  document.getElementById('oL').innerHTML = shuffle(d.opts).map(function(o){
+    return '<button class="opt" type="button" data-v="' + esc(o) + '">' + esc(o) + '</button>';
+  }).join('');
+}
+document.getElementById('oL').addEventListener('click', function(e){
+  var b = e.target.closest('.opt'); if(!b || b.disabled) return;
+  var st = EX.L, gi = st.gaps[st.i], d = DIALOGUE[gi], good = b.getAttribute('data-v') === d.a;
+  document.querySelectorAll('#oL .opt').forEach(function(x){
+    x.disabled = true;
+    if(x.getAttribute('data-v') === d.a) x.classList.add('good');
+  });
+  if(!good) b.classList.add('bad');
+  if(good) st.ok++;
+  st.i++;
+  st.filled[gi] = true;
+  paintL();
+  var phrase = d.txt.replace('___', d.a);
+  fb('L', good, phrase);
+  speak(phrase);
+  setBar('L');
+  setTimeout(nextL, 1900);
+});
+document.getElementById('playL').addEventListener('click', function(){
+  speakSeq(DIALOGUE.map(function(d){ return d.a ? d.txt.replace('___', d.a) : d.txt; }));
+});
+
+/* ---- M : « aller » dans le dialogue ---- */
+function startM(){
+  EX.M = {i:0, ok:0, tried:false};
+  document.getElementById('inM').disabled = false;
+  document.getElementById('fM').textContent = '';
+  setBar('M'); nextM();
+}
+function nextM(){
+  var st = EX.M;
+  if(st.i >= TOTALS.M){ finish('M'); document.getElementById('inM').disabled = true; return; }
+  st.tried = false;
+  var it = ALLER_DIAL[st.i];
+  document.getElementById('qM').innerHTML =
+      (it.ctx ? '<span style="font-weight:600;color:var(--muted);font-size:.95rem">' + esc(it.ctx) + '</span>' : '')
+    + '<span>' + esc(it.q).replace('______', '<span class="blank">______</span>') + '</span>'
+    + '<span class="hint">· dialogue ' + it.d + ' — question ' + (st.i + 1) + ' / ' + TOTALS.M + '</span>';
+  var inp = document.getElementById('inM');
+  inp.value = ''; inp.className = ''; inp.disabled = false;
+  document.getElementById('fM').textContent = '';
+}
+function stripPron(v){ return v.replace(/^(je|j'|tu|il|elle|on|nous|vous|ils|elles)\s+/, ''); }
+function gradeM(reveal){
+  var st = EX.M;
+  if(st.i >= TOTALS.M || st.tried) return;
+  var it = ALLER_DIAL[st.i], inp = document.getElementById('inM'), v = norm(inp.value);
+  if(!reveal && !v) return;
+  var good = !reveal && it.a.some(function(x){
+    return norm(x) === v || stripPron(norm(x)) === stripPron(v);
+  });
+  st.tried = true;
+  inp.value = it.a[0]; inp.className = good ? 'good' : 'bad'; inp.disabled = true;
+  if(good) st.ok++;
+  st.i++;
+  var phrase = it.q.replace('______', it.a[0]).replace(/^—\s*/, '');
+  fb('M', good, phrase, 'réponses acceptées : ' + it.a.join(' / '));
+  speak(phrase);
+  setBar('M');
+  setTimeout(nextM, 1800);
+}
+document.getElementById('checkM').addEventListener('click', function(){ gradeM(false); });
+document.getElementById('showM').addEventListener('click', function(){ gradeM(true); });
+document.getElementById('inM').addEventListener('keydown', function(e){ if(e.key === 'Enter') gradeM(false); });
+
+/* ---- N : mon emploi du temps ---- */
+function paintN(){
+  var st = EX.N;
+  document.getElementById('emploiList').innerHTML = EMPLOI.map(function(e, i){
+    var t = e.fixe ? e.t : esc(e.t).replace('___', st.filled[i] ? '<b style="color:var(--vert)">' + esc(e.a) + '</b>' : '<span class="blank">______</span>');
+    return '<div class="rstep' + (e.fixe || st.filled[i] ? ' done' : '') + '"><span class="n">' + (i + 1) + '</span><span>' + t + '</span></div>';
+  }).join('');
+}
+function startN(){
+  EX.N = {i:0, ok:0, filled:{}, gaps: EMPLOI.map(function(e, i){ return e.fixe ? -1 : i; }).filter(function(i){ return i >= 0; })};
+  document.getElementById('fN').textContent = '';
+  setBar('N'); paintN(); nextN();
+}
+function nextN(){
+  var st = EX.N;
+  if(st.i >= TOTALS.N){
+    document.getElementById('qN').innerHTML = '🎉 <span>Terminé — ' + st.ok + ' / ' + TOTALS.N + ' bonnes réponses. À vous d\'écrire le vôtre !</span>';
+    document.getElementById('oN').innerHTML = '';
+    var el = document.getElementById('fN'); el.className = 'fb'; el.textContent = '';
+    return;
+  }
+  var e = EMPLOI[st.gaps[st.i]];
+  document.getElementById('qN').innerHTML = '<span>' + esc(e.t).replace('___', '<span class="blank">______</span>') + '</span>'
+    + '<span class="hint">· question ' + (st.i + 1) + ' / ' + TOTALS.N + '</span>';
+  document.getElementById('oN').innerHTML = EMPLOI_OPTS.map(function(o){
+    return '<button class="opt" type="button" data-v="' + esc(o) + '">' + esc(o) + '</button>';
+  }).join('');
+  document.getElementById('fN').textContent = '';
+}
+document.getElementById('oN').addEventListener('click', function(e){
+  var b = e.target.closest('.opt'); if(!b || b.disabled) return;
+  var st = EX.N, gi = st.gaps[st.i], it = EMPLOI[gi], good = b.getAttribute('data-v') === it.a;
+  document.querySelectorAll('#oN .opt').forEach(function(x){
+    x.disabled = true;
+    if(x.getAttribute('data-v') === it.a) x.classList.add('good');
+  });
+  if(!good) b.classList.add('bad');
+  if(good) st.ok++;
+  st.i++;
+  st.filled[gi] = true;
+  paintN();
+  var phrase = it.t.replace('___', it.a);
+  fb('N', good, phrase);
+  speak(phrase);
+  setBar('N');
+  setTimeout(nextN, 1800);
+});
+document.getElementById('readEmploi').addEventListener('click', function(){
+  var t = document.getElementById('emploi').value;
+  if(!t){ speak("Écrivez d'abord votre emploi du temps."); return; }
+  speakSeq(t.split('\n').filter(function(l){ return l.trim(); }));
+});
+document.getElementById('copyEmploi').addEventListener('click', function(){
+  var t = document.getElementById('emploi').value, msg = document.getElementById('copyMsg2');
+  if(!t){ msg.textContent = 'Le texte est vide.'; return; }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(t).then(function(){ msg.textContent = 'Texte copié.'; },
+      function(){ msg.textContent = 'Copie impossible — sélectionnez le texte.'; });
+  } else { msg.textContent = 'Copie impossible — sélectionnez le texte.'; }
+});
+
+/* ---- O : compréhension de la lecture (Pontoise Infos) ---- */
+function startO(){ EX.O = {i:0, ok:0, list: shuffle(PONT_COMP)}; setBar('O'); nextO(); }
+function nextO(){
+  var st = EX.O;
+  if(st.i >= TOTALS.O){ finish('O'); return; }
+  var it = st.list[st.i];
+  document.getElementById('qO').innerHTML = '<span>' + esc(it.q) + '</span>'
+    + '<span class="hint">· question ' + (st.i + 1) + ' / ' + TOTALS.O + '</span>';
+  document.getElementById('oO').innerHTML = it.opts.map(function(o, idx){
+    return '<button class="opt" type="button" data-v="' + idx + '">' + esc(o) + '</button>';
+  }).join('');
+  document.getElementById('fO').textContent = '';
+}
+document.getElementById('oO').addEventListener('click', function(e){
+  var b = e.target.closest('.opt'); if(!b || b.disabled) return;
+  var st = EX.O, it = st.list[st.i], v = parseInt(b.getAttribute('data-v'), 10), good = v === it.a;
+  document.querySelectorAll('#oO .opt').forEach(function(x, idx){
+    x.disabled = true;
+    if(idx === it.a) x.classList.add('good');
+  });
+  if(!good) b.classList.add('bad');
+  if(good) st.ok++;
+  st.i++;
+  fb('O', good, it.opts[it.a]);
+  speak(it.opts[it.a]);
+  setBar('O');
+  setTimeout(nextO, 1900);
+});
+
+/* ---- P : le plan (Pontoise Infos) ---- */
+function startP(){ EX.P = {i:0, ok:0, list: shuffle(PONT_PLAN)}; setBar('P'); nextP(); }
+function nextP(){
+  var st = EX.P;
+  if(st.i >= TOTALS.P){ finish('P'); return; }
+  var it = st.list[st.i];
+  document.getElementById('qP').innerHTML = '<span>' + esc(it.b) + '</span>'
+    + '<span class="hint">· question ' + (st.i + 1) + ' / ' + TOTALS.P + '</span>';
+  document.getElementById('oP').innerHTML = it.opts.map(function(o){
+    return '<button class="opt chip" type="button" data-v="' + esc(o) + '">' + esc(o) + '</button>';
+  }).join('');
+  document.getElementById('fP').textContent = '';
+}
+document.getElementById('oP').addEventListener('click', function(e){
+  var b = e.target.closest('.opt'); if(!b || b.disabled) return;
+  var st = EX.P, it = st.list[st.i], good = b.getAttribute('data-v') === it.a;
+  document.querySelectorAll('#oP .opt').forEach(function(x){
+    x.disabled = true;
+    if(x.getAttribute('data-v') === it.a) x.classList.add('good');
+  });
+  if(!good) b.classList.add('bad');
+  if(good) st.ok++;
+  st.i++;
+  fb('P', good, it.b + ' ' + it.a);
+  speak(it.a);
+  setBar('P');
+  setTimeout(nextP, 1700);
+});
+
+/* ---- Q : prépositions de lieu (Pontoise Infos) ---- */
+function startQ(){ EX.Q = {i:0, ok:0, list: shuffle(PONT_PREP_DRILL)}; setBar('Q'); nextQ(); }
+function nextQ(){
+  var st = EX.Q;
+  if(st.i >= TOTALS.Q){ finish('Q'); return; }
+  var it = st.list[st.i];
+  document.getElementById('qQ').innerHTML = '<span>' + esc(it.b).replace('___', '<span class="blank">___</span>') + '</span>'
+    + '<span class="hint">· question ' + (st.i + 1) + ' / ' + TOTALS.Q + '</span>';
+  document.getElementById('oQ').innerHTML = it.opts.map(function(o){
+    return '<button class="opt chip" type="button" data-v="' + esc(o) + '">' + esc(o) + '</button>';
+  }).join('');
+  document.getElementById('fQ').textContent = '';
+}
+document.getElementById('oQ').addEventListener('click', function(e){
+  var b = e.target.closest('.opt'); if(!b || b.disabled) return;
+  var st = EX.Q, it = st.list[st.i], good = b.getAttribute('data-v') === it.a;
+  document.querySelectorAll('#oQ .opt').forEach(function(x){
+    x.disabled = true;
+    if(x.getAttribute('data-v') === it.a) x.classList.add('good');
+  });
+  if(!good) b.classList.add('bad');
+  if(good) st.ok++;
+  st.i++;
+  var phrase = it.b.replace('___', it.a);
+  fb('Q', good, phrase);
+  speak(phrase);
+  setBar('Q');
+  setTimeout(nextQ, 1700);
+});
+
+/* ---- démarrage ---- */
+var STARTERS = {A:startA, B:startB, C:startC, D:startD, E:startE, G:startG, H:startH, I:startI, J:startJ, K:startK, L:startL, M:startM, N:startN,
+                O:startO, P:startP, Q:startQ};
+document.querySelectorAll('[data-reset]').forEach(function(b){
+  b.addEventListener('click', function(){ STARTERS[b.getAttribute('data-reset')](); });
+});
+document.getElementById('resetAll').addEventListener('click', function(){
+  var k;
+  for(k in STARTERS){ STARTERS[k](); }
+  document.getElementById('exercices').scrollIntoView({block:'start'});
+});
+for(var kk in STARTERS){ STARTERS[kk](); }
+</script>
+
+</body></html>
