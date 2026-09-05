@@ -1,0 +1,1371 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>TCF Canada · Production écrite</title>
+<style>
+:root{
+  --bleu:#002395;
+  --blanc:#ffffff;
+  --rouge:#ED2939;
+  --bg:#f4f5f7;
+  --card:#ffffff;
+  --text:#1a1a2e;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --shadow:rgba(16,24,40,.08);
+  --bleu-soft:rgba(0,35,149,.08);
+  --rouge-soft:rgba(237,41,57,.10);
+  --vert:#1a7f4f;
+  --vert-soft:rgba(26,127,79,.12);
+  --accent:var(--bleu);
+  --radius:16px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#12141c;--card:#1b1e2b;--text:#f1f2f6;--muted:#9aa0b4;--border:#2a2e40;
+    --shadow:rgba(0,0,0,.35);--bleu-soft:rgba(90,125,255,.14);--rouge-soft:rgba(237,41,57,.16);
+    --vert:#4ec98a;--vert-soft:rgba(78,201,138,.15);--accent:#9db2ff;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#12141c;--card:#1b1e2b;--text:#f1f2f6;--muted:#9aa0b4;--border:#2a2e40;
+  --shadow:rgba(0,0,0,.35);--bleu-soft:rgba(90,125,255,.14);--rouge-soft:rgba(237,41,57,.16);
+  --vert:#4ec98a;--vert-soft:rgba(78,201,138,.15);--accent:#9db2ff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+.flagbar{height:8px;background:linear-gradient(to right,var(--bleu) 0 33.33%,var(--blanc) 33.33% 66.66%,var(--rouge) 66.66% 100%)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 72px}
+
+.hero{padding:3.5rem 0 2rem;text-align:center}
+.eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--bleu-soft);padding:.35rem .75rem;border-radius:999px}
+.hero h1{font-size:clamp(1.9rem,5vw,2.9rem);margin:.9rem 0 .4rem;letter-spacing:-.02em;line-height:1.12;text-wrap:balance}
+.hero p{color:var(--muted);margin:0 auto;max-width:64ch;font-size:1.02rem}
+nav.toc{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin-top:1.4rem}
+nav.toc a{text-decoration:none;color:var(--text);border:1px solid var(--border);background:var(--card);border-radius:999px;padding:.4rem .85rem;font-size:.84rem;font-weight:700;transition:all .15s ease}
+nav.toc a:hover{border-color:var(--accent);color:var(--accent)}
+
+section{margin-top:3rem}
+.sec-head{display:flex;align-items:baseline;gap:.75rem;flex-wrap:wrap;margin-bottom:.35rem}
+.sec-head h2{font-size:1.4rem;margin:0;letter-spacing:-.01em}
+.sec-num{font-size:.72rem;font-weight:800;letter-spacing:.1em;color:var(--rouge);background:var(--rouge-soft);padding:.2rem .55rem;border-radius:6px}
+.sec-sub{color:var(--muted);margin:0 0 1.25rem;font-size:.95rem;max-width:80ch}
+
+/* épreuve */
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:0 1px 3px var(--shadow);border-top:4px solid var(--bleu)}
+.panel.b{border-top-color:var(--rouge)}
+.panel h3{margin:0;font-size:1.2rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.pill{font-size:.7rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .55rem;border-radius:999px;background:var(--bleu-soft);color:var(--accent)}
+.panel.b .pill{background:var(--rouge-soft);color:var(--rouge)}
+.kpis{display:flex;gap:1.4rem;flex-wrap:wrap;margin:.9rem 0 .6rem}
+.kpi .n{font-size:1.7rem;font-weight:900;letter-spacing:-.02em;color:var(--accent);line-height:1;font-variant-numeric:tabular-nums}
+.panel.b .kpi .n{color:var(--rouge)}
+.kpi .l{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.panel p{margin:.4rem 0;font-size:.95rem}
+.panel .consigne{background:var(--bg);border-left:3px solid var(--border);padding:.6rem .8rem;border-radius:8px;font-style:italic;color:var(--muted);font-size:.9rem;margin:.7rem 0}
+.tips{margin:.6rem 0 0;padding-left:1.1rem;font-size:.92rem}
+.tips li{margin:.25rem 0}
+
+/* méthode */
+.formula{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.fcard{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:0 1px 3px var(--shadow)}
+.fcard h3{margin:0 0 .3rem;font-size:1.1rem}
+.fcard .sub{font-size:.85rem;color:var(--muted);margin:0 0 .9rem}
+.slot{border:1px solid var(--border);border-radius:12px;padding:.7rem .85rem;margin-bottom:8px;background:var(--bg)}
+.slot.fixed{border-style:dashed}
+.slot-h{display:flex;align-items:center;justify-content:space-between;gap:.5rem;cursor:pointer}
+.slot-h b{font-size:.92rem;display:flex;align-items:center;gap:.5rem}
+.slot-h .k{width:22px;height:22px;border-radius:50%;background:var(--bleu);color:#fff;font-size:.72rem;font-weight:900;display:grid;place-items:center;flex:0 0 22px}
+.fcard.b .slot-h .k{background:var(--rouge)}
+.slot-h .ex{font-size:.82rem;color:var(--muted);font-style:italic;flex:1;text-align:right}
+.slot-h .tg{font-size:.75rem;color:var(--muted);font-weight:700}
+.bank{display:none;margin-top:.6rem;display:none;flex-wrap:wrap;gap:6px}
+.slot.open .bank{display:flex}
+.ph{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:999px;padding:.3rem .7rem;font:inherit;font-size:.84rem;cursor:pointer;transition:all .15s ease}
+.ph:hover{border-color:var(--accent);color:var(--accent)}
+.gen{margin-top:.8rem;background:var(--bleu-soft);border-radius:12px;padding:.85rem 1rem;font-size:1rem;line-height:1.7;min-height:3.2em}
+.fcard.b .gen{background:var(--rouge-soft)}
+.gen span{padding:0 .15em;border-bottom:2px solid transparent}
+.gen span.s1{border-color:var(--bleu)} .gen span.s2{border-color:var(--rouge)} .gen span.s3{border-color:var(--vert)} .gen span.s4{border-color:#b7791f} .gen span.s5{border-color:#7c3aed} .gen span.s6{border-color:#0891b2}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:.8rem;align-items:center}
+.btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:10px;padding:.5rem .9rem;font:inherit;font-size:.86rem;font-weight:700;cursor:pointer;transition:all .15s ease;display:inline-flex;align-items:center;gap:.4rem}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.primary{background:var(--bleu);border-color:var(--bleu);color:#fff}
+.btn.primary:hover{opacity:.9;color:#fff}
+.btn.danger{background:var(--rouge);border-color:var(--rouge);color:#fff}
+.btn.danger:hover{opacity:.9;color:#fff}
+.listen{width:30px;height:30px;border-radius:50%;border:1px solid var(--border);background:var(--card);cursor:pointer;display:grid;place-items:center;font-size:.85rem;color:var(--accent);transition:background .15s ease,transform .15s ease;padding:0}
+.listen:hover{background:var(--bleu);color:#fff;transform:scale(1.08)}
+.listen.on{background:var(--bleu);color:#fff}
+
+/* sujets */
+.filters{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin-bottom:1rem}
+.chip{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:999px;padding:.42rem .85rem;font:inherit;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .15s ease}
+.chip:hover{border-color:var(--accent)}
+.chip[aria-pressed="true"]{background:var(--bleu);border-color:var(--bleu);color:#fff}
+.sujets{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.sujet{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;text-align:left;padding:0;font:inherit;color:var(--text);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease;display:flex;flex-direction:column}
+.sujet:hover{transform:translateY(-3px);box-shadow:0 10px 24px var(--shadow);border-color:var(--accent)}
+.sujet .th{aspect-ratio:4/3;background:#e9ebf0;overflow:hidden;position:relative}
+.sujet .th img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.sujet .badge{position:absolute;top:8px;left:8px;font-size:.66rem;font-weight:900;letter-spacing:.08em;padding:.2rem .5rem;border-radius:6px;background:var(--bleu);color:#fff}
+.sujet.B .badge{background:var(--rouge)}
+.sujet .done{position:absolute;top:8px;right:8px;background:var(--vert);color:#fff;font-size:.7rem;font-weight:900;padding:.15rem .45rem;border-radius:6px}
+.sujet .bd{padding:.7rem .8rem .8rem}
+.sujet .t{font-weight:800;font-size:.95rem;display:block;line-height:1.25}
+.sujet .c{font-size:.78rem;color:var(--muted);display:block;margin-top:.3rem}
+
+/* dialog */
+dialog{border:none;border-radius:var(--radius);padding:0;max-width:min(1040px,94vw);width:100%;background:var(--card);color:var(--text);box-shadow:0 30px 80px rgba(0,0,0,.35)}
+dialog::backdrop{background:rgba(10,12,30,.6);backdrop-filter:blur(3px)}
+.dl{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:0}
+@media (max-width:820px){.dl{grid-template-columns:1fr}}
+.dl-img{background:var(--bg);padding:18px;display:flex;align-items:flex-start;justify-content:center;max-height:82vh;overflow:auto}
+.dl-img img{max-width:100%;height:auto;border-radius:10px;border:1px solid var(--border);display:block}
+.dl-side{padding:18px 20px 20px;display:flex;flex-direction:column;gap:.8rem;max-height:82vh;overflow:auto;border-left:1px solid var(--border)}
+.dl-side .cons{font-size:.95rem;line-height:1.5}
+.dl-side .cons b{color:var(--accent)}
+.timer{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:.8rem .9rem}
+.timer .t{font-size:2.3rem;font-weight:900;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1;color:var(--accent)}
+.timer.warn .t{color:var(--rouge)}
+.timer .tb{height:6px;background:var(--border);border-radius:999px;overflow:hidden;margin:.55rem 0}
+.timer .tb i{display:block;height:100%;width:100%;background:var(--bleu);transition:width 1s linear}
+.timer.warn .tb i{background:var(--rouge)}
+.count{display:flex;align-items:center;justify-content:space-between;gap:.6rem;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:.6rem .9rem}
+.count .n{font-size:1.5rem;font-weight:900;font-variant-numeric:tabular-nums;color:var(--accent)}
+.count .l{font-size:.78rem;color:var(--muted);font-weight:700}
+.dots{display:flex;gap:4px;flex-wrap:wrap}
+.dots i{width:12px;height:12px;border-radius:50%;background:var(--border);display:block}
+.dots i.on{background:var(--vert)}
+.infos{font-size:.86rem;color:var(--muted);margin:0;padding-left:1.1rem}
+.infos li{margin:.15rem 0}
+.hintbox{font-size:.86rem;background:var(--bleu-soft);border-radius:10px;padding:.6rem .8rem}
+.hintbox b{color:var(--accent)}
+.voc{border:1px solid var(--border);border-radius:12px;padding:.55rem .75rem;background:var(--card)}
+.voc summary{cursor:pointer;font-weight:800;font-size:.9rem;display:flex;align-items:center;gap:.5rem;list-style:none}
+.voc summary::-webkit-details-marker{display:none}
+.voc summary::after{content:'▾';margin-left:auto;color:var(--muted);font-size:.85rem}
+.voc:not([open]) summary::after{content:'▸'}
+.vtag{font-size:.64rem;font-weight:900;letter-spacing:.08em;padding:.15rem .45rem;border-radius:5px;background:var(--bleu-soft);color:var(--accent)}
+.voc.v2 .vtag{background:var(--rouge-soft);color:var(--rouge)}
+.voc summary small{font-size:.72rem;color:var(--muted);font-weight:700}
+.vl{display:flex;flex-direction:column;margin-top:.5rem}
+.vr{padding:.4rem 0;border-top:1px solid var(--border);font-size:.86rem;line-height:1.4}
+.vr:first-child{border-top:none}
+.vr b{display:block;color:var(--accent)}
+.voc.v2 .vr b{color:var(--rouge)}
+.vr i{display:block;color:var(--muted);font-size:.82rem}
+.modele{border:1px solid var(--bleu);border-radius:12px;padding:.6rem .8rem;background:var(--card)}
+.modele summary{cursor:pointer;font-weight:800;font-size:.9rem;display:flex;align-items:center;gap:.5rem;list-style:none}
+.modele summary::-webkit-details-marker{display:none}
+.modele summary::after{content:'▾';margin-left:auto;color:var(--muted);font-size:.85rem}
+.modele:not([open]) summary::after{content:'▸'}
+.modele .vtag{background:var(--bleu);color:#fff}
+.mleg{display:flex;flex-wrap:wrap;gap:.35rem .7rem;margin:.55rem 0 .3rem;font-size:.7rem;font-weight:700;color:var(--muted)}
+.mleg span{border-bottom:2px solid;padding-bottom:1px}
+.mh{font-size:.7rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:.8rem 0 .3rem}
+.mp{font-size:.88rem;line-height:1.55;margin:.25rem 0}
+.mq{font-size:.86rem;line-height:1.6;padding:.4rem 0 .4rem .5rem;border-left:3px solid var(--border);margin:.3rem 0;display:flex;gap:.45rem}
+.mq .n{flex:0 0 1.6em;font-weight:900;color:var(--muted);font-size:.75rem;padding-top:.2em}
+.mq span.p{border-bottom:2px solid;padding:0 .1em}
+.mq span.p1,.mleg .p1{border-bottom-color:var(--bleu)} .mq span.p2,.mleg .p2{border-bottom-color:var(--rouge)} .mq span.p3,.mleg .p3{border-bottom-color:var(--vert)}
+.mq span.p4,.mleg .p4{border-bottom-color:#b7791f} .mq span.p5,.mleg .p5{border-bottom-color:#7c3aed} .mq span.p6,.mleg .p6{border-bottom-color:#0891b2}
+.mleg .p1{color:var(--bleu)} .mleg .p2{color:var(--rouge)} .mleg .p3{color:var(--vert)} .mleg .p4{color:#b7791f} .mleg .p5{color:#7c3aed} .mleg .p6{color:#0891b2}
+.mo{font-size:.86rem;margin:.35rem 0;padding:.45rem .6rem;border-radius:8px;background:var(--bg)}
+.mo b{display:block;color:var(--rouge);font-weight:700}
+.sujet .mtag{position:absolute;bottom:8px;left:8px;font-size:.62rem;font-weight:900;letter-spacing:.06em;padding:.15rem .45rem;border-radius:6px;background:rgba(255,255,255,.92);color:var(--bleu);border:1px solid var(--bleu)}
+textarea.notes{width:100%;min-height:90px;padding:.6rem .75rem;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text);font:inherit;font-size:.9rem;resize:vertical}
+.dl-close{position:absolute;top:10px;right:12px;width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:1.1rem;cursor:pointer;display:grid;place-items:center}
+.dl-close:hover{border-color:var(--rouge);color:var(--rouge)}
+
+/* entraînement */
+.train{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:0 1px 3px var(--shadow);display:flex;gap:1rem;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.train p{margin:0;color:var(--muted);font-size:.92rem;max-width:56ch}
+
+/* grammaire */
+.gram{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.gram{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.lvl-head{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin:1.4rem 0 .7rem;padding-bottom:.4rem;border-bottom:2px solid var(--bleu)}
+.lvl-head:first-of-type{margin-top:0}
+.lvl-head h3{margin:0;font-size:1.05rem;flex:1}
+.lvl-head .lvl-avg{font-weight:900;color:var(--accent);font-variant-numeric:tabular-nums}
+.lvl-head.b2{border-bottom-color:var(--rouge)}
+.lvl-head.b2 .pill{background:var(--rouge-soft);color:var(--rouge)}
+.lvl-head.b2 .lvl-avg{color:var(--rouge)}
+.g.b2 .gn{background:var(--rouge)}
+.g{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--border);border-radius:12px;padding:.85rem .95rem;display:flex;flex-direction:column;gap:.55rem;transition:border-color .2s ease}
+.g.lo{border-left-color:var(--rouge)} .g.mid{border-left-color:#d97706} .g.hi{border-left-color:var(--vert)}
+.g .top{display:flex;gap:.7rem;align-items:flex-start}
+.g .gn{flex:0 0 24px;height:24px;border-radius:50%;background:var(--bleu);color:#fff;font-size:.72rem;font-weight:900;display:grid;place-items:center;margin-top:.1rem}
+.g b{display:block;font-size:.95rem}
+.g i{display:block;font-size:.86rem;color:var(--muted);margin-top:.2rem}
+.g .pct{display:flex;align-items:center;gap:.7rem}
+.g .pct input[type=range]{flex:1;accent-color:var(--bleu);height:22px}
+.g .pct output{font-weight:900;font-variant-numeric:tabular-nums;min-width:3.2ch;text-align:right;color:var(--accent)}
+.g.lo .pct output{color:var(--rouge)} .g.mid .pct output{color:#d97706} .g.hi .pct output{color:var(--vert)}
+.g .why{width:100%;padding:.45rem .65rem;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);font:inherit;font-size:.86rem}
+.g .why::placeholder{color:var(--muted)}
+.gsum{margin-top:1rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;font-size:.9rem;color:var(--muted);font-weight:700}
+.gsum .big{font-size:1.6rem;font-weight:900;color:var(--accent);font-variant-numeric:tabular-nums}
+.gsum .gb{flex:1 1 180px;height:8px;background:var(--border);border-radius:999px;overflow:hidden}
+.gsum .gb i{display:block;height:100%;width:0;background:var(--bleu);transition:width .3s ease}
+
+/* connecteurs */
+.cfilters{display:flex;gap:.45rem;flex-wrap:wrap;align-items:center;margin-bottom:1rem}
+.legend{display:flex;gap:1rem;flex-wrap:wrap;font-size:.82rem;color:var(--muted);margin:0 0 1rem}
+.legend span{display:inline-flex;align-items:center;gap:.4rem}
+.legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.ctable{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.cat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.85rem .95rem}
+.cat h4{margin:0 0 .5rem;font-size:.95rem;display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.cat h4 small{font-size:.72rem;color:var(--muted);font-weight:700}
+.cat .cl{display:flex;flex-wrap:wrap;gap:6px}
+.cw{font-size:.86rem;padding:.25rem .6rem;border-radius:999px;border:1px solid var(--border);background:var(--bg)}
+.cw.sub{border-color:var(--rouge);color:var(--rouge);background:var(--rouge-soft);font-weight:700}
+.cw.mix{border-color:#7c3aed;color:#7c3aed;background:rgba(124,58,237,.10);font-weight:700}
+.cw.hit{outline:2px solid var(--bleu);outline-offset:1px}
+
+.note{margin-top:1.25rem;font-size:.86rem;color:var(--muted);border-left:3px solid var(--rouge);padding:.15rem 0 .15rem .8rem}
+footer{margin-top:3.5rem;padding-top:1.5rem;border-top:1px solid var(--border);color:var(--muted);font-size:.85rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+footer b{color:var(--text)}
+:focus-visible{outline:2px solid var(--bleu);outline-offset:2px;border-radius:6px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto}}
+@media (max-width:560px){.hero{padding:2.5rem 0 1.5rem}.sujets{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
+</style>
+<style>
+/* --- ajouts TCF --- */
+.three{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.panel.t1{border-top-color:var(--bleu)} .panel.t2{border-top-color:#b7791f} .panel.t3{border-top-color:var(--rouge)}
+.panel.t2 .pill{background:rgba(183,121,31,.14);color:#b7791f} .panel.t2 .kpi .n{color:#b7791f}
+.panel.t3 .pill{background:var(--rouge-soft);color:var(--rouge)} .panel.t3 .kpi .n{color:var(--rouge)}
+.total{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.8rem 1rem;margin-bottom:14px;font-size:.92rem}
+.total b{font-size:1.4rem;color:var(--accent);font-variant-numeric:tabular-nums}
+.plans{width:100%;border-collapse:separate;border-spacing:0;font-size:.86rem;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.plans th{background:var(--bleu-soft);color:var(--accent);padding:.6rem .7rem;text-align:left;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase}
+.plans td{padding:.55rem .7rem;border-top:1px solid var(--border);vertical-align:top;line-height:1.45}
+.plans td.i,.plans td.c{color:var(--rouge);font-weight:800}
+.plans .sel{outline:2px solid var(--bleu);outline-offset:-2px}
+.oreo{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:12px}
+.oreo div{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.7rem .8rem}
+.oreo b{display:block;font-size:1.3rem;color:var(--accent);line-height:1}
+.oreo span{font-size:.82rem;color:var(--muted);display:block;margin-top:.25rem}
+.oreo i{display:block;font-size:.84rem;margin-top:.4rem}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.tcard{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.9rem 1rem;cursor:pointer;text-align:left;font:inherit;color:var(--text);position:relative;transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease;display:flex;flex-direction:column;gap:.4rem;border-top:4px solid var(--bleu)}
+.tcard:hover{transform:translateY(-3px);box-shadow:0 10px 24px var(--shadow);border-color:var(--accent)}
+.tcard.t2{border-top-color:#b7791f} .tcard.t3{border-top-color:var(--rouge)}
+.tcard .k{font-size:.66rem;font-weight:900;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;display:flex;justify-content:space-between;align-items:center}
+.tcard .k .done{background:var(--vert);color:#fff;padding:.1rem .4rem;border-radius:5px;font-size:.62rem}
+.tcard .t{font-weight:800;font-size:.98rem;line-height:1.3}
+.tcard .c{font-size:.8rem;color:var(--muted);line-height:1.4}
+.tcard .typ{align-self:flex-start;font-size:.62rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;padding:.15rem .45rem;border-radius:5px;background:var(--bleu-soft);color:var(--accent)}
+.tcard .typ.conv{background:var(--rouge-soft);color:var(--rouge)}
+.tcard .ico{font-size:1.5rem;line-height:1}
+/* dialog TCF : une colonne */
+.dl1{padding:22px 24px 24px;max-height:84vh;overflow:auto;display:flex;flex-direction:column;gap:.85rem}
+.dl1 .consb{background:var(--bg);border:1px solid var(--border);border-left:4px solid var(--bleu);border-radius:12px;padding:1rem 1.1rem;font-size:1.05rem;line-height:1.55;font-weight:600}
+.dl1 .consb.t2{border-left-color:#b7791f} .dl1 .consb.t3{border-left-color:var(--rouge)}
+.dl1 .row2{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+@media (max-width:720px){.dl1 .row2{grid-template-columns:1fr}}
+.qlist{display:flex;flex-direction:column;gap:6px}
+.qi{display:flex;align-items:center;gap:.6rem;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:.5rem .7rem;font-size:.9rem}
+.qi .n{flex:0 0 1.6em;font-weight:900;color:var(--muted);font-size:.75rem}
+.qi .listen{margin-left:auto;flex:0 0 30px}
+.qi.cur{border-color:var(--bleu);background:var(--bleu-soft)}
+.pistes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.7rem;margin-top:.8rem}
+.pp{background:var(--bg);border-radius:10px;padding:.6rem .8rem;font-size:.86rem;border-top:3px solid var(--rouge)}
+.pp b{display:block;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.3rem;color:var(--rouge)}
+.pp ul{margin:0;padding-left:1.1rem} .pp li{margin:.15rem 0}
+.planpick{display:flex;gap:.4rem;flex-wrap:wrap}
+.skel{background:var(--bleu-soft);border-radius:10px;padding:.7rem .9rem;font-size:.88rem;line-height:1.6}
+.skel b{color:var(--accent)}
+.phase{font-size:.72rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.timer .phase.prep{color:#b7791f}
+/* évaluation */
+.att{width:100%;border-collapse:separate;border-spacing:0;font-size:.85rem;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:14px}
+.att th{padding:.6rem .8rem;text-align:left;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--border)}
+.att th.b1{background:var(--bleu-soft);color:var(--accent)} .att th.b2{background:rgba(183,121,31,.14);color:#b7791f} .att th.c1{background:var(--rouge-soft);color:var(--rouge)}
+.att td{padding:.6rem .8rem;vertical-align:top;border-top:1px solid var(--border);width:33.3%}
+.att ul{margin:0;padding-left:1rem} .att li{margin:.15rem 0}
+.att caption{text-align:left;font-weight:800;font-size:.95rem;padding:.5rem 0}
+.evcard{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:0 1px 3px var(--shadow);margin-bottom:14px}
+.evcard h3{margin:0 0 .2rem;font-size:1.05rem;display:flex;justify-content:space-between;gap:.6rem;flex-wrap:wrap;align-items:center}
+.evsuj{font-size:.8rem;color:var(--muted);margin:0 0 .8rem}
+.evres{font-size:.82rem;font-weight:800;padding:.2rem .6rem;border-radius:999px;background:var(--bg);border:1px solid var(--border)}
+.evres.lv0{color:var(--muted)} .evres.lv1{color:var(--accent);border-color:var(--bleu)} .evres.lv2{color:#b7791f;border-color:#b7791f} .evres.lv3{color:var(--rouge);border-color:var(--rouge)}
+.ev{display:flex;flex-direction:column;gap:.5rem}
+.evc{display:grid;grid-template-columns:170px 1fr;gap:.6rem;align-items:start}
+@media (max-width:640px){.evc{grid-template-columns:1fr}}
+.evn{font-size:.84rem;font-weight:800;padding-top:.35rem}
+.evl{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+@media (max-width:640px){.evl{grid-template-columns:repeat(2,1fr)}}
+.evb{border:1px solid var(--border);background:var(--bg);color:var(--text);border-radius:9px;padding:.4rem .5rem;font:inherit;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:.1rem;transition:all .15s ease;min-height:54px}
+.evb b{font-size:.72rem;letter-spacing:.06em;color:var(--muted)}
+.evb span{font-size:.74rem;line-height:1.3;color:var(--muted)}
+.evb:hover{border-color:var(--accent)}
+.evb.on{background:var(--card);box-shadow:0 0 0 2px currentColor inset}
+.evb.on.l0{color:#6b7280} .evb.on.l1{color:var(--bleu)} .evb.on.l2{color:#b7791f} .evb.on.l3{color:var(--rouge)}
+.evb.on b,.evb.on span{color:inherit}
+.evnote{width:100%;padding:.5rem .7rem;border-radius:9px;border:1px solid var(--border);background:var(--card);color:var(--text);font:inherit;font-size:.86rem;margin-top:.2rem}
+.evglobal{display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap}
+.evglobal .big{font-size:2.6rem;font-weight:900;letter-spacing:-.02em;line-height:1}
+.evglobal .big.lv0{color:var(--muted)} .evglobal .big.lv1{color:var(--accent)} .evglobal .big.lv2{color:#b7791f} .evglobal .big.lv3{color:var(--rouge)}
+.evglobal .lbl{font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.evbox{border:1px solid #b7791f;border-radius:12px;padding:.6rem .8rem;background:var(--card)}
+.evbox summary{cursor:pointer;font-weight:800;font-size:.9rem;display:flex;align-items:center;gap:.5rem;list-style:none}
+.evbox summary::-webkit-details-marker{display:none}
+.evbox summary::after{content:'▾';margin-left:auto;color:var(--muted)} .evbox:not([open]) summary::after{content:'▸'}
+.evbox .vtag{background:#b7791f;color:#fff}
+.steps3{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:14px}
+.st{display:flex;align-items:center;gap:.6rem;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.6rem .8rem}
+.st b{width:28px;height:28px;border-radius:50%;background:var(--bg);border:1px solid var(--border);display:grid;place-items:center;font-size:.8rem;flex:0 0 28px}
+.st span{font-size:.84rem;font-weight:700;flex:1}
+.st i{font-size:.74rem;color:var(--muted);font-style:normal;font-weight:700}
+.st.ok{border-color:var(--vert)} .st.ok b{background:var(--vert);color:#fff;border-color:var(--vert)} .st.ok i{color:var(--vert)}
+.st.res{border-color:var(--bleu)} .st.res b{background:var(--bleu);color:#fff;border-color:var(--bleu)} .st.res i{color:var(--accent);font-size:.9rem}
+.evpick{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin:.2rem 0 .8rem;font-size:.85rem}
+.evpick label{font-weight:700;color:var(--muted)}
+.evsel{padding:.45rem .6rem;border-radius:9px;border:1px solid var(--border);background:var(--card);color:var(--text);font:inherit;font-size:.86rem;max-width:100%}
+.bareme{margin-top:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;font-size:.86rem}
+.bar-h{padding:.55rem .9rem;font-weight:800;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;background:var(--bleu-soft);color:var(--accent)}
+.bar-row{display:grid;grid-template-columns:90px 90px 1fr;gap:.6rem;padding:.4rem .9rem;border-top:1px solid var(--border);align-items:center}
+.bar-row b{font-variant-numeric:tabular-nums} .bar-row span{font-weight:800} .bar-row i{color:var(--muted);font-style:normal}
+.bar-row.hit{background:var(--vert-soft);outline:2px solid var(--vert);outline-offset:-2px}
+</style>
+<style>
+/* --- production écrite --- */
+.pe-t1{border-top-color:var(--bleu)!important} .pe-t2{border-top-color:#b7791f!important} .pe-t3{border-top-color:var(--rouge)!important}
+.gpe{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-bottom:1rem}
+.gp{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--bleu);border-radius:12px;padding:.7rem .85rem}
+.gp.t2{border-left-color:#b7791f}
+.gp b{display:block;font-size:.92rem}
+.gp i{display:block;font-size:.84rem;color:var(--muted);margin-top:.25rem}
+.gp .gn{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--bleu);color:#fff;font-size:.66rem;font-weight:900;margin-right:.45rem;vertical-align:.05em}
+.gp.t2 .gn{background:#b7791f}
+.form2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.fm{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.9rem 1rem;border-top:4px solid var(--bleu)}
+.fm.ami{border-top-color:var(--vert)}
+.fm h4{margin:0 0 .5rem;font-size:.95rem;display:flex;align-items:center;gap:.5rem}
+.fm dl{margin:0;font-size:.87rem}
+.fm dt{font-size:.7rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-top:.6rem}
+.fm dt:first-child{margin-top:0}
+.fm dd{margin:.15rem 0 0;line-height:1.5}
+.pecard .k .mots{background:var(--bleu-soft);color:var(--accent);padding:.1rem .4rem;border-radius:5px;font-size:.62rem}
+.tcard.pe3 .k .mots{background:var(--rouge-soft);color:var(--rouge)}
+.tcard.pe2 .k .mots{background:rgba(183,121,31,.14);color:#b7791f}
+/* dialog production écrite */
+.ops{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+@media (max-width:720px){.ops{grid-template-columns:1fr}}
+.op{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:.7rem .85rem;font-size:.88rem;line-height:1.5;border-top:3px solid var(--rouge)}
+.op b{display:block;font-size:.7rem;letter-spacing:.07em;text-transform:uppercase;color:var(--rouge);margin-bottom:.3rem}
+.chk{background:var(--bleu-soft);border-radius:10px;padding:.7rem .9rem}
+.chk b{display:block;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem}
+.chk label{display:flex;gap:.5rem;align-items:flex-start;font-size:.87rem;line-height:1.45;padding:.15rem 0;cursor:pointer}
+.chk input{margin-top:.25rem;accent-color:var(--bleu);flex:0 0 auto}
+.wc{display:flex;align-items:center;gap:.9rem;flex-wrap:wrap;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.6rem .9rem}
+.wc .n{font-size:1.6rem;font-weight:900;font-variant-numeric:tabular-nums;line-height:1;color:var(--muted)}
+.wc.ok .n{color:var(--vert)} .wc.over .n{color:var(--rouge)}
+.wc .l{font-size:.78rem;color:var(--muted);font-weight:700}
+.wc .st{font-size:.8rem;font-weight:800;padding:.15rem .5rem;border-radius:999px;border:1px solid var(--border);color:var(--muted)}
+.wc.ok .st{color:var(--vert);border-color:var(--vert)} .wc.over .st{color:var(--rouge);border-color:var(--rouge)}
+textarea.copie{width:100%;min-height:220px;padding:.75rem .85rem;border-radius:12px;border:1px solid var(--border);background:var(--card);color:var(--text);font:inherit;font-size:.95rem;line-height:1.6;resize:vertical}
+.pehint{font-size:.86rem;background:var(--bg);border-left:3px solid var(--border);border-radius:8px;padding:.55rem .8rem;color:var(--muted)}
+.pehint b{color:var(--text)}
+h3.blkpe{font-size:1.08rem;margin:2rem 0 .7rem;padding-bottom:.35rem;border-bottom:2px solid var(--bleu)}
+.lvl-head h3{font-size:1.02rem}
+</style>
+<style>
+.cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:.87rem;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.cmp th{padding:.6rem .8rem;text-align:left;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--border);background:var(--bg);color:var(--muted)}
+.cmp th.or{background:var(--bleu-soft);color:var(--accent)} .cmp th.ec{background:var(--rouge-soft);color:var(--rouge)}
+.cmp td{padding:.6rem .8rem;border-top:1px solid var(--border);vertical-align:top;line-height:1.45}
+.cmp td:first-child{white-space:nowrap;color:var(--muted)}
+.cmp tr:first-child td{border-top:none}
+.oreo{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:14px}
+.oreo div{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.7rem .8rem}
+.oreo b{display:block;font-size:1.3rem;color:var(--accent);line-height:1}
+.oreo span{font-size:.82rem;color:var(--muted);display:block;margin-top:.25rem}
+.oreo i{display:block;font-size:.84rem;margin-top:.4rem}
+.planpick{display:flex;gap:.4rem;flex-wrap:wrap}
+.skel{background:var(--bleu-soft);border-radius:12px;padding:.85rem 1rem;font-size:.9rem;line-height:1.75}
+.skel b{color:var(--accent)}
+</style>
+
+<div class="flagbar"></div>
+<div class="wrap">
+
+  <header class="hero">
+    <span class="eyebrow">TCF Canada · Production écrite</span>
+    <h1>Soixante minutes, trois tâches, trente sujets</h1>
+    <p>Le format de chaque tâche, la grammaire à maîtriser tâche par tâche, les formules du courriel, et les <b>30 sujets du dossier</b> : pour chacun, la consigne, la checklist de ce qu'il faut absolument traiter, le vocabulaire B1 et B2, un chronomètre et un <b>compteur de mots</b>. <em>Hors de la fourchette imposée, la tâche n'est pas évaluée.</em></p>
+    <nav class="toc">
+      <a href="#epreuve">L'épreuve</a>
+      <a href="#grammaire">Grammaire</a>
+      <a href="#formules">Les formules</a>
+      <a href="#methode">Méthode T3</a>
+      <a href="#t1">Tâche 1</a>
+      <a href="#t2">Tâche 2</a>
+      <a href="#t3">Tâche 3</a>
+      <a href="tcf-examen.html">TCF · Expression orale ↗</a>
+      <a href="niveaux.html">Retour au site ↗</a>
+    </nav>
+  </header>
+
+  <section id="epreuve">
+    <div class="sec-head"><span class="sec-num">01</span><h2>L'épreuve en bref</h2></div>
+    <p class="sec-sub">Trois tâches à traiter <b>dans l'ordre</b>, en une heure, sans dictionnaire. Chaque tâche impose une fourchette de mots : en dessous ou au-dessus, elle n'est pas évaluée — c'est la première cause d'échec.</p>
+    <div class="total"><span>Durée totale</span><b>60 min</b><span>· 3 tâches · conseil de répartition : 15 min + 20 min + 25 min</span></div>
+    <div class="three">
+      <div class="panel pe-t1">
+        <h3><span class="pill">Tâche 1</span> Message à un proche</h3>
+        <div class="kpis">
+          <div class="kpi"><div class="n">60–120</div><div class="l">mots</div></div>
+          <div class="kpi"><div class="n">15 min</div><div class="l">conseillé</div></div>
+          <div class="kpi"><div class="n">A1 → B1</div><div class="l">niveaux visés</div></div>
+        </div>
+        <div class="consigne">« Décrivez, racontez et/ou expliquez dans un message adressé au ou aux destinataires indiqués. »</div>
+        <p>Un <b>courriel ou un message personnel</b> : inviter, remercier, annuler, prévenir, demander un service, rédiger une petite annonce. Registre amical ou neutre, jamais littéraire.</p>
+        <ul class="tips">
+          <li>Toujours : formule d'appel, raison du message, contenu demandé, formule de clôture.</li>
+          <li>Répondez à <b>toutes</b> les consignes : chaque phrase de l'énoncé est un point à traiter.</li>
+          <li>Le présent, le passé composé et le futur proche suffisent largement.</li>
+        </ul>
+      </div>
+      <div class="panel pe-t2">
+        <h3><span class="pill">Tâche 2</span> Récit, article ou courriel</h3>
+        <div class="kpis">
+          <div class="kpi"><div class="n">120–150</div><div class="l">mots</div></div>
+          <div class="kpi"><div class="n">20 min</div><div class="l">conseillé</div></div>
+          <div class="kpi"><div class="n">B1 → B2</div><div class="l">niveaux visés</div></div>
+        </div>
+        <div class="consigne">« Rédigez un article, une lettre ou une note relatant une expérience ou un récit, en y intégrant des commentaires, des opinions ou des arguments adaptés à l'objectif. »</div>
+        <p>Un <b>texte plus long et plus construit</b> : raconter, décrire, expliquer, <b>et</b> donner son avis. Le registre change selon le destinataire : ami, professeur, patron, site public.</p>
+        <ul class="tips">
+          <li>Un paragraphe par idée ; connecteurs obligatoires : <em>d'abord, ensuite, cependant, c'est pourquoi</em>.</li>
+          <li>Passé composé et imparfait s'alternent : les faits d'un côté, le décor et les sentiments de l'autre.</li>
+          <li>N'oubliez jamais la partie « avis » ou « conseil » : elle est explicitement demandée.</li>
+        </ul>
+      </div>
+      <div class="panel pe-t3">
+        <h3><span class="pill">Tâche 3</span> Comparer deux opinions</h3>
+        <div class="kpis">
+          <div class="kpi"><div class="n">120–180</div><div class="l">mots</div></div>
+          <div class="kpi"><div class="n">25 min</div><div class="l">conseillé</div></div>
+          <div class="kpi"><div class="n">B2 → C2</div><div class="l">niveaux visés</div></div>
+        </div>
+        <div class="consigne">« Comparez les deux points de vue présentés dans les documents, puis donnez et justifiez votre avis. »</div>
+        <p>Deux parties strictement séparées : <b>40 à 60 mots</b> pour reformuler les deux opinions <em>avec vos propres mots</em>, puis <b>80 à 120 mots</b> pour votre position sur le thème général.</p>
+        <ul class="tips">
+          <li>Partie 1 : <b>aucune opinion personnelle</b>, aucune phrase recopiée des documents.</li>
+          <li>Partie 2 : le thème <b>commun</b> aux deux textes, pas les documents eux-mêmes.</li>
+          <li>C'est ici que se jouent le subjonctif, la concession et les connecteurs de niveau.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="grammaire">
+    <div class="sec-head"><span class="sec-num">02</span><h2>La grammaire, tâche par tâche</h2></div>
+    <p class="sec-sub">La tâche 1 a son propre socle : sans lui, rien ne tient. Les tâches 2 et 3 reposent sur les temps du récit et de l'hypothèse — exactement la grammaire de l'expression orale, mais à l'écrit, où les erreurs se voient. Les cinq derniers points sont ceux qui font passer la tâche 3 au B2.</p>
+    <div class="lvl-head"><span class="pill">Tâche 1</span><h3>Le socle du message court — 7 points</h3></div>
+    <div class="gpe" id="gpe1"></div>
+    <div class="lvl-head b2"><span class="pill">Tâches 2 et 3</span><h3>Les temps du récit et de l'hypothèse — 11 points</h3></div>
+    <div class="gpe" id="gpe2"></div>
+    <div class="lvl-head b2"><span class="pill">Tâche 3 · vers le B2</span><h3>Ce qui fait monter la note — 5 points</h3></div>
+    <div class="gpe" id="gpe3"></div>
+    <p class="note">Liste d'après le dossier <b>TCF — production écrite</b>. Elle recoupe presque terme pour terme le socle B1 de la page d'expression orale : travaillez ces points une seule fois, ils servent aux deux épreuves.</p>
+  </section>
+
+  <section id="formules">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Les formules qui encadrent votre texte</h2></div>
+    <p class="sec-sub">À l'écrit, le correcteur voit d'abord l'enveloppe : l'appel, l'ouverture, la clôture. Deux registres, jamais mélangés.</p>
+    <div class="form2">
+      <div class="fm ami">
+        <h4><span class="pill" style="background:var(--vert-soft);color:var(--vert)">Registre amical</span> ami(e), collègue proche, famille</h4>
+        <dl>
+          <dt>Appel</dt><dd>Salut Marie, · Coucou Thomas, · Bonjour Léa, · Chers amis,</dd>
+          <dt>Ouverture</dt><dd>J'espère que tu vas bien. · Comment vas-tu depuis la dernière fois ? · Je t'écris parce que…</dd>
+          <dt>Enchaîner</dt><dd>Tu sais quoi ? · Au fait, · D'ailleurs, · Bref,</dd>
+          <dt>Clôture</dt><dd>Dis-moi ce que tu en penses. · Réponds-moi vite ! · À très bientôt, · Je t'embrasse, · Bises,</dd>
+        </dl>
+      </div>
+      <div class="fm">
+        <h4><span class="pill">Registre formel</span> patron, médecin, professeur, service technique, mairie</h4>
+        <dl>
+          <dt>Appel</dt><dd>Madame, Monsieur, · Bonjour Madame Dupont, · Docteur, · Monsieur le Directeur,</dd>
+          <dt>Ouverture</dt><dd>Je me permets de vous écrire au sujet de… · Je vous contacte afin de… · Suite à notre entretien,…</dd>
+          <dt>Enchaîner</dt><dd>Par ailleurs, · En effet, · C'est pourquoi · Je me permets d'ajouter que</dd>
+          <dt>Clôture</dt><dd>Je vous remercie par avance de votre compréhension. · Dans l'attente de votre réponse, je vous prie d'agréer, Madame, Monsieur, mes salutations distinguées. · Cordialement,</dd>
+        </dl>
+      </div>
+    </div>
+    <p class="note"><b>L'erreur la plus coûteuse :</b> tutoyer un patron ou signer « Bises » à un médecin. Le registre se décide à la lecture de la consigne, avant d'écrire la première ligne. Les petites annonces (sujets 4 et 5) n'ont ni appel ni clôture : ce sont des annonces, pas des lettres.</p>
+  </section>
+
+
+  <section id="methode">
+    <div class="sec-head"><span class="sec-num">04</span><h2>La tâche 3 : exactement la même structure qu'à l'oral</h2></div>
+    <p class="sec-sub">La tâche 3 écrite et la tâche 3 orale demandent le <b>même travail intellectuel</b> : présenter un débat, puis prendre position et la justifier. Ce que l'élève apprend pour l'une sert pour l'autre. Une seule différence de forme : à l'écrit, la présentation des deux opinions est une <b>partie séparée et comptée</b> (40 à 60 mots) ; à l'oral, elle se fond dans l'introduction.</p>
+
+    <div style="overflow-x:auto">
+    <table class="cmp">
+      <thead><tr><th>Le même moment</th><th class="or">Tâche 3 · expression orale</th><th class="ec">Tâche 3 · production écrite</th></tr></thead>
+      <tbody>
+        <tr><td><b>Présenter le débat</b></td><td>Reformuler la question et annoncer le plan, en une ou deux phrases.</td><td><b>Partie 1</b> — reformuler les deux opinions avec ses propres mots, sans donner son avis. 40 à 60 mots.</td></tr>
+        <tr><td><b>Prendre position</b></td><td>Annoncer son opinion, puis deux ou trois arguments selon le plan choisi.</td><td><b>Partie 2</b> — annoncer sa position, puis deux ou trois arguments. 80 à 120 mots.</td></tr>
+        <tr><td><b>Illustrer</b></td><td>Un exemple par argument : « Par exemple, dans mon pays… »</td><td>Un exemple par argument, plus court : une proposition suffit.</td></tr>
+        <tr><td><b>Nuancer</b></td><td>« Certes, … mais… » — indispensable pour le B2.</td><td>Identique, et tout aussi indispensable.</td></tr>
+        <tr><td><b>Conclure</b></td><td>Bilan + ouverture, éventuellement une question.</td><td>Une phrase de bilan. Pas d'ouverture : la place manque.</td></tr>
+        <tr><td><b>Ce qui fait la note</b></td><td>Fluidité, intonation, richesse des connecteurs.</td><td>Orthographe, ponctuation, découpage en paragraphes.</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3 class="blkpe">Partie 1 — la boîte à reformuler</h3>
+    <p class="sec-sub">Aucune opinion personnelle, aucune phrase recopiée. Vous êtes journaliste : vous rapportez ce que disent les deux textes.</p>
+    <div class="form2">
+      <div class="fm">
+        <h4><span class="pill">Présenter les documents</span></h4>
+        <dl>
+          <dt>Le premier document</dt><dd>Le premier document rappelle que… · Selon le premier texte, … · Le premier article met en avant…</dd>
+          <dt>Le second document</dt><dd>Le second document nuance ce constat : … · À l'inverse, le second texte souligne que… · Le deuxième article, lui, insiste sur…</dd>
+          <dt>Relier les deux</dt><dd>Les deux textes abordent la question de… · Tous deux s'accordent sur… mais divergent sur… · Ces deux points de vue se rejoignent sur un point : …</dd>
+        </dl>
+      </div>
+      <div class="fm ami">
+        <h4><span class="pill" style="background:var(--vert-soft);color:var(--vert)">Reformuler sans recopier</span></h4>
+        <dl>
+          <dt>Changer de mot</dt><dd>« les jeunes sont moins endurants » → <em>la condition physique des adolescents s'est dégradée</em></dd>
+          <dt>Changer de construction</dt><dd>« une enquête révèle que… » → <em>d'après une enquête, …</em></dd>
+          <dt>Résumer un chiffre</dt><dd>« 590 kg par personne et par an » → <em>une quantité de déchets considérable</em></dd>
+          <dt>À éviter</dt><dd>Recopier une phrase entière · commencer par « je pense que » · citer les sources et les adresses des sites</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 class="blkpe">Partie 2 — le plan, comme à l'oral</h3>
+    <p class="sec-sub">Les mêmes plans qu'en expression orale. En 80 à 120 mots, <b>OREO</b> et le <b>dialectique court</b> sont les plus sûrs : les autres demandent plus de place. Cliquez sur un plan pour voir son squelette écrit.</p>
+    <div class="planpick" id="planPickE"></div>
+    <div class="skel" id="skelE" style="margin-top:.8rem"></div>
+    <div class="oreo">
+      <div><b>O</b><span>Opinion</span><i>« Personnellement, je pense que… »</i></div>
+      <div><b>R</b><span>Raisons</span><i>« D'abord, parce que… Ensuite, … »</i></div>
+      <div><b>E</b><span>Exemple</span><i>« Par exemple, dans mon pays… »</i></div>
+      <div><b>O</b><span>Opinion (reformulée)</span><i>« C'est pourquoi je reste convaincu(e) que… »</i></div>
+    </div>
+    <p class="note">Le plan se choisit d'après le <b>thème commun</b> aux deux documents, pas d'après les documents eux-mêmes. Si les deux textes s'opposent frontalement, prenez le dialectique ; s'ils décrivent un même phénomène sous deux angles, prenez l'analytique ou OREO.</p>
+  </section>
+
+  <section id="t1">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Tâche 1 — les dix sujets</h2></div>
+    <p class="sec-sub">Message personnel, 60 à 120 mots, 15 minutes. Cliquez sur un sujet : consigne, checklist des points à traiter, chronomètre, compteur de mots et vocabulaire B1 / B2.</p>
+    <div class="tgrid" id="gridE1"></div>
+  </section>
+
+  <section id="t2">
+    <div class="sec-head"><span class="sec-num">06</span><h2>Tâche 2 — les dix sujets</h2></div>
+    <p class="sec-sub">Récit, article ou courriel argumenté, 120 à 150 mots, 20 minutes. Courriels amicaux, courriels formels et articles publics : repérez le registre attendu avant de commencer.</p>
+    <div class="tgrid" id="gridE2"></div>
+  </section>
+
+  <section id="t3">
+    <div class="sec-head"><span class="sec-num">07</span><h2>Tâche 3 — les dix sujets</h2></div>
+    <p class="sec-sub">Deux opinions à reformuler, puis votre position : 120 à 180 mots, 25 minutes. Les deux opinions sont ici <b>résumées</b> pour l'entraînement — les documents complets se trouvent dans le dossier PDF.</p>
+    <div class="tgrid" id="gridE3"></div>
+  </section>
+
+  <footer>
+    <span>Sujets d'après le dossier <b>TCF — production écrite</b> (tâche 1 : sujets 1-10 · tâche 2 : 11-20 · tâche 3 : 21-30) · format, fourchettes de mots et durée : France Éducation international</span>
+    <span>Tâche 1 60-120 mots · Tâche 2 120-150 · Tâche 3 120-180 · 60 min</span>
+  </footer>
+</div>
+
+<dialog id="dlgE">
+  <button class="dl-close" type="button" id="dlEClose" aria-label="Fermer">✕</button>
+  <div class="dl1">
+    <div><span class="pill" id="dlEPill">Tâche 1</span> <span style="font-size:.78rem;color:var(--muted);font-weight:700" id="dlENum"></span></div>
+    <div class="consb" id="dlECons"></div>
+    <div id="dlEOps"></div>
+    <div class="row2">
+      <div class="timer" id="timerE">
+        <div class="phase" id="tEPhase">Temps conseillé</div>
+        <div class="t" id="tET">15:00</div>
+        <div class="tb"><i id="tEBar"></i></div>
+        <div class="row" style="margin-top:.2rem">
+          <button class="btn primary" type="button" id="tEStart">▶ Démarrer</button>
+          <button class="btn" type="button" id="tEReset">↻</button>
+        </div>
+      </div>
+      <div class="wc" id="wcBox">
+        <div><div class="n" id="wcN">0</div><div class="l" id="wcL">mots</div></div>
+        <span class="st" id="wcSt">rien d'écrit</span>
+      </div>
+    </div>
+    <div class="chk" id="dlEChk"></div>
+    <div class="pehint" id="dlEHint"></div>
+    <textarea class="copie" id="dlECopie" placeholder="Rédigez ici votre texte. Le compteur de mots se met à jour en direct."></textarea>
+    <details class="voc" id="vocEBox1" open><summary><span class="vtag">B1</span> Vocabulaire du sujet <small id="nE1"></small></summary><div class="vl" id="vocE1"></div></details>
+    <details class="voc v2" id="vocEBox2" open><summary><span class="vtag">B2</span> Vocabulaire du sujet <small id="nE2"></small></summary><div class="vl" id="vocE2"></div></details>
+    <div class="row" style="margin:0">
+      <button class="btn" type="button" id="dlEDone">✓ Sujet travaillé</button>
+      <button class="btn" type="button" id="dlECopy">📋 Copier mon texte</button>
+      <button class="btn" type="button" id="dlENext">Suivant →</button>
+      <span id="dlEMsg" style="font-size:.85rem;color:var(--muted);font-weight:600"></span>
+    </div>
+  </div>
+</dialog>
+
+<script>
+/* ================= PRODUCTION ÉCRITE ================= */
+var GPE1 = [
+ {t:"La conjugaison au présent (-er, -ir, -oir, -re)", e:"Je travaille, tu finis, il doit, nous prenons, vous écrivez, elles attendent."},
+ {t:"Les prépositions devant les noms de pays et de villes", e:"Je vis au Canada, ma sœur habite en France et mes parents sont à Lima."},
+ {t:"Les prépositions de lieu", e:"Le dossier est sur ton bureau, dans le tiroir, à côté de l'ordinateur."},
+ {t:"La négation", e:"Je ne peux pas venir avant le 12 et je n'ai encore rien réservé."},
+ {t:"Les verbes pronominaux", e:"Je me repose beaucoup ; on se voit dès mon arrivée."},
+ {t:"Les quantités déterminées et indéterminées", e:"J'apporte du fromage, deux bouteilles d'eau et un peu de café."},
+ {t:"Le futur proche", e:"Je vais t'écrire dès que j'aurai mes dates exactes."}
+];
+var GPE2 = [
+ {t:"Le pronom « y »", e:"Ta ville, j'y pense depuis des mois : j'y passerais bien une semaine."},
+ {t:"Le pronom « en »", e:"Des conseils ? J'en aurais besoin, et j'en donnerai à mon tour."},
+ {t:"Le passé composé (avoir, être, verbes pronominaux)", e:"Nous sommes arrivés tard, nous nous sommes installés et j'ai tout de suite aimé l'endroit."},
+ {t:"La négation et la restriction", e:"Je n'ai pas encore répondu ; je n'attends plus qu'une confirmation."},
+ {t:"Les pronoms COD et COI", e:"Ce livre, je le lui ai offert et il m'en a remercié longuement."},
+ {t:"Le conditionnel", e:"Je voudrais vous demander un délai ; pourriez-vous m'accorder trois jours ?"},
+ {t:"L'imparfait", e:"Il faisait beau, la salle était pleine et tout le monde attendait la fin."},
+ {t:"L'imparfait vs le passé composé", e:"Je relisais mon travail quand mon ordinateur est tombé en panne."},
+ {t:"Le futur simple", e:"Je vous enverrai le document lundi et je resterai disponible ensuite."},
+ {t:"L'hypothèse au futur", e:"Si vous acceptez ma demande, je terminerai ce travail avant vendredi."},
+ {t:"L'hypothèse au présent", e:"Si j'avais plus de temps, je développerais davantage cette partie."}
+];
+
+
+var GPE3 = [
+ {t:"Les connecteurs suivis du subjonctif", e:"Bien que ce dispositif soit coûteux, il me paraît nécessaire ; à condition qu'il soit bien expliqué."},
+ {t:"Le conditionnel passé", e:"J'aurais dû vous prévenir plus tôt ; les autorités auraient pu agir dès le début."},
+ {t:"Le plus-que-parfait", e:"Quand j'ai reçu votre message, j'avais déjà envoyé mon dossier."},
+ {t:"L'hypothèse au passé", e:"Si ces mesures avaient été prises plus tôt, la situation serait aujourd'hui différente."},
+ {t:"La comparaison et l'opposition avancées", e:"Plus on repousse la décision, plus le coût augmente ; contrairement aux idées reçues, ce n'est pas qu'une question de moyens."}
+];
+
+var PE1 = [
+ {n:1, t:"Inviter un ami à dîner chez vous", reg:'amical', ico:'🍽️',
+  cons:"Vous envoyez un courriel à votre ami pour l'inviter à dîner chez vous. Vous lui donnez votre adresse et l'heure de rendez-vous.",
+  hint:"Registre amical, tutoiement. Trois informations obligatoires : l'invitation, l'adresse, l'heure. S'il en manque une, la tâche est incomplète.",
+  chk:["Formule d'appel amicale","L'invitation : dîner chez vous, quel jour","Votre adresse complète","L'heure du rendez-vous","Un détail qui donne envie : le menu, les autres invités","Clôture : demander une confirmation"],
+  b1:[
+   {w:"inviter", ex:"Je t'invite à dîner chez moi samedi soir."},
+   {w:"un dîner", ex:"On dînera vers vingt heures."},
+   {w:"une adresse", ex:"J'habite au 14, rue des Lilas, deuxième étage."},
+   {w:"l'heure", ex:"Le rendez-vous est à dix-neuf heures trente."},
+   {w:"préparer", ex:"Je vais préparer un plat de mon pays."},
+   {w:"venir", ex:"Tu peux venir accompagné(e) si tu veux."}],
+  b2:[
+   {w:"convier", ex:"Je te convie à un petit dîner entre amis."},
+   {w:"se retrouver", ex:"On se retrouve chez moi vers dix-neuf heures."},
+   {w:"l'interphone", ex:"Sonne à l'interphone, appartement 12."},
+   {w:"à l'occasion de", ex:"C'est à l'occasion de mon installation dans le quartier."},
+   {w:"confirmer sa présence", ex:"Confirme-moi ta présence avant vendredi."},
+   {w:"se réjouir de", ex:"Je me réjouis déjà de te revoir."}]},
+ {n:2, t:"Annuler un rendez-vous médical", reg:'formel', ico:'🩺',
+  cons:"Vous envoyez un courriel à votre médecin pour annuler votre prochain rendez-vous. Vous lui donnez la raison et vous présentez vos excuses.",
+  hint:"Registre formel, vouvoiement. Trois consignes : annuler, donner la raison, s'excuser. Proposer une nouvelle date montre un niveau supérieur.",
+  chk:["Formule d'appel formelle (Docteur, / Madame, Monsieur,)","Rappeler le rendez-vous : jour et heure","Annoncer l'annulation clairement","Donner la raison","Présenter vos excuses","Demander un nouveau rendez-vous + formule de politesse"],
+  b1:[
+   {w:"un rendez-vous", ex:"J'ai un rendez-vous mardi 12 à quinze heures."},
+   {w:"annuler", ex:"Je dois malheureusement annuler ce rendez-vous."},
+   {w:"ne pas pouvoir", ex:"Je ne pourrai pas être présent(e) ce jour-là."},
+   {w:"une raison", ex:"La raison en est un déplacement professionnel imprévu."},
+   {w:"s'excuser", ex:"Je vous prie de m'excuser pour ce changement."},
+   {w:"déplacer", ex:"Serait-il possible de déplacer ce rendez-vous ?"}],
+  b2:[
+   {w:"reporter", ex:"Je souhaiterais reporter ce rendez-vous à la semaine suivante."},
+   {w:"un empêchement", ex:"Un empêchement de dernière minute m'oblige à annuler."},
+   {w:"prévenir", ex:"Je vous préviens le plus tôt possible."},
+   {w:"un créneau", ex:"Auriez-vous un créneau en fin de journée ?"},
+   {w:"vous prier de bien vouloir", ex:"Je vous prie de bien vouloir m'en excuser."},
+   {w:"salutations distinguées", ex:"Je vous prie d'agréer mes salutations distinguées."}]},
+ {n:3, t:"Prévenir son patron d'une absence", reg:'formel', ico:'🏢',
+  cons:"Vous ne pouvez pas aller au bureau. Vous envoyez un courriel à votre patron. Vous lui donnez la raison et vous présentez vos excuses.",
+  hint:"Registre formel. Deux consignes : la raison et les excuses. Ajoutez ce qu'il advient de votre travail : c'est ce qu'attend un responsable.",
+  chk:["Formule d'appel formelle","Annoncer votre absence dès la première ligne","Préciser la durée prévue","Donner la raison","Présenter vos excuses","Dire comment votre travail sera assuré + politesse"],
+  b1:[
+   {w:"être absent(e)", ex:"Je serai absent(e) toute la journée d'aujourd'hui."},
+   {w:"le bureau", ex:"Je ne pourrai pas venir au bureau ce matin."},
+   {w:"prévenir", ex:"Je vous préviens dès que possible."},
+   {w:"un dossier", ex:"Le dossier urgent est prêt sur mon bureau."},
+   {w:"un rendez-vous", ex:"Un rendez-vous important m'en empêche."},
+   {w:"revenir", ex:"Je pense revenir dès demain matin."}],
+  b2:[
+   {w:"un imprévu familial", ex:"Un imprévu familial m'empêche de me rendre au bureau."},
+   {w:"le télétravail", ex:"Je peux transformer cette journée en télétravail si vous le souhaitez."},
+   {w:"assurer le suivi", ex:"Ma collègue assurera le suivi des urgences."},
+   {w:"joignable", ex:"Je reste joignable par téléphone toute la journée."},
+   {w:"regretter", ex:"Je regrette sincèrement ce contretemps."},
+   {w:"dans les meilleurs délais", ex:"Je rattraperai ce retard dans les meilleurs délais."}]},
+ {n:4, t:"Petite annonce : chercher un appartement", reg:'public', ico:'🏡',
+  cons:"Vous cherchez un appartement. Vous écrivez une petite annonce sur un site Internet. Vous décrivez l'appartement que vous souhaitez (taille, lieu, prix, date…).",
+  hint:"Une annonce, pas une lettre : phrases courtes, pas de formule d'appel. Les quatre critères demandés — taille, lieu, prix, date — doivent tous apparaître.",
+  chk:["Un titre d'annonce (Recherche appartement…)","La taille : nombre de pièces, surface","Le lieu : quartier, proximité des transports","Le budget : loyer maximum, charges comprises ou non","La date d'entrée souhaitée","Qui vous êtes et comment vous contacter"],
+  b1:[
+   {w:"chercher", ex:"Je cherche un appartement à louer."},
+   {w:"un appartement", ex:"Un appartement de deux pièces me suffirait."},
+   {w:"une pièce", ex:"Il me faudrait au moins deux pièces."},
+   {w:"le loyer", ex:"Mon budget est de 800 euros de loyer par mois."},
+   {w:"un quartier", ex:"Je cherche dans un quartier calme et bien desservi."},
+   {w:"à partir de", ex:"Je suis disponible à partir du 1er septembre."}],
+  b2:[
+   {w:"la surface", ex:"Une surface d'environ 45 m² serait idéale."},
+   {w:"charges comprises", ex:"800 euros par mois, charges comprises."},
+   {w:"meublé / non meublé", ex:"Je préfère un logement meublé."},
+   {w:"à proximité de", ex:"À proximité d'une station de métro, de préférence."},
+   {w:"un garant", ex:"Je dispose d'un garant et de fiches de paie."},
+   {w:"une visite", ex:"Je suis disponible pour une visite dès cette semaine."}]},
+ {n:5, t:"Petite annonce : chercher un travail", reg:'public', ico:'💼',
+  cons:"Vous cherchez un travail. Vous écrivez une petite annonce sur un site Internet. Vous parlez de votre expérience et de vos diplômes.",
+  hint:"Annonce : concis et factuel. Deux consignes explicites — l'expérience et les diplômes. Terminez par le type de poste recherché.",
+  chk:["Un titre : le poste recherché","Qui vous êtes en une phrase","Vos diplômes","Votre expérience professionnelle, avec des durées","Vos qualités et vos langues","Le type de contrat souhaité et vos coordonnées"],
+  b1:[
+   {w:"chercher un travail", ex:"Je cherche un travail dans la restauration."},
+   {w:"un diplôme", ex:"J'ai un diplôme de comptabilité."},
+   {w:"une expérience", ex:"J'ai trois ans d'expérience dans ce domaine."},
+   {w:"travailler", ex:"J'ai travaillé deux ans dans une grande entreprise."},
+   {w:"parler une langue", ex:"Je parle espagnol, français et anglais."},
+   {w:"disponible", ex:"Je suis disponible immédiatement."}],
+  b2:[
+   {w:"un poste", ex:"Je recherche un poste d'assistant administratif."},
+   {w:"un temps plein / partiel", ex:"Je vise un temps plein, idéalement en contrat durable."},
+   {w:"une formation", ex:"J'ai suivi une formation en gestion de projet."},
+   {w:"polyvalent(e)", ex:"Je suis polyvalent(e) et rapidement autonome."},
+   {w:"le sens du contact", ex:"J'ai le sens du contact et le goût du travail en équipe."},
+   {w:"sur demande", ex:"CV et références disponibles sur demande."}]},
+ {n:6, t:"Inviter ses amis à son anniversaire", reg:'amical', ico:'🎂',
+  cons:"Vous écrivez un courriel à tous vos amis pour les inviter à votre anniversaire. Vous leur donnez votre adresse, l'heure de rendez-vous et leur dites ce qu'ils doivent apporter.",
+  hint:"Courriel collectif : écrivez au pluriel (Chers amis, / Salut à tous,). Trois informations obligatoires : adresse, heure, ce qu'il faut apporter.",
+  chk:["Formule d'appel au pluriel","L'annonce : votre anniversaire, quel jour","Votre adresse complète","L'heure du rendez-vous","Ce que chacun doit apporter","Demander une réponse avant une date"],
+  b1:[
+   {w:"un anniversaire", ex:"Je fête mon anniversaire samedi prochain."},
+   {w:"fêter", ex:"J'aimerais le fêter avec vous tous."},
+   {w:"apporter", ex:"Chacun apporte quelque chose à boire ou à manger."},
+   {w:"une adresse", ex:"C'est chez moi, au 8 rue Victor Hugo."},
+   {w:"à partir de", ex:"À partir de dix-neuf heures."},
+   {w:"répondre", ex:"Répondez-moi avant jeudi, s'il vous plaît."}],
+  b2:[
+   {w:"convier", ex:"Je vous convie tous à mon anniversaire."},
+   {w:"une soirée", ex:"La soirée se prolongera sans doute assez tard."},
+   {w:"un buffet participatif", ex:"Ce sera un buffet participatif : chacun amène un plat."},
+   {w:"se charger de", ex:"Qui se charge du dessert ?"},
+   {w:"le code de l'immeuble", ex:"Le code de l'immeuble est le 3412."},
+   {w:"compter sur", ex:"Je compte vraiment sur vous."}]},
+ {n:7, t:"Remercier après une soirée réussie", reg:'amical', ico:'🙏',
+  cons:"Vous avez passé une très bonne soirée chez vos amis hier. Vous leur envoyez un courriel pour les remercier et leur dire pourquoi vous avez passé un bon moment.",
+  hint:"Deux consignes : remercier ET expliquer pourquoi c'était bien. Le passé composé et l'imparfait doivent apparaître tous les deux.",
+  chk:["Formule d'appel amicale, au pluriel","Remercier pour la soirée d'hier","Raconter un moment précis de la soirée","Dire pourquoi vous avez passé un bon moment : l'ambiance, le repas, les gens","Un compliment concret","Proposer de les recevoir à votre tour"],
+  b1:[
+   {w:"remercier", ex:"Je voulais vous remercier pour hier soir."},
+   {w:"une soirée", ex:"C'était une soirée vraiment réussie."},
+   {w:"passer un bon moment", ex:"J'ai passé un excellent moment chez vous."},
+   {w:"le repas", ex:"Le repas était absolument délicieux."},
+   {w:"rire", ex:"On a beaucoup ri, surtout après le dessert."},
+   {w:"inviter", ex:"La prochaine fois, c'est moi qui vous invite."}],
+  b2:[
+   {w:"l'accueil", ex:"Merci pour votre accueil si chaleureux."},
+   {w:"chaleureux", ex:"L'ambiance était chaleureuse du début à la fin."},
+   {w:"se sentir à l'aise", ex:"Je me suis senti(e) tout de suite à l'aise."},
+   {w:"garder un souvenir", ex:"Je garde un très bon souvenir de cette soirée."},
+   {w:"se donner du mal", ex:"Vous vous êtes vraiment donné du mal."},
+   {w:"à charge de revanche", ex:"À charge de revanche : je vous attends bientôt chez moi."}]},
+ {n:8, t:"Demander une assistance technique", reg:'formel', ico:'🖥️',
+  cons:"Votre télévision ne fonctionne plus. Vous envoyez un message au service technique du magasin. Vous expliquez votre problème et demandez une assistance technique.",
+  hint:"Message à un service technique : précis et factuel. Deux consignes — expliquer le problème et demander une assistance. Donnez les références de l'appareil.",
+  chk:["Un objet clair pour le message","Les références : modèle, date et lieu d'achat, garantie","Décrire le problème précisément","Dire ce que vous avez déjà essayé","Demander une intervention ou une solution","Vos coordonnées et vos disponibilités + politesse"],
+  b1:[
+   {w:"ne pas fonctionner", ex:"Ma télévision ne fonctionne plus depuis hier."},
+   {w:"acheter", ex:"Je l'ai achetée dans votre magasin au mois de mars."},
+   {w:"un problème", ex:"J'ai un problème avec l'image."},
+   {w:"l'écran", ex:"L'écran reste noir alors que le son fonctionne."},
+   {w:"essayer", ex:"J'ai essayé de la débrancher puis de la rebrancher."},
+   {w:"réparer", ex:"Pouvez-vous la réparer rapidement ?"}],
+  b2:[
+   {w:"une panne", ex:"Il s'agit visiblement d'une panne d'affichage."},
+   {w:"sous garantie", ex:"L'appareil est encore sous garantie."},
+   {w:"un numéro de série", ex:"Le numéro de série figure au dos de l'appareil."},
+   {w:"une intervention", ex:"Une intervention à domicile serait-elle possible ?"},
+   {w:"un ticket de caisse", ex:"Je joins une copie du ticket de caisse."},
+   {w:"dans les meilleurs délais", ex:"Je vous remercie de traiter ma demande dans les meilleurs délais."}]},
+ {n:9, t:"Prendre des nouvelles d'un collègue malade", reg:'amical', ico:'💐',
+  cons:"Votre collègue de travail est malade depuis plusieurs jours. Vous lui envoyez un courriel pour prendre de ses nouvelles. Vous donnez également des nouvelles du bureau.",
+  hint:"Registre amical mais professionnel. Deux consignes à traiter : prendre des nouvelles ET donner des nouvelles du bureau.",
+  chk:["Formule d'appel (Bonjour Ana, / Salut Marc,)","Dire pourquoi vous écrivez : vous avez appris son absence","Prendre de ses nouvelles : comment va-t-il / elle, depuis quand","Donner des nouvelles concrètes du bureau : projets, réunions, remplacement","Proposer votre aide","Souhaiter un bon rétablissement + formule de clôture"],
+  b1:[
+   {w:"être absent(e)", ex:"Tu es absent depuis lundi et l'équipe s'inquiète un peu."},
+   {w:"prendre des nouvelles", ex:"Je t'écris simplement pour prendre de tes nouvelles."},
+   {w:"se reposer", ex:"Repose-toi bien, le travail peut attendre."},
+   {w:"une réunion", ex:"La réunion de jeudi a été reportée à la semaine prochaine."},
+   {w:"remplacer", ex:"Marc te remplace sur le dossier des fournisseurs."},
+   {w:"guérir", ex:"J'espère que tu vas guérir vite."}],
+  b2:[
+   {w:"un arrêt de travail", ex:"J'ai appris que ton arrêt de travail avait été prolongé."},
+   {w:"se rétablir", ex:"Prends le temps de te rétablir complètement."},
+   {w:"assurer le suivi", ex:"Nous assurons le suivi de tes dossiers en ton absence."},
+   {w:"n'hésite pas à", ex:"N'hésite pas à m'écrire si tu as besoin de quoi que ce soit."},
+   {w:"un prompt rétablissement", ex:"Toute l'équipe te souhaite un prompt rétablissement."},
+   {w:"répartir", ex:"Ta charge de travail a été répartie entre nous trois."}]},
+ {n:10, t:"Demander à séjourner chez un(e) ami(e)", reg:'amical', ico:'🧳',
+  cons:"Vous souhaitez aller en vacances chez votre ami(e) qui habite loin de chez vous. Vous lui envoyez un message. Vous lui demandez si vous pouvez aller chez lui / elle. Vous lui donnez vos dates.",
+  hint:"Registre amical, tutoiement. Trois consignes : le projet, la demande d'hébergement, les dates précises. Donnez de vraies dates : « du 10 au 17 juillet », pas « en été ».",
+  chk:["Saluer et prendre de ses nouvelles","Annoncer votre projet de vacances","Demander poliment si vous pouvez être hébergé(e)","Donner vos dates précises (du … au …)","Dire ce que vous aimeriez faire sur place","Clôture : attente de sa réponse"],
+  b1:[
+   {w:"avoir envie de", ex:"J'ai très envie de te revoir cet été."},
+   {w:"rendre visite à", ex:"J'aimerais te rendre visite pendant les vacances."},
+   {w:"héberger", ex:"Est-ce que tu pourrais m'héberger quelques jours ?"},
+   {w:"déranger", ex:"Dis-moi franchement si ça te dérange."},
+   {w:"une date", ex:"Je serais libre du 10 au 17 juillet."},
+   {w:"rester", ex:"Je resterais une semaine environ."}],
+  b2:[
+   {w:"séjourner", ex:"J'aimerais séjourner chez toi une petite semaine, si c'est possible."},
+   {w:"convenir", ex:"Dis-moi si ces dates te conviennent."},
+   {w:"s'arranger", ex:"Je peux décaler d'une semaine si ça t'arrange."},
+   {w:"en profiter pour", ex:"J'en profiterais pour découvrir enfin ta ville."},
+   {w:"ne pas vouloir s'imposer", ex:"Surtout, je ne veux pas m'imposer : préviens-moi si c'est compliqué."},
+   {w:"dans l'attente de", ex:"Dans l'attente de ta réponse, je t'embrasse."}]}
+];
+
+var PE2 = [
+ {n:11, t:"Récit de voyage sur un site spécialisé", reg:'public', ico:'✈️',
+  cons:"Vous avez fait un voyage dans un pays étranger. Vous racontez ce que vous avez fait sur un site Internet spécialisé dans les voyages. Vous donnez aussi des conseils aux personnes qui seraient intéressées par cette même destination.",
+  hint:"Texte public : registre neutre, pas de « salut ». Deux blocs : le récit au passé, puis les conseils au présent ou à l'impératif.",
+  chk:["Une accroche ou un titre","Le cadre : où, quand, avec qui, combien de temps","Le récit au passé composé et à l'imparfait","Un moment marquant, positif ou négatif","Trois conseils concrets : saison, budget, transport, à éviter","Conclusion : recommandez-vous cette destination ?"],
+  b1:[
+   {w:"un séjour", ex:"J'ai passé un séjour de deux semaines dans le nord du pays."},
+   {w:"découvrir", ex:"J'ai découvert une cuisine que je ne connaissais pas du tout."},
+   {w:"visiter", ex:"Nous avons visité la vieille ville entièrement à pied."},
+   {w:"l'hébergement", ex:"L'hébergement chez l'habitant coûte beaucoup moins cher."},
+   {w:"conseiller", ex:"Je vous conseille de partir en dehors des vacances scolaires."},
+   {w:"un souvenir", ex:"Je garde un souvenir inoubliable de ce voyage."}],
+  b2:[
+   {w:"un itinéraire", ex:"Voici l'itinéraire que je recommande pour dix jours."},
+   {w:"hors des sentiers battus", ex:"Le nord du pays reste hors des sentiers battus."},
+   {w:"l'accueil", ex:"L'accueil des habitants m'a profondément marqué(e)."},
+   {w:"prévoir un budget", ex:"Prévoyez un budget d'environ soixante euros par jour."},
+   {w:"la haute saison", ex:"Évitez la haute saison : les prix doublent et les sites sont bondés."},
+   {w:"valoir le détour", ex:"Ce village isolé vaut vraiment le détour."}]},
+ {n:12, t:"Raconter la grande fête de votre pays", reg:'amical', ico:'🎉',
+  cons:"Hier, vous avez célébré la fête la plus importante de votre pays d'origine avec toute votre famille. Vous écrivez un courriel à vos amis français pour leur décrire cette fête, leur raconter l'événement d'hier et leur faire part de vos sentiments.",
+  hint:"Trois consignes distinctes : décrire la fête en général (présent), raconter la journée d'hier (passé), exprimer des sentiments. Ne mélangez pas les trois.",
+  chk:["Formule d'appel amicale (au pluriel : Chers amis,)","Présenter la fête : nom, date, origine, ce qu'elle représente","Décrire les traditions : repas, musique, vêtements, rituels","Raconter la journée d'hier au passé","Exprimer vos sentiments : joie, nostalgie, fierté","Inviter vos amis à la vivre un jour"],
+  b1:[
+   {w:"une fête", ex:"C'est la fête la plus importante de l'année chez nous."},
+   {w:"célébrer", ex:"Nous la célébrons chaque année en famille."},
+   {w:"une tradition", ex:"La tradition veut qu'on prépare ce plat la veille."},
+   {w:"se réunir", ex:"Toute la famille se réunit chez mes grands-parents."},
+   {w:"un plat typique", ex:"Ma mère prépare un plat typique que j'adore."},
+   {w:"être content(e)", ex:"J'étais tellement content(e) de tous les revoir."}],
+  b2:[
+   {w:"un rituel", ex:"Chaque famille a son propre rituel, transmis depuis longtemps."},
+   {w:"transmettre", ex:"Ces gestes se transmettent de génération en génération."},
+   {w:"la convivialité", ex:"Ce qui compte le plus, c'est la convivialité."},
+   {w:"la nostalgie", ex:"J'ai ressenti une pointe de nostalgie en pensant à mon enfance."},
+   {w:"l'ambiance", ex:"L'ambiance était à la fois joyeuse et émouvante."},
+   {w:"me manquer", ex:"Ces moments-là me manquent énormément ici."}]},
+ {n:13, t:"Raconter une soirée au cinéma", reg:'amical', ico:'🎬',
+  cons:"Vous êtes allé(e) au cinéma hier avec votre famille. Vous écrivez un courriel à votre ami(e). Vous lui racontez votre soirée et le film. Vous lui dites si vous avez aimé ou pas. Vous en donnez les raisons. Vous lui conseillez, ou pas, d'aller le voir.",
+  hint:"Quatre consignes : la soirée, le film, votre avis justifié, le conseil final. Le conseil est la partie la plus souvent oubliée.",
+  chk:["Annoncer la nouvelle : vous êtes allé(e) au cinéma hier","Raconter la soirée : avec qui, quel cinéma, l'ambiance","Résumer le film en deux ou trois phrases, sans tout dévoiler","Donner votre avis et le justifier : jeu des acteurs, scénario, images, rythme","Dire ce que votre famille en a pensé","Conseiller ou déconseiller clairement le film"],
+  b1:[
+   {w:"un film", ex:"Nous avons vu un film policier sorti la semaine dernière."},
+   {w:"une séance", ex:"La séance de vingt heures était presque complète."},
+   {w:"l'histoire", ex:"L'histoire se passe dans un petit village de montagne."},
+   {w:"un acteur / une actrice", ex:"L'actrice principale joue vraiment bien."},
+   {w:"ennuyeux / passionnant", ex:"Le début est un peu ennuyeux, mais la fin est passionnante."},
+   {w:"recommander", ex:"Je te le recommande si tu aimes les films d'aventure."}],
+  b2:[
+   {w:"le scénario", ex:"Le scénario réserve plusieurs retournements de situation."},
+   {w:"la mise en scène", ex:"La mise en scène est sobre mais terriblement efficace."},
+   {w:"l'interprétation", ex:"L'interprétation des seconds rôles est remarquable."},
+   {w:"le rythme", ex:"Le rythme s'essouffle dans la deuxième partie."},
+   {w:"une bande-annonce", ex:"La bande-annonce promettait tout autre chose."},
+   {w:"mitigé", ex:"Mon avis reste mitigé, pour être honnête."}]},
+ {n:14, t:"Un problème au travail : demander conseil", reg:'amical', ico:'😖',
+  cons:"Hier, vous avez eu un problème à votre travail / à l'université avec votre patron / enseignant. Vous écrivez un courriel à votre ami(e). Vous lui racontez ce qui s'est passé, comment vous avez réagi et comment vous vous sentez face à cette situation. Vous lui demandez conseil.",
+  hint:"Quatre consignes : les faits, votre réaction sur le moment, votre état actuel, la demande de conseil. Terminez par une vraie question.",
+  chk:["Annoncer que vous avez besoin de son avis","Raconter les faits au passé, dans l'ordre chronologique","Expliquer comment vous avez réagi sur le moment","Décrire ce que vous ressentez aujourd'hui","Poser une question précise : que ferais-tu à ma place ?","Remercier d'avance et conclure"],
+  b1:[
+   {w:"un malentendu", ex:"Je crois qu'il y a eu un gros malentendu."},
+   {w:"reprocher", ex:"Mon patron m'a reproché un retard dont je ne suis pas responsable."},
+   {w:"réagir", ex:"Sur le moment, je n'ai pas su quoi répondre."},
+   {w:"se sentir", ex:"Je me sens vraiment mal depuis hier soir."},
+   {w:"injuste", ex:"J'ai trouvé sa réaction profondément injuste."},
+   {w:"un conseil", ex:"J'aurais vraiment besoin de ton conseil."}],
+  b2:[
+   {w:"une remarque déplacée", ex:"Il m'a fait une remarque déplacée devant toute l'équipe."},
+   {w:"garder son calme", ex:"J'ai réussi à garder mon calme, mais cela m'a coûté."},
+   {w:"mettre les choses au clair", ex:"J'aimerais mettre les choses au clair sans envenimer la situation."},
+   {w:"une mise au point", ex:"Faut-il demander une mise au point en privé ?"},
+   {w:"prendre du recul", ex:"J'essaie de prendre du recul avant de répondre."},
+   {w:"envenimer", ex:"Je ne voudrais surtout pas envenimer les choses."}]},
+ {n:15, t:"Conseiller un ami qui visite votre pays", reg:'amical', ico:'🗺️',
+  cons:"Votre ami francophone veut visiter votre pays. Vous lui envoyez un courriel pour lui donner des conseils pratiques (moyen de transport, hôtels, meilleure saison pour voyager…). Vous lui proposez aussi un programme afin qu'il visite les endroits qui vous semblent les plus importants.",
+  hint:"Deux consignes : les conseils pratiques, puis le programme. Le programme doit être structuré : jour par jour ou région par région.",
+  chk:["Se réjouir de sa venue","Conseiller la meilleure saison et expliquer pourquoi","Donner des conseils pratiques : transport, hébergement, budget","Proposer un programme structuré (jours ou régions)","Justifier vos choix : pourquoi ces endroits-là","Proposer votre aide et conclure"],
+  b1:[
+   {w:"la saison", ex:"La meilleure saison pour venir, c'est le printemps."},
+   {w:"un moyen de transport", ex:"Le bus est le moyen de transport le plus pratique."},
+   {w:"un hôtel", ex:"Il vaut mieux réserver ton hôtel bien à l'avance."},
+   {w:"un endroit", ex:"C'est l'endroit que je préfère dans tout le pays."},
+   {w:"se déplacer", ex:"On se déplace facilement en train entre les grandes villes."},
+   {w:"prévoir", ex:"Prévois des vêtements légers : il fait très chaud en juin."}],
+  b2:[
+   {w:"un incontournable", ex:"Ce site est un incontournable, tu ne peux pas le manquer."},
+   {w:"le climat", ex:"Le climat est doux et sec à cette période de l'année."},
+   {w:"l'affluence touristique", ex:"Tu éviteras ainsi l'affluence touristique de l'été."},
+   {w:"un circuit", ex:"Je te propose un circuit de dix jours en trois étapes."},
+   {w:"le dépaysement", ex:"Le dépaysement est garanti dès la première journée."},
+   {w:"s'imprégner", ex:"Reste au moins deux jours pour t'imprégner de l'ambiance."}]},
+ {n:16, t:"Répondre à une proposition de promotion", reg:'formel', ico:'📈',
+  cons:"Votre patron vous a proposé un nouveau poste de travail avec plus de responsabilités au sein de l'entreprise où vous travaillez. Vous lui envoyez un courriel pour le remercier de sa proposition et pour lui donner votre réponse. Vous justifiez également votre décision.",
+  hint:"Registre formel, vouvoiement obligatoire. Trois consignes : remercier, répondre clairement (oui ou non), justifier. Une réponse floue coûte des points.",
+  chk:["Formule d'appel formelle","Remercier pour la confiance accordée","Annoncer clairement votre réponse : accepter ou refuser","Justifier par deux ou trois raisons précises","Proposer une suite : rencontre, période d'essai, conditions","Formule de politesse formelle"],
+  b1:[
+   {w:"une proposition", ex:"Je vous remercie sincèrement de votre proposition."},
+   {w:"un poste", ex:"Ce poste correspond exactement à ce que je souhaite faire."},
+   {w:"accepter / refuser", ex:"J'accepte cette proposition avec beaucoup de plaisir."},
+   {w:"une responsabilité", ex:"Ces nouvelles responsabilités m'intéressent beaucoup."},
+   {w:"une raison", ex:"Permettez-moi de vous expliquer les raisons de ma décision."},
+   {w:"une équipe", ex:"J'ai énormément appris au sein de cette équipe."}],
+  b2:[
+   {w:"la confiance accordée", ex:"Je suis très sensible à la confiance que vous m'accordez."},
+   {w:"une évolution de carrière", ex:"Cette évolution de carrière correspond à mes objectifs."},
+   {w:"relever un défi", ex:"Je suis prêt(e) à relever ce défi."},
+   {w:"décliner", ex:"Je me vois contraint(e) de décliner votre proposition."},
+   {w:"un équilibre", ex:"Je souhaite préserver un équilibre entre vie professionnelle et vie privée."},
+   {w:"s'entretenir de", ex:"Je reste disponible pour m'en entretenir avec vous."}]},
+ {n:17, t:"S'excuser d'un retard et demander un délai", reg:'formel', ico:'⏳',
+  cons:"Vous deviez remettre un travail à votre professeur / formateur à une date précise mais vous n'avez pas pu respecter votre engagement. Vous écrivez un courriel à votre professeur / formateur pour lui annoncer la nouvelle, lui en expliquer les raisons et lui présenter vos excuses. Vous demandez un délai supplémentaire.",
+  hint:"Registre formel. Quatre consignes : annoncer, expliquer, s'excuser, demander un délai chiffré. Annoncez dès la première phrase, sans tourner autour.",
+  chk:["Formule d'appel formelle","Annoncer la situation dès la première phrase","Expliquer les raisons, sans vous justifier excessivement","Présenter des excuses sincères","Demander un délai précis (jusqu'au …)","S'engager sur la suite et remercier"],
+  b1:[
+   {w:"rendre un travail", ex:"Je devais vous rendre mon travail vendredi dernier."},
+   {w:"un retard", ex:"Je suis en retard sur ce devoir et je le regrette."},
+   {w:"s'excuser", ex:"Je vous prie de m'excuser pour ce retard."},
+   {w:"une raison", ex:"La raison en est un problème familial imprévu."},
+   {w:"un délai", ex:"Serait-il possible d'obtenir un délai de trois jours ?"},
+   {w:"terminer", ex:"J'ai presque terminé la dernière partie."}],
+  b2:[
+   {w:"un engagement", ex:"Je n'ai malheureusement pas pu respecter mon engagement."},
+   {w:"un imprévu", ex:"Un imprévu m'a empêché(e) de finaliser mon travail à temps."},
+   {w:"un contretemps", ex:"Je vous prie de bien vouloir excuser ce contretemps."},
+   {w:"un délai supplémentaire", ex:"Je sollicite un délai supplémentaire jusqu'au 15 du mois."},
+   {w:"s'engager à", ex:"Je m'engage à vous le remettre au plus tard lundi matin."},
+   {w:"votre compréhension", ex:"Je vous remercie par avance de votre compréhension."}]},
+ {n:18, t:"Article : les vélos publics en libre-service", reg:'public', ico:'🚲',
+  cons:"Vous intervenez sur le site Internet de la mairie de votre ville, très engagée pour le respect de l'environnement. Vous écrivez un article pour donner votre opinion sur la mise en place des vélos publics en libre-service. Vous donnez votre avis sur cette initiative, sur ses avantages et / ou ses désavantages.",
+  hint:"Article public : registre neutre à soutenu, pas de tutoiement. Avis clair + avantages + au moins une limite : un texte entièrement positif paraît naïf.",
+  chk:["Un titre d'article","Présenter l'initiative en une ou deux phrases","Annoncer votre position","Développer deux avantages avec des exemples","Reconnaître une limite ou un inconvénient","Conclure par une proposition concrète à la mairie"],
+  b1:[
+   {w:"un vélo en libre-service", ex:"Les vélos en libre-service sont disponibles jour et nuit."},
+   {w:"une station", ex:"Il faudrait installer une station près de la gare."},
+   {w:"la pollution", ex:"Le vélo permet de réduire la pollution en centre-ville."},
+   {w:"pratique", ex:"C'est très pratique pour les trajets courts."},
+   {w:"un abonnement", ex:"L'abonnement annuel reste très abordable."},
+   {w:"un avantage / un inconvénient", ex:"Cette initiative présente plus d'avantages que d'inconvénients."}],
+  b2:[
+   {w:"une initiative", ex:"Je salue cette initiative de la municipalité."},
+   {w:"la mobilité douce", ex:"La mobilité douce transforme le visage de nos villes."},
+   {w:"désengorger", ex:"Ces vélos contribuent à désengorger le centre-ville."},
+   {w:"l'entretien", ex:"Reste la question de l'entretien du parc de vélos."},
+   {w:"le vandalisme", ex:"Le vandalisme a déjà posé problème dans d'autres villes."},
+   {w:"une piste cyclable", ex:"Ce dispositif n'aura de sens que si les pistes cyclables sont sécurisées."}]},
+ {n:19, t:"Réagir à un programme télévisé choquant", reg:'formel', ico:'📺',
+  cons:"Vous avez assisté, hier soir, à un programme télévisé qui vous a particulièrement choqué(e). Vous écrivez un message sur le site Internet de la chaîne de télévision qui l'a diffusé. Vous dites de quel programme il s'agissait, décrivez ce qui vous a dérangé et donnez votre sentiment à ce sujet.",
+  hint:"Message à une institution : ferme mais poli. Trois consignes : identifier l'émission, décrire ce qui a dérangé, exprimer votre sentiment. Jamais d'insulte : la virulence fait perdre des points.",
+  chk:["Identifier précisément l'émission : nom, jour, heure","Décrire brièvement le contenu","Expliquer ce qui vous a choqué(e) et pourquoi","Exprimer votre sentiment dans un registre correct","Rappeler la responsabilité de la chaîne","Demander une réaction : réponse, avertissement, changement d'horaire"],
+  b1:[
+   {w:"une émission", ex:"J'ai regardé votre émission hier soir à vingt heures trente."},
+   {w:"une chaîne", ex:"Je m'adresse à votre chaîne en tant que téléspectateur régulier."},
+   {w:"choquer", ex:"Certaines scènes m'ont profondément choqué(e)."},
+   {w:"un téléspectateur", ex:"De nombreux téléspectateurs ont sans doute réagi comme moi."},
+   {w:"le respect", ex:"J'attends davantage de respect envers les personnes filmées."},
+   {w:"diffuser", ex:"Ce programme a été diffusé à une heure de grande écoute."}],
+  b2:[
+   {w:"la ligne éditoriale", ex:"Ce contenu me semble contraire à votre ligne éditoriale habituelle."},
+   {w:"le sensationnalisme", ex:"L'émission verse clairement dans le sensationnalisme."},
+   {w:"porter atteinte à", ex:"Ces images portent atteinte à la dignité des participants."},
+   {w:"une heure de grande écoute", ex:"À une heure de grande écoute, des enfants regardaient."},
+   {w:"la déontologie", ex:"La déontologie journalistique me paraît ici oubliée."},
+   {w:"un avertissement", ex:"Un avertissement aurait dû précéder la diffusion."}]},
+ {n:20, t:"Alerter son chef sur une surcharge de travail", reg:'formel', ico:'📚',
+  cons:"Votre collègue de travail est malade depuis plus de deux semaines. On vous a demandé de vous occuper de ses dossiers. Votre situation est de plus en plus difficile en raison d'une grande charge de travail. Vous écrivez un courriel à votre chef pour lui décrire la situation, lui expliquer comment vous vous sentez et pour lui demander de trouver une solution.",
+  hint:"Registre formel. Trois consignes : décrire la situation avec des faits, dire comment vous vous sentez, demander une solution. Proposez-en une : cela montre un niveau supérieur.",
+  chk:["Formule d'appel professionnelle","Rappeler le contexte : l'absence, la reprise des dossiers","Décrire la situation avec des faits concrets : heures, dossiers, retards","Expliquer comment vous vous sentez, sans dramatiser","Demander une solution et en proposer une ou deux","Formule de politesse et disponibilité"],
+  b1:[
+   {w:"une charge de travail", ex:"Ma charge de travail a doublé depuis deux semaines."},
+   {w:"un dossier", ex:"Je gère actuellement ses dossiers en plus des miens."},
+   {w:"fatigué(e)", ex:"Je commence à être vraiment fatigué(e)."},
+   {w:"des heures supplémentaires", ex:"Je fais des heures supplémentaires tous les soirs."},
+   {w:"une solution", ex:"J'aimerais que nous trouvions une solution ensemble."},
+   {w:"une priorité", ex:"Pourriez-vous m'indiquer les priorités des prochaines semaines ?"}],
+  b2:[
+   {w:"une surcharge de travail", ex:"Cette surcharge de travail devient difficile à tenir."},
+   {w:"l'épuisement", ex:"Je ressens les premiers signes d'épuisement."},
+   {w:"redéfinir les priorités", ex:"Il serait utile de redéfinir ensemble les priorités."},
+   {w:"un renfort", ex:"Un renfort temporaire permettrait de tenir jusqu'à son retour."},
+   {w:"répartir", ex:"Ces dossiers pourraient être répartis entre plusieurs personnes."},
+   {w:"alerter", ex:"Je préfère vous alerter avant que la qualité du travail n'en pâtisse."}]}
+];
+
+var PE3 = [
+ {n:21, t:"Sédentarité et condition physique", site:"un site Internet dédié à la santé", ico:'🏃',
+  theme:"La sédentarité et le déclin de la condition physique.",
+  op1:{h:"Nous bougeons trop peu", s:"Une enquête menée auprès de 1 100 personnes de 18 à 64 ans montre que nous marchons trop peu et restons assis trop longtemps : la plupart n'atteignent pas les 10 000 pas quotidiens recommandés et font de moins en moins de sport."},
+  op2:{h:"Les jeunes moins endurants que leurs parents", s:"Une étude portant sur 25 millions de jeunes de 9 à 17 ans dans 28 pays révèle qu'ils courent moins vite et sont moins endurants que leurs parents au même âge, et que les résultats baissent de génération en génération."},
+  b1:[
+   {w:"faire du sport", ex:"De moins en moins de jeunes font du sport régulièrement."},
+   {w:"marcher", ex:"Beaucoup de gens marchent moins de cinq mille pas par jour."},
+   {w:"rester assis", ex:"On reste assis toute la journée, au bureau comme à la maison."},
+   {w:"la santé", ex:"Cette habitude a des conséquences directes sur la santé."},
+   {w:"une étude", ex:"Une étude récente montre que la situation s'aggrave."},
+   {w:"une génération", ex:"Chaque génération semble moins endurante que la précédente."}],
+  b2:[
+   {w:"la sédentarité", ex:"La sédentarité est devenue un problème de santé publique."},
+   {w:"l'endurance", ex:"L'endurance des adolescents a nettement diminué."},
+   {w:"l'activité physique", ex:"L'activité physique devrait être encouragée dès l'école primaire."},
+   {w:"un mode de vie", ex:"Nos modes de vie urbains favorisent l'inactivité."},
+   {w:"la prévention", ex:"La prévention passe par l'éducation et l'aménagement des villes."},
+   {w:"alarmant", ex:"Ces chiffres sont pour le moins alarmants."}]},
+ {n:22, t:"Téléphone portable et santé", site:"un site Internet dédié à la santé", ico:'📱',
+  theme:"Les risques sanitaires des ondes et le principe de précaution.",
+  op1:{h:"Un lien avec les tumeurs au cerveau", s:"Une nouvelle étude scientifique menée par des chercheurs universitaires établirait un lien entre un usage intensif du téléphone portable et l'apparition de tumeurs au cerveau, là où les travaux précédents n'écartaient le risque sans l'affirmer."},
+  op2:{h:"Des conclusions encore partielles", s:"La recherche a montré des effets inquiétants des ondes, mais les travaux actuels n'aboutissent qu'à des conclusions partielles. Seul le temps permettra de mesurer les dangers, et l'indépendance des experts comme le financement des études font débat."},
+  b1:[
+   {w:"un téléphone portable", ex:"Nous utilisons notre téléphone portable plusieurs heures par jour."},
+   {w:"un risque", ex:"Certains scientifiques parlent d'un risque réel pour la santé."},
+   {w:"une étude scientifique", ex:"Une étude scientifique récente relance le débat."},
+   {w:"prouver", ex:"Rien n'est encore totalement prouvé."},
+   {w:"éviter", ex:"On peut éviter de dormir avec son téléphone près de la tête."},
+   {w:"inquiéter", ex:"Ces résultats inquiètent une partie de la population."}],
+  b2:[
+   {w:"les ondes électromagnétiques", ex:"Les ondes électromagnétiques font l'objet de nombreuses recherches."},
+   {w:"le principe de précaution", ex:"Le principe de précaution devrait s'appliquer en attendant."},
+   {w:"un lien de causalité", ex:"Aucun lien de causalité n'est clairement établi à ce jour."},
+   {w:"des conclusions partielles", ex:"Les travaux n'aboutissent qu'à des conclusions partielles."},
+   {w:"l'indépendance des experts", ex:"L'indépendance des experts est régulièrement mise en cause."},
+   {w:"un usage intensif", ex:"Un usage intensif dès l'enfance pose légitimement question."}]},
+ {n:23, t:"Diversité, identité et tolérance", site:"un site Internet dédié à l'actualité", ico:'🌈',
+  theme:"La reconnaissance de la diversité et l'acceptation de la différence.",
+  op1:{h:"Une victoire qui déchaîne les passions", s:"La victoire de l'Autriche à un grand concours européen de la chanson, remportée par un artiste au personnage volontairement ambigu qui milite pour la tolérance et l'acceptation de la différence, a été suivie par 185 millions de téléspectateurs et a fait débat."},
+  op2:{h:"La reconnaissance d'un troisième genre", s:"Après l'Australie, l'Inde a reconnu légalement l'existence d'un troisième genre : certaines personnes ne se reconnaissent ni comme homme ni comme femme et peuvent désormais se déclarer neutres. Cette décision de justice a surpris et divisé."},
+  b1:[
+   {w:"la différence", ex:"Accepter la différence n'est pas toujours évident."},
+   {w:"la tolérance", ex:"Ces deux exemples posent la question de la tolérance."},
+   {w:"reconnaître", ex:"Certains pays reconnaissent aujourd'hui d'autres identités."},
+   {w:"un droit", ex:"Il s'agit avant tout d'une question de droits."},
+   {w:"la société", ex:"La société évolue souvent plus vite que les mentalités."},
+   {w:"respecter", ex:"Chacun devrait être respecté tel qu'il est."}],
+  b2:[
+   {w:"la diversité", ex:"La diversité est une richesse pour une société."},
+   {w:"une reconnaissance juridique", ex:"La reconnaissance juridique change le quotidien des personnes concernées."},
+   {w:"les mentalités", ex:"Les mentalités évoluent, mais lentement."},
+   {w:"l'égalité des droits", ex:"L'égalité des droits reste le principe fondateur."},
+   {w:"une avancée", ex:"Beaucoup y voient une avancée historique."},
+   {w:"faire débat", ex:"Ces décisions continuent de faire débat dans l'opinion."}]},
+ {n:24, t:"Robots et emploi", site:"un site Internet dédié à l'actualité", ico:'🤖',
+  theme:"La place de la machine et de l'humain dans le travail et la vie quotidienne.",
+  op1:{h:"Réhumaniser les usines", s:"Un grand constructeur automobile annonce vouloir « réhumaniser » ses usines en embauchant des ouvriers à la place de certains robots industriels, présents depuis des décennies sur les chaînes de montage et accusés de prendre le travail des humains."},
+  op2:{h:"Le robot compagnon", s:"Un salon de la robotique présente un robot humanoïde d'un mètre quarante conçu comme assistant et compagnon personnel pour les personnes âgées : il marche, voit en trois dimensions, parle et pourrait bientôt ouvrir des portes et poser des objets."},
+  b1:[
+   {w:"un robot", ex:"Les robots remplacent certaines tâches répétitives."},
+   {w:"une usine", ex:"Dans cette usine, les machines font le travail le plus dur."},
+   {w:"un emploi", ex:"Beaucoup de salariés craignent pour leur emploi."},
+   {w:"remplacer", ex:"Une machine peut-elle vraiment remplacer un être humain ?"},
+   {w:"aider", ex:"Ces robots pourraient aider les personnes âgées à rester chez elles."},
+   {w:"l'avenir", ex:"L'avenir du travail est en train de changer très vite."}],
+  b2:[
+   {w:"l'automatisation", ex:"L'automatisation transforme des secteurs entiers."},
+   {w:"la main-d'œuvre", ex:"La main-d'œuvre qualifiée reste indispensable."},
+   {w:"le savoir-faire", ex:"Le savoir-faire humain ne se programme pas."},
+   {w:"la robotisation", ex:"La robotisation soulève de véritables questions éthiques."},
+   {w:"l'autonomie", ex:"Ces machines gagnent chaque année en autonomie."},
+   {w:"la reconversion", ex:"Il faudra financer la reconversion des salariés concernés."}]},
+ {n:25, t:"La discrimination positive", site:"un site Internet dédié à l'actualité", ico:'⚖️',
+  theme:"L'égalité des chances et les moyens de la garantir.",
+  op1:{h:"Réparer les injustices", s:"La discrimination positive consiste à traiter certains groupes différemment, mais en mieux : leur offrir des avantages, comme des places dans les grandes écoles ou des emplois, afin qu'ils rattrapent le retard causé par les discriminations qu'ils ont subies."},
+  op2:{h:"Justifiée ou contre-productive ?", s:"Pour certains, ces politiques sont légitimes et temporaires : elles égalisent les chances et permettent d'en finir avec l'exclusion sociale. Pour d'autres, elles sont inefficaces et discriminatoires envers le groupe considéré comme dominant."},
+  b1:[
+   {w:"l'égalité", ex:"L'égalité des chances n'est pas encore une réalité."},
+   {w:"une inégalité", ex:"Ces mesures veulent corriger une inégalité ancienne."},
+   {w:"aider", ex:"Faut-il aider certains groupes plus que d'autres ?"},
+   {w:"une université", ex:"Des places sont réservées dans certaines universités."},
+   {w:"juste / injuste", ex:"Une partie de l'opinion trouve ce système injuste."},
+   {w:"une mesure", ex:"Cette mesure devait rester temporaire."}],
+  b2:[
+   {w:"la discrimination positive", ex:"La discrimination positive divise profondément l'opinion."},
+   {w:"l'égalité des chances", ex:"L'objectif affiché reste l'égalité des chances."},
+   {w:"un quota", ex:"Les quotas sont l'outil le plus contesté du dispositif."},
+   {w:"l'exclusion sociale", ex:"Ces politiques visent à réduire l'exclusion sociale."},
+   {w:"le mérite", ex:"Ses détracteurs invoquent le principe du mérite."},
+   {w:"rattraper un retard", ex:"Il s'agit de rattraper un retard historique."}]},
+ {n:26, t:"L'avenir de la langue française", site:"un site Internet dédié à l'actualité", ico:'🗣️',
+  theme:"L'avenir du français et le poids des langues dans le monde.",
+  op1:{h:"La langue la plus parlée en 2050 ?", s:"Selon l'étude d'une banque, le français pourrait devenir la langue la plus parlée au monde d'ici une trentaine d'années : de 220 millions de locuteurs aujourd'hui à 750 millions en 2050, porté par la forte démographie de l'Afrique subsaharienne et par les 32 pays qui en ont fait leur langue officielle."},
+  op2:{h:"Un scénario contesté", s:"Une autre analyse conteste cette projection : le français deviendrait plutôt la deuxième ou la troisième langue internationale. Longtemps langue de la diplomatie et de la culture, il serait en déclin depuis plusieurs décennies face à l'anglais."},
+  b1:[
+   {w:"une langue", ex:"Le français est parlé sur les cinq continents."},
+   {w:"parler", ex:"De plus en plus de personnes parleront français en Afrique."},
+   {w:"un pays", ex:"Trente-deux pays ont le français comme langue officielle."},
+   {w:"apprendre", ex:"Beaucoup d'enfants apprennent le français à l'école."},
+   {w:"l'avenir", ex:"L'avenir du français dépend surtout de la démographie."},
+   {w:"important", ex:"L'anglais reste plus important dans le monde des affaires."}],
+  b2:[
+   {w:"la francophonie", ex:"La francophonie repose largement sur le continent africain."},
+   {w:"un locuteur", ex:"Le nombre de locuteurs pourrait tripler d'ici 2050."},
+   {w:"la démographie", ex:"La démographie explique en grande partie ces projections."},
+   {w:"le déclin", ex:"D'autres évoquent au contraire un déclin du français."},
+   {w:"une projection", ex:"Ces projections restent des hypothèses fragiles."},
+   {w:"le rayonnement", ex:"Le rayonnement d'une langue ne se mesure pas au nombre de locuteurs."}]},
+ {n:27, t:"Gaspillage et réduction des déchets", site:"un site Internet dédié à l'actualité", ico:'♻️',
+  theme:"Le gaspillage, les déchets et la responsabilité de chacun.",
+  op1:{h:"590 kg de déchets par personne et par an", s:"Les Français jettent environ 590 kilos de déchets par personne et par an. Ce gaspillage est d'autant plus grave que plus de 800 millions de personnes ne mangent pas à leur faim ; plusieurs gouvernements européens ont donc décidé d'organiser une semaine de mobilisation."},
+  op2:{h:"Le meilleur déchet est celui qu'on ne produit pas", s:"La Semaine européenne de la réduction des déchets repose sur la prévention : agir avant que le déchet ne soit produit. Cela signifie mieux consommer, choisir des produits éco-conçus, prolonger la durée de vie des objets en les réparant ou en les donnant, et composter."},
+  b1:[
+   {w:"un déchet", ex:"Nous produisons beaucoup trop de déchets."},
+   {w:"jeter", ex:"On jette encore énormément de nourriture."},
+   {w:"le gaspillage", ex:"Le gaspillage alimentaire choque de plus en plus de gens."},
+   {w:"recycler", ex:"Recycler est devenu un geste quotidien."},
+   {w:"réduire", ex:"Il faut d'abord réduire ce que l'on achète."},
+   {w:"un geste", ex:"Un petit geste répété fait une grande différence."}],
+  b2:[
+   {w:"la prévention des déchets", ex:"La prévention des déchets passe avant le recyclage."},
+   {w:"éco-conçu", ex:"Les produits éco-conçus durent souvent plus longtemps."},
+   {w:"la durée de vie", ex:"Prolonger la durée de vie des objets est essentiel."},
+   {w:"le compostage", ex:"Le compostage réduit d'un tiers le volume des ordures ménagères."},
+   {w:"la surconsommation", ex:"La surconsommation est à la racine du problème."},
+   {w:"une prise de conscience", ex:"Une prise de conscience collective devient urgente."}]},
+ {n:28, t:"Le droit d'asile en Europe", site:"un site Internet dédié à l'actualité", ico:'🛂',
+  theme:"Le droit d'asile et l'accueil des réfugiés en Europe.",
+  op1:{h:"Une décision de justice européenne", s:"La Cour de justice de l'Union européenne a rendu une décision importante : les personnes persécutées dans leur pays en raison de leur appartenance à un groupe social déterminé peuvent, sous certaines conditions, demander le statut de réfugié dans un pays de l'Union."},
+  op2:{h:"Des demandes en forte hausse", s:"Les demandes d'asile ne cessent d'augmenter en Europe : près de 332 000 en une année, contre environ 59 000 quelques années plus tôt. L'Allemagne en enregistre le plus, devant la France, la Suède, le Royaume-Uni et la Belgique."},
+  b1:[
+   {w:"un réfugié", ex:"Un réfugié est une personne qui fuit un danger."},
+   {w:"demander l'asile", ex:"Des milliers de personnes demandent l'asile chaque année."},
+   {w:"protéger", ex:"L'Europe s'est engagée à protéger ces personnes."},
+   {w:"augmenter", ex:"Le nombre de demandes a fortement augmenté."},
+   {w:"un pays d'accueil", ex:"Certains pays d'accueil reçoivent bien plus de demandes que d'autres."},
+   {w:"une décision", ex:"Cette décision de justice fait date."}],
+  b2:[
+   {w:"le droit d'asile", ex:"Le droit d'asile est inscrit dans les textes européens."},
+   {w:"une persécution", ex:"Il faut pouvoir prouver la réalité de la persécution."},
+   {w:"un demandeur d'asile", ex:"Les demandeurs d'asile attendent parfois plusieurs années."},
+   {w:"la solidarité", ex:"La solidarité entre États membres reste très inégale."},
+   {w:"les conditions d'accueil", ex:"Les conditions d'accueil varient fortement d'un pays à l'autre."},
+   {w:"une répartition équitable", ex:"Une répartition plus équitable est régulièrement réclamée."}]},
+ {n:29, t:"L'image du corps dans la mode", site:"un site Internet dédié à l'actualité", ico:'👗',
+  theme:"Les canons de beauté, l'influence des images et la santé des mannequins.",
+  op1:{h:"La mode de la minceur", s:"Les idéaux de beauté changent selon les époques : la femme aux formes pleines de l'Antiquité, les stars plantureuses des années 1960, et aujourd'hui la minceur extrême. Répétée des millions de fois, l'image des mannequins finit par exercer une influence, notamment sur les adolescents."},
+  op2:{h:"Vers un physique plus naturel ?", s:"À l'approche des défilés, l'extrême maigreur des podiums est de nouveau dénoncée. Les mannequins en sont aussi les victimes. De nombreuses mesures ont été prises par les marques, les maisons de couture et les pouvoirs publics, mais elles restent très inégales d'un pays à l'autre."},
+  b1:[
+   {w:"la mode", ex:"La mode impose une image du corps très particulière."},
+   {w:"mince", ex:"Les mannequins sont de plus en plus minces."},
+   {w:"une image", ex:"Cette image est répétée des millions de fois."},
+   {w:"influencer", ex:"Ces photos influencent beaucoup les adolescents."},
+   {w:"la beauté", ex:"La beauté ne devrait pas avoir une seule définition."},
+   {w:"une mesure", ex:"Plusieurs pays ont pris des mesures concrètes."}],
+  b2:[
+   {w:"un canon de beauté", ex:"Les canons de beauté varient selon les époques et les cultures."},
+   {w:"la maigreur", ex:"La maigreur extrême des podiums est aujourd'hui contestée."},
+   {w:"un défilé", ex:"Certains défilés exigent désormais un certificat médical."},
+   {w:"les pouvoirs publics", ex:"Les pouvoirs publics sont intervenus dans plusieurs pays."},
+   {w:"la diversité des corps", ex:"La diversité des corps commence à apparaître dans les campagnes publicitaires."},
+   {w:"une pression", ex:"La pression exercée sur les jeunes est considérable."}]},
+ {n:30, t:"La croissance de la population mondiale", site:"un site Internet dédié à l'actualité", ico:'🌍',
+  theme:"La croissance démographique et ses conséquences.",
+  op1:{h:"Sept milliards en deux siècles", s:"En deux siècles, la population mondiale a été multipliée par sept pour atteindre 7,14 milliards d'habitants. Plus de la moitié vit dans six pays seulement, et il n'a fallu que douze ans pour passer de six à sept milliards."},
+  op2:{h:"Dix milliards à la fin du siècle", s:"Selon un institut de démographie, la population atteindra 9,7 milliards en 2050 et 10 à 11 milliards à la fin du siècle. Le taux de fécondité mondial est aujourd'hui de 2,5 enfants par femme, contre 5 en 1950, avec de fortes disparités régionales."},
+  b1:[
+   {w:"la population", ex:"La population mondiale continue d'augmenter."},
+   {w:"augmenter", ex:"Le nombre d'habitants augmente surtout en Afrique et en Asie."},
+   {w:"un habitant", ex:"Nous serons près de dix milliards d'habitants en 2050."},
+   {w:"les ressources", ex:"La planète a-t-elle assez de ressources pour tout le monde ?"},
+   {w:"une conséquence", ex:"Cette croissance a des conséquences sur l'environnement."},
+   {w:"l'avenir", ex:"Il faut préparer cet avenir dès maintenant."}],
+  b2:[
+   {w:"la croissance démographique", ex:"La croissance démographique ralentit dans certains pays."},
+   {w:"le taux de fécondité", ex:"Le taux de fécondité mondial a été divisé par deux depuis 1950."},
+   {w:"une projection", ex:"Les projections varient selon les hypothèses retenues."},
+   {w:"les disparités régionales", ex:"Les disparités régionales sont considérables."},
+   {w:"l'urbanisation", ex:"L'urbanisation s'accélère avec cette croissance."},
+   {w:"les ressources naturelles", ex:"La pression sur les ressources naturelles s'intensifie."}]}
+];
+
+(function(){
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function pad(n){ return (n<10?'0':'')+n; }
+function fmt(s){ return pad(Math.floor(s/60))+':'+pad(s%60); }
+
+var CONF={'1':{min:60,max:120,sec:900,lbl:'Tâche 1 · message',cls:''},
+          '2':{min:120,max:150,sec:1200,lbl:'Tâche 2 · récit / article',cls:'pe2'},
+          '3':{min:120,max:180,sec:1500,lbl:'Tâche 3 · comparer deux opinions',cls:'pe3'}};
+var LISTS={'1':PE1,'2':PE2,'3':PE3};
+var REG={amical:'registre amical',formel:'registre formel',public:'texte public'};
+var CHK3=["Partie 1 — reformuler l'opinion 1 avec vos propres mots",
+          "Partie 1 — reformuler l'opinion 2 avec vos propres mots",
+          "Partie 1 — 40 à 60 mots, sans aucune opinion personnelle",
+          "Partie 2 — annoncer votre position sur le thème général",
+          "Partie 2 — deux ou trois arguments, chacun avec un exemple",
+          "Partie 2 — une concession : certes… mais / il est vrai que… cependant",
+          "Partie 2 — 80 à 120 mots, puis une phrase de conclusion"];
+
+function cons3(s){
+  return "Sur "+s.site+", vous avez lu les deux opinions ci-dessous. Vous écrivez un court article que vous voulez faire paraître dans le journal de votre association francophone. Votre article comprend deux parties : dans la première, vous présentez les deux opinions avec vos propres mots (entre 40 et 60 mots) ; dans la deuxième, vous donnez votre position sur le thème général, commun à ces deux opinions (entre 80 et 120 mots).";
+}
+
+/* ---- grammaire ---- */
+function gcard(g,i,t2){
+  return '<div class="gp'+(t2?' t2':'')+'"><b><span class="gn">'+(i+1)+'</span>'+esc(g.t)+'</b><i>'+esc(g.e)+'</i></div>';
+}
+document.getElementById('gpe1').innerHTML=GPE1.map(function(g,i){ return gcard(g,i,false); }).join('');
+document.getElementById('gpe2').innerHTML=GPE2.map(function(g,i){ return gcard(g,i,true); }).join('');
+document.getElementById('gpe3').innerHTML=GPE3.map(function(g,i){ return gcard(g,i,true); }).join('');
+
+/* ---- grilles de sujets ---- */
+var doneE={}, texts={};
+function renderE(){
+  ['1','2','3'].forEach(function(t){
+    var c=CONF[t];
+    document.getElementById('gridE'+t).innerHTML=LISTS[t].map(function(s,i){
+      var sub = t==='3' ? esc(s.theme) : esc(s.cons.length>105?s.cons.slice(0,105)+'…':s.cons);
+      var typ = t==='3' ? 'point de vue' : REG[s.reg];
+      return '<button class="tcard '+c.cls+'" type="button" data-pe="'+t+'" data-i="'+i+'">'
+        +'<span class="k"><span>Sujet '+s.n+'</span><span>'+(doneE[t+i]?'<span class="done">✓</span> ':'')+'<span class="mots">'+c.min+'–'+c.max+' mots</span></span></span>'
+        +'<span class="ico">'+s.ico+'</span>'
+        +'<span class="typ'+(t==='3'||s.reg==='formel'?' conv':'')+'">'+typ+'</span>'
+        +'<span class="t">'+esc(s.t)+'</span><span class="c">'+sub+'</span></button>';
+    }).join('');
+  });
+}
+renderE();
+['1','2','3'].forEach(function(t){
+  document.getElementById('gridE'+t).addEventListener('click', function(e){
+    var b=e.target.closest('.tcard'); if(!b) return;
+    openE(b.getAttribute('data-pe'), parseInt(b.getAttribute('data-i'),10));
+  });
+});
+
+/* ---- chronomètre ---- */
+var eInt=null, eLeft=0, eTot=900;
+function eRender(){
+  document.getElementById('tET').textContent=fmt(eLeft);
+  document.getElementById('tEBar').style.width=Math.round(eLeft/eTot*100)+'%';
+  document.getElementById('timerE').classList.toggle('warn', eLeft<=120);
+}
+function eStop(){ if(eInt){ clearInterval(eInt); eInt=null; } document.getElementById('tEStart').textContent='▶ Démarrer'; }
+function eStart(){
+  if(eInt){ eStop(); return; }
+  document.getElementById('tEStart').textContent='⏸ Pause';
+  eInt=setInterval(function(){ eLeft--; if(eLeft<=0){ eLeft=0; eRender(); eStop(); return; } eRender(); },1000);
+}
+document.getElementById('tEStart').addEventListener('click', function(){ if(eLeft<=0) eLeft=eTot; eStart(); });
+document.getElementById('tEReset').addEventListener('click', function(){ eStop(); eLeft=eTot; eRender(); });
+
+/* ---- compteur de mots ---- */
+var curE={t:'1',i:0};
+function countWords(s){ var m=String(s).trim(); if(!m) return 0; return m.split(/\s+/).length; }
+function wcRender(){
+  var c=CONF[curE.t], n=countWords(document.getElementById('dlECopie').value);
+  var box=document.getElementById('wcBox');
+  document.getElementById('wcN').textContent=n;
+  document.getElementById('wcL').textContent='mots · fourchette imposée '+c.min+' – '+c.max;
+  box.className='wc'+(n===0?'':(n<c.min?'':(n>c.max?' over':' ok')));
+  var st=document.getElementById('wcSt');
+  st.textContent = n===0 ? "rien d'écrit" : (n<c.min ? 'encore '+(c.min-n)+' mot(s)' : (n>c.max ? (n-c.max)+' mot(s) de trop' : 'dans la fourchette ✓'));
+}
+document.getElementById('dlECopie').addEventListener('input', function(){
+  texts[curE.t+curE.i]=this.value; wcRender();
+});
+
+/* ---- vocabulaire ---- */
+function vrowE(e){ return '<div class="vr"><b>'+esc(e.w)+'</b><i>'+esc(e.ex)+'</i></div>'; }
+
+/* ---- ouverture ---- */
+var dlgE=document.getElementById('dlgE');
+function openE(t,i){
+  curE={t:String(t), i:i};
+  var s=LISTS[curE.t][i], c=CONF[curE.t];
+  document.getElementById('dlEPill').textContent=c.lbl;
+  document.getElementById('dlENum').textContent='Sujet '+s.n+' · '+(i+1)+' / '+LISTS[curE.t].length+' · '+c.min+' à '+c.max+' mots · '+Math.round(c.sec/60)+' min conseillées';
+  var pill=document.getElementById('dlEPill');
+  var col={'1':['var(--bleu-soft)','var(--accent)'],'2':['rgba(183,121,31,.14)','#b7791f'],'3':['var(--rouge-soft)','var(--rouge)']}[curE.t];
+  pill.style.background=col[0]; pill.style.color=col[1];
+  var cons=document.getElementById('dlECons');
+  cons.className='consb'+(curE.t==='2'?' t2':(curE.t==='3'?' t3':''));
+  cons.textContent = curE.t==='3' ? cons3(s) : s.cons;
+  document.getElementById('dlEOps').innerHTML = curE.t==='3'
+    ? '<div class="ops"><div class="op"><b>Opinion 1 — '+esc(s.op1.h)+'</b>'+esc(s.op1.s)+'</div><div class="op"><b>Opinion 2 — '+esc(s.op2.h)+'</b>'+esc(s.op2.s)+'</div></div>' : '';
+  var chk = curE.t==='3' ? CHK3 : s.chk;
+  document.getElementById('dlEChk').innerHTML='<b>À traiter absolument</b>'+chk.map(function(x,k){
+    return '<label><input type="checkbox" data-c="'+k+'"><span>'+esc(x)+'</span></label>'; }).join('');
+  document.getElementById('dlEHint').innerHTML = curE.t==='3'
+    ? '<b>Thème général :</b> '+esc(s.theme)+' — la partie 2 porte sur ce thème, pas sur les documents eux-mêmes. Squelettes et boîte à reformuler : section 04, même structure qu\'à l\'oral.'
+    : '<b>Conseil :</b> '+esc(s.hint);
+  document.getElementById('vocE1').innerHTML=s.b1.map(vrowE).join('');
+  document.getElementById('vocE2').innerHTML=s.b2.map(vrowE).join('');
+  document.getElementById('nE1').textContent=s.b1.length+' mots';
+  document.getElementById('nE2').textContent=s.b2.length+' mots';
+  document.getElementById('dlECopie').value=texts[curE.t+i]||'';
+  document.getElementById('dlEDone').textContent=doneE[curE.t+i]?'✓ Travaillé':'✓ Sujet travaillé';
+  document.getElementById('dlEMsg').textContent='';
+  eStop(); eTot=c.sec; eLeft=c.sec; eRender(); wcRender();
+  if(!dlgE.open) dlgE.showModal();
+  dlgE.querySelector('.dl1').scrollTop=0;
+}
+document.getElementById('dlEClose').addEventListener('click', function(){ eStop(); dlgE.close(); });
+dlgE.addEventListener('close', eStop);
+document.getElementById('dlEDone').addEventListener('click', function(){
+  doneE[curE.t+curE.i]=true; renderE(); this.textContent='✓ Travaillé';
+});
+document.getElementById('dlENext').addEventListener('click', function(){
+  var l=LISTS[curE.t]; openE(curE.t, (curE.i+1)%l.length);
+});
+document.getElementById('dlECopy').addEventListener('click', function(){
+  var s=LISTS[curE.t][curE.i], c=CONF[curE.t], v=document.getElementById('dlECopie').value;
+  var txt='TCF — production écrite · sujet '+s.n+' : '+s.t+'\n'+countWords(v)+' mots (fourchette '+c.min+'–'+c.max+')\n\n'+v;
+  var msg=document.getElementById('dlEMsg');
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(function(){ msg.textContent='Texte copié — envoyez-le à votre professeure.'; },
+      function(){ msg.textContent='Copie impossible : sélectionnez le texte à la main.'; });
+  } else { msg.textContent='Copie impossible : sélectionnez le texte à la main.'; }
+});
+})();
+
+
+(function(){
+var PLANS={
+ 'OREO':{q:"Quand la question appelle une position nette. Le plus sûr en 100 mots.",
+  s:"<b>Opinion :</b> « Personnellement, je pense que… »<br><b>Raison 1 :</b> « D'abord, parce que… »<br><b>Raison 2 :</b> « Ensuite, … »<br><b>Exemple :</b> « Par exemple, dans mon pays, … »<br><b>Nuance :</b> « Certes, … mais… »<br><b>Opinion reformulée :</b> « C'est pourquoi je reste convaincu(e) que… »"},
+ 'dialectique court':{q:"Quand les deux documents s'opposent frontalement.",
+  s:"<b>Concession :</b> « Il est vrai que… »<br><b>Opposition :</b> « Cependant, … / Or, … »<br><b>Argument :</b> « En effet, … »<br><b>Exemple :</b> « On le voit bien lorsque… »<br><b>Position :</b> « Pour ma part, je considère que… »"},
+ 'analytique':{q:"Quand les deux textes décrivent un même phénomène de société.",
+  s:"<b>Le constat :</b> « Ces deux textes montrent que… »<br><b>Les causes :</b> « Ce phénomène s'explique par… »<br><b>Les conséquences :</b> « Il en résulte…, mais aussi… »<br><b>La solution :</b> « Il faudrait donc que… » (subjonctif)<br><b>Bilan :</b> « En définitive, … »"},
+ 'thématique':{q:"Quand le thème se prête à plusieurs angles. Demande de la place : deux axes suffisent.",
+  s:"<b>Annonce :</b> « Cette question se pose sur deux plans. »<br><b>Axe 1 :</b> « Sur le plan économique, … »<br><b>Axe 2 :</b> « Sur le plan social, … »<br><b>Exemple :</b> un seul, sur l'axe le plus fort.<br><b>Bilan :</b> « Pour toutes ces raisons, … »"},
+ 'comparatif':{q:"Quand les deux textes mettent en balance deux éléments précis.",
+  s:"<b>A :</b> « D'une part, … présente l'avantage de… »<br><b>B :</b> « D'autre part, … se distingue par… »<br><b>Ce qui les distingue :</b> « Alors que…, … »<br><b>Choix :</b> « À mon sens, … l'emporte, parce que… »"}
+};
+var keys=Object.keys(PLANS), cur='OREO';
+function render(){
+  document.getElementById('planPickE').innerHTML=keys.map(function(k){
+    return '<button class="chip" type="button" data-p="'+k+'" aria-pressed="'+(k===cur)+'">'+k+(k==='OREO'||k==='dialectique court'?' ★':'')+'</button>';
+  }).join('');
+  document.getElementById('skelE').innerHTML='<div style="font-size:.82rem;color:var(--muted);font-weight:700;margin-bottom:.45rem">'+PLANS[cur].q+'</div>'+PLANS[cur].s;
+}
+document.getElementById('planPickE').addEventListener('click', function(e){
+  var b=e.target.closest('[data-p]'); if(!b) return;
+  cur=b.getAttribute('data-p'); render();
+});
+render();
+})();
+
+</script>
+
+</body></html>
