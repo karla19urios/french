@@ -1,0 +1,1133 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>Lecture · La maison de vos rêves</title>
+<style>
+:root{
+  --bleu:#002395; --blanc:#ffffff; --rouge:#ED2939;
+  --bg:#f4f5f7; --card:#ffffff; --text:#1a1a2e; --muted:#6b7280; --border:#e5e7eb;
+  --shadow:rgba(16,24,40,.08);
+  --bleu-soft:rgba(0,35,149,.08);
+  --rouge-soft:rgba(237,41,57,.10);
+  --vert:#1a7f4f; --vert-soft:rgba(26,127,79,.12);
+  --accent:var(--bleu);
+  --room-jour:#eef1fb; --room-nuit:#fdeef0; --room-eau:#eaf4f6; --room-ext:#e9f2e6;
+  --wall:#2b3247; --floor-line:#c8cede;
+  --hl:rgba(0,35,149,.13);
+  --radius:16px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#12141c; --card:#1b1e2b; --text:#f1f2f6; --muted:#9aa0b4; --border:#2a2e40;
+    --shadow:rgba(0,0,0,.4);
+    --bleu-soft:rgba(90,125,255,.14); --rouge-soft:rgba(237,41,57,.16);
+    --vert:#4ec98a; --vert-soft:rgba(78,201,138,.15);
+    --accent:#9db2ff;
+    --room-jour:#232842; --room-nuit:#3a2430; --room-eau:#1f3038; --room-ext:#1f3327;
+    --wall:#7d88a8; --floor-line:#3a4160;
+    --hl:rgba(157,178,255,.22);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#12141c; --card:#1b1e2b; --text:#f1f2f6; --muted:#9aa0b4; --border:#2a2e40;
+  --shadow:rgba(0,0,0,.4);
+  --bleu-soft:rgba(90,125,255,.14); --rouge-soft:rgba(237,41,57,.16);
+  --vert:#4ec98a; --vert-soft:rgba(78,201,138,.15);
+  --accent:#9db2ff;
+  --room-jour:#232842; --room-nuit:#3a2430; --room-eau:#1f3038; --room-ext:#1f3327;
+  --wall:#7d88a8; --floor-line:#3a4160;
+  --hl:rgba(157,178,255,.22);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);line-height:1.55;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+.flagbar{height:8px;background:linear-gradient(to right,var(--bleu) 0 33.33%,var(--blanc) 33.33% 66.66%,var(--rouge) 66.66% 100%)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 72px}
+
+/* hero */
+.hero{padding:3.2rem 0 1.6rem;text-align:center}
+.eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;font-weight:800;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--bleu-soft);
+  padding:.35rem .75rem;border-radius:999px}
+.hero h1{font-size:clamp(1.9rem,5vw,2.9rem);margin:.9rem 0 .4rem;letter-spacing:-.02em;line-height:1.12}
+.hero p{color:var(--muted);margin:0 auto;max-width:62ch;font-size:1.02rem}
+.toc{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin-top:1.4rem}
+.toc a{text-decoration:none;font-size:.82rem;font-weight:700;color:var(--text);
+  border:1px solid var(--border);background:var(--card);border-radius:999px;padding:.4rem .9rem;
+  transition:all .15s ease}
+.toc a:hover{border-color:var(--bleu);color:var(--accent)}
+
+/* sections */
+.toc.sitenav{margin:1.1rem 0 0;padding-bottom:.2rem}
+.toc .here{border:1px solid var(--rouge);background:var(--rouge-soft);color:var(--rouge);border-radius:999px;padding:.4rem .9rem;font-size:.82rem;font-weight:700}
+section{margin-top:3rem;scroll-margin-top:14px}
+.sec-head{display:flex;align-items:baseline;gap:.75rem;flex-wrap:wrap;margin-bottom:.35rem}
+.sec-head h2{font-size:1.4rem;margin:0;letter-spacing:-.01em}
+.sec-num{font-size:.72rem;font-weight:800;letter-spacing:.1em;color:var(--rouge);
+  background:var(--rouge-soft);padding:.2rem .55rem;border-radius:6px}
+.sec-sub{color:var(--muted);margin:.1rem 0 1.25rem;font-size:.95rem}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:20px;box-shadow:0 1px 3px var(--shadow)}
+
+/* ---- plan svg ---- */
+.planbox{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:14px;box-shadow:0 1px 3px var(--shadow);overflow-x:auto}
+.planbox svg{display:block;width:100%;min-width:620px;height:auto}
+.rm{cursor:pointer;transition:opacity .15s ease}
+.rm .rmfill{stroke:var(--wall);stroke-width:2.5;transition:fill .15s ease}
+.rm.jour .rmfill{fill:var(--room-jour)}
+.rm.nuit .rmfill{fill:var(--room-nuit)}
+.rm.eau  .rmfill{fill:var(--room-eau)}
+.rm.ext  .rmfill{fill:var(--room-ext)}
+.rm:hover .rmfill{fill:var(--hl)}
+.rm.sel .rmfill{fill:var(--hl);stroke:var(--bleu);stroke-width:4}
+.rm.good .rmfill{fill:var(--vert-soft);stroke:var(--vert);stroke-width:4}
+.rm.bad  .rmfill{fill:var(--rouge-soft);stroke:var(--rouge);stroke-width:4}
+.rmlab{font-size:14px;font-weight:700;fill:var(--text);pointer-events:none;text-anchor:middle}
+.rmlab.sm{font-size:11.5px}
+.rmico{font-size:19px;pointer-events:none;text-anchor:middle}
+.rmnum{font-size:11px;font-weight:900;fill:var(--blanc);pointer-events:none;text-anchor:middle}
+.numdot{fill:var(--rouge);pointer-events:none}
+.furn{fill:none;stroke:var(--floor-line);stroke-width:2;pointer-events:none}
+.furnf{fill:var(--floor-line);opacity:.5;pointer-events:none}
+.tree{fill:#7fae7a;opacity:.5;pointer-events:none}
+.plate{fill:var(--card);opacity:.9;pointer-events:none}
+.shell{fill:none;stroke:var(--wall);stroke-width:5}
+.legend{display:flex;gap:.9rem;flex-wrap:wrap;margin-top:.9rem;font-size:.8rem;color:var(--muted)}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:4px;border:1px solid var(--wall);
+  vertical-align:-2px;margin-right:.35rem}
+
+/* room detail */
+.detail{margin-top:14px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:18px;box-shadow:0 1px 3px var(--shadow);border-top:3px solid var(--bleu)}
+.detail.empty{border-top-color:var(--border);text-align:center;color:var(--muted);padding:28px 18px}
+.detail h3{margin:0 0 .2rem;font-size:1.2rem}
+.detail .es{color:var(--muted);font-size:.9rem;font-weight:500}
+.phrase{background:var(--bleu-soft);border-radius:10px;padding:.7rem .9rem;margin:.9rem 0;
+  display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;font-size:1rem}
+.phrase b{color:var(--accent);font-weight:800}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:.2rem}
+.vchip{display:inline-flex;align-items:center;gap:.4rem;border:1px solid var(--border);background:var(--bg);
+  border-radius:999px;padding:.35rem .7rem;font-size:.86rem;font-weight:600}
+.vchip small{color:var(--muted);font-weight:500}
+
+/* ---- vocabulaire ---- */
+.vcontrols{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin-bottom:1.1rem}
+.search{flex:1 1 210px;min-width:170px;padding:.6rem .85rem;border-radius:10px;border:1px solid var(--border);
+  background:var(--card);color:var(--text);font:inherit;font-size:.92rem}
+.search::placeholder{color:var(--muted)}
+.chip{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:999px;
+  padding:.45rem .85rem;font:inherit;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .15s ease}
+.chip:hover{border-color:var(--bleu)}
+.chip[aria-pressed="true"]{background:var(--bleu);border-color:var(--bleu);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(196px,1fr));gap:12px}
+.word{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.8rem .85rem;
+  position:relative;transition:transform .15s ease,box-shadow .15s ease}
+.word:hover{transform:translateY(-2px);box-shadow:0 6px 16px var(--shadow)}
+.word .fr{font-weight:800;font-size:1rem;display:block;letter-spacing:-.01em;padding-right:32px;overflow-wrap:break-word}
+.word .ph{font-size:.78rem;padding-right:32px;color:var(--muted);font-style:italic;display:block;margin-top:1px}
+.word .es{font-size:.85rem;color:var(--muted);display:block;margin-top:.35rem}
+.g{display:inline-block;font-size:.62rem;font-weight:900;letter-spacing:.08em;padding:.12rem .38rem;
+  border-radius:5px;vertical-align:middle;margin-left:.45rem;white-space:nowrap;font-style:normal}
+.g.m{background:var(--bleu-soft);color:var(--accent)}
+.g.f{background:var(--rouge-soft);color:var(--rouge)}
+.g.p{background:rgba(107,114,128,.16);color:var(--muted)}
+.listen{position:absolute;top:.6rem;right:.6rem;width:30px;height:30px;border-radius:50%;
+  border:1px solid var(--border);background:var(--bg);cursor:pointer;display:grid;place-items:center;
+  font-size:.85rem;color:var(--accent);transition:all .15s ease;padding:0}
+.listen:hover,.listen.on{background:var(--bleu);color:#fff}
+.empty-msg{color:var(--muted);font-size:.9rem;padding:1rem 0}
+
+/* ---- lecture ---- */
+.readbar{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin-bottom:1rem}
+article.lec{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:24px 26px;box-shadow:0 1px 3px var(--shadow);border-top:3px solid var(--bleu);font-size:1.02rem}
+article.lec .chapo{font-size:1.05rem;color:var(--text);border-left:3px solid var(--rouge);
+  padding-left:.9rem;margin:0 0 1.4rem}
+.para{margin:0 0 1.35rem;position:relative;padding-left:2.4rem}
+.para:last-child{margin-bottom:0}
+.para .pn{position:absolute;left:0;top:1px;width:26px;height:26px;border-radius:50%;
+  background:var(--bleu);color:#fff;font-size:.78rem;font-weight:800;display:grid;place-items:center}
+.para h4{margin:0 0 .3rem;font-size:1.02rem;color:var(--accent)}
+.para p{margin:0}
+.para .say{border:1px solid var(--border);background:var(--card);color:var(--accent);border-radius:50%;
+  width:26px;height:26px;display:inline-grid;place-items:center;cursor:pointer;font-size:.78rem;
+  vertical-align:-6px;margin-left:.4rem;padding:0;transition:all .15s ease}
+.para .say:hover,.para .say.on{background:var(--bleu);color:#fff}
+.gl{border-bottom:2px dotted var(--rouge);cursor:pointer;font-weight:600}
+.gl:hover{background:var(--rouge-soft)}
+mark.hl{background:var(--hl);color:inherit;border-radius:3px;padding:0 2px}
+.glossbox{margin-top:1.2rem;background:var(--bg);border:1px solid var(--border);border-radius:12px;
+  padding:.85rem 1rem;font-size:.92rem;min-height:3.1rem}
+.glossbox .w{font-weight:800;color:var(--accent)}
+.glossbox .d{color:var(--muted)}
+
+/* ---- exercices ---- */
+.ex{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;
+  box-shadow:0 1px 3px var(--shadow);margin-bottom:16px;border-top:3px solid var(--rouge)}
+.ex-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:.25rem}
+.ex-head h3{margin:0;font-size:1.08rem;display:flex;align-items:center;gap:.5rem}
+.tag{font-size:.62rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;
+  background:var(--rouge-soft);color:var(--rouge);padding:.2rem .5rem;border-radius:5px}
+.ex-sub{color:var(--muted);font-size:.86rem;margin:.15rem 0 1rem}
+.ex-meta{display:flex;align-items:center;gap:.6rem;font-size:.8rem;color:var(--muted);font-weight:700}
+.ex-meta .sc{background:var(--bleu-soft);color:var(--accent);padding:.2rem .55rem;border-radius:999px}
+.btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:10px;
+  padding:.5rem .9rem;font:inherit;font-size:.86rem;font-weight:700;cursor:pointer;
+  transition:all .15s ease;display:inline-flex;align-items:center;gap:.4rem}
+.btn:hover{border-color:var(--bleu);color:var(--accent)}
+.btn.primary{background:var(--bleu);border-color:var(--bleu);color:#fff}
+.btn.primary:hover{opacity:.9;color:#fff}
+.btn[aria-pressed="true"]{background:var(--bleu);border-color:var(--bleu);color:#fff}
+
+.vf{border:1px solid var(--border);background:var(--bg);border-radius:12px;padding:.9rem 1rem;margin-bottom:10px}
+.vf .q{font-weight:700;display:flex;gap:.55rem;align-items:flex-start;font-size:.98rem}
+.vf .q b{color:var(--rouge);flex:0 0 auto}
+.vf .btns{display:flex;gap:8px;margin-top:.7rem;flex-wrap:wrap}
+.vf .just{margin-top:.7rem;font-size:.9rem;padding:.6rem .8rem;border-radius:9px;display:none}
+.vf .just.show{display:block}
+.vf .just.good{background:var(--vert-soft);color:var(--vert)}
+.vf .just.bad{background:var(--rouge-soft);color:var(--rouge)}
+.vf .just span{color:var(--text);display:block;font-weight:600;margin-top:.25rem}
+.opt{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;
+  padding:.62rem 1.1rem;font:inherit;font-size:.95rem;font-weight:700;cursor:pointer;transition:all .15s ease}
+.opt:hover:not(:disabled){border-color:var(--bleu);transform:translateY(-2px)}
+.opt:disabled{cursor:default;opacity:.8}
+.opt.good{background:var(--vert-soft);border-color:var(--vert);color:var(--vert);opacity:1}
+.opt.bad{background:var(--rouge-soft);border-color:var(--rouge);color:var(--rouge);opacity:1}
+.qcm{margin-bottom:14px;border:1px solid var(--border);background:var(--bg);border-radius:12px;padding:.9rem 1rem}
+.qcm .q{font-weight:700;margin-bottom:.6rem;font-size:.98rem}
+.qcm .opts{display:flex;gap:8px;flex-wrap:wrap}
+.qcm .opt{flex:1 1 150px;text-align:center}
+.fb{margin-top:.7rem;font-size:.88rem;font-weight:700;min-height:1.2em}
+.fb.good{color:var(--vert)} .fb.bad{color:var(--rouge)}
+.fb small{display:block;font-weight:500;color:var(--muted);margin-top:.15rem}
+.fill{border:1px solid var(--border);background:var(--bg);border-radius:12px;padding:.9rem 1rem;margin-bottom:10px}
+.fill .q{font-size:1rem;margin-bottom:.6rem}
+.fill .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.fill input{flex:1 1 220px;padding:.6rem .85rem;border-radius:10px;border:1px solid var(--border);
+  background:var(--card);color:var(--text);font:inherit;font-size:.98rem}
+.fill input.good{border-color:var(--vert)} .fill input.bad{border-color:var(--rouge)}
+.blank{color:var(--rouge);letter-spacing:.06em;font-weight:800}
+.quizq{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;font-size:1.05rem;font-weight:700;
+  background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:.85rem 1rem;margin-bottom:12px}
+.bar{height:5px;background:var(--border);border-radius:999px;overflow:hidden;margin:.6rem 0 1rem}
+.bar i{display:block;height:100%;width:0;background:var(--bleu);transition:width .3s ease}
+.bilan{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--bleu);
+  border-radius:var(--radius);padding:20px;display:flex;align-items:center;justify-content:space-between;
+  gap:1rem;flex-wrap:wrap;box-shadow:0 1px 3px var(--shadow)}
+.bilan .big{font-size:1.9rem;font-weight:900;color:var(--accent);letter-spacing:-.02em}
+.bilan .lbl{font-size:.78rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.bilan-list{display:flex;gap:1.6rem;flex-wrap:wrap}
+textarea{width:100%;min-height:130px;padding:.8rem .9rem;border-radius:12px;border:1px solid var(--border);
+  background:var(--bg);color:var(--text);font:inherit;font-size:.98rem;resize:vertical}
+.checklist{display:flex;flex-direction:column;gap:.5rem;margin-top:1rem}
+.checklist label{display:flex;gap:.6rem;align-items:flex-start;font-size:.92rem;cursor:pointer}
+.checklist input{margin-top:.28rem;accent-color:var(--bleu);width:16px;height:16px;flex:0 0 auto}
+.note{margin-top:1.1rem;font-size:.86rem;color:var(--muted);border-left:3px solid var(--rouge);padding-left:.8rem}
+/* ---- boîte à outils ---- */
+.tools{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:20px;box-shadow:0 1px 3px var(--shadow);border-top:3px solid var(--bleu);margin-bottom:16px}
+.tools-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1rem}
+.tools-head h3{margin:0;font-size:1.08rem;display:flex;align-items:center;gap:.5rem}
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.tool{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:.9rem 1rem}
+.tool h4{margin:0 0 .1rem;font-size:.95rem;display:flex;align-items:center;gap:.45rem}
+.tool .en{display:block;font-size:.78rem;color:var(--muted);font-weight:500;margin-bottom:.55rem}
+.tool ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.35rem}
+.tool li{font-size:.92rem;line-height:1.45;padding-left:.9rem;position:relative}
+.tool li::before{content:"·";position:absolute;left:.15rem;color:var(--rouge);font-weight:900}
+.tool b{color:var(--accent);font-weight:800}
+.modele{margin-top:14px;background:var(--bleu-soft);border-radius:12px;padding:1rem 1.1rem;font-size:.95rem;line-height:1.6}
+.modele .lbl{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  font-size:.68rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+.modele b{color:var(--accent);font-weight:800}
+.grille-h{font-size:.72rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--rouge);
+  margin:1.4rem 0 .2rem;display:block}
+.grille-sub{font-size:.82rem;color:var(--muted);margin:0}
+footer{margin-top:3.5rem;padding-top:1.5rem;border-top:1px solid var(--border);color:var(--muted);
+  font-size:.85rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:center}
+footer b{color:var(--text)}
+footer a{color:var(--accent);text-decoration:none;font-weight:700}
+footer a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--bleu);outline-offset:2px;border-radius:6px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+@media (max-width:560px){.hero{padding:2.4rem 0 1.2rem}article.lec{padding:18px 16px}.para{padding-left:2.1rem}}
+</style>
+
+<div class="flagbar"></div>
+<div class="wrap"><nav class="toc sitenav" aria-label="Navigation du cours">
+  <a href="https://karla19urios.github.io/french/A1.2/index.html">🏠 Accueil A1.2</a>
+  <a href="https://karla19urios.github.io/french/A1.2/lectures.html">📖 Lectures</a>
+  <a href="https://karla19urios.github.io/french/A1.2/Actividades%20A1.2/18_Dans%20ma%20maison%20il%20y%20a%20(interactivo).html">🎮 L'activité de la leçon</a>
+  <a href="https://karla19urios.github.io/french/A1.2/Lectures%20A1.2/18_la%20maison.pdf">📄 La lecture en PDF</a>
+  <span class="here">🏡 Leçon 18 · Lecture</span>
+</nav></div>
+<div class="wrap">
+
+<header class="hero">
+  <span class="eyebrow">A1.2 · Leçon 18 · Lecture</span>
+  <h1>La maison de vos rêves</h1>
+  <p>Décrire un logement : lisez l'article, explorez le plan de la maison et vérifiez vos réponses.
+     <em>Read the article, explore the floor plan and check your answers — everything corrects itself.</em></p>
+  <nav class="toc">
+    <a href="#plan">01 · Le plan</a>
+    <a href="#vocab">02 · Le vocabulaire</a>
+    <a href="#lecture">03 · La lecture</a>
+    <a href="#vf">04 · Vrai ou faux</a>
+    <a href="#exos">05 · Exercices</a>
+    <a href="#prod">06 · À vous</a>
+  </nav>
+</header>
+
+<!-- ============ 01 PLAN ============ -->
+<section id="plan">
+  <div class="sec-head"><span class="sec-num">01</span><h2>Le plan de la maison</h2></div>
+  <p class="sec-sub">Cliquez sur une pièce pour voir son nom, son vocabulaire et une phrase. <em>Click on any room.</em></p>
+  <div class="planbox"><div id="planHost"></div></div>
+  <div class="legend">
+    <span><i style="background:var(--room-jour)"></i>espaces de jour</span>
+    <span><i style="background:var(--room-nuit)"></i>espaces de nuit</span>
+    <span><i style="background:var(--room-eau)"></i>salles d'eau</span>
+    <span><i style="background:var(--room-ext)"></i>extérieur</span>
+  </div>
+  <div id="detail" class="detail empty">Choisissez une pièce sur le plan ↑</div>
+</section>
+
+<!-- ============ 02 VOCABULAIRE ============ -->
+<section id="vocab">
+  <div class="sec-head"><span class="sec-num">02</span><h2>Le vocabulaire de la lecture</h2></div>
+  <p class="sec-sub">49 mots pour comprendre le texte. Cherchez, filtrez et écoutez chaque mot.
+     <em>Search, filter and listen to every word.</em></p>
+
+  <div class="vcontrols">
+    <input id="vq" class="search" type="search" placeholder="Chercher un mot… (fr / en)" aria-label="Chercher un mot">
+    <button class="chip" data-c="all" aria-pressed="true">Tous</button>
+    <button class="chip" data-c="piece" aria-pressed="false">🏠 Les pièces</button>
+    <button class="chip" data-c="objet" aria-pressed="false">🛋️ Les meubles</button>
+    <button class="chip" data-c="mot" aria-pressed="false">📖 Les mots du texte</button>
+    <button class="btn" type="button" id="vPlayAll">▶ Tout écouter</button>
+  </div>
+
+  <div id="wall" class="grid"></div>
+  <p class="note"><b>Attention :</b> on dit <b>une salle de bains</b> (avec un <i>s</i>) et <b>les toilettes</b> — toujours au pluriel. <b>La cuisine</b> = la pièce ; <b>la cuisinière</b> = l'appareil pour cuire.</p>
+</section>
+
+<!-- ============ 02 LECTURE ============ -->
+<section id="lecture">
+  <div class="sec-head"><span class="sec-num">03</span><h2>La lecture</h2></div>
+  <p class="sec-sub">Les mots <span class="gl">soulignés en pointillé</span> sont dans le glossaire : cliquez dessus. <em>Click the dotted words.</em></p>
+
+  <div class="readbar">
+    <button class="btn" type="button" id="hlRooms" aria-pressed="false">🏠 Surligner les pièces</button>
+    <button class="btn" type="button" id="hlNum" aria-pressed="false">🔢 Surligner les chiffres</button>
+    <button class="btn primary" type="button" id="readAll">▶ Écouter tout le texte</button>
+    <button class="btn" type="button" id="stopAll">■ Stop</button>
+  </div>
+
+  <article class="lec" id="lec">
+    <p class="chapo" data-say="Dans quelle maison est-ce que les Français ont envie de vivre ? D'abord, dans une maison à eux. Ils veulent deux choses : être ensemble en famille, mais aussi avoir un espace personnel.">
+      Dans quelle maison est-ce que les Français ont <span class="gl" data-g="envie">envie de</span> vivre&nbsp;?
+      D'abord, dans une maison à eux. Ils veulent deux choses : être ensemble en famille, mais aussi
+      avoir un espace personnel. C'est le résultat d'une <span class="gl" data-g="etude">étude</span>
+      sur le <span class="gl" data-g="logement">logement</span> en France.
+    </p>
+
+    <div class="para" data-say="La cuisine, la pièce numéro un. Pour les Français, la cuisine est la pièce la plus importante. Quatre-vingt-sept pour cent préfèrent une grande cuisine à une grande salle de bains. Dans la cuisine, il y a une table : on prépare le repas et on mange ici.">
+      <span class="pn">1</span>
+      <h4>La cuisine, la pièce n°&nbsp;1</h4>
+      <p>Pour les Français, la <b>cuisine</b> est la <span class="gl" data-g="piece">pièce</span> la plus importante.
+      <b class="num">87&nbsp;%</b> préfèrent une grande cuisine à une grande <b>salle de bains</b>.
+      Dans la cuisine, il y a une table : on prépare le repas et on mange ici.</p>
+    </div>
+
+    <div class="para" data-say="Deux lavabos dans la salle de bains. Cinquante-neuf pour cent des Français préfèrent deux petites salles de bains à une seule grande salle de bains. Et les parents veulent deux lavabos : c'est plus pratique le matin.">
+      <span class="pn">2</span>
+      <h4>Deux lavabos dans la salle de bains</h4>
+      <p><b class="num">59&nbsp;%</b> des Français préfèrent deux petites <b>salles de bains</b> à une seule grande salle de bains.
+      Et les parents veulent deux <span class="gl" data-g="lavabo">lavabos</span> : c'est plus
+      <span class="gl" data-g="pratique">pratique</span> le matin.</p>
+    </div>
+
+    <div class="para" data-say="Dormir loin des enfants. Les couples veulent une chambre loin de la chambre des enfants. C'est la suite parentale : une chambre de neuf à douze mètres carrés, un grand lit, un petit salon avec un fauteuil ou une table basse. Il y a aussi un dressing et une salle de bains.">
+      <span class="pn">3</span>
+      <h4>Dormir loin des enfants</h4>
+      <p>Les couples veulent une <b>chambre</b> <span class="gl" data-g="loin">loin de</span> la chambre des enfants.
+      C'est la <b>suite parentale</b> : une chambre de <b class="num">9 à 12&nbsp;m²</b>, un grand lit,
+      un petit <b>salon</b> avec un <span class="gl" data-g="fauteuil">fauteuil</span> ou une
+      <span class="gl" data-g="tablebasse">table basse</span>. Il y a aussi un
+      <span class="gl" data-g="dressing">dressing</span> et une <b>salle de bains</b>.</p>
+    </div>
+
+    <div class="para" data-say="Les petits chez eux. Les chambres des enfants sont séparées de l'espace des parents. Elles sont plus petites : huit à dix mètres carrés. Mais souvent, il y a une salle de bains pour les enfants.">
+      <span class="pn">4</span>
+      <h4>Les petits chez eux</h4>
+      <p>Les <b>chambres</b> des enfants sont <span class="gl" data-g="separe">séparées</span> de l'espace des parents.
+      Elles sont plus petites : <b class="num">8 à 10&nbsp;m²</b>. Mais souvent, il y a une
+      <b>salle de bains</b> pour les enfants.</p>
+    </div>
+
+    <div class="para" data-say="La salle à manger sans télé. Dans les maisons anciennes, le salon et la salle à manger forment une seule pièce. Aujourd'hui, on préfère deux espaces séparés : on mange d'un côté et on regarde la télé de l'autre côté.">
+      <span class="pn">5</span>
+      <h4>La salle à manger sans télé</h4>
+      <p>Dans les maisons anciennes, le <b>salon</b> et la <b>salle à manger</b> forment une seule pièce.
+      Aujourd'hui, on préfère deux espaces <span class="gl" data-g="separe">séparés</span> :
+      on mange d'un <span class="gl" data-g="cote">côté</span> et on regarde la télé de l'autre côté.</p>
+    </div>
+
+    <div class="para" data-say="Le bureau à la maison. Le bureau, ou un coin bureau, est très demandé. Les parents travaillent souvent à la maison et presque toutes les familles ont un ordinateur. Le bureau est aussi la chambre d'amis.">
+      <span class="pn">6</span>
+      <h4>Le bureau à la maison</h4>
+      <p>Le <b>bureau</b> (ou un <span class="gl" data-g="coin">coin</span> bureau) est très
+      <span class="gl" data-g="demande">demandé</span>. Les parents travaillent souvent à la maison et
+      <span class="gl" data-g="presque">presque</span> toutes les familles ont un ordinateur.
+      Le bureau est aussi la <b>chambre d'amis</b>.</p>
+    </div>
+
+    <div class="para" data-say="Les toilettes. Il faut deux WC : un pour le jour et pour les invités, et un pour la nuit, près des chambres. Un lave-mains dans les toilettes, c'est normal aujourd'hui.">
+      <span class="pn">7</span>
+      <h4>Les toilettes</h4>
+      <p><span class="gl" data-g="ilfaut">Il faut</span> <b class="num">deux</b> <b>WC</b> : un pour le jour et pour les
+      <span class="gl" data-g="invite">invités</span>, et un pour la nuit, près des <b>chambres</b>.
+      Un <span class="gl" data-g="lavemains">lave-mains</span> dans les <b>toilettes</b>, c'est normal aujourd'hui.</p>
+    </div>
+
+    <div class="para" data-say="Le jardin, la pièce en plus. Le jardin est petit. Ce n'est pas vraiment la nature : c'est une pièce en plus. Les enfants jouent dans le jardin, les adultes font la sieste, et on fait du jardinage. Avec le bricolage, c'est la grande passion des Français.">
+      <span class="pn">8</span>
+      <h4>Le jardin, la pièce en plus</h4>
+      <p>Le <b>jardin</b> est petit. Ce n'est pas vraiment la nature : c'est une <span class="gl" data-g="piece">pièce</span> en plus.
+      Les enfants jouent dans le jardin, les adultes font la <span class="gl" data-g="sieste">sieste</span>, et on fait du
+      <span class="gl" data-g="jardinage">jardinage</span>. Avec le <span class="gl" data-g="bricolage">bricolage</span>,
+      c'est la grande passion des Français.</p>
+    </div>
+
+    <div class="glossbox" id="gloss">👆 Cliquez sur un mot en pointillé pour voir sa traduction. <em>Click a dotted word.</em></div>
+  </article>
+  <p class="note"><b>Note culturelle :</b> texte écrit pour la classe à partir d'une enquête sur le logement en France. Les chiffres servent aux exercices de compréhension.</p>
+</section>
+
+<!-- ============ 03 VRAI / FAUX ============ -->
+<section id="vf">
+  <div class="sec-head"><span class="sec-num">04</span><h2>Vrai ou faux&nbsp;? Regardez le plan et répondez</h2></div>
+  <p class="sec-sub">Justifiez vos réponses : la justification apparaît après votre choix. <em>Justify your answer — the explanation appears after you choose.</em></p>
+  <div class="ex" id="exVF">
+    <div class="ex-head">
+      <h3><span class="tag">Ex. 1</span> Le plan de la maison</h3>
+      <div class="ex-meta"><span class="sc" id="scVF">0 / 7</span><button class="btn" type="button" id="rsVF">↻ Recommencer</button></div>
+    </div>
+    <div class="bar"><i id="barVF"></i></div>
+    <div id="vfHost"></div>
+  </div>
+</section>
+
+<!-- ============ 04 EXERCICES ============ -->
+<section id="exos">
+  <div class="sec-head"><span class="sec-num">05</span><h2>Exercices</h2></div>
+  <p class="sec-sub">Deux activités courtes pour vérifier la compréhension. <em>Two short self-correcting activities.</em></p>
+
+  <div class="ex" id="exA">
+    <div class="ex-head">
+      <h3><span class="tag">Ex. 2</span> Où se trouve…&nbsp;? Cliquez sur le plan</h3>
+      <div class="ex-meta"><span class="sc" id="scA">0 / 6</span><button class="btn" type="button" id="rsA">↻ Recommencer</button></div>
+    </div>
+    <p class="ex-sub">Lisez la phrase et cliquez sur la bonne pièce. <em>Click the correct room.</em></p>
+    <div class="bar"><i id="barA"></i></div>
+    <div class="quizq" id="qA">—</div>
+    <div class="planbox" style="padding:10px"><div id="planQuiz"></div></div>
+    <div class="fb" id="fA"></div>
+  </div>
+
+  <div class="ex" id="exB">
+    <div class="ex-head">
+      <h3><span class="tag">Ex. 3</span> Les chiffres du texte</h3>
+      <div class="ex-meta"><span class="sc" id="scB">0 / 5</span><button class="btn" type="button" id="rsB">↻ Recommencer</button></div>
+    </div>
+    <p class="ex-sub">Relisez l'article si nécessaire. <em>Re-read the article if you need to.</em></p>
+    <div id="hostB"></div>
+  </div>
+
+  <div class="bilan">
+    <div class="bilan-list">
+      <div><div class="lbl">Total</div><div class="big" id="bTotal">0 / 18</div></div>
+      <div><div class="lbl">Réussite</div><div class="big" id="bPct">—</div></div>
+    </div>
+    <button class="btn primary" type="button" id="resetAll">↻ Tout recommencer</button>
+  </div>
+</section>
+
+<!-- ============ 05 PRODUCTION ============ -->
+<section id="prod">
+  <div class="sec-head"><span class="sec-num">06</span><h2>À vous&nbsp;: décrivez la maison de vos rêves</h2></div>
+  <p class="sec-sub">Écrivez 6 à 8 phrases. <em>Write 6–8 sentences — the toolbox below gives you everything you need.</em></p>
+
+  <div class="tools">
+    <div class="tools-head">
+      <h3>🧰 Boîte à outils <span style="font-weight:500;color:var(--muted);font-size:.85rem">— les structures pour décrire un logement</span></h3>
+    </div>
+    <div class="tools-grid">
+      <div class="tool">
+        <h4>1 · Dire ce qu'il y a</h4>
+        <span class="en">saying what there is</span>
+        <ul>
+          <li>Dans ma maison, <b>il y a</b> un salon et une cuisine.</li>
+          <li><b>Il y a</b> deux chambres et une salle de bains.</li>
+          <li><b>Il n'y a pas de</b> garage. <span style="color:var(--muted)">(pas de + nom)</span></li>
+        </ul>
+      </div>
+
+      <div class="tool">
+        <h4>2 · Situer les pièces</h4>
+        <span class="en">saying where the rooms are</span>
+        <ul>
+          <li>La cuisine est <b>à côté de</b> la salle à manger.</li>
+          <li>Les toilettes sont <b>près de</b> l'entrée.</li>
+          <li>Ma chambre est <b>loin du</b> salon.</li>
+          <li><b>Au rez-de-chaussée</b> / <b>à l'étage</b>, il y a…</li>
+        </ul>
+      </div>
+
+      <div class="tool">
+        <h4>3 · Dire ce que vous préférez</h4>
+        <span class="en">saying what you prefer</span>
+        <ul>
+          <li><b>Je préfère</b> une grande cuisine <b>à</b> une grande salle de bains.</li>
+          <li><b>J'ai envie d'</b>une maison avec un jardin.</li>
+          <li><b>Pour moi</b>, la cuisine est la pièce la plus importante.</li>
+        </ul>
+      </div>
+
+      <div class="tool">
+        <h4>4 · Décrire les pièces</h4>
+        <span class="en">describing the rooms</span>
+        <ul>
+          <li>une <b>grande</b> cuisine, une <b>petite</b> chambre</li>
+          <li>un salon <b>clair</b>, une chambre <b>séparée</b></li>
+          <li>une chambre <b>de 12 m²</b></li>
+        </ul>
+      </div>
+
+      <div class="tool">
+        <h4>5 · Dire ce qu'on fait dans chaque pièce</h4>
+        <span class="en">saying what happens in each room</span>
+        <ul>
+          <li><b>Dans</b> le salon, <b>on</b> regarde la télé.</li>
+          <li><b>Dans</b> la cuisine, <b>on</b> prépare le repas.</li>
+          <li><b>Dans</b> le jardin, les enfants <b>jouent</b>.</li>
+        </ul>
+      </div>
+
+      <div class="tool">
+        <h4>6 · Relier vos phrases</h4>
+        <span class="en">linking your sentences</span>
+        <ul>
+          <li><b>et</b> — un salon <b>et</b> une cuisine</li>
+          <li><b>mais</b> — c'est petit, <b>mais</b> j'aime beaucoup.</li>
+          <li><b>aussi</b> — il y a <b>aussi</b> une terrasse.</li>
+          <li><b>parce que</b> — j'aime la cuisine <b>parce qu'</b>on mange ici.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="modele">
+      <div class="lbl">
+        <span>Modèle · example answer</span>
+        <button class="btn" type="button" data-say="Dans la maison de mes rêves, il y a six pièces. Au rez-de-chaussée, il y a un grand salon et une cuisine avec une table : j'adore manger dans la cuisine. La salle à manger est à côté du salon, mais les deux pièces sont séparées. Il y a trois chambres : ma chambre est loin des chambres des enfants. Il n'y a pas de garage, mais il y a un petit jardin avec une terrasse. Je préfère une grande cuisine à une grande salle de bains.">🔊 Écouter le modèle</button>
+      </div>
+      Dans la maison de mes rêves, <b>il y a</b> six pièces. <b>Au rez-de-chaussée</b>, <b>il y a</b> un grand salon
+      <b>et</b> une cuisine avec une table : j'adore manger dans la cuisine. La salle à manger est <b>à côté du</b>
+      salon, <b>mais</b> les deux pièces sont séparées. <b>Il y a</b> trois chambres : ma chambre est <b>loin des</b>
+      chambres des enfants. <b>Il n'y a pas de</b> garage, <b>mais</b> il y a <b>aussi</b> un petit jardin avec une
+      terrasse. <b>Je préfère</b> une grande cuisine <b>à</b> une grande salle de bains.
+    </div>
+  </div>
+
+  <div class="card">
+    <textarea id="prodTxt" placeholder="Dans la maison de mes rêves, il y a…"></textarea>
+    <span class="grille-h">Grille de relecture</span>
+    <p class="grille-sub">Cochez chaque point avant d'envoyer votre texte. <em>Check each point before you send your text.</em></p>
+    <div class="checklist" id="checklist"></div>
+    <p class="note">Cette partie n'est pas notée automatiquement : la liste vous aide à vérifier votre texte avant de l'envoyer à votre professeure.</p>
+  </div>
+</section>
+
+<footer>
+  <span>Lecture · <b>Décrire un logement</b> — A1.2, leçon 18</span>
+  <span><a href="https://karla19urios.github.io/french/">← Retour au cours</a></span>
+</footer>
+</div>
+
+<script>
+/* ================= DONNÉES ================= */
+var ROOMS = [
+  {id:'jardin', cls:'ext', x:14,  y:14,  w:892, h:492, nm:'Le jardin', es:'the garden', ico:'🌳',
+   lab:{x:70,y:480}, words:[['le jardin','the garden'],['une terrasse','a terrace'],['des fleurs','flowers'],['le jardinage','gardening']],
+   ph:"Dans le jardin, les enfants jouent et les parents font la sieste."},
+
+  {id:'salon', cls:'jour', x:110, y:50,  w:190, h:175, nm:'Le salon', es:'the living room', ico:'🛋️',
+   words:[['un canapé','a sofa'],['un fauteuil','an armchair'],['une table basse','a coffee table'],['la télé','the TV']],
+   ph:"Dans le salon, il y a un canapé et une table basse."},
+
+  {id:'sam', cls:'jour', x:300, y:50, w:180, h:175, nm:'La salle à manger', es:'the dining room', ico:'🍽️',
+   words:[['une table','a table'],['des chaises','chairs'],['une lampe','a lamp']],
+   ph:"La salle à manger est séparée du salon : ici, on mange sans télé."},
+
+  {id:'cuisine', cls:'jour', x:480, y:50, w:150, h:175, nm:'La cuisine', es:'the kitchen', ico:'🍳',
+   words:[['une cuisinière','a cooker, a stove'],['un frigo','a fridge'],['un évier','a sink'],['une petite table','a small table']],
+   ph:"Dans la cuisine, il y a une table : on peut manger ici."},
+
+  {id:'suite', cls:'nuit', x:630, y:50, w:115, h:175, nm:'La suite parentale', es:'the master bedroom', ico:'🛏️',
+   lines:['La suite','parentale'], words:[['un grand lit','a big bed'],['un dressing','a walk-in closet'],['un fauteuil','an armchair']],
+   ph:"La suite parentale est loin des chambres des enfants."},
+
+  {id:'sdb2', cls:'eau', x:745, y:50, w:65, h:95, nm:'S. de bains', es:"the parents' bathroom", ico:'🛁',
+   lines:['S. de','bains'], words:[['une baignoire','a bathtub'],['deux lavabos','two washbasins'],['une douche','a shower']],
+   ph:"Dans la salle de bains des parents, il y a deux lavabos."},
+
+  {id:'wc2', cls:'eau', x:745, y:145, w:65, h:80, nm:'WC', es:'the toilet (night)', ico:'🚻',
+   lab:{sm:true}, words:[['les toilettes','the toilet'],['un lave-mains','a hand basin']],
+   ph:"Ces toilettes sont près des chambres : c'est le WC de la nuit."},
+
+  {id:'couloir', cls:'jour', x:110, y:225, w:700, h:50, nm:'Le couloir', es:'the hallway', ico:'🚶',
+   lab:{sm:true}, words:[['un couloir','a hallway'],['une porte','a door']],
+   ph:"Le couloir sépare les espaces de jour et les espaces de nuit."},
+
+  {id:'entree', cls:'jour', x:110, y:275, w:115, h:175, nm:"L'entrée", es:'the entrance hall', ico:'🚪',
+   lab:{sm:true}, words:[["une entrée",'an entrance hall'],['une porte','a door'],['un tapis','a rug']],
+   ph:"On arrive dans la maison par l'entrée."},
+
+  {id:'wc1', cls:'eau', x:225, y:275, w:60, h:175, nm:'WC', es:'the toilet (day)', ico:'🚻',
+   lab:{sm:true}, words:[['les toilettes','the toilet'],['un lave-mains','a hand basin']],
+   ph:"Ces toilettes sont pour le jour et pour les invités."},
+
+  {id:'bureau', cls:'nuit', x:285, y:275, w:145, h:175, nm:"Le bureau", es:'the study / guest room', ico:'💻',
+   lab:{sm:true}, words:[['un bureau','a desk'],['un ordinateur','a computer'],['un canapé-lit','a sofa bed']],
+   ph:"Le bureau est aussi la chambre d'amis."},
+
+  {id:'enf1', cls:'nuit', x:430, y:275, w:140, h:175, nm:"Chambre d'enfant ①", es:"a child's bedroom", ico:'🧸',
+   lines:['Chambre',"d'enfant ①"], words:[['un lit','a bed'],['une armoire','a wardrobe'],['des jouets','toys']],
+   ph:"La chambre d'enfant fait 8 à 10 m² : elle est plus petite."},
+
+  {id:'enf2', cls:'nuit', x:570, y:275, w:130, h:175, nm:"Chambre d'enfant ②", es:"a child's bedroom", ico:'🧸',
+   lines:['Chambre',"d'enfant ②"], words:[['un lit','a bed'],['une étagère','a bookshelf'],['une fenêtre','a window']],
+   ph:"Les deux chambres d'enfant sont à côté de la salle de bains."},
+
+  {id:'sdb1', cls:'eau', x:700, y:275, w:110, h:175, nm:'La salle de bains', es:"the children's bathroom", ico:'🛁',
+   lines:['La salle','de bains'], words:[['une baignoire','a bathtub'],['un lavabo','a washbasin'],['une serviette','a towel']],
+   ph:"C'est la salle de bains des enfants."}
+];
+var R = {}; ROOMS.forEach(function(r){ R[r.id]=r; });
+
+var GLOSS = {
+  envie:['avoir envie de','to feel like, to want'],
+  etude:['une étude','a study, a survey'],
+  logement:['un logement','a home, a dwelling'],
+  piece:['une pièce','a room'],
+  lavabo:['un lavabo','a washbasin'],
+  pratique:['pratique','practical, convenient'],
+  loin:['loin de','far from'],
+  fauteuil:['un fauteuil','an armchair'],
+  tablebasse:['une table basse','a coffee table'],
+  dressing:['un dressing','a walk-in closet'],
+  separe:['séparé(e)','separate'],
+  cote:['un côté','a side'],
+  coin:['un coin','a corner'],
+  demande:['demandé(e)','in demand, sought after'],
+  presque:['presque','almost'],
+  ilfaut:['il faut','you need, it takes'],
+  invite:['un invité','a guest'],
+  lavemains:['un lave-mains','a hand basin'],
+  sieste:['la sieste','a nap'],
+  jardinage:['le jardinage','gardening'],
+  bricolage:['le bricolage','DIY, home improvement']
+};
+
+var VF = [
+  {q:"C'est le plan d'un appartement.", a:false,
+   j:"C'est le plan d'une <b>maison</b> : il y a un jardin autour et une terrasse. Un appartement est dans un immeuble."},
+  {q:"C'est un logement pour une famille.", a:true,
+   j:"Il y a une suite parentale, <b>deux chambres d'enfant</b> et une chambre d'amis : c'est une maison de famille."},
+  {q:"Il y a deux chambres.", a:false,
+   j:"Il y a <b>quatre chambres</b> : la suite parentale, deux chambres d'enfant et le bureau (chambre d'amis)."},
+  {q:"Il y a une seule salle de bains.", a:false,
+   j:"Il y a <b>deux salles de bains</b> : une dans la suite parentale et une pour les enfants."},
+  {q:"Il y a deux toilettes.", a:true,
+   j:"Oui : un <b>WC</b> près de l'entrée (le jour, pour les invités) et un <b>WC</b> près des chambres (la nuit)."},
+  {q:"On ne peut pas manger dans la cuisine.", a:false,
+   j:"Dans la cuisine, il y a <b>une table</b> : on peut manger ici. C'est la pièce n°1 pour les Français."},
+  {q:"Le salon et la salle à manger sont des espaces séparés.", a:true,
+   j:"Oui : un <b>mur</b> sépare les deux pièces. On mange d'un côté et on regarde la télé de l'autre côté."}
+];
+
+var QA = [
+  {t:"On prépare le repas ici, et il y a une table pour manger.", r:'cuisine'},
+  {t:"Les parents dorment ici, loin des enfants.", r:'suite'},
+  {t:"On regarde la télé ici, sur le canapé.", r:'salon'},
+  {t:"Les enfants jouent ici, dehors.", r:'jardin'},
+  {t:"On mange ici, sans télé.", r:'sam'},
+  {t:"Papa travaille ici avec son ordinateur ; c'est aussi la chambre d'amis.", r:'bureau'},
+  {t:"On arrive dans la maison par cette pièce.", r:'entree'},
+  {t:"Cette pièce sépare les espaces de jour et les espaces de nuit.", r:'couloir'},
+  {t:"Les enfants prennent leur bain ici.", r:'sdb1'},
+  {t:"Un enfant dort ici, avec ses jouets.", r:'enf1'}
+];
+
+var QB = [
+  {q:"Quel pourcentage de Français préfère une grande cuisine à une grande salle de bains ?",
+   o:['59 %','87 %','15 %','12 %'], a:'87 %', e:"« 87 % préfèrent une grande cuisine… » (§1)"},
+  {q:"Quel pourcentage préfère deux petites salles de bains ?",
+   o:['87 %','9 %','59 %','10 %'], a:'59 %', e:"« 59 % des Français préfèrent deux petites salles de bains… » (§2)"},
+  {q:"Quelle est la taille de la chambre des parents ?",
+   o:['8 à 10 m²','9 à 12 m²','12 à 15 m²','5 à 8 m²'], a:'9 à 12 m²', e:"La suite parentale fait 9 à 12 m² (§3)."},
+  {q:"Quelle est la taille des chambres d'enfant ?",
+   o:['9 à 12 m²','8 à 10 m²','15 à 20 m²','6 à 8 m²'], a:'8 à 10 m²', e:"« Elles sont plus petites : 8 à 10 m² » (§4)."},
+  {q:"Combien de WC faut-il dans la maison ?",
+   o:['un','deux','trois','quatre'], a:'deux', e:"« Il faut deux WC : un pour le jour… et un pour la nuit » (§7)."}
+];
+
+var CHECK = [
+  "J'utilise <b>il y a</b> au moins trois fois.",
+  "Je cite au moins <b>six pièces</b> différentes.",
+  "J'utilise <b>un / une / des</b> correctement devant chaque pièce.",
+  "J'écris une phrase avec <b>je préfère… à…</b>.",
+  "J'utilise une préposition : <b>dans, à côté de, près de, loin de</b>.",
+  "Je parle aussi de l'extérieur (<b>le jardin</b>, <b>la terrasse</b>).",
+  "Je relis mes accents : <b>é</b>, <b>è</b>, <b>à</b>."
+];
+
+/* ================= OUTILS ================= */
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function norm(s){return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+  .replace(/[\u2019']/g,"'").replace(/[.,!?;:]/g,'').replace(/\s+/g,' ').trim();}
+
+var frVoice=null;
+function pickVoice(){
+  if(!('speechSynthesis' in window))return;
+  var vs=window.speechSynthesis.getVoices()||[];
+  frVoice=vs.filter(function(v){return v.lang==='fr-FR';})[0]
+        ||vs.filter(function(v){return (v.lang||'').indexOf('fr')===0;})[0]
+        ||vs.filter(function(v){return /fran|french/i.test(v.name||'');})[0]||null;
+}
+if('speechSynthesis' in window){pickVoice();window.speechSynthesis.onvoiceschanged=pickVoice;}
+function speak(t,btn){
+  if(!('speechSynthesis' in window))return;
+  window.speechSynthesis.cancel();
+  var u=new SpeechSynthesisUtterance(t);u.lang='fr-FR';u.rate=.92;
+  if(frVoice)u.voice=frVoice;
+  if(btn){btn.classList.add('on');u.onend=u.onerror=function(){btn.classList.remove('on');};}
+  window.speechSynthesis.speak(u);
+}
+function speakSeq(list,i){
+  if(!('speechSynthesis' in window))return;
+  i=i||0; if(i===0)window.speechSynthesis.cancel();
+  if(i>=list.length)return;
+  var u=new SpeechSynthesisUtterance(list[i]);u.lang='fr-FR';u.rate=.92;
+  if(frVoice)u.voice=frVoice;
+  u.onend=function(){speakSeq(list,i+1);};
+  window.speechSynthesis.speak(u);
+}
+
+/* ================= PLAN SVG ================= */
+var FURNITURE = ''
+ /* terrasse */
+ + '<rect class="furnf" x="30" y="120" width="66" height="260" rx="6"/>'
+ /* arbres */
+ + '<circle class="tree" cx="60" cy="60" r="22"/><circle class="tree" cx="860" cy="70" r="24"/>'
+ + '<circle class="tree" cx="855" cy="440" r="20"/><circle class="tree" cx="60" cy="420" r="18"/>'
+ /* salon : canapé + table basse */
+ + '<rect class="furn" x="128" y="80" width="70" height="30" rx="6"/>'
+ + '<rect class="furn" x="150" y="130" width="46" height="26" rx="4"/>'
+ + '<rect class="furn" x="245" y="85" width="18" height="52" rx="4"/>'
+ /* salle à manger : grande table + chaises */
+ + '<rect class="furn" x="345" y="100" width="90" height="52" rx="8"/>'
+ + '<rect class="furn" x="352" y="80" width="18" height="14" rx="3"/><rect class="furn" x="382" y="80" width="18" height="14" rx="3"/>'
+ + '<rect class="furn" x="352" y="158" width="18" height="14" rx="3"/><rect class="furn" x="382" y="158" width="18" height="14" rx="3"/>'
+ /* cuisine : plan de travail + petite table (on mange ici) */
+ + '<rect class="furn" x="490" y="62" width="130" height="20" rx="4"/>'
+ + '<rect class="furn" x="500" y="130" width="52" height="34" rx="6"/>'
+ + '<rect class="furn" x="562" y="136" width="16" height="22" rx="3"/>'
+ /* suite parentale : grand lit */
+ + '<rect class="furn" x="648" y="70" width="80" height="62" rx="6"/>'
+ + '<rect class="furn" x="648" y="70" width="80" height="16" rx="4"/>'
+ + '<rect class="furn" x="648" y="146" width="80" height="16" rx="4"/>'
+ /* sdb parents : baignoire + 2 lavabos */
+ + '<rect class="furn" x="756" y="62" width="44" height="26" rx="8"/>'
+ + '<circle class="furn" cx="768" cy="96" r="7"/><circle class="furn" cx="792" cy="96" r="7"/>'
+ /* wc2 */
+ + '<rect class="furn" x="766" y="158" width="22" height="26" rx="8"/>'
+ /* entrée : tapis */
+ + '<rect class="furn" x="130" y="376" width="70" height="26" rx="4"/>'
+ /* wc1 */
+ + '<rect class="furn" x="243" y="330" width="22" height="28" rx="8"/>'
+ /* bureau : table + chaise */
+ + '<rect class="furn" x="300" y="300" width="70" height="26" rx="4"/>'
+ + '<rect class="furn" x="322" y="334" width="24" height="18" rx="4"/>'
+ + '<rect class="furn" x="300" y="374" width="80" height="30" rx="6"/>'
+ /* chambres enfants : lits */
+ + '<rect class="furn" x="446" y="300" width="52" height="72" rx="6"/>'
+ + '<rect class="furn" x="446" y="300" width="52" height="14" rx="4"/>'
+ + '<rect class="furn" x="586" y="300" width="52" height="72" rx="6"/>'
+ + '<rect class="furn" x="586" y="300" width="52" height="14" rx="4"/>'
+ /* sdb enfants : baignoire + lavabo */
+ + '<rect class="furn" x="716" y="300" width="78" height="34" rx="10"/>'
+ + '<circle class="furn" cx="755" cy="370" r="11"/>';
+
+/* portes (ouvertures blanches sur les murs) */
+var DOORS = ''
+ + '<g stroke="var(--card)" stroke-width="6" stroke-linecap="round">'
+ + '<line x1="150" y1="450" x2="190" y2="450"/>'      /* porte d entree */
+ + '<line x1="160" y1="275" x2="196" y2="275"/>'      /* entree -> couloir */
+ + '<line x1="243" y1="275" x2="270" y2="275"/>'      /* wc1 */
+ + '<line x1="330" y1="275" x2="372" y2="275"/>'      /* bureau */
+ + '<line x1="472" y1="275" x2="516" y2="275"/>'      /* enf1 */
+ + '<line x1="606" y1="275" x2="650" y2="275"/>'      /* enf2 */
+ + '<line x1="726" y1="275" x2="768" y2="275"/>'      /* sdb1 */
+ + '<line x1="188" y1="225" x2="234" y2="225"/>'      /* salon -> couloir */
+ + '<line x1="368" y1="225" x2="412" y2="225"/>'      /* sam -> couloir */
+ + '<line x1="524" y1="225" x2="566" y2="225"/>'      /* cuisine -> couloir */
+ + '<line x1="662" y1="225" x2="704" y2="225"/>'      /* suite -> couloir */
+ + '<line x1="745" y1="76" x2="745" y2="112"/>'       /* suite -> sdb parents */
+ + '<line x1="745" y1="168" x2="745" y2="196"/>'      /* suite -> wc2 */
+ + '<line x1="480" y1="96" x2="480" y2="140"/>'       /* sam -> cuisine */
+ + '</g>';
+
+function planSVG(host, mode){
+  var s = '<svg viewBox="0 0 920 520" role="img" aria-label="Plan de la maison">';
+  s += '<defs></defs>';
+  ROOMS.forEach(function(r){
+    var lab = r.lab||{};
+    var cx = r.x + r.w/2, cy = r.y + r.h/2;
+    if(r.id==='jardin'){ cx=70; cy=488; }
+    s += '<g class="rm '+r.cls+'" data-room="'+r.id+'" tabindex="0" role="button" aria-label="'+esc(r.nm)+'">';
+    s += '<rect class="rmfill" x="'+r.x+'" y="'+r.y+'" width="'+r.w+'" height="'+r.h+'" rx="'+(r.id==='jardin'?14:3)+'"/>';
+    s += '</g>';
+    r._cx=cx; r._cy=cy;
+  });
+  s += FURNITURE;
+  s += '<rect class="shell" x="110" y="50" width="700" height="400" rx="4"/>';
+  /* mur épais salon | salle à manger */
+  s += '<line x1="300" y1="50" x2="300" y2="225" stroke="var(--wall)" stroke-width="7"/>';
+  s += DOORS;
+  /* labels par-dessus, ancres en bas de chaque piece, sur une plaque opaque */
+  ROOMS.forEach(function(r){
+    var lines = r.lines || [r.nm];
+    var small = (r.lab&&r.lab.sm) || r.w<150 || lines.length>1;
+    var fs = small ? 11.5 : 14;
+    var cx = (r.id==='jardin') ? 92 : r.x + r.w/2;
+    var baseY = (r.id==='jardin') ? 494 : r.y + r.h - 11;
+    var y1 = baseY - (lines.length-1)*14;
+    var iconY = y1 - 15;
+    var wMax = 0;
+    lines.forEach(function(t){ wMax = Math.max(wMax, t.length*fs*0.56); });
+    var plateW = Math.max(wMax, 26) + 14;
+    var plateY = iconY - 17;
+    var plateH = (baseY + 5) - plateY;
+    s += '<rect class="plate" x="'+(cx-plateW/2)+'" y="'+plateY+'" width="'+plateW+'" height="'+plateH+'" rx="7"/>';
+    s += '<text class="rmico" x="'+cx+'" y="'+iconY+'">'+r.ico+'</text>';
+    lines.forEach(function(t,k){
+      s += '<text class="rmlab'+(small?' sm':'')+'" x="'+cx+'" y="'+(y1+k*14)+'">'+esc(t)+'</text>';
+    });
+  });
+  s += '</svg>';
+  host.innerHTML = s;
+  return host.querySelector('svg');
+}
+
+/* ---- plan explorable ---- */
+var detailEl = document.getElementById('detail');
+var svgMain = planSVG(document.getElementById('planHost'),'explore');
+
+function openRoom(id){
+  var r=R[id]; if(!r) return;
+  svgMain.querySelectorAll('.rm').forEach(function(g){
+    g.classList.toggle('sel', g.getAttribute('data-room')===id);
+  });
+  detailEl.className='detail';
+  detailEl.innerHTML =
+    '<h3>'+r.ico+' '+esc(r.nm)+' <span class="es">— '+esc(r.es)+'</span></h3>'
+    + '<div class="phrase">🗣️ '+esc(r.ph)
+      + '<button class="btn" type="button" style="margin-left:auto" data-say="'+esc(r.ph)+'">🔊 Écouter</button></div>'
+    + '<div class="chips">'+r.words.map(function(w){
+        return '<span class="vchip" data-say="'+esc(w[0])+'" style="cursor:pointer">🔊 '+esc(w[0])+' <small>· '+esc(w[1])+'</small></span>';
+      }).join('')+'</div>';
+}
+svgMain.addEventListener('click',function(e){
+  var g=e.target.closest('.rm'); if(g) openRoom(g.getAttribute('data-room'));
+});
+svgMain.addEventListener('keydown',function(e){
+  if(e.key!=='Enter'&&e.key!==' ')return;
+  var g=e.target.closest('.rm'); if(g){e.preventDefault();openRoom(g.getAttribute('data-room'));}
+});
+document.addEventListener('click',function(e){
+  var b=e.target.closest('.btn[data-say], .vchip[data-say]');
+  if(b) speak(b.getAttribute('data-say'), b);
+});
+
+/* ================= VOCABULAIRE ================= */
+var VOC = [
+ /* --- les pièces --- */
+ {c:'piece', fr:'une maison',          ph:'mè-zon',        g:'f', es:'a house'},
+ {c:'piece', fr:'un logement',         ph:'loj-man',       g:'m', es:'a home, a dwelling'},
+ {c:'piece', fr:'une pièce',           ph:'piès',          g:'f', es:'a room'},
+ {c:'piece', fr:'une entrée',          ph:'an-tré',        g:'f', es:'an entrance, a hallway'},
+ {c:'piece', fr:'un couloir',          ph:'ku-luar',       g:'m', es:'a corridor, a hallway'},
+ {c:'piece', fr:'un salon',            ph:'sa-lon',        g:'m', es:'a living room'},
+ {c:'piece', fr:'une salle à manger',  ph:'sal a man-jé',  g:'f', es:'a dining room'},
+ {c:'piece', fr:'une cuisine',         ph:'kui-zin',       g:'f', es:'a kitchen'},
+ {c:'piece', fr:'une chambre',         ph:'shanbr',        g:'f', es:'a bedroom'},
+ {c:'piece', fr:'une suite parentale', ph:'suit pa-ran-tal',g:'f',es:'a master bedroom'},
+ {c:'piece', fr:"une chambre d'amis",  ph:'shanbr da-mi',  g:'f', es:'a guest room'},
+ {c:'piece', fr:'un bureau',           ph:'bü-ro',         g:'m', es:'a study ; a desk'},
+ {c:'piece', fr:'une salle de bains',  ph:'sal de ban',    g:'f', es:'a bathroom'},
+ {c:'piece', fr:'les toilettes',       ph:'tua-lèt',       g:'p', es:'the toilet, the restroom'},
+ {c:'piece', fr:'un WC',               ph:'vé-sé', g:'m', es:'a WC, a toilet'},
+ {c:'piece', fr:'un jardin',           ph:'jar-dan',       g:'m', es:'a garden, a yard'},
+ {c:'piece', fr:'une terrasse',        ph:'tè-ras',        g:'f', es:'a terrace, a patio'},
+
+ /* --- les meubles et les objets --- */
+ {c:'objet', fr:'un canapé',           ph:'ka-na-pé',      g:'m', es:'a sofa, a couch'},
+ {c:'objet', fr:'un fauteuil',         ph:'fo-tëy',        g:'m', es:'an armchair'},
+ {c:'objet', fr:'une table basse',     ph:'tabl bas',      g:'f', es:'a coffee table'},
+ {c:'objet', fr:'une table',           ph:'tabl',          g:'f', es:'a table'},
+ {c:'objet', fr:'une chaise',          ph:'shèz',          g:'f', es:'a chair'},
+ {c:'objet', fr:'un lit',              ph:'li',            g:'m', es:'a bed'},
+ {c:'objet', fr:'une armoire',         ph:'ar-muar',       g:'f', es:'a wardrobe, a closet'},
+ {c:'objet', fr:'un dressing',         ph:'drè-sing',      g:'m', es:'a walk-in closet'},
+ {c:'objet', fr:'une étagère',         ph:'é-ta-jèr',      g:'f', es:'a shelf, a bookcase'},
+ {c:'objet', fr:'une baignoire',       ph:'bè-ñuar',       g:'f', es:'a bathtub'},
+ {c:'objet', fr:'un lavabo',           ph:'la-va-bo',      g:'m', es:'a washbasin, a sink'},
+ {c:'objet', fr:'un lave-mains',       ph:'lav-man',       g:'m', es:'a small hand basin'},
+ {c:'objet', fr:'une douche',          ph:'dush',          g:'f', es:'a shower'},
+ {c:'objet', fr:'un frigo',            ph:'fri-go',        g:'m', es:'a fridge'},
+ {c:'objet', fr:'une cuisinière',      ph:'kui-zi-nièr',   g:'f', es:'a cooker, a stove'},
+ {c:'objet', fr:'un ordinateur',       ph:'or-di-na-tër',  g:'m', es:'a computer'},
+ {c:'objet', fr:'la télé',             ph:'té-lé',         g:'f', es:'the TV'},
+
+ /* --- les mots du texte --- */
+ {c:'mot', fr:'avoir envie de',        ph:'a-vuar an-vi de', g:'x', es:'to feel like, to want'},
+ {c:'mot', fr:'préférer',              ph:'pré-fé-ré',     g:'x', es:'to prefer'},
+ {c:'mot', fr:'il faut',               ph:'il fo',         g:'x', es:'you need, it takes'},
+ {c:'mot', fr:'loin de',               ph:'luan de',       g:'x', es:'far from'},
+ {c:'mot', fr:'près de',               ph:'prè de',        g:'x', es:'near, close to'},
+ {c:'mot', fr:'séparé(e)',             ph:'sé-pa-ré',      g:'x', es:'separate, separated'},
+ {c:'mot', fr:'pratique',              ph:'pra-tik',       g:'x', es:'practical, convenient'},
+ {c:'mot', fr:'presque',               ph:'prèsk',         g:'x', es:'almost'},
+ {c:'mot', fr:'un côté',               ph:'ko-té',         g:'m', es:'a side'},
+ {c:'mot', fr:'un coin',               ph:'kuan',          g:'m', es:'a corner, a nook'},
+ {c:'mot', fr:'un invité',             ph:'an-vi-té',      g:'m', es:'a guest'},
+ {c:'mot', fr:'une étude',             ph:'é-tüd',         g:'f', es:'a study, a survey'},
+ {c:'mot', fr:'la sieste',             ph:'sièst',         g:'f', es:'a nap'},
+ {c:'mot', fr:'le jardinage',          ph:'jar-di-naj',    g:'m', es:'gardening'},
+ {c:'mot', fr:'le bricolage',          ph:'bri-ko-laj',    g:'m', es:'DIY, home improvement'}
+];
+function gLabel(g){return g==='m'?'m.':(g==='f'?'f.':(g==='p'?'pl.':''));}
+function sayable(t){return t.replace(/\s*\(.*?\)\s*/g,' ').replace(/\s*\/.*$/,'').trim();}
+function wordCard(w){
+  return '<div class="word">'
+    +'<button class="listen" type="button" data-say="'+esc(sayable(w.fr))+'" aria-label="Écouter '+esc(w.fr)+'">🔊</button>'
+    +'<span class="fr">'+esc(w.fr)+'</span>'
+    +'<span class="ph">['+esc(w.ph)+']'+(w.g!=='x'?'<span class="g '+w.g+'">'+gLabel(w.g)+'</span>':'')+'</span>'
+    +'<span class="es">'+esc(w.es)+'</span></div>';
+}
+var wallEl=document.getElementById('wall'), vqEl=document.getElementById('vq'), vFilter='all';
+function renderWall(){
+  var q=vqEl.value.trim().toLowerCase();
+  var list=VOC.filter(function(w){
+    if(vFilter!=='all'&&w.c!==vFilter)return false;
+    if(!q)return true;
+    return (w.fr+' '+w.es+' '+w.ph).toLowerCase().indexOf(q)!==-1;
+  });
+  wallEl.innerHTML=list.length?list.map(wordCard).join('')
+    :'<p class="empty-msg">Aucun mot trouvé. / No matching word.</p>';
+}
+vqEl.addEventListener('input',renderWall);
+document.querySelectorAll('.chip').forEach(function(c){
+  c.addEventListener('click',function(){
+    vFilter=c.getAttribute('data-c');
+    document.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed',x===c?'true':'false');});
+    renderWall();
+  });
+});
+document.getElementById('vPlayAll').addEventListener('click',function(){
+  var arr=[];wallEl.querySelectorAll('.listen').forEach(function(b){arr.push(b.getAttribute('data-say'));});
+  speakSeq(arr);
+});
+document.addEventListener('click',function(e){
+  var b=e.target.closest('.listen'); if(b) speak(b.getAttribute('data-say'),b);
+});
+renderWall();
+
+/* ================= LECTURE ================= */
+var glossEl=document.getElementById('gloss');
+document.getElementById('lec').addEventListener('click',function(e){
+  var g=e.target.closest('.gl'); if(!g)return;
+  var k=g.getAttribute('data-g'), d=GLOSS[k]; if(!d)return;
+  glossEl.innerHTML='<span class="w">'+esc(d[0])+'</span> <span class="d">— '+esc(d[1])+'</span>';
+  speak(d[0]);
+});
+/* boutons écoute par paragraphe */
+document.querySelectorAll('#lec [data-say]').forEach(function(p){
+  if(p.classList.contains('gl'))return;
+  var h=p.querySelector('h4')||p;
+  var b=document.createElement('button');
+  b.className='say'; b.type='button'; b.textContent='🔊';
+  b.setAttribute('aria-label','Écouter ce paragraphe');
+  b.addEventListener('click',function(ev){ev.stopPropagation();speak(p.getAttribute('data-say'),b);});
+  h.appendChild(b);
+});
+document.getElementById('readAll').addEventListener('click',function(){
+  var arr=[];
+  document.querySelectorAll('#lec [data-say]').forEach(function(p){
+    if(!p.classList.contains('gl')) arr.push(p.getAttribute('data-say'));
+  });
+  speakSeq(arr);
+});
+document.getElementById('stopAll').addEventListener('click',function(){
+  if('speechSynthesis' in window) window.speechSynthesis.cancel();
+});
+function toggleHl(btn,sel){
+  var on = btn.getAttribute('aria-pressed')!=='true';
+  btn.setAttribute('aria-pressed', on?'true':'false');
+  document.querySelectorAll('#lec '+sel).forEach(function(el){
+    if(on){ el.classList.add('hlon'); el.innerHTML='<mark class="hl">'+el.innerHTML+'</mark>'; }
+    else { var m=el.querySelector('mark.hl'); if(m) el.innerHTML=m.innerHTML; el.classList.remove('hlon'); }
+  });
+}
+document.getElementById('hlRooms').addEventListener('click',function(){toggleHl(this,'p > b:not(.num), .chapo b');});
+document.getElementById('hlNum').addEventListener('click',function(){toggleHl(this,'b.num');});
+
+/* ================= SCORE GLOBAL ================= */
+var S={vf:{ok:0,n:0,max:7},A:{ok:0,n:0,max:6},B:{ok:0,n:0,max:5}};
+function updateBilan(){
+  var ok=0,max=0;
+  for(var k in S){ ok+=S[k].ok; max+=S[k].max; }
+  document.getElementById('bTotal').textContent=ok+' / '+max;
+  var done=0; for(var j in S) done+=S[j].n;
+  document.getElementById('bPct').textContent= done? Math.round(ok/done*100)+' %' : '—';
+}
+
+/* ================= EX 1 · VRAI/FAUX ================= */
+function startVF(){
+  S.vf={ok:0,n:0,max:7};
+  document.getElementById('vfHost').innerHTML = VF.map(function(v,i){
+    return '<div class="vf" data-i="'+i+'">'
+      + '<div class="q"><b>'+(i+1)+'.</b><span>'+esc(v.q)+'</span></div>'
+      + '<div class="btns"><button class="opt" type="button" data-v="1">Vrai</button>'
+      + '<button class="opt" type="button" data-v="0">Faux</button></div>'
+      + '<div class="just"></div></div>';
+  }).join('');
+  document.getElementById('scVF').textContent='0 / 7';
+  document.getElementById('barVF').style.width='0%';
+  updateBilan();
+}
+document.getElementById('vfHost').addEventListener('click',function(e){
+  var b=e.target.closest('.opt'); if(!b||b.disabled)return;
+  var box=b.closest('.vf'), i=+box.getAttribute('data-i'), v=VF[i];
+  var picked = b.getAttribute('data-v')==='1', good = picked===v.a;
+  box.querySelectorAll('.opt').forEach(function(x){
+    x.disabled=true;
+    if((x.getAttribute('data-v')==='1')===v.a) x.classList.add('good');
+  });
+  if(!good) b.classList.add('bad');
+  var j=box.querySelector('.just');
+  j.className='just show '+(good?'good':'bad');
+  j.innerHTML=(good?'✅ Correct — ':'❌ Non, c\'est <b>'+(v.a?'vrai':'faux')+'</b> — ')
+    +'<span>'+v.j+'</span>';
+  S.vf.n++; if(good)S.vf.ok++;
+  document.getElementById('scVF').textContent=S.vf.ok+' / 7';
+  document.getElementById('barVF').style.width=Math.round(S.vf.n/7*100)+'%';
+  updateBilan();
+});
+document.getElementById('rsVF').addEventListener('click',startVF);
+
+/* ================= EX 2 · CLIC SUR LE PLAN ================= */
+var svgQuiz=planSVG(document.getElementById('planQuiz'),'quiz');
+var qa={list:[],i:0,lock:false};
+function startA(){
+  S.A={ok:0,n:0,max:6};
+  qa={list:shuffle(QA).slice(0,6),i:0,lock:false};
+  svgQuiz.querySelectorAll('.rm').forEach(function(g){g.classList.remove('good','bad','sel');});
+  document.getElementById('fA').textContent='';
+  document.getElementById('scA').textContent='0 / 6';
+  nextA(); updateBilan();
+}
+function nextA(){
+  var el=document.getElementById('qA');
+  if(qa.i>=qa.list.length){
+    el.innerHTML='🎉 Terminé — '+S.A.ok+' / 6 bonnes réponses.';
+    document.getElementById('barA').style.width='100%';
+    return;
+  }
+  el.innerHTML='<span>Question '+(qa.i+1)+'/6 :</span><span style="font-weight:600">'+esc(qa.list[qa.i].t)+'</span>';
+  document.getElementById('barA').style.width=Math.round(qa.i/6*100)+'%';
+}
+svgQuiz.addEventListener('click',function(e){
+  var g=e.target.closest('.rm'); if(!g||qa.lock||qa.i>=qa.list.length)return;
+  var id=g.getAttribute('data-room'), cur=qa.list[qa.i], good=id===cur.r;
+  qa.lock=true;
+  svgQuiz.querySelectorAll('.rm').forEach(function(x){x.classList.remove('good','bad');});
+  svgQuiz.querySelector('[data-room="'+cur.r+'"]').classList.add('good');
+  if(!good) g.classList.add('bad');
+  var fb=document.getElementById('fA');
+  fb.className='fb '+(good?'good':'bad');
+  fb.innerHTML=(good?'✅ Oui : ':'❌ Non — la bonne réponse est : ')+'<b>'+esc(R[cur.r].nm)+'</b>'
+    +'<small>'+esc(R[cur.r].ph)+'</small>';
+  speak(R[cur.r].nm);
+  S.A.n++; if(good)S.A.ok++;
+  document.getElementById('scA').textContent=S.A.ok+' / 6';
+  updateBilan();
+  qa.i++;
+  setTimeout(function(){
+    qa.lock=false;
+    svgQuiz.querySelectorAll('.rm').forEach(function(x){x.classList.remove('good','bad');});
+    nextA();
+  },2100);
+});
+document.getElementById('rsA').addEventListener('click',startA);
+
+/* ================= EX 3 & 4 · QCM ================= */
+function renderQCM(hostId,data,key,scId,withExpl){
+  var host=document.getElementById(hostId);
+  S[key]={ok:0,n:0,max:data.length};
+  host.innerHTML=data.map(function(d,i){
+    return '<div class="qcm" data-i="'+i+'"><div class="q">'+(i+1)+'. '+esc(d.q)+'</div>'
+      +'<div class="opts">'+shuffle(d.o).map(function(o){
+        return '<button class="opt" type="button" data-v="'+esc(o)+'">'+esc(o)+'</button>';
+      }).join('')+'</div><div class="fb"></div></div>';
+  }).join('');
+  document.getElementById(scId).textContent='0 / '+data.length;
+  host.onclick=function(e){
+    var b=e.target.closest('.opt'); if(!b||b.disabled)return;
+    var box=b.closest('.qcm'), i=+box.getAttribute('data-i'), d=data[i];
+    var good=b.getAttribute('data-v')===d.a;
+    box.querySelectorAll('.opt').forEach(function(x){
+      x.disabled=true;
+      if(x.getAttribute('data-v')===d.a) x.classList.add('good');
+    });
+    if(!good) b.classList.add('bad');
+    var fb=box.querySelector('.fb');
+    fb.className='fb '+(good?'good':'bad');
+    fb.innerHTML=(good?'✅ Correct.':'❌ La bonne réponse : <b>'+esc(d.a)+'</b>')
+      +(withExpl&&d.e?'<small>'+esc(d.e)+'</small>':'');
+    S[key].n++; if(good)S[key].ok++;
+    document.getElementById(scId).textContent=S[key].ok+' / '+data.length;
+    updateBilan();
+  };
+  updateBilan();
+}
+function startB(){renderQCM('hostB',QB,'B','scB',true);}
+document.getElementById('rsB').addEventListener('click',startB);
+
+/* ================= CHECKLIST ================= */
+document.getElementById('checklist').innerHTML=CHECK.map(function(c,i){
+  return '<label><input type="checkbox"><span>'+c+'</span></label>';
+}).join('');
+
+/* ================= INIT ================= */
+document.getElementById('resetAll').addEventListener('click',function(){
+  startVF();startA();startB();
+  document.getElementById('vf').scrollIntoView({block:'start'});
+});
+startVF();startA();startB();
+</script>
+
+</body></html>
