@@ -1,0 +1,618 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>Lecture : L'itinéraire à Pontoise</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+  :root{
+    --bg:#f4f5f7;
+    --paper:#ffffff;
+    --paper-2:#f4f5f7;
+    --ink:#1a1a2e;
+    --ink-soft:#6b7280;
+    --line:#e5e7eb;
+    --bleu:#002395;
+    --rouge:#ED2939;
+    --accent:#002395;
+    --accent-ink:#002395;
+    --green:#3f8f6d;
+    --green-bg:#e7f3ed;
+    --red:#ED2939;
+    --red-bg:#fdecec;
+    --shadow: 0 1px 2px rgba(26,26,46,.06), 0 8px 24px -12px rgba(26,26,46,.18);
+    --map-bg:#fbf7ef;
+    --map-block:#f2ead9;
+    --map-street:#ffffff;
+    --map-line:#ddd0b6;
+    --map-water:#b9d6ef;
+    --map-label:#8a7a5c;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#12141c;
+      --paper:#1b1e2b;
+      --paper-2:#20232f;
+      --ink:#f1f2f6;
+      --ink-soft:#9aa0b4;
+      --line:#2a2e40;
+      --bleu:#002395;
+      --rouge:#ED2939;
+      --accent:#5b7fe0;
+      --accent-ink:#7c9df2;
+      --green:#63c299;
+      --green-bg:#173226;
+      --red:#ED2939;
+      --red-bg:#3a1418;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.6);
+      --map-bg:#171b27;
+      --map-block:#1f2433;
+      --map-street:#2f3750;
+      --map-line:#3b4460;
+      --map-water:#1d3550;
+      --map-label:#8f97ae;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#12141c;
+    --paper:#1b1e2b;
+    --paper-2:#20232f;
+    --ink:#f1f2f6;
+    --ink-soft:#9aa0b4;
+    --line:#2a2e40;
+    --bleu:#002395;
+    --rouge:#ED2939;
+    --accent:#5b7fe0;
+    --accent-ink:#7c9df2;
+    --green:#63c299;
+    --green-bg:#173226;
+    --red:#ED2939;
+    --red-bg:#3a1418;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.6);
+    --map-bg:#171b27;
+    --map-block:#1f2433;
+    --map-street:#2f3750;
+    --map-line:#3b4460;
+    --map-water:#1d3550;
+    --map-label:#8f97ae;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'Work Sans', ui-sans-serif, system-ui, sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:0 20px 90px;}
+  h1,h2,h3{font-family:'Fraunces', Georgia, serif; text-wrap:balance; margin:0; color:var(--ink);}
+  .eyebrow{font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-ink); font-weight:600;}
+  code, .mono{font-family:'IBM Plex Mono', monospace;}
+
+  .stripe{height:8px; background:linear-gradient(90deg, var(--bleu) 33%, #ffffff 33%, #ffffff 66%, var(--rouge) 66%);}
+
+  .hero{
+    background: linear-gradient(180deg, var(--bleu) 0%, #000f42 100%);
+    color:#f3f5ff; padding:40px 20px 40px;
+  }
+  .hero-inner{max-width:900px; margin:0 auto;}
+  .hero h1{font-size:clamp(30px,4.4vw,44px); font-weight:600; color:#ffffff; letter-spacing:-.01em;}
+  .hero-meta{display:flex; gap:22px; margin-top:22px; flex-wrap:wrap;}
+  .hero-meta div{font-family:'IBM Plex Mono',monospace; font-size:12px; color:#a9b6e8;}
+  .hero-meta b{display:block; color:#f3f5ff; font-size:14px; font-family:'Work Sans',sans-serif; font-weight:600; margin-top:2px;}
+
+  section{margin-top:46px;}
+  .wrap > section:first-of-type{margin-top:36px;}
+  .sec-head{display:flex; align-items:baseline; gap:12px; margin-bottom:16px;}
+  .sec-num{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent-ink); font-weight:600;}
+  section h2{font-size:25px; font-weight:600;}
+  .sec-intro{color:var(--ink-soft); font-size:15px; max-width:66ch; margin-top:6px;}
+
+  .card{background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:22px; box-shadow:var(--shadow);}
+  .card + .card{margin-top:14px;}
+
+  .note-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px;}
+  @media (max-width:640px){.note-grid{grid-template-columns:1fr;}}
+  .note-grid.cols-3{grid-template-columns:1fr 1fr 1fr;}
+  @media (max-width:760px){.note-grid.cols-3{grid-template-columns:1fr;}}
+  .note{background:var(--paper-2); border-radius:10px; padding:14px 16px; font-size:13.8px;}
+  .note b{display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--accent-ink); margin-bottom:6px;}
+  .note .fr{font-style:italic; color:var(--ink); display:block; margin-top:4px;}
+  .note p{margin:5px 0; font-size:13.5px;}
+  .note p .en{color:var(--ink-soft); font-size:12px; font-style:normal;}
+  .note ul{margin:0; padding-left:18px;}
+  .note li{margin:4px 0;}
+  .note li .fr-word{font-weight:600; color:var(--ink);}
+  .note li .en-word{color:var(--ink-soft); font-size:12.5px;}
+
+  .instr-box{border-left:3px solid var(--accent); background:var(--paper-2); border-radius:0 10px 10px 0; padding:14px 18px; margin:16px 0; font-size:14.5px;}
+  .instr-box b{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-ink); display:block; margin-bottom:6px;}
+
+  .ex-block{margin-top:16px;}
+  .ex-tag{
+    display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%;
+    background:var(--bleu); color:#ffffff; font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:13px;
+    margin-right:8px; flex:0 0 auto;
+  }
+  .ex-title{font-weight:600; font-size:15.5px; display:flex; align-items:center; margin-bottom:4px;}
+  .ex-sub{color:var(--ink-soft); font-size:13.3px; margin:2px 0 14px 34px;}
+  .card.ex-block:first-of-type{margin-top:0;}
+
+  /* reading article */
+  .article-head{display:flex; align-items:baseline; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom:6px;}
+  .article-title{font-family:'Fraunces',serif; font-size:20px; font-weight:600;}
+  .article-sub{font-style:italic; color:var(--ink-soft); font-size:13.5px; margin-bottom:14px;}
+  .addr-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px;}
+  .addr-item{display:flex; gap:12px; padding:12px 14px; background:var(--paper-2); border-radius:10px;}
+  .addr-num{
+    display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%;
+    background:var(--rouge); color:#fff; font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:13px; flex:0 0 auto;
+  }
+  .addr-name{font-weight:700; font-size:14.5px;}
+  .addr-quote{font-style:italic; color:var(--accent-ink); font-size:13.5px; margin:3px 0;}
+  .addr-loc{font-size:13.5px; color:var(--ink);}
+  .addr-loc b{color:var(--ink); font-weight:700;}
+
+  /* quiz (comprehension) */
+  .quiz-item{margin-bottom:18px;}
+  .quiz-item:last-child{margin-bottom:0;}
+  .quiz-q{font-weight:600; font-size:14.5px; margin-bottom:8px;}
+  .quiz-opts{display:flex; flex-wrap:wrap; gap:8px;}
+  .choice-btn{font-family:'Work Sans',sans-serif; font-size:13.5px; background:var(--paper-2); border:1px solid var(--line); border-radius:20px; padding:8px 14px; cursor:pointer; color:var(--ink);}
+  .choice-btn:hover{border-color:var(--accent);}
+  .choice-btn.selected{border-color:var(--accent); background:var(--paper); font-weight:600;}
+  .choice-btn.ok{border-color:var(--green); background:var(--green-bg);}
+  .choice-btn.no{border-color:var(--red); background:var(--red-bg);}
+  .choice-btn[disabled]{cursor:default;}
+
+  /* fill-line (grammar practice) */
+  .fill-line{display:flex; align-items:baseline; flex-wrap:wrap; gap:6px 4px; padding:9px 0; font-size:15px; border-bottom:1px dashed var(--line);}
+  .fill-line:last-child{border-bottom:none;}
+  .fill-line .qn{font-family:'IBM Plex Mono',monospace; color:var(--ink-soft); font-size:12.5px; width:16px;}
+  .sel-line{display:flex; align-items:baseline; flex-wrap:wrap; gap:6px; font-size:15px; padding:8px 0; border-bottom:1px dashed var(--line);}
+  .sel-line:last-child{border-bottom:none;}
+  .blank{padding:5px 8px; border-radius:6px; border:1px solid var(--line); background:var(--paper-2); color:var(--ink); font-family:'Work Sans',sans-serif; font-size:14.5px;}
+  select.blank{appearance:auto; cursor:pointer;}
+  .blank.ok{border-color:var(--green); background:var(--green-bg);}
+  .blank.no{border-color:var(--red); background:var(--red-bg);}
+
+  .btn{font-family:'Work Sans',sans-serif; font-weight:600; font-size:14px; padding:10px 18px; border-radius:9px; border:none; cursor:pointer; background:var(--bleu); color:#ffffff;}
+  .btn:hover{background:var(--rouge);}
+  .btn.secondary{background:transparent; color:var(--ink); border:1px solid var(--line);}
+  .btn.secondary:hover{border-color:var(--accent); color:var(--accent-ink);}
+  .btn-row{display:flex; gap:10px; margin-top:16px; flex-wrap:wrap;}
+
+  .score-banner{margin-top:16px; padding:14px 18px; border-radius:12px; background:var(--paper-2); border:1px solid var(--line); display:none; align-items:center; gap:14px;}
+  .score-banner.show{display:flex;}
+  .score-num{font-family:'Fraunces',serif; font-size:30px; font-weight:600; color:var(--accent-ink);}
+
+  /* map */
+  .map-wrap{background:var(--paper-2); border-radius:12px; padding:14px; margin-top:14px;}
+  .map-wrap svg{width:100%; height:auto; display:block; border-radius:8px;}
+  .map-legend{font-size:12.5px; color:var(--ink-soft); margin-top:8px;}
+  .pmap .stname{fill:var(--map-label); font-size:11px; font-weight:600; letter-spacing:.02em; pointer-events:none; font-family:'Work Sans',sans-serif;}
+  .pmap .stname.sm{font-size:9.5px;}
+  .pmap .water-lbl{fill:#5b87ad; font-size:12px; font-style:italic; letter-spacing:.18em; pointer-events:none;}
+  .pmap .pin{cursor:default;}
+  .pmap .pin .plabel{fill:var(--paper); stroke:var(--line);}
+  .pmap .pin .ptext{fill:var(--ink); font-size:11.5px; font-weight:700; pointer-events:none; font-family:'Work Sans',sans-serif;}
+  .pmap .pin .pdot{fill:var(--bleu); stroke:#fff; stroke-width:2;}
+  @media (max-width:560px){.pmap .ptext{font-size:14px;} .pmap .stname{font-size:13px;}}
+
+  /* nav links back to the site / lesson */
+  .hero-nav{display:flex; gap:16px; flex-wrap:wrap; margin-top:18px;}
+  .hero-nav a{color:#dbe3ff; font-family:'IBM Plex Mono',monospace; font-size:12px; text-decoration:none; border-bottom:1px dashed rgba(219,227,255,.5); padding-bottom:1px;}
+  .hero-nav a:hover{color:#ffffff; border-bottom-color:#ffffff;}
+
+  /* audio buttons */
+  .listen-word{border:none; background:none; cursor:pointer; color:var(--accent-ink); font-size:12px; padding:0 0 0 6px; vertical-align:middle;}
+  .listen-word:hover{color:var(--rouge);}
+  .listen-btn{font-family:'Work Sans',sans-serif;}
+
+  footer{max-width:900px; margin:60px auto 0; padding:20px; text-align:center; color:var(--ink-soft); font-size:12.5px; font-family:'IBM Plex Mono',monospace;}
+  footer a{color:var(--accent-ink);}
+</style>
+
+<div class="stripe"></div>
+<div class="hero">
+  <div class="hero-inner">
+    <h1>Les bonnes adresses de Pontoise</h1>
+    <div class="hero-meta">
+      <div>Language<b>French · A1</b></div>
+      <div>Focus<b>L'itinéraire · prépositions de lieu</b></div>
+    </div>
+    <div class="hero-nav">
+      <a href="https://karla19urios.github.io/french/A1.2/index.html">← Accueil A1.2</a>
+      <a href="https://karla19urios.github.io/french/A1.2/lectures.html">📖 Lectures</a>
+      <a href="https://karla19urios.github.io/french/A1.2/Actividades%20A1.2/22_L%27itin%C3%A9raire%20(interactivo).html">🎮 Leçon 22 : L'itinéraire →</a>
+      <a href="https://karla19urios.github.io/french/A1.2/Lectures%20A1.2/22_l_itin%C3%A9raire%20(1).pdf" target="_blank" rel="noopener">📄 La lecture en PDF</a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section id="sec-vocab">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Vocabulaire avant la lecture</h2></div>
+    <p class="sec-intro">Voici le vocabulaire dont vous aurez besoin pour lire le texte qui suit.</p>
+    <div class="note-grid cols-3">
+      <div class="note">
+        <b>Prépositions de lieu</b>
+        <ul id="vocPreps"></ul>
+      </div>
+      <div class="note">
+        <b>Les lieux de la ville</b>
+        <ul id="vocLieux"></ul>
+      </div>
+      <div class="note">
+        <b>Adjectifs et expressions</b>
+        <ul id="vocAdj"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- READING -->
+  <section id="sec-lecture">
+    <div class="sec-head"><span class="sec-num">02</span><h2>La lecture</h2></div>
+    <div class="card">
+      <div class="article-head">
+        <div class="article-title">Les bonnes adresses des Pontoisiens</div>
+      </div>
+      <div class="article-sub">Les adresses de Mélanie dans le centre-ville — magazine <em>Pontoise Infos</em></div>
+      <ol class="addr-list">
+        <li class="addr-item">
+          <span class="addr-num">1</span>
+          <div>
+            <div class="addr-name">Le restaurant L'Audience</div>
+            <div class="addr-quote">« un bon restaurant traditionnel »</div>
+            <div class="addr-loc">Il est <b>sur la place de l'Hôtel de Ville</b>, <b>en face de la mairie</b>, <b>à côté de la pharmacie</b>.</div>
+          </div>
+        </li>
+        <li class="addr-item">
+          <span class="addr-num">2</span>
+          <div>
+            <div class="addr-name">Le cinéma Royal Utopia</div>
+            <div class="addr-quote">« une programmation intéressante »</div>
+            <div class="addr-loc">Il est <b>dans la rue Alexandre Prachay</b>, <b>à gauche de la bibliothèque</b> Guillaume-Apollinaire.</div>
+          </div>
+        </li>
+        <li class="addr-item">
+          <span class="addr-num">3</span>
+          <div>
+            <div class="addr-name">Le marché du centre</div>
+            <div class="addr-quote">« des commerçants sympathiques »</div>
+            <div class="addr-loc">Il est <b>dans la rue de l'Hôtel de Ville</b> et <b>sur la place</b>, <b>le samedi matin</b>.</div>
+          </div>
+        </li>
+        <li class="addr-item">
+          <span class="addr-num">4</span>
+          <div>
+            <div class="addr-name">L'épicerie fine L'Arbre blanc</div>
+            <div class="addr-quote">« des produits de qualité et une galerie d'art ! »</div>
+            <div class="addr-loc">Elle est <b>dans la rue Alexandre Prachay</b>, <b>près du cinéma</b>.</div>
+          </div>
+        </li>
+      </ol>
+      <div class="btn-row"><button class="btn listen-btn" type="button" id="readPont">▶ Écouter la lecture</button></div>
+    </div>
+  </section>
+
+  <!-- COMPREHENSION -->
+  <section id="sec-comprehension">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Compréhension</h2></div>
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">8</span>Lisez cette page du magazine et répondez.</div>
+      <div id="quiz8"></div>
+      <div class="btn-row"><button class="btn" data-check="quiz8">Check my answers</button><button class="btn secondary" data-reveal="quiz8">Show answers</button></div>
+      <div class="score-banner" id="quiz8-score"><div class="score-num" id="quiz8-score-num">0/3</div><div>correct</div></div>
+    </div>
+  </section>
+
+  <!-- MAP -->
+  <section id="sec-plan">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Le plan</h2></div>
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">9</span>Relisez la page et regardez le plan. Situez les « bonnes adresses » de Mélanie.</div>
+      <div class="ex-sub">Look at the sketch of the city center below, then match each address to the number where it belongs.</div>
+      <div class="map-wrap" id="pontMap"></div>
+      <div class="map-legend">Plan du centre-ville de Pontoise (dessiné pour le cours) : les numéros <b>1</b> à <b>4</b> marquent les adresses de Mélanie. Les autres lieux (écoles, musée, église, poste…) donnent le contexte du quartier.</div>
+      <div style="margin-top:16px;" id="mapMatch"></div>
+      <div class="btn-row"><button class="btn" data-check="mapMatch">Check my answers</button><button class="btn secondary" data-reveal="mapMatch">Show answers</button></div>
+      <div class="score-banner" id="mapMatch-score"><div class="score-num" id="mapMatch-score-num">0/4</div><div>correct</div></div>
+    </div>
+  </section>
+
+  <!-- GRAMMAR PRACTICE -->
+  <section id="sec-practice">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Practice — les prépositions de lieu</h2></div>
+    <p class="sec-intro">Complétez chaque phrase avec la préposition qui convient, d'après le texte.</p>
+    <div class="card">
+      <div id="prepDrill"></div>
+      <div class="btn-row"><button class="btn" data-check="prepDrill">Check my answers</button><button class="btn secondary" data-reveal="prepDrill">Show answers</button></div>
+      <div class="score-banner" id="prepDrill-score"><div class="score-num" id="prepDrill-score-num">0/5</div><div>correct</div></div>
+    </div>
+  </section>
+
+</div>
+
+<footer><a href="https://karla19urios.github.io/french/A1.2/lectures.html">← Retour aux lectures</a> &middot; Adapté du magazine <em>Pontoise Infos</em> &middot; <a href="https://karla19urios.github.io/french/A1.2/Actividades%20A1.2/22_L%27itin%C3%A9raire%20(interactivo).html">Leçon 22 — L'itinéraire</a></footer>
+
+<script>
+(function(){
+  "use strict";
+
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+  /* ---------------- speech synthesis ---------------- */
+  var frVoice = null;
+  function pickVoice(){
+    if(!('speechSynthesis' in window)) return;
+    var vs = window.speechSynthesis.getVoices() || [];
+    frVoice = vs.filter(function(v){ return v.lang === 'fr-FR'; })[0]
+           || vs.filter(function(v){ return (v.lang||'').indexOf('fr') === 0; })[0]
+           || vs.filter(function(v){ return /fran|french/i.test(v.name||''); })[0] || null;
+  }
+  if('speechSynthesis' in window){ pickVoice(); window.speechSynthesis.onvoiceschanged = pickVoice; }
+  function speak(text, btn){
+    if(!('speechSynthesis' in window) || !text) return;
+    window.speechSynthesis.cancel();
+    var u = new SpeechSynthesisUtterance(text);
+    u.lang = 'fr-FR'; u.rate = 0.9;
+    if(frVoice) u.voice = frVoice;
+    if(btn){ btn.classList.add('on'); u.onend = u.onerror = function(){ btn.classList.remove('on'); }; }
+    window.speechSynthesis.speak(u);
+  }
+  function speakSeq(list, i){
+    if(!('speechSynthesis' in window)) return;
+    i = i || 0;
+    if(i === 0) window.speechSynthesis.cancel();
+    if(i >= list.length) return;
+    var u = new SpeechSynthesisUtterance(list[i]);
+    u.lang = 'fr-FR'; u.rate = 0.9;
+    if(frVoice) u.voice = frVoice;
+    u.onend = function(){ speakSeq(list, i + 1); };
+    window.speechSynthesis.speak(u);
+  }
+
+  /* ---------------- vocabulary before the reading ---------------- */
+  var VOC_PREPS = [
+    {fr:"à côté de",     en:"next to"},
+    {fr:"en face de",    en:"across from"},
+    {fr:"dans",          en:"on/in (a street)"},
+    {fr:"sur",           en:"on (a square)"},
+    {fr:"à gauche de",   en:"to the left of"},
+    {fr:"près de",       en:"near"}
+  ];
+  var VOC_LIEUX = [
+    {fr:"une adresse",         en:"an address"},
+    {fr:"un marché",           en:"a market"},
+    {fr:"une épicerie fine",   en:"a fine grocery"},
+    {fr:"une pharmacie",       en:"a pharmacy"},
+    {fr:"une mairie",          en:"a town hall"},
+    {fr:"une bibliothèque",    en:"a library"},
+    {fr:"une place / une rue", en:"a square / a street"}
+  ];
+  var VOC_ADJ = [
+    {fr:"sympathique",       en:"nice, friendly"},
+    {fr:"traditionnel(le)",  en:"traditional"},
+    {fr:"intéressant(e)",    en:"interesting"},
+    {fr:"de qualité",        en:"good quality"},
+    {fr:"le samedi matin",   en:"on Saturday mornings"},
+    {fr:"une bonne adresse", en:"a good place to go"}
+  ];
+  function vocabListHTML(list){
+    return list.map(function(v){
+      return '<li><span class="fr-word">' + esc(v.fr) + '</span>'
+        + '<button type="button" class="listen-word" data-say="' + esc(v.fr) + '" aria-label="Écouter">🔊</button>'
+        + ' — <span class="en-word">' + esc(v.en) + '</span></li>';
+    }).join('');
+  }
+  document.getElementById('vocPreps').innerHTML = vocabListHTML(VOC_PREPS);
+  document.getElementById('vocLieux').innerHTML = vocabListHTML(VOC_LIEUX);
+  document.getElementById('vocAdj').innerHTML = vocabListHTML(VOC_ADJ);
+  document.addEventListener('click', function(e){
+    var b = e.target.closest ? e.target.closest('.listen-word') : null;
+    if(b) speak(b.getAttribute('data-say'), b);
+  });
+
+  /* ---------------- listen to the reading ---------------- */
+  var ADDR_TEXT = [
+    "Le restaurant L'Audience. Il est sur la place de l'Hôtel de Ville, en face de la mairie, à côté de la pharmacie.",
+    "Le cinéma Royal Utopia. Il est dans la rue Alexandre Prachay, à gauche de la bibliothèque Guillaume-Apollinaire.",
+    "Le marché du centre. Il est dans la rue de l'Hôtel de Ville et sur la place, le samedi matin.",
+    "L'épicerie fine L'Arbre blanc. Elle est dans la rue Alexandre Prachay, près du cinéma."
+  ];
+  var readBtn = document.getElementById('readPont');
+  if(readBtn) readBtn.addEventListener('click', function(){ speakSeq(ADDR_TEXT); });
+
+  /* ---------------- plan détaillé de Pontoise (dessin original pour le cours) ---------------- */
+  function poly(pts){
+    return pts.map(function(p, i){ return (i ? 'L' : 'M') + p[0] + ',' + p[1]; }).join(' ');
+  }
+  var PONT_STREETS = [
+    {n:'Boulevard',                  p:[[50,120],[500,108],[700,128],[850,158]], lx:280, ly:98,  rot:-2},
+    {n:'Rue Victor Hugo',            p:[[470,108],[470,388]],                    lx:486, ly:250, rot:90, sm:true},
+    {n:'Avenue Jean Jaurès',         p:[[680,123],[800,270],[840,420]],          lx:756, ly:206, rot:58, sm:true},
+    {n:'Rue Taillepied',             p:[[140,118],[110,38]],                     lx:96,  ly:75,  rot:-70, sm:true},
+    {n:'Rue J. Lambert',             p:[[220,113],[212,38]],                     lx:192, ly:75,  rot:-78, sm:true},
+    {n:'Rue Lucien Francia',         p:[[760,138],[800,48]],                     lx:816, ly:86,  rot:-65, sm:true},
+    {n:'Rue Delacour',               p:[[150,118],[150,278]],                    lx:134, ly:200, rot:90, sm:true},
+    {n:'Rue Lemercier',              p:[[150,278],[228,318]],                    lx:172, ly:290, rot:25, sm:true},
+    {n:'Rue du Sabot',               p:[[228,318],[330,398],[390,408]],          lx:280, ly:358, rot:40, sm:true},
+    {n:"Rue de l'Hôtel de Ville",    p:[[390,428],[230,452],[110,478]],          lx:238, ly:460, rot:-9},
+    {n:'Rue Marcel Rousier',         p:[[110,478],[110,678]],                    lx:94,  ly:580, rot:90, sm:true},
+    {n:'Rue de la Harengerie',       p:[[110,678],[260,703]],                    lx:178, ly:708, rot:9,  sm:true},
+    {n:'Rue Pierre Butin',           p:[[280,588],[280,703]],                    lx:296, ly:648, rot:90, sm:true},
+    {n:'Rue de la Croix du Bourg',   p:[[280,703],[440,748]],                    lx:352, ly:744, rot:15, sm:true},
+    {n:'Rue Alexandre Prachay',      p:[[470,408],[470,748]],                    lx:486, ly:600, rot:90},
+    {n:'Rue de la Corne',            p:[[500,418],[590,418]],                    lx:544, ly:408, rot:0,  sm:true},
+    {n:"Rue de l'Ordre",             p:[[590,438],[690,538]],                    lx:648, ly:478, rot:45, sm:true},
+    {n:'Rue de la Roche',            p:[[690,398],[760,468]],                    lx:734, ly:418, rot:45, sm:true},
+    {n:'Quai du Pothuis',            p:[[660,558],[860,658]],                    lx:770, ly:598, rot:25, sm:true}
+  ];
+  var PONT_LANDMARKS = [
+    {x:120, y:200, ico:'🏛️', n:'Musée Tavet'},
+    {x:215, y:182, ico:'📮', n:'Poste'},
+    {x:108, y:300, ico:'🥖', n:'Boulangerie'},
+    {x:255, y:300, ico:'🏦', n:'Banque'},
+    {x:85,  y:420, ico:'⛪', n:'Église Sainte-Anne'},
+    {x:640, y:68,  ico:'🏫', n:'École primaire'},
+    {x:830, y:150, ico:'🏫', n:'École maternelle', side:'l'},
+    {x:788, y:252, ico:'🛒', n:'Supermarché', side:'l'},
+    {x:168, y:640, ico:'🅿️', n:'Parking'}
+  ];
+  function pontLandmarkHTML(p){
+    var w = p.n.length * 6.5 + 34, lx = (p.side === 'l') ? p.x - 12 - w : p.x + 12;
+    return '<g class="pin"><rect class="plabel" x="' + lx + '" y="' + (p.y - 12) + '" width="' + w + '" height="24" rx="8"/>'
+      + '<text class="ptext" x="' + (lx + 9) + '" y="' + (p.y + 5) + '">' + p.ico + ' ' + esc(p.n) + '</text>'
+      + '<circle class="pdot" cx="' + p.x + '" cy="' + p.y + '" r="5"/></g>';
+  }
+  function pontAddrPin(x, y, num){
+    return '<circle cx="' + x + '" cy="' + y + '" r="15" fill="var(--rouge)" stroke="#fff" stroke-width="2.5"/>'
+      + '<text x="' + x + '" y="' + (y + 5) + '" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">' + num + '</text>';
+  }
+  function pontMapSVG(){
+    var s = '<svg viewBox="0 0 900 800" class="pmap" role="img" aria-label="Plan du centre-ville de Pontoise">';
+    s += '<rect x="0" y="0" width="900" height="800" rx="14" fill="var(--map-bg)"/>';
+    s += '<path d="M630,590 C 720,640 800,690 900,770" stroke="var(--map-water)" stroke-width="34" fill="none" stroke-linecap="round"/>';
+    s += '<text class="water-lbl" x="700" y="672" transform="rotate(25 700 672)">L\'OISE</text>';
+    PONT_STREETS.forEach(function(st){
+      var d = poly(st.p);
+      s += '<path d="' + d + '" stroke="var(--map-line)" stroke-width="' + (st.sm ? 11 : 15) + '" fill="none" stroke-linecap="round" stroke-linejoin="round"/>';
+      s += '<path d="' + d + '" stroke="var(--map-street)" stroke-width="' + (st.sm ? 8 : 12) + '" fill="none" stroke-linecap="round" stroke-linejoin="round"/>';
+    });
+    PONT_STREETS.forEach(function(st){
+      s += '<text class="stname' + (st.sm ? ' sm' : '') + '" x="' + st.lx + '" y="' + st.ly + '" transform="rotate(' + (st.rot || 0) + ' ' + st.lx + ' ' + st.ly + ')">' + esc(st.n) + '</text>';
+    });
+    s += '<rect x="388" y="428" width="170" height="92" rx="6" fill="var(--map-bg)" stroke="var(--map-line)" stroke-dasharray="4 3"/>';
+    s += '<text x="473" y="510" text-anchor="middle" font-size="10" font-weight="800" letter-spacing=".04em" fill="var(--map-label)">PLACE DE L\'HÔTEL DE VILLE</text>';
+    s += '<rect x="398" y="386" width="130" height="42" rx="7" fill="var(--map-block)" stroke="var(--map-line)"/>';
+    s += '<text x="463" y="411" text-anchor="middle" font-size="12" font-weight="800" fill="var(--ink)">Hôtel de Ville</text>';
+    s += '<rect x="545" y="428" width="92" height="44" rx="7" fill="var(--map-block)" stroke="var(--map-line)"/>';
+    s += '<text x="591" y="454" text-anchor="middle" font-size="11.5" font-weight="800" fill="var(--ink)">Pharmacie</text>';
+    s += '<rect x="388" y="676" width="150" height="50" rx="7" fill="var(--map-block)" stroke="var(--map-line)"/>';
+    s += '<text x="463" y="697" text-anchor="middle" font-size="10.5" font-weight="800" fill="var(--ink)">Bibliothèque</text>';
+    s += '<text x="463" y="712" text-anchor="middle" font-size="9" fill="var(--ink-soft)">municipale</text>';
+    s += '<text x="270" y="345" text-anchor="middle" font-size="10" font-style="italic" fill="var(--map-label)">place des Moineaux</text>';
+    PONT_LANDMARKS.forEach(function(p){ s += pontLandmarkHTML(p); });
+    /* 1 = restaurant : sur la place de l'Hôtel de Ville, à côté de la pharmacie
+       2 = marché     : dans la rue de l'Hôtel de Ville, sur la place
+       3 = cinéma     : rue Alexandre Prachay, contre la bibliothèque
+       4 = épicerie   : rue Alexandre Prachay, près du cinéma */
+    s += pontAddrPin(505, 458, 1);
+    s += pontAddrPin(350, 448, 2);
+    s += pontAddrPin(430, 648, 3);
+    s += pontAddrPin(430, 575, 4);
+    s += '</svg>';
+    return s;
+  }
+  document.getElementById('pontMap').innerHTML = pontMapSVG();
+
+  /* ---------------- Generic: quiz with click-to-select choice buttons ---------------- */
+  function buildQuiz(containerId, items){
+    var container = document.getElementById(containerId);
+    items.forEach(function(item, qi){
+      var block = document.createElement('div');
+      block.className = 'quiz-item';
+      var optsHtml = item.options.map(function(opt, oi){
+        return '<button type="button" class="choice-btn" data-qi="'+qi+'" data-oi="'+oi+'">'+opt+'</button>';
+      }).join('');
+      block.innerHTML = '<div class="quiz-q">'+(qi+1)+'. '+item.question+'</div><div class="quiz-opts">'+optsHtml+'</div>';
+      container.appendChild(block);
+    });
+    var selected = {};
+    container.addEventListener('click', function(e){
+      var btn = e.target.closest('.choice-btn');
+      if(!btn) return;
+      var qi = btn.dataset.qi;
+      container.querySelectorAll('.choice-btn[data-qi="'+qi+'"]').forEach(function(b){ b.classList.remove('selected'); });
+      btn.classList.add('selected');
+      selected[qi] = +btn.dataset.oi;
+    });
+    document.querySelector('[data-check="'+containerId+'"]').addEventListener('click', function(){
+      var score = 0;
+      items.forEach(function(item, qi){
+        container.querySelectorAll('.choice-btn[data-qi="'+qi+'"]').forEach(function(b){ b.classList.remove('ok','no'); });
+        var chosen = selected[qi];
+        var correctBtn = container.querySelector('.choice-btn[data-qi="'+qi+'"][data-oi="'+item.correct+'"]');
+        if(chosen === item.correct){
+          correctBtn.classList.add('ok');
+          score++;
+        } else {
+          correctBtn.classList.add('ok');
+          if(chosen !== undefined){
+            container.querySelector('.choice-btn[data-qi="'+qi+'"][data-oi="'+chosen+'"]').classList.add('no');
+          }
+        }
+      });
+      var sb = document.getElementById(containerId+'-score');
+      if(sb){ sb.classList.add('show'); document.getElementById(containerId+'-score-num').textContent = score+'/'+items.length; }
+    });
+    document.querySelector('[data-reveal="'+containerId+'"]').addEventListener('click', function(){
+      items.forEach(function(item, qi){
+        container.querySelectorAll('.choice-btn[data-qi="'+qi+'"]').forEach(function(b){ b.classList.remove('ok','no','selected'); });
+        container.querySelector('.choice-btn[data-qi="'+qi+'"][data-oi="'+item.correct+'"]').classList.add('ok','selected');
+      });
+      var sb = document.getElementById(containerId+'-score');
+      if(sb){ sb.classList.add('show'); document.getElementById(containerId+'-score-num').textContent = items.length+'/'+items.length; }
+    });
+  }
+
+  /* ---------------- Generic: inline select-in-sentence (drill style) ---------------- */
+  function buildMultiChoice(containerId, items){
+    var container = document.getElementById(containerId);
+    items.forEach(function(it, i){
+      var line = document.createElement('div');
+      line.className = 'sel-line';
+      var opts = '<option value="">…</option>';
+      it.options.forEach(function(o){ opts += '<option value="'+o+'">'+o+'</option>'; });
+      line.innerHTML = '<span class="qn">'+(i+1)+'.</span> '+it.prefix+' <select class="blank" data-idx="'+i+'">'+opts+'</select>'+(it.suffix ? ' '+it.suffix : '');
+      container.appendChild(line);
+    });
+    document.querySelector('[data-check="'+containerId+'"]').addEventListener('click', function(){
+      var score = 0;
+      container.querySelectorAll('select.blank').forEach(function(sel){
+        var idx = +sel.dataset.idx;
+        sel.classList.remove('ok','no');
+        if(sel.value === items[idx].correct){ sel.classList.add('ok'); score++; }
+        else { sel.classList.add('no'); }
+      });
+      var sb = document.getElementById(containerId+'-score');
+      if(sb){ sb.classList.add('show'); document.getElementById(containerId+'-score-num').textContent = score+'/'+items.length; }
+    });
+    document.querySelector('[data-reveal="'+containerId+'"]').addEventListener('click', function(){
+      container.querySelectorAll('select.blank').forEach(function(sel){
+        var idx = +sel.dataset.idx;
+        sel.value = items[idx].correct;
+        sel.classList.remove('no'); sel.classList.add('ok');
+      });
+      var sb = document.getElementById(containerId+'-score');
+      if(sb){ sb.classList.add('show'); document.getElementById(containerId+'-score-num').textContent = items.length+'/'+items.length; }
+    });
+  }
+
+  /* ---------------- Exercice 8: compréhension ---------------- */
+  buildQuiz('quiz8', [
+    {question:"Qui est Mélanie ?", options:["Une habitante de Pontoise qui recommande des adresses","La maire de Pontoise","Une touriste en visite"], correct:0},
+    {question:"Les bonnes adresses de Mélanie concernent quels types de lieux ?", options:["Un restaurant, un cinéma, un marché et une épicerie","Un hôtel, une gare et un aéroport","Une école et un hôpital"], correct:0},
+    {question:"Le magazine donne quels types d'informations pour chaque lieu ?", options:["Le nom du lieu, une citation et sa position dans la ville","Le prix et les horaires d'ouverture","Le numéro de téléphone et l'adresse e-mail"], correct:0}
+  ]);
+
+  /* ---------------- Exercice 9: le plan ---------------- */
+  buildMultiChoice('mapMatch', [
+    {prefix:"Le restaurant L'Audience →", suffix:"", options:["Numéro 1","Numéro 2","Numéro 3","Numéro 4"], correct:"Numéro 1"},
+    {prefix:"Le marché du centre →", suffix:"", options:["Numéro 1","Numéro 2","Numéro 3","Numéro 4"], correct:"Numéro 2"},
+    {prefix:"Le cinéma Royal Utopia →", suffix:"", options:["Numéro 1","Numéro 2","Numéro 3","Numéro 4"], correct:"Numéro 3"},
+    {prefix:"L'épicerie fine L'Arbre blanc →", suffix:"", options:["Numéro 1","Numéro 2","Numéro 3","Numéro 4"], correct:"Numéro 4"}
+  ]);
+
+  /* ---------------- Exercice: grammar practice ---------------- */
+  buildMultiChoice('prepDrill', [
+    {prefix:"Le restaurant est", suffix:"la pharmacie.", options:["à côté de","loin de","en face de"], correct:"à côté de"},
+    {prefix:"La bibliothèque se trouve", suffix:"la rue Alexandre Prachay.", options:["dans","sur","près"], correct:"dans"},
+    {prefix:"Le marché est", suffix:"la place, le samedi matin.", options:["sur","dans","à gauche de"], correct:"sur"},
+    {prefix:"L'épicerie est", suffix:"du cinéma.", options:["près","loin","à côté"], correct:"près"},
+    {prefix:"Le cinéma est", suffix:"la bibliothèque.", options:["à gauche de","à droite de","derrière"], correct:"à gauche de"}
+  ]);
+
+})();
+</script>
+
+</body></html>
