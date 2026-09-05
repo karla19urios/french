@@ -1,0 +1,493 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>La Routine Quotidienne</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+  :root{
+    --bg:#f4f5f7;
+    --paper:#ffffff;
+    --paper-2:#f4f5f7;
+    --ink:#1a1a2e;
+    --ink-soft:#6b7280;
+    --line:#e5e7eb;
+    --bleu:#002395;
+    --rouge:#ED2939;
+    --accent:#002395;
+    --accent-ink:#002395;
+    --green:#3f8f6d;
+    --green-bg:#e7f3ed;
+    --red:#ED2939;
+    --red-bg:#fdecec;
+    --shadow: 0 1px 2px rgba(26,26,46,.06), 0 8px 24px -12px rgba(26,26,46,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#12141c;
+      --paper:#1b1e2b;
+      --paper-2:#20232f;
+      --ink:#f1f2f6;
+      --ink-soft:#9aa0b4;
+      --line:#2a2e40;
+      --bleu:#002395;
+      --rouge:#ED2939;
+      --accent:#5b7fe0;
+      --accent-ink:#7c9df2;
+      --green:#63c299;
+      --green-bg:#173226;
+      --red:#ED2939;
+      --red-bg:#3a1418;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#12141c;
+    --paper:#1b1e2b;
+    --paper-2:#20232f;
+    --ink:#f1f2f6;
+    --ink-soft:#9aa0b4;
+    --line:#2a2e40;
+    --bleu:#002395;
+    --rouge:#ED2939;
+    --accent:#5b7fe0;
+    --accent-ink:#7c9df2;
+    --green:#63c299;
+    --green-bg:#173226;
+    --red:#ED2939;
+    --red-bg:#3a1418;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.6);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'Work Sans', ui-sans-serif, system-ui, sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:0 20px 90px;}
+  h1,h2,h3{font-family:'Fraunces', Georgia, serif; text-wrap:balance; margin:0; color:var(--ink);}
+  .eyebrow{font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-ink); font-weight:600;}
+  code, .mono{font-family:'IBM Plex Mono', monospace;}
+
+  .stripe{height:8px; background:linear-gradient(90deg, var(--bleu) 33%, #ffffff 33%, #ffffff 66%, var(--rouge) 66%);}
+
+  .hero{
+    background: linear-gradient(180deg, var(--bleu) 0%, #000f42 100%);
+    color:#f3f5ff; padding:40px 20px 40px;
+  }
+  .hero-inner{max-width:900px; margin:0 auto;}
+  .hero h1{font-size:clamp(30px,4.4vw,44px); font-weight:600; color:#ffffff; letter-spacing:-.01em;}
+  .hero-meta{display:flex; gap:22px; margin-top:22px; flex-wrap:wrap;}
+  .hero-meta div{font-family:'IBM Plex Mono',monospace; font-size:12px; color:#a9b6e8;}
+  .hero-meta b{display:block; color:#f3f5ff; font-size:14px; font-family:'Work Sans',sans-serif; font-weight:600; margin-top:2px;}
+  .hero-nav{display:flex; gap:8px; flex-wrap:wrap; margin-top:22px;}
+  .hero-nav a{font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; color:#f3f5ff; border:1px solid rgba(243,245,255,.35); border-radius:20px; padding:6px 13px;}
+  .hero-nav a:hover{background:var(--rouge); border-color:var(--rouge);}
+
+  section{margin-top:46px;}
+  .wrap > section:first-of-type{margin-top:36px;}
+  .sec-head{display:flex; align-items:baseline; gap:12px; margin-bottom:16px;}
+  .sec-num{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent-ink); font-weight:600;}
+  section h2{font-size:25px; font-weight:600;}
+  .sec-intro{color:var(--ink-soft); font-size:15px; max-width:66ch; margin-top:6px;}
+
+  .card{background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:22px; box-shadow:var(--shadow);}
+  .card + .card{margin-top:14px;}
+
+  table.poss{width:100%; border-collapse:collapse; margin-top:12px; font-size:14.5px;}
+  table.poss th{text-align:left; font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); padding:6px 10px; border-bottom:2px solid var(--line);}
+  table.poss td{padding:8px 10px; border-bottom:1px solid var(--line);}
+  table.poss tr:last-child td{border-bottom:none;}
+  table.poss .pron{color:var(--ink-soft); width:150px;}
+  table.poss .pos{font-weight:700; color:var(--accent-ink);}
+
+  .instr-box{border-left:3px solid var(--accent); background:var(--paper-2); border-radius:0 10px 10px 0; padding:14px 18px; margin:16px 0; font-size:14.5px;}
+  .instr-box b{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-ink); display:block; margin-bottom:6px;}
+  .instr-box s{color:var(--ink-soft);}
+
+  .note-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px;}
+  @media (max-width:640px){.note-grid{grid-template-columns:1fr;}}
+  .note-grid.cols-3{grid-template-columns:1fr 1fr 1fr;}
+  @media (max-width:760px){.note-grid.cols-3{grid-template-columns:1fr;}}
+  .note{background:var(--paper-2); border-radius:10px; padding:14px 16px; font-size:13.8px;}
+  .note b{display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--accent-ink); margin-bottom:6px;}
+  .note .fr{font-style:italic; color:var(--ink); display:block; margin-top:4px;}
+  .note p{margin:5px 0; font-size:13.5px;}
+  .note p .en{color:var(--ink-soft); font-size:12px; font-style:normal;}
+
+  /* ---- Lecture ---- */
+  .article{background:var(--paper); border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow); overflow:hidden;}
+  .article-head{background:var(--rouge); color:#fff; padding:10px 22px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.08em; text-transform:uppercase;}
+  .article-body{padding:22px;}
+  .article-body h3{font-size:24px; font-weight:600; color:var(--accent-ink);}
+  .chapo{font-family:'Fraunces',Georgia,serif; font-size:15.5px; font-style:italic; color:var(--ink-soft); margin:10px 0 4px; max-width:70ch;}
+  .temoin{border-top:1px solid var(--line); margin-top:18px; padding-top:16px; display:flex; gap:14px; align-items:flex-start;}
+  .temoin-num{flex:0 0 auto; width:30px; height:30px; border-radius:50%; background:var(--bleu); color:#fff; display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:14px;}
+  .temoin-body{flex:1 1 auto; min-width:0;}
+  .temoin-name{font-weight:700; font-size:14.5px; color:var(--accent-ink); display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
+  .temoin p{margin:7px 0 0; font-size:15px;}
+  .speak{border:1px solid var(--line); background:var(--paper-2); color:var(--ink-soft); border-radius:20px; font-size:11.5px; font-family:'IBM Plex Mono',monospace; padding:3px 9px; cursor:pointer;}
+  .speak:hover{border-color:var(--accent); color:var(--accent-ink);}
+
+  .gloss{
+    font:inherit; color:inherit; background:none; border:none; padding:0; cursor:help;
+    border-bottom:2px dotted var(--rouge); position:relative;
+  }
+  .gloss:hover, .gloss:focus{outline:none; background:var(--green-bg); border-radius:3px;}
+  .gloss::after{
+    content:attr(data-en); position:absolute; left:50%; bottom:calc(100% + 8px); transform:translateX(-50%);
+    background:var(--ink); color:var(--bg); font-family:'Work Sans',sans-serif; font-size:12.5px; line-height:1.35;
+    padding:6px 10px; border-radius:8px; white-space:normal; width:max-content; max-width:230px; text-align:center;
+    opacity:0; pointer-events:none; transition:opacity .12s; z-index:5;
+  }
+  .gloss:hover::after, .gloss:focus::after{opacity:1;}
+
+  .ex-block{margin-top:16px;}
+  .ex-tag{
+    display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%;
+    background:var(--bleu); color:#ffffff; font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:13px;
+    margin-right:8px; flex:0 0 auto;
+  }
+  .ex-title{font-weight:600; font-size:15.5px; display:flex; align-items:center; margin-bottom:4px;}
+  .ex-sub{color:var(--ink-soft); font-size:13.3px; margin:2px 0 14px 34px;}
+  .part-label{font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#ffffff; background:var(--bleu); display:inline-block; padding:5px 12px; border-radius:20px; margin:34px 0 -2px;}
+  .card.ex-block:first-of-type{margin-top:0;}
+
+  .fill-line{
+    display:flex; align-items:baseline; flex-wrap:wrap; gap:6px 4px; padding:9px 0; font-size:15px; border-bottom:1px dashed var(--line);
+  }
+  .fill-line:last-child{border-bottom:none;}
+  .fill-line .qn{font-family:'IBM Plex Mono',monospace; color:var(--ink-soft); font-size:12.5px; width:16px;}
+  .blank{
+    padding:5px 8px; border-radius:6px; border:1px solid var(--line); background:var(--paper-2);
+    color:var(--ink); font-family:'Work Sans',sans-serif; font-size:14.5px;
+  }
+  .blank.w-full{width:100%; margin-top:4px;}
+  .blank.w-med{width:190px;}
+  .blank.w-sm{width:100px; text-align:center;}
+  .blank.tiny{width:60px; text-align:center;}
+  .blank:focus{outline:2px solid var(--accent); outline-offset:1px;}
+  .blank.ok{border-color:var(--green); background:var(--green-bg);}
+  .blank.no{border-color:var(--red); background:var(--red-bg);}
+  .given{font-weight:600; color:var(--accent-ink);}
+
+  .hint-chip{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:600; color:var(--accent-ink); background:var(--paper-2); border:1px solid var(--line); border-radius:6px; padding:2px 7px; margin-right:6px; white-space:nowrap;}
+
+  .btn{font-family:'Work Sans',sans-serif; font-weight:600; font-size:14px; padding:10px 18px; border-radius:9px; border:none; cursor:pointer; background:var(--bleu); color:#ffffff;}
+  .btn:hover{background:var(--rouge);}
+  .btn.secondary{background:transparent; color:var(--ink); border:1px solid var(--line);}
+  .btn.secondary:hover{border-color:var(--accent); color:var(--accent-ink);}
+  .btn:disabled, .phrase:disabled{opacity:.35; cursor:default;}
+  .btn-row{display:flex; gap:10px; margin-top:16px; flex-wrap:wrap;}
+
+  .phrase-bank{display:flex; gap:8px; flex-wrap:wrap; margin:12px 0;}
+  .phrase{font-family:'IBM Plex Mono',monospace; font-size:12.5px; background:var(--paper-2); border:1px solid var(--line); border-radius:20px; padding:6px 12px; cursor:pointer; color:var(--ink);}
+  .phrase:hover{border-color:var(--accent);}
+  .phrase .g{color:var(--ink-soft); margin-left:3px;}
+  textarea, input[type="text"].free{width:100%; min-height:44px; border-radius:10px; border:1px solid var(--line); background:var(--paper-2); color:var(--ink); font-family:'Work Sans',sans-serif; font-size:14.5px; padding:11px 13px; resize:vertical;}
+  textarea:focus, input[type="text"].free:focus{outline:2px solid var(--accent); outline-offset:1px;}
+  .model-answer{display:none; margin-top:10px; background:var(--green-bg); border-radius:10px; padding:13px 16px; font-size:14px;}
+  .model-answer.show{display:block;}
+  .model-answer b{display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--green); margin-bottom:7px;}
+  .model-answer p{margin:3px 0;}
+
+  .sel-line{display:flex; align-items:baseline; flex-wrap:wrap; gap:6px; font-size:15px; padding:8px 0; border-bottom:1px dashed var(--line);}
+  .sel-line:last-child{border-bottom:none;}
+  select.blank{appearance:auto; cursor:pointer; width:auto; max-width:100%;}
+
+  .order-list{list-style:none; margin:12px 0 0; padding:0; display:flex; flex-direction:column; gap:8px; min-height:14px;}
+  .order-step{display:flex; align-items:center; gap:12px; background:var(--paper-2); border:1px solid var(--line); border-radius:10px; padding:9px 14px; font-size:14.5px;}
+  .order-num{font-family:'IBM Plex Mono',monospace; font-weight:700; width:22px; height:22px; border-radius:50%; background:var(--bleu); color:#fff; display:flex; align-items:center; justify-content:center; font-size:11.5px; flex:0 0 auto;}
+  .order-step.ok{border-color:var(--green); background:var(--green-bg);}
+  .order-step.no{border-color:var(--red); background:var(--red-bg);}
+
+  .score-banner{margin-top:16px; padding:14px 18px; border-radius:12px; background:var(--paper-2); border:1px solid var(--line); display:none; align-items:center; gap:14px;}
+  .score-banner.show{display:flex;}
+  .score-num{font-family:'Fraunces',serif; font-size:30px; font-weight:600; color:var(--accent-ink);}
+
+  .total-bar{position:sticky; bottom:0; z-index:20; background:var(--paper); border-top:1px solid var(--line); box-shadow:0 -6px 20px -14px rgba(0,0,0,.5); padding:10px 20px; display:flex; align-items:center; justify-content:center; gap:14px; font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--ink-soft);}
+  .total-bar b{font-family:'Fraunces',serif; font-size:20px; color:var(--accent-ink);}
+
+  footer{max-width:900px; margin:60px auto 0; padding:20px; text-align:center; color:var(--ink-soft); font-size:12.5px; font-family:'IBM Plex Mono',monospace;}
+</style>
+
+<div class="stripe"></div>
+<div class="hero">
+  <div class="hero-inner">
+    <h1>La routine quotidienne</h1>
+    <div class="hero-meta">
+      <div>Language<b>French · A1.2</b></div>
+      <div>Leçon<b>15 · Lecture</b></div>
+      <div>Focus<b>Parler de ses habitudes</b></div>
+    </div>
+    <div class="hero-nav">
+      <a href="https://karla19urios.github.io/french/A1.2/index.html">← Accueil A1.2</a>
+      <a href="https://karla19urios.github.io/french/A1.2/lectures.html">📖 Lectures</a>
+      <a href="https://karla19urios.github.io/french/A1.2/Actividades%20A1.2/15_La%20routine%20quotidienne%20(interactivo).html">🎮 L'activité de la leçon</a>
+      <a href="https://karla19urios.github.io/french/A1.2/Lectures%20A1.2/15_La%20routine%20quotidienne%20(1).pdf" target="_blank" rel="noopener">📄 La lecture en PDF</a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section id="sec-intro">
+    <div class="sec-head"><span class="sec-num">01</span><h2>How this lesson works</h2></div>
+    <p class="sec-intro">First the words you need, then a short article about one French family and their screens, then three exercises that correct themselves. In the text, every <button class="gloss" data-en="Try it — hover or tap a dotted word to see its meaning.">dotted word</button> gives you its English meaning when you hover or tap it. Read with the vocabulary open beside you the first time; the second time, try without it.</p>
+  </section>
+
+  <!-- 02 VOCABULAIRE -->
+  <section id="sec-vocab">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Vocabulaire — la journée</h2></div>
+    <div class="card">
+      <p class="sec-intro" style="margin-top:0;">Most routine verbs are <b style="color:var(--ink)">pronominaux</b>: the action comes back to the person doing it, so a little pronoun sits before the verb — <em>je <b>me</b> lève</em>, <em>tu <b>te</b> lèves</em>, <em>il <b>se</b> lève</em>.</p>
+      <div class="note-grid cols-3">
+        <div class="note"><b>🌅 Le matin</b>
+          <p>se réveiller <span class="en">— to wake up</span></p>
+          <p>se lever <span class="en">— to get up</span></p>
+          <p>se doucher / prendre une douche <span class="en">— to shower</span></p>
+          <p>s'habiller <span class="en">— to get dressed</span></p>
+          <p>prendre le petit-déjeuner <span class="en">— to have breakfast</span></p>
+          <p>partir au travail / aller à l'école</p>
+        </div>
+        <div class="note"><b>🌤️ L'après-midi</b>
+          <p>déjeuner <span class="en">— to have lunch</span></p>
+          <p>rentrer <span class="en">— to come home</span></p>
+          <p>se reposer <span class="en">— to rest</span></p>
+          <p>faire ses devoirs <span class="en">— to do one's homework</span></p>
+          <p>faire les courses <span class="en">— to do the shopping</span></p>
+        </div>
+        <div class="note"><b>🌙 Le soir</b>
+          <p>dîner <span class="en">— to have dinner</span></p>
+          <p>se coucher <span class="en">— to go to bed</span></p>
+          <p>s'endormir <span class="en">— to fall asleep</span></p>
+          <p>tôt / tard <span class="en">— early / late</span></p>
+          <p>vers 8 heures <span class="en">— around 8 o'clock</span></p>
+        </div>
+      </div>
+      <div class="note-grid cols-3" style="margin-top:12px;">
+        <div class="note"><b>📺 Les médias</b>
+          <p>allumer la télé <span class="en">— to turn on the TV</span></p>
+          <p>écouter la radio</p>
+          <p>une émission <span class="en">— a programme</span></p>
+          <p>les informations <span class="en">— the news</span></p>
+          <p>un écran <span class="en">— a screen</span></p>
+        </div>
+        <div class="note"><b>💻 Internet</b>
+          <p>aller sur Internet</p>
+          <p>regarder des vidéos</p>
+          <p>écouter de la musique</p>
+          <p>jouer en ligne <span class="en">— to play online</span></p>
+          <p>écrire un mail</p>
+        </div>
+        <div class="note"><b>⏱ Les connecteurs</b>
+          <p>d'abord <span class="en">— first</span></p>
+          <p>ensuite / puis <span class="en">— then</span></p>
+          <p>après <span class="en">— after / afterwards</span></p>
+          <p>enfin <span class="en">— finally</span></p>
+          <p>souvent / toujours <span class="en">— often / always</span></p>
+        </div>
+      </div>
+      <div class="instr-box">
+        <b>Attention</b>
+        The pronoun changes with the subject, never stays « se »: <b style="color:var(--ink)">je me lève, nous nous levons, vous vous levez</b>. Ne dites pas : <s>je se lève</s>. Before a vowel, <em>me / te / se</em> become <em>m' / t' / s'</em> : <b style="color:var(--ink)">je m'habille, il s'endort</b>.
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 LECTURE -->
+  <section id="sec-lecture">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Lecture — Parler de ses habitudes</h2></div>
+    <p class="sec-intro">Read the four testimonies. Hover or tap the dotted words for help, and press <b style="color:var(--ink)">Écouter</b> to hear a paragraph read aloud.</p>
+    <div class="article">
+      <div class="article-head">Magazine Mon Quartier · du 12 au 18 janvier · Les écrans et vous</div>
+      <div class="article-body">
+        <h3>Les écrans rythment notre journée !</h3>
+        <p class="chapo">La télévision, la radio et Internet sont dans toutes les maisons. Mais chaque personne les utilise à un moment différent de la journée. La famille Legrand raconte sa journée.</p>
+
+        <div class="temoin">
+          <div class="temoin-num">1</div>
+          <div class="temoin-body">
+            <div class="temoin-name">Patrick, le père, 45 ans <button class="speak" data-speak="t1">🔊 Écouter</button></div>
+            <p id="t1">Le matin, je <button class="gloss" data-en="I wake up">me réveille</button> à 6 h 30 et j'<button class="gloss" data-en="I turn on">allume</button> la radio dans la cuisine. J'écoute les <button class="gloss" data-en="the news">informations</button> et je prends mon café. Ensuite, je me douche et je <button class="gloss" data-en="I get dressed">m'habille</button>. À 8 heures, je pars au bureau en <button class="gloss" data-en="by underground / subway">métro</button>. Le soir, je <button class="gloss" data-en="I come home">rentre</button> à 19 heures et je <button class="gloss" data-en="I have dinner">dîne</button> avec ma femme. Après, nous regardons la télé ensemble : j'adore le football ! Je <button class="gloss" data-en="I go to bed">me couche</button> à 23 heures.</p>
+          </div>
+        </div>
+
+        <div class="temoin">
+          <div class="temoin-num">2</div>
+          <div class="temoin-body">
+            <div class="temoin-name">Sophie, la fille, 20 ans <button class="speak" data-speak="t2">🔊 Écouter</button></div>
+            <p id="t2">Moi, je ne regarde pas la télé. Le soir, j'allume mon <button class="gloss" data-en="my computer">ordinateur</button> : je regarde des vidéos, j'écoute de la musique et je parle avec mes amis sur Internet. Je me couche <button class="gloss" data-en="late">tard</button>, <button class="gloss" data-en="around one in the morning">vers une heure du matin</button>. Le week-end, je fais mes <button class="gloss" data-en="my homework">devoirs</button> à la <button class="gloss" data-en="the library">bibliothèque</button>.</p>
+          </div>
+        </div>
+
+        <div class="temoin">
+          <div class="temoin-num">3</div>
+          <div class="temoin-body">
+            <div class="temoin-name">Lucas, le fils, 11 ans <button class="speak" data-speak="t3">🔊 Écouter</button></div>
+            <p id="t3">Le matin, je <button class="gloss" data-en="I get up">me lève</button> à 7 heures et je prends mon <button class="gloss" data-en="breakfast">petit-déjeuner</button> devant la télé. À 8 h 15, je vais à l'école. L'après-midi, je rentre à 16 h 30 et je <button class="gloss" data-en="I play online">joue en ligne</button> avec mes <button class="gloss" data-en="my friends (familiar)">copains</button>. Après, je fais mes devoirs et je me couche à 21 heures.</p>
+          </div>
+        </div>
+
+        <div class="temoin">
+          <div class="temoin-num">4</div>
+          <div class="temoin-body">
+            <div class="temoin-name">Colette, la grand-mère, 70 ans <button class="speak" data-speak="t4">🔊 Écouter</button></div>
+            <p id="t4">Je me réveille <button class="gloss" data-en="early">tôt</button>, vers 6 heures. <button class="gloss" data-en="First (of all)">D'abord</button>, je regarde les informations à la télé. À 14 heures, je regarde mon <button class="gloss" data-en="my favourite programme">émission préférée</button> : une émission de cuisine. L'après-midi, je vais sur Internet pour écrire à ma famille. Le soir, je <button class="gloss" data-en="I choose">choisis</button> un bon film, mais <button class="gloss" data-en="often">souvent</button> je <button class="gloss" data-en="I fall asleep">m'endors</button> devant l'<button class="gloss" data-en="the screen">écran</button> !</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 COMPRÉHENSION -->
+  <section id="sec-practice">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Compréhension</h2></div>
+    <p class="sec-intro">Trois questions qui vont à l'essentiel : ce que dit le texte, ce que chaque personne fait sur Internet, et à quel moment de la journée. Retournez au texte autant de fois que nécessaire.</p>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">1</span>Vrai ou faux ?</div>
+      <div id="ex1"></div>
+      <div class="btn-row"><button class="btn" data-check="ex1">Check my answers</button><button class="btn secondary" data-reveal="ex1">Show answers</button></div>
+      <div class="score-banner" id="ex1-score"><div class="score-num" id="ex1-score-num">0/5</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">2</span>Internet : qui fait quoi ?</div>
+      <div class="ex-sub">Patrick · Sophie · Lucas · Colette</div>
+      <div id="ex2"></div>
+      <div class="btn-row"><button class="btn" data-check="ex2">Check my answers</button><button class="btn secondary" data-reveal="ex2">Show answers</button></div>
+      <div class="score-banner" id="ex2-score"><div class="score-num" id="ex2-score-num">0/5</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">3</span>Le matin, l'après-midi ou le soir ?</div>
+      <div class="ex-sub">Repérez le moment cité dans le texte.</div>
+      <div id="ex3"></div>
+      <div class="btn-row"><button class="btn" data-check="ex3">Check my answers</button><button class="btn secondary" data-reveal="ex3">Show answers</button></div>
+      <div class="score-banner" id="ex3-score"><div class="score-num" id="ex3-score-num">0/5</div><div>correct</div></div>
+    </div>
+
+  </section>
+
+</div>
+
+<div class="total-bar">Total du jour <b id="total-score">0</b> / 15 points</div>
+
+<footer>Leçon 15 &middot; La routine quotidienne &mdash; texte original écrit pour le cours &middot; karla19urios.github.io/french</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  var TOTALS = {};
+  function setScore(id, score){
+    TOTALS[id] = score;
+    var sum = 0;
+    for(var k in TOTALS){ sum += TOTALS[k]; }
+    document.getElementById('total-score').textContent = sum;
+  }
+
+  function norm(s){
+    return (s||"").normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim()
+      .replace(/\s+/g,' ').replace(/['’]/g,"'").replace(/[?!.]+$/g,'').trim();
+  }
+  function matches(val, answers){
+    var v = norm(val);
+    if(!v) return false;
+    return answers.some(function(a){ return norm(a) === v; });
+  }
+
+  function buildMultiChoice(containerId, items){
+    var container = document.getElementById(containerId);
+    items.forEach(function(it, i){
+      var line = document.createElement('div');
+      line.className = 'sel-line';
+      var opts = '<option value="">…</option>';
+      it.options.forEach(function(o){ opts += '<option value="'+o+'">'+o+'</option>'; });
+      line.innerHTML = '<span class="qn">'+(i+1)+'.</span> '+it.prefix+' <select class="blank" data-idx="'+i+'">'+opts+'</select>'+(it.suffix ? ' '+it.suffix : '');
+      container.appendChild(line);
+    });
+    document.querySelector('[data-check="'+containerId+'"]').addEventListener('click', function(){
+      var score = 0;
+      container.querySelectorAll('select.blank').forEach(function(sel){
+        var idx = +sel.dataset.idx;
+        sel.classList.remove('ok','no');
+        if(sel.value === items[idx].correct){ sel.classList.add('ok'); score++; }
+        else { sel.classList.add('no'); }
+      });
+      var sb = document.getElementById(containerId+'-score');
+      if(sb){ sb.classList.add('show'); document.getElementById(containerId+'-score-num').textContent = score+'/'+items.length; }
+      setScore(containerId, score);
+    });
+    document.querySelector('[data-reveal="'+containerId+'"]').addEventListener('click', function(){
+      container.querySelectorAll('select.blank').forEach(function(sel){
+        var idx = +sel.dataset.idx;
+        sel.value = items[idx].correct;
+        sel.classList.remove('no'); sel.classList.add('ok');
+      });
+      var sb = document.getElementById(containerId+'-score');
+      if(sb){ sb.classList.add('show'); document.getElementById(containerId+'-score-num').textContent = items.length+'/'+items.length; }
+    });
+  }
+
+  /* ---------------- Ex1 : vrai / faux ---------------- */
+  buildMultiChoice('ex1', [
+    {prefix:"Patrick écoute la radio le matin.", options:["Vrai","Faux"], correct:"Vrai"},
+    {prefix:"Sophie regarde beaucoup la télé.", options:["Vrai","Faux"], correct:"Faux"},
+    {prefix:"Lucas prend son petit-déjeuner devant la télé.", options:["Vrai","Faux"], correct:"Vrai"},
+    {prefix:"Colette n'utilise pas Internet.", options:["Vrai","Faux"], correct:"Faux"},
+    {prefix:"Sophie se couche tard.", options:["Vrai","Faux"], correct:"Vrai"}
+  ]);
+
+  /* ---------------- Ex2 : les utilisations d'Internet ---------------- */
+  (function(){
+    var noms = ["Patrick","Sophie","Lucas","Colette"];
+    buildMultiChoice('ex2', [
+      {prefix:"Il joue en ligne avec ses copains :", options:noms, correct:"Lucas", suffix:"."},
+      {prefix:"Elle regarde des vidéos et écoute de la musique :", options:noms, correct:"Sophie", suffix:"."},
+      {prefix:"Elle écrit à sa famille :", options:noms, correct:"Colette", suffix:"."},
+      {prefix:"Elle parle avec ses amis :", options:noms, correct:"Sophie", suffix:"."},
+      {prefix:"Il n'utilise pas Internet : il préfère la radio et la télé :", options:noms, correct:"Patrick", suffix:"."}
+    ]);
+  })();
+
+  /* ---------------- Ex3 : les moments de la journée ---------------- */
+  (function(){
+    var moments = ["le matin","l'après-midi","le soir"];
+    buildMultiChoice('ex3', [
+      {prefix:"Patrick écoute la radio dans la cuisine :", options:moments, correct:"le matin", suffix:"."},
+      {prefix:"Lucas prend son petit-déjeuner devant la télé :", options:moments, correct:"le matin", suffix:"."},
+      {prefix:"Colette regarde son émission de cuisine :", options:moments, correct:"l'après-midi", suffix:"."},
+      {prefix:"Lucas joue en ligne avec ses copains :", options:moments, correct:"l'après-midi", suffix:"."},
+      {prefix:"Sophie regarde des vidéos sur son ordinateur :", options:moments, correct:"le soir", suffix:"."}
+    ]);
+  })();
+
+  /* ---------------- Lecture : audio ---------------- */
+  document.querySelectorAll('.speak').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      if(!('speechSynthesis' in window)){ btn.textContent = '🔇 non disponible'; return; }
+      var p = document.getElementById(btn.dataset.speak);
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(p.textContent);
+      u.lang = 'fr-FR'; u.rate = 0.85;
+      var voices = window.speechSynthesis.getVoices();
+      var fr = voices.filter(function(v){ return /^fr/i.test(v.lang); })[0];
+      if(fr) u.voice = fr;
+      btn.textContent = '⏸ Arrêter';
+      u.onend = function(){ btn.textContent = '🔊 Écouter'; };
+      window.speechSynthesis.speak(u);
+    });
+  });
+  if('speechSynthesis' in window){ window.speechSynthesis.getVoices(); }
+
+  /* ---------------- Glossaire : tap sur mobile ---------------- */
+  document.querySelectorAll('.gloss').forEach(function(g){
+    g.setAttribute('type','button');
+    g.addEventListener('click', function(e){ e.preventDefault(); g.focus(); });
+  });
+
+})();
+</script>
+
+</body></html>
