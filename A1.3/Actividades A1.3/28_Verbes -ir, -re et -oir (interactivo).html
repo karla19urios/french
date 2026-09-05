@@ -1,0 +1,723 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>Les Verbes en -IR, -RE, -OIR</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+  :root{
+    --bg:#f4f5f7;
+    --paper:#ffffff;
+    --paper-2:#f4f5f7;
+    --ink:#1a1a2e;
+    --ink-soft:#6b7280;
+    --line:#e5e7eb;
+    --bleu:#002395;
+    --rouge:#ED2939;
+    --accent:#002395;
+    --accent-ink:#002395;
+    --green:#3f8f6d;
+    --green-bg:#e7f3ed;
+    --red:#ED2939;
+    --red-bg:#fdecec;
+    --shadow: 0 1px 2px rgba(26,26,46,.06), 0 8px 24px -12px rgba(26,26,46,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#12141c;
+      --paper:#1b1e2b;
+      --paper-2:#20232f;
+      --ink:#f1f2f6;
+      --ink-soft:#9aa0b4;
+      --line:#2a2e40;
+      --bleu:#002395;
+      --rouge:#ED2939;
+      --accent:#5b7fe0;
+      --accent-ink:#7c9df2;
+      --green:#63c299;
+      --green-bg:#173226;
+      --red:#ED2939;
+      --red-bg:#3a1418;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#12141c;
+    --paper:#1b1e2b;
+    --paper-2:#20232f;
+    --ink:#f1f2f6;
+    --ink-soft:#9aa0b4;
+    --line:#2a2e40;
+    --bleu:#002395;
+    --rouge:#ED2939;
+    --accent:#5b7fe0;
+    --accent-ink:#7c9df2;
+    --green:#63c299;
+    --green-bg:#173226;
+    --red:#ED2939;
+    --red-bg:#3a1418;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.6);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'Work Sans', ui-sans-serif, system-ui, sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:0 20px 90px;}
+  h1,h2,h3{font-family:'Fraunces', Georgia, serif; text-wrap:balance; margin:0; color:var(--ink);}
+  .eyebrow{font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-ink); font-weight:600;}
+  code, .mono{font-family:'IBM Plex Mono', monospace;}
+
+  /* ---- Tricolor stripe ---- */
+  .stripe{height:8px; background:linear-gradient(90deg, var(--bleu) 33%, #ffffff 33%, #ffffff 66%, var(--rouge) 66%);}
+
+  /* ---- Hero ---- */
+  .hero{
+    background: linear-gradient(180deg, var(--bleu) 0%, #000f42 100%);
+    color:#f3f5ff; padding:40px 20px 40px;
+  }
+  .hero-inner{max-width:900px; margin:0 auto;}
+  .hero h1{font-size:clamp(30px,4.4vw,44px); font-weight:600; color:#ffffff; letter-spacing:-.01em;}
+  .hero-meta{display:flex; gap:22px; margin-top:22px; flex-wrap:wrap;}
+  .hero-meta div{font-family:'IBM Plex Mono',monospace; font-size:12px; color:#a9b6e8;}
+  .hero-meta b{display:block; color:#f3f5ff; font-size:14px; font-family:'Work Sans',sans-serif; font-weight:600; margin-top:2px;}
+
+  section{margin-top:46px;}
+  .wrap > section:first-of-type{margin-top:36px;}
+  .sec-head{display:flex; align-items:baseline; gap:12px; margin-bottom:16px;}
+  .sec-num{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent-ink); font-weight:600;}
+  section h2{font-size:25px; font-weight:600;}
+  .sec-intro{color:var(--ink-soft); font-size:15px; max-width:66ch; margin-top:6px;}
+
+  .card{background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:22px; box-shadow:var(--shadow);}
+  .card + .card{margin-top:14px;}
+
+  table.poss{width:100%; border-collapse:collapse; margin-top:12px; font-size:14.5px;}
+  table.poss th{text-align:left; font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); padding:6px 10px; border-bottom:2px solid var(--line);}
+  table.poss td{padding:8px 10px; border-bottom:1px solid var(--line);}
+  table.poss tr:last-child td{border-bottom:none;}
+  table.poss .pron{color:var(--ink-soft); width:150px;}
+  table.poss .pos{font-weight:700; color:var(--accent-ink);}
+
+  .instr-box{border-left:3px solid var(--accent); background:var(--paper-2); border-radius:0 10px 10px 0; padding:14px 18px; margin:16px 0; font-size:14.5px;}
+  .instr-box b{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-ink); display:block; margin-bottom:6px;}
+  .instr-box s{color:var(--ink-soft);}
+
+  .note-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px;}
+  @media (max-width:640px){.note-grid{grid-template-columns:1fr;}}
+  .note{background:var(--paper-2); border-radius:10px; padding:14px 16px; font-size:13.8px;}
+  .note b{display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--accent-ink); margin-bottom:6px;}
+  .note .fr{font-style:italic; color:var(--ink); display:block; margin-top:4px;}
+
+  /* exercises */
+  .ex-block{margin-top:16px;}
+  .ex-tag{
+    display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%;
+    background:var(--bleu); color:#ffffff; font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:13px;
+    margin-right:8px; flex:0 0 auto;
+  }
+  .ex-title{font-weight:600; font-size:15.5px; display:flex; align-items:center; margin-bottom:4px;}
+  .ex-sub{color:var(--ink-soft); font-size:13.3px; margin:2px 0 14px 34px;}
+  .ex-part{font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:600; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.06em; margin:16px 0 6px;}
+  .ex-part:first-of-type{margin-top:4px;}
+  .part-label{font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#ffffff; background:var(--bleu); display:inline-block; padding:5px 12px; border-radius:20px; margin:34px 0 -2px;}
+  .card.ex-block:first-of-type{margin-top:0;}
+  .prod-q{font-weight:600; font-size:14.5px; color:var(--ink); margin:16px 0 6px;}
+  .prod-q:first-of-type{margin-top:6px;}
+
+  .fill-line{
+    display:flex; align-items:baseline; flex-wrap:wrap; gap:6px 4px; padding:9px 0; font-size:15px; border-bottom:1px dashed var(--line);
+  }
+  .fill-line:last-child{border-bottom:none;}
+  .fill-line .qn{font-family:'IBM Plex Mono',monospace; color:var(--ink-soft); font-size:12.5px; width:16px;}
+  .blank{
+    padding:5px 8px; border-radius:6px; border:1px solid var(--line); background:var(--paper-2);
+    color:var(--ink); font-family:'Work Sans',sans-serif; font-size:14.5px;
+  }
+  .blank.w-full{width:100%; margin-top:4px;}
+  .blank.w-med{width:150px;}
+  .blank.w-sm{width:90px; text-align:center;}
+  .blank.tiny{width:60px; text-align:center;}
+  .blank:focus{outline:2px solid var(--accent); outline-offset:1px;}
+  .blank.ok{border-color:var(--green); background:var(--green-bg);}
+  .blank.no{border-color:var(--red); background:var(--red-bg);}
+  .given{font-weight:600; color:var(--accent-ink);}
+
+  .para-fill{font-size:15.5px; line-height:2.4;}
+  .para-fill .blank{width:90px;}
+
+  .hint-chip{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:600; color:var(--accent-ink); background:var(--paper-2); border:1px solid var(--line); border-radius:6px; padding:2px 7px; margin-right:6px; white-space:nowrap;}
+
+  .btn{font-family:'Work Sans',sans-serif; font-weight:600; font-size:14px; padding:10px 18px; border-radius:9px; border:none; cursor:pointer; background:var(--bleu); color:#ffffff;}
+  .btn:hover{background:var(--rouge);}
+  .btn.secondary{background:transparent; color:var(--ink); border:1px solid var(--line);}
+  .btn.secondary:hover{border-color:var(--accent); color:var(--accent-ink);}
+  .btn-row{display:flex; gap:10px; margin-top:16px; flex-wrap:wrap;}
+
+  /* phrase bank / production */
+  .phrase-bank{display:flex; gap:8px; flex-wrap:wrap; margin:12px 0;}
+  .phrase{font-family:'IBM Plex Mono',monospace; font-size:12.5px; background:var(--paper-2); border:1px solid var(--line); border-radius:20px; padding:6px 12px; cursor:pointer;}
+  .phrase:hover{border-color:var(--accent);}
+  .phrase .g{color:var(--ink-soft); margin-left:3px;}
+  textarea, input[type="text"].free{width:100%; min-height:44px; border-radius:10px; border:1px solid var(--line); background:var(--paper-2); color:var(--ink); font-family:'Work Sans',sans-serif; font-size:14.5px; padding:11px 13px; resize:vertical;}
+  textarea:focus, input[type="text"].free:focus{outline:2px solid var(--accent); outline-offset:1px;}
+  .model-answer{display:none; margin-top:10px; background:var(--green-bg); border-radius:10px; padding:13px 16px; font-size:14px;}
+  .model-answer.show{display:block;}
+  .model-answer b{display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--green); margin-bottom:7px;}
+  .model-answer p{margin:3px 0;}
+
+  /* select drill */
+  .sel-line{display:flex; align-items:baseline; flex-wrap:wrap; gap:6px; font-size:15px; padding:8px 0; border-bottom:1px dashed var(--line);}
+  .sel-line:last-child{border-bottom:none;}
+  select.blank{appearance:auto; cursor:pointer;}
+
+  .score-banner{margin-top:16px; padding:14px 18px; border-radius:12px; background:var(--paper-2); border:1px solid var(--line); display:none; align-items:center; gap:14px;}
+  .score-banner.show{display:flex;}
+  .score-num{font-family:'Fraunces',serif; font-size:30px; font-weight:600; color:var(--accent-ink);}
+
+  footer{max-width:900px; margin:60px auto 0; padding:20px; text-align:center; color:var(--ink-soft); font-size:12.5px; font-family:'IBM Plex Mono',monospace;}
+</style>
+
+<div class="stripe"></div>
+<div class="hero">
+  <div class="hero-inner">
+    <h1>Les Verbes en -IR, -RE, -OIR</h1>
+    <div class="hero-meta">
+      <div>Language<b>French · A1</b></div>
+      <div>Focus<b>Two- and three-stem verb conjugation</b></div>
+      <div>Time<b>~30 minutes</b></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section id="sec-intro">
+    <div class="sec-head"><span class="sec-num">01</span><h2>How this lesson works</h2></div>
+    <p class="sec-intro">Not every French verb conjugates like <em>-er</em> verbs. Many verbs in <b style="color:var(--ink)">-ir</b>, <b style="color:var(--ink)">-re</b> and <b style="color:var(--ink)">-oir</b> change their stem as they conjugate — some use two different stems (singular vs. plural), others use three. This lesson covers both patterns, then some special cases, then plenty of practice.</p>
+  </section>
+
+  <!-- THEORY: TWO-STEM VERBS -->
+  <section id="sec-deux">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Les verbes à deux formes (type « écrire »)</h2></div>
+    <div class="card">
+      <p class="sec-intro" style="margin-top:0;">These verbs use one stem for <em>je / tu / il-elle-on</em> and a longer stem — usually with an extra consonant — for <em>nous / vous / ils-elles</em>.</p>
+      <table class="poss">
+        <tr><th></th><th>écrire</th><th>lire</th><th>mettre</th><th>répondre</th></tr>
+        <tr><td class="pron">Je / J'</td><td>écris</td><td>lis</td><td>mets</td><td>réponds</td></tr>
+        <tr><td class="pron">Tu</td><td>écris</td><td>lis</td><td>mets</td><td>réponds</td></tr>
+        <tr><td class="pron">Il / Elle / On</td><td>écrit</td><td>lit</td><td>met</td><td>répond</td></tr>
+        <tr><td class="pron">Nous</td><td class="pos">écrivons</td><td class="pos">lisons</td><td class="pos">mettons</td><td class="pos">répondons</td></tr>
+        <tr><td class="pron">Vous</td><td class="pos">écrivez</td><td class="pos">lisez</td><td class="pos">mettez</td><td class="pos">répondez</td></tr>
+        <tr><td class="pron">Ils / Elles</td><td class="pos">écrivent</td><td class="pos">lisent</td><td class="pos">mettent</td><td class="pos">répondent</td></tr>
+      </table>
+      <p class="sec-intro" style="margin-top:10px;">Et de la même famille : <em>décrire, inscrire</em> (comme écrire) &middot; <em>interdire, plaire</em> et les verbes en « -uire » : <em>conduire, construire</em> (comme lire) &middot; <em>battre, permettre, promettre</em> (comme mettre) &middot; <em>entendre, attendre, vendre, perdre, descendre</em> (comme répondre).</p>
+      <div class="instr-box">
+        <b>Attention</b>
+        La finale des verbes en « -dre » est « -d », sans « t », à la 3<sup>e</sup> personne du singulier : <b style="color:var(--ink)">Il répond</b>. <b style="color:var(--ink)">Elle attend</b>. <b style="color:var(--ink)">Elle entend</b>.
+      </div>
+    </div>
+  </section>
+
+  <!-- THEORY: CAS PARTICULIERS -->
+  <section id="sec-cas">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Cas particuliers : savoir, connaître, croire, voir</h2></div>
+    <div class="card">
+      <table class="poss">
+        <tr><th></th><th>connaître</th><th>savoir</th><th>croire</th><th>voir</th></tr>
+        <tr><td class="pron">Je</td><td>connais</td><td>sais</td><td>crois</td><td>vois</td></tr>
+        <tr><td class="pron">Tu</td><td>connais</td><td>sais</td><td>crois</td><td>vois</td></tr>
+        <tr><td class="pron">Il / Elle / On</td><td>connaît</td><td>sait</td><td>croit</td><td>voit</td></tr>
+        <tr><td class="pron">Nous</td><td class="pos">connaissons</td><td class="pos">savons</td><td class="pos">croyons</td><td class="pos">voyons</td></tr>
+        <tr><td class="pron">Vous</td><td class="pos">connaissez</td><td class="pos">savez</td><td class="pos">croyez</td><td class="pos">voyez</td></tr>
+        <tr><td class="pron">Ils / Elles</td><td class="pos">connaissent</td><td class="pos">savent</td><td class="pos">croient</td><td class="pos">voient</td></tr>
+      </table>
+
+      <div class="note-grid">
+        <div class="note"><b>« Connaître » + nom</b>Elle connaît l'alphabet.<span class="fr">Il connaît le code de la route.</span></div>
+        <div class="note"><b>« Savoir » + verbe</b>Elle sait lire.<span class="fr">Il sait conduire.</span></div>
+      </div>
+
+      <div class="instr-box">
+        <b>Savoir ≠ pouvoir</b>
+        « Savoir » = connaissance apprise. « Pouvoir » = possibilité, capacité. <b style="color:var(--ink)">Je sais lire.</b> (I know how to) vs. <b style="color:var(--ink)">Je peux lire sans lunettes.</b> (I'm able to, right now)
+      </div>
+      <div class="instr-box">
+        <b>Attention</b>
+        Dites : <b style="color:var(--ink)">Ils croient</b>, <b style="color:var(--ink)">Ils voient</b>. Ne dites pas : <s>Ils croivent</s>, <s>Ils voyent</s>.
+      </div>
+    </div>
+  </section>
+
+  <!-- THEORY: TROIS FORMES -->
+  <section id="sec-trois">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Les verbes à trois formes (type « boire »)</h2></div>
+    <div class="card">
+      <p class="sec-intro" style="margin-top:0;">These verbs go further: <em>nous/vous</em> use one stem, but <em>ils/elles</em> uses a <b style="color:var(--ink)">third</b>, often unpredictable stem — usually the same one hiding inside the singular forms.</p>
+      <table class="poss">
+        <tr><th></th><th>boire</th><th>recevoir</th><th>prendre</th><th>venir</th></tr>
+        <tr><td class="pron">Je</td><td>bois</td><td>reçois</td><td>prends</td><td>viens</td></tr>
+        <tr><td class="pron">Tu</td><td>bois</td><td>reçois</td><td>prends</td><td>viens</td></tr>
+        <tr><td class="pron">Il / Elle / On</td><td>boit</td><td>reçoit</td><td>prend</td><td>vient</td></tr>
+        <tr><td class="pron">Nous</td><td class="pos">buvons</td><td class="pos">recevons</td><td class="pos">prenons</td><td class="pos">venons</td></tr>
+        <tr><td class="pron">Vous</td><td class="pos">buvez</td><td class="pos">recevez</td><td class="pos">prenez</td><td class="pos">venez</td></tr>
+        <tr><td class="pron">Ils / Elles</td><td style="font-weight:700; color:var(--rouge);">boivent</td><td style="font-weight:700; color:var(--rouge);">reçoivent</td><td style="font-weight:700; color:var(--rouge);">prennent</td><td style="font-weight:700; color:var(--rouge);">viennent</td></tr>
+      </table>
+      <p class="sec-intro" style="margin-top:10px;">Et de la même famille : <em>apprendre, comprendre</em> (comme prendre) &middot; <em>devenir, revenir, tenir, se souvenir</em> (comme venir).</p>
+      <div class="instr-box">
+        <b>Le troisième radical</b>
+        Regarde la forme <em>ils/elles</em>, en rouge ci-dessus : elle ajoute souvent une consonne doublée ou cachée — <em>prennent, viennent</em> — qu'on n'entend pas dans <em>je prends, je viens</em>.
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK DRILL -->
+  <section id="sec-drill">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Quick drill — la bonne forme</h2></div>
+    <div class="card">
+      <p class="sec-intro" style="margin-top:0;">Choose the correct <em>il/elle</em> form for each verb.</p>
+      <div id="drill"></div>
+      <div class="btn-row" style="align-items:center;">
+        <button class="btn" data-check="drill">Check my answers</button>
+        <button class="btn secondary" data-reveal="drill">Show answers</button>
+        <button class="btn secondary" id="drill-continue">Next page →</button>
+        <span id="drill-page" class="hint-chip" style="margin-left:auto;">Page 1 of 2</span>
+      </div>
+      <div class="score-banner" id="drill-score"><div class="score-num" id="drill-score-num">0/8</div><div>correct</div></div>
+    </div>
+  </section>
+
+  <!-- PRACTICE -->
+  <section id="sec-practice">
+    <div class="sec-head"><span class="sec-num">06</span><h2>Practice</h2></div>
+    <p class="sec-intro">Exercises adapted from your worksheet, grouped by grammar point.</p>
+
+    <div class="part-label">Verbes en -re (écrire, lire, mettre, répondre…)</div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">1</span>Complétez avec les verbes conjugués.</div>
+      <div id="ex1"></div>
+      <div class="btn-row"><button class="btn" data-check="ex1">Check my answers</button><button class="btn secondary" data-reveal="ex1">Show answers</button></div>
+      <div class="score-banner" id="ex1-score"><div class="score-num" id="ex1-score-num">0/7</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">2</span>Complétez, selon le modèle.</div>
+      <div class="ex-sub"><span class="given">1. (attendre) – Vous attendez le bus ? – Non, j'attends un taxi.</span></div>
+      <div id="ex2"></div>
+      <div class="btn-row"><button class="btn" data-check="ex2">Check my answers</button><button class="btn secondary" data-reveal="ex2">Show answers</button></div>
+      <div class="score-banner" id="ex2-score"><div class="score-num" id="ex2-score-num">0/8</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">3</span>Écrivez la fin des verbes.</div>
+      <div class="ex-sub">« mettre », « lire », « écrire », « vendre », « attendre », « descendre »</div>
+      <div id="ex3"></div>
+      <div class="btn-row"><button class="btn" data-check="ex3">Check my answers</button><button class="btn secondary" data-reveal="ex3">Show answers</button></div>
+      <div class="score-banner" id="ex3-score"><div class="score-num" id="ex3-score-num">0/11</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">4</span>Transformez le texte, selon le modèle.</div>
+      <div class="ex-sub"><span class="given">On décrit la vie dans notre pays. → Nous décrivons la vie dans notre pays.</span></div>
+      <div id="ex4"></div>
+      <div class="btn-row"><button class="btn" data-check="ex4">Check my answers</button><button class="btn secondary" data-reveal="ex4">Show answers</button></div>
+      <div class="score-banner" id="ex4-score"><div class="score-num" id="ex4-score-num">0/4</div><div>correct</div></div>
+    </div>
+
+    <div class="part-label">Savoir, connaître, croire, voir</div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">5</span>« Savoir » et « connaître ». Complétez.</div>
+      <div id="ex5"></div>
+      <div class="btn-row"><button class="btn" data-check="ex5">Check my answers</button><button class="btn secondary" data-reveal="ex5">Show answers</button></div>
+      <div class="score-banner" id="ex5-score"><div class="score-num" id="ex5-score-num">0/7</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">6</span>« Voir » et « croire ». Complétez.</div>
+      <div class="ex-sub"><span class="given">a. Voir — 1. Tu vois cette lumière bleue dans le ciel : c'est un satellite.</span></div>
+      <div class="ex-part">a. Voir</div>
+      <div id="ex6a"></div>
+      <div class="btn-row"><button class="btn" data-check="ex6a">Check my answers</button><button class="btn secondary" data-reveal="ex6a">Show answers</button></div>
+      <div class="score-banner" id="ex6a-score"><div class="score-num" id="ex6a-score-num">0/3</div><div>correct</div></div>
+
+      <div class="ex-part">b. Croire</div>
+      <div id="ex6b"></div>
+      <div class="btn-row"><button class="btn" data-check="ex6b">Check my answers</button><button class="btn secondary" data-reveal="ex6b">Show answers</button></div>
+      <div class="score-banner" id="ex6b-score"><div class="score-num" id="ex6b-score-num">0/4</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">7</span>Le Père Noël. Complétez avec les verbes manquants.</div>
+      <div class="ex-sub">Hints show which verb belongs in each blank.</div>
+      <p class="para-fill" id="ex7"></p>
+      <div class="btn-row"><button class="btn" data-check="ex7">Check my answers</button><button class="btn secondary" data-reveal="ex7">Show answers</button></div>
+      <div class="score-banner" id="ex7-score"><div class="score-num" id="ex7-score-num">0/10</div><div>correct</div></div>
+    </div>
+
+    <div class="part-label">Verbes à trois formes (boire, recevoir, prendre, venir…)</div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">8</span>Conjuguez le verbe « prendre ».</div>
+      <div class="ex-sub"><span class="given">Je prends le RER.</span></div>
+      <div id="ex8"></div>
+      <div class="btn-row"><button class="btn" data-check="ex8">Check my answers</button><button class="btn secondary" data-reveal="ex8">Show answers</button></div>
+      <div class="score-banner" id="ex8-score"><div class="score-num" id="ex8-score-num">0/5</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">9</span>Complétez avec « prendre », « apprendre » et « comprendre ».</div>
+      <div id="ex9"></div>
+      <div class="btn-row"><button class="btn" data-check="ex9">Check my answers</button><button class="btn secondary" data-reveal="ex9">Show answers</button></div>
+      <div class="score-banner" id="ex9-score"><div class="score-num" id="ex9-score-num">0/8</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">10</span>Complétez avec « venir », « devenir », « revenir » et « tenir ».</div>
+      <div id="ex10"></div>
+      <div class="btn-row"><button class="btn" data-check="ex10">Check my answers</button><button class="btn secondary" data-reveal="ex10">Show answers</button></div>
+      <div class="score-banner" id="ex10-score"><div class="score-num" id="ex10-score-num">0/5</div><div>correct</div></div>
+    </div>
+
+    <div class="part-label">Production libre</div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">11</span>À vous !</div>
+      <div class="ex-sub">Open practice — click a word to insert it, then write full sentences.</div>
+      <div class="phrase-bank" id="bank11"></div>
+
+      <div class="prod-q">Qu'est-ce que vous savez faire ? (nager, skier, conduire, dessiner…)</div>
+      <textarea id="produce11-savoir" placeholder="Je sais…"></textarea>
+
+      <div class="prod-q">Qu'est-ce que vous buvez le matin ? À midi ? Le soir ?</div>
+      <textarea id="produce11-boire" placeholder="Le matin, je bois…"></textarea>
+
+      <div class="prod-q">Décrivez vos habitudes de lecture et d'écriture.</div>
+      <textarea id="produce11-habitudes" placeholder="Je lis souvent… J'écris…"></textarea>
+
+      <div class="btn-row"><button class="btn secondary" data-model="model11">Show the pattern</button></div>
+      <div class="model-answer" id="model11">
+        <b>Pattern — not the answer, just the shape</b>
+        <p><b>Je sais</b> + infinitif &nbsp;·&nbsp; <b>Je bois</b> + du/de la/de l' + boisson &nbsp;·&nbsp; <b>Je lis / j'écris</b> + souvent, rarement, un peu, beaucoup…</p>
+      </div>
+    </div>
+
+  </section>
+
+</div>
+
+<footer>Adapted from the uploaded worksheet &middot; Leçons 37–39 — Les verbes en -ir, -re, -oir</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  function norm(s){
+    return (s||"").normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim()
+      .replace(/\s+/g,' ').replace(/['’]/g,"'").replace(/[?!.]+$/g,'').trim();
+  }
+  function matches(val, answers){
+    var v = norm(val);
+    if(!v) return false;
+    return answers.some(function(a){ return norm(a) === v; });
+  }
+
+  /* Simple one-blank-per-line exercise (supports opts.paragraph) */
+  function buildFillExercise(containerId, items, opts){
+    opts = opts || {};
+    var container = document.getElementById(containerId);
+    items.forEach(function(item, i){
+      var line = document.createElement('div');
+      line.className = opts.paragraph ? '' : 'fill-line';
+      var html = '';
+      if(!opts.paragraph){ html += '<span class="qn">'+(i+1)+'.</span> '; }
+      html += item.hint ? '<span class="hint-chip">'+item.hint+'</span>' : '';
+      html += item.pre ? '<span>'+item.pre+'</span> ' : '';
+      if(item.given){
+        html += '<span class="given">'+item.given+'</span>';
+      } else {
+        html += '<input class="blank '+(opts.paragraph ? 'tiny' : (item.width||'w-med'))+'" type="text" autocomplete="off" data-idx="'+i+'">';
+      }
+      html += item.post ? ' <span>'+item.post+'</span>' : '';
+      line.innerHTML = html;
+      container.appendChild(line);
+    });
+    function allInputs(){ return container.querySelectorAll('input.blank'); }
+    document.querySelector('[data-check="'+containerId+'"]').addEventListener('click', function(){
+      var score = 0, total = 0;
+      allInputs().forEach(function(input){
+        var idx = +input.dataset.idx, item = items[idx];
+        total++; input.classList.remove('ok','no');
+        if(matches(input.value, item.answers)){ input.classList.add('ok'); score++; }
+        else { input.classList.add('no'); }
+      });
+      var sb = document.getElementById(containerId+'-score');
+      if(sb){ sb.classList.add('show'); document.getElementById(containerId+'-score-num').textContent = score+'/'+total; }
+    });
+    document.querySelector('[data-reveal="'+containerId+'"]').addEventListener('click', function(){
+      allInputs().forEach(function(input){
+        var idx = +input.dataset.idx;
+        input.value = items[idx].answers[0];
+        input.classList.remove('no'); input.classList.add('ok');
+      });
+      var sb = document.getElementById(containerId+'-score');
+      var totalBlanks = allInputs().length;
+      if(sb){ sb.classList.add('show'); document.getElementById(containerId+'-score-num').textContent = totalBlanks+'/'+totalBlanks; }
+    });
+  }
+
+  /* Multi-blank-per-line exercise: sentences = [{hint, given, parts:[str | {given}|{answers,width}]}] */
+  function buildMultiBlank(containerId, sentences){
+    var container = document.getElementById(containerId);
+    var answers = [];
+    sentences.forEach(function(s, i){
+      var line = document.createElement('div');
+      line.className = 'fill-line';
+      var html = '<span class="qn">'+(i+1)+'.</span> ';
+      if(s.hint) html += '<span class="hint-chip">'+s.hint+'</span>';
+      if(s.given){
+        html += '<span class="given">'+s.given+'</span>';
+      } else {
+        s.parts.forEach(function(part){
+          if(typeof part === 'string'){
+            html += '<span>'+part+'</span> ';
+          } else if(part.given){
+            html += '<span class="given">'+part.given+'</span> ';
+          } else {
+            html += '<input class="blank '+(part.width||'w-sm')+'" type="text" autocomplete="off" data-idx="'+answers.length+'"> ';
+            answers.push(part.answers);
+          }
+        });
+      }
+      line.innerHTML = html;
+      container.appendChild(line);
+    });
+    document.querySelector('[data-check="'+containerId+'"]').addEventListener('click', function(){
+      var score = 0;
+      container.querySelectorAll('input.blank').forEach(function(input){
+        var idx = +input.dataset.idx;
+        input.classList.remove('ok','no');
+        if(matches(input.value, answers[idx])){ input.classList.add('ok'); score++; }
+        else { input.classList.add('no'); }
+      });
+      var sb = document.getElementById(containerId+'-score');
+      if(sb){ sb.classList.add('show'); document.getElementById(containerId+'-score-num').textContent = score+'/'+answers.length; }
+    });
+    document.querySelector('[data-reveal="'+containerId+'"]').addEventListener('click', function(){
+      container.querySelectorAll('input.blank').forEach(function(input){
+        var idx = +input.dataset.idx;
+        input.value = answers[idx][0];
+        input.classList.remove('no'); input.classList.add('ok');
+      });
+      var sb = document.getElementById(containerId+'-score');
+      if(sb){ sb.classList.add('show'); document.getElementById(containerId+'-score-num').textContent = answers.length+'/'+answers.length; }
+    });
+  }
+
+  /* ---------------- Quick drill: la bonne forme (il/elle) ---------------- */
+  (function(){
+    var container = document.getElementById('drill');
+    var items = [
+      {inf:"écrire", subj:"il", correct:"écrit", options:["écrit","écris","écrivent"]},
+      {inf:"lire", subj:"elle", correct:"lit", options:["lit","lis","lisent"]},
+      {inf:"mettre", subj:"il", correct:"met", options:["met","mets","mettent"]},
+      {inf:"répondre", subj:"elle", correct:"répond", options:["répond","réponds","répondent"]},
+      {inf:"attendre", subj:"il", correct:"attend", options:["attend","attends","attendent"]},
+      {inf:"vendre", subj:"elle", correct:"vend", options:["vend","vends","vendent"]},
+      {inf:"descendre", subj:"il", correct:"descend", options:["descend","descends","descendent"]},
+      {inf:"connaître", subj:"elle", correct:"connaît", options:["connaît","connais","connaissent"]},
+      {inf:"savoir", subj:"il", correct:"sait", options:["sait","sais","savent"]},
+      {inf:"croire", subj:"elle", correct:"croit", options:["croit","crois","croient"]},
+      {inf:"voir", subj:"il", correct:"voit", options:["voit","vois","voient"]},
+      {inf:"boire", subj:"elle", correct:"boit", options:["boit","bois","boivent"]},
+      {inf:"recevoir", subj:"il", correct:"reçoit", options:["reçoit","reçois","reçoivent"]},
+      {inf:"prendre", subj:"elle", correct:"prend", options:["prend","prends","prennent"]},
+      {inf:"venir", subj:"il", correct:"vient", options:["vient","viens","viennent"]},
+      {inf:"comprendre", subj:"elle", correct:"comprend", options:["comprend","comprends","comprennent"]}
+    ];
+    var BATCH = 8;
+    var totalPages = Math.ceil(items.length / BATCH);
+    var page = 0;
+    var continueBtn = document.getElementById('drill-continue');
+    var pageLabel = document.getElementById('drill-page');
+    var scoreBanner = document.getElementById('drill-score');
+
+    function renderPage(p){
+      container.innerHTML = '';
+      var start = p * BATCH, end = Math.min(start + BATCH, items.length);
+      for(var i = start; i < end; i++){
+        var item = items[i];
+        var line = document.createElement('div');
+        line.className = 'sel-line';
+        var opts = '<option value="">…</option>';
+        item.options.forEach(function(o){ opts += '<option value="'+o+'">'+o+'</option>'; });
+        line.innerHTML = '<span class="qn">'+(i+1)+'.</span> <span class="hint-chip">'+item.inf+'</span> '+item.subj+' <select class="blank" data-idx="'+i+'">'+opts+'</select>';
+        container.appendChild(line);
+      }
+      scoreBanner.classList.remove('show');
+      pageLabel.textContent = 'Page '+(p+1)+' of '+totalPages;
+      continueBtn.textContent = (p+1 < totalPages) ? 'Next page →' : 'Restart from page 1';
+    }
+    renderPage(page);
+    continueBtn.addEventListener('click', function(){ page = (page + 1) % totalPages; renderPage(page); });
+
+    document.querySelector('[data-check="drill"]').addEventListener('click', function(){
+      var score = 0, total = 0;
+      container.querySelectorAll('select.blank').forEach(function(sel){
+        var idx = +sel.dataset.idx; total++; sel.classList.remove('ok','no');
+        if(sel.value === items[idx].correct){ sel.classList.add('ok'); score++; }
+        else { sel.classList.add('no'); }
+      });
+      scoreBanner.classList.add('show');
+      document.getElementById('drill-score-num').textContent = score+'/'+total;
+    });
+    document.querySelector('[data-reveal="drill"]').addEventListener('click', function(){
+      var total = 0;
+      container.querySelectorAll('select.blank').forEach(function(sel){
+        var idx = +sel.dataset.idx; total++;
+        sel.value = items[idx].correct; sel.classList.remove('no'); sel.classList.add('ok');
+      });
+      scoreBanner.classList.add('show');
+      document.getElementById('drill-score-num').textContent = total+'/'+total;
+    });
+  })();
+
+  /* ---------------- Ex1: verbes conjugués ---------------- */
+  buildMultiBlank('ex1', [
+    {hint:"lire / traduire", parts:["Quand vous", {given:"lisez"}, "en français, vous", {answers:["traduisez"], width:"w-med"}, "tous les mots ?"]},
+    {hint:"détruire / construire", parts:["Les promoteurs", {answers:["détruisent"], width:"w-med"}, "les vieux quartiers et ils", {answers:["construisent"], width:"w-med"}, "des bureaux."]},
+    {hint:"écrire / décrire", parts:["Anna", {answers:["écrit"], width:"w-sm"}, "un journal de voyage où elle", {answers:["décrit"], width:"w-sm"}, "tout ce qu'elle voit."]},
+    {hint:"conduire / lire", parts:["Pendant que Max", {answers:["conduit"], width:"w-sm"}, ", Léo", {answers:["lit"], width:"w-sm"}, "des guides touristiques."]}
+  ]);
+
+  /* ---------------- Ex2: attendre/vendre/descendre/mettre, selon le modèle ---------------- */
+  buildMultiBlank('ex2', [
+    {hint:"attendre", given:"– Vous attendez le bus ? – Non, j'attends un taxi. (modèle)"},
+    {hint:"vendre", parts:["– Vous", {answers:["vendez"], width:"w-sm"}, "des légumes ?", "– Non,", {answers:["je vends"], width:"w-med"}, "des fruits."]},
+    {hint:"descendre", parts:["– Vous", {answers:["descendez"], width:"w-sm"}, "en ascenseur ?", "– Non,", {answers:["je descends"], width:"w-med"}, "à pied."]},
+    {hint:"mettre", parts:["– Vous", {answers:["mettez"], width:"w-sm"}, "un pull vert ?", "– Non,", {answers:["je mets"], width:"w-med"}, "un pull bleu."]},
+    {hint:"attendre", parts:["– Vous", {answers:["attendez"], width:"w-sm"}, "une lettre ?", "– Non,", {answers:["j'attends","je attends"], width:"w-med"}, "un colis."]}
+  ]);
+
+  /* ---------------- Ex3: endings ---------------- */
+  buildMultiBlank('ex3', [
+    {given:"Je mets"},
+    {parts:["Elle ven", {answers:["d","vend"], width:"tiny"}]},
+    {parts:["Il écri", {answers:["t","écrit"], width:"tiny"}]},
+    {parts:["Ils attend", {answers:["ent","attendent"], width:"tiny"}]},
+    {parts:["Vous li", {answers:["sez","lisez"], width:"tiny"}]},
+    {parts:["Tu li", {answers:["s","lis"], width:"tiny"}]},
+    {parts:["Elle atten", {answers:["d","attend"], width:"tiny"}]},
+    {parts:["Je descen", {answers:["ds","descends"], width:"tiny"}]},
+    {parts:["Il descen", {answers:["d","descend"], width:"tiny"}]},
+    {parts:["Elles écri", {answers:["vent","écrivent"], width:"tiny"}]},
+    {parts:["Nous met", {answers:["tons","mettons"], width:"tiny"}]},
+    {parts:["Tu li", {answers:["s","lis"], width:"tiny"}]}
+  ]);
+
+  /* ---------------- Ex4: On -> Nous ---------------- */
+  buildMultiBlank('ex4', [
+    {given:"On décrit la vie dans notre pays. → Nous décrivons la vie dans notre pays."},
+    {parts:["On répond aux questions. →", {answers:["nous répondons aux questions"], width:"w-full"}]},
+    {parts:["On lit des articles de journaux. →", {answers:["nous lisons des articles de journaux"], width:"w-full"}]},
+    {parts:["On traduit des mots. →", {answers:["nous traduisons des mots"], width:"w-full"}]},
+    {parts:["On écrit des résumés. →", {answers:["nous écrivons des résumés"], width:"w-full"}]}
+  ]);
+
+  /* ---------------- Ex5: savoir / connaître ---------------- */
+  buildMultiBlank('ex5', [
+    {parts:["Elle sait taper à la machine mais elle ne", {answers:["connaît","connait"], width:"w-sm"}, "pas l'informatique."]},
+    {parts:["– Est-ce que tu", {answers:["connais"], width:"w-sm"}, "l'adresse de Max ? – Oui, je", {answers:["sais"], width:"w-sm"}, "où il habite."]},
+    {parts:["– Tu", {answers:["sais"], width:"w-sm"}, "parler espagnol ? – Non, je", {answers:["sais"], width:"w-sm"}, "dire seulement hombre !"]},
+    {parts:["Je ne", {answers:["connais"], width:"w-sm"}, "pas le frère de Zoé, mais je", {answers:["sais"], width:"w-sm"}, "qu'il est très beau."]}
+  ]);
+
+  /* ---------------- Ex6a: voir ---------------- */
+  buildMultiBlank('ex6a', [
+    {given:"Tu vois cette lumière bleue dans le ciel : c'est un satellite."},
+    {parts:["Si vous", {answers:["voyez"], width:"w-sm"}, "un taxi, appelez-le."]},
+    {parts:["Les animaux", {answers:["voient"], width:"w-sm"}, "moins de couleurs que nous."]},
+    {parts:["Je", {answers:["vois"], width:"w-sm"}, "mal sans mes lunettes."]}
+  ]);
+  /* ---------------- Ex6b: croire ---------------- */
+  buildMultiBlank('ex6b', [
+    {parts:["– Quelle est la nationalité de Max ? – Je", {answers:["crois"], width:"w-sm"}, "qu'il est anglais."]},
+    {parts:["– Vous", {answers:["croyez"], width:"w-sm"}, "qu'il va pleuvoir ?"]},
+    {parts:["Les bouddhistes", {answers:["croient"], width:"w-sm"}, "à la réincarnation."]},
+    {parts:["– Tu", {answers:["crois"], width:"w-sm"}, "que les Martiens existent ?"]}
+  ]);
+
+  /* ---------------- Ex7: Le Père Noël (paragraph) ---------------- */
+  buildFillExercise('ex7', [
+    {hint:"mettre", pre:"Mes enfants Luc et Thomas croient encore au Père Noël. Tous les ans, ils", answers:["mettent"]},
+    {hint:"attendre", pre:"leurs chaussures devant la cheminée et ils", answers:["attendent"], post:"avec impatience la nuit."},
+    {hint:"sortir", pre:"Tous les ans, ils", answers:["sortent"]},
+    {hint:"entendre", pre:"dans le jardin lorsqu'ils", answers:["entendent"], post:"un bruit de clochettes."},
+    {hint:"voir", pre:"Quand nous", answers:["voyons"]},
+    {hint:"croire", pre:"leurs petits visages émerveillés devant les cadeaux, nous", answers:["croyons"], post:"nous aussi que le vieil homme existe."},
+    {hint:"répondre", pre:"Un service de la poste", answers:["répond"], post:"depuis quelques années aux lettres que les enfants"},
+    {hint:"écrire", answers:["écrivent"], post:". Alors, c'est normal, Luc et Thomas"},
+    {hint:"croire", answers:["croient"], post:"seulement ce qu'ils"},
+    {hint:"voir", answers:["voient"], post:"."}
+  ], {paragraph:true});
+
+  /* ---------------- Ex8: conjuguez prendre ---------------- */
+  buildMultiBlank('ex8', [
+    {given:"Je prends le RER."},
+    {parts:["Tu", {answers:["prends"], width:"w-sm"}, "le bus."]},
+    {parts:["Mike", {answers:["prend"], width:"w-sm"}, "le train."]},
+    {parts:["Nous", {answers:["prenons"], width:"w-sm"}, "le métro."]},
+    {parts:["Vous", {answers:["prenez"], width:"w-sm"}, "le tramway."]},
+    {parts:["Mes parents", {answers:["prennent"], width:"w-sm"}, "un taxi."]}
+  ]);
+
+  /* ---------------- Ex9: prendre / apprendre / comprendre ---------------- */
+  buildMultiBlank('ex9', [
+    {hint:"prendre", parts:["– Vous prenez le bus ou le train ? – Je", {answers:["prends"], width:"w-sm"}, "le bus. Mes amis", {answers:["prennent"], width:"w-sm"}, "le train."]},
+    {hint:"apprendre", parts:["– Vous", {answers:["apprenez"], width:"w-sm"}, "l'anglais ou le français ? – J'", {answers:["apprends"], width:"w-sm"}, "l'anglais. Mes sœurs", {answers:["apprennent"], width:"w-sm"}, "le français."]},
+    {hint:"comprendre", parts:["– Vous", {answers:["comprenez"], width:"w-sm"}, "tout ou presque tout ? – Je", {answers:["comprends"], width:"w-sm"}, "tout. Mes parents", {answers:["comprennent"], width:"w-sm"}, "presque tout."]}
+  ]);
+
+  /* ---------------- Ex10: venir / devenir / revenir / tenir ---------------- */
+  buildMultiBlank('ex10', [
+    {hint:"venir", parts:["Je viens du sud de la France, mon mari", {answers:["vient"], width:"w-sm"}, "de Bretagne."]},
+    {hint:"devenir", parts:["Quand on chauffe la cire, elle", {answers:["devient"], width:"w-sm"}, "molle."]},
+    {hint:"revenir", parts:["Attendez-moi : je", {answers:["reviens"], width:"w-sm"}, "dans cinq minutes !"]},
+    {hint:"tenir", parts:["La statue de la Liberté", {answers:["tient"], width:"w-sm"}, "un flambeau dans la main."]},
+    {hint:"revenir", parts:["Ils sont partis en vacances il y a dix jours et ils", {answers:["reviennent"], width:"w-sm"}, "aujourd'hui."]}
+  ]);
+
+  /* ---------------- Ex11: phrase bank + free production ---------------- */
+  var words11 = ["nager","skier","conduire","dessiner","souvent","rarement","un peu","beaucoup","du café","du thé","de l'eau","du vin"];
+  (function(){
+    var bank = document.getElementById('bank11');
+    var areas = [
+      document.getElementById('produce11-savoir'),
+      document.getElementById('produce11-boire'),
+      document.getElementById('produce11-habitudes')
+    ];
+    var activeArea = areas[0];
+    areas.forEach(function(a){ a.addEventListener('focus', function(){ activeArea = a; }); });
+    words11.forEach(function(w){
+      var b = document.createElement('button');
+      b.className = 'phrase'; b.type = 'button'; b.textContent = w;
+      b.addEventListener('click', function(){
+        activeArea.value += (activeArea.value.length ? ' ' : '') + w;
+        activeArea.focus();
+      });
+      bank.appendChild(b);
+    });
+  })();
+
+  /* ---------------- Model-answer toggles ---------------- */
+  document.querySelectorAll('[data-model]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.getElementById(btn.dataset.model).classList.toggle('show');
+    });
+  });
+
+})();
+</script>
+
+</body></html>
