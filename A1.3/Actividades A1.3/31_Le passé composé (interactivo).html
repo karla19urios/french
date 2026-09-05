@@ -1,0 +1,766 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>Le Passé Composé</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+  :root{
+    --bg:#f4f5f7;
+    --paper:#ffffff;
+    --paper-2:#f4f5f7;
+    --ink:#1a1a2e;
+    --ink-soft:#6b7280;
+    --line:#e5e7eb;
+    --bleu:#002395;
+    --rouge:#ED2939;
+    --accent:#002395;
+    --accent-ink:#002395;
+    --green:#3f8f6d;
+    --green-bg:#e7f3ed;
+    --red:#ED2939;
+    --red-bg:#fdecec;
+    --shadow: 0 1px 2px rgba(26,26,46,.06), 0 8px 24px -12px rgba(26,26,46,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#12141c;
+      --paper:#1b1e2b;
+      --paper-2:#20232f;
+      --ink:#f1f2f6;
+      --ink-soft:#9aa0b4;
+      --line:#2a2e40;
+      --bleu:#002395;
+      --rouge:#ED2939;
+      --accent:#5b7fe0;
+      --accent-ink:#7c9df2;
+      --green:#63c299;
+      --green-bg:#173226;
+      --red:#ED2939;
+      --red-bg:#3a1418;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#12141c;
+    --paper:#1b1e2b;
+    --paper-2:#20232f;
+    --ink:#f1f2f6;
+    --ink-soft:#9aa0b4;
+    --line:#2a2e40;
+    --bleu:#002395;
+    --rouge:#ED2939;
+    --accent:#5b7fe0;
+    --accent-ink:#7c9df2;
+    --green:#63c299;
+    --green-bg:#173226;
+    --red:#ED2939;
+    --red-bg:#3a1418;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.6);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'Work Sans', ui-sans-serif, system-ui, sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:0 20px 90px;}
+  h1,h2,h3{font-family:'Fraunces', Georgia, serif; text-wrap:balance; margin:0; color:var(--ink);}
+  .eyebrow{font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-ink); font-weight:600;}
+  code, .mono{font-family:'IBM Plex Mono', monospace;}
+
+  .stripe{height:8px; background:linear-gradient(90deg, var(--bleu) 33%, #ffffff 33%, #ffffff 66%, var(--rouge) 66%);}
+
+  .hero{
+    background: linear-gradient(180deg, var(--bleu) 0%, #000f42 100%);
+    color:#f3f5ff; padding:40px 20px 40px;
+  }
+  .hero-inner{max-width:900px; margin:0 auto;}
+  .hero h1{font-size:clamp(30px,4.4vw,44px); font-weight:600; color:#ffffff; letter-spacing:-.01em;}
+  .hero-meta{display:flex; gap:22px; margin-top:22px; flex-wrap:wrap;}
+  .hero-meta div{font-family:'IBM Plex Mono',monospace; font-size:12px; color:#a9b6e8;}
+  .hero-meta b{display:block; color:#f3f5ff; font-size:14px; font-family:'Work Sans',sans-serif; font-weight:600; margin-top:2px;}
+
+  section{margin-top:46px;}
+  .wrap > section:first-of-type{margin-top:36px;}
+  .sec-head{display:flex; align-items:baseline; gap:12px; margin-bottom:16px;}
+  .sec-num{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent-ink); font-weight:600;}
+  section h2{font-size:25px; font-weight:600;}
+  .sec-intro{color:var(--ink-soft); font-size:15px; max-width:66ch; margin-top:6px;}
+  .sec-tag{font-family:'IBM Plex Mono',monospace; font-size:10.5px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--accent-ink); background:var(--paper-2); border:1px solid var(--line); border-radius:20px; padding:3px 11px; margin-left:2px;}
+
+  .card{background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:22px; box-shadow:var(--shadow);}
+  .card + .card{margin-top:14px;}
+
+  table.poss{width:100%; border-collapse:collapse; margin-top:12px; font-size:14.5px;}
+  table.poss th{text-align:left; font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); padding:6px 10px; border-bottom:2px solid var(--line);}
+  table.poss td{padding:8px 10px; border-bottom:1px solid var(--line);}
+  table.poss tr:last-child td{border-bottom:none;}
+  table.poss .pron{color:var(--ink-soft); width:150px;}
+  table.poss .pos{font-weight:700; color:var(--accent-ink);}
+
+  .instr-box{border-left:3px solid var(--accent); background:var(--paper-2); border-radius:0 10px 10px 0; padding:14px 18px; margin:16px 0; font-size:14.5px;}
+  .instr-box b{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-ink); display:block; margin-bottom:6px;}
+  .instr-box s{color:var(--ink-soft);}
+
+  .note-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px;}
+  @media (max-width:640px){.note-grid{grid-template-columns:1fr;}}
+  .note{background:var(--paper-2); border-radius:10px; padding:14px 16px; font-size:13.8px;}
+  .note b{display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--accent-ink); margin-bottom:6px;}
+  .note .fr{font-style:italic; color:var(--ink); display:block; margin-top:4px;}
+  .note .ex{padding:2px 0; font-size:13.5px;}
+  .note .ex b{display:inline; font-family:'Work Sans',sans-serif; text-transform:none; letter-spacing:0; color:var(--ink); font-size:13.5px;}
+
+  .maison{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;}
+  .maison-pair{background:var(--paper-2); border-radius:10px; padding:10px 14px; font-size:13.5px; min-width:130px; text-align:center;}
+  .maison-pair .up{color:var(--accent-ink); font-weight:600;}
+  .maison-pair .down{color:var(--rouge); font-weight:600;}
+  .maison-pair .arrow{color:var(--ink-soft); font-size:11px; margin:2px 0;}
+
+  .ex-block{margin-top:16px;}
+  .ex-tag{
+    display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%;
+    background:var(--bleu); color:#ffffff; font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:13px;
+    margin-right:8px; flex:0 0 auto;
+  }
+  .ex-title{font-weight:600; font-size:15.5px; display:flex; align-items:center; margin-bottom:4px;}
+  .ex-sub{color:var(--ink-soft); font-size:13.3px; margin:2px 0 14px 34px;}
+  .ex-part{font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:600; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.06em; margin:16px 0 6px;}
+  .ex-part:first-of-type{margin-top:4px;}
+  .card.ex-block:first-of-type{margin-top:0;}
+  .prod-q{font-weight:600; font-size:14.5px; color:var(--ink); margin:16px 0 6px;}
+  .prod-q:first-of-type{margin-top:6px;}
+
+  .fill-line{
+    display:flex; align-items:baseline; flex-wrap:wrap; gap:6px 4px; padding:9px 0; font-size:15px; border-bottom:1px dashed var(--line);
+  }
+  .fill-line:last-child{border-bottom:none;}
+  .fill-line .qn{font-family:'IBM Plex Mono',monospace; color:var(--ink-soft); font-size:12.5px; width:16px;}
+  .blank{
+    padding:5px 8px; border-radius:6px; border:1px solid var(--line); background:var(--paper-2);
+    color:var(--ink); font-family:'Work Sans',sans-serif; font-size:14.5px;
+  }
+  .blank.w-full{width:100%; margin-top:4px;}
+  .blank.w-med{width:170px;}
+  .blank.w-sm{width:90px; text-align:center;}
+  .blank.tiny{width:60px; text-align:center;}
+  .blank:focus{outline:2px solid var(--accent); outline-offset:1px;}
+  .blank.ok{border-color:var(--green); background:var(--green-bg);}
+  .blank.no{border-color:var(--red); background:var(--red-bg);}
+  .given{font-weight:600; color:var(--accent-ink);}
+
+  .para-fill{font-size:15.5px; line-height:2.4;}
+  .para-fill .blank{width:110px;}
+
+  .hint-chip{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:600; color:var(--accent-ink); background:var(--paper-2); border:1px solid var(--line); border-radius:6px; padding:2px 7px; margin-right:6px; white-space:nowrap;}
+
+  .btn{font-family:'Work Sans',sans-serif; font-weight:600; font-size:14px; padding:10px 18px; border-radius:9px; border:none; cursor:pointer; background:var(--bleu); color:#ffffff;}
+  .btn:hover{background:var(--rouge);}
+  .btn.secondary{background:transparent; color:var(--ink); border:1px solid var(--line);}
+  .btn.secondary:hover{border-color:var(--accent); color:var(--accent-ink);}
+  .btn-row{display:flex; gap:10px; margin-top:16px; flex-wrap:wrap;}
+
+  .phrase-bank{display:flex; gap:8px; flex-wrap:wrap; margin:12px 0;}
+  .phrase{font-family:'IBM Plex Mono',monospace; font-size:12.5px; background:var(--paper-2); border:1px solid var(--line); border-radius:20px; padding:6px 12px; cursor:pointer;}
+  .phrase:hover{border-color:var(--accent);}
+  .phrase .g{color:var(--ink-soft); margin-left:3px;}
+  textarea, input[type="text"].free{width:100%; min-height:44px; border-radius:10px; border:1px solid var(--line); background:var(--paper-2); color:var(--ink); font-family:'Work Sans',sans-serif; font-size:14.5px; padding:11px 13px; resize:vertical;}
+  textarea:focus, input[type="text"].free:focus{outline:2px solid var(--accent); outline-offset:1px;}
+  .model-answer{display:none; margin-top:10px; background:var(--green-bg); border-radius:10px; padding:13px 16px; font-size:14px;}
+  .model-answer.show{display:block;}
+  .model-answer b{display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--green); margin-bottom:7px;}
+  .model-answer p{margin:3px 0;}
+
+  .sel-line{display:flex; align-items:baseline; flex-wrap:wrap; gap:6px; font-size:15px; padding:8px 0; border-bottom:1px dashed var(--line);}
+  .sel-line:last-child{border-bottom:none;}
+  select.blank{appearance:auto; cursor:pointer;}
+
+  .score-banner{margin-top:16px; padding:14px 18px; border-radius:12px; background:var(--paper-2); border:1px solid var(--line); display:none; align-items:center; gap:14px;}
+  .score-banner.show{display:flex;}
+  .score-num{font-family:'Fraunces',serif; font-size:30px; font-weight:600; color:var(--accent-ink);}
+
+  footer{max-width:900px; margin:60px auto 0; padding:20px; text-align:center; color:var(--ink-soft); font-size:12.5px; font-family:'IBM Plex Mono',monospace;}
+</style>
+
+<div class="stripe"></div>
+<div class="hero">
+  <div class="hero-inner">
+    <h1>Le Passé Composé</h1>
+    <div class="hero-meta">
+      <div>Language<b>French · A1</b></div>
+      <div>Focus<b>Avoir / être &amp; pronominal verbs</b></div>
+      <div>Time<b>~35 minutes</b></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section id="sec-intro">
+    <div class="sec-head"><span class="sec-num">01</span><h2>How this lesson works</h2></div>
+    <p class="sec-intro">The passé composé always has two parts: an <b style="color:var(--ink)">auxiliary</b> (avoir or être) in the present tense, plus a <b style="color:var(--ink)">participe passé</b>. We'll build it up piece by piece — a bit of theory, then practice, then the next piece.</p>
+  </section>
+
+  <!-- ============ BLOCK 1: VERBES EN -ER ============ -->
+
+  <section id="sec-er-theorie">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Théorie — les verbes en « -er » <span class="sec-tag">avec avoir</span></h2></div>
+    <div class="card">
+      <p class="sec-intro" style="margin-top:0;">Most verbs — starting with every single <em>-er</em> verb — take <b style="color:var(--ink)">avoir</b> as their auxiliary, conjugated in the present, plus a participe passé ending in <b style="color:var(--ink)">-é</b>.</p>
+      <table class="poss">
+        <tr><th></th><th>manger</th></tr>
+        <tr><td class="pron">J'</td><td class="pos">ai</td><td>mangé un croissant.</td></tr>
+        <tr><td class="pron">Tu</td><td class="pos">as</td><td>mangé un croissant.</td></tr>
+        <tr><td class="pron">Il / Elle / On</td><td class="pos">a</td><td>mangé un croissant.</td></tr>
+        <tr><td class="pron">Nous</td><td class="pos">avons</td><td>mangé un croissant.</td></tr>
+        <tr><td class="pron">Vous</td><td class="pos">avez</td><td>mangé un croissant.</td></tr>
+        <tr><td class="pron">Ils / Elles</td><td class="pos">ont</td><td>mangé un croissant.</td></tr>
+      </table>
+      <div class="instr-box">
+        <b>La règle</b>
+        <em>Tous les verbes en -er</em> → participe passé en <b style="color:var(--ink)">-é</b>. J'ai <b style="color:var(--ink)">mangé</b>. J'ai <b style="color:var(--ink)">regardé</b>. J'ai <b style="color:var(--ink)">visité</b>.
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-er-practice">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Practice — les verbes en « -er »</h2></div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">1</span>Vacances en Espagne. Répondez selon le modèle.</div>
+      <div class="ex-sub"><span class="given">Vous avez passé vos vacances en Espagne ? → Oui, j'ai passé mes vacances en Espagne.</span></div>
+      <div id="er-ex1"></div>
+      <div class="btn-row"><button class="btn" data-check="er-ex1">Check my answers</button><button class="btn secondary" data-reveal="er-ex1">Show answers</button></div>
+      <div class="score-banner" id="er-ex1-score"><div class="score-num" id="er-ex1-score-num">0/6</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">2</span>Mettez au futur proche, puis au passé composé.</div>
+      <div class="ex-sub"><span class="given">Aujourd'hui, j'achète de la viande. → Demain, je vais acheter du poisson. Hier, j'ai acheté du poulet.</span></div>
+      <div id="er-ex2"></div>
+      <div class="btn-row"><button class="btn" data-check="er-ex2">Check my answers</button><button class="btn secondary" data-reveal="er-ex2">Show answers</button></div>
+      <div class="score-banner" id="er-ex2-score"><div class="score-num" id="er-ex2-score-num">0/10</div><div>correct</div></div>
+    </div>
+  </section>
+
+  <!-- ============ BLOCK 2: LE PARTICIPE PASSÉ (AUTRES FAMILLES) ============ -->
+
+  <section id="sec-part-theorie">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Théorie — le participe passé <span class="sec-tag">autres familles</span></h2></div>
+    <div class="card">
+      <p class="sec-intro" style="margin-top:0;">Outside the <em>-é</em> family you just practiced, most other participles fall into three more groups.</p>
+      <div class="note-grid">
+        <div class="note"><b>Participes en « i »</b>Les verbes en <em>-ir</em> (type finir) + quelques -re.<div class="ex"><b>finir</b> → fini &middot; <b>grandir</b> → grandi &middot; <b>choisir</b> → choisi &middot; <b>prendre</b> → pris &middot; <b>apprendre</b> → appris &middot; <b>comprendre</b> → compris &middot; <b>mettre</b> → mis &middot; <b>dire</b> → dit &middot; <b>écrire</b> → écrit &middot; <b>conduire</b> → conduit</div></div>
+        <div class="note"><b>Participes en « u »</b>Beaucoup de verbes en -re, -oir.<div class="ex"><b>lire</b> → lu &middot; <b>voir</b> → vu &middot; <b>boire</b> → bu &middot; <b>entendre</b> → entendu &middot; <b>attendre</b> → attendu &middot; <b>répondre</b> → répondu &middot; <b>perdre</b> → perdu &middot; <b>vouloir</b> → voulu &middot; <b>devoir</b> → dû &middot; <b>pouvoir</b> → pu &middot; <b>savoir</b> → su &middot; <b>croire</b> → cru &middot; <b>connaître</b> → connu &middot; <b>recevoir</b> → reçu &middot; <b>venir</b> → venu &middot; <b>vivre</b> → vécu</div></div>
+        <div class="note" style="grid-column:1 / -1;"><b>Autres cas — à apprendre par cœur</b><div class="ex"><b>être</b> → été &middot; <b>avoir</b> → eu &middot; <b>faire</b> → fait &middot; <b>ouvrir</b> → ouvert &middot; <b>découvrir</b> → découvert &middot; <b>offrir</b> → offert &middot; <b>souffrir</b> → souffert &middot; <b>peindre</b> → peint &middot; <b>craindre</b> → craint</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-part-practice">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Practice — le participe passé</h2></div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">1</span>Trouvez le participe passé.</div>
+      <div id="part-ex1"></div>
+      <div class="btn-row"><button class="btn" data-check="part-ex1">Check my answers</button><button class="btn secondary" data-reveal="part-ex1">Show answers</button></div>
+      <div class="score-banner" id="part-ex1-score"><div class="score-num" id="part-ex1-score-num">0/11</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">2</span>Complétez les phrases avec les verbes manquants au passé composé.</div>
+      <div class="ex-sub">grandir &middot; traduire &middot; découvrir &middot; choisir &middot; pleuvoir</div>
+      <div id="part-ex2"></div>
+      <div class="btn-row"><button class="btn" data-check="part-ex2">Check my answers</button><button class="btn secondary" data-reveal="part-ex2">Show answers</button></div>
+      <div class="score-banner" id="part-ex2-score"><div class="score-num" id="part-ex2-score-num">0/5</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">3</span>Mettez les phrases au passé composé.</div>
+      <div class="ex-sub"><span class="given">Je mange un croissant et je bois un café. → J'ai mangé un croissant et j'ai bu un café.</span></div>
+      <div id="part-ex3"></div>
+      <div class="btn-row"><button class="btn" data-check="part-ex3">Check my answers</button><button class="btn secondary" data-reveal="part-ex3">Show answers</button></div>
+      <div class="score-banner" id="part-ex3-score"><div class="score-num" id="part-ex3-score-num">0/16</div><div>correct</div></div>
+    </div>
+  </section>
+
+  <!-- ============ BLOCK 3: ÊTRE (MOUVEMENT) ============ -->
+
+  <section id="sec-etre-theorie">
+    <div class="sec-head"><span class="sec-num">06</span><h2>Théorie — le passé composé avec « être » <span class="sec-tag">verbes de déplacement</span></h2></div>
+    <div class="card">
+      <table class="poss">
+        <tr><th></th><th>arriver / partir</th></tr>
+        <tr><td class="pron">Je</td><td class="pos">suis</td><td>parti(e) tard.</td></tr>
+        <tr><td class="pron">Tu</td><td class="pos">es</td><td>arrivé(e) tôt.</td></tr>
+        <tr><td class="pron">Il / Elle / On</td><td class="pos">est</td><td>venu(e)(s) à cinq heures.</td></tr>
+        <tr><td class="pron">Nous</td><td class="pos">sommes</td><td>monté(e)s au troisième étage.</td></tr>
+        <tr><td class="pron">Vous</td><td class="pos">êtes</td><td>descendu(e)(s) au sous-sol.</td></tr>
+        <tr><td class="pron">Ils / Elles</td><td class="pos">sont</td><td>allé(e)s au cinéma.</td></tr>
+      </table>
+      <div class="instr-box">
+        <b>La « maison d'être »</b>
+        A fixed list of movement verbs pairs up by direction — memorize them as pairs, plus three loners.
+      </div>
+      <div class="maison">
+        <div class="maison-pair"><div class="up">entrer</div><div class="arrow">↕</div><div class="down">sortir</div></div>
+        <div class="maison-pair"><div class="up">arriver</div><div class="arrow">↕</div><div class="down">partir</div></div>
+        <div class="maison-pair"><div class="up">monter</div><div class="arrow">↕</div><div class="down">descendre</div></div>
+        <div class="maison-pair"><div class="up">naître</div><div class="arrow">↕</div><div class="down">mourir</div></div>
+        <div class="maison-pair"><div class="up">venir</div><div class="arrow">↕</div><div class="down">aller</div></div>
+        <div class="maison-pair"><div class="up">rester</div></div>
+        <div class="maison-pair"><div class="up">tomber</div></div>
+        <div class="maison-pair"><div class="up">passer</div></div>
+      </div>
+      <p class="sec-intro" style="margin-top:12px;">Et aussi : <em>retourner</em>. The participle agrees with the subject like an adjective: <b style="color:var(--ink)">e</b> for feminine, <b style="color:var(--ink)">s</b> for plural.</p>
+    </div>
+  </section>
+
+  <section id="sec-etre-practice">
+    <div class="sec-head"><span class="sec-num">07</span><h2>Practice — le passé composé avec « être »</h2></div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">1</span>Faits divers. Racontez au passé composé.</div>
+      <div class="ex-sub"><span class="given">Un avion arrive à Orly. → Un avion est arrivé à Orly.</span></div>
+      <div id="etre-ex1"></div>
+      <div class="btn-row"><button class="btn" data-check="etre-ex1">Check my answers</button><button class="btn secondary" data-reveal="etre-ex1">Show answers</button></div>
+      <div class="score-banner" id="etre-ex1-score"><div class="score-num" id="etre-ex1-score-num">0/10</div><div>correct</div></div>
+    </div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">2</span>Mon grand-père. Complétez avec les verbes manquants.</div>
+      <div class="ex-sub">naître (déjà utilisé) &middot; rester &middot; mourir &middot; devenir &middot; intervenir &middot; mourir &middot; devenir &middot; rester &middot; sortir &middot; venir &middot; aller &middot; naître &middot; aller &middot; monter &middot; redescendre &middot; sortir &middot; aller</div>
+      <p class="para-fill" id="etre-ex2"></p>
+      <div class="btn-row"><button class="btn" data-check="etre-ex2">Check my answers</button><button class="btn secondary" data-reveal="etre-ex2">Show answers</button></div>
+      <div class="score-banner" id="etre-ex2-score"><div class="score-num" id="etre-ex2-score-num">0/16</div><div>correct</div></div>
+    </div>
+  </section>
+
+  <!-- ============ BLOCK 4: ÊTRE OU AVOIR ============ -->
+
+  <section id="sec-cod-theorie">
+    <div class="sec-head"><span class="sec-num">08</span><h2>Théorie — « être » ou « avoir » ?</h2></div>
+    <div class="card">
+      <p class="sec-intro" style="margin-top:0;">A few "maison d'être" verbs — <em>sortir, monter, descendre, rentrer, passer, retourner</em> — switch to <b style="color:var(--ink)">avoir</b> when they take a direct object.</p>
+      <div class="note-grid">
+        <div class="note"><b>Sans COD → être</b>
+          <div class="ex">Il <b>est</b> sorti dans la rue.</div>
+          <div class="ex">Nous <b>sommes</b> rentrés tôt.</div>
+          <div class="ex">Elle <b>est</b> descendue à la cave.</div>
+          <div class="ex">Je <b>suis</b> monté à pied.</div>
+        </div>
+        <div class="note"><b>Avec COD → avoir</b>
+          <div class="ex">Il <b>a</b> sorti le chien.</div>
+          <div class="ex">Nous <b>avons</b> rentré la voiture.</div>
+          <div class="ex">Elle <b>a</b> descendu la poubelle.</div>
+          <div class="ex">J'<b>ai</b> monté l'escalier.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-cod-practice">
+    <div class="sec-head"><span class="sec-num">09</span><h2>Practice — être ou avoir ?</h2></div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">1</span>Complétez avec l'auxiliaire correct.</div>
+      <div class="ex-sub">Watch for a direct object — it flips the auxiliary from être to avoir.</div>
+      <div id="cod-ex1"></div>
+      <div class="btn-row"><button class="btn" data-check="cod-ex1">Check my answers</button><button class="btn secondary" data-reveal="cod-ex1">Show answers</button></div>
+      <div class="score-banner" id="cod-ex1-score"><div class="score-num" id="cod-ex1-score-num">0/8</div><div>correct</div></div>
+    </div>
+  </section>
+
+  <!-- ============ BLOCK 5: PRONOMINAUX ============ -->
+
+  <section id="sec-pronom-theorie">
+    <div class="sec-head"><span class="sec-num">10</span><h2>Théorie — les verbes pronominaux</h2></div>
+    <div class="card">
+      <p class="sec-intro" style="margin-top:0;">Elle <b style="color:var(--ink)">s'est levée</b> tôt. Il <b style="color:var(--ink)">s'est dépêché</b>. Ils <b style="color:var(--ink)">se sont rencontrés</b> dans l'ascenseur. Every reflexive or reciprocal verb takes <em>être</em>, no exceptions.</p>
+      <table class="poss">
+        <tr><th></th><th>se lever</th></tr>
+        <tr><td class="pron">Je</td><td class="pos">me suis</td><td>levé(e) tôt.</td></tr>
+        <tr><td class="pron">Tu</td><td class="pos">t'es</td><td>couché(e) tard.</td></tr>
+        <tr><td class="pron">Il / Elle / On</td><td class="pos">s'est</td><td>douché(e)(s).</td></tr>
+        <tr><td class="pron">Nous</td><td class="pos">nous sommes</td><td>promené(e)s.</td></tr>
+        <tr><td class="pron">Vous</td><td class="pos">vous êtes</td><td>assis(e)(s).</td></tr>
+        <tr><td class="pron">Ils / Elles</td><td class="pos">se sont</td><td>embrassé(e)s.</td></tr>
+      </table>
+      <div class="instr-box">
+        <b>L'accord</b>
+        Le participe passé s'accorde, comme un adjectif, avec le sujet : <b style="color:var(--ink)">Il</b> s'est couch<b style="color:var(--ink)">é</b> tôt. <b style="color:var(--ink)">Elle</b> s'est couch<b style="color:var(--ink)">ée</b> tard. <b style="color:var(--ink)">Ils</b> se sont endorm<b style="color:var(--ink)">is</b> tout de suite.
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-pronom-practice">
+    <div class="sec-head"><span class="sec-num">11</span><h2>Practice — les verbes pronominaux</h2></div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">1</span>Complétez le dialogue, selon le modèle.</div>
+      <div class="ex-sub"><span class="given">Ma fille s'est levée à midi. — Nos enfants se sont levés à midi, eux aussi !</span></div>
+      <div id="pronom-ex1"></div>
+      <div class="btn-row"><button class="btn" data-check="pronom-ex1">Check my answers</button><button class="btn secondary" data-reveal="pronom-ex1">Show answers</button></div>
+      <div class="score-banner" id="pronom-ex1-score"><div class="score-num" id="pronom-ex1-score-num">0/3</div><div>correct</div></div>
+    </div>
+  </section>
+
+  <!-- QUICK DRILL (consolidation) -->
+  <section id="sec-drill">
+    <div class="sec-head"><span class="sec-num">12</span><h2>Quick drill — avoir ou être ?</h2></div>
+    <div class="card">
+      <p class="sec-intro" style="margin-top:0;">A mixed review: choose the auxiliary each verb uses in the passé composé.</p>
+      <div id="drill"></div>
+      <div class="btn-row" style="align-items:center;">
+        <button class="btn" data-check="drill">Check my answers</button>
+        <button class="btn secondary" data-reveal="drill">Show answers</button>
+        <button class="btn secondary" id="drill-continue">Next page →</button>
+        <span id="drill-page" class="hint-chip" style="margin-left:auto;">Page 1 of 2</span>
+      </div>
+      <div class="score-banner" id="drill-score"><div class="score-num" id="drill-score-num">0/8</div><div>correct</div></div>
+    </div>
+  </section>
+
+  <!-- PRODUCTION LIBRE -->
+  <section id="sec-production">
+    <div class="sec-head"><span class="sec-num">13</span><h2>Production libre</h2></div>
+
+    <div class="card ex-block">
+      <div class="ex-title"><span class="ex-tag">✎</span>Racontez !</div>
+      <div class="ex-sub">Open practice — click a word to insert it, then write full sentences in the passé composé.</div>
+      <div class="phrase-bank" id="bank-prod"></div>
+
+      <div class="prod-q">Racontez votre dernier week-end (où êtes-vous allé(e) ? qu'est-ce que vous avez fait ?).</div>
+      <textarea id="produce-weekend" placeholder="Je suis allé(e)… J'ai visité… Je me suis promené(e)…"></textarea>
+
+      <div class="prod-q">M. Pascal a quitté son travail et sa famille sans explication. Écrivez le rapport d'enquête du policier (à 8 h, il embrasse sa femme… à 8 h 30, il retire un sac du pressing… à 9 h, il achète le journal… puis il traverse la rue sans regarder).</div>
+      <textarea id="produce-pascal" placeholder="Hier matin, à 8 heures, M. Pascal…"></textarea>
+
+      <div class="prod-q">Week-end à Rome. Mettez ce récit au passé composé : « Je pars de Paris le samedi à 11 heures et j'arrive à Rome vers 13 heures. Je passe à l'hôtel Arenula pour laisser mes bagages et je vais au Capitole. Je reste sur les escaliers de la place Michel-Ange jusqu'à 16 heures. Ensuite, je vais sur l'île Tibérine : je passe par le « ghetto », puis je monte sur le Janicule pour voir le coucher de soleil. Le soir, je retourne à l'hôtel pour me changer, puis je sors pour aller dîner dans le quartier du Panthéon. Ensuite, je vais manger une glace sur la place Navona. Je rentre à l'hôtel vers minuit. Le dimanche, je reste toute la journée au soleil à la Villa Borghese. Je rentre à pied à l'hôtel. Je pars de Rome à 18 heures et j'arrive à Paris à 20 heures. »</div>
+      <textarea id="produce-rome" placeholder="Je suis parti(e) de Paris le samedi à 11 heures…"></textarea>
+
+      <div class="prod-q">Scène de ménage. De votre fenêtre, vous observez l'immeuble d'en face. Racontez au passé composé : « Un homme et une femme sortent d'une voiture blanche. Ils entrent dans l'immeuble d'en face. Ils montent au 5<sup>e</sup> en ascenseur. Ils vont quelques minutes dans le salon. Ensuite, ils vont dans la cuisine. L'homme se lave les mains, mais aïe, aïe, aïe ! il se trompe de robinet. Il se brûle. Il se met en colère. La femme se précipite, sa robe s'accroche à la table. La table se renverse. Les verres et les assiettes tombent par terre et se cassent. L'homme se fâche. La femme se met à pleurer. Ils se disputent. Ils se battent. Alors, furieux, l'homme part dans sa chambre. Il s'enferme. Il se déshabille. Il se met au lit. La femme reste longtemps à la fenêtre. Puis elle sort. Elle descend au 4<sup>e</sup>. Elle s'arrête devant une porte. Elle entre. Elle se jette dans les bras d'une femme plus âgée. Plus tard, elle se couche sur le divan du salon et elle s'endort. Le matin, elle sort, elle va au café du coin. Son mari et elle se rencontrent dans la rue. Ils se regardent et ils s'embrassent. »</div>
+      <textarea id="produce-menage" placeholder="Un homme et une femme sont sortis d'une voiture blanche…"></textarea>
+
+      <div class="btn-row"><button class="btn secondary" data-model="model-prod">Show the pattern</button></div>
+      <div class="model-answer" id="model-prod">
+        <b>Pattern — not the answer, just the shape</b>
+        <p><b>Je suis allé(e)</b> / <b>j'ai visité</b> / <b>je me suis promené(e)</b> — pick avoir, être or a reflexive pronoun depending on the verb, and don't forget agreement with être. The « Scène de ménage » story is almost all pronominal verbs — <b>il s'est trompé</b>, <b>elle s'est couchée</b> — so lean on the reflexive pattern there.</p>
+      </div>
+    </div>
+
+  </section>
+
+</div>
+
+<footer>Adapted from the uploaded worksheets &middot; Leçon 31 — Le passé composé</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  function norm(s){
+    return (s||"").normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim()
+      .replace(/\s+/g,' ').replace(/['’]/g,"'").replace(/[?!.]+$/g,'').trim();
+  }
+  function matches(val, answers){
+    var v = norm(val);
+    if(!v) return false;
+    return answers.some(function(a){ return norm(a) === v; });
+  }
+
+  function buildFillExercise(containerId, items, opts){
+    opts = opts || {};
+    var container = document.getElementById(containerId);
+    items.forEach(function(item, i){
+      var line = document.createElement('div');
+      line.className = opts.paragraph ? '' : 'fill-line';
+      var html = '';
+      if(!opts.paragraph){ html += '<span class="qn">'+(i+1)+'.</span> '; }
+      html += item.hint ? '<span class="hint-chip">'+item.hint+'</span>' : '';
+      html += item.pre ? '<span>'+item.pre+'</span> ' : '';
+      if(item.given){
+        html += '<span class="given">'+item.given+'</span>';
+      } else {
+        html += '<input class="blank '+(opts.paragraph ? 'tiny' : (item.width||'w-med'))+'" type="text" autocomplete="off" data-idx="'+i+'">';
+      }
+      html += item.post ? ' <span>'+item.post+'</span>' : '';
+      line.innerHTML = html;
+      container.appendChild(line);
+    });
+    function allInputs(){ return container.querySelectorAll('input.blank'); }
+    document.querySelector('[data-check="'+containerId+'"]').addEventListener('click', function(){
+      var score = 0, total = 0;
+      allInputs().forEach(function(input){
+        var idx = +input.dataset.idx, item = items[idx];
+        total++; input.classList.remove('ok','no');
+        if(matches(input.value, item.answers)){ input.classList.add('ok'); score++; }
+        else { input.classList.add('no'); }
+      });
+      var sb = document.getElementById(containerId+'-score');
+      if(sb){ sb.classList.add('show'); document.getElementById(containerId+'-score-num').textContent = score+'/'+total; }
+    });
+    document.querySelector('[data-reveal="'+containerId+'"]').addEventListener('click', function(){
+      allInputs().forEach(function(input){
+        var idx = +input.dataset.idx;
+        input.value = items[idx].answers[0];
+        input.classList.remove('no'); input.classList.add('ok');
+      });
+      var sb = document.getElementById(containerId+'-score');
+      var totalBlanks = allInputs().length;
+      if(sb){ sb.classList.add('show'); document.getElementById(containerId+'-score-num').textContent = totalBlanks+'/'+totalBlanks; }
+    });
+  }
+
+  function buildMultiBlank(containerId, sentences){
+    var container = document.getElementById(containerId);
+    var answers = [];
+    sentences.forEach(function(s, i){
+      var line = document.createElement('div');
+      line.className = 'fill-line';
+      var html = '<span class="qn">'+(i+1)+'.</span> ';
+      if(s.hint) html += '<span class="hint-chip">'+s.hint+'</span>';
+      if(s.given){
+        html += '<span class="given">'+s.given+'</span>';
+      } else {
+        s.parts.forEach(function(part){
+          if(typeof part === 'string'){
+            html += '<span>'+part+'</span> ';
+          } else if(part.given){
+            html += '<span class="given">'+part.given+'</span> ';
+          } else {
+            html += '<input class="blank '+(part.width||'w-sm')+'" type="text" autocomplete="off" data-idx="'+answers.length+'"> ';
+            answers.push(part.answers);
+          }
+        });
+      }
+      line.innerHTML = html;
+      container.appendChild(line);
+    });
+    document.querySelector('[data-check="'+containerId+'"]').addEventListener('click', function(){
+      var score = 0;
+      container.querySelectorAll('input.blank').forEach(function(input){
+        var idx = +input.dataset.idx;
+        input.classList.remove('ok','no');
+        if(matches(input.value, answers[idx])){ input.classList.add('ok'); score++; }
+        else { input.classList.add('no'); }
+      });
+      var sb = document.getElementById(containerId+'-score');
+      if(sb){ sb.classList.add('show'); document.getElementById(containerId+'-score-num').textContent = score+'/'+answers.length; }
+    });
+    document.querySelector('[data-reveal="'+containerId+'"]').addEventListener('click', function(){
+      container.querySelectorAll('input.blank').forEach(function(input){
+        var idx = +input.dataset.idx;
+        input.value = answers[idx][0];
+        input.classList.remove('no'); input.classList.add('ok');
+      });
+      var sb = document.getElementById(containerId+'-score');
+      if(sb){ sb.classList.add('show'); document.getElementById(containerId+'-score-num').textContent = answers.length+'/'+answers.length; }
+    });
+  }
+
+  /* ================= BLOCK 1: -ER ================= */
+
+  buildMultiBlank('er-ex1', [
+    {given:"Vous avez passé vos vacances en Espagne ? — Oui, j'ai passé mes vacances en Espagne. (modèle)"},
+    {parts:["Vous avez emmené vos enfants ? — Oui,", {answers:["j'ai emmené mes enfants"], width:"w-full"}, "."]},
+    {parts:["Vous avez visité l'Andalousie ? — Oui,", {answers:["j'ai visité l'andalousie"], width:"w-full"}, "."]},
+    {parts:["Vous avez écouté du flamenco ? — Oui,", {answers:["j'ai écouté du flamenco"], width:"w-full"}, "."]},
+    {parts:["Vous avez filmé une corrida ? — Oui,", {answers:["j'ai filmé une corrida"], width:"w-full"}, "."]},
+    {parts:["Vous avez mangé des « tapas » ? — Oui,", {answers:["j'ai mangé des tapas"], width:"w-full"}, "."]},
+    {parts:["Vous avez rapporté des souvenirs ? — Oui,", {answers:["j'ai rapporté des souvenirs"], width:"w-full"}, "."]}
+  ]);
+
+  buildMultiBlank('er-ex2', [
+    {parts:["Aujourd'hui, j'invite Julien chez moi. → Demain,", {answers:["je vais inviter julien chez moi"], width:"w-full"}, ". Hier,", {answers:["j'ai invité julien chez moi"], width:"w-full"}, "."]},
+    {parts:["Ce soir, nous regardons une émission scientifique à la télé. → Demain soir,", {answers:["nous allons regarder une émission scientifique à la télé"], width:"w-full"}, ". Hier soir,", {answers:["nous avons regardé une émission scientifique à la télé"], width:"w-full"}, "."]},
+    {parts:["Cette année, Jean-Louis visite l'Écosse. → L'année prochaine,", {answers:["jean-louis va visiter l'écosse"], width:"w-full"}, ". L'année dernière,", {answers:["jean-louis a visité l'écosse"], width:"w-full"}, "."]},
+    {parts:["Cette semaine, je garde les enfants de ma fille. → La semaine prochaine,", {answers:["je vais garder les enfants de ma fille"], width:"w-full"}, ". La semaine dernière,", {answers:["j'ai gardé les enfants de ma fille"], width:"w-full"}, "."]},
+    {parts:["Ce mois-ci, vous travaillez avec des étudiants anglais. → Le mois prochain,", {answers:["vous allez travailler avec des étudiants anglais"], width:"w-full"}, ". Le mois dernier,", {answers:["vous avez travaillé avec des étudiants anglais"], width:"w-full"}, "."]}
+  ]);
+
+  /* ================= BLOCK 2: LE PARTICIPE PASSÉ ================= */
+
+  buildMultiBlank('part-ex1', [
+    {hint:"lire", parts:["lire →", {answers:["lu"], width:"w-sm"}]},
+    {hint:"boire", parts:["boire →", {answers:["bu"], width:"w-sm"}]},
+    {hint:"finir", parts:["finir →", {answers:["fini"], width:"w-sm"}]},
+    {hint:"prendre", parts:["prendre →", {answers:["pris"], width:"w-sm"}]},
+    {hint:"mettre", parts:["mettre →", {answers:["mis"], width:"w-sm"}]},
+    {hint:"écrire", parts:["écrire →", {answers:["écrit"], width:"w-sm"}]},
+    {hint:"être", parts:["être →", {answers:["été"], width:"w-sm"}]},
+    {hint:"avoir", parts:["avoir →", {answers:["eu"], width:"w-sm"}]},
+    {hint:"faire", parts:["faire →", {answers:["fait"], width:"w-sm"}]},
+    {hint:"ouvrir", parts:["ouvrir →", {answers:["ouvert"], width:"w-sm"}]},
+    {hint:"voir", parts:["voir →", {answers:["vu"], width:"w-sm"}]}
+  ]);
+
+  buildMultiBlank('part-ex2', [
+    {given:"Vos parents vous ont écrit. Vous avez répondu à leurs lettres ? (modèle)"},
+    {hint:"grandir", parts:["Tous les pantalons de mon fils sont trop courts ; il", {answers:["a grandi"], width:"w-med"}, "de 10 centimètres en 2 mois."]},
+    {hint:"traduire", parts:["Charles est un grand traducteur : il", {answers:["a traduit"], width:"w-med"}, "presque tout Shakespeare."]},
+    {hint:"découvrir", parts:["Christophe Colomb", {answers:["a découvert"], width:"w-med"}, "l'Amérique en 1492."]},
+    {hint:"choisir", parts:["J'ai longtemps hésité entre la robe rouge et la robe bleue, et finalement je", {answers:["ai choisi"], width:"w-med"}, "la bleue."]},
+    {hint:"pleuvoir", parts:["La campagne est verte cette année : il", {answers:["a plu"], width:"w-med"}, "trois mois sans interruption !"]}
+  ]);
+
+  buildMultiBlank('part-ex3', [
+    {parts:["Georges achète le journal et il prend l'autobus. →", {answers:["il a acheté"], width:"w-med"}, "le journal et il", {answers:["a pris"], width:"w-med"}, "l'autobus."]},
+    {parts:["Marie met un imperméable et elle prend un parapluie. →", {answers:["elle a mis"], width:"w-med"}, "un imperméable et elle", {answers:["a pris"], width:"w-med"}, "un parapluie."]},
+    {parts:["Nous buvons un café et nous mangeons un croissant. →", {answers:["nous avons bu"], width:"w-med"}, "un café et nous", {answers:["avons mangé"], width:"w-med"}, "un croissant."]},
+    {parts:["Vous lisez le journal et vous voyez une annonce intéressante. →", {answers:["vous avez lu"], width:"w-med"}, "le journal et vous", {answers:["avez vu"], width:"w-med"}, "une annonce intéressante."]},
+    {parts:["Julie écrit à sa mère et elle poste la lettre. →", {answers:["elle a écrit"], width:"w-med"}, "à sa mère et elle", {answers:["a posté"], width:"w-med"}, "la lettre."]},
+    {parts:["Tu finis ton travail et tu écris à tes amis. →", {answers:["tu as fini"], width:"w-med"}, "ton travail et tu", {answers:["as écrit"], width:"w-med"}, "à tes amis."]},
+    {parts:["Nous perdons nos clés et nous devons appeler les pompiers. →", {answers:["nous avons perdu"], width:"w-med"}, "nos clés et nous", {answers:["avons dû"], width:"w-med"}, "appeler les pompiers."]},
+    {parts:["Il y a une grève des transports et je dois rentrer à pied. →", {answers:["il y a eu"], width:"w-med"}, "une grève des transports et je", {answers:["ai dû"], width:"w-med"}, "rentrer à pied."]}
+  ]);
+
+  /* ================= BLOCK 3: ÊTRE ================= */
+
+  buildMultiBlank('etre-ex1', [
+    {given:"Un avion arrive à Orly. → Un avion est arrivé à Orly. (modèle)"},
+    {parts:["Un bébé naît dans une maternité. →", {answers:["un bébé est né"], width:"w-full"}, "dans une maternité."]},
+    {parts:["Une cigogne passe dans le ciel gris. →", {answers:["une cigogne est passée"], width:"w-full"}, "dans le ciel gris."]},
+    {parts:["Jean arrive des États-Unis. →", {answers:["jean est arrivé"], width:"w-full"}, "des États-Unis."]},
+    {parts:["Des enfants vont au bord de la mer. →", {answers:["des enfants sont allés"], width:"w-full"}, "au bord de la mer."]},
+    {parts:["Deux voleurs entrent dans un appartement. →", {answers:["deux voleurs sont entrés"], width:"w-full"}, "dans un appartement."]},
+    {parts:["Un homme d'État meurt dans son lit. →", {answers:["un homme d'état est mort"], width:"w-full"}, "dans son lit."]},
+    {parts:["Un grand écrivain rentre dans son pays. →", {answers:["un grand écrivain est rentré"], width:"w-full"}, "dans son pays."]},
+    {parts:["Jean monte dans un taxi. →", {answers:["jean est monté"], width:"w-full"}, "dans un taxi."]},
+    {parts:["Une femme sort sous la pluie. →", {answers:["une femme est sortie"], width:"w-full"}, "sous la pluie."]},
+    {parts:["Un homme tombe amoureux. →", {answers:["un homme est tombé"], width:"w-full"}, "amoureux."]}
+  ]);
+
+  buildFillExercise('etre-ex2', [
+    {hint:"rester", pre:"Mon grand-père est né en Provence. Il", answers:["est resté"], post:"toute sa vie en Provence"},
+    {hint:"mourir", pre:"et il", answers:["est mort"], post:"à 102 ans dans son village natal."},
+    {hint:"devenir", pre:"On dit, dans la famille, que s'il", answers:["est devenu"], post:"si vieux,"},
+    {hint:"intervenir", pre:"c'est parce qu'il n'", answers:["est jamais intervenu"], post:"dans les affaires du village :"},
+    {hint:"mourir", pre:"il est vrai que tous ses amis, qui", answers:["sont morts"], post:"assez jeunes,"},
+    {hint:"devenir", pre:"", answers:["sont devenus"], post:"un jour ou l'autre maires ou conseillers municipaux."},
+    {hint:"rester", pre:"Ma grand-mère et mon grand-père", answers:["sont restés"], post:"à l'écart du monde."},
+    {hint:"sortir", pre:"Ils ne", answers:["sont sortis"], post:"du village que pour aller voir leurs enfants :"},
+    {hint:"venir", pre:"ils", answers:["sont venus"], post:"chez nous (à 30 km !) pour notre mariage"},
+    {hint:"aller", pre:"et ils", answers:["sont allés"], post:"chez ma sœur quand son bébé"},
+    {hint:"naître", pre:"", answers:["est né"], post:"."},
+    {hint:"aller", pre:"La dernière fois que nous", answers:["sommes allés"], post:"les voir, les enfants et mon grand-père"},
+    {hint:"monter", pre:"", answers:["sont montés"], post:"au grenier"},
+    {hint:"redescendre", pre:"et ils", answers:["sont redescendus"], post:"chargés de vieux atlas entièrement annotés :"},
+    {hint:"sortir", pre:"mon grand-père n'", answers:["est jamais sorti"], post:"de sa Provence,"},
+    {hint:"aller", pre:"mais il", answers:["est allé"], post:"partout avec son imagination."}
+  ], {paragraph:true});
+
+  /* ================= BLOCK 4: ÊTRE OU AVOIR ================= */
+
+  buildMultiBlank('cod-ex1', [
+    {hint:"sans COD", parts:["Il", {answers:["est"], width:"tiny"}, "sorti dans la rue."]},
+    {hint:"avec COD", parts:["Il", {answers:["a"], width:"tiny"}, "sorti le chien."]},
+    {hint:"sans COD", parts:["Nous", {answers:["sommes"], width:"tiny"}, "rentrés tôt."]},
+    {hint:"avec COD", parts:["Nous", {answers:["avons"], width:"tiny"}, "rentré la voiture."]},
+    {hint:"sans COD", parts:["Elle", {answers:["est"], width:"tiny"}, "descendue à la cave."]},
+    {hint:"avec COD", parts:["Elle", {answers:["a"], width:"tiny"}, "descendu la poubelle."]},
+    {hint:"sans COD", parts:["Je", {answers:["suis"], width:"tiny"}, "monté à pied."]},
+    {hint:"avec COD", parts:["J'", {answers:["ai"], width:"tiny"}, "monté l'escalier."]}
+  ]);
+
+  /* ================= BLOCK 5: PRONOMINAUX ================= */
+
+  buildMultiBlank('pronom-ex1', [
+    {parts:["Mon fils s'est bien amusé au cirque. — Ma fille", {answers:["s'est bien amusée"], width:"w-med"}, "aussi !"]},
+    {parts:["Mes amis se sont ennuyés au théâtre. — Ma femme", {answers:["s'est ennuyée"], width:"w-med"}, "aussi !"]},
+    {parts:["On s'est couchés tard hier soir. — Nous", {answers:["nous sommes couchés","nous sommes couchées"], width:"w-med"}, "tard aussi !"]}
+  ]);
+
+  /* ================= QUICK DRILL: avoir ou être ? ================= */
+  (function(){
+    var container = document.getElementById('drill');
+    var items = [
+      {inf:"manger", correct:"avoir"},
+      {inf:"arriver", correct:"être"},
+      {inf:"finir", correct:"avoir"},
+      {inf:"sortir", correct:"être"},
+      {inf:"prendre", correct:"avoir"},
+      {inf:"monter", correct:"être"},
+      {inf:"voir", correct:"avoir"},
+      {inf:"naître", correct:"être"},
+      {inf:"écrire", correct:"avoir"},
+      {inf:"tomber", correct:"être"},
+      {inf:"boire", correct:"avoir"},
+      {inf:"se lever", correct:"être"},
+      {inf:"mettre", correct:"avoir"},
+      {inf:"retourner", correct:"être"},
+      {inf:"lire", correct:"avoir"},
+      {inf:"se coucher", correct:"être"}
+    ];
+    var BATCH = 8;
+    var totalPages = Math.ceil(items.length / BATCH);
+    var page = 0;
+    var continueBtn = document.getElementById('drill-continue');
+    var pageLabel = document.getElementById('drill-page');
+    var scoreBanner = document.getElementById('drill-score');
+
+    function renderPage(p){
+      container.innerHTML = '';
+      var start = p * BATCH, end = Math.min(start + BATCH, items.length);
+      for(var i = start; i < end; i++){
+        var item = items[i];
+        var line = document.createElement('div');
+        line.className = 'sel-line';
+        line.innerHTML = '<span class="qn">'+(i+1)+'.</span> <span class="hint-chip">'+item.inf+'</span> <select class="blank" data-idx="'+i+'"><option value="">…</option><option value="avoir">avoir</option><option value="être">être</option></select>';
+        container.appendChild(line);
+      }
+      scoreBanner.classList.remove('show');
+      pageLabel.textContent = 'Page '+(p+1)+' of '+totalPages;
+      continueBtn.textContent = (p+1 < totalPages) ? 'Next page →' : 'Restart from page 1';
+    }
+    renderPage(page);
+    continueBtn.addEventListener('click', function(){ page = (page + 1) % totalPages; renderPage(page); });
+
+    document.querySelector('[data-check="drill"]').addEventListener('click', function(){
+      var score = 0, total = 0;
+      container.querySelectorAll('select.blank').forEach(function(sel){
+        var idx = +sel.dataset.idx; total++; sel.classList.remove('ok','no');
+        if(sel.value === items[idx].correct){ sel.classList.add('ok'); score++; }
+        else { sel.classList.add('no'); }
+      });
+      scoreBanner.classList.add('show');
+      document.getElementById('drill-score-num').textContent = score+'/'+total;
+    });
+    document.querySelector('[data-reveal="drill"]').addEventListener('click', function(){
+      var total = 0;
+      container.querySelectorAll('select.blank').forEach(function(sel){
+        var idx = +sel.dataset.idx; total++;
+        sel.value = items[idx].correct; sel.classList.remove('no'); sel.classList.add('ok');
+      });
+      scoreBanner.classList.add('show');
+      document.getElementById('drill-score-num').textContent = total+'/'+total;
+    });
+  })();
+
+  /* ================= PRODUCTION LIBRE ================= */
+  var wordsProd = ["je suis allé(e)","j'ai visité","je me suis promené(e)","il a embrassé","il a retiré","il a acheté","il a payé","il a traversé","sans regarder","je suis parti(e)","je suis resté(e)","je suis monté(e)","je suis retourné(e)","je suis rentré(e)","il s'est lavé","il s'est trompé","il s'est brûlé","il s'est mis en colère","elle s'est précipitée","elle s'est mise à pleurer","ils se sont disputés","ils se sont battus","il s'est enfermé","elle s'est couchée","elle s'est endormie","ils se sont rencontrés","ils se sont embrassés"];
+  (function(){
+    var bank = document.getElementById('bank-prod');
+    var areas = [document.getElementById('produce-weekend'), document.getElementById('produce-pascal'), document.getElementById('produce-rome'), document.getElementById('produce-menage')];
+    var activeArea = areas[0];
+    areas.forEach(function(a){ a.addEventListener('focus', function(){ activeArea = a; }); });
+    wordsProd.forEach(function(w){
+      var b = document.createElement('button');
+      b.className = 'phrase'; b.type = 'button'; b.textContent = w;
+      b.addEventListener('click', function(){
+        activeArea.value += (activeArea.value.length ? ' ' : '') + w;
+        activeArea.focus();
+      });
+      bank.appendChild(b);
+    });
+  })();
+
+  document.querySelectorAll('[data-model]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.getElementById(btn.dataset.model).classList.toggle('show');
+    });
+  });
+
+})();
+</script>
+
+</body></html>
