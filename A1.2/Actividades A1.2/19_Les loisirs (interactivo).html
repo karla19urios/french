@@ -1,0 +1,889 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>Les loisirs</title>
+<style>
+  :root{
+    --bleu:#002395; --blanc:#ffffff; --rouge:#ED2939;
+    --bg:#f4f5f7; --card:#ffffff; --card-2:#fafbfc;
+    --text:#1a1a2e; --muted:#6b7280; --border:#e5e7eb;
+    --ok:#0f7b52; --ok-bg:#eaf6f0; --ko:#c2202f; --ko-bg:#fdeced;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#12141c; --card:#1b1e2b; --card-2:#202433;
+      --text:#f1f2f6; --muted:#9aa0b4; --border:#2a2e40;
+      --bleu:#5b7cff; --rouge:#ff6b78;
+      --ok:#4ade80; --ok-bg:#16281f; --ko:#ff8a94; --ko-bg:#2b1a1e;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#12141c; --card:#1b1e2b; --card-2:#202433;
+    --text:#f1f2f6; --muted:#9aa0b4; --border:#2a2e40;
+    --bleu:#5b7cff; --rouge:#ff6b78;
+    --ok:#4ade80; --ok-bg:#16281f; --ko:#ff8a94; --ko-bg:#2b1a1e;
+  }
+
+  *{box-sizing:border-box;}
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0; padding-bottom:4.5rem;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg); color:var(--text); line-height:1.5;
+  }
+  header.flag{
+    background:linear-gradient(90deg,#002395 33%,#ffffff 33%,#ffffff 66%,#ED2939 66%);
+    height:8px; width:100%;
+  }
+  nav.tabs{ display:flex; justify-content:center; gap:.5rem; flex-wrap:wrap; padding:1.2rem 1rem 0; }
+  nav.tabs a{
+    text-decoration:none; color:var(--muted); font-size:.88rem; font-weight:600;
+    padding:.5rem 1rem; border-radius:999px;
+    border:1px solid var(--border); background:var(--card);
+    transition:border-color .12s ease, color .12s ease;
+  }
+  nav.tabs a:hover{ border-color:var(--bleu); color:var(--bleu); }
+  nav.tabs .here{
+    font-size:.88rem; font-weight:600; padding:.5rem 1rem; border-radius:999px;
+    background:var(--bleu); border:1px solid var(--bleu); color:#fff;
+  }
+
+  .hero{ padding:2.4rem 1.5rem 1.2rem; text-align:center; }
+  .eyebrow{
+    font-size:.75rem; font-weight:700; text-transform:uppercase;
+    letter-spacing:.08em; color:var(--bleu); margin:0 0 .5rem;
+  }
+  .hero h1{ margin:0 0 .4rem; font-size:2.4rem; letter-spacing:-0.02em; text-wrap:balance; }
+  .hero .sub{ margin:0 auto; max-width:56ch; color:var(--muted); font-size:1.05rem; }
+
+  main{
+    max-width:1000px; margin:0 auto; padding:0 1.5rem 3rem;
+    display:flex; flex-direction:column; gap:1.2rem;
+  }
+  .card{
+    background:var(--card); border:1px solid var(--border);
+    border-radius:16px; padding:1.6rem; position:relative; overflow:hidden;
+    scroll-margin-top:1rem;
+  }
+  .card::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:4px;
+    background:linear-gradient(90deg,#002395 33%,#ffffff 33%,#ffffff 66%,#ED2939 66%);
+  }
+  .sec-label{
+    font-size:.78rem; font-weight:700; text-transform:uppercase;
+    letter-spacing:.06em; color:var(--bleu); margin:0 0 .2rem;
+  }
+  .card h2{ margin:0 0 .5rem; font-size:1.3rem; letter-spacing:-0.01em; }
+  .consigne{ margin:0 0 1rem; color:var(--muted); font-size:.95rem; }
+  .modele{
+    background:var(--card-2); border:1px solid var(--border);
+    border-left:3px solid var(--bleu); border-radius:0 10px 10px 0;
+    padding:.7rem .9rem; margin:0 0 1rem; font-size:.95rem;
+  }
+  .modele .lab{
+    font-size:.68rem; font-weight:700; text-transform:uppercase;
+    letter-spacing:.05em; color:var(--bleu); display:block; margin-bottom:.2rem;
+  }
+  .modele em{ color:var(--muted); }
+  .banque{
+    display:flex; flex-wrap:wrap; gap:.4rem; margin:0 0 1rem;
+  }
+  .banque .w{
+    font-size:.85rem; font-weight:600; color:var(--bleu);
+    background:var(--card-2); border:1px solid var(--border);
+    border-radius:999px; padding:.3rem .8rem;
+  }
+
+  /* --- sommaire --- */
+  .toc{ display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:.5rem; }
+  .toc a{
+    display:flex; align-items:center; gap:.5rem;
+    background:var(--card-2); border:1px solid var(--border); border-radius:10px;
+    padding:.5rem .7rem; text-decoration:none; color:var(--text); font-size:.9rem;
+    transition:border-color .12s ease;
+  }
+  .toc a:hover{ border-color:var(--bleu); }
+  .toc a .n{
+    font-size:.7rem; font-weight:700; color:#fff; background:var(--bleu);
+    width:22px; height:22px; border-radius:50%;
+    display:inline-flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .toc a .pts{ margin-left:auto; font-size:.75rem; color:var(--muted); font-variant-numeric:tabular-nums; }
+
+  .goals{ margin:0; padding-left:1.1rem; display:flex; flex-direction:column; gap:.35rem; }
+  .goals li::marker{ color:var(--rouge); }
+
+  /* --- vocabulaire --- */
+  .voc-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:.8rem; }
+  .voc{
+    background:var(--card-2); border:1px solid var(--border);
+    border-radius:12px; padding:1rem 1.1rem;
+  }
+  .voc h3{
+    margin:0 0 .1rem; font-size:1.05rem; color:var(--bleu);
+  }
+  .voc .form{
+    display:block; font-size:.8rem; color:var(--rouge); font-weight:700;
+    text-transform:uppercase; letter-spacing:.04em; margin-bottom:.6rem;
+  }
+  .voc ul{ margin:0; padding:0; list-style:none; font-size:.94rem; }
+  .voc li{
+    display:flex; align-items:center; gap:.5rem;
+    padding:.18rem 0;
+  }
+  .voc li .e{
+    font-size:1.15rem; line-height:1; width:1.5em; text-align:center; flex-shrink:0;
+    font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
+  }
+  .toc a .ic{
+    font-size:1rem; line-height:1; flex-shrink:0;
+    font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
+  }
+  .q .e, .art .i, .prompt .h .e{
+    font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
+  }
+  .q .e{ font-size:1.15rem; line-height:1; }
+
+  /* --- règle des articles --- */
+  .art-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:.5rem; margin-top:.9rem; }
+  .art{
+    background:var(--card-2); border:1px solid var(--border);
+    border-radius:12px; padding:.7rem .8rem;
+    display:flex; flex-direction:column; gap:.15rem;
+  }
+  .art .k{ font-size:.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; font-weight:600; }
+  .art .v{ font-size:1.1rem; font-weight:700; color:var(--rouge); }
+  .art .ex{ font-size:.85rem; color:var(--muted); font-style:italic; }
+
+  .rappel-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:.7rem; margin-top:1rem; }
+  .rappel{ background:var(--card-2); border:1px solid var(--border); border-radius:12px; padding:.9rem 1rem; }
+  .rappel h3{ margin:0 0 .35rem; font-size:.78rem; text-transform:uppercase; letter-spacing:.05em; color:var(--rouge); }
+  .rappel p{ margin:0; font-size:.92rem; }
+  .rappel b{ color:var(--bleu); }
+
+  /* --- conjugueur --- */
+  .chips{ display:flex; flex-wrap:wrap; gap:.45rem; margin-bottom:1.1rem; }
+  .chip{
+    font:inherit; font-size:.88rem; font-weight:600; color:var(--muted);
+    background:var(--card-2); border:1px solid var(--border); border-radius:999px;
+    padding:.45rem 1rem; cursor:pointer;
+    transition:background .12s ease, color .12s ease, border-color .12s ease;
+  }
+  .chip:hover{ border-color:var(--bleu); color:var(--bleu); }
+  .chip[aria-pressed="true"]{ background:var(--bleu); border-color:var(--bleu); color:#fff; }
+  .conj-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(225px,1fr)); gap:.5rem; }
+  .conj-row{
+    display:flex; align-items:center; gap:.5rem;
+    background:var(--card-2); border:1px solid var(--border);
+    border-radius:10px; padding:.55rem .85rem; font-size:1.02rem;
+  }
+  .conj-row .pn{ color:var(--muted); min-width:5.6em; font-size:.95rem; }
+  .conj-row .vb b{ color:var(--rouge); }
+  .conj-row.good{ border-color:var(--ok); background:var(--ok-bg); }
+  .conj-row.bad{ border-color:var(--ko); background:var(--ko-bg); }
+  .conj-row.good .verdict{ color:var(--ok); }
+  .conj-row.bad .verdict{ color:var(--ko); }
+  .notes{ margin-top:1rem; display:flex; flex-direction:column; gap:.5rem; }
+  .note{
+    display:flex; gap:.6rem; align-items:flex-start; font-size:.92rem;
+    background:var(--card-2); border:1px solid var(--border);
+    border-left:3px solid var(--rouge); border-radius:0 10px 10px 0; padding:.7rem .9rem;
+  }
+  .note .tag{
+    font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em;
+    color:var(--rouge); white-space:nowrap; padding-top:.15rem;
+  }
+
+  /* --- items --- */
+  .ex-list{
+    display:flex; flex-direction:column; gap:.6rem;
+    margin:0 0 1rem; padding:0; list-style:none; counter-reset:q;
+  }
+  .q{
+    display:flex; flex-wrap:wrap; align-items:center; gap:.4rem;
+    background:var(--card-2); border:1px solid var(--border);
+    border-radius:10px; padding:.7rem .9rem; font-size:1rem;
+  }
+  .q::before{
+    counter-increment:q; content:counter(q);
+    font-size:.7rem; font-weight:700; color:#fff; background:var(--bleu);
+    width:22px; height:22px; border-radius:50%;
+    display:inline-flex; align-items:center; justify-content:center;
+    flex-shrink:0; margin-right:.2rem;
+  }
+  .q .inf{ color:var(--muted); font-size:.85rem; }
+  .q .full{ flex:1 1 100%; }
+  input.gap, select.pick, textarea.free{
+    font:inherit; font-size:1rem; padding:.3rem .5rem;
+    border-radius:8px; border:1px solid var(--border);
+    background:var(--card); color:var(--text);
+  }
+  input.gap{ width:7em; }
+  input.gap.wide{ width:12em; }
+  input.gap.xl{ width:16em; }
+  textarea.free{ width:100%; min-height:3.2em; resize:vertical; margin-top:.4rem; }
+  input.gap:focus-visible, select.pick:focus-visible, textarea.free:focus-visible,
+  button:focus-visible, .chip:focus-visible, .toc a:focus-visible, nav.tabs a:focus-visible{
+    outline:2px solid var(--bleu); outline-offset:2px;
+  }
+  .q.good{ border-color:var(--ok); background:var(--ok-bg); }
+  .q.bad{ border-color:var(--ko); background:var(--ko-bg); }
+  .verdict{ font-size:.85rem; font-weight:600; margin-left:auto; white-space:nowrap; }
+  .q.good .verdict{ color:var(--ok); }
+  .q.bad .verdict{ color:var(--ko); }
+  .commentaire{
+    flex:1 1 100%; font-size:.9rem; font-style:italic; color:var(--muted);
+    display:none; padding-top:.3rem; border-top:1px dashed var(--border); margin-top:.3rem;
+  }
+  .q.good .commentaire, .q.bad .commentaire{ display:block; }
+
+  .cloze{
+    background:var(--card-2); border:1px solid var(--border);
+    border-radius:12px; padding:1.1rem 1.2rem;
+    font-size:1.05rem; line-height:2.5; margin-bottom:1rem;
+  }
+  .blank{
+    display:inline-flex; align-items:center; gap:.35rem;
+    padding:.2rem .45rem; border:1px solid transparent; border-radius:8px;
+  }
+  .blank .verdict{ margin-left:0; }
+  .blank.good{ border-color:var(--ok); background:var(--ok-bg); }
+  .blank.bad{ border-color:var(--ko); background:var(--ko-bg); }
+  .blank.good .verdict{ color:var(--ok); }
+  .blank.bad .verdict{ color:var(--ko); }
+
+  .prompt-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:.6rem; }
+  .prompt{ background:var(--card-2); border:1px solid var(--border); border-radius:12px; padding:.9rem 1rem; }
+  .prompt .h{ font-weight:700; font-size:.95rem; margin-bottom:.25rem; }
+  .prompt .ex{ color:var(--muted); font-size:.9rem; font-style:italic; }
+
+  .actions{ display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; }
+  button.btn{
+    font:inherit; font-size:.9rem; font-weight:600;
+    padding:.55rem 1.1rem; border-radius:999px;
+    border:1px solid var(--bleu); background:var(--bleu); color:#fff; cursor:pointer;
+  }
+  button.btn.ghost{ background:transparent; color:var(--bleu); }
+  button.btn:hover{ filter:brightness(1.08); }
+  .score{ font-size:.88rem; font-weight:700; color:var(--muted); font-variant-numeric:tabular-nums; }
+
+  .scorebar{
+    position:fixed; left:0; right:0; bottom:0; z-index:20;
+    background:var(--card); border-top:1px solid var(--border); padding:.6rem 1rem;
+  }
+  .scorebar .inner{
+    max-width:1000px; margin:0 auto; width:100%;
+    display:flex; align-items:center; gap:1rem;
+  }
+  .scorebar .big{ font-size:1.05rem; font-weight:700; color:var(--bleu); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .bar{ flex:1 1 120px; height:8px; border-radius:999px; background:var(--border); overflow:hidden; }
+  .bar > span{ display:block; height:100%; width:0%; background:var(--bleu); transition:width .3s ease; }
+
+  footer{ text-align:center; color:var(--muted); font-size:.82rem; padding:0 1.5rem 2rem; }
+  footer a{ color:var(--bleu); text-decoration:none; font-weight:600; }
+  footer a:hover{ text-decoration:underline; }
+  @media (prefers-reduced-motion: reduce){ *{ transition:none !important; scroll-behavior:auto !important; } }
+</style>
+
+<header class="flag"></header>
+<nav class="tabs">
+  <a href="https://karla19urios.github.io/french/A1.2/index.html">🏠 Accueil A1.2</a>
+  <a href="https://karla19urios.github.io/french/A1.2/grammaire.html">🧪 Grammaire</a>
+  <a href="https://karla19urios.github.io/french/A1.2/19_les%20loisirs.pdf">📄 La leçon en PDF</a>
+  <a href="https://karla19urios.github.io/french/A1.2/Grammaire%20A1.2/Pouvoir%2C%20devoir%20et%20vouloir/index.html">🖼️ La fiche</a>
+  <span class="here">🎾 Leçon 19</span>
+</nav>
+
+<div class="hero">
+  <p class="eyebrow">A1.2 · Leçon 19</p>
+  <h1>Les loisirs</h1>
+  <p class="sub">Dire ce qu'on fait de son temps libre : le vocabulaire des activités, <em>jouer à</em> contre <em>faire de</em>, et les verbes <em>pouvoir</em>, <em>vouloir</em>, <em>devoir</em> et <em>faire</em>.</p>
+</div>
+
+<main>
+
+  <section class="card">
+    <p class="sec-label">Sommaire</p>
+    <h2>55 points à gagner</h2>
+    <div class="toc">
+      <a href="#s1"><span class="n">1</span><span class="ic">⚽</span>Jouer à, faire de, jouer de<span class="pts">9 pts</span></a>
+      <a href="#s2"><span class="n">2</span><span class="ic">🔗</span>L'article contracté<span class="pts">8 pts</span></a>
+      <a href="#s3"><span class="n">3</span><span class="ic">🤔</span>Pouvoir, vouloir ou devoir ?<span class="pts">6 pts</span></a>
+      <a href="#s4"><span class="n">4</span><span class="ic">⭐</span>Vouloir : les désirs<span class="pts">6 pts</span></a>
+      <a href="#s5"><span class="n">5</span><span class="ic">💪</span>Pouvoir : c'est possible<span class="pts">6 pts</span></a>
+      <a href="#s6"><span class="n">6</span><span class="ic">⏰</span>Devoir : l'obligation<span class="pts">6 pts</span></a>
+      <a href="#s7"><span class="n">7</span><span class="ic">🛠️</span>La conjugaison de faire<span class="pts">6 pts</span></a>
+      <a href="#s8"><span class="n">8</span><span class="ic">✉️</span>La lettre de Léo<span class="pts">8 pts</span></a>
+      <a href="#s9"><span class="n">9</span><span class="ic">✍️</span>Répondez librement<span class="pts">libre</span></a>
+      <a href="#s10"><span class="n">10</span><span class="ic">🗣️</span>Parle de tes loisirs<span class="pts">à l'oral</span></a>
+    </div>
+  </section>
+
+  <section class="card">
+    <p class="sec-label">Objectif</p>
+    <h2>🎯 Parler de ses loisirs et de ses envies</h2>
+    <ul class="goals">
+      <li>Nommer les sports, les instruments et les activités du temps libre.</li>
+      <li>Choisir entre <strong>jouer à</strong>, <strong>faire de</strong> et <strong>jouer de</strong>, avec le bon article contracté.</li>
+      <li>Conjuguer <strong>pouvoir</strong>, <strong>vouloir</strong> et <strong>devoir</strong>, et les faire suivre d'un infinitif.</li>
+      <li>Conjuguer <strong>faire</strong>, y compris <em>vous faites</em> et <em>ils font</em>.</li>
+      <li>Dire ce qu'on veut apprendre, ce qu'on peut faire et ce qu'on doit faire.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <p class="sec-label">Vocabulaire</p>
+    <h2>🎨 Trois façons de dire une activité</h2>
+    <p class="consigne">Le verbe dépend du type d'activité. C'est la première chose à retenir.</p>
+    <div class="voc-grid">
+      <div class="voc">
+        <h3>⚽ Les sports de balle</h3>
+        <span class="form">jouer à + le sport</span>
+        <ul>
+          <li><span class="e">⚽</span>le football</li>
+          <li><span class="e">🏀</span>le basket-ball</li>
+          <li><span class="e">🏐</span>le volley-ball</li>
+          <li><span class="e">🏉</span>le rugby</li>
+          <li><span class="e">🎾</span>le tennis</li>
+          <li><span class="e">🏓</span>le tennis de table</li>
+          <li><span class="e">🃏</span>les cartes</li>
+          <li><span class="e">🎯</span>la pétanque</li>
+        </ul>
+      </div>
+      <div class="voc">
+        <h3>🏊 Les autres sports</h3>
+        <span class="form">faire de + l'activité</span>
+        <ul>
+          <li><span class="e">🚴</span>le cyclisme</li>
+          <li><span class="e">⛷️</span>le ski</li>
+          <li><span class="e">🤸</span>la gymnastique</li>
+          <li><span class="e">🏊</span>la natation</li>
+          <li><span class="e">🛶</span>le canoë-kayak</li>
+          <li><span class="e">🐴</span>l'équitation</li>
+          <li><span class="e">🏄</span>le surf</li>
+          <li><span class="e">⛵</span>la planche à voile</li>
+          <li><span class="e">🧗</span>l'escalade</li>
+          <li><span class="e">🥾</span>la randonnée</li>
+        </ul>
+      </div>
+      <div class="voc">
+        <h3>🎸 Les instruments</h3>
+        <span class="form">jouer de + l'instrument</span>
+        <ul>
+          <li><span class="e">🎹</span>le piano</li>
+          <li><span class="e">🎸</span>la guitare</li>
+          <li><span class="e">🎻</span>le violon</li>
+          <li><span class="e">🪈</span>la flûte</li>
+          <li><span class="e">🎺</span>la trompette</li>
+          <li><span class="e">🥁</span>la batterie</li>
+          <li><span class="e">🪗</span>l'accordéon</li>
+        </ul>
+      </div>
+      <div class="voc">
+        <h3>🏡 À la maison</h3>
+        <span class="form">un verbe à l'infinitif</span>
+        <ul>
+          <li><span class="e">🔨</span>bricoler</li>
+          <li><span class="e">🎨</span>peindre</li>
+          <li><span class="e">🍳</span>cuisiner</li>
+          <li><span class="e">🌱</span>jardiner</li>
+          <li><span class="e">🧵</span>coudre, tisser</li>
+          <li><span class="e">💃</span>danser</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <p class="sec-label">La règle</p>
+    <h2>🔗 L'article contracté</h2>
+    <p class="consigne">« à » et « de » se collent à l'article. C'est obligatoire au masculin et au pluriel.</p>
+    <div class="art-grid">
+      <div class="art"><span class="k">à + le</span><span class="v">au</span><span class="ex">🎾 je joue au tennis</span></div>
+      <div class="art"><span class="k">à + la</span><span class="v">à la</span><span class="ex">🎯 je joue à la pétanque</span></div>
+      <div class="art"><span class="k">à + les</span><span class="v">aux</span><span class="ex">🃏 je joue aux cartes</span></div>
+      <div class="art"><span class="k">de + le</span><span class="v">du</span><span class="ex">⛷️ je fais du ski</span></div>
+      <div class="art"><span class="k">de + la</span><span class="v">de la</span><span class="ex">🏊 je fais de la natation</span></div>
+      <div class="art"><span class="k">de + l'</span><span class="v">de l'</span><span class="ex">🧗 je fais de l'escalade</span></div>
+    </div>
+    <div class="rappel-grid">
+      <div class="rappel"><h3>Devant une voyelle</h3><p>Devant a, e, i, o, u et h muet : <b>de l'</b> escalade, <b>de l'</b> équitation, <b>de l'</b> accordéon.</p></div>
+      <div class="rappel"><h3>Ne confonds pas</h3><p><em>jouer <b>à</b></em> = un jeu, un sport de balle. <em>jouer <b>de</b></em> = un instrument de musique.</p></div>
+      <div class="rappel"><h3>Suivis d'un infinitif</h3><p>Après <b>pouvoir</b>, <b>vouloir</b> et <b>devoir</b>, le deuxième verbe reste à l'infinitif : <em>je veux apprendre à faire du surf</em>.</p></div>
+      <div class="rappel"><h3>Il faut</h3><p><b>Il faut</b> = « on doit », une nécessité générale : <em>il faut manger pour vivre</em>. Toujours à cette forme, toujours + infinitif.</p></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <p class="sec-label">Conjugueur</p>
+    <h2>🔄 Choisis un verbe</h2>
+    <div class="chips" id="chips" role="group" aria-label="Choisir un verbe"></div>
+    <div class="conj-grid" id="conj"></div>
+    <div class="notes" id="notes"></div>
+  </section>
+
+  <section class="card" id="s1">
+    <p class="sec-label">Exercice 1</p>
+    <h2>⚽ Jouer à, faire de ou jouer de ?</h2>
+    <p class="consigne">Choisis le verbe qui va avec l'activité. Ne t'occupe pas encore de l'article.</p>
+    <ul class="ex-list" id="ex1"></ul>
+    <div class="actions">
+      <button class="btn" data-check="ex1">Vérifier</button>
+      <button class="btn ghost" data-reset="ex1">Recommencer</button>
+      <span class="score" id="sc-ex1">— / 9</span>
+    </div>
+  </section>
+
+  <section class="card" id="s2">
+    <p class="sec-label">Exercice 2</p>
+    <h2>L'article contracté</h2>
+    <p class="consigne">Écris <strong>au</strong>, <strong>à la</strong>, <strong>aux</strong>, <strong>du</strong>, <strong>de la</strong> ou <strong>de l'</strong>.</p>
+    <ul class="ex-list" id="ex2"></ul>
+    <div class="actions">
+      <button class="btn" data-check="ex2">Vérifier</button>
+      <button class="btn ghost" data-reset="ex2">Recommencer</button>
+      <span class="score" id="sc-ex2">— / 8</span>
+    </div>
+  </section>
+
+  <section class="card" id="s3">
+    <p class="sec-label">Exercice 3</p>
+    <h2>🤔 Pouvoir, vouloir ou devoir ?</h2>
+    <p class="consigne">Lis la situation : est-ce une possibilité, un désir ou une obligation ?</p>
+    <ul class="ex-list" id="ex3"></ul>
+    <div class="actions">
+      <button class="btn" data-check="ex3">Vérifier</button>
+      <button class="btn ghost" data-reset="ex3">Recommencer</button>
+      <span class="score" id="sc-ex3">— / 6</span>
+    </div>
+  </section>
+
+  <section class="card" id="s4">
+    <p class="sec-label">Exercice 4</p>
+    <h2>⭐ Vouloir : les désirs</h2>
+    <p class="consigne">Complète avec le verbe <strong>vouloir</strong>.</p>
+    <div class="modele"><span class="lab">Modèle</span><em>Je veux aller à la campagne.</em></div>
+    <ul class="ex-list" id="ex4"></ul>
+    <div class="actions">
+      <button class="btn" data-check="ex4">Vérifier</button>
+      <button class="btn ghost" data-reset="ex4">Recommencer</button>
+      <span class="score" id="sc-ex4">— / 6</span>
+    </div>
+  </section>
+
+  <section class="card" id="s5">
+    <p class="sec-label">Exercice 5</p>
+    <h2>💪 Pouvoir : c'est possible</h2>
+    <p class="consigne">Complète avec le verbe <strong>pouvoir</strong>.</p>
+    <ul class="ex-list" id="ex5"></ul>
+    <div class="actions">
+      <button class="btn" data-check="ex5">Vérifier</button>
+      <button class="btn ghost" data-reset="ex5">Recommencer</button>
+      <span class="score" id="sc-ex5">— / 6</span>
+    </div>
+  </section>
+
+  <section class="card" id="s6">
+    <p class="sec-label">Exercice 6</p>
+    <h2>⏰ Devoir : l'obligation</h2>
+    <p class="consigne">Écris <strong>devoir</strong> + l'infinitif qui convient.</p>
+    <div class="modele"><span class="lab">Modèle</span>Je suis fatigué. — <em>Je dois dormir.</em></div>
+    <div class="banque">
+      <span class="w">dormir</span><span class="w">maigrir</span><span class="w">manger</span>
+      <span class="w">partir</span><span class="w">aller à la banque</span><span class="w">attendre</span>
+    </div>
+    <ul class="ex-list" id="ex6"></ul>
+    <div class="actions">
+      <button class="btn" data-check="ex6">Vérifier</button>
+      <button class="btn ghost" data-reset="ex6">Recommencer</button>
+      <span class="score" id="sc-ex6">— / 6</span>
+    </div>
+  </section>
+
+  <section class="card" id="s7">
+    <p class="sec-label">Exercice 7</p>
+    <h2>🛠️ La conjugaison de faire</h2>
+    <p class="consigne">Attention aux deux formes irrégulières.</p>
+    <div class="conj-grid" id="ex7" style="margin-bottom:1rem;"></div>
+    <div class="actions">
+      <button class="btn" data-check="ex7">Vérifier</button>
+      <button class="btn ghost" data-reset="ex7">Recommencer</button>
+      <span class="score" id="sc-ex7">— / 6</span>
+    </div>
+  </section>
+
+  <section class="card" id="s8">
+    <p class="sec-label">Exercice 8</p>
+    <h2>✉️ La lettre de Léo</h2>
+    <p class="consigne">Écris le verbe <em>et</em> l'article : par exemple <strong>fais du</strong>, <strong>joue au</strong>, <strong>joue de la</strong>.</p>
+    <div class="cloze" id="ex8"></div>
+    <div class="actions">
+      <button class="btn" data-check="ex8">Vérifier</button>
+      <button class="btn ghost" data-reset="ex8">Recommencer</button>
+      <span class="score" id="sc-ex8">— / 8</span>
+    </div>
+  </section>
+
+  <section class="card" id="s9">
+    <p class="sec-label">Exercice 9 · Expression écrite</p>
+    <h2>✍️ Répondez librement</h2>
+    <p class="consigne">Réponds par une phrase complète, puis compare avec le modèle.</p>
+    <ul class="ex-list" id="ex9"></ul>
+    <div class="actions">
+      <button class="btn ghost" id="showModels">Voir les modèles</button>
+      <span class="score">non noté</span>
+    </div>
+  </section>
+
+  <section class="card" id="s10">
+    <p class="sec-label">À l'oral</p>
+    <h2>🗣️ Parle de tes loisirs</h2>
+    <p class="consigne">Par deux, trois minutes chacun. Utilise au moins un <em>jouer à</em>, un <em>faire de</em>, et les trois verbes en -oir.</p>
+    <div class="prompt-grid">
+      <div class="prompt"><div class="h">📅 Mon week-end</div><div class="ex">« Le samedi, je fais de la randonnée et le dimanche, je joue au tennis. »</div></div>
+      <div class="prompt"><div class="h">⭐ Ce que je veux apprendre</div><div class="ex">« Je veux apprendre à jouer de la guitare. »</div></div>
+      <div class="prompt"><div class="h">⏰ Ce que je dois faire</div><div class="ex">« Cette semaine, je dois aller à la banque et je dois travailler. »</div></div>
+      <div class="prompt"><div class="h">💬 Une invitation</div><div class="ex">« Tu peux venir faire du vélo avec nous samedi ? »</div></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Prochaine leçon : <strong>Les parties de la ville</strong> · <a href="https://karla19urios.github.io/french/A1.2/grammaire.html">Laboratoire de grammaire A1.2</a>
+</footer>
+
+<div class="scorebar">
+  <div class="inner">
+    <span class="big" id="total">0 / 55</span>
+    <span class="bar"><span id="bar"></span></span>
+    <button class="btn ghost" id="resetAll">Tout recommencer</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  function stripAccents(s){ return s.normalize("NFD").replace(/[̀-ͯ]/g,""); }
+  function base(s){ return (s||"").toLowerCase().trim().replace(/’/g,"'").replace(/\s+/g," "); }
+  function loose(s){ return stripAccents(base(s)); }
+
+  /* ================= conjugueur ================= */
+  var PRON = ["je","tu","il / elle / on","nous","vous","ils / elles"];
+  var VERBES = {
+    pouvoir: { rows:[["peu","x"],["peu","x"],["peu","t"],["pouv","ons"],["pouv","ez"],["peuv","ent"]],
+      notes:[["Trois radicaux","<strong>peu-</strong> au singulier, <strong>pouv-</strong> avec nous et vous, <strong>peuv-</strong> avec ils."],
+             ["Sens","Une possibilité : <em>je peux jouer du piano</em>, <em>il peut arriver à temps</em>."]] },
+    vouloir: { rows:[["veu","x"],["veu","x"],["veu","t"],["voul","ons"],["voul","ez"],["veul","ent"]],
+      notes:[["Trois radicaux","<strong>veu-</strong>, <strong>voul-</strong>, <strong>veul-</strong> — la même construction que <em>pouvoir</em>."],
+             ["Sens","Une intention, un désir : <em>je veux faire du ski cet hiver</em>."]] },
+    devoir:  { rows:[["doi","s"],["doi","s"],["doi","t"],["dev","ons"],["dev","ez"],["doiv","ent"]],
+      notes:[["Trois radicaux","<strong>doi-</strong>, <strong>dev-</strong>, <strong>doiv-</strong>."],
+             ["Sens","Une obligation : <em>je dois partir</em>. Pour une nécessité générale, on dit <strong>il faut</strong> : <em>il faut manger pour vivre</em>."]] },
+    faire:   { rows:[["fai","s"],["fai","s"],["fai","t"],["fais","ons"],["fait","es"],["f","ont"]],
+      notes:[["Attention","<strong>vous faites</strong> (et non « vous faisez ») et <strong>ils font</strong> (et non « ils faisent »)."],
+             ["Emploi","<em>faire du / de la / de l'</em> + sport, et <em>faire le / la</em> + travaux de la maison : <em>je fais la cuisine</em>, <em>tu fais la vaisselle</em>."]] }
+  };
+  var NOTE_COMMUNE = ["Toujours + infinitif","Après ces verbes, le deuxième verbe ne se conjugue pas : <em>je veux <strong>apprendre</strong></em>, <em>je peux <strong>venir</strong></em>, <em>je dois <strong>partir</strong></em>."];
+
+  var chipsEl = document.getElementById("chips");
+  var conjEl  = document.getElementById("conj");
+  var notesEl = document.getElementById("notes");
+  var ORDRE = ["pouvoir","vouloir","devoir","faire"];
+
+  function render(key){
+    var v = VERBES[key];
+    conjEl.innerHTML = "";
+    v.rows.forEach(function(r,i){
+      var row = document.createElement("div");
+      row.className = "conj-row";
+      row.innerHTML = '<span class="pn">'+PRON[i]+'</span><span class="vb">'+r[0]+'<b>'+r[1]+'</b></span>';
+      conjEl.appendChild(row);
+    });
+    notesEl.innerHTML = "";
+    var list = v.notes.slice();
+    if(key !== "faire") list = list.concat([NOTE_COMMUNE]);
+    list.forEach(function(n){
+      var d = document.createElement("div");
+      d.className = "note";
+      d.innerHTML = '<span class="tag">'+n[0]+'</span><span>'+n[1]+'</span>';
+      notesEl.appendChild(d);
+    });
+    Array.prototype.forEach.call(chipsEl.children, function(b){
+      b.setAttribute("aria-pressed", b.dataset.k === key ? "true" : "false");
+    });
+  }
+
+  ORDRE.forEach(function(k, idx){
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "chip"; b.dataset.k = k; b.textContent = k;
+    b.setAttribute("aria-pressed", idx===0 ? "true" : "false");
+    b.addEventListener("click", function(){ render(k); });
+    chipsEl.appendChild(b);
+  });
+  render("pouvoir");
+
+  /* ================= ex1 : quel verbe ================= */
+  var EX1 = [
+    ["⚽","le football","jouer à"], ["🏊","la natation","faire de"], ["🎹","le piano","jouer de"],
+    ["🧗","l'escalade","faire de"], ["🎾","le tennis","jouer à"], ["🎸","la guitare","jouer de"],
+    ["🐴","l'équitation","faire de"], ["🃏","les cartes","jouer à"], ["🎻","le violon","jouer de"]
+  ];
+  (function(){
+    var root = document.getElementById("ex1");
+    EX1.forEach(function(it,i){
+      var li = document.createElement("li");
+      li.className = "q"; li.dataset.answer = it[2];
+      li.innerHTML = '<select class="pick" aria-label="question '+(i+1)+'">'+
+        '<option value="">— choisis —</option>'+
+        '<option value="jouer à">jouer à</option>'+
+        '<option value="faire de">faire de</option>'+
+        '<option value="jouer de">jouer de</option>'+
+        '</select><span class="e">'+it[0]+'</span><span><strong>'+it[1]+'</strong></span><span class="verdict"></span>';
+      root.appendChild(li);
+    });
+  })();
+
+  /* ================= ex2 : article contracté ================= */
+  var EX2 = [
+    ["Je joue","football.","au"], ["Ils jouent","pétanque le dimanche.","à la"],
+    ["Vous jouez","cartes.","aux"], ["Tu fais","ski en hiver.","du"],
+    ["Nous faisons","natation le mardi.","de la"], ["On fait","escalade ensemble.","de l'"],
+    ["Elle joue","piano depuis dix ans.","du"], ["Je joue","trompette.","de la"]
+  ];
+  (function(){
+    var root = document.getElementById("ex2");
+    EX2.forEach(function(it,i){
+      var li = document.createElement("li");
+      li.className = "q"; li.dataset.answer = it[2];
+      li.innerHTML = '<span>'+it[0]+'</span>'+
+        '<input class="gap" type="text" autocomplete="off" spellcheck="false" aria-label="article '+(i+1)+'">'+
+        '<span>'+it[1]+'</span><span class="verdict"></span>';
+      root.appendChild(li);
+    });
+  })();
+
+  /* ================= ex3 : quel verbe en -oir ================= */
+  var EX3 = [
+    ["Je suis fatigué, je ___ dormir.", ["peux","veux","dois"], "dois"],
+    ["Cet été, je ___ apprendre à faire du surf.", ["peux","veux","dois"], "veux"],
+    ["Elle est très forte : elle ___ soulever cent kilos.", ["peut","veut","doit"], "peut"],
+    ["Il y a trop de bruit, nous ne ___ pas travailler.", ["pouvons","voulons","devons"], "pouvons"],
+    ["Tu n'as plus d'argent : tu ___ aller à la banque.", ["peux","veux","dois"], "dois"],
+    ["Max et Léa ___ se marier au printemps.", ["peuvent","veulent","doivent"], "veulent"]
+  ];
+  (function(){
+    var root = document.getElementById("ex3");
+    EX3.forEach(function(it,i){
+      var parts = it[0].split("___");
+      var li = document.createElement("li");
+      li.className = "q"; li.dataset.answer = it[2];
+      li.innerHTML = '<span>'+parts[0]+'</span>'+
+        '<select class="pick" aria-label="question '+(i+1)+'"><option value="">— choisis —</option>'+
+        it[1].map(function(o){ return '<option value="'+o+'">'+o+'</option>'; }).join("")+
+        '</select><span>'+parts[1]+'</span><span class="verdict"></span>';
+      root.appendChild(li);
+    });
+  })();
+
+  /* ================= ex4 : vouloir ================= */
+  var EX4 = [
+    ["Je","aller à la montagne cet hiver.","veux"],
+    ["Mon mari","changer de voiture.","veut"],
+    ["Nous","changer d'appartement.","voulons"],
+    ["Mes filles","aller à Paris au printemps.","veulent"],
+    ["Tu","devenir actrice ?","veux"],
+    ["Vous","partir en vacances en juillet ?","voulez"]
+  ];
+
+  /* ================= ex5 : pouvoir ================= */
+  var EX5 = [
+    ["Je ne","pas fermer cette fenêtre.","peux"],
+    ["Est-ce que vous","m'aider ?","pouvez"],
+    ["Sylvestre est très fort : il","soulever deux cents kilos.","peut"],
+    ["Nous","venir samedi après-midi.","pouvons"],
+    ["Est-ce que je","essayer cette robe ?","peux"],
+    ["Certains moines","rester plusieurs jours sans manger.","peuvent"]
+  ];
+
+  function simpleFill(rootId, data, cls){
+    var root = document.getElementById(rootId);
+    data.forEach(function(it,i){
+      var li = document.createElement("li");
+      li.className = "q"; li.dataset.answer = it[2];
+      li.innerHTML = '<span>'+it[0]+'</span>'+
+        '<input class="gap '+(cls||"")+'" type="text" autocomplete="off" spellcheck="false" aria-label="phrase '+(i+1)+'">'+
+        '<span>'+it[1]+'</span><span class="verdict"></span>';
+      root.appendChild(li);
+    });
+  }
+  simpleFill("ex4", EX4);
+  simpleFill("ex5", EX5);
+
+  /* ================= ex6 : devoir + infinitif ================= */
+  var EX6 = [
+    ["Je suis fatigué.","Je","dois dormir"],
+    ["Il est trop gros.","Il","doit maigrir"],
+    ["Tu es trop maigre.","Tu","dois manger"],
+    ["Je n'ai plus d'argent.","Je","dois aller à la banque"],
+    ["Nous sommes pressés.","Nous","devons partir"],
+    ["Vous êtes en avance.","Vous","devez attendre"]
+  ];
+  (function(){
+    var root = document.getElementById("ex6");
+    EX6.forEach(function(it,i){
+      var li = document.createElement("li");
+      li.className = "q"; li.dataset.answer = it[2];
+      li.innerHTML = '<span class="full">'+it[0]+'</span><span>'+it[1]+'</span>'+
+        '<input class="gap xl" type="text" autocomplete="off" spellcheck="false" aria-label="phrase '+(i+1)+'">'+
+        '<span>.</span><span class="verdict"></span>';
+      root.appendChild(li);
+    });
+  })();
+
+  /* ================= ex7 : faire ================= */
+  var EX7 = [["je","fais"],["tu","fais"],["il / elle / on","fait"],
+             ["nous","faisons"],["vous","faites"],["ils / elles","font"]];
+  (function(){
+    var root = document.getElementById("ex7");
+    EX7.forEach(function(it){
+      var d = document.createElement("div");
+      d.className = "conj-row"; d.dataset.answer = it[1];
+      d.innerHTML = '<span class="pn">'+it[0]+'</span>'+
+        '<input class="gap wide" type="text" autocomplete="off" spellcheck="false" aria-label="'+it[0]+'">'+
+        '<span class="verdict"></span>';
+      root.appendChild(d);
+    });
+  })();
+
+  /* ================= ex8 : la lettre ================= */
+  var EX8 = ["fais du","joue au","joue au","jouons aux","faisons de la","joue de la","joue de l'","joue de la"];
+  var TXT8 = [
+    "Chère Maman, je m'amuse beaucoup ici. Le matin, je ",
+    " jogging avec papy. Après, je ",
+    " football avec les enfants du village. L'après-midi, je ",
+    " tennis avec Benoît, et le soir nous ",
+    " cartes. Le mercredi, nous ",
+    " natation à la piscine du village. Quelquefois Benoît ",
+    " guitare, papy ",
+    " accordéon et moi, je ",
+    " batterie. C'est rigolo ! Grosses bises, Léo."
+  ];
+  (function(){
+    var root = document.getElementById("ex8");
+    var html = "";
+    for(var i=0;i<EX8.length;i++){
+      html += '<span>'+TXT8[i]+'</span>'+
+        '<span class="blank" data-answer="'+EX8[i].replace(/'/g,"&#39;")+'">'+
+        '<input class="gap wide" type="text" autocomplete="off" spellcheck="false" aria-label="trou '+(i+1)+'">'+
+        '<span class="verdict"></span></span>';
+    }
+    html += '<span>'+TXT8[EX8.length]+'</span>';
+    root.innerHTML = html;
+  })();
+
+  /* ================= ex9 : libre ================= */
+  var EX9 = [
+    ["Quels sports faites-vous ?","Je fais de la natation et je joue au volley-ball."],
+    ["Vous jouez d'un instrument de musique ?","Oui, je joue de la guitare depuis trois ans."],
+    ["Qu'est-ce que vous voulez apprendre cette année ?","Je veux apprendre à faire de la planche à voile."],
+    ["Qu'est-ce que vous devez faire ce week-end ?","Je dois travailler samedi et je dois faire les courses."],
+    ["Qu'est-ce que vous pouvez faire très bien ?","Je peux cuisiner pour dix personnes sans problème."],
+    ["Quel est votre loisir préféré ?","Mon loisir préféré, c'est la randonnée en montagne."]
+  ];
+  (function(){
+    var root = document.getElementById("ex9");
+    EX9.forEach(function(it,i){
+      var li = document.createElement("li");
+      li.className = "q";
+      li.innerHTML = '<span class="full">'+it[0]+'</span>'+
+        '<textarea class="free" aria-label="réponse '+(i+1)+'"></textarea>'+
+        '<span class="commentaire" style="display:none;">Modèle : '+it[1]+'</span>';
+      root.appendChild(li);
+    });
+  })();
+
+  /* ================= moteur ================= */
+  var TOTALS = { ex1:9, ex2:8, ex3:6, ex4:6, ex5:6, ex6:6, ex7:6, ex8:8 };
+  var MAX = 55;
+  var results = {};
+  Object.keys(TOTALS).forEach(function(k){ results[k] = null; });
+
+  function itemsOf(id){
+    return Array.prototype.slice.call(
+      document.getElementById(id).querySelectorAll(".q, .blank, .conj-row")
+    );
+  }
+
+  function check(id){
+    var good = 0;
+    itemsOf(id).forEach(function(item){
+      var field = item.querySelector("input, select");
+      if(!field || !item.dataset.answer) return;
+      var expected = item.dataset.answer.split("|");
+      var given = field.value;
+      var v = item.querySelector(".verdict");
+      var com = item.querySelector(".commentaire");
+      item.classList.remove("good","bad");
+
+      var exact = expected.some(function(a){ return base(given) === base(a); });
+      var near  = expected.some(function(a){ return loose(given) === loose(a); });
+
+      if(base(given) === ""){
+        item.classList.add("bad"); v.textContent = "→ " + expected[0];
+      } else if(exact || near){
+        item.classList.add("good"); v.textContent = "✓"; good++;
+      } else {
+        item.classList.add("bad"); v.textContent = "→ " + expected[0];
+      }
+      if(com && item.dataset.model) com.textContent = item.dataset.model;
+    });
+    results[id] = good;
+    document.getElementById("sc-"+id).textContent = good + " / " + TOTALS[id];
+    updateTotal();
+  }
+
+  function reset(id){
+    itemsOf(id).forEach(function(item){
+      var field = item.querySelector("input, select");
+      if(!field) return;
+      item.classList.remove("good","bad");
+      item.querySelector(".verdict").textContent = "";
+      field.value = "";
+    });
+    results[id] = null;
+    document.getElementById("sc-"+id).textContent = "— / " + TOTALS[id];
+    updateTotal();
+  }
+
+  function updateTotal(){
+    var sum = 0;
+    Object.keys(results).forEach(function(k){ if(results[k] !== null) sum += results[k]; });
+    document.getElementById("total").textContent = sum + " / " + MAX;
+    document.getElementById("bar").style.width = Math.round(sum/MAX*100) + "%";
+  }
+
+  document.addEventListener("click", function(e){
+    var t = e.target;
+    if(t.dataset && t.dataset.check) check(t.dataset.check);
+    if(t.dataset && t.dataset.reset) reset(t.dataset.reset);
+  });
+
+  document.getElementById("showModels").addEventListener("click", function(){
+    var open = this.dataset.open === "1";
+    Array.prototype.forEach.call(document.querySelectorAll("#ex9 .commentaire"), function(c){
+      c.style.display = open ? "none" : "block";
+    });
+    this.dataset.open = open ? "0" : "1";
+    this.textContent = open ? "Voir les modèles" : "Cacher les modèles";
+  });
+
+  document.getElementById("resetAll").addEventListener("click", function(){
+    Object.keys(TOTALS).forEach(reset);
+    window.scrollTo({ top:0, behavior:"smooth" });
+  });
+
+  updateTotal();
+})();
+</script>
+
+</body></html>
