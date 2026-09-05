@@ -181,17 +181,13 @@
 </nav>
 <div class="hero">
   <h1>🧪 Laboratoire de grammaire</h1>
-  <p>Leçons numérotées et fiches thématiques</p>
+  <p>Leçons numérotées</p>
 </div>
 
 <main>
-  <input class="search" id="search" type="text" placeholder="Rechercher une leçon ou une fiche...">
+  <input class="search" id="search" type="text" placeholder="Rechercher une leçon...">
 
-  <div class="sec-label">Leçons</div>
   <div class="grid" id="lecons"></div>
-
-  <div class="sec-label">Fiches thématiques</div>
-  <div class="grid" id="fiches"></div>
 
   <p class="empty-msg" id="empty">Aucun résultat.</p>
 </main>
@@ -214,16 +210,6 @@ const lecons = [
   ["31","Le passé composé","31_passé composé.pdf"],
 ];
 
-const fiches = [
-  {title:"Prépositions des pays", path:"Grammaire A1.3/26_Préposition des pays.pdf"},
-  {title:"Le futur proche (fiche)", path:"Grammaire A1.3/29_Le futur proche.pdf"},
-  {title:"Les questions en français (fiche)", path:"Grammaire A1.3/30_les questions en français.pdf"},
-  {title:"Passé composé — verbes -er", path:"Grammaire A1.3/Passé composé/31_Passé composé verbes -er.pdf"},
-  {title:"Passé composé — verbes être", path:"Grammaire A1.3/Passé composé/31_Passé composé verbes être.pdf"},
-  {title:"Passé composé — verbes pronominaux", path:"Grammaire A1.3/Passé composé/31_Passé composé verbes pronominaux.pdf"},
-  {title:"Passé composé — verbes -ir, -oir, -re", path:"Grammaire A1.3/Passé composé/31_Passé composé verbes -ir, -oir, -re.pdf"},
-];
-
 function pdfCard([num, title, path]){
   const isHtml = path.split('#')[0].toLowerCase().endsWith('.html');
   const div = document.createElement('div');
@@ -240,25 +226,8 @@ function pdfCard([num, title, path]){
   return div;
 }
 
-function ficheCard(item){
-  const div = document.createElement('div');
-  div.className = 'card';
-  div.dataset.search = item.title.toLowerCase();
-  div.innerHTML = `
-    <div class="title-row">
-      <span class="title">${item.title}</span>
-    </div>
-    <span class="pill">PDF</span>
-    <a class="link" href="${enc(item.path)}" target="_blank">📄 Ouvrir le PDF</a>
-  `;
-  return div;
-}
-
 const lEl = document.getElementById('lecons');
 lecons.forEach(item => lEl.appendChild(pdfCard(item)));
-
-const fEl = document.getElementById('fiches');
-fiches.forEach(item => fEl.appendChild(ficheCard(item)));
 
 const searchInput = document.getElementById('search');
 const emptyMsg = document.getElementById('empty');
