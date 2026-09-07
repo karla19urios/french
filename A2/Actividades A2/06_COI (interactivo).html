@@ -1,4 +1,58 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<div id="site-gate-overlay" style="position:fixed;inset:0;z-index:999999;background:#0d0f1a;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+  <div style="width:100%;max-width:340px;padding:0 1.2rem;">
+    <div style="height:6px;border-radius:6px;background:linear-gradient(90deg,#002395 33%,#ffffff 33%,#ffffff 66%,#ED2939 66%);margin-bottom:1.6rem;"></div>
+    <h1 style="margin:0 0 .4rem;font-size:1.3rem;color:#f1f2f6;text-align:center;">Accès réservé</h1>
+    <p style="margin:0 0 1.4rem;color:#9aa0b4;font-size:.9rem;text-align:center;">Entre ton code et ton PIN pour accéder au site.</p>
+    <input id="site-gate-code" type="text" placeholder="Code (ex. A1B2C3)" autocomplete="off" spellcheck="false" maxlength="6" style="width:100%;box-sizing:border-box;padding:.7rem .9rem;margin-bottom:.6rem;border-radius:10px;border:1px solid #2a2e40;background:#1b1e2b;color:#f1f2f6;font-size:1rem;text-transform:uppercase;">
+    <input id="site-gate-pin" type="text" inputmode="numeric" placeholder="PIN (4 chiffres)" autocomplete="off" maxlength="4" style="width:100%;box-sizing:border-box;padding:.7rem .9rem;margin-bottom:1rem;border-radius:10px;border:1px solid #2a2e40;background:#1b1e2b;color:#f1f2f6;font-size:1rem;">
+    <button id="site-gate-btn" type="button" style="width:100%;padding:.75rem;border:none;border-radius:999px;background:#002395;color:#fff;font-weight:700;font-size:.95rem;cursor:pointer;">Entrer</button>
+    <p id="site-gate-err" style="display:none;margin:.8rem 0 0;color:#ff8a94;font-size:.85rem;text-align:center;">Code ou PIN incorrect.</p>
+  </div>
+</div>
+<script>
+(function(){
+  var CODES = [["H4KTNR", "7392"], ["MX72QB", "4815"], ["P9RZKD", "2637"], ["T3NHXQ", "9184"], ["K6WYPZ", "5723"], ["D8MRTX", "3946"], ["Q2VNHB", "6258"], ["Z7XKPM", "8471"], ["R5TQWN", "2963"], ["B4HXZK", "7154"], ["N9QMRT", "3827"], ["W3ZKVH", "6492"], ["X8PNQD", "1758"], ["K5TRZM", "4926"], ["F3RGXK", "4521"], ["H7WQXB", "8317"], ["M2VNKT", "5749"], ["G8VNKR", "6284"], ["Q9ZRHX", "2681"], ["V6XPTM", "3097"], ["T4KPMB", "9375"], ["D6XQNZ", "3164"], ["R8HWKT", "7852"], ["N3PZMQ", "4297"], ["K7VXRT", "6538"], ["Z2QHNB", "9146"], ["X5TMWK", "2879"], ["B9RNZQ", "5327"], ["K3WXNQ", "5716"], ["H3PKXT", "8654"], ["N4TVXK", "8420"], ["M8QWZH", "1739"], ["T6NRVK", "4285"], ["D9ZXHQ", "7913"], ["K4WMTB", "3568"], ["P7RNQZ", "9284"], ["X9HKVT", "6417"], ["Q3TZMB", "2795"], ["N7WPKR", "8462"], ["H2VXQT", "5931"], ["Z6RNHK", "3748"], ["M9TXPQ", "6285"], ["K8ZWNR", "4172"], ["B5QHTX", "9536"], ["R3PVKZ", "1864"], ["T9NWMH", "7295"], ["X4RQBK", "3612"], ["H6ZTVN", "8457"], ["Q8MKRX", "2748"], ["D2WNHZ", "9163"], ["K9TXBQ", "5827"], ["N6RVMZ", "4739"]];
+  var KEY = "frenchSiteAuth";
+  function ok(code, pin){
+    for(var i=0;i<CODES.length;i++){ if(CODES[i][0]===code && CODES[i][1]===pin) return true; }
+    return false;
+  }
+  function unlock(){
+    var g = document.getElementById("site-gate-overlay");
+    if(g) g.remove();
+    document.documentElement.style.overflow="";
+  }
+  var saved = null;
+  try { saved = localStorage.getItem(KEY); } catch(e){}
+  if(saved){
+    var parts = saved.split("|");
+    if(parts.length === 2 && ok(parts[0], parts[1])){
+      unlock();
+    }
+  }
+  if(document.getElementById("site-gate-overlay")){
+    document.documentElement.style.overflow = "hidden";
+    document.getElementById("site-gate-btn").addEventListener("click", function(){
+      var code = document.getElementById("site-gate-code").value.trim().toUpperCase();
+      var pin = document.getElementById("site-gate-pin").value.trim();
+      if(ok(code, pin)){
+        try{ localStorage.setItem(KEY, code + "|" + pin); }catch(e){}
+        unlock();
+      } else {
+        document.getElementById("site-gate-err").style.display = "block";
+      }
+    });
+    document.getElementById("site-gate-pin").addEventListener("keydown", function(e){
+      if(e.key === "Enter") document.getElementById("site-gate-btn").click();
+    });
+    document.getElementById("site-gate-code").addEventListener("keydown", function(e){
+      if(e.key === "Enter") document.getElementById("site-gate-pin").focus();
+    });
+  }
+})();
+</script>
+
 <title>COI : les pronoms indirects</title>
 <style>
 :root{
