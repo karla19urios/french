@@ -127,13 +127,13 @@
 </head>
 <body>
 <div id="site-gate-overlay" style="position:fixed;inset:0;z-index:999999;background:#0d0f1a;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-  <div style="width:100%;max-width:340px;padding:0 1.2rem;">
-    <div style="height:6px;border-radius:6px;background:linear-gradient(90deg,#002395 33%,#ffffff 33%,#ffffff 66%,#ED2939 66%);margin-bottom:1.6rem;"></div>
-    <h1 style="margin:0 0 .4rem;font-size:1.3rem;color:#f1f2f6;text-align:center;">Accès réservé</h1>
-    <p style="margin:0 0 1.4rem;color:#9aa0b4;font-size:.9rem;text-align:center;">Entre ton code et ton PIN pour accéder au site.</p>
-    <input id="site-gate-code" type="text" placeholder="Code (ex. A1B2C3)" autocomplete="off" spellcheck="false" maxlength="6" style="width:100%;box-sizing:border-box;padding:.7rem .9rem;margin-bottom:.6rem;border-radius:10px;border:1px solid #2a2e40;background:#1b1e2b;color:#f1f2f6;font-size:1rem;text-transform:uppercase;">
-    <input id="site-gate-pin" type="text" inputmode="numeric" placeholder="PIN (4 chiffres)" autocomplete="off" maxlength="4" style="width:100%;box-sizing:border-box;padding:.7rem .9rem;margin-bottom:1rem;border-radius:10px;border:1px solid #2a2e40;background:#1b1e2b;color:#f1f2f6;font-size:1rem;">
-    <button id="site-gate-btn" type="button" style="width:100%;padding:.75rem;border:none;border-radius:999px;background:#002395;color:#fff;font-weight:700;font-size:.95rem;cursor:pointer;">Entrer</button>
+  <div style="width:100%;max-width:420px;padding:0 1.2rem;">
+    <div style="height:8px;border-radius:8px;background:linear-gradient(90deg,#002395 33%,#ffffff 33%,#ffffff 66%,#ED2939 66%);margin-bottom:2rem;"></div>
+    <h1 style="margin:0 0 .6rem;font-size:2.3rem;color:#f1f2f6;text-align:center;">Accès réservé</h1>
+    <p style="margin:0 0 1.8rem;color:#9aa0b4;font-size:1.15rem;text-align:center;">Entre ton code et ton PIN pour accéder au site.</p>
+    <input id="site-gate-code" type="text" placeholder="Code (ex. A1B2C3)" autocomplete="off" spellcheck="false" maxlength="6" style="width:100%;box-sizing:border-box;padding:.9rem 1rem;margin-bottom:.7rem;border-radius:10px;border:1px solid #2a2e40;background:#1b1e2b;color:#f1f2f6;font-size:1.25rem;text-transform:uppercase;">
+    <input id="site-gate-pin" type="text" inputmode="numeric" placeholder="PIN (4 chiffres)" autocomplete="off" maxlength="4" style="width:100%;box-sizing:border-box;padding:.9rem 1rem;margin-bottom:1.2rem;border-radius:10px;border:1px solid #2a2e40;background:#1b1e2b;color:#f1f2f6;font-size:1.25rem;">
+    <button id="site-gate-btn" type="button" style="width:100%;padding:1rem;border:none;border-radius:999px;background:#002395;color:#fff;font-weight:700;font-size:1.15rem;cursor:pointer;">Entrer</button>
     <p id="site-gate-err" style="display:none;margin:.8rem 0 0;color:#ff8a94;font-size:.85rem;text-align:center;">Code ou PIN incorrect.</p>
   </div>
 </div>
