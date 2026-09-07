@@ -149,11 +149,12 @@
       '.i18n-switch .i18n-globe{width:22px;height:22px;font-size:13px}}' +
       '@media print{.i18n-switch{display:none}}' +
       /* reste visible au-dessus du portail d'accès des activités */
-      'html:not(.site-gate-unlocked) body > .i18n-switch{display:flex!important}';
+      'html:not(.site-gate-unlocked) body > #i18n-switch{display:flex!important}';
     document.head.appendChild(css);
 
     box = document.createElement('div');
     box.className = 'i18n-switch';
+    box.id = 'i18n-switch';
     box.setAttribute('data-i18n-skip', '');
     box.setAttribute('role', 'group');
     box.setAttribute('aria-label', 'Idioma / Language / Langue');
