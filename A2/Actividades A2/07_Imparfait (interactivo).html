@@ -484,6 +484,7 @@ function renderConjuGrid(){
 document.getElementById('conjuCheck').addEventListener('click', function(){
   var inputs = document.querySelectorAll('.conjuInput');
   var correct = 0;
+  var __gtWrongConju = [];
   inputs.forEach(function(inp){
     var idx = parseInt(inp.dataset.idx,10);
     var expected = CONJ[curVerb][idx];
@@ -495,9 +496,11 @@ document.getElementById('conjuCheck').addEventListener('click', function(){
     } else {
       inp.classList.remove('check-ok'); inp.classList.add('check-bad');
       fb.textContent = '→ ' + expected; fb.className = 'feedback bad';
+      __gtWrongConju.push(curVerb + ' (' + (idx+1) + ') → ' + expected);
     }
   });
   document.getElementById('conjuScore').textContent = 'Score : ' + correct + ' / 6';
+  if(window.__gtMark) window.__gtMark('conjuCheck', __gtWrongConju);
 });
 document.getElementById('conjuReset').addEventListener('click', function(){ renderConjuGrid(); });
 renderVerbChips();
@@ -585,14 +588,17 @@ renderAlbert();
 document.getElementById('albertCheck').addEventListener('click', function(){
   var inputs = document.querySelectorAll('.albertInput');
   var correct = 0;
+  var __gtWrongAlbert = [];
   inputs.forEach(function(inp){
     var idx = parseInt(inp.dataset.idx,10);
     var ok = containsAny(inp.value, ALBERT_ANSWERS[idx]);
     inp.classList.remove('check-ok','check-bad');
     inp.classList.add(ok ? 'check-ok' : 'check-bad');
     if(ok) correct++;
+    else __gtWrongAlbert.push('Albert (' + (idx+1) + ') → ' + ALBERT_ANSWERS[idx][0]);
   });
   document.getElementById('albertScore').textContent = 'Score : ' + correct + ' / ' + ALBERT_ANSWERS.length;
+  if(window.__gtMark) window.__gtMark('albertCheck', __gtWrongAlbert);
 });
 
 /* ================= EXO D (negative forms, model reveal) ================= */
@@ -640,14 +646,17 @@ renderExoE();
 document.getElementById('exoECheck').addEventListener('click', function(){
   var inputs = document.querySelectorAll('.exoEInput');
   var correct = 0;
+  var __gtWrongExoE = [];
   inputs.forEach(function(inp){
     var idx = parseInt(inp.dataset.idx,10);
     var ok = containsAny(inp.value, EXOE[idx].answers);
     inp.classList.remove('check-ok','check-bad');
     inp.classList.add(ok ? 'check-ok' : 'check-bad');
     if(ok) correct++;
+    else __gtWrongExoE.push(EXOE[idx].left + ' → ' + EXOE[idx].answers[0]);
   });
   document.getElementById('exoEScore').textContent = 'Score : ' + correct + ' / ' + EXOE.length;
+  if(window.__gtMark) window.__gtMark('exoECheck', __gtWrongExoE);
 });
 
 /* ================= LECTURE ================= */
@@ -721,6 +730,7 @@ function renderMatchTable(){
 renderMatchTable();
 document.getElementById('lectureCheck').addEventListener('click', function(){
   var correct = 0, total = 0;
+  var __gtWrongLecture = [];
   ['rankSel','periodSel','natureSel'].forEach(function(cls){
     document.querySelectorAll('.'+cls).forEach(function(sel){
       total++;
@@ -730,9 +740,11 @@ document.getElementById('lectureCheck').addEventListener('click', function(){
       sel.classList.remove('check-ok','check-bad');
       sel.classList.add(ok ? 'check-ok' : 'check-bad');
       if(ok) correct++;
+      else __gtWrongLecture.push(id + ' (' + key + ') → ' + EXPECTED[id][key]);
     });
   });
   document.getElementById('lectureScore').textContent = 'Score : ' + correct + ' / ' + total;
+  if(window.__gtMark) window.__gtMark('lectureCheck', __gtWrongLecture);
 });
 
 var OPEN_Q = [

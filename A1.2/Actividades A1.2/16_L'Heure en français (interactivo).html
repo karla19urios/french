@@ -656,6 +656,11 @@
     document.getElementById('quizScore').textContent = 'Score : ' + quizCorrect + ' / ' + quizTotal;
     document.getElementById('quizFeedback').textContent = (isCorrect ? '✅ ' : '💡 Réponse : ') + 'Il est ' + correct + '.';
     speak('Il est ' + correct + '.');
+    if(window.__gtMark){
+      window.__gtWrongByEx = window.__gtWrongByEx || {};
+      if(!isCorrect) (window.__gtWrongByEx['rr_heure_quiz'] = window.__gtWrongByEx['rr_heure_quiz'] || []).push('Il est ' + correct + '.');
+      window.__gtMark('rr_heure_quiz', window.__gtWrongByEx['rr_heure_quiz'] || []);
+    }
     quizIdx++;
     setTimeout(newQuizRound, 2000);
   }

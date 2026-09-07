@@ -525,6 +525,7 @@
   document.getElementById('checkBtn1').addEventListener('click', function(){
     checked1 = true;
     var right = 0, allFilled = true;
+    var __gtWrong1 = [];
     grid1.querySelectorAll('.match-card').forEach(function(card){
       var idx = parseInt(card.dataset.idx, 10);
       var sel = card.querySelector('select');
@@ -538,8 +539,10 @@
       } else {
         sel.classList.add('wrong');
         answerEl.textContent = 'answer: '+SPEAKERS[idx].photo;
+        __gtWrong1.push('Speaker ' + SPEAKERS[idx].num + ' → photo ' + SPEAKERS[idx].photo);
       }
     });
+    if(window.__gtMark) window.__gtMark('checkBtn1', __gtWrong1);
     updateScore1();
     var statusEl = document.getElementById('statusLine1');
     if(!allFilled){
@@ -605,6 +608,7 @@
   document.getElementById('checkBtn2').addEventListener('click', function(){
     checked2 = true;
     var right = 0, allFilled = true;
+    var __gtWrong2 = [];
     grid2.querySelectorAll('.match-card').forEach(function(card){
       var idx = parseInt(card.dataset.idx, 10);
       var sel = card.querySelector('select');
@@ -619,8 +623,10 @@
       } else {
         sel.classList.add('wrong');
         answerEl.textContent = 'answer: '+PHOTOS[correctLetter].fr;
+        __gtWrong2.push('Photo ' + correctLetter + ' → ' + PHOTOS[correctLetter].fr);
       }
     });
+    if(window.__gtMark) window.__gtMark('checkBtn2', __gtWrong2);
     updateScore2();
     var statusEl = document.getElementById('statusLine2');
     if(!allFilled){

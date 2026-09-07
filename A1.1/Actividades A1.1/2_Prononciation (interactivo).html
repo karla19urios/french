@@ -648,7 +648,14 @@
     score.answered++;
     if(isCorrect) score.correct++;
     updateScorePill();
-  };
+  
+    if(window.__gtMark){
+      var __gtQuizWrap = document.getElementById(group.id + '-wrap');
+      var __gtQtext = '';
+      if(__gtQuizWrap){ var __gtQEl = __gtQuizWrap.querySelector('.quiz-q'); if(__gtQEl) __gtQtext = __gtQEl.textContent; }
+      window.__gtMark(group.id, isCorrect ? [] : [__gtQtext]);
+    }
+};
   function updateScorePill(){
     var el = document.getElementById('scorePill');
     if(el) el.textContent = 'Practice score: ' + score.correct + '/' + score.answered;

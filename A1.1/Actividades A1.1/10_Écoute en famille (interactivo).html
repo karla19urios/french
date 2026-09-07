@@ -435,6 +435,7 @@
     checked = true;
     var rightCount = 0;
     var totalCorrect = DISPLAY_ORDER.filter(function(t){ return t.correct; }).length;
+    var __gtWrongTerms = [];
     grid.querySelectorAll('.term-card').forEach(function(card){
       var idx = parseInt(card.dataset.idx, 10);
       var cb = card.querySelector('input');
@@ -450,12 +451,15 @@
         card.classList.add('wrong');
         mark.textContent = '✗ not heard';
         mark.className = 'term-mark bad';
+        __gtWrongTerms.push(DISPLAY_ORDER[idx].fr + ' → not mentioned');
       } else if(!cb.checked && isCorrectTerm){
         card.classList.add('missed');
         mark.textContent = 'you missed this';
         mark.className = 'term-mark miss';
+        __gtWrongTerms.push(DISPLAY_ORDER[idx].fr + ' → mentioned, you missed it');
       }
     });
+    if(window.__gtMark) window.__gtMark('checkBtn', __gtWrongTerms);
     updateScore();
     var statusEl = document.getElementById('statusLine');
     if(rightCount === totalCorrect && !grid.querySelector('.term-card.wrong')){
@@ -534,6 +538,7 @@
     rankChecked = true;
     var right = 0;
     var allFilled = true;
+    var __gtWrongRank = [];
     rankGrid.querySelectorAll('.rank-card').forEach(function(card){
       var idx = parseInt(card.dataset.idx, 10);
       var sel = card.querySelector('select');
@@ -549,8 +554,10 @@
       } else {
         sel.classList.add('wrong');
         answerEl.textContent = 'answer: '+correctRank;
+        __gtWrongRank.push(RANK_DISPLAY[idx].fr + ' → ' + correctRank);
       }
     });
+    if(window.__gtMark) window.__gtMark('rankCheckBtn', __gtWrongRank);
     updateRankScore();
     var statusEl = document.getElementById('rankStatusLine');
     if(!allFilled){

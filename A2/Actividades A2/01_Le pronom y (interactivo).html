@@ -722,13 +722,16 @@ function setBar(n){
   document.getElementById('bTotal').textContent=ok+' / '+tot;
   document.getElementById('bPct').textContent=tot?Math.round(ok/tot*100)+' %':'—';
 }
-function fb(n,good,msg,sub){ var el=document.getElementById('f'+n); el.className='fb '+(good?'good':'bad'); el.innerHTML=(good?'✅ ':'❌ ')+esc(msg)+(sub?'<small>'+esc(sub)+'</small>':''); }
+function fb(n,good,msg,sub){ if(!good){ window.__gtWrongByEx=window.__gtWrongByEx||{}; (window.__gtWrongByEx[n]=window.__gtWrongByEx[n]||[]).push(msg); } var el=document.getElementById('f'+n); el.className='fb '+(good?'good':'bad'); el.innerHTML=(good?'✅ ':'❌ ')+esc(msg)+(sub?'<small>'+esc(sub)+'</small>':''); }
 function finish(n){
   var st=EX[n], t=TOTALS[n], q=document.getElementById('q'+n), o=document.getElementById('o'+n);
   if(q) q.innerHTML='🎉 <span>Terminé — '+st.ok+' / '+t+' bonnes réponses.</span>';
   if(o) o.innerHTML='';
   var el=document.getElementById('f'+n); el.className='fb';
   el.textContent = st.ok>=t-1?'Excellent ! 👏':(st.ok>=t/2?'Bien ! Recommencez pour progresser.':'Relisez la règle et recommencez.');
+
+  if(window.__gtMark) window.__gtMark(n, (window.__gtWrongByEx && window.__gtWrongByEx[n]) || []);
+  if(window.__gtWrongByEx) window.__gtWrongByEx[n] = [];
 }
 function mcqBind(n, onAnswer){
   document.getElementById('o'+n).addEventListener('click', function(e){

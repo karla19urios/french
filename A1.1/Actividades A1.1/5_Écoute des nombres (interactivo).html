@@ -475,4 +475,25 @@
 })();
 </script>
 
+<script data-gt-datacheck-instrumentation="1">
+(function(){
+  document.addEventListener('click', function(e){
+    var t = e.target;
+    if(!t || !t.dataset || !t.dataset.check) return;
+    var id = t.dataset.check;
+    var container = document.getElementById(id);
+    if(!container) return;
+    var wrongList = [];
+    container.querySelectorAll('.no, .bad').forEach(function(el){
+      var row = el;
+      if(el.tagName === 'INPUT' || el.tagName === 'SELECT'){
+        row = el.closest('.fill-line, .sel-line') || el.parentElement || el;
+      }
+      var txt = (row.textContent || '').replace(/\s+/g,' ').trim();
+      if(txt) wrongList.push(txt);
+    });
+    if(window.__gtMark) window.__gtMark(id, wrongList);
+  });
+})();
+</script>
 </body></html>

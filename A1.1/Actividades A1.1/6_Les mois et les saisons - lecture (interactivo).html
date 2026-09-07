@@ -747,6 +747,11 @@
     });
     document.getElementById('quizScore').textContent = 'Score : ' + quizCorrect + ' / ' + quizTotal;
     document.getElementById('quizFeedback').textContent = (isCorrect ? '✅ ' : '💡 Réponse : ' + item.answer + ' — ') + item.explain;
+    if(window.__gtMark){
+      window.__gtWrongByEx = window.__gtWrongByEx || {};
+      if(!isCorrect) (window.__gtWrongByEx['rr_moislecture_quiz'] = window.__gtWrongByEx['rr_moislecture_quiz'] || []).push(item.q + ' → ' + item.answer);
+      window.__gtMark('rr_moislecture_quiz', window.__gtWrongByEx['rr_moislecture_quiz'] || []);
+    }
     quizIdx++;
     setTimeout(newQuizRound, 2400);
   }

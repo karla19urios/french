@@ -739,6 +739,7 @@ function handlePick(el, type, n){
       selectedNum = null;
       selectedWord = null;
       updateStatus();
+      if(matchedCount === matchSet.length && window.__gtMark) window.__gtMark('match', []);
     } else {
       const a = selectedNum, b = selectedWord;
       a.classList.add('wrong');
@@ -804,6 +805,8 @@ function renderQuiz(){
     document.getElementById('quiz-restart').addEventListener('click', () => {
       currentQ = 0; score = 0; answered = false; renderQuiz();
     });
+    if(window.__gtMark) window.__gtMark('numQuiz', (window.__gtWrongByEx && window.__gtWrongByEx['numQuiz']) || []);
+    if(window.__gtWrongByEx) window.__gtWrongByEx['numQuiz'] = [];
     return;
   }
 
@@ -836,6 +839,8 @@ function renderQuiz(){
         btn.classList.add('incorrect');
         opts[item.correct].classList.add('correct');
         feedback.textContent = "✗ Not quite — check the correct answer in green.";
+        window.__gtWrongByEx = window.__gtWrongByEx || {};
+        (window.__gtWrongByEx['numQuiz'] = window.__gtWrongByEx['numQuiz'] || []).push(item.q + ' → ' + item.options[item.correct]);
       }
       document.getElementById('quiz-next').classList.add('active');
     });

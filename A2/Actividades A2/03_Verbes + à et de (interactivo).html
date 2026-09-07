@@ -827,6 +827,11 @@ function renderQCM(hostId,data,key,scId){
     if(d.say) speak(d.say);
     S[key].n++; if(good)S[key].ok++;
     document.getElementById(scId).textContent=S[key].ok+' / '+data.length;
+    if(window.__gtMark){
+      window.__gtWrongByEx = window.__gtWrongByEx || {};
+      if(!good) (window.__gtWrongByEx[key] = window.__gtWrongByEx[key] || []).push(d.q + ' → ' + d.a);
+      window.__gtMark(key, window.__gtWrongByEx[key] || []);
+    }
     updateBilan();
   };
   updateBilan();

@@ -652,6 +652,11 @@
     });
     document.getElementById('quizScore').textContent = 'Score : ' + quizCorrect + ' / ' + quizTotal;
     document.getElementById('quizFeedback').textContent = (isCorrect ? '✅ ' : '💡 Réponse : ' + item.answer + ' — ') + item.explain;
+    if(window.__gtMark){
+      window.__gtWrongByEx = window.__gtWrongByEx || {};
+      if(!isCorrect) (window.__gtWrongByEx['rr_natlecture_quiz'] = window.__gtWrongByEx['rr_natlecture_quiz'] || []).push(item.q + ' → ' + item.answer);
+      window.__gtMark('rr_natlecture_quiz', window.__gtWrongByEx['rr_natlecture_quiz'] || []);
+    }
     quizIdx++;
     setTimeout(newQuizRound, 2200);
   }

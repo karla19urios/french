@@ -954,6 +954,11 @@
     document.getElementById('prepFeedback').textContent = correct ?
       '✅ Exactement — ' + venirSentence(prepTarget) :
       '💡 ' + venirSentence(prepTarget);
+    if(window.__gtMark){
+      window.__gtWrongByEx = window.__gtWrongByEx || {};
+      if(!correct) (window.__gtWrongByEx['rr_nat_prep'] = window.__gtWrongByEx['rr_nat_prep'] || []).push(venirSentence(prepTarget));
+      window.__gtMark('rr_nat_prep', window.__gtWrongByEx['rr_nat_prep'] || []);
+    }
     setTimeout(newPrepRound, 1600);
   }
 
@@ -1049,6 +1054,11 @@
     document.getElementById('flagFeedback').textContent = isCorrect ?
       '✅ Exactement !' :
       '💡 La bonne réponse : "' + correctText + '"';
+    if(window.__gtMark){
+      window.__gtWrongByEx = window.__gtWrongByEx || {};
+      if(!isCorrect) (window.__gtWrongByEx['rr_nat_flag'] = window.__gtWrongByEx['rr_nat_flag'] || []).push(correctText);
+      window.__gtMark('rr_nat_flag', window.__gtWrongByEx['rr_nat_flag'] || []);
+    }
     setTimeout(newFlagRound, 1900);
   }
 

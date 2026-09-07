@@ -1138,6 +1138,12 @@
       var n = norm(val);
       var okMain = step.expect.some(function(e){ return n.indexOf(norm(e)) !== -1; });
       var okAlso = !step.expectAlso || step.expectAlso.some(function(e){ return n.indexOf(norm(e)) !== -1; });
+      var __gtOk = !!(val.trim() && okMain && okAlso);
+      if(!__gtOk){
+        window.__gtWrongByEx = window.__gtWrongByEx || {};
+        (window.__gtWrongByEx[step.id] = window.__gtWrongByEx[step.id] || []).push(qText + ' → ' + step.expect[0]);
+      }
+      if(window.__gtMark) window.__gtMark(step.id, (window.__gtWrongByEx && window.__gtWrongByEx[step.id]) || []);
       if(val.trim() && okMain && okAlso){
         fb.className = 'feedback show good';
         fb.textContent = '✅ Nice — that reads as natural French.';

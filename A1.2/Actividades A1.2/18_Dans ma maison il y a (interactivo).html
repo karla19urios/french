@@ -751,7 +751,7 @@ function updateBilan(){
   document.getElementById('bTotal').textContent = ok + ' / ' + tot;
   document.getElementById('bPct').textContent = tot ? Math.round(ok / tot * 100) + ' %' : '—';
 }
-function fb(n, good, msg, sub){
+function fb(n, good, msg, sub){ if(!good){ window.__gtWrongByEx=window.__gtWrongByEx||{}; (window.__gtWrongByEx[n]=window.__gtWrongByEx[n]||[]).push(msg); }
   var el = document.getElementById('f' + n);
   el.className = 'fb ' + (good ? 'good' : 'bad');
   el.innerHTML = (good ? '✅ ' : '❌ ') + esc(msg) + (sub ? '<small>' + sub + '</small>' : '');
@@ -763,6 +763,9 @@ function done(n){
   var el = document.getElementById('f' + n);
   el.className = 'fb';
   el.textContent = st.ok >= ROUNDS - 1 ? 'Excellent ! 👏' : (st.ok >= ROUNDS / 2 ? 'Bien ! Recommencez pour progresser.' : 'Révisez le mur de vocabulaire et recommencez.');
+
+  if(window.__gtMark) window.__gtMark(n, (window.__gtWrongByEx && window.__gtWrongByEx[n]) || []);
+  if(window.__gtWrongByEx) window.__gtWrongByEx[n] = [];
 }
 
 /* ---- Ex.1 : un ou une ---- */

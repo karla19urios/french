@@ -663,6 +663,7 @@
     vocabQuiz.appendChild(div);
   });
   document.getElementById('checkVocab').addEventListener('click', function(){
+    var __gtWrongVocab = [];
     vocabPairs.forEach(function(pair, i){
       var input = vocabQuiz.querySelector('input[data-idx="'+i+'"]');
       var fb = document.getElementById('vfb'+i);
@@ -673,8 +674,10 @@
         fb.textContent = '✓ correct'; fb.className='fb ok';
       } else {
         fb.textContent = '✗ → '+pair[1]; fb.className='fb no';
+        __gtWrongVocab.push(pair[0] + ' → ' + pair[1]);
       }
     });
+    if(window.__gtMark) window.__gtMark('checkVocab', __gtWrongVocab);
   });
   document.getElementById('revealVocab').addEventListener('click', function(){
     vocabPairs.forEach(function(pair, i){
@@ -765,12 +768,14 @@
 
   document.getElementById('checkListen').addEventListener('click', function(){
     var score = 0;
+    var __gtWrongListen = [];
     dialogues.forEach(function(d){
       var st = dlgState[d.num];
       var imgOk = st.img === d.correctImg;
       var peopleOk = st.people.length === d.correctPeople.length &&
         d.correctPeople.every(function(name){ return st.people.indexOf(name) !== -1; });
       if(imgOk && peopleOk) score++;
+      else __gtWrongListen.push('Dialogue ' + d.num + ' → drawing ' + d.correctImg + ', ' + d.correctPeople.join(', '));
 
       var block = dialogueBlocks.children[d.num-1];
       var imgChoices = block.querySelector('.img-choices');
@@ -800,6 +805,7 @@
     var sb = document.getElementById('listenScore');
     sb.classList.add('show');
     document.getElementById('listenScoreNum').textContent = score+'/4';
+    if(window.__gtMark) window.__gtMark('checkListen', __gtWrongListen);
   });
 
   document.getElementById('resetListen').addEventListener('click', function(){

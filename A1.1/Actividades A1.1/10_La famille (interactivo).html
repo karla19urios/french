@@ -872,6 +872,11 @@
       '✅ Exactement — ' + quizTarget.art + ' ' + bare :
       '💡 La bonne réponse : ' + quizTarget.art + ' ' + bare;
     speak(quizTarget.art + ' ' + bare);
+    if(window.__gtMark){
+      window.__gtWrongByEx = window.__gtWrongByEx || {};
+      if(!isCorrect) (window.__gtWrongByEx['rr_famille_quiz'] = window.__gtWrongByEx['rr_famille_quiz'] || []).push(quizTarget.art + ' ' + bare);
+      window.__gtMark('rr_famille_quiz', window.__gtWrongByEx['rr_famille_quiz'] || []);
+    }
     setTimeout(newQuizRound, 1800);
   }
 

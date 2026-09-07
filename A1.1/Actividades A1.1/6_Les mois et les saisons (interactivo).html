@@ -1126,6 +1126,11 @@
     document.getElementById('quizFeedback').textContent = correct ?
       '✅ Exactement — ' + m.fr + ' is in ' + SEASONS[m.season].en.toLowerCase() + '.' :
       '💡 ' + m.fr + ' is actually in ' + SEASONS[m.season].fr + ' (' + SEASONS[m.season].en.toLowerCase() + ').';
+    if(window.__gtMark){
+      window.__gtWrongByEx = window.__gtWrongByEx || {};
+      if(!correct) (window.__gtWrongByEx['rr_mois_quiz'] = window.__gtWrongByEx['rr_mois_quiz'] || []).push(m.fr + ' → ' + SEASONS[m.season].fr);
+      window.__gtMark('rr_mois_quiz', window.__gtWrongByEx['rr_mois_quiz'] || []);
+    }
     setTimeout(newQuizRound, 1400);
   }
 
@@ -1414,6 +1419,11 @@
     document.getElementById('dateQuizFeedback').textContent = isCorrect ?
       '✅ Exactement !' :
       '💡 The right one: "' + dateSentenceFor(dateQuizTarget.day, dateQuizTarget.monthIdx, dateQuizTarget.year) + '"';
+    if(window.__gtMark){
+      window.__gtWrongByEx = window.__gtWrongByEx || {};
+      if(!isCorrect) (window.__gtWrongByEx['rr_mois_date'] = window.__gtWrongByEx['rr_mois_date'] || []).push(dateSentenceFor(dateQuizTarget.day, dateQuizTarget.monthIdx, dateQuizTarget.year));
+      window.__gtMark('rr_mois_date', window.__gtWrongByEx['rr_mois_date'] || []);
+    }
     setTimeout(newDateQuizRound, 1800);
   }
 

@@ -547,6 +547,9 @@ function renderExercises(s){
     const reviewedCount = Object.keys(reviewed).length;
     const total = lesson.total || 0;
     const done = total > 0 && reviewedCount >= total;
+    const badgeText = total > 0
+      ? (reviewedCount + '/' + total)
+      : (reviewedCount + (reviewedCount > 1 ? ' exercices' : ' exercice'));
     const wrongEntries = [];
     Object.keys(wrong).forEach(exId => {
       (wrong[exId] || []).forEach(w => wrongEntries.push(w));
@@ -555,7 +558,7 @@ function renderExercises(s){
     item.className = 'ex-item';
     let html = '<div class="ex-item-head">'
       + '<span class="ex-item-title">' + escapeHtml(lesson.title || k) + '</span>'
-      + '<span class="ex-item-badge' + (done ? ' ok' : '') + '">' + reviewedCount + '/' + total + '</span>'
+      + '<span class="ex-item-badge' + (done ? ' ok' : '') + '">' + escapeHtml(badgeText) + '</span>'
       + '</div>';
     if(wrongEntries.length){
       html += '<details class="ex-item-wrong"><summary>' + wrongEntries.length
