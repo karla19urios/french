@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
+<style id="site-gate-style">html:not(.site-gate-unlocked) body > *:not(#site-gate-overlay){display:none!important}</style>
 <div id="site-gate-overlay" style="position:fixed;inset:0;z-index:999999;background:#0d0f1a;display:flex;align-items:flex-start;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;overflow-y:auto;padding:3.5vh 0;">
   <div style="width:100%;max-width:480px;padding:0 1.4rem;text-align:center;">
     <div style="height:8px;border-radius:8px;background:linear-gradient(90deg,#002395 33%,#ffffff 33%,#ffffff 66%,#ED2939 66%);margin-bottom:2rem;"></div>
@@ -24,7 +25,8 @@
   function unlock(){
     var g = document.getElementById("site-gate-overlay");
     if(g) g.remove();
-    document.documentElement.style.overflow="";
+    document.documentElement.classList.add("site-gate-unlocked");
+    document.documentElement.style.overflow = "";
   }
   var saved = null;
   try { saved = localStorage.getItem(KEY); } catch(e){}
