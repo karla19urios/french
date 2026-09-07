@@ -193,6 +193,14 @@
     document.documentElement.classList.add("site-gate-unlocked");
     document.documentElement.style.overflow = "";
   }
+  var saved = null;
+  try { saved = sessionStorage.getItem(KEY); } catch(e){}
+  if(saved){
+    var parts = saved.split("|");
+    if(parts.length === 2 && ok(parts[0], parts[1])){
+      unlock();
+    }
+  }
   if(document.getElementById("site-gate-overlay")){
     document.documentElement.style.overflow = "hidden";
     document.getElementById("site-gate-btn").addEventListener("click", function(){
