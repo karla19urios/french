@@ -210,7 +210,7 @@
     document.documentElement.style.overflow = "";
   }
   var saved = null;
-  try { saved = localStorage.getItem(KEY); } catch(e){}
+  try { saved = sessionStorage.getItem(KEY); } catch(e){}
   if(saved){
     var parts = saved.split("|");
     if(parts.length === 2 && ok(parts[0], parts[1])){
@@ -223,7 +223,7 @@
       var code = document.getElementById("site-gate-code").value.trim().toUpperCase();
       var pin = document.getElementById("site-gate-pin").value.trim();
       if(ok(code, pin)){
-        try{ localStorage.setItem(KEY, code + "|" + pin); }catch(e){}
+        try{ sessionStorage.setItem(KEY, code + "|" + pin); }catch(e){}
         unlock();
       } else {
         document.getElementById("site-gate-err").style.display = "block";
