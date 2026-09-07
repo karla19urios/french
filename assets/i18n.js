@@ -13,6 +13,48 @@
   ];
 
   var DICT = Object.create(null);   // texte original -> {es, en, fr}
+
+  /* Textes communs à toutes les activités : portail d'accès, boutons, en-têtes.
+     Chaque page n'a plus qu'à déclarer ce qui lui est propre. */
+  var BASE = {
+    /* portail d'accès */
+    "🇫🇷 Welcome to your French learning journey": { es: "🇫🇷 Te damos la bienvenida a tu aprendizaje del francés", fr: "🇫🇷 Bienvenue dans votre apprentissage du français" },
+    "Accès réservé": { es: "Acceso reservado", en: "Restricted access" },
+    "Entre ton code et ton PIN pour accéder au site.": { es: "Escribe tu código y tu PIN para entrar al sitio.", en: "Enter your code and PIN to access the site." },
+    "Entrer": { es: "Entrar", en: "Enter" },
+    "Code ou PIN incorrect.": { es: "Código o PIN incorrecto.", en: "Wrong code or PIN." },
+    "Code (ex. A1B2C3)": { es: "Código (ej. A1B2C3)", en: "Code (e.g. A1B2C3)" },
+    "PIN (4 chiffres)": { es: "PIN (4 dígitos)", en: "PIN (4 digits)" },
+
+    /* en-têtes récurrents */
+    "How this lesson works": { es: "Cómo funciona esta lección", fr: "Comment fonctionne cette leçon" },
+    "Language": { es: "Idioma", fr: "Langue" },
+    "Focus": { es: "Enfoque", fr: "Objectif" },
+    "Time": { es: "Duración", fr: "Durée" },
+    "Source": { es: "Fuente", fr: "Source" },
+    "Level": { es: "Nivel", fr: "Niveau" },
+
+    /* boutons et retours */
+    "Check my answers": { es: "Comprobar mis respuestas", fr: "Vérifier mes réponses" },
+    "Check": { es: "Comprobar", fr: "Vérifier" },
+    "Check the verbs": { es: "Comprobar los verbos", fr: "Vérifier les verbes" },
+    "Show answers": { es: "Ver las respuestas", fr: "Voir les réponses" },
+    "Show model answer": { es: "Ver respuesta modelo", fr: "Voir la réponse modèle" },
+    "Show a model answer": { es: "Ver una respuesta modelo", fr: "Voir une réponse modèle" },
+    "Show model answers": { es: "Ver las respuestas modelo", fr: "Voir les réponses modèles" },
+    "Model answer": { es: "Respuesta modelo", fr: "Réponse modèle" },
+    "Model answers": { es: "Respuestas modelo", fr: "Réponses modèles" },
+    "Model:": { es: "Modelo:", fr: "Modèle :" },
+    "Given": { es: "Ejemplo dado", fr: "Donné" },
+    "correct": { es: "correctas", fr: "bonnes réponses" },
+    "Continue →": { es: "Continuar →", fr: "Continuer →" },
+    "Restart practice": { es: "Reiniciar la práctica", fr: "Recommencer la pratique" },
+    "🔊 Listen": { es: "🔊 Escuchar", fr: "🔊 Écouter" },
+    "🔊 Read it aloud": { es: "🔊 Leer en voz alta", fr: "🔊 Lire à voix haute" },
+    "Vérifier": { es: "Comprobar", en: "Check" },
+    "Voir les réponses": { es: "Ver las respuestas", en: "Show answers" },
+    "Recommencer": { es: "Empezar de nuevo", en: "Start over" }
+  };
   var originals = new WeakMap();    // nœud -> texte original
   var attrOriginals = new WeakMap();// élément -> {attr: texte original}
   var lang = 'es';
@@ -210,6 +252,8 @@
     refresh: apply
   };
   window.I18N = I18N;
+
+  I18N.add(BASE);
 
   function boot() {
     buildSwitch();
