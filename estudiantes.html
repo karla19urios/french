@@ -229,6 +229,53 @@
     padding:.5rem;
   }
   .logout-link:hover{ color:var(--bleu); }
+  .ex-item{
+    background:var(--bg);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:.7rem .9rem;
+    margin-top:.6rem;
+  }
+  .ex-item-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:.6rem;
+  }
+  .ex-item-title{
+    font-size:.9rem;
+    font-weight:600;
+  }
+  .ex-item-badge{
+    flex-shrink:0;
+    font-size:.75rem;
+    font-weight:700;
+    padding:.15rem .55rem;
+    border-radius:999px;
+    background:var(--ko-bg);
+    color:var(--ko);
+    font-variant-numeric:tabular-nums;
+  }
+  .ex-item-badge.ok{
+    background:var(--ok-bg);
+    color:var(--ok);
+  }
+  .ex-item-wrong{
+    margin-top:.5rem;
+  }
+  .ex-item-wrong summary{
+    cursor:pointer;
+    font-size:.8rem;
+    color:var(--ko);
+    font-weight:600;
+  }
+  .ex-item-wrong ul{
+    margin:.5rem 0 0;
+    padding-left:1.1rem;
+    font-size:.82rem;
+    color:var(--muted);
+    line-height:1.5;
+  }
   footer{
     text-align:center;
     color:var(--muted);
@@ -293,6 +340,58 @@
       if(e.key === "Enter") document.getElementById("site-gate-pin").focus();
     });
   }
+
+  function __gtCode(){
+    try{
+      var s = sessionStorage.getItem(KEY);
+      if(!s) return null;
+      var p = s.split("|");
+      return (p.length===2 && ok(p[0], p[1])) ? p[0] : null;
+    }catch(e){ return null; }
+  }
+  function __gtKey(){
+    var p = location.pathname;
+    try{ p = decodeURIComponent(p); }catch(e){}
+    return p;
+  }
+  function __gtLoad(){
+    var code = __gtCode();
+    if(!code) return null;
+    try{
+      var raw = localStorage.getItem("progress_" + code);
+      return raw ? JSON.parse(raw) : {};
+    }catch(e){ return {}; }
+  }
+  function __gtSave(data){
+    var code = __gtCode();
+    if(!code) return;
+    try{ localStorage.setItem("progress_" + code, JSON.stringify(data)); }catch(e){}
+  }
+  function __gtInit(){
+    var total = document.querySelectorAll("[data-check]").length;
+    if(total === 0) return;
+    var data = __gtLoad();
+    if(!data) return;
+    var key = __gtKey();
+    if(!data[key]) data[key] = {title: document.title, total: total, reviewed: {}, wrong: {}};
+    data[key].title = document.title;
+    data[key].total = total;
+    __gtSave(data);
+  }
+  window.__gtMark = function(exerciseId, wrongList){
+    var data = __gtLoad();
+    if(!data) return;
+    var key = __gtKey();
+    if(!data[key]) data[key] = {title: document.title, total: document.querySelectorAll("[data-check]").length, reviewed: {}, wrong: {}};
+    data[key].reviewed[exerciseId] = true;
+    data[key].wrong[exerciseId] = wrongList || [];
+    __gtSave(data);
+  };
+  if(document.readyState === "loading"){
+    document.addEventListener("DOMContentLoaded", __gtInit);
+  } else {
+    __gtInit();
+  }
 })();
 </script>
 <header class="flag"></header>
@@ -323,6 +422,8 @@
     <div class="next-row" id="resNextRow"></div>
     <div class="obj-label">Objectif</div>
     <p class="obj-text" id="resObjective"></p>
+    <div class="obj-label">Progrès des exercices</div>
+    <div id="resExercises"></div>
     <button class="logout-link" id="backBtn" type="button">← Chercher avec un autre code</button>
   </div>
 </main>
@@ -416,8 +517,55 @@ function showResult(s){
   const objEl = document.getElementById('resObjective');
   objEl.textContent = 'À venir — ta professeure ajoutera bientôt ton objectif ici.';
   objEl.classList.add('pending');
+  renderExercises(s);
   loginCard.style.display = 'none';
   resultCard.classList.add('show');
+}
+
+function escapeHtml(s){
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function renderExercises(s){
+  const box = document.getElementById('resExercises');
+  box.innerHTML = '';
+  let data = null;
+  try{
+    const raw = localStorage.getItem('progress_' + s.code);
+    data = raw ? JSON.parse(raw) : null;
+  }catch(e){}
+  const keys = data ? Object.keys(data) : [];
+  if(!keys.length){
+    box.innerHTML = '<p class="obj-text pending">Pas encore d\'exercices commencés.</p>';
+    return;
+  }
+  keys.sort((a, b) => (data[a].title || a).localeCompare(data[b].title || b));
+  keys.forEach(k => {
+    const lesson = data[k];
+    const reviewed = lesson.reviewed || {};
+    const wrong = lesson.wrong || {};
+    const reviewedCount = Object.keys(reviewed).length;
+    const total = lesson.total || 0;
+    const done = total > 0 && reviewedCount >= total;
+    const wrongEntries = [];
+    Object.keys(wrong).forEach(exId => {
+      (wrong[exId] || []).forEach(w => wrongEntries.push(w));
+    });
+    const item = document.createElement('div');
+    item.className = 'ex-item';
+    let html = '<div class="ex-item-head">'
+      + '<span class="ex-item-title">' + escapeHtml(lesson.title || k) + '</span>'
+      + '<span class="ex-item-badge' + (done ? ' ok' : '') + '">' + reviewedCount + '/' + total + '</span>'
+      + '</div>';
+    if(wrongEntries.length){
+      html += '<details class="ex-item-wrong"><summary>' + wrongEntries.length
+        + (wrongEntries.length > 1 ? ' erreurs à revoir' : ' erreur à revoir') + '</summary><ul>'
+        + wrongEntries.map(w => '<li>' + escapeHtml(w) + '</li>').join('')
+        + '</ul></details>';
+    }
+    item.innerHTML = html;
+    box.appendChild(item);
+  });
 }
 
 searchBtn.addEventListener('click', doSearch);

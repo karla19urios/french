@@ -54,6 +54,58 @@
       if(e.key === "Enter") document.getElementById("site-gate-pin").focus();
     });
   }
+
+  function __gtCode(){
+    try{
+      var s = sessionStorage.getItem(KEY);
+      if(!s) return null;
+      var p = s.split("|");
+      return (p.length===2 && ok(p[0], p[1])) ? p[0] : null;
+    }catch(e){ return null; }
+  }
+  function __gtKey(){
+    var p = location.pathname;
+    try{ p = decodeURIComponent(p); }catch(e){}
+    return p;
+  }
+  function __gtLoad(){
+    var code = __gtCode();
+    if(!code) return null;
+    try{
+      var raw = localStorage.getItem("progress_" + code);
+      return raw ? JSON.parse(raw) : {};
+    }catch(e){ return {}; }
+  }
+  function __gtSave(data){
+    var code = __gtCode();
+    if(!code) return;
+    try{ localStorage.setItem("progress_" + code, JSON.stringify(data)); }catch(e){}
+  }
+  function __gtInit(){
+    var total = document.querySelectorAll("[data-check]").length;
+    if(total === 0) return;
+    var data = __gtLoad();
+    if(!data) return;
+    var key = __gtKey();
+    if(!data[key]) data[key] = {title: document.title, total: total, reviewed: {}, wrong: {}};
+    data[key].title = document.title;
+    data[key].total = total;
+    __gtSave(data);
+  }
+  window.__gtMark = function(exerciseId, wrongList){
+    var data = __gtLoad();
+    if(!data) return;
+    var key = __gtKey();
+    if(!data[key]) data[key] = {title: document.title, total: document.querySelectorAll("[data-check]").length, reviewed: {}, wrong: {}};
+    data[key].reviewed[exerciseId] = true;
+    data[key].wrong[exerciseId] = wrongList || [];
+    __gtSave(data);
+  };
+  if(document.readyState === "loading"){
+    document.addEventListener("DOMContentLoaded", __gtInit);
+  } else {
+    __gtInit();
+  }
 })();
 </script>
 <title>TCF Canada · Expression orale</title>
