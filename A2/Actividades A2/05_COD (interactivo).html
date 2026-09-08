@@ -110,7 +110,6 @@
 </script>
 <title>COD — Les pronoms compléments d'objet direct</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
 
   :root{
     --bg:#f4f5f7;
@@ -175,13 +174,13 @@
   *{box-sizing:border-box;}
   body{
     background:var(--bg); color:var(--ink);
-    font-family:'Work Sans', ui-sans-serif, system-ui, sans-serif;
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
     line-height:1.55; -webkit-font-smoothing:antialiased;
   }
   .wrap{max-width:900px; margin:0 auto; padding:0 20px 90px;}
-  h1,h2,h3{font-family:'Fraunces', Georgia, serif; text-wrap:balance; margin:0; color:var(--ink);}
-  .eyebrow{font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-ink); font-weight:600;}
-  code, .mono{font-family:'IBM Plex Mono', monospace;}
+  h1,h2,h3{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; text-wrap:balance; margin:0; color:var(--ink);}
+  .eyebrow{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-ink); font-weight:600;}
+  code, .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;}
 
   .stripe{height:8px; background:linear-gradient(90deg, var(--bleu) 33%, #ffffff 33%, #ffffff 66%, var(--rouge) 66%);}
 
@@ -193,28 +192,28 @@
   .hero h1{font-size:clamp(28px,4.2vw,42px); font-weight:600; color:#ffffff; letter-spacing:-.01em;}
   .hero p.sub{color:#c7d1f5; font-size:15px; margin-top:10px; max-width:60ch;}
   .hero-meta{display:flex; gap:22px; margin-top:22px; flex-wrap:wrap;}
-  .hero-meta div{font-family:'IBM Plex Mono',monospace; font-size:12px; color:#a9b6e8;}
-  .hero-meta b{display:block; color:#f3f5ff; font-size:14px; font-family:'Work Sans',sans-serif; font-weight:600; margin-top:2px;}
+  .hero-meta div{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:12px; color:#a9b6e8;}
+  .hero-meta b{display:block; color:#f3f5ff; font-size:14px; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-weight:600; margin-top:2px;}
   .hero-tags{display:flex; gap:8px; margin-top:18px; flex-wrap:wrap;}
-  .hero-tag{font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; letter-spacing:.04em; color:#dfe6ff; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.22); border-radius:20px; padding:4px 13px;}
+  .hero-tag{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:11px; font-weight:600; letter-spacing:.04em; color:#dfe6ff; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.22); border-radius:20px; padding:4px 13px;}
 
   .navpills{display:flex; gap:8px; flex-wrap:wrap; margin-top:20px; max-width:900px; margin-left:auto; margin-right:auto; padding:0 20px;}
-  .navpill{font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:600; color:var(--accent-ink); background:var(--paper); border:1px solid var(--line); border-radius:20px; padding:5px 13px; text-decoration:none; box-shadow:var(--shadow);}
+  .navpill{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:11.5px; font-weight:600; color:var(--accent-ink); background:var(--paper); border:1px solid var(--line); border-radius:20px; padding:5px 13px; text-decoration:none; box-shadow:var(--shadow);}
   .navpill:hover{border-color:var(--accent);}
 
   section{margin-top:46px;}
   .wrap > section:first-of-type{margin-top:36px;}
   .sec-head{display:flex; align-items:baseline; gap:12px; margin-bottom:16px; flex-wrap:wrap;}
-  .sec-num{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent-ink); font-weight:600;}
+  .sec-num{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:13px; color:var(--accent-ink); font-weight:600;}
   section h2{font-size:25px; font-weight:600;}
   .sec-intro{color:var(--ink-soft); font-size:15px; max-width:66ch; margin-top:6px;}
-  .sec-tag{font-family:'IBM Plex Mono',monospace; font-size:10.5px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--accent-ink); background:var(--paper-2); border:1px solid var(--line); border-radius:20px; padding:3px 11px; margin-left:2px;}
+  .sec-tag{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:10.5px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--accent-ink); background:var(--paper-2); border:1px solid var(--line); border-radius:20px; padding:3px 11px; margin-left:2px;}
 
   .card{background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:22px; box-shadow:var(--shadow);}
   .card + .card{margin-top:14px;}
 
   .instr-box{border-left:3px solid var(--accent); background:var(--paper-2); border-radius:0 10px 10px 0; padding:14px 18px; margin:16px 0; font-size:14.5px;}
-  .instr-box b{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-ink); display:block; margin-bottom:6px;}
+  .instr-box b{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-ink); display:block; margin-bottom:6px;}
   .instr-box s{color:var(--ink-soft);}
   .instr-box.note-open{border-left-color:var(--rouge);}
   .instr-box.note-open b{color:var(--rouge);}
@@ -223,28 +222,28 @@
   .note-grid.cols-3{grid-template-columns:1fr 1fr 1fr;}
   @media (max-width:640px){.note-grid, .note-grid.cols-3{grid-template-columns:1fr;}}
   .note{background:var(--paper-2); border-radius:10px; padding:14px 16px; font-size:13.8px;}
-  .note b{display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--accent-ink); margin-bottom:6px;}
+  .note b{display:block; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--accent-ink); margin-bottom:6px;}
   .note .ex{padding:2px 0; font-size:13.5px;}
-  .note .ex b{display:inline; font-family:'Work Sans',sans-serif; text-transform:none; letter-spacing:0; color:var(--ink); font-size:13.5px;}
+  .note .ex b{display:inline; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; text-transform:none; letter-spacing:0; color:var(--ink); font-size:13.5px;}
 
-  .rule-box{background:linear-gradient(180deg,var(--paper-2),var(--paper)); border:1px solid var(--line); border-radius:12px; padding:18px 20px; text-align:center; font-size:18px; font-family:'Fraunces',serif; font-weight:600; margin-bottom:18px;}
+  .rule-box{background:linear-gradient(180deg,var(--paper-2),var(--paper)); border:1px solid var(--line); border-radius:12px; padding:18px 20px; text-align:center; font-size:18px; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-weight:600; margin-bottom:18px;}
   .rule-box .p1{color:var(--bleu);} .rule-box .p2{color:var(--rouge);} .rule-box .p3{color:var(--green);}
 
   table.pron-table{width:100%; border-collapse:collapse; margin-top:12px; font-size:14px;}
-  table.pron-table th{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-soft); text-align:left; padding:6px 10px; border-bottom:1px solid var(--line);}
+  table.pron-table th{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-soft); text-align:left; padding:6px 10px; border-bottom:1px solid var(--line);}
   table.pron-table td{padding:8px 10px; border-bottom:1px solid var(--line);}
-  table.pron-table td.pr{font-weight:700; color:var(--accent-ink); font-family:'IBM Plex Mono',monospace;}
+  table.pron-table td.pr{font-weight:700; color:var(--accent-ink); font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;}
   table.pron-table tr:last-child td{border-bottom:none;}
 
   .chain{display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:14px; font-size:15px;}
   .chain .subj{font-weight:600;}
-  .chain .box{display:flex; flex-direction:column; gap:3px; background:var(--paper-2); border:1px solid var(--line); border-radius:10px; padding:8px 14px; font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent-ink); font-weight:600;}
+  .chain .box{display:flex; flex-direction:column; gap:3px; background:var(--paper-2); border:1px solid var(--line); border-radius:10px; padding:8px 14px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:13px; color:var(--accent-ink); font-weight:600;}
   .chain .verb{font-weight:600;}
 
   .ex-block{margin-top:16px;}
   .ex-tag{
     display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%;
-    background:var(--bleu); color:#ffffff; font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:13px;
+    background:var(--bleu); color:#ffffff; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-weight:600; font-size:13px;
     margin-right:8px; flex:0 0 auto;
   }
   .ex-title{font-weight:600; font-size:15.5px; display:flex; align-items:center; margin-bottom:4px;}
@@ -255,10 +254,10 @@
     display:flex; align-items:baseline; flex-wrap:wrap; gap:6px 4px; padding:9px 0; font-size:15px; border-bottom:1px dashed var(--line);
   }
   .fill-line:last-child{border-bottom:none;}
-  .fill-line .qn{font-family:'IBM Plex Mono',monospace; color:var(--ink-soft); font-size:12.5px; width:16px;}
+  .fill-line .qn{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; color:var(--ink-soft); font-size:12.5px; width:16px;}
   .blank{
     padding:5px 8px; border-radius:6px; border:1px solid var(--line); background:var(--paper-2);
-    color:var(--ink); font-family:'Work Sans',sans-serif; font-size:14.5px;
+    color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:14.5px;
   }
   .blank.w-full{width:220px;}
   .blank.w-med{width:150px;}
@@ -269,19 +268,19 @@
   .blank.no{border-color:var(--red); background:var(--red-bg);}
   .given{font-weight:600; color:var(--accent-ink);}
 
-  .hint-chip{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:600; color:var(--accent-ink); background:var(--paper-2); border:1px solid var(--line); border-radius:6px; padding:2px 7px; margin-right:6px; white-space:nowrap;}
+  .hint-chip{display:inline-block; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:11.5px; font-weight:600; color:var(--accent-ink); background:var(--paper-2); border:1px solid var(--line); border-radius:6px; padding:2px 7px; margin-right:6px; white-space:nowrap;}
 
-  .btn{font-family:'Work Sans',sans-serif; font-weight:600; font-size:14px; padding:10px 18px; border-radius:9px; border:none; cursor:pointer; background:var(--bleu); color:#ffffff;}
+  .btn{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-weight:600; font-size:14px; padding:10px 18px; border-radius:9px; border:none; cursor:pointer; background:var(--bleu); color:#ffffff;}
   .btn:hover{background:var(--rouge);}
   .btn.secondary{background:transparent; color:var(--ink); border:1px solid var(--line);}
   .btn.secondary:hover{border-color:var(--accent); color:var(--accent-ink);}
   .btn-row{display:flex; gap:10px; margin-top:16px; flex-wrap:wrap;}
 
-  textarea{width:100%; min-height:70px; border-radius:10px; border:1px solid var(--line); background:var(--paper-2); color:var(--ink); font-family:'Work Sans',sans-serif; font-size:14.5px; padding:11px 13px; resize:vertical;}
+  textarea{width:100%; min-height:70px; border-radius:10px; border:1px solid var(--line); background:var(--paper-2); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:14.5px; padding:11px 13px; resize:vertical;}
   textarea:focus{outline:2px solid var(--accent); outline-offset:1px;}
   .model-answer{display:none; margin-top:10px; background:var(--green-bg); border-radius:10px; padding:13px 16px; font-size:14px;}
   .model-answer.show{display:block;}
-  .model-answer b{display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--green); margin-bottom:7px;}
+  .model-answer b{display:block; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--green); margin-bottom:7px;}
   .model-answer p{margin:3px 0;}
 
   .sel-line{display:flex; align-items:baseline; flex-wrap:wrap; gap:6px; font-size:15px; padding:8px 0; border-bottom:1px dashed var(--line);}
@@ -290,7 +289,7 @@
 
   .score-banner{margin-top:16px; padding:14px 18px; border-radius:12px; background:var(--paper-2); border:1px solid var(--line); display:none; align-items:center; gap:14px;}
   .score-banner.show{display:flex;}
-  .score-num{font-family:'Fraunces',serif; font-size:30px; font-weight:600; color:var(--accent-ink);}
+  .score-num{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:30px; font-weight:600; color:var(--accent-ink);}
 
   .vocab-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:10px; margin-top:14px;}
   .vocab-card{background:var(--paper-2); border-radius:10px; padding:11px 13px;}
@@ -299,10 +298,10 @@
 
   .runway-wrap{border:1px solid var(--line); border-radius:14px; overflow:hidden; box-shadow:var(--shadow); background:#000;}
   .runway-wrap img{display:block; width:100%; height:auto;}
-  .runway-cap{background:var(--paper); padding:10px 16px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--ink-soft); border-top:1px solid var(--line);}
+  .runway-cap{background:var(--paper); padding:10px 16px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:11.5px; color:var(--ink-soft); border-top:1px solid var(--line);}
 
   .audio-box{background:var(--paper-2); border-radius:12px; padding:16px; margin-top:14px; display:flex; flex-direction:column; gap:10px;}
-  .audio-label{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--accent-ink); font-weight:600;}
+  .audio-label{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--accent-ink); font-weight:600;}
   audio{width:100%;}
 
   .disclose{background:var(--purple-bg); border-radius:10px; padding:12px 16px; font-size:13.3px; color:var(--ink); margin:14px 0;}
@@ -313,12 +312,12 @@
   .lecture-text mark{background:var(--purple-bg); color:var(--purple); font-weight:700; border-radius:4px; padding:0 3px; font-style:normal;}
 
   .oral-card{border-top:3px solid var(--accent); }
-  .oral-num{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--accent-ink); font-weight:700; margin-bottom:6px;}
+  .oral-num{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--accent-ink); font-weight:700; margin-bottom:6px;}
   .oral-prompt{font-size:15.5px; font-weight:600; margin-bottom:8px;}
   .phrase-bank{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0;}
-  .phrase{font-family:'IBM Plex Mono',monospace; font-size:12px; background:var(--paper-2); border:1px solid var(--line); border-radius:8px; padding:5px 10px; color:var(--ink);}
+  .phrase{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:12px; background:var(--paper-2); border:1px solid var(--line); border-radius:8px; padding:5px 10px; color:var(--ink);}
   .timer-row{display:flex; align-items:center; gap:14px; margin-top:14px; flex-wrap:wrap;}
-  .timer-display{font-family:'Fraunces',serif; font-size:26px; font-weight:600; color:var(--accent-ink); min-width:64px;}
+  .timer-display{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:26px; font-weight:600; color:var(--accent-ink); min-width:64px;}
   .timer-display.low{color:var(--rouge);}
   .checklist-mini{list-style:none; margin:10px 0 0; padding:0; display:flex; flex-direction:column; gap:6px; font-size:13.3px; color:var(--ink-soft);}
   .checklist-mini li::before{content:"☐ "; color:var(--accent-ink);}
@@ -330,7 +329,7 @@
   .check-item.ok{border-color:var(--green); background:var(--green-bg);}
   .check-item.no{border-color:var(--red); background:var(--red-bg);}
 
-  footer{max-width:900px; margin:60px auto 0; padding:20px; text-align:center; color:var(--ink-soft); font-size:12.5px; font-family:'IBM Plex Mono',monospace;}
+  footer{max-width:900px; margin:60px auto 0; padding:20px; text-align:center; color:var(--ink-soft); font-size:12.5px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;}
   footer a{color:var(--accent-ink);}
 </style>
 
@@ -409,7 +408,7 @@
   <div class="sec-head"><span class="sec-num">01</span><h2>Les pronoms selon la personne</h2><span class="sec-tag">Théorie</span></div>
   <div class="card">
     <p style="margin:0 0 12px;">The pronoun always sits right in front of the verb it belongs to — even in the negative, where <b>ne</b> and <b>pas</b> wrap around the whole pronoun + verb block:</p>
-    <p style="margin:0; font-size:15.5px; text-align:center; font-family:'Fraunces',serif; font-weight:600;">Je <span class="p2" style="color:var(--rouge);">ne</span> <span style="color:var(--accent-ink);">le regarde</span> <span style="color:var(--rouge);">pas</span>.&nbsp;&nbsp;&nbsp; Nous <span style="color:var(--rouge);">ne</span> <span style="color:var(--accent-ink);">les connaissons</span> <span style="color:var(--rouge);">pas</span>.</p>
+    <p style="margin:0; font-size:15.5px; text-align:center; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-weight:600;">Je <span class="p2" style="color:var(--rouge);">ne</span> <span style="color:var(--accent-ink);">le regarde</span> <span style="color:var(--rouge);">pas</span>.&nbsp;&nbsp;&nbsp; Nous <span style="color:var(--rouge);">ne</span> <span style="color:var(--accent-ink);">les connaissons</span> <span style="color:var(--rouge);">pas</span>.</p>
   </div>
 
   <div class="card ex-block">
@@ -879,4 +878,5 @@ I18N.add({
 "Choose one model from the photo above (section 02) and describe what they're wearing — without naming the same item twice. Use a direct object pronoun instead.":{"es": "Elige a un modelo de la foto de arriba (sección 02) y describe qué lleva puesto, sin nombrar dos veces la misma prenda: usa un pronombre de complemento directo.", "fr": "Choisissez un mannequin de la photo ci-dessus (section 02) et décrivez ce qu'il porte — sans nommer deux fois le même vêtement. Employez un pronom complément d'objet direct."}
 });
 </script>
+<link rel="stylesheet" href="../../assets/theme.css?v=1">
 </body></html>

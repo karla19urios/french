@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Sleeping Letters</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
   :root{
     --paper:#EEF0F2;
@@ -62,11 +61,11 @@
     -webkit-font-smoothing:antialiased;
   }
   h1,h2,h3,.display{
-    font-family:'Fraunces', Georgia, 'Times New Roman', serif;
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
     text-wrap:balance;
     margin:0;
   }
-  .mono{ font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace; }
+  .mono{ font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; }
   ::selection{ background:var(--indigo); color:var(--paper-raised); }
   a{ color:inherit; }
   button{ font-family:inherit; }
@@ -74,7 +73,7 @@
   .app{ max-width:1180px; margin:0 auto; padding:20px clamp(14px,3vw,32px) 60px; }
 
   .topbar{ display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:16px; padding-bottom:16px; }
-  .brand-eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 6px; }
+  .brand-eyebrow{ font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 6px; }
   .brand-title{ font-size:clamp(26px,3.4vw,38px); font-weight:600; letter-spacing:-.01em; color:var(--indigo); }
   .brand-sub{ font-size:14px; color:var(--ink-soft); margin-top:6px; max-width:52ch; }
 
@@ -91,12 +90,12 @@
   .rail-item{ display:flex; align-items:center; gap:10px; padding:9px 10px; border-radius:8px; border:1px solid transparent; background:transparent; cursor:pointer; text-align:left; color:var(--ink-soft); }
   .rail-item:hover{ background:var(--paper-raised); border-color:var(--mist); }
   .rail-item.active{ background:var(--paper-raised); border-color:var(--mist-strong); box-shadow:var(--shadow); color:var(--ink); }
-  .rail-num{ font-family:'IBM Plex Mono', monospace; font-size:11px; width:22px; height:22px; border-radius:50%; display:grid; place-items:center; background:var(--mist); color:var(--ink-soft); flex:0 0 auto; }
+  .rail-num{ font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:11px; width:22px; height:22px; border-radius:50%; display:grid; place-items:center; background:var(--mist); color:var(--ink-soft); flex:0 0 auto; }
   .rail-item.active .rail-num{ background:var(--indigo); color:var(--paper-raised); }
   .rail-item.done .rail-num{ background:var(--indigo-deep); color:var(--paper-raised); }
   .rail-text{ display:flex; flex-direction:column; gap:1px; min-width:0; }
   .rail-title{ font-size:13px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .rail-time{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--ink-soft); }
+  .rail-time{ font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:10.5px; color:var(--ink-soft); }
 
   @media (max-width: 860px){
     .layout{ grid-template-columns:1fr; }
@@ -106,8 +105,8 @@
   }
 
   .stage{ background:var(--paper-raised); border:1px solid var(--mist); border-radius:14px; box-shadow:var(--shadow); padding:clamp(20px,3.4vw,40px); min-height:480px; }
-  .kicker{ font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.06em; color:var(--red); margin-bottom:8px; }
-  .badge-time{ display:inline-block; margin-left:10px; font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-soft); border:1px solid var(--mist-strong); border-radius:999px; padding:1px 9px; }
+  .kicker{ font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:12px; letter-spacing:.06em; color:var(--red); margin-bottom:8px; }
+  .badge-time{ display:inline-block; margin-left:10px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:11px; color:var(--ink-soft); border:1px solid var(--mist-strong); border-radius:999px; padding:1px 9px; }
   .stage h2{ font-size:clamp(24px,3vw,34px); color:var(--ink); line-height:1.15; }
   .stage-lede{ margin-top:12px; color:var(--ink-soft); font-size:15.5px; line-height:1.6; max-width:72ch; }
   .section-block{ margin-top:28px; }
@@ -120,20 +119,20 @@
   .chip:active{ transform:translateY(1px); }
   .chip-icon{ width:22px; height:22px; border-radius:50%; background:var(--indigo); color:var(--paper-raised); display:grid; place-items:center; flex:0 0 auto; }
   .chip-word{ font-weight:600; font-size:14.5px; }
-  .chip-ipa{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--ink-soft); }
+  .chip-ipa{ font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:12.5px; color:var(--ink-soft); }
 
   /* sleeping letters row */
   .sleep-row{ display:flex; flex-wrap:wrap; gap:14px; }
   .sleep-tile{ background:var(--paper); border:1px solid var(--mist); border-radius:12px; padding:14px 16px; width:150px; text-align:center; }
-  .sleep-tile .letter{ font-family:'IBM Plex Mono', monospace; font-size:22px; font-weight:600; color:var(--ink-soft); opacity:.55; }
+  .sleep-tile .letter{ font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:22px; font-weight:600; color:var(--ink-soft); opacity:.55; }
   .sleep-tile .letter::before{ content:"–"; }
-  .sleep-tile .dots{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.2em; color:var(--mist-strong); margin:2px 0 8px; }
+  .sleep-tile .dots{ font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:11px; letter-spacing:.2em; color:var(--mist-strong); margin:2px 0 8px; }
   .sleep-tile .ex{ margin-top:6px; }
 
   /* warm-up word cards */
   .word-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; }
   .word-card{ background:var(--paper); border:1px solid var(--mist); border-radius:12px; padding:14px; text-align:center; }
-  .word-card .w{ font-family:'Fraunces',serif; font-size:19px; font-weight:600; }
+  .word-card .w{ font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:19px; font-weight:600; }
   .word-card .w .silent{ opacity:.3; text-decoration:line-through; text-decoration-thickness:1.5px; }
   .word-card .reveal-btn{ margin-top:8px; font-size:11.5px; border:1px solid var(--mist-strong); background:var(--paper-raised); color:var(--ink-soft); border-radius:999px; padding:4px 10px; cursor:pointer; }
   .word-card .reveal-btn:hover{ border-color:var(--indigo); color:var(--indigo); }
@@ -143,12 +142,12 @@
   /* liaison demo */
   .liaison-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; }
   .liaison-card{ background:var(--paper); border:1px solid var(--mist); border-radius:12px; padding:16px; }
-  .liaison-words{ display:flex; align-items:baseline; gap:6px; flex-wrap:wrap; font-family:'Fraunces',serif; font-size:19px; }
+  .liaison-words{ display:flex; align-items:baseline; gap:6px; flex-wrap:wrap; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:19px; }
   .liaison-words .w1-end{ color:var(--ink-soft); opacity:.4; text-decoration:line-through; text-decoration-thickness:1.5px; }
   .liaison-arrow{ color:var(--ink-soft); font-size:13px; margin:0 6px; }
-  .liaison-result{ font-family:'Fraunces',serif; font-size:19px; margin-top:4px; }
+  .liaison-result{ font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:19px; margin-top:4px; }
   .liaison-result .woke{ color:var(--red); font-weight:700; }
-  .liaison-sound{ font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--indigo); margin-top:6px; }
+  .liaison-sound{ font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:13px; color:var(--indigo); margin-top:6px; }
   .liaison-card .play-line{ display:inline-flex; align-items:center; gap:6px; margin-top:10px; font-size:12.5px; color:var(--ink-soft); border:1px solid var(--mist-strong); border-radius:999px; padding:5px 12px 5px 8px; cursor:pointer; background:var(--paper-raised); }
   .liaison-card .play-line:hover{ border-color:var(--indigo); }
 
@@ -173,12 +172,12 @@
 
   .callout{ border-left:3px solid var(--gold); background:var(--paper); padding:12px 16px; border-radius:0 8px 8px 0; font-size:14px; color:var(--ink-soft); line-height:1.55; }
 
-  .passage{ font-family:'Fraunces', serif; font-size:18px; line-height:1.9; color:var(--ink); background:var(--paper); border:1px solid var(--mist); border-radius:10px; padding:20px 22px; }
+  .passage{ font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:18px; line-height:1.9; color:var(--ink); background:var(--paper); border:1px solid var(--mist); border-radius:10px; padding:20px 22px; }
   .m-sleep{ opacity:.4; text-decoration:line-through; text-decoration-thickness:1.5px; }
   .m-liaison{ color:var(--red); font-weight:700; text-decoration:underline; text-decoration-color:var(--red); text-decoration-thickness:2px; text-underline-offset:3px; }
   .legend-line{ display:flex; flex-wrap:wrap; gap:18px; margin-top:10px; font-size:13px; color:var(--ink-soft); }
   .legend-swatch{ display:inline-flex; align-items:center; gap:6px; }
-  .legend-swatch .sample{ font-family:'Fraunces',serif; font-size:15px; }
+  .legend-swatch .sample{ font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:15px; }
   .passage-src{ font-size:11.5px; color:var(--ink-soft); margin-top:8px; font-style:italic; }
   .listen-line{ display:inline-flex; align-items:center; gap:8px; border:1px solid var(--mist-strong); border-radius:999px; padding:6px 14px 6px 8px; cursor:pointer; margin-top:10px; font-size:13.5px; background:var(--paper-raised); }
   .listen-line:hover{ border-color:var(--indigo); }
@@ -190,13 +189,13 @@
   .nav-btn:hover:not(:disabled){ background:var(--indigo-deep); }
   .nav-btn.ghost:hover:not(:disabled){ border-color:var(--indigo); color:var(--indigo); }
 
-  .score-pill{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--ink-soft); border:1px solid var(--mist-strong); border-radius:999px; padding:4px 12px; white-space:nowrap; }
+  .score-pill{ font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:11.5px; color:var(--ink-soft); border:1px solid var(--mist-strong); border-radius:999px; padding:4px 12px; white-space:nowrap; }
 
   .obj-list{ margin:14px 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:8px; }
   .obj-list li{ display:flex; gap:10px; font-size:14.5px; color:var(--ink); align-items:flex-start; }
-  .obj-list li::before{ content:"«" attr(data-n) "»"; font-family:'IBM Plex Mono',monospace; color:var(--red); font-size:12px; flex:0 0 auto; margin-top:3px; }
+  .obj-list li::before{ content:"«" attr(data-n) "»"; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; color:var(--red); font-size:12px; flex:0 0 auto; margin-top:3px; }
 
-  .final-score{ display:flex; align-items:baseline; gap:10px; font-family:'IBM Plex Mono', monospace; }
+  .final-score{ display:flex; align-items:baseline; gap:10px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; }
   .final-score .num{ font-size:40px; font-weight:600; color:var(--indigo); }
 </style>
 </head>
@@ -659,7 +658,7 @@
         '<div class="final-score"><span class="num" id="finalScoreNum">0/0</span><span style="color:var(--ink-soft); font-size:13px;">practice questions correct today</span></div>'+
         '</div>'+
         '<div class="section-block callout" style="border-color:var(--indigo); border-left-color:var(--indigo);">'+
-        '<strong style="color:var(--indigo); font-family:\'Fraunces\',serif; font-size:16px;">Next lesson: Se présenter</strong><br>'+
+        '<strong style="color:var(--indigo); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:16px;">Next lesson: Se présenter</strong><br>'+
         'We\'ll put our new sounds to work introducing ourselves in French.'+
         '</div>';
     }
@@ -720,4 +719,5 @@
 </script>
 
 <script src="../../assets/i18n.js?v=3"></script>
+<link rel="stylesheet" href="../../assets/theme.css?v=1">
 </body></html>
