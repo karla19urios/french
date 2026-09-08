@@ -53,7 +53,37 @@
     "🔊 Read it aloud": { es: "🔊 Leer en voz alta", fr: "🔊 Lire à voix haute" },
     "Vérifier": { es: "Comprobar", en: "Check" },
     "Voir les réponses": { es: "Ver las respuestas", en: "Show answers" },
-    "Recommencer": { es: "Empezar de nuevo", en: "Start over" }
+    "Recommencer": { es: "Empezar de nuevo", en: "Start over" },
+
+    /* navigation du site et pages de niveau */
+    "🏠 Accueil": { es: "🏠 Inicio", en: "🏠 Home" },
+    "← Accueil": { es: "← Inicio", en: "← Home" },
+    "← Retour à l'accueil": { es: "← Volver al inicio", en: "← Back to home" },
+    "Tous les niveaux": { es: "Todos los niveles", en: "All levels" },
+    "← Tous les niveaux": { es: "← Todos los niveles", en: "← All levels" },
+    "🧪 Grammaire": { es: "🧪 Gramática", en: "🧪 Grammar" },
+    "📖 Lectures": { es: "📖 Lecturas", en: "📖 Readings" },
+    "🎧 Audios": { es: "🎧 Audios", en: "🎧 Audio" },
+    "🎬 Vidéo": { es: "🎬 Vídeo", en: "🎬 Video" },
+    "🧪 Laboratoire de grammaire": { es: "🧪 Laboratorio de gramática", en: "🧪 Grammar lab" },
+    "Laboratoire de grammaire": { es: "Laboratorio de gramática", en: "Grammar lab" },
+    "Leçons numérotées": { es: "Lecciones numeradas", en: "Numbered lessons" },
+    "Fiches complémentaires": { es: "Fichas complementarias", en: "Extra worksheets" },
+    "Lectures": { es: "Lecturas", en: "Readings" },
+    "Audios": { es: "Audios", en: "Audio" },
+    "Aucun résultat.": { es: "Sin resultados.", en: "No results." },
+    "Rechercher une leçon...": { es: "Buscar una lección...", en: "Search for a lesson..." },
+
+    /* étiquettes des fiches */
+    "PDF": { es: "PDF", en: "PDF" },
+    "Interactif": { es: "Interactivo", en: "Interactive" },
+    "Image": { es: "Imagen", en: "Image" },
+    "Audio": { es: "Audio", en: "Audio" },
+    "📄 Ouvrir le PDF": { es: "📄 Abrir el PDF", en: "📄 Open the PDF" },
+    "🎮 Ouvrir l\u2019activité": { es: "🎮 Abrir la actividad", en: "🎮 Open the activity" },
+    "🖼️ Voir l\u2019image": { es: "🖼️ Ver la imagen", en: "🖼️ View the image" },
+    "🎧 Écouter l\u2019audio": { es: "🎧 Escuchar el audio", en: "🎧 Play the audio" },
+    "Site local généré pour consulter les fichiers de cours de français": { es: "Sitio del curso para consultar los materiales de francés", en: "Course site for browsing the French class materials" }
   };
   var originals = new WeakMap();    // nœud -> texte original
   var attrOriginals = new WeakMap();// élément -> {attr: texte original}
