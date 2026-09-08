@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lecture : Interlingua</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700;800&family=Caveat:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
   :root{
     --bleu:#002395;
@@ -43,7 +44,7 @@
   *{box-sizing:border-box;}
   body{margin:0;}
   .page{
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    font-family:'Nunito Sans',sans-serif;
     color:var(--ink);
     background:var(--page-bg);
     padding:24px 14px 50px;
@@ -53,9 +54,9 @@
     max-width:920px; margin:0 auto; height:8px; border-radius:14px 14px 0 0; overflow:hidden;
     background:linear-gradient(90deg, var(--bleu) 33%, var(--blanc) 33%, var(--blanc) 66%, var(--rouge) 66%);
   }
-  h1,h2,h3{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;margin:0;color:var(--ink);}
-  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;}
-  .hand{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;}
+  h1,h2,h3{font-family:'Baloo 2',cursive;margin:0;color:var(--ink);}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  .hand{font-family:'Caveat',cursive;}
   p{margin:0 0 8px;}
   em{font-style:italic;}
   strong{font-weight:800;}
@@ -78,7 +79,7 @@
   .chrome-dots span:nth-child(3){background:var(--dot-green);}
   .chrome-bar{
     flex:1; background:var(--card); border-radius:8px; padding:7px 16px;
-    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:.78rem; color:var(--ink-soft);
+    font-family:'IBM Plex Mono',monospace; font-size:.78rem; color:var(--ink-soft);
     text-align:center; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
   }
   .browser-body{background:var(--bg); padding:28px 28px 38px;}
@@ -94,7 +95,7 @@
     background:var(--teal-soft); border:1px solid var(--teal); border-left:4px solid var(--teal);
     border-radius:8px; padding:14px 18px; margin-bottom:24px;
   }
-  .note-banner .kicker{color:var(--teal); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-weight:700; margin-bottom:4px; font-size:1rem;}
+  .note-banner .kicker{color:var(--teal); font-family:'Baloo 2'; font-weight:700; margin-bottom:4px; font-size:1rem;}
 
   /* ---------- sections ---------- */
   section{margin-bottom:34px;}
@@ -103,7 +104,7 @@
     display:flex; align-items:center; justify-content:center;
     width:30px;height:30px;border-radius:50%;
     background:var(--teal); color:#fff;
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-weight:700; font-size:.95rem; flex:none;
+    font-family:'Baloo 2'; font-weight:700; font-size:.95rem; flex:none;
   }
   .hint{color:var(--ink-soft); font-size:.9rem; margin-bottom:14px;}
 
@@ -125,7 +126,7 @@
     padding:10px 12px; display:flex; align-items:center; justify-content:space-between; gap:10px;
     box-shadow:0 3px 8px var(--shadow);
   }
-  .vocab-card .txt .fr{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-weight:700; font-size:.92rem;}
+  .vocab-card .txt .fr{font-family:'Baloo 2'; font-weight:700; font-size:.92rem;}
   .vocab-card .txt .en{font-size:.78rem; color:var(--ink-soft); font-style:italic;}
 
   /* ---------- site mockup ---------- */
@@ -136,19 +137,19 @@
   .site-mock .brand{color:var(--teal); font-weight:800; font-size:1.4rem; display:flex; align-items:center; gap:8px;}
   .site-mock .tagline{color:var(--ink-soft); font-size:.85rem; margin:6px 0 14px;}
   .badge-free{
-    display:inline-block; background:var(--orange); color:#fff; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-weight:700;
+    display:inline-block; background:var(--orange); color:#fff; font-family:'Baloo 2'; font-weight:700;
     padding:6px 14px; border-radius:20px; font-size:.85rem; margin-bottom:14px;
   }
   .stats-row{display:flex; gap:26px; margin-bottom:16px;}
   .stat{text-align:center;}
-  .stat .stat-num{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-weight:800; font-size:1.5rem; color:var(--orange);}
+  .stat .stat-num{font-family:'Baloo 2'; font-weight:800; font-size:1.5rem; color:var(--orange);}
   .stat .stat-lbl{font-size:.78rem; color:var(--ink-soft);}
   .field-list{display:grid; gap:7px; margin-bottom:14px;}
   .field-row{
     display:flex; justify-content:space-between; align-items:center;
     background:var(--bg); border-radius:6px; padding:7px 12px; font-size:.85rem;
   }
-  .field-row .val{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; color:var(--teal); font-weight:600;}
+  .field-row .val{font-family:'IBM Plex Mono'; color:var(--teal); font-weight:600;}
 
   /* ---------- profile cards ---------- */
   .profile-card{
@@ -160,7 +161,7 @@
     width:50px;height:50px;border-radius:50%; background:var(--teal); color:#fff;
     display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex:none;
   }
-  .profile-head .name{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-weight:700; font-size:1.08rem;}
+  .profile-head .name{font-family:'Baloo 2'; font-weight:700; font-size:1.08rem;}
   .profile-head .age{color:var(--ink-soft); font-size:.85rem;}
   .bio-row{display:flex; align-items:flex-start; gap:10px; margin-bottom:12px;}
   .bio-text{font-size:.94rem; flex:1;}
@@ -184,7 +185,7 @@
   .quiz-options{display:flex; gap:10px; justify-content:center; flex-wrap:wrap;}
   .quiz-options button{
     appearance:none; cursor:pointer; border:2px solid var(--line); background:var(--card);
-    border-radius:10px; padding:10px 20px; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:1rem; color:var(--ink);
+    border-radius:10px; padding:10px 20px; font-family:'Baloo 2'; font-size:1rem; color:var(--ink);
   }
   .quiz-options button:hover{border-color:var(--teal);}
   .quiz-options button.correct{background:var(--teal); border-color:var(--teal); color:#fff;}
@@ -192,7 +193,7 @@
   .quiz-feedback{text-align:center; margin-top:14px; font-size:.9rem; color:var(--ink-soft); min-height:36px;}
   .btn{
     appearance:none; cursor:pointer; border-radius:20px; padding:8px 18px;
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-weight:600; font-size:.88rem; border:1px solid var(--line);
+    font-family:'Baloo 2'; font-weight:600; font-size:.88rem; border:1px solid var(--line);
   }
   .btn.ghost{background:transparent; color:var(--ink-soft);}
   .btn.primary{background:var(--teal); color:#fff; border-color:var(--teal);}
@@ -206,7 +207,7 @@
   .open-card.personal .q{color:var(--orange);}
   .open-card textarea{
     width:100%; min-height:60px; border:1px solid var(--line); border-radius:8px;
-    padding:10px 12px; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:.92rem; resize:vertical;
+    padding:10px 12px; font-family:'Nunito Sans'; font-size:.92rem; resize:vertical;
     background:var(--bg);
   }
   .open-card textarea:focus-visible{outline:2px solid var(--teal); outline-offset:1px;}
@@ -716,5 +717,4 @@
 </script>
 
 <script src="../../assets/i18n.js?v=3"></script>
-<link rel="stylesheet" href="../../assets/theme.css?v=1">
 </body></html>

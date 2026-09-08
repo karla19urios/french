@@ -114,6 +114,7 @@
 <meta charset="UTF-8">
 <title>L'Heure en Français</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700;800&family=Caveat:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
   :root{
     --bleu:#002395;
@@ -148,7 +149,7 @@
   }
   *{box-sizing:border-box;}
   .page{
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    font-family:'Nunito Sans',sans-serif;
     color:var(--ink);
     background:var(--page-bg);
     padding:24px 14px 50px;
@@ -164,9 +165,9 @@
   }
   @media (max-width:560px){ .shell{padding:22px 16px 30px;} }
 
-  h1,h2,h3{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;margin:0;color:var(--ink);}
-  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;}
-  .hand{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;}
+  h1,h2,h3{font-family:'Baloo 2',cursive;margin:0;color:var(--ink);}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  .hand{font-family:'Caveat',cursive;}
   p{margin:0 0 8px;}
   em{font-style:italic;}
   strong{font-weight:800;}
@@ -179,7 +180,7 @@
     background:var(--teal-soft); border:1px solid var(--teal); border-left:4px solid var(--teal);
     border-radius:8px; padding:14px 18px; margin-bottom:24px;
   }
-  .note-banner .kicker{color:var(--bleu-text); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-weight:700; margin-bottom:4px; font-size:1rem;}
+  .note-banner .kicker{color:var(--bleu-text); font-family:'Baloo 2'; font-weight:700; margin-bottom:4px; font-size:1rem;}
   .note-banner .flag-note{font-size:.82rem; color:var(--ink-soft); font-style:italic; margin-top:8px; border-top:1px dashed var(--line); padding-top:8px;}
 
   section{margin-bottom:34px;}
@@ -188,7 +189,7 @@
     display:flex; align-items:center; justify-content:center;
     width:30px;height:30px;border-radius:50%;
     background:var(--teal); color:#fff;
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-weight:700; font-size:.95rem; flex:none;
+    font-family:'Baloo 2'; font-weight:700; font-size:.95rem; flex:none;
   }
   .hint{color:var(--ink-soft); font-size:.9rem; margin-bottom:14px;}
 
@@ -204,7 +205,7 @@
 
   .btn{
     appearance:none; cursor:pointer; border-radius:20px; padding:8px 18px;
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-weight:600; font-size:.88rem; border:1px solid var(--line);
+    font-family:'Baloo 2'; font-weight:600; font-size:.88rem; border:1px solid var(--line);
     background:var(--card); color:var(--ink);
   }
   .btn.ghost{background:transparent; color:var(--ink-soft);}
@@ -218,7 +219,7 @@
   .clock-svg{width:190px; height:190px; flex:none;}
   .clock-circle{fill:var(--bg); stroke:var(--line); stroke-width:3;}
   .clock-tick{stroke:var(--ink-soft); stroke-width:2;}
-  .clock-num{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:13px; fill:var(--ink); text-anchor:middle; dominant-baseline:middle;}
+  .clock-num{font-family:'Baloo 2'; font-size:13px; fill:var(--ink); text-anchor:middle; dominant-baseline:middle;}
   .hour-hand{stroke:var(--ink); stroke-width:5; stroke-linecap:round;}
   .minute-hand{stroke:var(--rouge); stroke-width:3.5; stroke-linecap:round;}
   .clock-center{fill:var(--ink);}
@@ -228,14 +229,14 @@
   .stepper .lbl{width:64px; font-size:.85rem; color:var(--ink-soft); font-weight:700;}
   .stepper button{
     appearance:none; cursor:pointer; border:1px solid var(--line); background:var(--bg);
-    color:var(--ink); width:30px; height:30px; border-radius:8px; font-size:1rem; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink); width:30px; height:30px; border-radius:8px; font-size:1rem; font-family:'Baloo 2';
   }
   .stepper button:hover{border-color:var(--teal);}
   .stepper .val{
-    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:1.1rem; font-weight:600; min-width:52px; text-align:center;
+    font-family:'IBM Plex Mono'; font-size:1.1rem; font-weight:600; min-width:52px; text-align:center;
   }
   .digital{
-    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:1.3rem; font-weight:600; color:var(--bleu-text);
+    font-family:'IBM Plex Mono'; font-size:1.3rem; font-weight:600; color:var(--bleu-text);
     background:var(--teal-soft); border-radius:8px; padding:6px 14px; text-align:center;
   }
   .phrase-box{
@@ -255,18 +256,18 @@
     display:flex; align-items:center; justify-content:space-between; gap:10px;
     box-shadow:0 3px 8px var(--shadow);
   }
-  .qa-card .digital-mini{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; color:var(--rouge); font-weight:700; font-size:.85rem;}
+  .qa-card .digital-mini{font-family:'IBM Plex Mono'; color:var(--rouge); font-weight:700; font-size:.85rem;}
   .qa-card .txt{font-size:.92rem;}
 
   /* ---------- quiz ---------- */
   .quiz-shell{background:var(--card); border-radius:12px; padding:20px 22px; box-shadow:0 8px 20px var(--shadow);}
   .quiz-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;}
   .quiz-score{background:var(--teal); color:#fff; padding:4px 12px; border-radius:20px; font-size:.85rem;}
-  .quiz-prompt{font-size:1.3rem; text-align:center; margin-bottom:16px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-weight:600; color:var(--rouge);}
+  .quiz-prompt{font-size:1.3rem; text-align:center; margin-bottom:16px; font-family:'IBM Plex Mono'; font-weight:600; color:var(--rouge);}
   .quiz-options{display:flex; gap:10px; justify-content:center; flex-wrap:wrap;}
   .quiz-options button{
     appearance:none; cursor:pointer; border:2px solid var(--line); background:var(--card);
-    border-radius:10px; padding:10px 18px; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-weight:700; font-size:.92rem; color:var(--ink);
+    border-radius:10px; padding:10px 18px; font-family:'Nunito Sans'; font-weight:700; font-size:.92rem; color:var(--ink);
   }
   .quiz-options button:hover{border-color:var(--teal);}
   .quiz-options button.correct{background:var(--teal); border-color:var(--teal); color:#fff;}
@@ -280,14 +281,14 @@
   }
   .routine-card .who{display:flex; align-items:center; gap:10px; min-width:220px; flex:1;}
   .routine-card .icon{font-size:1.4rem;}
-  .routine-card .je{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-weight:700; font-size:.92rem;}
+  .routine-card .je{font-family:'Baloo 2'; font-weight:700; font-size:.92rem;}
   .routine-card .en{font-size:.78rem; color:var(--ink-soft); font-style:italic;}
   .mini-stepper{display:flex; align-items:center; gap:6px;}
   .mini-stepper button{
     appearance:none; cursor:pointer; border:1px solid var(--line); background:var(--bg); color:var(--ink);
     width:24px; height:24px; border-radius:6px; font-size:.85rem;
   }
-  .mini-stepper .val{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:.85rem; min-width:22px; text-align:center;}
+  .mini-stepper .val{font-family:'IBM Plex Mono'; font-size:.85rem; min-width:22px; text-align:center;}
   .routine-clear{
     background:transparent; border:none; color:var(--ink-soft); cursor:pointer; font-size:.75rem; text-decoration:underline;
   }
@@ -296,19 +297,19 @@
   .conv-wrap{background:var(--card); border-radius:12px; padding:20px 22px; box-shadow:0 8px 20px var(--shadow); overflow-x:auto;}
   table.conv-table{border-collapse:collapse; width:100%; min-width:520px;}
   table.conv-table th, table.conv-table td{padding:8px 6px; text-align:center; font-size:.82rem;}
-  table.conv-table thead th{background:var(--teal); color:#fff; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; border-radius:4px;}
+  table.conv-table thead th{background:var(--teal); color:#fff; font-family:'IBM Plex Mono'; border-radius:4px;}
   table.conv-table tbody th{text-align:left; font-weight:700; font-size:.78rem; color:var(--ink-soft);}
-  table.conv-table td{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-weight:600;}
+  table.conv-table td{font-family:'IBM Plex Mono'; font-weight:600;}
   .ampm-row td{padding-top:4px;}
   .ampm-tag{
-    display:inline-block; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:.85rem; color:var(--rouge);
+    display:inline-block; font-family:'Baloo 2'; font-size:.85rem; color:var(--rouge);
     border-top:2px solid var(--rouge); padding-top:3px;
   }
   .conv-mini{
     display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-top:18px;
     border-top:1px solid var(--line); padding-top:16px; justify-content:center;
   }
-  .conv-result{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:1.05rem; color:var(--bleu-text); font-weight:600;}
+  .conv-result{font-family:'IBM Plex Mono'; font-size:1.05rem; color:var(--bleu-text); font-weight:600;}
 
   /* ---------- final card ---------- */
   .final-card{
@@ -873,5 +874,4 @@
 </script>
 
 <script src="../../assets/i18n.js?v=3"></script>
-<link rel="stylesheet" href="../../assets/theme.css?v=1">
 </body></html>

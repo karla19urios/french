@@ -114,6 +114,7 @@
 <meta charset="UTF-8">
 <title>Lecture : Le Climat à Montréal</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700;800&family=Caveat:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
   :root{
     --bleu:#002395;
@@ -153,7 +154,7 @@
   }
   *{box-sizing:border-box;}
   .page{
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    font-family:'Nunito Sans',sans-serif;
     color:var(--ink);
     background:var(--page-bg);
     padding:24px 14px 50px;
@@ -163,9 +164,9 @@
     max-width:920px; margin:0 auto; height:8px; border-radius:14px 14px 0 0; overflow:hidden;
     background:linear-gradient(90deg, var(--bleu) 33%, var(--blanc) 33%, var(--blanc) 66%, var(--rouge) 66%);
   }
-  h1,h2,h3{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;margin:0;color:var(--ink);}
-  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;}
-  .hand{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;}
+  h1,h2,h3{font-family:'Baloo 2',cursive;margin:0;color:var(--ink);}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  .hand{font-family:'Caveat',cursive;}
   p{margin:0 0 8px;}
   em{font-style:italic;}
   strong{font-weight:800;}
@@ -188,7 +189,7 @@
   .chrome-dots span:nth-child(3){background:var(--dot-green);}
   .chrome-bar{
     flex:1; background:var(--card); border-radius:8px; padding:7px 16px;
-    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:.78rem; color:var(--ink-soft);
+    font-family:'IBM Plex Mono',monospace; font-size:.78rem; color:var(--ink-soft);
     text-align:center; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
   }
   .browser-body{background:var(--bg); padding:28px 28px 38px;}
@@ -204,7 +205,7 @@
     background:var(--teal-soft); border:1px solid var(--teal); border-left:4px solid var(--teal);
     border-radius:8px; padding:14px 18px; margin-bottom:24px;
   }
-  .note-banner .kicker{color:var(--bleu-text); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-weight:700; margin-bottom:4px; font-size:1rem;}
+  .note-banner .kicker{color:var(--bleu-text); font-family:'Baloo 2'; font-weight:700; margin-bottom:4px; font-size:1rem;}
 
   /* ---------- sections ---------- */
   section{margin-bottom:34px;}
@@ -213,10 +214,10 @@
     display:flex; align-items:center; justify-content:center;
     width:30px;height:30px;border-radius:50%;
     background:var(--teal); color:#fff;
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-weight:700; font-size:.95rem; flex:none;
+    font-family:'Baloo 2'; font-weight:700; font-size:.95rem; flex:none;
   }
   .hint{color:var(--ink-soft); font-size:.9rem; margin-bottom:14px;}
-  .sub-head{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-weight:700; font-size:.95rem; margin:16px 0 8px; color:var(--ink);}
+  .sub-head{font-family:'Baloo 2'; font-weight:700; font-size:.95rem; margin:16px 0 8px; color:var(--ink);}
   .sub-head:first-child{margin-top:0;}
   .group-note{font-size:.78rem; color:var(--ink-soft); font-style:italic; margin:-4px 0 10px;}
 
@@ -238,7 +239,7 @@
     padding:10px 12px; display:flex; align-items:center; justify-content:space-between; gap:10px;
     box-shadow:0 3px 8px var(--shadow);
   }
-  .vocab-card .txt .fr{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-weight:700; font-size:.92rem;}
+  .vocab-card .txt .fr{font-family:'Baloo 2'; font-weight:700; font-size:.92rem;}
   .vocab-card .txt .en{font-size:.78rem; color:var(--ink-soft); font-style:italic;}
 
   .phen-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:10px;}
@@ -248,7 +249,7 @@
   }
   .phen-top{display:flex; align-items:center; justify-content:space-between; gap:8px;}
   .phen-top .icon{font-size:1.4rem;}
-  .phen-top .fr{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-weight:700; font-size:.9rem; flex:1; margin:0 8px;}
+  .phen-top .fr{font-family:'Baloo 2'; font-weight:700; font-size:.9rem; flex:1; margin:0 8px;}
   .phen-en{font-size:.76rem; color:var(--ink-soft); font-style:italic; margin:2px 0 6px;}
   .phen-season{
     font-size:.75rem; background:var(--teal-soft); color:var(--bleu-text); border-radius:12px;
@@ -264,7 +265,7 @@
   .site-mock .brand{color:var(--bleu-text); font-weight:800; font-size:1.4rem; display:flex; align-items:center; gap:8px;}
   .site-mock .tagline{color:var(--ink-soft); font-size:.85rem; margin:6px 0 14px;}
   .breadcrumb{
-    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-size:.78rem; color:var(--ink-soft);
+    font-family:'IBM Plex Mono'; font-size:.78rem; color:var(--ink-soft);
     background:var(--bg); border-radius:6px; padding:7px 12px; margin-bottom:14px; display:inline-block;
   }
   .breadcrumb b{color:var(--bleu-text);}
@@ -274,7 +275,7 @@
     background:var(--bg); border-radius:14px; padding:4px 10px;
   }
   .nav-pills span.active{background:var(--teal); color:#fff;}
-  .article-title{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-weight:800; font-size:1.15rem; margin-bottom:4px;}
+  .article-title{font-family:'Baloo 2'; font-weight:800; font-size:1.15rem; margin-bottom:4px;}
   .article-sub{color:var(--rouge); font-weight:700; font-size:.92rem;}
 
   /* ---------- reading text ---------- */
@@ -289,26 +290,26 @@
     box-shadow:0 6px 16px var(--shadow);
   }
   .season-card .head{display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;}
-  .season-card .head .lbl{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-weight:700; font-size:1rem; display:flex; align-items:center; gap:8px;}
+  .season-card .head .lbl{font-family:'Baloo 2'; font-weight:700; font-size:1rem; display:flex; align-items:center; gap:8px;}
   .season-card .body-text{font-size:.9rem;}
 
   .temp-table-wrap{overflow-x:auto; border-radius:10px; box-shadow:0 6px 16px var(--shadow);}
   table.temp-table{border-collapse:collapse; width:100%; min-width:640px; background:var(--card);}
   table.temp-table caption{
-    text-align:left; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-weight:700; padding:12px 14px; color:var(--ink);
+    text-align:left; font-family:'Baloo 2'; font-weight:700; padding:12px 14px; color:var(--ink);
     background:var(--card); font-size:.95rem;
   }
   table.temp-table th, table.temp-table td{
     padding:8px 10px; text-align:center; font-size:.82rem; border-bottom:1px solid var(--line);
   }
   table.temp-table thead th{
-    background:var(--teal); color:#fff; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-weight:600; cursor:pointer;
+    background:var(--teal); color:#fff; font-family:'IBM Plex Mono'; font-weight:600; cursor:pointer;
   }
   table.temp-table thead th:first-child{cursor:default;}
   table.temp-table thead th:hover:not(:first-child){background:var(--rouge);}
   table.temp-table tbody th{text-align:left; font-weight:700; background:var(--bg); font-size:.8rem;}
-  table.temp-table td.max{color:var(--rouge); font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-weight:600;}
-  table.temp-table td.min{color:var(--bleu-text); font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace; font-weight:600;}
+  table.temp-table td.max{color:var(--rouge); font-family:'IBM Plex Mono'; font-weight:600;}
+  table.temp-table td.min{color:var(--bleu-text); font-family:'IBM Plex Mono'; font-weight:600;}
   .table-hint{font-size:.78rem; color:var(--ink-soft); font-style:italic; padding:10px 14px; background:var(--card);}
 
   /* ---------- quiz ---------- */
@@ -320,7 +321,7 @@
   .quiz-options{display:flex; gap:10px; justify-content:center; flex-wrap:wrap;}
   .quiz-options button{
     appearance:none; cursor:pointer; border:2px solid var(--line); background:var(--card);
-    border-radius:10px; padding:10px 20px; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:1rem; color:var(--ink);
+    border-radius:10px; padding:10px 20px; font-family:'Baloo 2'; font-size:1rem; color:var(--ink);
   }
   .quiz-options button:hover{border-color:var(--teal);}
   .quiz-options button.correct{background:var(--teal); border-color:var(--teal); color:#fff;}
@@ -328,7 +329,7 @@
   .quiz-feedback{text-align:center; margin-top:14px; font-size:.9rem; color:var(--ink-soft); min-height:36px;}
   .btn{
     appearance:none; cursor:pointer; border-radius:20px; padding:8px 18px;
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-weight:600; font-size:.88rem; border:1px solid var(--line);
+    font-family:'Baloo 2'; font-weight:600; font-size:.88rem; border:1px solid var(--line);
   }
   .btn.ghost{background:transparent; color:var(--ink-soft);}
   .btn.primary{background:var(--teal); color:#fff; border-color:var(--teal);}
@@ -342,7 +343,7 @@
   .open-card.personal .q{color:var(--rouge);}
   .open-card textarea{
     width:100%; min-height:60px; border:1px solid var(--line); border-radius:8px;
-    padding:10px 12px; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:.92rem; resize:vertical;
+    padding:10px 12px; font-family:'Nunito Sans'; font-size:.92rem; resize:vertical;
     background:var(--bg); color:var(--ink);
   }
   .open-card textarea:focus-visible{outline:2px solid var(--teal); outline-offset:1px;}
@@ -810,5 +811,4 @@
 </script>
 
 <script src="../../assets/i18n.js?v=3"></script>
-<link rel="stylesheet" href="../../assets/theme.css?v=1">
 </body></html>

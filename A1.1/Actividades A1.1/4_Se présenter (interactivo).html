@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Se Présenter</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&family=Caveat:wght@600;700&family=IBM+Plex+Mono:wght@500&display=swap');
 
   :root{
     --board:#1b2a23;
@@ -26,20 +27,20 @@
   body{
     background:var(--board);
     color:var(--chalk);
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    font-family:'Nunito Sans', system-ui, sans-serif;
     line-height:1.55;
     margin:0;
   }
   img,svg{max-width:100%;}
 
   h1,h2,h3,.display{
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    font-family:'Baloo 2', 'Nunito Sans', sans-serif;
     text-wrap:balance;
     letter-spacing:.2px;
   }
 
-  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;}
-  .hand{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;}
+  .mono{font-family:'IBM Plex Mono', ui-monospace, monospace;}
+  .hand{font-family:'Caveat', cursive;}
 
   a{color:var(--yellow);}
 
@@ -76,7 +77,7 @@
     display:inline-flex;
     align-items:center;
     gap:8px;
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    font-family:'Caveat',cursive;
     font-size:1.4rem;
     color:var(--blue);
     margin-bottom:6px;
@@ -120,7 +121,7 @@
     margin:64px 0 20px;
   }
   .section-head .tag{
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    font-family:'Caveat',cursive;
     font-size:1.5rem;
     color:var(--coral);
     white-space:nowrap;
@@ -164,7 +165,7 @@
   }
   .vt-card.vous{background:rgba(138,182,214,.14); border:1px solid rgba(138,182,214,.35);}
   .vt-card.tu{background:rgba(226,131,111,.14); border:1px solid rgba(226,131,111,.35);}
-  .vt-card b{display:block;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:1.05rem;margin-bottom:4px;}
+  .vt-card b{display:block;font-family:'Baloo 2';font-size:1.05rem;margin-bottom:4px;}
   .vt-card.vous b{color:var(--blue);}
   .vt-card.tu b{color:var(--coral);}
 
@@ -191,7 +192,7 @@
     appearance:none;
     border:none;
     cursor:pointer;
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    font-family:'Baloo 2';
     font-size:.9rem;
     padding:9px 18px;
     border-radius:999px;
@@ -237,14 +238,14 @@
   }
   .phrase-card .cat .ico{font-size:1rem;}
   .phrase-card .fr{
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    font-family:'Baloo 2';
     font-size:1.28rem;
     color:var(--chalk);
     grid-column:1;
   }
   .phrase-card .variant-badge{
     display:inline-block;
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    font-family:'Nunito Sans';
     font-size:.62rem;
     font-weight:800;
     text-transform:uppercase;
@@ -280,7 +281,7 @@
   .phrase-card .answer .lbl{color:var(--yellow);font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:.8px;margin-right:6px;}
   .phrase-card .note{
     grid-column:1;
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    font-family:'Caveat',cursive;
     color:var(--yellow);
     font-size:1.05rem;
     margin-top:4px;
@@ -320,7 +321,7 @@
     border:1px solid var(--chalk-faint);
     background:var(--board);
     color:var(--chalk-dim);
-    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;
+    font-family:'IBM Plex Mono';
     font-size:.75rem;
     display:flex;align-items:center;justify-content:center;
     cursor:pointer;
@@ -361,7 +362,7 @@
     margin-bottom:6px;
   }
   .bubble .fr-q{
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    font-family:'Baloo 2';
     font-size:1.4rem;
     color:var(--chalk);
   }
@@ -395,7 +396,7 @@
     padding:12px 14px;
     color:var(--chalk);
     font-size:1rem;
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    font-family:'Nunito Sans';
   }
   .answer-row input[type="text"]::placeholder{color:var(--chalk); opacity:1;}
   .answer-row input[type="text"]:focus-visible{outline:2px solid var(--yellow); outline-offset:1px;}
@@ -404,7 +405,7 @@
     appearance:none;
     border:none;
     cursor:pointer;
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    font-family:'Baloo 2';
     font-size:.95rem;
     padding:11px 20px;
     border-radius:10px;
@@ -430,7 +431,7 @@
     border:1px dashed var(--chalk-faint);
     background:transparent;
     color:var(--chalk-dim);
-    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;
+    font-family:'IBM Plex Mono';
     font-size:.78rem;
     padding:6px 10px;
     border-radius:8px;
@@ -474,7 +475,7 @@
   }
   .gender-btn:hover{border-color:var(--yellow);}
   .gender-btn.selected{border-color:var(--yellow); background:rgba(232,201,74,.1);}
-  .gender-btn .big{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:1.2rem; display:block; margin-top:6px;}
+  .gender-btn .big{font-family:'Baloo 2'; font-size:1.2rem; display:block; margin-top:6px;}
 
   /* ---------- pinned intro card ---------- */
   .pin-wrap{
@@ -516,7 +517,7 @@
     color:var(--paper-ink);
   }
   .index-card .kicker{
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    font-family:'Caveat',cursive;
     font-size:1.2rem;
     color:#7a5230;
   }
@@ -1371,5 +1372,4 @@ I18N.add({
 });
 </script>
 
-<link rel="stylesheet" href="../../assets/theme.css?v=1">
 </body></html>
