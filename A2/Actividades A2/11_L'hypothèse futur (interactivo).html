@@ -859,7 +859,9 @@
       if(el.tagName === 'INPUT' || el.tagName === 'SELECT'){
         row = el.closest('.fill-line, .sel-line') || el.parentElement || el;
       }
-      var txt = (row.textContent || '').replace(/\s+/g,' ').trim();
+      var clone = row.cloneNode(true);
+      Array.prototype.forEach.call(clone.querySelectorAll('select'), function(s){ s.remove(); });
+      var txt = (clone.textContent || '').replace(/\s+/g,' ').trim();
       if(txt) wrongList.push(txt);
     });
     if(window.__gtMark) window.__gtMark(id, wrongList);
