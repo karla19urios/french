@@ -113,301 +113,447 @@
 })();
 </script>
 <title>L'hypothèse sur le futur</title>
+<style>body .bar{padding-right:168px!important}@media (max-width:560px){body .bar{padding-right:156px!important}}</style>
 <style>
-  :root{
-    --bleu:#393B66; --blanc:#ffffff; --rouge:#378EF6;
-    --bg:#EAF2FE; --card:#ffffff; --card-2:#F5F9FF;
-    --text:#393B66; --muted:#646363; --border:#D5E3F8;
-    --ok:#0f7b52; --ok-bg:#eaf6f0; --ko:#c2202f; --ko-bg:#fdeced;
-  }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --bg:#1D1F3A; --card:#2A2C50; --card-2:#31345E;
-      --text:#F4F6FF; --muted:#B8B8B8; --border:#3F4278;
-      --bleu:#378EF6; --rouge:#7DB6FA;
-      --ok:#4ade80; --ok-bg:#16281f; --ko:#ff8a94; --ko-bg:#2b1a1e;
-    }
-  }
-  :root[data-theme="dark"]{
+:root{
+  --bleu:#393B66; --blanc:#ffffff; --rouge:#378EF6;
+  --bg:#EAF2FE; --card:#ffffff; --card-2:#F5F9FF;
+  --text:#393B66; --muted:#646363; --border:#D5E3F8;
+  --ok:#0f9d58; --okbg:#e8f5ee; --ko:#d93025; --kobg:#fdecea;
+  --radius:14px;
+  --sans:"Inter","Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
     --bg:#1D1F3A; --card:#2A2C50; --card-2:#31345E;
     --text:#F4F6FF; --muted:#B8B8B8; --border:#3F4278;
     --bleu:#378EF6; --rouge:#7DB6FA;
-    --ok:#4ade80; --ok-bg:#16281f; --ko:#ff8a94; --ko-bg:#2b1a1e;
+    --okbg:#13301f; --kobg:#331517; --ok:#4ade80; --ko:#ff7a73;
   }
-
-  *{box-sizing:border-box;}
-  html{ scroll-behavior:smooth; }
-  body{
-    margin:0; padding-bottom:4.5rem;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    background:var(--bg); color:var(--text); line-height:1.5;
-  }
-  header.flag{
-    background:linear-gradient(90deg,#378EF6 33%,#ffffff 33%,#ffffff 66%,#393B66 66%);
-    height:8px; width:100%;
-  }
-  nav.tabs{ display:flex; justify-content:center; gap:.5rem; flex-wrap:wrap; padding:1.2rem 1rem 0; }
-  nav.tabs a{
-    text-decoration:none; color:var(--muted); font-size:.88rem; font-weight:600;
-    padding:.5rem 1rem; border-radius:999px;
-    border:1px solid var(--border); background:var(--card);
-    transition:border-color .12s ease, color .12s ease;
-  }
-  nav.tabs a:hover{ border-color:var(--bleu); color:var(--bleu); }
-  nav.tabs .here{
-    font-size:.88rem; font-weight:600; padding:.5rem 1rem; border-radius:999px;
-    background:var(--bleu); border:1px solid var(--bleu); color:#fff;
-  }
-
-  .hero{ padding:2.4rem 1.5rem 1.2rem; text-align:center; }
-  .eyebrow{
-    font-size:.75rem; font-weight:700; text-transform:uppercase;
-    letter-spacing:.08em; color:var(--bleu); margin:0 0 .5rem;
-  }
-  .hero h1{ margin:0 0 .4rem; font-size:2.4rem; letter-spacing:-0.02em; text-wrap:balance; }
-  .hero .sub{ margin:0 auto; max-width:58ch; color:var(--muted); font-size:1.05rem; }
-
-  main{
-    max-width:1000px; margin:0 auto; padding:0 1.5rem 3rem;
-    display:flex; flex-direction:column; gap:1.2rem;
-  }
-  .card{
-    background:var(--card); border:1px solid var(--border);
-    border-radius:16px; padding:1.6rem; position:relative; overflow:hidden;
-    scroll-margin-top:1rem;
-  }
-  .card::before{
-    content:""; position:absolute; top:0; left:0; right:0; height:4px;
-    background:linear-gradient(90deg,#378EF6 33%,#ffffff 33%,#ffffff 66%,#393B66 66%);
-  }
-  .sec-label{
-    font-size:.78rem; font-weight:700; text-transform:uppercase;
-    letter-spacing:.06em; color:var(--bleu); margin:0 0 .2rem;
-  }
-  .card h2{ margin:0 0 .5rem; font-size:1.3rem; letter-spacing:-0.01em; }
-  .consigne{ margin:0 0 1rem; color:var(--muted); font-size:.95rem; }
-
-  .encadre{
-    background:var(--card-2); border:1px solid var(--border);
-    border-left:3px solid var(--bleu); border-radius:0 12px 12px 0;
-    padding:.9rem 1.1rem; margin:0 0 1rem; font-size:1.05rem;
-  }
-  .encadre b{ color:var(--rouge); }
-  .en{
-    display:block; margin-top:.5rem; font-size:.88rem; color:var(--muted); font-style:italic;
-  }
-  .en::before{ content:"EN · "; font-style:normal; font-weight:700; letter-spacing:.04em; }
-
-  .formule{
-    display:flex; flex-wrap:wrap; align-items:center; gap:.5rem;
-    margin:0 0 1rem;
-  }
-  .formule .box{
-    background:var(--card-2); border:1px solid var(--border); border-radius:10px;
-    padding:.5rem .9rem; font-size:.8rem; font-weight:700;
-    text-transform:uppercase; letter-spacing:.05em; color:var(--muted);
-  }
-  .formule .box.si{ background:var(--bleu); border-color:var(--bleu); color:#fff; }
-  .formule .box.fut{ border-color:var(--rouge); color:var(--rouge); }
-  .formule .op{ color:var(--muted); font-size:1.1rem; }
-
-  .alerte{
-    background:var(--ko-bg); border:1px solid var(--ko);
-    border-radius:12px; padding:.8rem 1rem; margin:0 0 1rem; font-size:.95rem;
-  }
-  .alerte .lab{
-    font-size:.68rem; font-weight:700; text-transform:uppercase;
-    letter-spacing:.05em; color:var(--ko); display:block; margin-bottom:.2rem;
-  }
-  .alerte s{ opacity:.6; }
-
-  .paires{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:.5rem; }
-  .paire{
-    background:var(--card-2); border:1px solid var(--border);
-    border-radius:10px; padding:.6rem .8rem; font-size:.97rem;
-  }
-  .paire b{ color:var(--rouge); }
-  .paire .k{
-    display:block; font-size:.68rem; text-transform:uppercase;
-    letter-spacing:.05em; color:var(--muted); font-weight:700; margin-bottom:.15rem;
-  }
-
-  .toc{ display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:.5rem; }
-  .toc a{
-    display:flex; align-items:center; gap:.5rem;
-    background:var(--card-2); border:1px solid var(--border); border-radius:10px;
-    padding:.5rem .7rem; text-decoration:none; color:var(--text); font-size:.9rem;
-    transition:border-color .12s ease;
-  }
-  .toc a:hover{ border-color:var(--bleu); }
-  .toc a .n{
-    font-size:.7rem; font-weight:700; color:#fff; background:var(--bleu);
-    width:22px; height:22px; border-radius:50%;
-    display:inline-flex; align-items:center; justify-content:center; flex-shrink:0;
-  }
-  .toc a .ic{
-    font-size:1rem; line-height:1; flex-shrink:0;
-    font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
-  }
-  .toc a .pts{ margin-left:auto; font-size:.75rem; color:var(--muted); font-variant-numeric:tabular-nums; }
-
-  .goals{ margin:0; padding-left:1.1rem; display:flex; flex-direction:column; gap:.35rem; }
-  .goals li::marker{ color:var(--rouge); }
-
-  /* ---------- chaîne ---------- */
-  .chaine{
-    display:flex; flex-wrap:wrap; gap:.4rem; align-items:center;
-    background:var(--card-2); border:1px solid var(--border);
-    border-radius:12px; padding:.9rem 1rem; margin:0 0 1rem; font-size:.95rem;
-  }
-  .chaine span.e{
-    background:var(--card); border:1px solid var(--border);
-    border-radius:999px; padding:.25rem .7rem; font-weight:600;
-  }
-  .chaine span.fl{ color:var(--rouge); font-weight:700; }
-
-  /* ---------- oral ---------- */
-  .roulette{
-    background:var(--card-2); border:1px solid var(--border);
-    border-radius:14px; padding:1.4rem 1.2rem; text-align:center; margin-bottom:1rem;
-  }
-  .roulette .qq{ font-size:1.3rem; font-weight:700; color:var(--bleu); min-height:2.6em; display:flex; align-items:center; justify-content:center; }
-  .roulette .rep{ font-size:.95rem; font-style:italic; color:var(--muted); min-height:1.6em; margin-top:.4rem; }
-  .prompt-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:.6rem; }
-  .prompt{ background:var(--card-2); border:1px solid var(--border); border-radius:12px; padding:.9rem 1rem; }
-  .prompt .h{ font-weight:700; font-size:.95rem; margin-bottom:.25rem; }
-  .prompt .ex{ color:var(--muted); font-size:.9rem; font-style:italic; }
-
-  /* ---------- items ---------- */
-  .ex-list{
-    display:flex; flex-direction:column; gap:.6rem;
-    margin:0 0 1rem; padding:0; list-style:none; counter-reset:q;
-  }
-  .q{
-    display:flex; flex-wrap:wrap; align-items:center; gap:.4rem;
-    background:var(--card-2); border:1px solid var(--border);
-    border-radius:10px; padding:.7rem .9rem; font-size:1rem;
-  }
-  .q::before{
-    counter-increment:q; content:counter(q);
-    font-size:.7rem; font-weight:700; color:#fff; background:var(--bleu);
-    width:22px; height:22px; border-radius:50%;
-    display:inline-flex; align-items:center; justify-content:center;
-    flex-shrink:0; margin-right:.2rem;
-  }
-  .q .inf{ color:var(--muted); font-size:.85rem; }
-  .q .full{ flex:1 1 100%; }
-  input.gap, select.pick{
-    font:inherit; font-size:1rem; padding:.3rem .5rem;
-    border-radius:8px; border:1px solid var(--border);
-    background:var(--card); color:var(--text);
-  }
-  input.gap{ width:8em; }
-  input.gap.wide{ width:12em; }
-  input.gap.xl{ width:100%; max-width:30em; }
-  input.gap:focus-visible, select.pick:focus-visible,
-  button:focus-visible, .toc a:focus-visible, nav.tabs a:focus-visible{
-    outline:2px solid var(--bleu); outline-offset:2px;
-  }
-  .q.good{ border-color:var(--ok); background:var(--ok-bg); }
-  .q.bad{ border-color:var(--ko); background:var(--ko-bg); }
-  .verdict{ font-size:.85rem; font-weight:600; margin-left:auto; white-space:nowrap; }
-  .q.good .verdict{ color:var(--ok); }
-  .q.bad .verdict{ color:var(--ko); }
-  .commentaire{
-    flex:1 1 100%; font-size:.9rem; font-style:italic; color:var(--muted);
-    display:none; padding-top:.3rem; border-top:1px dashed var(--border); margin-top:.3rem;
-  }
-  .q.good .commentaire, .q.bad .commentaire{ display:block; }
-
-  .actions{ display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; }
-  button.btn{
-    font:inherit; font-size:.9rem; font-weight:600;
-    padding:.55rem 1.1rem; border-radius:999px;
-    border:1px solid var(--bleu); background:var(--bleu); color:#fff; cursor:pointer;
-  }
-  button.btn.ghost{ background:transparent; color:var(--bleu); }
-  button.btn:hover{ filter:brightness(1.08); }
-  .score{ font-size:.88rem; font-weight:700; color:var(--muted); font-variant-numeric:tabular-nums; }
-
-  .scorebar{
-    position:fixed; left:0; right:0; bottom:0; z-index:20;
-    background:var(--card); border-top:1px solid var(--border); padding:.6rem 1rem;
-  }
-  .scorebar .inner{
-    max-width:1000px; margin:0 auto; width:100%;
-    display:flex; align-items:center; gap:1rem;
-  }
-  .scorebar .big{ font-size:1.05rem; font-weight:700; color:var(--bleu); font-variant-numeric:tabular-nums; white-space:nowrap; }
-  .bar{ flex:1 1 120px; height:8px; border-radius:999px; background:var(--border); overflow:hidden; }
-  .bar > span{ display:block; height:100%; width:0%; background:var(--bleu); transition:width .3s ease; }
-
-  footer{ text-align:center; color:var(--muted); font-size:.82rem; padding:0 1.5rem 2rem; }
-  footer a{ color:var(--bleu); text-decoration:none; font-weight:600; }
-  @media (prefers-reduced-motion: reduce){ *{ transition:none !important; scroll-behavior:auto !important; } }
+}
+:root[data-theme="dark"]{
+  --bg:#1D1F3A; --card:#2A2C50; --card-2:#31345E;
+  --text:#F4F6FF; --muted:#B8B8B8; --border:#3F4278;
+  --bleu:#378EF6; --rouge:#7DB6FA;
+  --okbg:#13301f; --kobg:#331517; --ok:#4ade80; --ko:#ff7a73;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px 80px}
+.stripe{height:5px;background:linear-gradient(90deg,#378EF6 33%,#ffffff 33%,#ffffff 66%,#393B66 66%)}
+header.hero{padding:34px 0 18px;text-align:center}
+header.hero .kicker{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600}
+header.hero h1{font-family:var(--serif);font-size:2.3rem;line-height:1.15;margin:.3em 0 .15em;font-weight:600}
+header.hero .sub{color:var(--muted);font-size:1.02rem;margin:0 auto;max-width:34em}
+.bar{position:sticky;top:0;z-index:40;background:var(--bg);border-bottom:1px solid var(--border);
+     display:flex;align-items:center;gap:12px;padding:9px 16px;flex-wrap:wrap}
+.bar .score{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bar .track{flex:1;min-width:120px;height:8px;border-radius:99px;background:var(--border);overflow:hidden}
+.bar .fill{height:100%;width:0;background:linear-gradient(90deg,var(--bleu),var(--rouge));transition:width .45s ease}
+.btn{font:inherit;font-size:.86rem;font-weight:600;cursor:pointer;border-radius:99px;padding:7px 15px;
+     border:1px solid var(--border);background:var(--card);color:var(--text);transition:.15s}
+.btn:hover{border-color:var(--bleu);color:var(--bleu)}
+.btn.primary{background:var(--bleu);border-color:var(--bleu);color:#fff}
+.btn.primary:hover{filter:brightness(1.1);color:#fff}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;margin:18px 0;
+      box-shadow:0 1px 2px rgba(0,0,0,.04)}
+h2.sec{font-family:var(--serif);font-size:1.5rem;margin:34px 0 4px;display:flex;align-items:center;gap:.45em;scroll-margin-top:60px}
+h2.sec .n{display:inline-flex;align-items:center;justify-content:center;width:1.7em;height:1.7em;border-radius:50%;
+          background:var(--bleu);color:#fff;font-size:.72rem;font-family:var(--sans);font-weight:700;flex:none}
+.lead{color:var(--muted);margin:.2em 0 0;font-size:.96rem}
+h3{font-size:1.06rem;margin:0 0 .5em;display:flex;align-items:center;gap:.4em}
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:9px;margin-top:14px}
+.toc a{display:flex;justify-content:space-between;gap:8px;text-decoration:none;color:var(--text);background:var(--card-2);
+       border:1px solid var(--border);border-radius:10px;padding:9px 13px;font-size:.9rem;transition:.15s}
+.toc a:hover{border-color:var(--bleu);color:var(--bleu)}
+.toc a span{color:var(--muted);font-size:.8rem;white-space:nowrap}
+.consigne{font-weight:600;margin:0 0 .3em}
+.aide{color:var(--muted);font-size:.87rem;margin:.1em 0 .9em}
+input[type=text]{font:inherit;font-size:.95rem;padding:6px 10px;border-radius:8px;border:1px solid var(--border);
+   background:var(--card-2);color:var(--text);min-width:9em;transition:.15s}
+input[type=text]:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(55,142,246,.12)}
+input.ok{border-color:var(--ok);background:var(--okbg)}
+input.bad{border-color:var(--ko);background:var(--kobg)}
+.q,.blank{padding:11px 0;border-bottom:1px solid var(--border)}
+.q:last-child,.blank:last-child{border-bottom:none}
+.q{counter-increment:qq;position:relative;padding-left:2.1em}
+.q::before{content:counter(qq) ".";position:absolute;left:0;top:11px;color:var(--muted);font-weight:700;font-size:.9rem}
+.liste{counter-reset:qq}
+.vd{font-size:.86rem;color:var(--ok);margin-top:.25em;display:none}
+.vd.show{display:block}
+.vd.bad{color:var(--ko)}
+.opts{display:flex;flex-wrap:wrap;gap:7px;margin-top:.45em}
+.opt{font:inherit;font-size:.88rem;cursor:pointer;border:1px solid var(--border);background:var(--card-2);color:var(--text);
+     border-radius:99px;padding:5px 13px;transition:.15s}
+.opt:hover{border-color:var(--bleu)}
+.opt.sel{border-color:var(--bleu);background:var(--bleu);color:#fff}
+.opt.ok{border-color:var(--ok);background:var(--okbg);color:var(--ok)}
+.opt.bad{border-color:var(--ko);background:var(--kobg);color:var(--ko)}
+.audio{font:inherit;cursor:pointer;border:1px solid var(--border);background:var(--card-2);color:var(--muted);
+       border-radius:50%;width:1.9em;height:1.9em;line-height:1;padding:0;flex:none;transition:.15s;font-size:.88rem}
+.audio:hover{border-color:var(--bleu);color:var(--bleu)}
+.audio.on{border-color:var(--rouge);color:var(--rouge)}
+.alerte{background:var(--card-2);border-left:3px solid var(--rouge);border-radius:0 10px 10px 0;padding:11px 15px;margin:14px 0;font-size:.93rem}
+.astuce{background:var(--card-2);border-left:3px solid var(--bleu);border-radius:0 10px 10px 0;padding:11px 15px;margin:14px 0;font-size:.93rem}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:30px 16px 10px;border-top:1px solid var(--border);margin-top:40px}
+footer a{color:var(--bleu)}
+@media(max-width:600px){header.hero h1{font-size:1.75rem}.card{padding:16px}}
 </style>
-<header class="flag"></header>
-<nav class="tabs">
-  <a href="../grammaire.html">← Retour au cours</a>
-  <a href="https://karla19urios.github.io/french/">🏠 Tous les niveaux</a>
-  <span class="here">🔮 A2 · L'hypothèse sur le futur</span>
-</nav>
-
-<div class="hero">
-  <p class="eyebrow">Grammaire · Les hypothèses</p>
-  <h1>L'hypothèse sur le futur</h1>
-  <p class="sub">« S'il fait beau demain, nous irons à la campagne. » Une seule construction à automatiser — et un piège : jamais de futur après « si ».</p>
+<style>
+/* ----- lexique ----- */
+.lex{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:9px;margin-top:12px}
+.mot{display:flex;align-items:flex-start;gap:9px;background:var(--card-2);border:1px solid var(--border);
+     border-radius:11px;padding:9px 12px}
+.mot .txt{flex:1;min-width:0}
+.mot .fr{font-weight:600}
+.mot .en{display:block;color:var(--muted);font-size:.84rem;font-style:italic}
+.mot .ex{display:block;color:var(--muted);font-size:.84rem;margin-top:.2em}
+body.no-en .en{display:none}
+.groupe-titre{font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--rouge);
+     margin:20px 0 2px}
+.groupe-titre:first-of-type{margin-top:6px}
+/* ----- cartes mémoire ----- */
+.flash{text-align:center}
+.carte{min-height:140px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+   background:var(--card-2);border:2px dashed var(--border);border-radius:14px;padding:20px;cursor:pointer;
+   user-select:none;transition:.15s}
+.carte:hover{border-color:var(--bleu)}
+.carte .recto{font-family:var(--serif);font-size:1.6rem;font-weight:600}
+.carte .recto.petit{font-size:1.1rem;color:var(--muted)}
+.carte .verso{font-size:1.3rem;color:var(--bleu);font-weight:600}
+.carte .flip-aide{font-size:.8rem;color:var(--muted)}
+.flash-cmd{display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:12px}
+.cpt{color:var(--muted);font-size:.85rem;font-variant-numeric:tabular-nums;min-width:4em}
+/* ----- associer ----- */
+.assoc{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.assoc .col{display:flex;flex-direction:column;gap:7px}
+.jeton{font:inherit;font-size:.9rem;text-align:left;cursor:pointer;border:1px solid var(--border);
+   background:var(--card-2);color:var(--text);border-radius:9px;padding:8px 12px;transition:.15s}
+.jeton:hover{border-color:var(--bleu)}
+.jeton.sel{border-color:var(--bleu);background:var(--bleu);color:#fff}
+.jeton.pris{border-color:var(--ok);background:var(--okbg);color:var(--ok);cursor:default;opacity:.75}
+.jeton.rate{border-color:var(--ko);background:var(--kobg);color:var(--ko)}
+.assoc-msg{margin-top:10px;font-size:.88rem;color:var(--muted);min-height:1.3em}
+/* ----- dialogue ----- */
+.dial{background:var(--card-2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin:12px 0}
+.dial .lieu{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--rouge);font-weight:700;margin-bottom:.5em}
+.rep{display:flex;gap:9px;align-items:flex-start;padding:5px 0}
+.rep .qui{font-weight:700;color:var(--bleu);flex:none;min-width:5.2em;font-size:.92rem}
+.rep .dit{flex:1;min-width:0}
+/* ----- production ----- */
+textarea{font:inherit;font-size:.95rem;width:100%;min-height:90px;padding:10px 12px;border-radius:10px;
+   border:1px solid var(--border);background:var(--card-2);color:var(--text);resize:vertical}
+textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(55,142,246,.12)}
+.modele{display:none;margin-top:10px;background:var(--card-2);border-left:3px solid var(--ok);
+   border-radius:0 10px 10px 0;padding:11px 15px;font-size:.93rem}
+.modele.show{display:block}
+.compteur{font-size:.8rem;color:var(--muted);text-align:right;margin-top:.2em}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:.5em 0 .2em}
+.tag{font-size:.8rem;background:var(--card-2);border:1px solid var(--border);border-radius:99px;padding:3px 10px;color:var(--muted)}
+.cmd{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:14px}
+.bloc-score{font-weight:700;color:var(--bleu);font-variant-numeric:tabular-nums;font-size:.9rem}
+@media(max-width:560px){.assoc{grid-template-columns:1fr}.rep{flex-direction:column;gap:2px}.rep .qui{min-width:0}}
+</style>
+<div class="stripe"></div>
+<div class="bar">
+  <a class="btn" href="../grammaire.html" style="text-decoration:none">← Grammaire</a>
+  <span class="score">Score&nbsp;: <span id="sc">0 / 165</span></span>
+  <span class="track"><span class="fill" id="fill"></span></span>
+  <button class="btn" id="en">EN on/off</button>
+  <button class="btn" id="theme">&#9681;</button>
 </div>
-
-<main>
-
-  <section class="card">
-    <p class="sec-label">Sommaire</p>
-    <h2>55 points</h2>
-    <div class="toc">
-      <a href="#d"><span class="n">0</span><span class="ic">⚡</span>Rappel express · le futur<span class="pts">10 pts</span></a>
-      <a href="#g1"><span class="n">1</span><span class="ic">✅</span>« Quand » = la certitude<span class="pts">6 pts</span></a>
-      <a href="#g2"><span class="n">2</span><span class="ic">🔮</span>« Si » = l'hypothèse<span class="pts">10 pts</span></a>
-      <a href="#g3"><span class="n">3</span><span class="ic">🚫</span>Jamais de futur après « si »<span class="pts">6 pts</span></a>
-      <a href="#g4"><span class="n">4</span><span class="ic">❓</span>L'autre « si »<span class="pts">6 pts</span></a>
-      <a href="#g5"><span class="n">5</span><span class="ic">♾️</span>« Si » = une généralité<span class="pts">5 pts</span></a>
-      <a href="#g6"><span class="n">6</span><span class="ic">⛓️</span>La suite logique<span class="pts">6 pts</span></a>
-      <a href="#g7"><span class="n">7</span><span class="ic">🔄</span>De l'ordre au conseil<span class="pts">6 pts</span></a>
-      <a href="#oral"><span class="n">8</span><span class="ic">🗣️</span>Pratique orale<span class="pts">en classe</span></a>
-    </div>
-  </section>
-
-  <section class="card">
-    <p class="sec-label">Objectif</p>
-    <h2>🎯 Parler de ce qui n'est pas encore sûr</h2>
-    <ul class="goals">
+<div class="wrap">
+<header class="hero">
+  <div class="kicker">A2 &middot; Le&ccedil;on 10</div>
+  <h1>Le plan B&nbsp;: si + pr&eacute;sent &rarr; futur,<br>les transports et la sant&eacute;</h1>
+  <p class="sub">&#128642; Un seul sujet pour tout apprendre&nbsp;: on pr&eacute;voit ce qui n'est pas s&ucirc;r. <strong>165 points</strong>.</p>
+</header>
+<div class="card">
+  <h3>&#127911; L'audio est à toi</h3>
+  <p class="lead">Chaque bouton &#128264; lit à voix haute — <strong>seulement quand tu cliques</strong>.</p>
+  <div class="toc"><a href="#lect"><span>1</span> La lecture &middot; gare et pharmacie <span>8 pts</span></a><a href="#r1"><span>2</span> &laquo; quand &raquo; = s&ucirc;r <span>7 pts</span></a><a href="#r2"><span>3</span> &laquo; si &raquo; = hypoth&egrave;se <span>9 pts</span></a><a href="#r3"><span>4</span> jamais de futur apr&egrave;s &laquo; si &raquo; <span>6 pts</span></a><a href="#r4"><span>5</span> l'autre &laquo; si &raquo; <span>6 pts</span></a><a href="#r5"><span>6</span> la g&eacute;n&eacute;ralit&eacute; <span>7 pts</span></a><a href="#r6"><span>7</span> la suite logique <span>7 pts</span></a><a href="#r7"><span>8</span> de l'ordre au conseil <span>5 pts</span></a><a href="#vA_lex"><span>9</span> Lexique &middot; les transports <span>48 pts</span></a><a href="#vB_lex"><span>10</span> Lexique &middot; la sant&eacute; <span>48 pts</span></a><a href="#inte"><span>11</span> Le m&eacute;lange final <span>14 pts + prod.</span></a></div>
+</div>
+<style>
+.partsep{margin:34px 0 10px;padding:14px 16px;border-radius:14px;border:1px solid var(--border);
+  background:linear-gradient(135deg,rgba(55,142,246,.07),rgba(237,41,57,.07));display:flex;
+  flex-wrap:wrap;align-items:baseline;gap:4px 12px}
+.partsep.gros{background:linear-gradient(135deg,rgba(55,142,246,.14),rgba(237,41,57,.12))}
+.partsep .pnum{font:800 .72rem/1 ui-sans-serif,system-ui;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--rouge);background:var(--card);border:1px solid var(--border);border-radius:99px;padding:5px 10px}
+.partsep .ptit{font:800 1.12rem/1.3 ui-sans-serif,system-ui;color:var(--text)}
+.partsep .psous{font-size:.86rem;color:var(--muted)}
+.gframe{position:relative;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:#fff}
+.gframe iframe{display:block;width:100%;height:1400px;border:0;background:#fff}
+.gnote{font-size:.9rem;color:var(--muted);margin:0 0 12px}
+.gcmd{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center}
+.plan{display:grid;gap:10px;margin:0}
+.plan li{list-style:none;display:flex;gap:10px;align-items:flex-start;font-size:.95rem}
+.plan li b{color:var(--bleu)}
+.plan .pt{margin-left:auto;font:700 .78rem/1 ui-sans-serif,system-ui;color:var(--muted);
+  border:1px solid var(--border);border-radius:99px;padding:5px 9px;white-space:nowrap}
+details.rev{border:1px solid var(--border);border-radius:14px;padding:10px 14px;background:var(--card-2);margin:12px 0}
+details.rev>summary{cursor:pointer;font-weight:700;color:var(--bleu);font-size:.95rem}
+details.rev[open]>summary{margin-bottom:10px}
+details.rev .groupe-titre:first-of-type{margin-top:6px}
+@media(max-width:640px){.gframe iframe{height:1100px}}
+</style><style>
+.rules{display:grid;gap:10px;margin:12px 0}
+.rule{border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--card-2)}
+.rule>b{display:block;color:var(--bleu);font-size:1rem}
+.rule>span{display:block;color:var(--muted);font-size:.84rem;margin:3px 0 7px}
+.rule i{display:block;font-style:normal;font-size:.95rem;line-height:1.75}
+.rule.warn{border-color:var(--rouge);background:rgba(237,41,57,.06)}
+.three{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin:12px 0}
+.th{border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--card-2)}
+.th h4{margin:0 0 6px;font-size:1rem;color:var(--text)}
+.th .r{font-size:.82rem;color:var(--muted);margin:0 0 9px}
+.th ul{margin:0;padding:0;list-style:none;display:grid;gap:7px}
+.th li{display:flex;gap:8px;align-items:flex-start;font-size:.93rem;line-height:1.6}
+.th.p{border-color:#c7a8ff}.th.c{border-color:#8fd0b0}
+p.note{border-left:3px solid var(--bleu);padding:10px 14px;background:var(--card-2);border-radius:0 10px 10px 0;font-size:.93rem;line-height:1.7}
+p.sec-sub{color:var(--muted);font-size:.96rem;line-height:1.7;margin:0 0 10px}
+mark{background:rgba(255,205,0,.4);padding:0 3px;border-radius:4px}
+.swaps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin:12px 0}
+.swapc{border:1px solid var(--border);border-radius:12px;padding:11px 13px;background:var(--card-2);font-size:.93rem;line-height:1.65}
+.swapc .fl{color:var(--rouge);font-weight:800;margin:0 6px}
+.swapc .en{display:block;color:var(--muted);font-size:.82rem;font-style:italic;margin-top:5px}
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin:12px 0}
+.figc{border:1px solid var(--border);border-radius:12px;padding:10px 12px;background:var(--card-2)}
+.figc b{color:var(--bleu);display:block;font-size:.97rem}
+.figc .en{color:var(--muted);font-size:.82rem;font-style:italic}
+.figc .ex{display:block;font-size:.88rem;margin-top:5px}
+.lect{display:grid;grid-template-columns:minmax(0,2.1fr) minmax(220px,1fr);gap:16px;align-items:start}
+@media(max-width:820px){.lect{grid-template-columns:1fr}}
+.article{border:1px solid var(--border);border-radius:16px;padding:18px 20px;background:var(--card);line-height:1.85;font-size:1rem}
+.article .kicker{display:inline-block;font:800 .7rem/1 ui-sans-serif,system-ui;letter-spacing:.14em;text-transform:uppercase;color:var(--rouge);margin-bottom:8px}
+.article h3{margin:4px 0 12px;font-size:1.3rem}
+.article p{margin:0 0 12px}
+.y{color:var(--rouge);font-weight:800;cursor:pointer;border-bottom:2px dotted var(--rouge)}
+.y:hover{background:rgba(237,41,57,.1)}
+.ref{border-bottom:1px dashed var(--muted)}
+.w{border-bottom:1px dotted var(--bleu);cursor:pointer}
+.w.on::after{content:" (" attr(data-en) ")";color:var(--muted);font-style:italic;font-size:.85em}
+.fig{background:rgba(55,142,246,.08);border-radius:5px;padding:0 4px;cursor:pointer}
+.side{display:grid;gap:12px;position:sticky;top:76px}
+#yref{border:1px solid var(--border);border-radius:12px;padding:11px 13px;background:var(--card-2);font-size:.92rem;min-height:44px}
+.fact{border:1px solid var(--border);border-radius:12px;padding:11px 13px;background:var(--card-2)}
+.fact h4{margin:0 0 7px;font-size:.95rem;color:var(--bleu)}
+.fact dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:.86rem}
+.fact dt{color:var(--muted)}.fact dd{margin:0}
+.lead-art{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 0}
+.encadre{border-left:4px solid var(--bleu);background:var(--card-2);border-radius:0 12px 12px 0;padding:12px 15px;margin:12px 0;font-size:1rem;line-height:1.8}
+p.consigne{font-size:.96rem;line-height:1.7;margin:10px 0}
+.paires{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:9px;margin:12px 0}
+.paire{border:1px solid var(--border);border-radius:11px;padding:10px 12px;background:var(--card-2);font-size:.93rem;line-height:1.6}
+.paire .k{display:inline-block;font:800 .72rem/1 ui-sans-serif,system-ui;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--rouge);background:var(--card);border:1px solid var(--border);border-radius:99px;padding:4px 9px;margin-right:8px}
+.alerte .lab{display:block;font:800 .74rem/1 ui-sans-serif,system-ui;letter-spacing:.08em;text-transform:uppercase;color:var(--rouge);margin-bottom:5px}
+.paire s,.encadre s,.alerte s{color:var(--muted)}
+.th-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.th-n{font:800 .72rem/1 ui-sans-serif,system-ui;letter-spacing:.1em;text-transform:uppercase;color:var(--rouge);
+  background:var(--card);border:1px solid var(--border);border-radius:99px;padding:5px 10px}
+.th-head h3{margin:0;font-size:1.05rem}
+.th-sub{color:var(--muted);font-size:.86rem;margin:0 0 10px}
+.ex-box{border:1px solid var(--border);border-radius:11px;padding:10px 13px;background:var(--card);line-height:1.8;font-size:.95rem}
+.ex-box p{margin:0 0 6px}.ex-box p:last-child{margin:0}
+.tip,.warn{border-left:3px solid var(--bleu);background:var(--card-2);border-radius:0 10px 10px 0;padding:10px 13px;margin-top:10px;font-size:.92rem;line-height:1.7}
+.warn{border-left-color:var(--rouge)}
+.pill{display:inline-block;font:800 .72rem/1 ui-sans-serif,system-ui;border-radius:99px;padding:4px 8px;vertical-align:middle}
+.pill.de{background:rgba(237,41,57,.12);color:var(--rouge)}
+.pill.a{background:rgba(55,142,246,.12);color:var(--bleu)}
+.pill.rien{background:var(--card-2);color:var(--muted);border:1px solid var(--border)}
+.vlist{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}
+button.v{display:inline-flex;align-items:center;gap:6px;flex:0 0 auto;text-align:left;border:1px solid var(--border);background:var(--card-2);
+  border-radius:99px;padding:7px 12px;font:600 .9rem/1 ui-sans-serif,system-ui;color:var(--text);cursor:pointer}
+button.v:hover{border-color:var(--bleu)}
+button.v:has(.en){flex-direction:column;align-items:flex-start;gap:2px}
+button.v .en{color:var(--muted);font-size:.75rem;font-style:italic}
+button.v .p{font:800 .7rem/1 ui-sans-serif,system-ui;color:var(--rouge)}
+button.v .p.a{color:var(--bleu)}button.v .p.rien{color:var(--muted)}
+.rule-box{border:1px solid var(--border);border-radius:12px;background:var(--card-2);padding:13px 15px;font-size:1.05rem;line-height:1.8;margin:0 0 12px}
+.p1{color:var(--bleu);font-weight:800}.p2{color:var(--rouge);font-weight:800}.p3{color:#7a5af5;font-weight:800}
+.given{background:rgba(55,142,246,.07);border-radius:5px;padding:1px 5px}
+table.pron-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.92rem}
+table.pron-table th,table.pron-table td{border:1px solid var(--border);padding:8px 10px;text-align:left}
+table.pron-table th{background:var(--card-2);font-size:.82rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+table.pron-table td.pr{font-weight:800;color:var(--rouge);text-align:center}
+.chain{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0}
+.chain .subj{font-weight:700}
+.chain .box{border:1px dashed var(--bleu);border-radius:10px;padding:8px 12px;background:var(--card-2);text-align:center;font-size:.9rem;line-height:1.5}
+.chain .verb{font-weight:700}
+.instr-box{border-left:3px solid var(--bleu);background:var(--card-2);border-radius:0 10px 10px 0;padding:10px 13px;font-size:.93rem;line-height:1.7}
+.instr-box b{display:block;color:var(--bleu);margin-bottom:3px}
+.vocab-card{border:1px solid var(--border);border-radius:11px;padding:9px 12px;background:var(--card-2)}
+.vocab-fr{font-weight:700}.vocab-en{color:var(--muted);font-size:.85rem;font-style:italic}
+.mail{border:1px solid var(--border);border-radius:14px;padding:14px 16px;background:var(--card-2);margin:12px 0}
+.tbl table{width:100%;border-collapse:collapse;font-size:.93rem}
+.tbl th,.tbl td{border:1px solid var(--border);padding:8px 10px;text-align:left}
+.tbl th{background:var(--card-2);font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin:10px 0}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:10px 0}
+.col h4{margin:0 0 6px;font-size:.95rem}
+.rule-card,.article,.card{--ink:var(--text);--ink-soft:var(--muted)}
+.rule-card{border:1px solid var(--border);border-radius:14px;padding:14px 16px;background:var(--card-2);margin:0 0 12px}
+.rule-card h3{margin:0 0 8px;font-size:1.05rem;color:var(--bleu)}
+.rule-card p{margin:0 0 8px;font-size:.97rem;line-height:1.75}
+.rule-card p:last-child{margin:0}
+table.formation-table{width:100%;border-collapse:collapse;font-size:.95rem;margin:8px 0}
+table.formation-table td{border-bottom:1px solid var(--border);padding:7px 9px}
+table.formation-table td.pn{color:var(--muted);width:34%}
+table.formation-table td.vb{font-weight:800;color:var(--rouge)}
+.eyebrow{display:inline-block;font:800 .7rem/1 ui-sans-serif,system-ui;letter-spacing:.14em;text-transform:uppercase;color:var(--rouge);margin-bottom:6px}
+.film-strip{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+@media(max-width:700px){.film-strip{grid-template-columns:1fr}}
+.film-strip>div{border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--card-2);line-height:1.7;font-size:.95rem}
+.film-strip>div b{display:block;font-size:.95rem;margin-bottom:4px}
+.film-strip .decor{border-color:var(--bleu)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}
+@media(max-width:700px){.split{grid-template-columns:1fr}}
+.col-imp,.col-pc{border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--card-2)}
+.col-imp{border-color:var(--bleu)}.col-pc{border-color:var(--rouge)}
+.col-imp h4,.col-pc h4{margin:0 0 7px;font-size:.95rem}
+.col-imp h4{color:var(--bleu)}.col-pc h4{color:var(--rouge)}
+.col-imp p,.col-pc p{margin:0 0 6px;font-size:.95rem;line-height:1.7}
+.note-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}
+@media(max-width:700px){.note-grid{grid-template-columns:1fr}}
+.note-grid .note{border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--card-2)}
+.note-grid .note>b{display:block;margin-bottom:6px;font-size:.95rem}
+.note-grid .note p{margin:0 0 6px;font-size:.93rem;line-height:1.7}
+.imp{color:var(--bleu);font-weight:600}
+.pc{color:var(--rouge);font-weight:600}
+p.sec-intro{color:var(--muted);font-size:.95rem;line-height:1.7;margin:0 0 10px}
+.temoin{display:flex;gap:12px;margin:0 0 14px}
+.temoin-num{flex:0 0 28px;height:28px;border-radius:99px;background:var(--rouge);color:#fff;
+  display:flex;align-items:center;justify-content:center;font:800 .85rem/1 ui-sans-serif,system-ui}
+.temoin-name{font-weight:700;margin-bottom:4px}
+.article-head{font:800 .7rem/1 ui-sans-serif,system-ui;letter-spacing:.14em;text-transform:uppercase;color:var(--rouge);margin-bottom:8px}
+p.chapo{font-size:1.02rem;color:var(--muted);line-height:1.8}
+.rel{color:var(--rouge);font-weight:800}
+.msg{display:flex;gap:11px;margin:0 0 12px;border:1px solid var(--border);border-radius:14px;padding:11px 13px;background:var(--card-2)}
+.msg.op{border-color:var(--bleu)}
+.msg .av{flex:0 0 34px;height:34px;border-radius:99px;background:var(--card);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;font-size:1.05rem}
+.msg .who{font-weight:700;font-size:.95rem}
+.msg .tm{color:var(--muted);font-size:.78rem;margin-left:6px}
+.msg p{margin:4px 0 0;font-size:.95rem;line-height:1.75}
+.no{text-decoration:line-through;color:var(--muted)}
+.fut{color:var(--rouge);font-weight:800}
+button.paire{text-align:left;cursor:pointer;font:inherit;color:var(--text);width:100%}
+button.paire:hover{border-color:var(--bleu)}
+.formule{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:12px 0}
+.formule .box{border:1px solid var(--border);border-radius:10px;padding:8px 13px;background:var(--card-2);font-weight:700;font-size:.95rem}
+.formule .box.si{border-color:var(--bleu);color:var(--bleu)}
+.formule .box.fut{border-color:var(--rouge);color:var(--rouge)}
+.formule .op{color:var(--muted);font-weight:800}
+.chaine{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:12px 0}
+.chaine .e{border:1px solid var(--border);border-radius:99px;padding:6px 12px;background:var(--card-2);font-size:.9rem}
+.chaine .fl{color:var(--rouge);font-weight:800}
+ul.goals{margin:8px 0;padding-left:20px;display:grid;gap:6px}
+ul.goals li{font-size:.96rem;line-height:1.7}
+.encadre .en{display:block;color:var(--muted);font-size:.85rem;font-style:italic;margin-top:7px;line-height:1.6}
+.paire em{color:var(--muted)}
+</style><h2 class="sec" id="plan"><span class="n">&#127919;</span> Une seule le&ccedil;on, un seul sujet</h2>
+<p class="lead">Aujourd'hui, on fait des <strong>plans B</strong>&nbsp;: si le train est annul&eacute;, si tu as mal &agrave; la t&ecirc;te, si on rate la correspondance&hellip; C'est exactement l&agrave; qu'on apprend l'hypoth&egrave;se <strong>si + pr&eacute;sent &rarr; futur</strong>, le lexique des <strong>transports</strong> et celui de la <strong>sant&eacute;</strong>.</p>
+<div class="card"><h3>&#127919; Les objectifs de la le&ccedil;on d'origine</h3><ul class="goals">
       <li>Distinguer <strong>quand</strong> (c'est sûr) et <strong>si</strong> (ce n'est pas sûr).</li>
       <li>Construire l'hypothèse : <strong>si + présent → futur simple</strong>.</li>
       <li>Ne jamais mettre de futur juste après <strong>si</strong>.</li>
       <li>Reconnaître l'autre « si », celui de la question indirecte, qui lui accepte le futur.</li>
       <li>Employer <strong>si + présent / présent</strong> pour une vérité générale.</li>
       <li>Enchaîner des conséquences et transformer un ordre en hypothèse.</li>
-    </ul>
-  </section>
-
-  <!-- ============ DRILL ============ -->
-  <section class="card" id="d">
-    <p class="sec-label">Rappel express</p>
-    <h2>⚡ Le futur simple, d'abord</h2>
-    <p class="consigne">Toute l'hypothèse repose sur le futur simple. Vérifions les dix verbes irréguliers les plus fréquents avant de commencer.</p>
-    <ul class="ex-list" id="exD"></ul>
-    <div class="actions">
-      <button class="btn" data-check="exD">Vérifier</button>
-      <button class="btn ghost" data-reset="exD">Recommencer</button>
-      <span class="score" id="sc-exD">— / 10</span>
-    </div>
-  </section>
-
-  <!-- ============ BLOC 1 ============ -->
-  <section class="card" id="g1">
-    <p class="sec-label">Grammaire · 1</p>
-    <h2>✅ « Quand » : c'est sûr</h2>
-    <div class="encadre">
+    </ul></div>
+<div class="card">
+  <h3>&#128260; Le parcours</h3>
+  <ul class="plan">
+    <li><span><b>1.</b> La lecture&nbsp;: une nuit de gr&egrave;ve &agrave; la gare, puis trois conseils de pharmacie.</span><span class="pt">8 pts</span></li>
+    <li><span><b>2-8.</b> Les sept r&egrave;gles&nbsp;&mdash; quand, si, la faute &agrave; ne pas faire, l'autre &laquo;&nbsp;si&nbsp;&raquo;, la g&eacute;n&eacute;ralit&eacute;, la cha&icirc;ne, le conseil.</span><span class="pt">47 pts</span></li>
+    <li><span><b>9.</b> Le lexique des <b>transports</b>&nbsp;: train, m&eacute;tro, guichet, retard.</span><span class="pt">48 pts</span></li>
+    <li><span><b>10.</b> Le lexique de la <b>sant&eacute;</b>&nbsp;: avoir mal, symptômes, m&eacute;decin.</span><span class="pt">48 pts</span></li>
+    <li><span><b>11.</b> Le m&eacute;lange final&nbsp;: ton plan B&nbsp;&mdash; puis ton propre message.</span><span class="pt">14 pts</span></li>
+  </ul>
+</div>
+<div class="partsep"><span class="pnum">Étape 1</span><span class="ptit">La lecture &middot; deux plans B</span><span class="psous">Une nuit de gr&egrave;ve, puis trois conseils&nbsp;&mdash; tout est &agrave; l'hypoth&egrave;se.</span></div>
+<h2 class="sec" id="lect"><span class="n">1</span> On lit d'abord</h2>
+<p class="lead">Les <span class="fut">verbes au futur</span> sont en rouge, les <span class="imp">verbes apr&egrave;s &laquo;&nbsp;si&nbsp;&raquo;</span> en bleu&nbsp;: regarde bien, ils ne sont <strong>jamais</strong> au futur. Les mots <span class="w" data-en="like this">soulign&eacute;s</span> donnent leur traduction.</p>
+<div class="card"><div class="lect">
+  <div>
+    <article class="article"><span class="kicker">Gare de Lyon &middot; 21 h 40</span>
+<h3>Si le train ne part pas, on dormira ici</h3>
+<p>Le panneau d'affichage clignote&nbsp;: &laquo;&nbsp;Train 6243 &mdash;
+<span class="w" data-en="cancelled">supprim&eacute;</span>.&nbsp;&raquo; Devant le
+<span class="w" data-en="ticket desk">guichet</span>, la queue fait vingt m&egrave;tres. Un agent r&eacute;p&egrave;te la m&ecirc;me phrase&nbsp;:
+&laquo;&nbsp;Si vous <span class="imp">avez</span> un billet pour ce soir, vous le
+<span class="fut">changerez</span> gratuitement demain.&nbsp;&raquo;</p>
+<p>Camille, 27 ans, calcule&nbsp;: &laquo;&nbsp;Si je <span class="imp">prends</span> le
+<span class="w" data-en="coach / long-distance bus">car</span> de 23 heures, j'
+<span class="fut">arriverai</span> &agrave; six heures du matin&nbsp;; si j'<span class="imp">attends</span> le
+premier TGV, je <span class="fut">manquerai</span> ma r&eacute;union. Et si je
+<span class="imp">loue</span> une voiture, &ccedil;a me <span class="fut">co&ucirc;tera</span> cent euros.&nbsp;&raquo;</p>
+<p>&Agrave; c&ocirc;t&eacute; d'elle, un couple avec deux enfants a d&eacute;j&agrave; choisi&nbsp;: &laquo;&nbsp;Quand les
+<span class="w" data-en="railway staff">cheminots</span> <span class="fut">reprendront</span> le travail, nous
+<span class="fut">repartirons</span>. D'ici l&agrave;, on reste &agrave; l'h&ocirc;tel.&nbsp;&raquo; La petite fille, elle, a mal au
+<span class="w" data-en="stomach / belly">ventre</span> depuis une heure&nbsp;: trop de chocolat, trop d'attente.</p>
+<p>&Agrave; 22 h 15, une annonce&nbsp;: un train suppl&eacute;mentaire partira du
+<span class="w" data-en="platform">quai</span> G. &laquo;&nbsp;Je ne sais pas si on
+<span class="fut">aura</span> des places&nbsp;&raquo;, dit Camille en courant. Dix minutes plus tard, elle est assise,
+<span class="w" data-en="out of breath">essouffl&eacute;e</span>. Si tout va bien, elle
+<span class="fut">dormira</span> dans son lit. Sinon, elle <span class="fut">dormira</span> dans le train&nbsp;&mdash; ce
+<span class="fut">sera</span> toujours mieux que le hall de la gare.</p></article>
+    <article class="article" style="margin-top:14px"><span class="kicker">Pharmacie de garde &middot; trois conseils</span>
+<h3>Si &ccedil;a ne passe pas, consultez</h3>
+<p><strong>1. Le mal des transports.</strong> Si vous <span class="imp">&ecirc;tes</span> malade en voiture ou en
+<span class="w" data-en="coach">car</span>, asseyez-vous &agrave; l'avant et regardez la route. Si vous
+<span class="imp">lisez</span> pendant le trajet, &ccedil;a <span class="fut">ira</span> beaucoup plus mal. Et si rien ne
+<span class="imp">marche</span>, un <span class="w" data-en="medicine, drug">m&eacute;dicament</span>
+<span class="fut">r&eacute;glera</span> le probl&egrave;me&nbsp;: demandez-le &agrave; votre
+<span class="w" data-en="pharmacist">pharmacien</span>.</p>
+<p><strong>2. La fatigue du voyage.</strong> Si on <span class="imp">dort</span> mal, on
+<span class="imp">a</span> mal &agrave; la t&ecirc;te&nbsp;: c'est une r&egrave;gle g&eacute;n&eacute;rale. Buvez de l'eau, &eacute;vitez le caf&eacute; apr&egrave;s seize
+heures. Si la <span class="w" data-en="headache">migraine</span>
+<span class="imp">dure</span> plus de deux jours, vous <span class="fut">prendrez</span>
+<span class="w" data-en="an appointment">rendez-vous</span> chez le m&eacute;decin.</p>
+<p><strong>3. La fi&egrave;vre.</strong> Si votre enfant <span class="imp">a</span> plus de 38,5&nbsp;&deg;C et s'il
+<span class="imp">ne boit</span> plus, n'attendez pas&nbsp;: appelez. Quand le m&eacute;decin
+<span class="fut">vous recevra</span>, il <span class="fut">regardera</span> la
+<span class="w" data-en="throat">gorge</span> et les
+<span class="w" data-en="ears">oreilles</span>. S'il
+<span class="imp">prescrit</span> un <span class="w" data-en="antibiotic">antibiotique</span>, vous
+<span class="fut">irez</span> &agrave; la pharmacie avec l'<span class="w" data-en="prescription">ordonnance</span>.</p>
+<p style="color:var(--muted);font-size:.9rem">Nous ne savons pas encore si la pharmacie de la gare
+<span class="fut">restera</span> ouverte toute la nuit&nbsp;&mdash; appelez le 32 37 avant de vous d&eacute;placer.</p></article>
+  </div>
+  <div class="side">
+    <div id="yref">&#128073; Apr&egrave;s <b>si</b>&nbsp;: jamais de futur. Le futur est de l'autre c&ocirc;t&eacute; de la virgule.</div>
+    <div class="fact"><h4>Fiche d'identité</h4><dl><dt>O&ugrave;</dt><dd>gare de Lyon, un soir de gr&egrave;ve</dd>
+<dt>Camille</dt><dd>trois plans&nbsp;: car, TGV, voiture</dd>
+<dt>Le couple</dt><dd>attend la reprise du travail</dd>
+<dt>Texte 2</dt><dd>trois conseils de pharmacie</dd>
+<dt>La r&egrave;gle</dt><dd><span class="imp">si + pr&eacute;sent</span> &rarr; <span class="fut">futur</span></dd></dl></div>
+    <div class="fact"><h4>&#128161; Comment lire</h4>
+      <p style="margin:0;font-size:.86rem;line-height:1.6">Les mots <span class="w" data-en="click to see the English">soulignés en pointillé</span>
+      donnent leur traduction quand tu cliques. En <span class="imp">bleu</span>, le verbe apr&egrave;s &laquo;&nbsp;si&nbsp;&raquo;&nbsp;; en <span class="fut">rouge</span>, le futur du r&eacute;sultat.</p></div>
+  </div>
+</div><div class="lead-art"><button class="audio" type="button" data-say="Si vous avez un billet pour ce soir, vous le changerez gratuitement demain. Si je prends le car de vingt-trois heures, j'arriverai &agrave; six heures du matin ; si j'attends le premier TGV, je manquerai ma r&eacute;union. Quand les cheminots reprendront le travail, nous repartirons. Je ne sais pas si on aura des places.">&#128264; &Eacute;couter la sc&egrave;ne de la gare</button><button class="audio" type="button" data-say="Si vous &ecirc;tes malade en voiture, asseyez-vous &agrave; l'avant et regardez la route. Si on dort mal, on a mal &agrave; la t&ecirc;te. Si la migraine dure plus de deux jours, vous prendrez rendez-vous chez le m&eacute;decin. Quand le m&eacute;decin vous recevra, il regardera la gorge et les oreilles.">&#128264; &Eacute;couter les conseils</button></div></div>
+<h2 class="sec" id="comp"><span class="n">1</span> As-tu bien lu&nbsp;?</h2>
+<p class="lead">8 points &middot; tout est dans les deux textes.</p>
+<div class="card" id="bCOMP" data-bloc>
+<div class="liste">
+<div class="q" data-answer="qu&#x27;ils changeront leur billet gratuitement demain"><span>Que dit l'agent aux voyageurs&nbsp;?</span><div class="opts"><button class="opt" type="button">qu'ils changeront leur billet gratuitement demain</button><button class="opt" type="button">qu'ils seront remboursés ce soir</button><button class="opt" type="button">qu'il n'y aura plus de train avant lundi</button></div><div class="vd"></div></div>
+<div class="q" data-note="le car">Si Camille prend le <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="car" size="5" autocomplete="off" spellcheck="false"></span> de 23 heures, elle arrivera &agrave; six heures du matin.<div class="vd"></div></div>
+<div class="q" data-answer="ça lui coûtera cent euros"><span>Si elle loue une voiture&nbsp;:</span><div class="opts"><button class="opt" type="button">ça lui coûtera cent euros</button><button class="opt" type="button">elle arrivera plus tôt</button><button class="opt" type="button">elle manquera sa réunion</button></div><div class="vd"></div></div>
+<div class="q" data-note="avoir mal au ventre">La petite fille a mal au <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="ventre" size="7" autocomplete="off" spellcheck="false"></span> depuis une heure.<div class="vd"></div></div>
+<div class="q" data-answer="s&#x27;asseoir à l&#x27;avant et regarder la route"><span>Pour le mal des transports, le conseil est&nbsp;:</span><div class="opts"><button class="opt" type="button">s'asseoir à l'avant et regarder la route</button><button class="opt" type="button">lire pendant le trajet</button><button class="opt" type="button">dormir à l'arrière</button></div><div class="vd"></div></div>
+<div class="q" data-note="prendre rendez-vous">Si la migraine dure plus de deux jours, on prendra <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="rendez-vous" size="12" autocomplete="off" spellcheck="false"></span> chez le m&eacute;decin.<div class="vd"></div></div>
+<div class="q" data-answer="regardera la gorge et les oreilles"><span>Le m&eacute;decin, quand il recevra l'enfant&nbsp;:</span><div class="opts"><button class="opt" type="button">regardera la gorge et les oreilles</button><button class="opt" type="button">donnera tout de suite un antibiotique</button><button class="opt" type="button">appellera la pharmacie</button></div><div class="vd"></div></div>
+<div class="q" data-note="l&#x27;ordonnance">S'il prescrit un antibiotique, on ira &agrave; la pharmacie avec l'<span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="ordonnance" size="11" autocomplete="off" spellcheck="false"></span>.<div class="vd"></div></div>
+</div>
+<div class="cmd"><button class="btn primary" data-check="bCOMP" type="button">Vérifier</button><button class="btn" data-reset="bCOMP" type="button">&#8634; Effacer</button><span class="bloc-score"></span></div>
+</div>
+<div class="partsep"><span class="pnum">Étape 2</span><span class="ptit">La r&egrave;gle &middot; &laquo;&nbsp;quand&nbsp;&raquo;</span><span class="psous">C'est s&ucirc;r&nbsp;&mdash; et le fran&ccedil;ais met le futur deux fois.</span></div>
+<h2 class="sec" id="r1"><span class="n">2</span> ✅ « Quand » : c'est sûr</h2>
+<p class="lead">La r&egrave;gle d'origine, puis 7 points.</p>
+<div class="card"><div class="encadre">
       L'année prochaine, <b>quand</b> je <b>reviendrai</b>, j'<b>irai</b> au Ritz.<br>
       Demain, <b>quand</b> je <b>sortirai</b>, je <b>passerai</b> chez toi.
       <span class="en">With <em>quand</em>, the event is certain — and French puts the future in <strong>both</strong> clauses, unlike English ("when I come back, I'll go").</span>
@@ -417,20 +563,20 @@
       <span class="box fut">futur simple</span><span class="op">→</span>
       <span class="box fut">futur simple</span>
     </div>
-    <p class="consigne">Complète avec le <strong>futur simple</strong>.</p>
-    <ul class="ex-list" id="exA"></ul>
-    <div class="actions">
-      <button class="btn" data-check="exA">Vérifier</button>
-      <button class="btn ghost" data-reset="exA">Recommencer</button>
-      <span class="score" id="sc-exA">— / 6</span>
-    </div>
-  </section>
-
-  <!-- ============ BLOC 2 ============ -->
-  <section class="card" id="g2">
-    <p class="sec-label">Grammaire · 2</p>
-    <h2>🔮 « Si » : ce n'est pas sûr</h2>
-    <div class="encadre">
+    <p class="consigne">Complète avec le <strong>futur simple</strong>.</p></div>
+<div class="card" id="bR1" data-bloc>
+<div class="liste">
+<div class="q" data-note="quand + futur &amp;rarr; futur">L'ann&eacute;e prochaine, quand je <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="reviendrai" size="11" autocomplete="off" spellcheck="false"></span> &agrave; Paris, j'<span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="irai" size="5" autocomplete="off" spellcheck="false"></span> au Ritz.<div class="vd"></div></div>
+<div class="q" data-note="deux futurs">Demain, quand je <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="sortirai" size="9" autocomplete="off" spellcheck="false"></span>, je <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="passerai" size="9" autocomplete="off" spellcheck="false"></span> chez toi.<div class="vd"></div></div>
+<div class="q" data-answer="quand je reviendrai" data-note="Avec quand, le fran&amp;ccedil;ais met le futur des deux c&amp;ocirc;t&amp;eacute;s."><span>En anglais on dit &laquo;&nbsp;when I come back&nbsp;&raquo;&nbsp;; en fran&ccedil;ais&nbsp;:</span><div class="opts"><button class="opt" type="button">quand je reviendrai</button><button class="opt" type="button">quand je reviens</button><button class="opt" type="button">quand je suis revenu</button></div><div class="vd"></div></div>
+<div class="q" data-note="le couple de la gare">Quand les cheminots <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="reprendront" size="12" autocomplete="off" spellcheck="false"></span> le travail, nous <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="repartirons" size="12" autocomplete="off" spellcheck="false"></span>.<div class="vd"></div></div>
+</div>
+<div class="cmd"><button class="btn primary" data-check="bR1" type="button">Vérifier</button><button class="btn" data-reset="bR1" type="button">&#8634; Effacer</button><span class="bloc-score"></span></div>
+</div>
+<div class="partsep"><span class="pnum">Étape 3</span><span class="ptit">La r&egrave;gle &middot; &laquo;&nbsp;si&nbsp;&raquo;</span><span class="psous">L'hypoth&egrave;se&nbsp;: pr&eacute;sent d'un c&ocirc;t&eacute;, futur de l'autre.</span></div>
+<h2 class="sec" id="r2"><span class="n">3</span> 🔮 « Si » : ce n'est pas sûr</h2>
+<p class="lead">La r&egrave;gle d'origine, puis 9 points.</p>
+<div class="card"><div class="encadre">
       L'année prochaine, <b>si</b> je <b>reviens</b> à Paris, j'<b>irai</b> au Ritz.<br>
       Demain, <b>si</b> je <b>sors</b> tôt, je <b>passerai</b> chez toi.
       <span class="en">Same idea as English "if I come back, I'll go" — present after <em>if</em>, future in the result.</span>
@@ -440,38 +586,39 @@
       <span class="box">présent</span><span class="op">→</span>
       <span class="box fut">futur simple</span>
     </div>
-    <p class="consigne">Complète les deux verbes de chaque phrase.</p>
-    <ul class="ex-list" id="exB"></ul>
-    <div class="actions">
-      <button class="btn" data-check="exB">Vérifier</button>
-      <button class="btn ghost" data-reset="exB">Recommencer</button>
-      <span class="score" id="sc-exB">— / 10</span>
-    </div>
-  </section>
-
-  <!-- ============ BLOC 3 ============ -->
-  <section class="card" id="g3">
-    <p class="sec-label">Grammaire · 3</p>
-    <h2>🚫 Jamais de futur après « si »</h2>
-    <div class="alerte">
+    <p class="consigne">Complète les deux verbes de chaque phrase.</p></div>
+<div class="card" id="bR2" data-bloc>
+<div class="liste">
+<div class="q" data-note="si + pr&amp;eacute;sent &amp;rarr; futur">Si je <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="reviens" size="8" autocomplete="off" spellcheck="false"></span> &agrave; Paris, j'<span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="irai" size="5" autocomplete="off" spellcheck="false"></span> au Ritz.<div class="vd"></div></div>
+<div class="q" data-note="si + pr&amp;eacute;sent &amp;rarr; futur">Demain, si je <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="sors" size="5" autocomplete="off" spellcheck="false"></span> t&ocirc;t, je <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="passerai" size="9" autocomplete="off" spellcheck="false"></span> chez toi.<div class="vd"></div></div>
+<div class="q" data-note="transports + hypoth&amp;egrave;se">Si tu <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="prends" size="7" autocomplete="off" spellcheck="false"></span> le m&eacute;tro, tu <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="arriveras" size="10" autocomplete="off" spellcheck="false"></span> plus vite qu'en bus.<div class="vd"></div></div>
+<div class="q" data-answer="« Si j&#x27;ai le temps, je viendrai. »"><span>Quelle phrase est correcte&nbsp;?</span><div class="opts"><button class="opt" type="button">« Si j'ai le temps, je viendrai. »</button><button class="opt" type="button">« Si j'aurai le temps, je viendrai. »</button><button class="opt" type="button">« Si j'ai le temps, je viens demain matin sûrement. »</button></div><div class="vd"></div></div>
+<div class="q" data-note="s&#x27;il y a &amp;rarr; sera">S'il y <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="a" size="3" autocomplete="off" spellcheck="false"></span> une gr&egrave;ve, le train <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="sera" size="5" autocomplete="off" spellcheck="false"></span> supprim&eacute;.<div class="vd"></div></div>
+</div>
+<div class="cmd"><button class="btn primary" data-check="bR2" type="button">Vérifier</button><button class="btn" data-reset="bR2" type="button">&#8634; Effacer</button><span class="bloc-score"></span></div>
+</div>
+<div class="partsep"><span class="pnum">Étape 4</span><span class="ptit">La r&egrave;gle &middot; la faute &agrave; ne pas faire</span><span class="psous">Jamais de futur juste apr&egrave;s &laquo;&nbsp;si&nbsp;&raquo;.</span></div>
+<h2 class="sec" id="r3"><span class="n">4</span> 🚫 Jamais de futur après « si »</h2>
+<p class="lead">L'alerte d'origine, puis 6 points.</p>
+<div class="card"><div class="alerte">
       <span class="lab">La faute à ne pas faire</span>
       On dit : <strong>S'il fait beau et si j'ai des vacances, j'irai à la plage.</strong><br>
       On ne dit pas : <s>S'il fera beau et si j'aurai des vacances…</s>
     </div>
-    <p class="consigne">Choisis la forme correcte.</p>
-    <ul class="ex-list" id="exC"></ul>
-    <div class="actions">
-      <button class="btn" data-check="exC">Vérifier</button>
-      <button class="btn ghost" data-reset="exC">Recommencer</button>
-      <span class="score" id="sc-exC">— / 6</span>
-    </div>
-  </section>
-
-  <!-- ============ BLOC 4 ============ -->
-  <section class="card" id="g4">
-    <p class="sec-label">Grammaire · 4</p>
-    <h2>❓ L'autre « si » : la question indirecte</h2>
-    <div class="encadre">
+    <p class="consigne">Choisis la forme correcte.</p></div>
+<div class="card" id="bR3" data-bloc>
+<div class="liste">
+<div class="q" data-answer="« S&#x27;il fait beau, j&#x27;irai à la plage. »"><span>On dit&nbsp;:</span><div class="opts"><button class="opt" type="button">« S'il fait beau, j'irai à la plage. »</button><button class="opt" type="button">« S'il fera beau, j'irai à la plage. »</button><button class="opt" type="button">« S'il ferait beau, j'irai à la plage. »</button></div><div class="vd"></div></div>
+<div class="q" data-answer="« Si j&#x27;ai des vacances… »"><span>Et aussi&nbsp;:</span><div class="opts"><button class="opt" type="button">« Si j'ai des vacances… »</button><button class="opt" type="button">« Si j'aurai des vacances… »</button><button class="opt" type="button">« Si j'aie des vacances… »</button></div><div class="vd"></div></div>
+<div class="q" data-note="si + pr&amp;eacute;sent &amp;rarr; futur">Si tu <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="as" size="3" autocomplete="off" spellcheck="false"></span> mal &agrave; la gorge, tu <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="boiras" size="7" autocomplete="off" spellcheck="false"></span> du th&eacute; chaud.<div class="vd"></div></div>
+<div class="q" data-note="si + pr&amp;eacute;sent &amp;rarr; futur">Si le bus <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="est" size="4" autocomplete="off" spellcheck="false"></span> en retard, nous <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="prendrons" size="10" autocomplete="off" spellcheck="false"></span> un taxi.<div class="vd"></div></div>
+</div>
+<div class="cmd"><button class="btn primary" data-check="bR3" type="button">Vérifier</button><button class="btn" data-reset="bR3" type="button">&#8634; Effacer</button><span class="bloc-score"></span></div>
+</div>
+<div class="partsep"><span class="pnum">Étape 5</span><span class="ptit">La r&egrave;gle &middot; l'autre &laquo;&nbsp;si&nbsp;&raquo;</span><span class="psous">Celui qui veut dire &laquo;&nbsp;oui ou non&nbsp;&raquo;&nbsp;&mdash; et qui accepte le futur.</span></div>
+<h2 class="sec" id="r4"><span class="n">5</span> ❓ L'autre « si » : la question indirecte</h2>
+<p class="lead">La r&egrave;gle d'origine et le test, puis 6 points.</p>
+<div class="card"><div class="encadre">
       Je ne sais pas <b>si</b> je <b>partirai</b>. &nbsp;·&nbsp; Il lui demande <b>si</b> elle <b>viendra</b>.
       <span class="en">Here <em>si</em> means "whether", not "if" — it reports a yes/no question, so the future <strong>is</strong> allowed.</span>
     </div>
@@ -480,20 +627,21 @@
       <div class="paire"><span class="k">hypothèse</span>Si je pars demain, je t'appellerai. <em>(= à condition que)</em></div>
       <div class="paire"><span class="k">question indirecte</span>Je ne sais pas si je partirai. <em>(= oui ou non)</em></div>
     </div>
-    <p class="consigne" style="margin-top:1rem;">Hypothèse ou question indirecte ?</p>
-    <ul class="ex-list" id="exE"></ul>
-    <div class="actions">
-      <button class="btn" data-check="exE">Vérifier</button>
-      <button class="btn ghost" data-reset="exE">Recommencer</button>
-      <span class="score" id="sc-exE">— / 6</span>
-    </div>
-  </section>
-
-  <!-- ============ BLOC 5 ============ -->
-  <section class="card" id="g5">
-    <p class="sec-label">Grammaire · 5</p>
-    <h2>♾️ « Si » = « quand » : la généralité</h2>
-    <div class="encadre">
+    <p class="consigne" style="margin-top:1rem;">Hypothèse ou question indirecte ?</p></div>
+<div class="card" id="bR4" data-bloc>
+<div class="liste">
+<div class="q" data-note="question indirecte &amp;rarr; futur permis">Je ne sais pas si je <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="partirai" size="9" autocomplete="off" spellcheck="false"></span> demain. (= oui ou non)<div class="vd"></div></div>
+<div class="q" data-answer="une question indirecte" data-note="On peut remplacer par &amp;laquo;&nbsp;oui ou non&nbsp;&amp;raquo;."><span>&laquo;&nbsp;Il lui demande si elle viendra.&nbsp;&raquo; C'est&nbsp;:</span><div class="opts"><button class="opt" type="button">une question indirecte</button><button class="opt" type="button">une hypothèse</button><button class="opt" type="button">une généralité</button></div><div class="vd"></div></div>
+<div class="q" data-answer="une hypothèse" data-note="= &amp;agrave; condition que."><span>&laquo;&nbsp;Si je pars demain, je t'appellerai.&nbsp;&raquo; C'est&nbsp;:</span><div class="opts"><button class="opt" type="button">une hypothèse</button><button class="opt" type="button">une question indirecte</button><button class="opt" type="button">un ordre</button></div><div class="vd"></div></div>
+<div class="q" data-note="question indirecte &amp;rarr; futur">Nous ne savons pas encore si la pharmacie <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="restera" size="8" autocomplete="off" spellcheck="false"></span> ouverte toute la nuit.<div class="vd"></div></div>
+<div class="q" data-note="hypoth&amp;egrave;se &amp;rarr; pr&amp;eacute;sent / futur">Si la pharmacie <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="est" size="4" autocomplete="off" spellcheck="false"></span> ferm&eacute;e, nous <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="irons" size="6" autocomplete="off" spellcheck="false"></span> &agrave; l'h&ocirc;pital.<div class="vd"></div></div>
+</div>
+<div class="cmd"><button class="btn primary" data-check="bR4" type="button">Vérifier</button><button class="btn" data-reset="bR4" type="button">&#8634; Effacer</button><span class="bloc-score"></span></div>
+</div>
+<div class="partsep"><span class="pnum">Étape 6</span><span class="ptit">La r&egrave;gle &middot; la g&eacute;n&eacute;ralit&eacute;</span><span class="psous">Quand &laquo;&nbsp;si&nbsp;&raquo; veut dire &laquo;&nbsp;chaque fois que&nbsp;&raquo;.</span></div>
+<h2 class="sec" id="r5"><span class="n">6</span> ♾️ « Si » = « quand » : la généralité</h2>
+<p class="lead">La r&egrave;gle d'origine, puis 7 points.</p>
+<div class="card"><div class="encadre">
       <b>Si</b> on <b>mange</b> trop, on <b>grossit</b>. &nbsp;·&nbsp; <b>Si</b> je <b>dors</b> trop, j'<b>ai</b> mal à la tête.
       <span class="en">For a general truth, both verbs stay in the present — here <em>si</em> means "whenever".</span>
     </div>
@@ -502,20 +650,20 @@
       <span class="box">présent</span><span class="op">→</span>
       <span class="box">présent</span>
     </div>
-    <p class="consigne">Complète au <strong>présent</strong>.</p>
-    <ul class="ex-list" id="exF"></ul>
-    <div class="actions">
-      <button class="btn" data-check="exF">Vérifier</button>
-      <button class="btn ghost" data-reset="exF">Recommencer</button>
-      <span class="score" id="sc-exF">— / 5</span>
-    </div>
-  </section>
-
-  <!-- ============ BLOC 6 ============ -->
-  <section class="card" id="g6">
-    <p class="sec-label">Pratique · 6</p>
-    <h2>⛓️ La suite logique</h2>
-    <p class="consigne">Chaque conséquence devient la condition suivante. Suis la chaîne jusqu'au bout.</p>
+    <p class="consigne">Complète au <strong>présent</strong>.</p></div>
+<div class="card" id="bR5" data-bloc>
+<div class="liste">
+<div class="q" data-note="v&amp;eacute;rit&amp;eacute; g&amp;eacute;n&amp;eacute;rale&nbsp;: deux pr&amp;eacute;sents">Si on <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="mange" size="6" autocomplete="off" spellcheck="false"></span> trop, on <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="grossit" size="8" autocomplete="off" spellcheck="false"></span>.<div class="vd"></div></div>
+<div class="q" data-note="deux pr&amp;eacute;sents">Si je <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="dors" size="5" autocomplete="off" spellcheck="false"></span> mal, j'<span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="ai" size="3" autocomplete="off" spellcheck="false"></span> mal &agrave; la t&ecirc;te.<div class="vd"></div></div>
+<div class="q" data-answer="chaque fois que"><span>&laquo;&nbsp;Si on lit en voiture, on est malade.&nbsp;&raquo; Ici, &laquo;&nbsp;si&nbsp;&raquo; veut dire&nbsp;:</span><div class="opts"><button class="opt" type="button">chaque fois que</button><button class="opt" type="button">à condition que</button><button class="opt" type="button">oui ou non</button></div><div class="vd"></div></div>
+<div class="q" data-note="g&amp;eacute;n&amp;eacute;ralit&amp;eacute;">Si tu <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="prends" size="7" autocomplete="off" spellcheck="false"></span> le bus aux heures de pointe, il y <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="a" size="3" autocomplete="off" spellcheck="false"></span> toujours du monde.<div class="vd"></div></div>
+</div>
+<div class="cmd"><button class="btn primary" data-check="bR5" type="button">Vérifier</button><button class="btn" data-reset="bR5" type="button">&#8634; Effacer</button><span class="bloc-score"></span></div>
+</div>
+<div class="partsep"><span class="pnum">Étape 7</span><span class="ptit">La pratique &middot; la suite logique</span><span class="psous">Chaque cons&eacute;quence devient la condition suivante.</span></div>
+<h2 class="sec" id="r6"><span class="n">7</span> ⛓️ La suite logique</h2>
+<p class="lead">La cha&icirc;ne d'origine, puis 7 points.</p>
+<div class="card"><p class="consigne">Chaque conséquence devient la condition suivante. Suis la chaîne jusqu'au bout.</p>
     <div class="chaine">
       <span class="e">sortir sans parapluie</span><span class="fl">→</span>
       <span class="e">se mouiller</span><span class="fl">→</span>
@@ -528,349 +676,1061 @@
     </div>
     <div class="encadre" style="border-left-color:var(--rouge);">
       <strong>Si tu sors sans parapluie, tu te mouilleras.</strong> — à toi de continuer.
-    </div>
-    <ul class="ex-list" id="exG"></ul>
-    <div class="actions">
-      <button class="btn" data-check="exG">Vérifier</button>
-      <button class="btn ghost" data-reset="exG">Recommencer</button>
-      <span class="score" id="sc-exG">— / 6</span>
-    </div>
-  </section>
-
-  <!-- ============ BLOC 7 ============ -->
-  <section class="card" id="g7">
-    <p class="sec-label">Pratique · 7</p>
-    <h2>🔄 De l'ordre au conseil</h2>
-    <p class="consigne">Transforme l'impératif en hypothèse. Écris la phrase entière.</p>
+    </div></div>
+<div class="card" id="bR6" data-bloc>
+<div class="liste">
+<div class="q" data-note="se mouiller &amp;rarr; tu te mouilleras">Si tu sors sans parapluie, tu te <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="mouilleras" size="11" autocomplete="off" spellcheck="false"></span>.<div class="vd"></div></div>
+<div class="q" data-note="prendre froid">Si tu te mouilles, tu <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="prendras" size="9" autocomplete="off" spellcheck="false"></span> froid.<div class="vd"></div></div>
+<div class="q" data-note="tomber malade">Si tu prends froid, tu <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="tomberas" size="9" autocomplete="off" spellcheck="false"></span> malade.<div class="vd"></div></div>
+<div class="q" data-note="manquer l&#x27;&amp;eacute;cole">Si tu tombes malade, tu <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="manqueras" size="10" autocomplete="off" spellcheck="false"></span> l'&eacute;cole.<div class="vd"></div></div>
+<div class="q" data-note="rater ses examens">Si tu manques l'&eacute;cole, tu <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="rateras" size="8" autocomplete="off" spellcheck="false"></span> tes examens.<div class="vd"></div></div>
+<div class="q" data-note="la fin de la cha&amp;icirc;ne">Si tu rates tes examens, tu <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="étudieras|etudieras" size="11" autocomplete="off" spellcheck="false"></span> pendant l'&eacute;t&eacute; et tu ne <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="partiras" size="9" autocomplete="off" spellcheck="false"></span> pas en vacances&nbsp;!<div class="vd"></div></div>
+</div>
+<div class="cmd"><button class="btn primary" data-check="bR6" type="button">Vérifier</button><button class="btn" data-reset="bR6" type="button">&#8634; Effacer</button><span class="bloc-score"></span></div>
+</div>
+<div class="partsep"><span class="pnum">Étape 8</span><span class="ptit">La pratique &middot; de l'ordre au conseil</span><span class="psous">Transformer un imp&eacute;ratif en hypoth&egrave;se.</span></div>
+<h2 class="sec" id="r7"><span class="n">8</span> 🔄 De l'ordre au conseil</h2>
+<p class="lead">Le mod&egrave;le d'origine, puis 5 points.</p>
+<div class="card"><p class="consigne">Transforme l'impératif en hypothèse. Écris la phrase entière.</p>
     <div class="encadre" style="border-left-color:var(--rouge);">
       Pour mieux dormir, <strong>mangez</strong> peu le soir ! → <strong>Si vous mangez peu le soir, vous dormirez mieux.</strong>
-    </div>
-    <ul class="ex-list" id="exH"></ul>
-    <div class="actions">
-      <button class="btn" data-check="exH">Vérifier</button>
-      <button class="btn ghost" data-reset="exH">Recommencer</button>
-      <span class="score" id="sc-exH">— / 6</span>
-    </div>
-  </section>
-
-  <!-- ============ ORAL ============ -->
-  <section class="card" id="oral">
-    <p class="sec-label">Pratique orale</p>
-    <h2>🗣️ Et toi, qu'est-ce que tu feras ?</h2>
-    <p class="consigne">Tire une question et réponds tout de suite, à voix haute. Une seule règle : <strong>présent après « si », futur après la virgule</strong>.</p>
-    <div class="roulette">
-      <div class="qq" id="qq">Clique sur « Une question ! »</div>
-      <div class="rep" id="rep">&nbsp;</div>
-    </div>
-    <div class="actions" style="justify-content:center;">
-      <button class="btn" id="tirer">Une question !</button>
-      <button class="btn ghost" id="voirRep">Voir une réponse possible</button>
-    </div>
-    <h2 style="margin-top:1.8rem;">👥 À deux</h2>
-    <div class="prompt-grid">
-      <div class="prompt"><div class="h">⛓️ La chaîne à l'oral</div><div class="ex">A lance « Si je rate mon train… », B enchaîne avec la conséquence, A repart de cette conséquence. On s'arrête quand quelqu'un met un futur après « si ».</div></div>
-      <div class="prompt"><div class="h">🗓️ Le plan B</div><div class="ex">Raconte ton week-end idéal, puis ton plan B : « S'il pleut, nous resterons à la maison et nous regarderons un film. »</div></div>
-      <div class="prompt"><div class="h">🔮 Les prédictions</div><div class="ex">Trois prédictions sur la classe : « Si Karim continue comme ça, il parlera couramment dans six mois. »</div></div>
-      <div class="prompt"><div class="h">💡 Les conseils</div><div class="ex">Ton camarade a un problème (fatigue, stress, pas de temps). Donne trois conseils avec « si » : « Si tu te couches plus tôt, tu seras moins fatigué. »</div></div>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  Grammaire · Les hypothèses — l'hypothèse sur le futur · <a href="../grammaire.html">← Retour au cours</a>
-</footer>
-
-<div class="scorebar">
-  <div class="inner">
-    <span class="big" id="total">0 / 55</span>
-    <span class="bar"><span id="bar"></span></span>
-    <button class="btn ghost" id="resetAll">Tout recommencer</button>
-  </div>
+    </div></div>
+<div class="card" id="bR7" data-bloc>
+<div class="liste">
+<div class="q" data-note="le mod&amp;egrave;le">Pour mieux dormir, mangez peu le soir&nbsp;! &rarr; Si vous mangez peu le soir, vous <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="dormirez" size="9" autocomplete="off" spellcheck="false"></span> mieux.<div class="vd"></div></div>
+<div class="q" data-note="&amp;eacute;viter">Pour &eacute;viter le mal des transports, asseyez-vous &agrave; l'avant&nbsp;! &rarr; Si vous vous asseyez &agrave; l'avant, vous <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="éviterez|eviterez" size="10" autocomplete="off" spellcheck="false"></span> le mal des transports.<div class="vd"></div></div>
+<div class="q" data-note="si + pr&amp;eacute;sent &amp;rarr; futur">Pour arriver &agrave; l'heure, prenez le m&eacute;tro&nbsp;! &rarr; Si vous <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="prenez" size="7" autocomplete="off" spellcheck="false"></span> le m&eacute;tro, vous <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="arriverez" size="10" autocomplete="off" spellcheck="false"></span> &agrave; l'heure.<div class="vd"></div></div>
+<div class="q" data-answer="« Si vous vous reposez, vous guérirez plus vite. »"><span>&laquo;&nbsp;Reposez-vous, vous gu&eacute;rirez plus vite&nbsp;&raquo; devient&nbsp;:</span><div class="opts"><button class="opt" type="button">« Si vous vous reposez, vous guérirez plus vite. »</button><button class="opt" type="button">« Si vous vous reposerez, vous guérirez plus vite. »</button><button class="opt" type="button">« Si vous vous reposez, vous guérissez plus vite. »</button></div><div class="vd"></div></div>
 </div>
+<div class="cmd"><button class="btn primary" data-check="bR7" type="button">Vérifier</button><button class="btn" data-reset="bR7" type="button">&#8634; Effacer</button><span class="bloc-score"></span></div>
+</div>
+<div class="partsep"><span class="pnum">Étape 9</span><span class="ptit">Le lexique &middot; les transports</span><span class="psous">Train, m&eacute;tro, guichet, retard&nbsp;&mdash; et EN ou &Agrave;. Six blocs, 48 points.</span></div>
+<h2 class="sec" id="vA_lex"><span class="n">&#128218;</span> Le lexique de base</h2>
+<p class="lead">Clique sur &#128264; pour entendre. <strong>EN on/off</strong>.</p>
+<div class="card">
+<div class="groupe-titre">&#128652; Les transports</div>
+<div class="lex">
+<div class="mot" data-say-host="le bus , un arrêt de bus"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">le bus · un arrêt de bus</span><span class="en">the bus · a bus stop</span></span></div>
+<div class="mot" data-say-host="le métro , une station"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">le métro · une station</span><span class="en">the underground · a station</span></span></div>
+<div class="mot" data-say-host="le tramway (le tram)"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">le tramway (le tram)</span><span class="en">the tram</span></span></div>
+<div class="mot" data-say-host="le train , la gare"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">le train · la gare</span><span class="en">the train · the station</span></span></div>
+<div class="mot" data-say-host="l&#x27;avion  , l&#x27;aéroport "><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">l'avion (m.) · l'aéroport (m.)</span><span class="en">the plane · the airport</span></span></div>
+<div class="mot" data-say-host="un taxi , un vélo , une trottinette"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">un taxi · un vélo · une trottinette</span><span class="en">a taxi · a bike · a scooter</span></span></div>
+<div class="mot" data-say-host="la voiture , la moto"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">la voiture · la moto</span><span class="en">the car · the motorbike</span></span></div>
+<div class="mot" data-say-host="à pied"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">à pied</span><span class="en">on foot</span></span></div>
+</div>
+<div class="groupe-titre">&#127915; Le billet et le voyage</div>
+<div class="lex">
+<div class="mot" data-say-host="un billet , un ticket"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">un billet · un ticket</span><span class="en">a ticket</span><span class="ex">⚠️ billet = train/avion, ticket = bus/métro</span></span></div>
+<div class="mot" data-say-host="un aller simple ou un aller-retour"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">un aller simple ≠ un aller-retour</span><span class="en">a single ≠ a return</span></span></div>
+<div class="mot" data-say-host="le quai , la voie"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">le quai · la voie</span><span class="en">the platform · the track</span></span></div>
+<div class="mot" data-say-host="le départ ou l&#x27;arrivée"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">le départ ≠ l'arrivée</span><span class="en">departure ≠ arrival</span></span></div>
+<div class="mot" data-say-host="être à l&#x27;heure ou en retard"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">être à l'heure ≠ en retard</span><span class="en">to be on time ≠ late</span></span></div>
+<div class="mot" data-say-host="un horaire"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">un horaire</span><span class="en">a timetable</span></span></div>
+<div class="mot" data-say-host="une valise , un sac à dos"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">une valise · un sac à dos</span><span class="en">a suitcase · a backpack</span></span></div>
+</div>
+<div class="groupe-titre">&#128739;&#65039; Les verbes du déplacement</div>
+<div class="lex">
+<div class="mot" data-say-host="prendre le bus , le métro"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">prendre le bus · le métro</span><span class="en">to take the bus · the metro</span></span></div>
+<div class="mot" data-say-host="monter ou descendre"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">monter ≠ descendre</span><span class="en">to get on ≠ to get off</span></span></div>
+<div class="mot" data-say-host="changer (à Nation)"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">changer (à Nation)</span><span class="en">to change (at Nation)</span></span></div>
+<div class="mot" data-say-host="attendre , arriver , partir"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">attendre · arriver · partir</span><span class="en">to wait · to arrive · to leave</span></span></div>
+<div class="mot" data-say-host="acheter un billet"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">acheter un billet</span><span class="en">to buy a ticket</span></span></div>
+<div class="mot" data-say-host="conduire"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">conduire</span><span class="en">to drive</span><span class="ex">⚠️ je conduis, il conduit</span></span></div>
+<div class="mot" data-say-host="marcher"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">marcher</span><span class="en">to walk</span></span></div>
+</div>
+<div class="groupe-titre">&#128663; Dans la voiture</div>
+<div class="lex">
+<div class="mot" data-say-host="le volant , le siège"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">le volant · le siège</span><span class="en">the steering wheel · the seat</span></span></div>
+<div class="mot" data-say-host="la ceinture de sécurité"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">la ceinture de sécurité</span><span class="en">the seat belt</span></span></div>
+<div class="mot" data-say-host="le coffre , la portière"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">le coffre · la portière</span><span class="en">the boot · the car door</span></span></div>
+<div class="mot" data-say-host="l&#x27;essence  , faire le plein"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">l'essence (f.) · faire le plein</span><span class="en">petrol · to fill up</span></span></div>
+<div class="mot" data-say-host="un parking , se garer"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">un parking · se garer</span><span class="en">a car park · to park</span></span></div>
+<div class="mot" data-say-host="un casque"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">un casque</span><span class="en">a helmet</span></span></div>
+<div class="mot" data-say-host="le permis de conduire"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">le permis de conduire</span><span class="en">a driving licence</span></span></div>
+</div>
+<div class="alerte">&#9888;&#65039; <strong>EN ou À&nbsp;? La règle du chapitre.</strong><br>👉 <strong>EN</strong> quand on est <em>dedans</em>&nbsp;: <em>en bus, en train, en voiture, en avion, en métro</em>.<br>👉 <strong>À</strong> quand on est <em>dessus</em> ou sans véhicule&nbsp;: <em>à pied, à vélo, à moto, à cheval</em>.<br>👉 Et&nbsp;: un <strong>ticket</strong> de métro ou de bus, mais un <strong>billet</strong> de train ou d'avion.</div>
+</div>
+<h2 class="sec" id="vA_mem"><span class="n">&#127183;</span> Cartes mémoire</h2>
+<p class="lead">Retourne la carte, puis dis si tu sais.</p>
+<div class="card flash" id="vA_f1">
+<div class="carte"></div>
+<div class="flash-cmd"><button class="btn ecoute" type="button">&#128264; Écouter</button><button class="btn sais" type="button">&#9989; Je sais</button><button class="btn revoir" type="button">&#128257; À revoir</button><span class="cpt"></span><button class="btn rejouer" type="button">&#8634;</button></div>
+</div>
+<script>(window.__INIT=window.__INIT||[]).push(["cartes","vA_f1",[["un arrêt de bus", "a bus stop"], ["une station de métro", "a metro station"], ["la gare", "the train station"], ["un aller-retour", "a return ticket"], ["le quai", "the platform"], ["être en retard", "to be late"], ["monter", "to get on"], ["descendre", "to get off"], ["changer à…", "to change at…"], ["se garer", "to park"], ["faire le plein", "to fill up (petrol)"], ["le permis de conduire", "a driving licence"]]]);</script>
+<h2 class="sec" id="vA_exA"><span class="n">1</span> Mot &#8596; définition</h2>
+<p class="lead">8 points &middot; Clique à gauche, puis à droite.</p>
+<div class="card" id="vA_a1" data-check="vA_a1">
+<div class="assoc"><div class="col colG"></div><div class="col colD"></div></div>
+<div class="assoc-msg"></div>
+<div class="cmd"><button class="btn rejouer" type="button">&#8634; Recommencer</button></div>
+</div>
+<script>(window.__INIT=window.__INIT||[]).push(["assoc","vA_a1",[["le quai", "L'endroit où on attend le train."], ["un aller-retour", "Un billet pour partir et pour revenir."], ["un arrêt de bus", "L'endroit où le bus s'arrête dans la rue."], ["la gare", "Le bâtiment d'où partent les trains."], ["se garer", "Mettre sa voiture à une place."], ["faire le plein", "Mettre de l'essence jusqu'en haut."], ["un horaire", "Le papier ou l'écran qui dit l'heure des départs."], ["le coffre", "L'endroit de la voiture où on met les valises."]],8]);</script>
+<h2 class="sec" id="vA_exB"><span class="n">2</span> EN ou À&nbsp;?</h2>
+<p class="lead">8 points &middot; La préposition exacte.</p>
+<div class="card" id="vA_bB" data-bloc>
+<div class="liste">
+<div class="q" data-note="en bus">Je vais au travail <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="en" size="5" autocomplete="off" spellcheck="false"></span> bus.<div class="vd"></div></div>
+<div class="q" data-note="à pied">Le dimanche, je me promène <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="à" size="4" autocomplete="off" spellcheck="false"></span> pied.<div class="vd"></div></div>
+<div class="q" data-note="à vélo">Il va à la fac <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="à" size="4" autocomplete="off" spellcheck="false"></span> vélo.<div class="vd"></div></div>
+<div class="q" data-note="en train">Nous partons à Lyon <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="en" size="5" autocomplete="off" spellcheck="false"></span> train.<div class="vd"></div></div>
+<div class="q" data-note="en avion">Elle voyage <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="en" size="5" autocomplete="off" spellcheck="false"></span> avion deux fois par an.<div class="vd"></div></div>
+<div class="q" data-note="à moto">Mon frère circule <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="à" size="4" autocomplete="off" spellcheck="false"></span> moto.<div class="vd"></div></div>
+<div class="q" data-note="en taxi">On rentre <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="en" size="5" autocomplete="off" spellcheck="false"></span> taxi&nbsp;: il est tard.<div class="vd"></div></div>
+<div class="q" data-note="à pied">Le matin, je prends le métro&nbsp;; le soir, je rentre <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="à" size="4" autocomplete="off" spellcheck="false"></span> pied.<div class="vd"></div></div>
+</div>
+<div class="cmd"><button class="btn primary" data-check="vA_bB" type="button">Vérifier</button><button class="btn" data-reset="vA_bB" type="button">&#8634; Effacer</button><span class="bloc-score"></span></div>
+</div>
+<h2 class="sec" id="vA_exC"><span class="n">3</span> Le mot exact</h2>
+<p class="lead">8 points &middot; Un seul mot par trou.</p>
+<div class="card" id="vA_bC" data-bloc>
+<div class="liste">
+<div class="q" data-note="un billet">Pour le train, j'achète un <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="billet" size="9" autocomplete="off" spellcheck="false"></span>.<div class="vd"></div></div>
+<div class="q" data-note="un ticket">Pour le métro, j'achète un <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="ticket" size="9" autocomplete="off" spellcheck="false"></span>.<div class="vd"></div></div>
+<div class="q" data-note="la voie">Le train part de la <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="voie|voie 3" size="10" autocomplete="off" spellcheck="false"></span> 3.<div class="vd"></div></div>
+<div class="q" data-note="en retard">Le bus est <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="en retard" size="12" autocomplete="off" spellcheck="false"></span> de dix minutes.<div class="vd"></div></div>
+<div class="q" data-note="monter">Je <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="monte" size="8" autocomplete="off" spellcheck="false"></span> dans le bus à l'arrêt.<div class="vd"></div></div>
+<div class="q" data-note="descendre">Je <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="descends" size="10" autocomplete="off" spellcheck="false"></span> à la station Opéra.<div class="vd"></div></div>
+<div class="q" data-note="changer">Je dois <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="changer" size="9" autocomplete="off" spellcheck="false"></span> à Châtelet.<div class="vd"></div></div>
+<div class="q" data-note="la ceinture de sécurité">Avant de partir, je mets ma <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="ceinture" size="11" autocomplete="off" spellcheck="false"></span>.<div class="vd"></div></div>
+</div>
+<div class="cmd"><button class="btn primary" data-check="vA_bC" type="button">Vérifier</button><button class="btn" data-reset="vA_bC" type="button">&#8634; Effacer</button><span class="bloc-score"></span></div>
+</div>
+<h2 class="sec" id="vA_exD"><span class="n">4</span> Le bon verbe</h2>
+<p class="lead">8 points &middot; Écris le verbe à l'infinitif.</p>
+<div class="card" id="vA_bD" data-bloc>
+<div class="liste">
+<div class="q" data-note="prendre le métro"><span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="prendre" size="9" autocomplete="off" spellcheck="false"></span> le métro<div class="vd"></div></div>
+<div class="q" data-note="acheter un billet"><span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="acheter" size="9" autocomplete="off" spellcheck="false"></span> un billet<div class="vd"></div></div>
+<div class="q" data-note="attendre"><span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="attendre" size="10" autocomplete="off" spellcheck="false"></span> le bus à l'arrêt<div class="vd"></div></div>
+<div class="q" data-note="monter dans"><span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="monter" size="8" autocomplete="off" spellcheck="false"></span> dans le train<div class="vd"></div></div>
+<div class="q" data-note="descendre"><span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="descendre" size="11" autocomplete="off" spellcheck="false"></span> à la prochaine station<div class="vd"></div></div>
+<div class="q" data-note="conduire"><span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="conduire" size="10" autocomplete="off" spellcheck="false"></span> une voiture<div class="vd"></div></div>
+<div class="q" data-note="se garer"><span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="se garer|garer" size="9" autocomplete="off" spellcheck="false"></span> devant la maison<div class="vd"></div></div>
+<div class="q" data-note="rater / manquer son train"><span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="rater|manquer" size="8" autocomplete="off" spellcheck="false"></span> son train<div class="vd"></div></div>
+</div>
+<div class="cmd"><button class="btn primary" data-check="vA_bD" type="button">Vérifier</button><button class="btn" data-reset="vA_bD" type="button">&#8634; Effacer</button><span class="bloc-score"></span></div>
+</div>
+<h2 class="sec" id="vA_exE"><span class="n">5</span> Au guichet&nbsp;: dialogue à trous</h2>
+<p class="lead">8 points &middot; Écoute d'abord si tu veux.</p>
+<div class="dial"><div class="lieu">&#128642; Gare de Lyon, guichet n° 4</div>
+<div class="rep"><span class="qui">Employé</span><span class="dit">Bonjour, je vous écoute.</span></div>
+<div class="rep"><span class="qui">Voyageuse</span><span class="dit">Bonjour. Je voudrais un <strong>billet</strong> pour Marseille, demain matin.</span></div>
+<div class="rep"><span class="qui">Employé</span><span class="dit">Aller simple ou <strong>aller-retour</strong>&nbsp;?</span></div>
+<div class="rep"><span class="qui">Voyageuse</span><span class="dit">Aller-retour, je rentre dimanche soir.</span></div>
+<div class="rep"><span class="qui">Employé</span><span class="dit">Il y a un train à 7 h 12 et un à 9 h 40.</span></div>
+<div class="rep"><span class="qui">Voyageuse</span><span class="dit">Celui de 9 h 40. Il arrive à quelle <strong>heure</strong>&nbsp;?</span></div>
+<div class="rep"><span class="qui">Employé</span><span class="dit">À 12 h 55, <strong>voie</strong> B. Attention, départ <strong>quai</strong> 3 ici.</span></div>
+<div class="rep"><span class="qui">Voyageuse</span><span class="dit">Très bien. Je peux payer par <strong>carte</strong>&nbsp;?</span></div>
+<div style="margin-top:10px"><button class="audio" type="button" data-say="Bonjour, je vous écoute. Bonjour. Je voudrais un billet pour Marseille, demain matin. Aller simple ou aller-retour ? Aller-retour, je rentre dimanche soir. Il y a un train à sept heures douze et un à neuf heures quarante. Celui de neuf heures quarante. Il arrive à quelle heure ? À douze heures cinquante-cinq, voie B. Attention, départ quai trois ici. Très bien. Je peux payer par carte ?" style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">&#128264; Écouter la scène</button></div></div>
+<div class="card" id="vA_bE" data-bloc>
+<div class="liste">
+<div class="q" data-note="un billet">&mdash; Je voudrais un <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="billet" size="9" autocomplete="off" spellcheck="false"></span> pour Marseille.<div class="vd"></div></div>
+<div class="q" data-note="un aller-retour">&mdash; Aller simple ou <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="aller-retour" size="14" autocomplete="off" spellcheck="false"></span>&nbsp;?<div class="vd"></div></div>
+<div class="q" data-note="à quelle heure">&mdash; Il arrive à quelle <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="heure" size="8" autocomplete="off" spellcheck="false"></span>&nbsp;?<div class="vd"></div></div>
+<div class="q" data-note="le quai">&mdash; Le train part <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="quai" size="7" autocomplete="off" spellcheck="false"></span> 3.<div class="vd"></div></div>
+<div class="q" data-note="la voie">&mdash; Il arrive <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="voie" size="7" autocomplete="off" spellcheck="false"></span> B.<div class="vd"></div></div>
+<div class="q" data-note="par carte">&mdash; Je peux payer par <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="carte" size="8" autocomplete="off" spellcheck="false"></span>&nbsp;?<div class="vd"></div></div>
+<div class="q" data-note="du retard">&mdash; Le train a dix minutes de <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="retard" size="9" autocomplete="off" spellcheck="false"></span>.<div class="vd"></div></div>
+<div class="q" data-note="la salle d&#x27;attente">&mdash; Où est la <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="salle d&#x27;attente|consigne" size="17" autocomplete="off" spellcheck="false"></span>&nbsp;?<div class="vd"></div></div>
+</div>
+<div class="cmd"><button class="btn primary" data-check="vA_bE" type="button">Vérifier</button><button class="btn" data-reset="vA_bE" type="button">&#8634; Effacer</button><span class="bloc-score"></span></div>
+</div>
+<h2 class="sec" id="vA_exF"><span class="n">6</span> Qu'est-ce que tu dis&nbsp;?</h2>
+<p class="lead">8 points &middot; Huit situations de la vraie vie.</p>
+<div class="card" id="vA_bF" data-bloc>
+<div class="liste">
+<div class="q" data-answer="« Je dois changer où, pour aller à Bastille ? »"><span>Tu demandes ton chemin dans le métro&nbsp;:</span><div class="opts"><button class="opt" type="button">« Je dois changer où, pour aller à Bastille ? »</button><button class="opt" type="button">« Je dois monter où, pour aller à Bastille ? »</button><button class="opt" type="button">« Je dois conduire où ? »</button></div><div class="vd"></div></div>
+<div class="q" data-answer="« Je viens en bus et à pied. »"><span>Tu expliques comment tu viens au travail&nbsp;:</span><div class="opts"><button class="opt" type="button">« Je viens en bus et à pied. »</button><button class="opt" type="button">« Je viens au bus et en pied. »</button><button class="opt" type="button">« Je viens dans le bus et sur le pied. »</button></div><div class="vd"></div></div>
+<div class="q" data-answer="« Le bus a du retard. »"><span>Le bus ne vient pas depuis vingt minutes&nbsp;:</span><div class="opts"><button class="opt" type="button">« Le bus a du retard. »</button><button class="opt" type="button">« Le bus est à l'heure. »</button><button class="opt" type="button">« Le bus est en avance. »</button></div><div class="vd"></div></div>
+<div class="q" data-answer="« Un aller-retour, s&#x27;il vous plaît. »"><span>Tu veux acheter un billet de train pour l'aller et le retour&nbsp;:</span><div class="opts"><button class="opt" type="button">« Un aller-retour, s'il vous plaît. »</button><button class="opt" type="button">« Un aller simple, s'il vous plaît. »</button><button class="opt" type="button">« Deux tickets, s'il vous plaît. »</button></div><div class="vd"></div></div>
+<div class="q" data-answer="« J&#x27;attache ma ceinture. »"><span>Tu montes dans la voiture d'un ami&nbsp;:</span><div class="opts"><button class="opt" type="button">« J'attache ma ceinture. »</button><button class="opt" type="button">« Je fais le plein. »</button><button class="opt" type="button">« Je me gare. »</button></div><div class="vd"></div></div>
+<div class="q" data-answer="« Je l&#x27;ai raté de trente secondes ! »" data-note="Rater / manquer son train ou son métro."><span>Tu arrives à la station juste après le départ du métro&nbsp;:</span><div class="opts"><button class="opt" type="button">« Je l'ai raté de trente secondes ! »</button><button class="opt" type="button">« Je l'ai conduit de trente secondes ! »</button><button class="opt" type="button">« Je suis monté de trente secondes ! »</button></div><div class="vd"></div></div>
+<div class="q" data-answer="« Il y a un parking près d&#x27;ici ? »"><span>Tu demandes où mettre la voiture&nbsp;:</span><div class="opts"><button class="opt" type="button">« Il y a un parking près d'ici ? »</button><button class="opt" type="button">« Il y a un quai près d'ici ? »</button><button class="opt" type="button">« Il y a une voie près d'ici ? »</button></div><div class="vd"></div></div>
+<div class="q" data-answer="« Pardon, je descends. »"><span>Dans le bus, tu veux sortir à la prochaine&nbsp;:</span><div class="opts"><button class="opt" type="button">« Pardon, je descends. »</button><button class="opt" type="button">« Pardon, je monte. »</button><button class="opt" type="button">« Pardon, je change. »</button></div><div class="vd"></div></div>
+</div>
+<div class="cmd"><button class="btn primary" data-check="vA_bF" type="button">Vérifier</button><button class="btn" data-reset="vA_bF" type="button">&#8634; Effacer</button><span class="bloc-score"></span></div>
+</div>
+<h2 class="sec" id="vA_prod"><span class="n">&#9997;&#65039;</span> Mini-production</h2>
+<p class="lead">Pas de points&nbsp;: on écrit et on parle.</p>
+<div class="card">
+  <h3>&#9997;&#65039; À l'écrit &middot; Explique le trajet (60-80 mots)</h3>
+  <p class="consigne">Un ami vient chez toi pour la première fois. Explique-lui le trajet depuis la gare. <strong>Utilise&nbsp;:</strong> deux transports, un «&nbsp;en / à&nbsp;», un changement, une durée.</p>
+  <div class="tags"><span class="tag">prends le…</span><span class="tag">descends à…</span><span class="tag">change à…</span><span class="tag">en bus / à pied</span><span class="tag">ça prend 20 minutes</span><span class="tag">ensuite</span></div>
+  <textarea data-compte placeholder="Écris ici…"></textarea>
+  <div class="compteur"><span>0</span> mot(s)</div>
+  <div class="cmd"><button class="btn" data-modele="vA_m1" type="button">&#128065;&#65039; Voir un modèle</button></div>
+  <div class="modele" id="vA_m1"><strong>Modèle</strong> <button class="audio" type="button" data-say="Salut ! Alors, en sortant de la gare, prends le métro ligne quatre en direction de Porte d&#x27;Orléans. Descends à Saint-Placide : ça prend dix minutes. Ensuite, change et prends le bus quatre-vingt-quinze ; descends au troisième arrêt, devant la pharmacie. Après, c&#x27;est à pied : tu prends la rue des Lilas et c&#x27;est le bâtiment bleu, au numéro douze. En tout, vingt-cinq minutes. À tout à l&#x27;heure !">&#128264;</button><br><em>Salut&nbsp;! Alors, en sortant de la gare, prends le métro ligne 4 en direction de Porte d'Orléans. Descends à Saint-Placide&nbsp;: ça prend dix minutes. Ensuite, change et prends le bus 95&nbsp;; descends au troisième arrêt, devant la pharmacie. Après, c'est à pied&nbsp;: tu prends la rue des Lilas et c'est le bâtiment bleu, au numéro 12. En tout, vingt-cinq minutes. À tout à l'heure&nbsp;!</em></div>
+</div>
+<div class="card"><h3>&#128483;&#65039; À l'oral</h3><div class="liste">
+<div class="blank" data-say-host="Comment venez-vous en cours ? Combien de temps cela prend-il ?"><strong>A.</strong> Comment viens-tu en cours&nbsp;? Combien de temps ça prend&nbsp;? <button class="audio" type="button">&#128264;</button></div>
+<div class="blank" data-say-host="Quel transport préférez-vous ? Pourquoi ?"><strong>B.</strong> Quel transport préfères-tu&nbsp;? Pourquoi&nbsp;? <button class="audio" type="button">&#128264;</button></div>
+<div class="blank" data-say-host="Au guichet : achetez un billet pour Lille, demain matin."><strong>C. Jeu de rôle.</strong> Au guichet&nbsp;: achète un billet pour Lille, demain matin. <button class="audio" type="button">&#128264;</button></div>
+<div class="blank" data-say-host="Racontez un voyage en train ou en avion : où, avec qui, comment c&#x27;était."><strong>D.</strong> Raconte un voyage en train ou en avion&nbsp;: où, avec qui, comment c'était. <button class="audio" type="button">&#128264;</button></div>
+</div></div>
+<div class="partsep"><span class="pnum">Étape 10</span><span class="ptit">Le lexique &middot; la sant&eacute;</span><span class="psous">Avoir mal &agrave;&hellip;, les sympt&ocirc;mes, chez le m&eacute;decin. Six blocs, 48 points.</span></div>
+<h2 class="sec" id="vB_lex"><span class="n">&#128218;</span> Le lexique de base</h2>
+<p class="lead">Clique sur &#128264; pour entendre. <strong>EN on/off</strong>.</p>
+<div class="card">
+<div class="groupe-titre">&#128170; Quand ça va bien</div>
+<div class="lex">
+<div class="mot" data-say-host="aller bien , ça va"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">aller bien · ça va</span><span class="en">to be well</span></span></div>
+<div class="mot" data-say-host="se sentir bien"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">se sentir bien</span><span class="en">to feel well</span></span></div>
+<div class="mot" data-say-host="être en bonne santé"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">être en bonne santé</span><span class="en">to be in good health</span></span></div>
+<div class="mot" data-say-host="être en forme"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">être en forme</span><span class="en">to be on form, fit</span></span></div>
+<div class="mot" data-say-host="avoir bonne mine"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">avoir bonne mine</span><span class="en">to look well</span><span class="ex">⚠️ « mine » = l'air du visage</span></span></div>
+<div class="mot" data-say-host="se reposer , le repos"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">se reposer · le repos</span><span class="en">to rest · rest</span></span></div>
+</div>
+<div class="groupe-titre">&#129326; Quand ça va mal</div>
+<div class="lex">
+<div class="mot" data-say-host="être malade"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">être malade</span><span class="en">to be ill</span></span></div>
+<div class="mot" data-say-host="se sentir mal , ne pas aller"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">se sentir mal · ne pas aller</span><span class="en">to feel unwell</span></span></div>
+<div class="mot" data-say-host="être fatigué , fatiguée"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">être fatigué · fatiguée</span><span class="en">to be tired</span></span></div>
+<div class="mot" data-say-host="avoir de la fièvre"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">avoir de la fièvre</span><span class="en">to have a temperature</span></span></div>
+<div class="mot" data-say-host="avoir un rhume , être enrhumé"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">avoir un rhume · être enrhumé</span><span class="en">to have a cold</span></span></div>
+<div class="mot" data-say-host="tousser , la toux"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">tousser · la toux</span><span class="en">to cough · a cough</span></span></div>
+<div class="mot" data-say-host="avoir mal à…"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">avoir mal à…</span><span class="en">to have a sore…</span></span></div>
+<div class="mot" data-say-host="une douleur"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">une douleur</span><span class="en">a pain</span></span></div>
+</div>
+<div class="groupe-titre">&#129355; Le corps qui fait mal</div>
+<div class="lex">
+<div class="mot" data-say-host="la tête , avoir mal à la tête"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">la tête · avoir mal à la tête</span><span class="en">head · to have a headache</span></span></div>
+<div class="mot" data-say-host="la gorge , avoir mal à la gorge"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">la gorge · avoir mal à la gorge</span><span class="en">throat · to have a sore throat</span></span></div>
+<div class="mot" data-say-host="le ventre , avoir mal au ventre"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">le ventre · avoir mal au ventre</span><span class="en">stomach · to have a stomach ache</span></span></div>
+<div class="mot" data-say-host="le dos , avoir mal au dos"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">le dos · avoir mal au dos</span><span class="en">back · to have backache</span></span></div>
+<div class="mot" data-say-host="les dents , avoir mal aux dents"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">les dents · avoir mal aux dents</span><span class="en">teeth · to have toothache</span></span></div>
+<div class="mot" data-say-host="une jambe , un bras , un pied"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">une jambe · un bras · un pied</span><span class="en">a leg · an arm · a foot</span></span></div>
+</div>
+<div class="groupe-titre">&#127973; Chez le médecin</div>
+<div class="lex">
+<div class="mot" data-say-host="un médecin , un docteur"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">un médecin · un docteur</span><span class="en">a doctor</span></span></div>
+<div class="mot" data-say-host="prendre rendez-vous"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">prendre rendez-vous</span><span class="en">to make an appointment</span></span></div>
+<div class="mot" data-say-host="une ordonnance"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">une ordonnance</span><span class="en">a prescription</span></span></div>
+<div class="mot" data-say-host="un médicament , un comprimé"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">un médicament · un comprimé</span><span class="en">a medicine · a tablet</span></span></div>
+<div class="mot" data-say-host="la pharmacie"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">la pharmacie</span><span class="en">the chemist's</span></span></div>
+<div class="mot" data-say-host="se soigner"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">se soigner</span><span class="en">to take care of oneself</span></span></div>
+<div class="mot" data-say-host="guérir , être guéri(e)"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">guérir · être guéri(e)</span><span class="en">to get better · to be cured</span></span></div>
+<div class="mot" data-say-host="une pastille , un sirop"><button class="audio" type="button">&#128264;</button><span class="txt"><span class="fr">une pastille · un sirop</span><span class="en">a lozenge · a syrup</span></span></div>
+</div>
+<div class="alerte">&#9888;&#65039; <strong>La structure du chapitre&nbsp;: «&nbsp;avoir mal à&nbsp;».</strong><br>👉 à + le = <strong>au</strong>&nbsp;: j'ai mal <strong>au</strong> ventre, <strong>au</strong> dos, <strong>au</strong> pied.<br>👉 à + la = <strong>à la</strong>&nbsp;: j'ai mal <strong>à la</strong> tête, <strong>à la</strong> gorge, <strong>à la</strong> jambe.<br>👉 à + les = <strong>aux</strong>&nbsp;: j'ai mal <strong>aux</strong> dents, <strong>aux</strong> yeux, <strong>aux</strong> oreilles.<br>👉 à + l' = <strong>à l'</strong>&nbsp;: j'ai mal <strong>à l'</strong>oreille, <strong>à l'</strong>épaule.</div>
+</div>
+<h2 class="sec" id="vB_mem"><span class="n">&#127183;</span> Cartes mémoire</h2>
+<p class="lead">Retourne la carte, puis dis si tu sais.</p>
+<div class="card flash" id="vB_f1">
+<div class="carte"></div>
+<div class="flash-cmd"><button class="btn ecoute" type="button">&#128264; Écouter</button><button class="btn sais" type="button">&#9989; Je sais</button><button class="btn revoir" type="button">&#128257; À revoir</button><span class="cpt"></span><button class="btn rejouer" type="button">&#8634;</button></div>
+</div>
+<script>(window.__INIT=window.__INIT||[]).push(["cartes","vB_f1",[["être en forme", "to be on form, fit"], ["être malade", "to be ill"], ["avoir de la fièvre", "to have a temperature"], ["être enrhumé", "to have a cold"], ["tousser", "to cough"], ["avoir mal à la tête", "to have a headache"], ["avoir mal au ventre", "to have a stomach ache"], ["une ordonnance", "a prescription"], ["un médicament", "a medicine"], ["prendre rendez-vous", "to make an appointment"], ["se reposer", "to rest"], ["guérir", "to get better"]]]);</script>
+<h2 class="sec" id="vB_exA"><span class="n">1</span> Expression &#8596; sens</h2>
+<p class="lead">8 points &middot; Clique à gauche, puis à droite.</p>
+<div class="card" id="vB_a1" data-check="vB_a1">
+<div class="assoc"><div class="col colG"></div><div class="col colD"></div></div>
+<div class="assoc-msg"></div>
+<div class="cmd"><button class="btn rejouer" type="button">&#8634; Recommencer</button></div>
+</div>
+<script>(window.__INIT=window.__INIT||[]).push(["assoc","vB_a1",[["être en forme", "On se sent bien, on a de l'énergie."], ["avoir de la fièvre", "Le thermomètre dit 39 degrés."], ["être enrhumé", "On a le nez qui coule et on tousse."], ["avoir mal à la tête", "On a besoin d'aspirine et de silence."], ["une ordonnance", "Le papier du médecin pour la pharmacie."], ["se reposer", "Rester tranquille pour aller mieux."], ["guérir", "La maladie est finie, on va bien."], ["avoir bonne mine", "Le visage a l'air en bonne santé."]],8]);</script>
+<h2 class="sec" id="vB_exB"><span class="n">2</span> Avoir mal à…</h2>
+<p class="lead">8 points &middot; au / à la / aux / à l'&nbsp;: la faute n° 1 du chapitre.</p>
+<div class="card" id="vB_bB" data-bloc>
+<div class="liste">
+<div class="q" data-note="à la tête">J'ai mal <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="à la" size="6" autocomplete="off" spellcheck="false"></span> tête.<div class="vd"></div></div>
+<div class="q" data-note="au ventre">Il a mal <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="au" size="5" autocomplete="off" spellcheck="false"></span> ventre.<div class="vd"></div></div>
+<div class="q" data-note="aux dents">Elle a mal <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="aux" size="5" autocomplete="off" spellcheck="false"></span> dents.<div class="vd"></div></div>
+<div class="q" data-note="au dos">Tu as mal <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="au" size="5" autocomplete="off" spellcheck="false"></span> dos&nbsp;?<div class="vd"></div></div>
+<div class="q" data-note="à la gorge">J'ai mal <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="à la" size="6" autocomplete="off" spellcheck="false"></span> gorge depuis hier.<div class="vd"></div></div>
+<div class="q" data-note="à l&#x27;oreille">Il a mal <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="à l&#x27;" size="6" autocomplete="off" spellcheck="false"></span> oreille gauche.<div class="vd"></div></div>
+<div class="q" data-note="aux jambes">Après la course, j'ai mal <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="aux" size="5" autocomplete="off" spellcheck="false"></span> jambes.<div class="vd"></div></div>
+<div class="q" data-note="au pied">Elle a mal <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="au" size="5" autocomplete="off" spellcheck="false"></span> pied droit.<div class="vd"></div></div>
+</div>
+<div class="cmd"><button class="btn primary" data-check="vB_bB" type="button">Vérifier</button><button class="btn" data-reset="vB_bB" type="button">&#8634; Effacer</button><span class="bloc-score"></span></div>
+</div>
+<h2 class="sec" id="vB_exC"><span class="n">3</span> Le mot exact</h2>
+<p class="lead">8 points &middot; Un seul mot par trou.</p>
+<div class="card" id="vB_bC" data-bloc>
+<div class="liste">
+<div class="q" data-note="prendre rendez-vous">Je suis malade&nbsp;: je vais <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="prendre" size="8" autocomplete="off" spellcheck="false"></span> rendez-vous chez le médecin.<div class="vd"></div></div>
+<div class="q" data-note="une ordonnance">Le médecin me donne une <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="ordonnance" size="12" autocomplete="off" spellcheck="false"></span>.<div class="vd"></div></div>
+<div class="q" data-note="la pharmacie">Je vais à la <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="pharmacie" size="11" autocomplete="off" spellcheck="false"></span> chercher mes médicaments.<div class="vd"></div></div>
+<div class="q" data-note="de la fièvre">J'ai 39 °C&nbsp;: j'ai de la <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="fièvre" size="9" autocomplete="off" spellcheck="false"></span>.<div class="vd"></div></div>
+<div class="q" data-note="tousser → je tousse">Je <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="tousse" size="9" autocomplete="off" spellcheck="false"></span> toute la nuit.<div class="vd"></div></div>
+<div class="q" data-note="Reposez-vous">Le docteur dit&nbsp;: «&nbsp;<span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="Reposez-vous|reposez-vous" size="14" autocomplete="off" spellcheck="false"></span> trois jours.&nbsp;»<div class="vd"></div></div>
+<div class="q" data-note="guéri(e)">Une semaine après, je suis <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="guéri|guérie" size="9" autocomplete="off" spellcheck="false"></span>.<div class="vd"></div></div>
+<div class="q" data-note="des pastilles">Pour le mal de gorge, je prends des <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="pastilles|pastille" size="11" autocomplete="off" spellcheck="false"></span>.<div class="vd"></div></div>
+</div>
+<div class="cmd"><button class="btn primary" data-check="vB_bC" type="button">Vérifier</button><button class="btn" data-reset="vB_bC" type="button">&#8634; Effacer</button><span class="bloc-score"></span></div>
+</div>
+<h2 class="sec" id="vB_exD"><span class="n">4</span> Ça va ou ça ne va pas&nbsp;?</h2>
+<p class="lead">8 points &middot; Classe chaque phrase.</p>
+<div class="card" id="vB_bD" data-bloc>
+<div class="liste">
+<div class="q" data-answer="ça va bien"><span>« Je suis en pleine forme ! »</span><div class="opts"><button class="opt" type="button">ça va bien</button><button class="opt" type="button">ça ne va pas</button></div><div class="vd"></div></div>
+<div class="q" data-answer="ça ne va pas"><span>« J'ai de la fièvre depuis deux jours. »</span><div class="opts"><button class="opt" type="button">ça va bien</button><button class="opt" type="button">ça ne va pas</button></div><div class="vd"></div></div>
+<div class="q" data-answer="ça va bien"><span>« Tu as bonne mine aujourd'hui. »</span><div class="opts"><button class="opt" type="button">ça va bien</button><button class="opt" type="button">ça ne va pas</button></div><div class="vd"></div></div>
+<div class="q" data-answer="ça ne va pas"><span>« Je me sens fatigué tout le temps. »</span><div class="opts"><button class="opt" type="button">ça va bien</button><button class="opt" type="button">ça ne va pas</button></div><div class="vd"></div></div>
+<div class="q" data-answer="ça va bien"><span>« Je suis guérie, merci ! »</span><div class="opts"><button class="opt" type="button">ça va bien</button><button class="opt" type="button">ça ne va pas</button></div><div class="vd"></div></div>
+<div class="q" data-answer="ça ne va pas"><span>« J'ai mal partout. »</span><div class="opts"><button class="opt" type="button">ça va bien</button><button class="opt" type="button">ça ne va pas</button></div><div class="vd"></div></div>
+<div class="q" data-answer="ça va bien" data-note="« Aller mieux »&nbsp;: la phrase qu&#x27;on attend&nbsp;!"><span>« Il va mieux depuis hier. »</span><div class="opts"><button class="opt" type="button">ça va bien</button><button class="opt" type="button">ça ne va pas</button></div><div class="vd"></div></div>
+<div class="q" data-answer="ça ne va pas"><span>« Je tousse et j'ai mal à la gorge. »</span><div class="opts"><button class="opt" type="button">ça va bien</button><button class="opt" type="button">ça ne va pas</button></div><div class="vd"></div></div>
+</div>
+<div class="cmd"><button class="btn primary" data-check="vB_bD" type="button">Vérifier</button><button class="btn" data-reset="vB_bD" type="button">&#8634; Effacer</button><span class="bloc-score"></span></div>
+</div>
+<h2 class="sec" id="vB_exE"><span class="n">5</span> Chez le médecin&nbsp;: dialogue à trous</h2>
+<p class="lead">8 points &middot; Écoute d'abord si tu veux.</p>
+<div class="dial"><div class="lieu">&#127973; Cabinet médical, lundi matin</div>
+<div class="rep"><span class="qui">Médecin</span><span class="dit">Bonjour, asseyez-vous. Qu'est-ce qui ne va pas&nbsp;?</span></div>
+<div class="rep"><span class="qui">Sofia</span><span class="dit">J'ai mal <strong>à la gorge</strong> depuis trois jours, et je <strong>tousse</strong> beaucoup.</span></div>
+<div class="rep"><span class="qui">Médecin</span><span class="dit">Vous avez de la <strong>fièvre</strong>&nbsp;?</span></div>
+<div class="rep"><span class="qui">Sofia</span><span class="dit">Oui, 38,5 ce matin. Et je suis très <strong>fatiguée</strong>.</span></div>
+<div class="rep"><span class="qui">Médecin</span><span class="dit">Bon. Ce n'est pas grave. Je vous fais une <strong>ordonnance</strong>.</span></div>
+<div class="rep"><span class="qui">Sofia</span><span class="dit">Merci&nbsp;! Je peux aller travailler&nbsp;?</span></div>
+<div class="rep"><span class="qui">Médecin</span><span class="dit"><strong>Reposez-vous</strong> deux jours. Vous serez <strong>guérie</strong> la semaine prochaine.</span></div>
+<div style="margin-top:10px"><button class="audio" type="button" data-say="Bonjour, asseyez-vous. Qu&#x27;est-ce qui ne va pas ? J&#x27;ai mal à la gorge depuis trois jours, et je tousse beaucoup. Vous avez de la fièvre ? Oui, trente-huit cinq ce matin. Et je suis très fatiguée. Bon. Ce n&#x27;est pas grave. Je vous fais une ordonnance. Merci ! Je peux aller travailler ? Reposez-vous deux jours. Vous serez guérie la semaine prochaine." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">&#128264; Écouter la scène</button></div></div>
+<div class="card" id="vB_bE" data-bloc>
+<div class="liste">
+<div class="q" data-note="« Qu&#x27;est-ce qui ne va pas&nbsp;? »">&mdash; Qu'est-ce qui ne <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="va" size="5" autocomplete="off" spellcheck="false"></span> pas&nbsp;?<div class="vd"></div></div>
+<div class="q" data-note="à la gorge">&mdash; J'ai mal <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="à la" size="6" autocomplete="off" spellcheck="false"></span> gorge depuis trois jours.<div class="vd"></div></div>
+<div class="q" data-note="je tousse">&mdash; Je <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="tousse" size="9" autocomplete="off" spellcheck="false"></span> beaucoup la nuit.<div class="vd"></div></div>
+<div class="q" data-note="de la fièvre">&mdash; Vous avez de la <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="fièvre" size="9" autocomplete="off" spellcheck="false"></span>&nbsp;?<div class="vd"></div></div>
+<div class="q" data-note="une ordonnance">&mdash; Je vous fais une <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="ordonnance" size="12" autocomplete="off" spellcheck="false"></span>.<div class="vd"></div></div>
+<div class="q" data-note="Reposez-vous">&mdash; <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="Reposez-vous|reposez-vous" size="14" autocomplete="off" spellcheck="false"></span> deux jours.<div class="vd"></div></div>
+<div class="q" data-note="guérie">&mdash; Vous serez <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="guérie|guéri" size="9" autocomplete="off" spellcheck="false"></span> la semaine prochaine.<div class="vd"></div></div>
+<div class="q" data-note="prendre rendez-vous">&mdash; Je voudrais <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="prendre" size="8" autocomplete="off" spellcheck="false"></span> rendez-vous pour vendredi.<div class="vd"></div></div>
+</div>
+<div class="cmd"><button class="btn primary" data-check="vB_bE" type="button">Vérifier</button><button class="btn" data-reset="vB_bE" type="button">&#8634; Effacer</button><span class="bloc-score"></span></div>
+</div>
+<h2 class="sec" id="vB_exF"><span class="n">6</span> Qu'est-ce que tu dis&nbsp;?</h2>
+<p class="lead">8 points &middot; Huit situations de la vraie vie.</p>
+<div class="card" id="vB_bF" data-bloc>
+<div class="liste">
+<div class="q" data-answer="« Bonjour, je voudrais prendre rendez-vous. »"><span>Tu téléphones au cabinet médical&nbsp;:</span><div class="opts"><button class="opt" type="button">« Bonjour, je voudrais prendre rendez-vous. »</button><button class="opt" type="button">« Bonjour, je voudrais une ordonnance. »</button><button class="opt" type="button">« Bonjour, je suis guéri. »</button></div><div class="vd"></div></div>
+<div class="q" data-answer="« Ça ne va pas ? Tu as mauvaise mine. »"><span>Ton ami a l'air très fatigué&nbsp;:</span><div class="opts"><button class="opt" type="button">« Ça ne va pas ? Tu as mauvaise mine. »</button><button class="opt" type="button">« Tu as bonne mine ! »</button><button class="opt" type="button">« Tu es en forme ! »</button></div><div class="vd"></div></div>
+<div class="q" data-answer="« J&#x27;ai mal au dos. »"><span>Tu expliques au médecin où tu as mal&nbsp;:</span><div class="opts"><button class="opt" type="button">« J'ai mal au dos. »</button><button class="opt" type="button">« J'ai mal le dos. »</button><button class="opt" type="button">« J'ai mal du dos. »</button></div><div class="vd"></div></div>
+<div class="q" data-answer="« Vous avez un sirop, s&#x27;il vous plaît ? »"><span>À la pharmacie, tu demandes quelque chose pour la toux&nbsp;:</span><div class="opts"><button class="opt" type="button">« Vous avez un sirop, s'il vous plaît ? »</button><button class="opt" type="button">« Vous avez une ordonnance, s'il vous plaît ? »</button><button class="opt" type="button">« Vous avez un rendez-vous, s'il vous plaît ? »</button></div><div class="vd"></div></div>
+<div class="q" data-answer="« J&#x27;étais malade, voici le mot du médecin. »"><span>Tu annonces à ton professeur que tu étais malade&nbsp;:</span><div class="opts"><button class="opt" type="button">« J'étais malade, voici le mot du médecin. »</button><button class="opt" type="button">« J'avais bonne mine. »</button><button class="opt" type="button">« J'étais en pleine forme. »</button></div><div class="vd"></div></div>
+<div class="q" data-answer="« Tu vas mieux ? »" data-note="« Aller mieux »&nbsp;: la question normale."><span>Ton collègue revient après une semaine d'absence&nbsp;:</span><div class="opts"><button class="opt" type="button">« Tu vas mieux ? »</button><button class="opt" type="button">« Tu vas bien mal ? »</button><button class="opt" type="button">« Tu as mal mieux ? »</button></div><div class="vd"></div></div>
+<div class="q" data-answer="« Désolée, j&#x27;ai de la fièvre, je reste au lit. »"><span>Tu as 39 °C et tu dois annuler un dîner&nbsp;:</span><div class="opts"><button class="opt" type="button">« Désolée, j'ai de la fièvre, je reste au lit. »</button><button class="opt" type="button">« Désolée, je suis en forme. »</button><button class="opt" type="button">« Désolée, je suis guérie. »</button></div><div class="vd"></div></div>
+<div class="q" data-answer="« Soigne-toi bien ! »" data-note="On dit aussi&nbsp;: «&nbsp;Bon rétablissement&nbsp;!&nbsp;»"><span>Tu souhaites bonne santé à quelqu'un de malade&nbsp;:</span><div class="opts"><button class="opt" type="button">« Soigne-toi bien ! »</button><button class="opt" type="button">« Repose-moi bien ! »</button><button class="opt" type="button">« Guéris-moi vite ! »</button></div><div class="vd"></div></div>
+</div>
+<div class="cmd"><button class="btn primary" data-check="vB_bF" type="button">Vérifier</button><button class="btn" data-reset="vB_bF" type="button">&#8634; Effacer</button><span class="bloc-score"></span></div>
+</div>
+<h2 class="sec" id="vB_prod"><span class="n">&#9997;&#65039;</span> Mini-production</h2>
+<p class="lead">Pas de points&nbsp;: on écrit et on parle.</p>
+<div class="card">
+  <h3>&#9997;&#65039; À l'écrit &middot; Un message pour s'excuser (60-80 mots)</h3>
+  <p class="consigne">Tu es malade et tu ne peux pas aller en cours (ou au travail). Écris le message. <strong>Utilise&nbsp;:</strong> ce que tu as, depuis quand, ce que le médecin a dit, quand tu reviens.</p>
+  <div class="tags"><span class="tag">je suis malade</span><span class="tag">j'ai mal à…</span><span class="tag">depuis…</span><span class="tag">le médecin m'a dit</span><span class="tag">je reviens</span><span class="tag">désolé(e)</span></div>
+  <textarea data-compte placeholder="Écris ici…"></textarea>
+  <div class="compteur"><span>0</span> mot(s)</div>
+  <div class="cmd"><button class="btn" data-modele="vB_m1" type="button">&#128065;&#65039; Voir un modèle</button></div>
+  <div class="modele" id="vB_m1"><strong>Modèle</strong> <button class="audio" type="button" data-say="Bonjour Madame. Je ne pourrai pas venir en cours aujourd&#x27;hui : je suis malade depuis samedi. J&#x27;ai mal à la gorge, je tousse et j&#x27;ai de la fièvre. Je suis allée chez le médecin ce matin : il m&#x27;a dit de me reposer deux jours et il m&#x27;a fait une ordonnance. Je reviendrai jeudi. Désolée pour le dérangement, et merci pour les devoirs.">&#128264;</button><br><em>Bonjour Madame,<br><br>Je ne pourrai pas venir en cours aujourd'hui&nbsp;: je suis malade depuis samedi. J'ai mal à la gorge, je tousse et j'ai de la fièvre (38,5). Je suis allée chez le médecin ce matin&nbsp;: il m'a dit de me reposer deux jours et il m'a fait une ordonnance.<br><br>Je reviendrai jeudi. Désolée pour le dérangement, et merci pour les devoirs.<br><br>Karina</em></div>
+</div>
+<div class="card"><h3>&#128483;&#65039; À l'oral</h3><div class="liste">
+<div class="blank" data-say-host="Comment allez-vous aujourd&#x27;hui ? Répondez en trois phrases."><strong>A.</strong> Comment vas-tu aujourd'hui&nbsp;? Réponds en trois phrases. <button class="audio" type="button">&#128264;</button></div>
+<div class="blank" data-say-host="Vous êtes chez le médecin : expliquez vos trois symptômes."><strong>B. Jeu de rôle.</strong> Tu es chez le médecin&nbsp;: explique tes trois symptômes. <button class="audio" type="button">&#128264;</button></div>
+<div class="blank" data-say-host="Que faites-vous pour rester en bonne santé ? Trois habitudes."><strong>C.</strong> Que fais-tu pour rester en bonne santé&nbsp;? Trois habitudes. <button class="audio" type="button">&#128264;</button></div>
+<div class="blank" data-say-host="Racontez la dernière fois que vous avez été malade."><strong>D.</strong> Raconte la dernière fois que tu as été malade. <button class="audio" type="button">&#128264;</button></div>
+</div></div>
+<div class="partsep"><span class="pnum">Étape 11</span><span class="ptit">Le m&eacute;lange final</span><span class="psous">Ton plan B &mdash; puis ton message.</span></div>
+<h2 class="sec" id="inte"><span class="n">11</span> Tout ensemble</h2>
+<p class="lead">14 points &middot; un mot du jour <em>et</em> la bonne construction.</p>
+<div class="card" id="bINT" data-bloc>
+<div class="liste">
+<div class="q" data-note="si + pr&amp;eacute;sent &amp;rarr; futur + transports">Si le train <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="est" size="4" autocomplete="off" spellcheck="false"></span> <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="supprimé|supprime" size="10" autocomplete="off" spellcheck="false"></span>, nous <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="prendrons" size="10" autocomplete="off" spellcheck="false"></span> le car.<div class="vd"></div></div>
+<div class="q" data-note="avoir mal &amp;agrave; + futur">Si tu <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="as" size="3" autocomplete="off" spellcheck="false"></span> mal &agrave; la <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="gorge" size="6" autocomplete="off" spellcheck="false"></span>, tu <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="iras" size="5" autocomplete="off" spellcheck="false"></span> chez le m&eacute;decin.<div class="vd"></div></div>
+<div class="q" data-answer="« Si vous changez votre billet aujourd&#x27;hui, ce sera gratuit. »"><span>Au guichet, l'employ&eacute; t'explique&nbsp;:</span><div class="opts"><button class="opt" type="button">« Si vous changez votre billet aujourd'hui, ce sera gratuit. »</button><button class="opt" type="button">« Si vous changerez votre billet aujourd'hui, ce sera gratuit. »</button><button class="opt" type="button">« Si vous changez votre billet aujourd'hui, c'est gratuit demain seulement. »</button></div><div class="vd"></div></div>
+<div class="q" data-note="quand + futur">Quand le m&eacute;decin <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="arrivera" size="9" autocomplete="off" spellcheck="false"></span>, il te <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="donnera" size="8" autocomplete="off" spellcheck="false"></span> une ordonnance.<div class="vd"></div></div>
+<div class="q" data-answer="« Je ne sais pas si j&#x27;arriverai avant huit heures. »" data-note="Question indirecte&nbsp;: le futur est permis."><span>Tu n'es pas s&ucirc;r de ton horaire&nbsp;:</span><div class="opts"><button class="opt" type="button">« Je ne sais pas si j'arriverai avant huit heures. »</button><button class="opt" type="button">« Je ne sais pas si j'arrive avant huit heures demain certainement. »</button><button class="opt" type="button">« Si j'arriverai avant huit heures, je t'appelle. »</button></div><div class="vd"></div></div>
+<div class="q" data-note="deux pr&amp;eacute;sents">Si on <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="voyage" size="7" autocomplete="off" spellcheck="false"></span> de nuit, on <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="est" size="4" autocomplete="off" spellcheck="false"></span> fatigu&eacute; le lendemain&nbsp;: c'est une g&eacute;n&eacute;ralit&eacute;.<div class="vd"></div></div>
+<div class="q" data-note="la gr&amp;egrave;ve + futur">S'il y a une <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="grève|greve" size="6" autocomplete="off" spellcheck="false"></span> demain, je <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="ferai" size="6" autocomplete="off" spellcheck="false"></span> du t&eacute;l&eacute;travail.<div class="vd"></div></div>
+</div>
+<div class="cmd"><button class="btn primary" data-check="bINT" type="button">Vérifier</button><button class="btn" data-reset="bINT" type="button">&#8634; Effacer</button><span class="bloc-score"></span></div>
+</div>
+<div class="card">
+  <h3>&#9997;&#65039; &Agrave; l'&eacute;crit &middot; Le plan B (100-120 mots)</h3>
+  <p class="consigne">&Eacute;cris &agrave; quelqu'un qui t'attend&nbsp;: ton voyage est menac&eacute; (gr&egrave;ve, retard, maladie) et tu expliques tes solutions. <strong>Contrainte&nbsp;:</strong> deux mots des <strong>transports</strong>, deux mots de la <strong>sant&eacute;</strong>, <strong>quatre hypoth&egrave;ses</strong> &laquo;&nbsp;si + pr&eacute;sent &rarr; futur&nbsp;&raquo;, <strong>un &laquo;&nbsp;quand&nbsp;&raquo; + futur</strong> et <strong>une question indirecte</strong> (&laquo;&nbsp;je ne sais pas si&hellip;&nbsp;&raquo;).</p>
+  <div class="tags"><span class="tag">si je rate&hellip;, je&hellip;</span><span class="tag">quand j'arriverai, &hellip;</span><span class="tag">je ne sais pas si&hellip;</span><span class="tag">s'il y a une gr&egrave;ve, &hellip;</span><span class="tag">si &ccedil;a ne va pas mieux, &hellip;</span></div>
+  <textarea data-compte placeholder="Écris ici…"></textarea>
+  <div class="compteur"><span>0</span> mot(s)</div>
+  <div class="cmd"><button class="btn" data-modele="mF" type="button">&#128065;&#65039; Voir un modèle</button></div>
+  <div class="modele" id="mF"><strong>Modèle</strong> <button class="audio" type="button" data-say="Salut Nadia, petit probl&amp;egrave;me : il y a une gr&amp;egrave;ve demain et mon train de sept heures vingt est peut-&amp;ecirc;tre supprim&amp;eacute;. Je ne sais pas encore si je partirai le matin ou l&#x27;apr&amp;egrave;s-midi. Si le TGV est annul&amp;eacute;, je prendrai le car de midi et j&#x27;arriverai vers dix-huit heures. Si je trouve une place dans le train de six heures, je serai chez toi pour le d&amp;eacute;jeuner. Autre chose : j&#x27;ai mal &amp;agrave; la gorge depuis deux jours. Si &amp;ccedil;a ne va pas mieux ce soir, je passerai &amp;agrave; la pharmacie avant de partir. Si j&#x27;ai de la fi&amp;egrave;vre, je resterai &amp;agrave; la maison. Quand j&#x27;arriverai, je t&#x27;appellerai de la gare.">&#128264;</button><br><em>Salut Nadia,<br><br>Petit probl&egrave;me&nbsp;: il y a une gr&egrave;ve demain et mon train de 7 h 20 est peut-&ecirc;tre supprim&eacute;. Je ne sais pas encore si je partirai le matin ou l'apr&egrave;s-midi.<br><br>Si le TGV est annul&eacute;, je prendrai le car de midi et j'arriverai vers dix-huit heures. Si je trouve une place dans le train de 6 h, je serai chez toi pour le d&eacute;jeuner.<br><br>Autre chose&nbsp;: j'ai mal &agrave; la gorge depuis deux jours. Si &ccedil;a ne va pas mieux ce soir, je passerai &agrave; la pharmacie avant de partir. Si j'ai de la fi&egrave;vre, je resterai &agrave; la maison, &eacute;videmment.<br><br>Quand j'arriverai, je t'appellerai de la gare. Ne viens pas me chercher&nbsp;!</em></div>
+</div>
+<div class="card"><h3>&#128483;&#65039; À l'oral</h3><div class="liste">
+<div class="blank" data-say-host="&amp;laquo; Si je rate mon train… &amp;raquo; — continuez la cha&amp;icirc;ne de cons&amp;eacute;quences avec votre partenaire. On s&#x27;arr&amp;ecirc;te d&amp;egrave;s que quelqu&#x27;un met un futur apr&amp;egrave;s &amp;laquo; si &amp;raquo;."><strong>A. La cha&icirc;ne.</strong> &laquo;&nbsp;Si je rate mon train&hellip;&nbsp;&raquo; &mdash; continue la cha&icirc;ne de cons&eacute;quences avec ton partenaire. On s'arr&ecirc;te d&egrave;s que quelqu'un met un futur apr&egrave;s &laquo;&nbsp;si&nbsp;&raquo;. <button class="audio" type="button">&#128264;</button></div>
+<div class="blank" data-say-host="Racontez votre week-end id&amp;eacute;al, puis votre plan B : « S&#x27;il pleut, nous resterons &amp;agrave; la maison… »"><strong>B. Le plan B.</strong> Raconte ton week-end id&eacute;al, puis ton plan B&nbsp;: &laquo;&nbsp;S'il pleut, nous resterons &agrave; la maison et nous regarderons un film.&nbsp;&raquo; <button class="audio" type="button">&#128264;</button></div>
+<div class="blank" data-say-host="Votre camarade a un probl&amp;egrave;me de sant&amp;eacute; (fatigue, stress, mal de dos). Donnez trois conseils sous la forme « si…, vous… »."><strong>C. Les conseils.</strong> Ton camarade a un probl&egrave;me de sant&eacute; (fatigue, stress, mal de dos). Donne trois conseils sous la forme &laquo;&nbsp;si&hellip;, tu&hellip;&nbsp;&raquo;. <button class="audio" type="button">&#128264;</button></div>
+<div class="blank" data-say-host="Jeu de r&amp;ocirc;le : votre train est supprim&amp;eacute;. Vous expliquez votre situation &amp;agrave; l&#x27;employ&amp;eacute; et vous demandez trois solutions."><strong>D. Au guichet.</strong> Jeu de r&ocirc;le&nbsp;: ton train est supprim&eacute;. Tu expliques ta situation &agrave; l'employ&eacute; et tu demandes trois solutions. <button class="audio" type="button">&#128264;</button></div>
+</div></div>
 <script>
 (function(){
-  "use strict";
-  function stripAccents(s){ return s.normalize("NFD").replace(/[̀-ͯ]/g,""); }
-  function base(s){ return (s||"").toLowerCase().trim().replace(/’/g,"'").replace(/\s+/g," ").replace(/\s*([!?.])\s*$/,""); }
-  function loose(s){ return stripAccents(base(s)); }
-
-  /* ================= rappel express : futur simple ================= */
-  var EXD = [
-    ["je","(aller)","irai"], ["tu","(avoir)","auras"], ["il","(être)","sera"],
-    ["nous","(faire)","ferons"], ["vous","(venir)","viendrez"], ["ils","(pouvoir)","pourront"],
-    ["je","(voir)","verrai"], ["tu","(savoir)","sauras"], ["elle","(devoir)","devra"],
-    ["nous","(vouloir)","voudrons"]
-  ];
-  /* ================= bloc 1 : quand ================= */
-  var EXA = [
-    ["Demain, quand je","chez toi, je t'apporterai le livre. (passer)","passerai"],
-    ["L'année prochaine, quand nous","à Paris, nous irons au Ritz. (revenir)","reviendrons"],
-    ["Quand tu","dix-huit ans, tu pourras conduire. (avoir)","auras"],
-    ["Quand il","ses études, il cherchera du travail. (finir)","finira"],
-    ["Quand vous","à la gare, appelez-moi. (arriver)","arriverez"],
-    ["Quand elle","prête, nous partirons. (être)","sera"]
-  ];
-  /* ================= bloc 2 : si + présent → futur (2 trous) ================= */
-  var EXB = [
-    ["Si je","à Paris, j'","à l'hôtel.","revenir / habiter","reviens","habiterai"],
-    ["Si tu","tôt, tu","chez moi.","sortir / passer","sors","passeras"],
-    ["Si nous","le temps, nous","le musée.","avoir / visiter","avons","visiterons"],
-    ["S'il","beau, les enfants","dans le jardin.","faire / jouer","fait","joueront"],
-    ["Si vous","d'accord, je","ce soir.","être / réserver","êtes","réserverai"]
-  ];
-  /* ================= bloc 3 : jamais de futur après si ================= */
-  var EXC = [
-    ["Si j'","des vacances en juillet, j'irai à la plage.",["ai","aurai"],"ai"],
-    ["S'il","beau demain, nous irons à la campagne.",["fait","fera"],"fait"],
-    ["Si tu","en retard, préviens-moi.",["es","seras"],"es"],
-    ["Si nous","tôt, nous éviterons les embouteillages.",["partons","partirons"],"partons"],
-    ["Si elle","d'accord, on commence tout de suite.",["est","sera"],"est"],
-    ["Si vous","ce livre, vous comprendrez mieux.",["lisez","lirez"],"lisez"]
-  ];
-  /* ================= bloc 4 : hypothèse / question indirecte ================= */
-  var EXE = [
-    ["Je ne sais pas si je partirai demain.","question indirecte"],
-    ["Si je pars demain, je t'appellerai.","hypothèse"],
-    ["Il lui demande si elle viendra à la fête.","question indirecte"],
-    ["Si tu viens à la fête, apporte le gâteau.","hypothèse"],
-    ["Elle se demande si le train sera à l'heure.","question indirecte"],
-    ["Si le train est à l'heure, nous arriverons à midi.","hypothèse"]
-  ];
-  /* ================= bloc 5 : généralité ================= */
-  var EXF = [
-    ["Si on mange trop, on","(grossir)","grossit"],
-    ["Si je dors trop, j'","mal à la tête. (avoir)","ai"],
-    ["Si on chauffe l'eau à cent degrés, elle","(bouillir)","bout"],
-    ["Si tu ne manges pas, tu","faim. (avoir)","as"],
-    ["Si on ne dort pas assez, on","fatigué. (être)","est"]
-  ];
-  /* ================= bloc 6 : la chaîne ================= */
-  var EXG = [
-    ["Si tu te mouilles, tu","(prendre froid)","prendras froid"],
-    ["Si tu prends froid, tu","(tomber malade)","tomberas malade"],
-    ["Si tu tombes malade, tu","(manquer l'école)","manqueras l'école"],
-    ["Si tu manques l'école, tu","(rater tes examens)","rateras tes examens"],
-    ["Si tu rates tes examens, tu","(étudier pendant l'été)","étudieras pendant l'été"],
-    ["Si tu étudies pendant l'été, tu","(ne pas partir en vacances)","ne partiras pas en vacances"]
-  ];
-  /* ================= bloc 7 : impératif → hypothèse ================= */
-  var EXH = [
-    ["Pour recevoir le catalogue, remplissez le formulaire !","Si vous remplissez le formulaire, vous recevrez le catalogue."],
-    ["Pour éviter les embouteillages, partez tôt !","Si vous partez tôt, vous éviterez les embouteillages."],
-    ["Pour faire moins de fautes, parlez plus lentement !","Si vous parlez plus lentement, vous ferez moins de fautes."],
-    ["Pour être en forme, dormez huit heures !","Si vous dormez huit heures, vous serez en forme."],
-    ["Pour réussir l'examen, travaillez tous les jours !","Si vous travaillez tous les jours, vous réussirez l'examen."],
-    ["Pour avoir une place, réservez maintenant !","Si vous réservez maintenant, vous aurez une place."]
-  ];
-
-  /* ---------- constructeurs ---------- */
-  function unTrou(rootId, data, cls){
-    var root = document.getElementById(rootId);
-    data.forEach(function(it,i){
-      var li = document.createElement("li");
-      li.className = "q"; li.dataset.answer = it[2];
-      li.innerHTML = '<span>'+it[0]+'</span>'+
-        '<input class="gap '+(cls||"")+'" type="text" autocomplete="off" spellcheck="false" aria-label="réponse '+(i+1)+'">'+
-        '<span>'+it[1]+'</span><span class="verdict"></span>';
-      root.appendChild(li);
-    });
-  }
-  unTrou("exD", EXD);
-  unTrou("exA", EXA, "wide");
-  unTrou("exF", EXF);
-  unTrou("exG", EXG, "wide");
-
-  /* deux trous par phrase : chaque trou = un point */
-  (function(){
-    var root = document.getElementById("exB");
-    EXB.forEach(function(it,i){
-      var li = document.createElement("li");
-      li.className = "q";
-      li.innerHTML = '<span>'+it[0]+'</span>'+
-        '<input class="gap b1" type="text" autocomplete="off" spellcheck="false" aria-label="présent '+(i+1)+'">'+
-        '<span>'+it[1]+'</span>'+
-        '<input class="gap wide b2" type="text" autocomplete="off" spellcheck="false" aria-label="futur '+(i+1)+'">'+
-        '<span>'+it[2]+'</span><span class="inf">('+it[3]+')</span><span class="verdict"></span>';
-      li.dataset.a1 = it[4]; li.dataset.a2 = it[5];
-      root.appendChild(li);
-    });
-  })();
-
-  /* choix entre deux formes */
-  (function(){
-    var root = document.getElementById("exC");
-    EXC.forEach(function(it,i){
-      var li = document.createElement("li");
-      li.className = "q"; li.dataset.answer = it[3];
-      li.innerHTML = '<span>'+it[0]+'</span>'+
-        '<select class="pick" aria-label="forme '+(i+1)+'"><option value="">— choisis —</option>'+
-        it[2].map(function(o){ return '<option value="'+o+'">'+o+'</option>'; }).join("")+
-        '</select><span>'+it[1]+'</span><span class="verdict"></span>';
-      root.appendChild(li);
-    });
-  })();
-
-  /* hypothèse / question indirecte */
-  (function(){
-    var root = document.getElementById("exE");
-    EXE.forEach(function(it,i){
-      var li = document.createElement("li");
-      li.className = "q"; li.dataset.answer = it[1];
-      li.innerHTML = '<span>'+it[0]+'</span>'+
-        '<select class="pick" aria-label="type '+(i+1)+'"><option value="">— choisis —</option>'+
-        '<option value="hypothèse">hypothèse</option>'+
-        '<option value="question indirecte">question indirecte</option>'+
-        '</select><span class="verdict"></span>';
-      root.appendChild(li);
-    });
-  })();
-
-  /* phrase entière */
-  (function(){
-    var root = document.getElementById("exH");
-    EXH.forEach(function(it,i){
-      var li = document.createElement("li");
-      li.className = "q"; li.dataset.answer = it[1];
-      li.innerHTML = '<span class="full">'+it[0]+'</span>'+
-        '<input class="gap xl" type="text" autocomplete="off" spellcheck="false" aria-label="phrase '+(i+1)+'">'+
-        '<span class="verdict"></span>';
-      root.appendChild(li);
-    });
-  })();
-
-  /* ================= roulette orale ================= */
-  var ORAL = [
-    ["S'il pleut tout le week-end, qu'est-ce que tu feras ?","S'il pleut, je resterai chez moi et je lirai."],
-    ["Si tu gagnes au loto demain, qu'est-ce que tu achèteras ?","Si je gagne au loto, j'achèterai une maison au bord de la mer."],
-    ["Si tu as une semaine de congé le mois prochain, où iras-tu ?","Si j'ai une semaine de congé, je partirai en Italie."],
-    ["Si ton train est annulé ce soir, comment est-ce que tu rentreras ?","S'il est annulé, je prendrai un taxi."],
-    ["Si tu rates ton examen, qu'est-ce que tu feras ?","Si je le rate, je le repasserai en septembre."],
-    ["Si un ami arrive à l'improviste ce soir, qu'est-ce que tu lui prépareras ?","S'il arrive ce soir, je lui préparerai des pâtes."],
-    ["Si tu déménages un jour, dans quelle ville est-ce que tu iras ?","Si je déménage, j'irai à Montréal."],
-    ["Si tu as du temps libre dimanche, qu'est-ce que tu feras ?","Si j'ai du temps, je ferai du vélo."],
-    ["Si tu oublies ton téléphone à la maison, qu'est-ce que tu feras ?","Si je l'oublie, je retournerai le chercher."],
-    ["Si on t'offre un billet d'avion demain, où est-ce que tu partiras ?","Si on m'offre un billet, je partirai au Japon."],
-    ["Si tu ne trouves pas de travail cette année, qu'est-ce que tu feras ?","Si je n'en trouve pas, je reprendrai mes études."],
-    ["Si ton voisin fait du bruit toute la nuit, qu'est-ce que tu lui diras ?","S'il fait du bruit, je lui demanderai de baisser la musique."],
-    ["Si tu apprends encore une langue, laquelle est-ce que tu choisiras ?","Si j'apprends une autre langue, je choisirai l'italien."],
-    ["Si le restaurant est complet ce soir, où est-ce que vous irez ?","S'il est complet, nous irons au café d'à côté."],
-    ["Si tu as mal à la gorge demain matin, est-ce que tu iras travailler ?","Si j'ai mal à la gorge, je resterai à la maison."],
-    ["Si tes amis viennent dîner samedi, qu'est-ce que tu cuisineras ?","S'ils viennent, je cuisinerai un couscous."]
-  ];
-  var courant = -1, ordre = [], pos = 0;
-  function melanger(){
-    ordre = ORAL.map(function(_,i){ return i; });
-    for(var i=ordre.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=ordre[i]; ordre[i]=ordre[j]; ordre[j]=t; }
-  }
-  melanger();
-  document.getElementById("tirer").addEventListener("click", function(){
-    if(pos >= ordre.length){ melanger(); pos = 0; }
-    courant = ordre[pos++];
-    document.getElementById("qq").textContent = ORAL[courant][0];
-    document.getElementById("rep").innerHTML = "&nbsp;";
-  });
-  document.getElementById("voirRep").addEventListener("click", function(){
-    if(courant < 0) return;
-    document.getElementById("rep").textContent = "→ " + ORAL[courant][1];
-  });
-
-  /* ================= moteur ================= */
-  var TOTALS = { exD:10, exA:6, exB:10, exC:6, exE:6, exF:5, exG:6, exH:6 };
-  var MAX = 55;
-  var results = {};
-  Object.keys(TOTALS).forEach(function(k){ results[k] = null; });
-
-  function itemsOf(id){
-    return Array.prototype.slice.call(document.getElementById(id).querySelectorAll(".q"));
-  }
-  function juge(given, attendu){
-    var exp = attendu.split("|");
-    if(base(given) === "") return "vide";
-    var ok = exp.some(function(a){ return base(given) === base(a) || loose(given) === loose(a); });
-    return ok ? "ok" : "ko";
-  }
-  function check(id){
-    var good = 0;
-    itemsOf(id).forEach(function(item){
-      var vd = item.querySelector(".verdict");
-      item.classList.remove("good","bad");
-
-      if(item.dataset.a1){                       /* deux trous */
-        var i1 = item.querySelector(".b1"), i2 = item.querySelector(".b2");
-        var r1 = juge(i1.value, item.dataset.a1), r2 = juge(i2.value, item.dataset.a2);
-        if(r1 === "ok") good++;
-        if(r2 === "ok") good++;
-        if(r1 === "ok" && r2 === "ok"){ item.classList.add("good"); vd.textContent = "✓"; }
-        else {
-          item.classList.add("bad");
-          vd.textContent = "→ " + (r1 === "ok" ? "✓" : item.dataset.a1) + " · " + (r2 === "ok" ? "✓" : item.dataset.a2);
-        }
-        return;
-      }
-
-      var field = item.querySelector("input, select");
-      if(!field || !item.dataset.answer) return;
-      var r = juge(field.value, item.dataset.answer);
-      if(r === "ok"){ item.classList.add("good"); vd.textContent = "✓"; good++; }
-      else { item.classList.add("bad"); vd.textContent = "→ " + item.dataset.answer.split("|")[0]; }
-    });
-    results[id] = good;
-    document.getElementById("sc-"+id).textContent = good + " / " + TOTALS[id];
-    updateTotal();
-  }
-  function reset(id){
-    itemsOf(id).forEach(function(item){
-      item.classList.remove("good","bad");
-      var vd = item.querySelector(".verdict"); if(vd) vd.textContent = "";
-      Array.prototype.forEach.call(item.querySelectorAll("input, select"), function(f){ f.value = ""; });
-    });
-    results[id] = null;
-    document.getElementById("sc-"+id).textContent = "— / " + TOTALS[id];
-    updateTotal();
-  }
-  function updateTotal(){
-    var sum = 0;
-    Object.keys(results).forEach(function(k){ if(results[k] !== null) sum += results[k]; });
-    document.getElementById("total").textContent = sum + " / " + MAX;
-    document.getElementById("bar").style.width = Math.round(sum/MAX*100) + "%";
+  function dire(t, vit){
+    try{
+      if(!t) return;
+      var u = new SpeechSynthesisUtterance(t);
+      u.lang = "fr-FR"; u.rate = vit || 0.95;
+      speechSynthesis.cancel(); speechSynthesis.speak(u);
+    }catch(e){}
   }
   document.addEventListener("click", function(e){
-    var t = e.target;
-    if(t.dataset && t.dataset.check) check(t.dataset.check);
-    if(t.dataset && t.dataset.reset) reset(t.dataset.reset);
+    var y = e.target.closest(".y");
+    if (y){
+      var r = y.getAttribute("data-say") || "";
+      var box = document.getElementById("yref");
+      if (box) box.innerHTML = "&#128073; <b>" + y.textContent + "</b> = <b>" + r + "</b>";
+      dire(y.textContent + ", " + r); return;
+    }
+    var w = e.target.closest(".w");
+    if (w){ w.classList.toggle("on"); return; }
+    var f = e.target.closest(".fig");
+    if (f){ dire(f.getAttribute("data-say") || f.textContent); return; }
+    var sc = e.target.closest(".swapc");
+    if (sc && sc.getAttribute("data-say")){ dire(sc.getAttribute("data-say")); }
   });
-  document.getElementById("resetAll").addEventListener("click", function(){
-    Object.keys(TOTALS).forEach(reset);
-    window.scrollTo({ top:0, behavior:"smooth" });
-  });
-  updateTotal();
 })();
 </script>
-
-
-<script data-gt-datacheck-instrumentation="1">
+<footer><a href="../grammaire.html">← Retour à la grammaire</a></footer>
+</div>
+<script>window.MAX_POINTS = 165;</script>
+<script>
 (function(){
-  document.addEventListener('click', function(e){
-    var t = e.target;
-    if(!t || !t.dataset || !t.dataset.check) return;
-    var id = t.dataset.check;
-    var container = document.getElementById(id);
-    if(!container) return;
+"use strict";
+
+/* ---------- thème ---------- */
+var tb = document.getElementById("theme");
+if(tb) tb.addEventListener("click", function(){
+  var d = document.documentElement;
+  var cur = d.getAttribute("data-theme");
+  if(!cur) cur = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  d.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+});
+
+/* ---------- audio (seulement sur demande) ---------- */
+var synth = window.speechSynthesis;
+var vx = null;
+function pickVoice(){
+  if(!synth) return null;
+  var vs = synth.getVoices() || [];
+  var fr = vs.filter(function(v){ return /^fr/i.test(v.lang); });
+  if(!fr.length) return null;
+  var pref = fr.filter(function(v){ return /fr-FR/i.test(v.lang); });
+  return (pref[0] || fr[0]);
+}
+if(synth){
+  vx = pickVoice();
+  synth.addEventListener && synth.addEventListener("voiceschanged", function(){ vx = pickVoice(); });
+}
+var curBtn = null;
+function dire(txt, btn, rate){
+  if(!synth){ return; }
+  synth.cancel();
+  if(curBtn){ curBtn.classList.remove("on"); }
+  var u = new SpeechSynthesisUtterance(txt);
+  u.lang = "fr-FR"; u.rate = rate || 0.88; u.pitch = 1;
+  if(!vx) vx = pickVoice();
+  if(vx) u.voice = vx;
+  if(btn){ btn.classList.add("on"); curBtn = btn; }
+  u.onend = u.onerror = function(){ if(btn) btn.classList.remove("on"); curBtn = null; };
+  synth.speak(u);
+}
+window.dire = dire;
+document.addEventListener("click", function(e){
+  var b = e.target.closest ? e.target.closest(".audio") : null;
+  if(!b) return;
+  e.preventDefault();
+  var t = b.getAttribute("data-say");
+  if(!t){
+    var host = b.closest("[data-say-host]");
+    if(host) t = host.getAttribute("data-say-host");
+  }
+  if(t) dire(t, b, b.getAttribute("data-rate") ? parseFloat(b.getAttribute("data-rate")) : 0.88);
+});
+
+/* ---------- normalisation des réponses ---------- */
+function base(s){
+  return String(s == null ? "" : s).toLowerCase()
+    .replace(/’/g, "'")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/[.!?;:]+$/, "");
+}
+function loose(s){
+  return base(s).normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[-']/g, " ").replace(/\s+/g," ").trim();
+}
+function juge(val, attendu){
+  if(!val || !val.trim()) return "vide";
+  var alts = String(attendu).split("|");
+  var v1 = base(val), v2 = loose(val);
+  for(var i=0;i<alts.length;i++){
+    var a = alts[i];
+    if(base(a) === v1) return "ok";
+    if(loose(a) === v2) return "ok";
+  }
+  return "non";
+}
+window.juge = juge;
+
+/* ---------- choix multiples ---------- */
+document.addEventListener("click", function(e){
+  var o = e.target.closest ? e.target.closest(".opt") : null;
+  if(!o || o.disabled) return;
+  var box = o.closest(".opts");
+  Array.prototype.forEach.call(box.querySelectorAll(".opt"), function(b){ b.classList.remove("sel","ok","bad"); });
+  o.classList.add("sel");
+  var it = o.closest(".q, .blank");
+  if(it){ var v = it.querySelector(".vd"); if(v) v.classList.remove("show"); }
+});
+
+/* ---------- correction ---------- */
+function itemsOf(root){
+  return Array.prototype.filter.call(root.querySelectorAll(".q, .blank"), function(el){
+    return !(el.classList.contains("blank") && el.parentNode.closest && el.parentNode.closest(".q"));
+  });
+}
+
+function corrigeBloc(root){
+  var bons = 0, total = 0;
+  Array.prototype.forEach.call(itemsOf(root), function(it){
+    var vd = it.querySelector(".vd");
+    var champs = it.querySelectorAll("input[type=text][data-a]");
+    var opts = it.querySelector(".opts");
+    var msgs = [];
+    var tousBons = true, repondu = false;
+
+    if(champs.length){
+      Array.prototype.forEach.call(champs, function(inp){
+        total++;
+        var r = juge(inp.value, inp.getAttribute("data-a"));
+        inp.classList.remove("ok","bad");
+        if(r === "ok"){ bons++; inp.classList.add("ok"); msgs.push("✓"); repondu = true; }
+        else {
+          tousBons = false;
+          if(r !== "vide"){ inp.classList.add("bad"); repondu = true; }
+          msgs.push(inp.getAttribute("data-a").split("|")[0]);
+        }
+      });
+    }
+    if(opts){
+      total++;
+      var att = it.getAttribute("data-answer");
+      var sel = opts.querySelector(".opt.sel");
+      Array.prototype.forEach.call(opts.querySelectorAll(".opt"), function(b){
+        b.classList.remove("ok","bad");
+        if(base(b.textContent) === base(att)) b.classList.add("ok");
+      });
+      if(sel){
+        repondu = true;
+        if(base(sel.textContent) === base(att)){ bons++; }
+        else { sel.classList.add("bad"); tousBons = false; msgs.push(att); }
+      } else { tousBons = false; msgs.push(att); }
+    }
+    if(vd){
+      var ex = it.getAttribute("data-note");
+      if(tousBons && repondu){ vd.textContent = "✓ " + (ex ? ex : "Correct"); vd.classList.remove("bad"); }
+      else { vd.textContent = "→ " + msgs.join(" · ") + (ex ? " — " + ex : ""); vd.classList.add("bad"); }
+      vd.classList.add("show");
+    }
+  });
+  return {bons:bons, total:total};
+}
+
+/* ---------- score global ---------- */
+var SCORES = {};
+var MAX = window.MAX_POINTS || 0;
+function maj(){
+  var s = 0;
+  for(var k in SCORES){ s += SCORES[k]; }
+  var el = document.getElementById("sc");
+  if(el) el.textContent = s + " / " + MAX;
+  var f = document.getElementById("fill");
+  if(f) f.style.width = (MAX ? (100*s/MAX) : 0) + "%";
+}
+window.majScore = maj;
+window.SCORE_SET = function(k,v){ SCORES[k] = v; maj(); };
+
+Array.prototype.forEach.call(document.querySelectorAll("button[data-check]"), function(btn){
+  btn.addEventListener("click", function(){
+    var id = btn.getAttribute("data-check");
+    var root = document.getElementById(id);
+    if(!root) return;
+    var r = corrigeBloc(root);
+    SCORES[id] = r.bons;
+    var out = root.querySelector(".bloc-score");
+    if(out) out.textContent = r.bons + " / " + r.total;
+    maj();
     var wrongList = [];
-    container.querySelectorAll('.no, .bad').forEach(function(el){
-      var row = el;
-      if(el.tagName === 'INPUT' || el.tagName === 'SELECT'){
-        row = el.closest('.fill-line, .sel-line') || el.parentElement || el;
-      }
-      var clone = row.cloneNode(true);
-      Array.prototype.forEach.call(clone.querySelectorAll('select'), function(s){ s.remove(); });
-      var txt = (clone.textContent || '').replace(/\s+/g,' ').trim();
-      if(txt) wrongList.push(txt);
+    Array.prototype.forEach.call(itemsOf(root), function(it){
+      var vd = it.querySelector(".vd");
+      if(!vd || !vd.classList.contains("bad")) return;
+      var clone = it.cloneNode(true);
+      Array.prototype.forEach.call(clone.querySelectorAll(".opts, .vd, select"), function(x){ x.remove(); });
+      var q = (clone.textContent || "").replace(/\s+/g, " ").trim();
+      wrongList.push((q ? q + " " : "") + vd.textContent.replace(/\s+/g, " ").trim());
+    });
+    Array.prototype.forEach.call(root.querySelectorAll(".blank"), function(it){
+      if(it.querySelector(".vd") || (it.closest(".q") && it.closest(".q").querySelector(".vd"))) return;
+      Array.prototype.forEach.call(it.querySelectorAll("input[type=text][data-a]"), function(inp){
+        if(inp.classList.contains("ok")) return;
+        var ctx = inp.closest(".dit, .rep, p, li") || it.parentNode;
+        var all = Array.prototype.slice.call(ctx.querySelectorAll("input"));
+        var idx = all.indexOf(inp);
+        var clone = ctx.cloneNode(true);
+        Array.prototype.forEach.call(clone.querySelectorAll("input"), function(x, k){
+          x.replaceWith(k === idx ? "___" : (x.getAttribute("data-a") || "").split("|")[0]);
+        });
+        var q = (clone.textContent || "").replace(/\s+/g, " ").trim();
+        wrongList.push(q + " → " + (inp.getAttribute("data-a") || "").split("|")[0]);
+      });
     });
     if(window.__gtMark) window.__gtMark(id, wrongList);
   });
+});
+
+Array.prototype.forEach.call(document.querySelectorAll("[data-reset]"), function(btn){
+  btn.addEventListener("click", function(){
+    var id = btn.getAttribute("data-reset");
+    var root = document.getElementById(id);
+    if(!root) return;
+    Array.prototype.forEach.call(root.querySelectorAll("input[type=text]"), function(i){ i.value=""; i.classList.remove("ok","bad"); });
+    Array.prototype.forEach.call(root.querySelectorAll(".opt"), function(b){ b.classList.remove("sel","ok","bad"); });
+    Array.prototype.forEach.call(root.querySelectorAll(".vd"), function(v){ v.classList.remove("show","bad"); v.textContent=""; });
+    var out = root.querySelector(".bloc-score"); if(out) out.textContent = "";
+    SCORES[id] = 0; maj();
+  });
+});
+
+/* entrée = corriger le bloc */
+document.addEventListener("keydown", function(e){
+  if(e.key !== "Enter") return;
+  var inp = e.target;
+  if(!inp || inp.tagName !== "INPUT") return;
+  var bloc = inp.closest("[data-bloc]");
+  if(!bloc) return;
+  var b = document.querySelector('[data-check="' + bloc.id + '"]');
+  if(b) b.click();
+});
+
+maj();
 })();
 </script>
+<script>
+(function(){
+"use strict";
+
+/* ===== 1. Cartes-mémoire (flashcards) ===== */
+window.initCartes = function(id, data){
+  var box = document.getElementById(id);
+  if(!box) return;
+  var pile = data.slice(), i = 0, revoir = [], su = 0, face = 0;
+  var zone = box.querySelector(".carte");
+  var cpt  = box.querySelector(".cpt");
+  var btnS = box.querySelector(".sais");
+  var btnR = box.querySelector(".revoir");
+
+  function rend(){
+    if(i >= pile.length){
+      if(revoir.length){
+        pile = revoir.slice(); revoir = []; i = 0;
+        zone.innerHTML = '<div class="recto">↻ On reprend les mots à revoir</div>';
+        cpt.textContent = pile.length + " carte(s) à revoir";
+        return;
+      }
+      zone.innerHTML = '<div class="recto">✅ Terminé · ' + su + ' mot(s) su(s)</div>';
+      cpt.textContent = "";
+      btnS.disabled = btnR.disabled = true;
+      return;
+    }
+    var c = pile[i];
+    face = 0;
+    zone.innerHTML = '<div class="recto">' + c[0] + '</div><div class="flip-aide">Clique pour voir la traduction</div>';
+    cpt.textContent = (i+1) + " / " + pile.length;
+  }
+  zone.addEventListener("click", function(){
+    if(i >= pile.length) return;
+    var c = pile[i];
+    if(face === 0){
+      face = 1;
+      zone.innerHTML = '<div class="recto petit">' + c[0] + '</div><div class="verso">' + c[1] + '</div>' +
+        '<div class="flip-aide">' + (c[2] ? c[2] : "") + '</div>';
+    } else {
+      face = 0;
+      zone.innerHTML = '<div class="recto">' + c[0] + '</div><div class="flip-aide">Clique pour voir la traduction</div>';
+    }
+  });
+  box.querySelector(".ecoute").addEventListener("click", function(e){
+    e.stopPropagation();
+    if(i < pile.length) window.dire(pile[i][3] || pile[i][0], this);
+  });
+  btnS.addEventListener("click", function(){ if(i<pile.length){ su++; i++; rend(); } });
+  btnR.addEventListener("click", function(){ if(i<pile.length){ revoir.push(pile[i]); i++; rend(); } });
+  box.querySelector(".rejouer").addEventListener("click", function(){
+    pile = data.slice(); i = 0; revoir = []; su = 0;
+    btnS.disabled = btnR.disabled = false; rend();
+  });
+  rend();
+};
+
+/* ===== 2. Associer deux colonnes ===== */
+window.initAssoc = function(id, paires, pts){
+  var box = document.getElementById(id);
+  if(!box) return;
+  var G = box.querySelector(".colG"), D = box.querySelector(".colD");
+  var msg = box.querySelector(".assoc-msg");
+  var sel = null, faits = 0, err = 0, rates = {};
+
+  function melange(a){ a = a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+
+  function build(){
+    G.innerHTML = ""; D.innerHTML = ""; sel = null; faits = 0; err = 0; rates = {};
+    msg.textContent = "";
+    melange(paires).forEach(function(p, n){
+      var b = document.createElement("button");
+      b.className = "jeton"; b.type = "button"; b.textContent = p[0]; b.dataset.k = p[0];
+      G.appendChild(b);
+    });
+    melange(paires).forEach(function(p){
+      var b = document.createElement("button");
+      b.className = "jeton"; b.type = "button"; b.textContent = p[1]; b.dataset.k = p[0];
+      D.appendChild(b);
+    });
+  }
+  box.addEventListener("click", function(e){
+    var j = e.target.closest(".jeton");
+    if(!j || j.classList.contains("pris")) return;
+    if(j.parentNode === G){
+      Array.prototype.forEach.call(G.children, function(x){ x.classList.remove("sel"); });
+      j.classList.add("sel"); sel = j; return;
+    }
+    if(!sel){ msg.textContent = "Choisis d'abord un mot à gauche."; return; }
+    if(j.dataset.k === sel.dataset.k){
+      j.classList.add("pris"); sel.classList.add("pris"); sel.classList.remove("sel");
+      sel = null; faits++;
+      if(faits === paires.length){
+        var p = Math.max(0, pts - err);
+        msg.textContent = "✅ Tout est associé — " + err + " erreur(s) · " + p + " / " + pts + " points";
+        window.SCORE_SET(id, p);
+        if(window.__gtMark){
+          var wl = [];
+          paires.forEach(function(pp){ if(rates[pp[0]]) wl.push(pp[0] + " ↔ " + pp[1]); });
+          window.__gtMark(id, wl);
+        }
+      } else { msg.textContent = faits + " / " + paires.length; }
+    } else {
+      rates[sel.dataset.k] = 1;
+      err++;
+      j.classList.add("rate"); setTimeout(function(){ j.classList.remove("rate"); }, 450);
+      msg.textContent = "✗ Pas celui-là. Essaie encore. (" + err + " erreur(s))";
+    }
+  });
+  box.querySelector(".rejouer").addEventListener("click", function(){ build(); window.SCORE_SET(id, 0); });
+  build();
+};
+
+/* file d'attente : les appels inline s'exécutent avant ce script */
+var Q = window.__INIT || [];
+window.__INIT = { push: function(a){ run(a); } };
+function run(a){ if(a[0]==="cartes") window.initCartes(a[1],a[2]); else window.initAssoc(a[1],a[2],a[3]); }
+Q.forEach(run);
+})();
+</script>
+<script>
+(function(){
+"use strict";
+/* compteur de mots */
+Array.prototype.forEach.call(document.querySelectorAll("textarea[data-compte]"), function(t){
+  var c = t.parentNode.querySelector(".compteur span");
+  t.addEventListener("input", function(){
+    var n = t.value.trim() ? t.value.trim().split(/\s+/).length : 0;
+    if(c) c.textContent = n;
+  });
+});
+/* modèles */
+Array.prototype.forEach.call(document.querySelectorAll("[data-modele]"), function(b){
+  b.addEventListener("click", function(){
+    var m = document.getElementById(b.getAttribute("data-modele"));
+    if(!m) return;
+    m.classList.toggle("show");
+    b.textContent = m.classList.contains("show") ? "Cacher le modèle" : "Voir un modèle";
+  });
+});
+Array.prototype.forEach.call(document.querySelectorAll("[data-lire]"), function(b){
+  b.addEventListener("click", function(){
+    var m = document.getElementById(b.getAttribute("data-lire"));
+    if(m) window.dire(m.textContent.replace(/\s+/g," ").trim(), b, 0.9);
+  });
+});
+/* traduction EN */
+var tgl = document.getElementById("en");
+if(tgl) tgl.addEventListener("click", function(){
+  document.body.classList.toggle("no-en");
+  tgl.textContent = document.body.classList.contains("no-en") ? "EN on/off" : "EN on/off";
+});
+
+})();
+</script>
+<style>
+.niv{display:inline-block;font-size:.64rem;font-weight:800;letter-spacing:.05em;border-radius:99px;
+     padding:2px 8px;vertical-align:middle;margin-left:.55em;border:1px solid transparent;white-space:nowrap}
+.n1{background:#e8f5ee;color:#0f7a45;border-color:#bde5cd}
+.n2{background:#e9eefc;color:#1d4ed8;border-color:#c8d8f8}
+.n3{background:#fdecea;color:#b4261b;border-color:#f6ccc7}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .n1{background:#12301f;color:#5fdc96;border-color:#1e4d33}
+ :root:not([data-theme="light"]) .n2{background:#26305C;color:#7DB6FA;border-color:#26457C}
+ :root:not([data-theme="light"]) .n3{background:#331517;color:#ff9b93;border-color:#5a2427}}
+:root[data-theme="dark"] .n1{background:#12301f;color:#5fdc96;border-color:#1e4d33}
+:root[data-theme="dark"] .n2{background:#26305C;color:#7DB6FA;border-color:#26457C}
+:root[data-theme="dark"] .n3{background:#331517;color:#ff9b93;border-color:#5a2427}
+.niv-bar{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:4px 0 14px;
+   padding:10px 12px;background:var(--card-2);border:1px solid var(--border);border-radius:12px}
+.niv-bar .lab{font-size:.84rem;color:var(--muted);font-weight:600;margin-right:2px}
+.niv-f{font:inherit;font-size:.8rem;font-weight:700;cursor:pointer;border-radius:99px;padding:4px 12px;
+   border:1px solid var(--border);background:var(--card);color:var(--text);transition:.15s}
+.niv-f:hover{border-color:var(--bleu);color:var(--bleu)}
+.niv-f.on{background:var(--bleu);border-color:var(--bleu);color:#fff}
+.niv-bar .expl{font-size:.8rem;color:var(--muted);flex-basis:100%;margin-top:2px}
+.mot.hide,.groupe-titre.hide,.lex.hide{display:none}
+.audio.pause{border-color:var(--rouge);color:var(--rouge);background:var(--kobg)}
+.btn.pause{border-color:var(--rouge);color:var(--rouge)}
+</style>
+<script>
+/* ---- lecture audio : pause / reprise sur le même bouton ---- */
+(function(){
+  var synth = window.speechSynthesis;
+  if(!synth) return;
+  var actif = null;
+  function etat(b, s){
+    if(!b) return;
+    b.classList.toggle("on", s === "on");
+    b.classList.toggle("pause", s === "pause");
+    var t = (b.textContent || "").trim();
+    if(b.dataset.lbl === undefined && t.length > 3) b.dataset.lbl = b.innerHTML;
+    if(b.dataset.lbl !== undefined){
+      if(s === "pause") b.innerHTML = "▶️ Reprendre";
+      else if(s === "on") b.innerHTML = "⏸️ Pause";
+      else b.innerHTML = b.dataset.lbl;
+    }
+    if(s === "") b.removeAttribute("title");
+    else b.title = (s === "pause") ? "Reprendre la lecture" : "Mettre en pause";
+  }
+  document.addEventListener("click", function(e){
+    var b = e.target && e.target.closest ? e.target.closest(".audio, .ecoute, [data-say], [data-lire]") : null;
+    if(!b) return;
+    if(actif === b && synth.speaking){
+      e.stopImmediatePropagation(); e.preventDefault();
+      if(synth.paused){ synth.resume(); etat(b, "on"); return; }
+      synth.pause();
+      setTimeout(function(){
+        if(synth.paused){ etat(b, "pause"); }
+        else { synth.cancel(); etat(b, ""); actif = null; }   /* navigateur sans pause : on arrête */
+      }, 130);
+      return;
+    }
+    if(actif && actif !== b) etat(actif, "");
+    actif = b; etat(b, "on");
+  }, true);
+  setInterval(function(){
+    if(actif && !synth.speaking && !synth.paused){ etat(actif, ""); actif = null; }
+  }, 500);
+})();
+/* ---- filtre par niveau ---- */
+(function(){
+  var bar = document.querySelectorAll(".niv-bar");
+  if(!bar.length) return;
+  function eff(m){
+    if(m.dataset.niv) return m.dataset.niv;
+    var l = m.closest(".lex");
+    return (l && l.dataset.niv) ? l.dataset.niv : "2";
+  }
+  function filtre(n){
+    Array.prototype.forEach.call(document.querySelectorAll(".mot"), function(m){
+      m.classList.toggle("hide", n !== "0" && eff(m) !== n);
+    });
+    Array.prototype.forEach.call(document.querySelectorAll(".lex"), function(l){
+      var vide = !l.querySelector(".mot:not(.hide)");
+      l.classList.toggle("hide", vide);
+      var t = l.previousElementSibling;
+      if(t && t.classList.contains("groupe-titre")) t.classList.toggle("hide", vide);
+    });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll(".niv-f"), function(b){
+    b.addEventListener("click", function(){
+      Array.prototype.forEach.call(document.querySelectorAll(".niv-f"), function(x){ x.classList.remove("on"); });
+      Array.prototype.forEach.call(document.querySelectorAll('.niv-f[data-niv="' + b.dataset.niv + '"]'),
+        function(x){ x.classList.add("on"); });
+      filtre(b.dataset.niv);
+    });
+  });
+})();
+</script>
+<style>
+.player{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px;
+  background:var(--card);border:1px solid var(--border);border-radius:99px;padding:7px 14px 7px 8px}
+.player .pl-nom{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+  font-weight:700;padding-left:6px;white-space:nowrap}
+.player button{font:inherit;cursor:pointer;border:1px solid var(--border);background:var(--card-2);
+  color:var(--text);border-radius:50%;width:2.1em;height:2.1em;line-height:1;padding:0;flex:none;transition:.15s;
+  display:inline-flex;align-items:center;justify-content:center;font-size:.95rem}
+.player button:hover{border-color:var(--bleu);color:var(--bleu)}
+.player .pl-play{background:var(--bleu);border-color:var(--bleu);color:#fff;width:2.4em;height:2.4em;font-size:1rem}
+.player .pl-play:hover{filter:brightness(1.12);color:#fff}
+.player .pl-t{font-size:.84rem;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap;min-width:5.6em}
+.player .pl-bar{flex:1;min-width:110px;height:10px;border-radius:99px;background:var(--border);
+  position:relative;cursor:pointer;touch-action:none}
+.player .pl-fill{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:99px;
+  background:linear-gradient(90deg,var(--bleu),var(--rouge))}
+.player .pl-tete{position:absolute;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;
+  background:var(--card);border:2px solid var(--bleu);left:0;pointer-events:none;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.player .pl-vit{font:inherit;font-size:.78rem;font-weight:700;border-radius:99px;width:auto;height:auto;
+  padding:3px 10px;border:1px solid var(--border);background:var(--card-2);color:var(--muted)}
+.player.lit .pl-bar{background:var(--border)}
+.pl-aide{font-size:.8rem;color:var(--muted);margin:.45em 0 0 .2em}
+@media(max-width:520px){.player{border-radius:14px}.player .pl-t{min-width:0}}
+</style>
+<script>
+/* ===== lecteur : écouter, mettre en pause, reprendre, recommencer, choisir le moment ===== */
+(function(){
+  var synth = window.speechSynthesis;
+  if(!synth) return;
+
+  function mmss(s){
+    s = Math.max(0, Math.round(s));
+    return Math.floor(s/60) + ":" + ("0" + (s%60)).slice(-2);
+  }
+
+  function construire(txt, rate, nom){
+    var p = document.createElement("div");
+    p.className = "player";
+    p.innerHTML =
+      '<button class="pl-play" type="button" title="Écouter">&#9654;</button>' +
+      (nom ? '<span class="pl-nom">' + nom + '</span>' : '') +
+      '<span class="pl-t">0:00 / 0:00</span>' +
+      '<div class="pl-bar"><div class="pl-fill"></div><div class="pl-tete"></div></div>' +
+      '<button class="pl-again" type="button" title="Recommencer du début">&#8634;</button>' +
+      '<button class="pl-vit" type="button" title="Vitesse de lecture">1&times;</button>';
+
+    var base = rate || 0.9, vit = 1,
+        bPlay = p.querySelector(".pl-play"), bAgain = p.querySelector(".pl-again"),
+        bVit = p.querySelector(".pl-vit"), tps = p.querySelector(".pl-t"),
+        bar = p.querySelector(".pl-bar"), fill = p.querySelector(".pl-fill"),
+        tete = p.querySelector(".pl-tete");
+
+    var N = txt.length, depart = 0, pos = 0, t0 = 0, timer = null, enCours = false;
+    function duree(){ return N / (14.5 * base * vit); }
+
+    function affiche(){
+      var pc = N ? Math.min(1, pos / N) : 0;
+      fill.style.width = (pc*100) + "%";
+      tete.style.left = (pc*100) + "%";
+      tps.textContent = mmss(pc * duree()) + " / " + mmss(duree());
+    }
+    function stopTimer(){ if(timer){ clearInterval(timer); timer = null; } }
+    function tic(){
+      if(synth.paused) return;
+      var ecoule = (Date.now() - t0) / 1000;
+      var estim = depart + ecoule * (N / duree());
+      if(estim > pos) pos = Math.min(N, estim);
+      affiche();
+    }
+    function icone(){
+      bPlay.innerHTML = (enCours && !synth.paused) ? "&#10073;&#10073;" : "&#9654;";
+      bPlay.title = (enCours && !synth.paused) ? "Mettre en pause" : "Écouter";
+      p.classList.toggle("lit", enCours);
+    }
+    function arrete(){
+      stopTimer(); synth.cancel(); enCours = false; icone();
+    }
+    function lire(depuis){
+      synth.cancel();
+      depart = Math.max(0, Math.min(N - 1, Math.round(depuis)));
+      pos = depart; affiche();
+      var u = new SpeechSynthesisUtterance(txt.slice(depart));
+      u.lang = "fr-FR"; u.rate = base * vit; u.pitch = 1;
+      if(window.__voixFR) u.voice = window.__voixFR;
+      u.onboundary = function(e){
+        if(typeof e.charIndex === "number"){ pos = depart + e.charIndex; affiche(); }
+      };
+      u.onend = function(){ stopTimer(); enCours = false; pos = N; affiche(); icone(); };
+      u.onerror = function(){ stopTimer(); enCours = false; icone(); };
+      t0 = Date.now(); enCours = true;
+      synth.speak(u);
+      stopTimer(); timer = setInterval(tic, 200);
+      icone();
+    }
+    bPlay.addEventListener("click", function(e){
+      e.stopPropagation();
+      if(enCours && synth.speaking && !synth.paused){
+        synth.pause();
+        setTimeout(function(){ if(!synth.paused){ arrete(); } else { icone(); } }, 120);
+        return;
+      }
+      if(enCours && synth.paused){ synth.resume(); t0 = Date.now(); depart = pos; icone(); return; }
+      lire(pos >= N ? 0 : pos);
+    });
+    bAgain.addEventListener("click", function(e){ e.stopPropagation(); pos = 0; lire(0); });
+    bVit.addEventListener("click", function(e){
+      e.stopPropagation();
+      vit = (vit === 1) ? 0.75 : (vit === 0.75 ? 1.25 : 1);
+      bVit.innerHTML = (vit === 1 ? "1" : String(vit)) + "&times;";
+      affiche();
+      if(enCours) lire(pos);
+    });
+    function viser(ev){
+      var r = bar.getBoundingClientRect();
+      var x = (ev.touches ? ev.touches[0].clientX : ev.clientX) - r.left;
+      var pc = Math.max(0, Math.min(1, x / r.width));
+      var cible = pc * N;
+      var sp = txt.lastIndexOf(" ", Math.round(cible));   /* on démarre sur un mot entier */
+      pos = (sp > 0 ? sp + 1 : 0);
+      affiche();
+      if(enCours) lire(pos);
+    }
+    bar.addEventListener("click", function(e){ e.stopPropagation(); viser(e); });
+    affiche(); icone();
+    return p;
+  }
+
+  function init(){
+    var vs = (synth.getVoices && synth.getVoices()) || [];
+    var fr = vs.filter(function(v){ return /^fr/i.test(v.lang); });
+    if(fr.length) window.__voixFR = fr.filter(function(v){ return /fr-FR/i.test(v.lang); })[0] || fr[0];
+
+    Array.prototype.forEach.call(document.querySelectorAll("[data-say]"), function(b){
+      if(b.dataset.lecteur) return;
+      var txt = b.getAttribute("data-say") || "";
+      if(txt.length < 120) return;                       /* les mots isolés gardent leur bouton */
+      var nom = /dialogue|sc[èe]ne|bulletin|flash|annonce/i.test(b.textContent || "") ? "" : "";
+      var rate = b.getAttribute("data-rate") ? parseFloat(b.getAttribute("data-rate")) : 0.9;
+      var p = construire(txt, rate, nom);
+      b.dataset.lecteur = "1";
+      b.parentNode.replaceChild(p, b);
+      var aide = document.createElement("div");
+      aide.className = "pl-aide";
+      aide.textContent = "Écoute, mets en pause, reprends, recommence — ou clique dans la barre pour repartir d'un endroit précis.";
+      p.parentNode.insertBefore(aide, p.nextSibling);
+    });
+  }
+  if(synth.getVoices && !synth.getVoices().length && synth.addEventListener){
+    synth.addEventListener("voiceschanged", function(){ window.__voixFR = null; init(); }, {once:true});
+  }
+  if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+</script>
+
+<script>
+/* old progress entries from the previous version of this lesson would otherwise count as "reviewed" */
+(function(){
+  try{
+    var s = sessionStorage.getItem("frenchSiteAuth_v2"); if(!s) return;
+    var code = s.split("|")[0]; var raw = localStorage.getItem("progress_" + code); if(!raw) return;
+    var data = JSON.parse(raw); var p = location.pathname; try{ p = decodeURIComponent(p); }catch(e){}
+    var d = data[p]; if(!d || !d.reviewed) return;
+    var ids = {};
+    Array.prototype.forEach.call(document.querySelectorAll("[data-check]"), function(el){ ids[el.getAttribute("data-check")] = 1; });
+    var ch = false;
+    Object.keys(d.reviewed).forEach(function(k){ if(!ids[k]){ delete d.reviewed[k]; if(d.wrong) delete d.wrong[k]; ch = true; } });
+    if(ch) localStorage.setItem("progress_" + code, JSON.stringify(data));
+  }catch(e){}
+})();
+</script>
+
 <script src="../../assets/i18n.js?v=3"></script>
 </body></html>
