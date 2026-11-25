@@ -91,6 +91,18 @@
     color:var(--text);
     font-size:.95rem;
   }
+  .level-sec{ margin-top:2.6rem; }
+  .level-title{
+    display:inline-block;
+    margin:0 0 .35rem;
+    padding:.2rem .9rem;
+    border-radius:999px;
+    background:var(--bleu);
+    color:var(--blanc);
+    font-size:1.05rem;
+    letter-spacing:.06em;
+  }
+  .level-sub{ margin:.2rem 0 1rem; color:var(--muted); font-size:.95rem; }
   .grid{
     display:grid;
     grid-template-columns:repeat(auto-fill, minmax(230px,1fr));
@@ -290,6 +302,12 @@
 
   <div class="grid" id="lecons"></div>
 
+  <section class="level-sec" id="sec-b2c1">
+    <h2 class="level-title">B2-C1</h2>
+    <p class="level-sub">8 dossiers : un article original, son lexique, des exercices et de la production.</p>
+    <div class="grid" id="lecons-b2c1"></div>
+  </section>
+
   <p class="empty-msg" id="empty">Aucun résultat.</p>
 </main>
 
@@ -342,6 +360,24 @@ const lecons = [
   ["20","L'art et la culture","Actividades Vocabulaire/20_L'art et la culture (interactivo).html"],
 ];
 
+const leconsB2C1 = [
+  ["01","Éducation — L'école et l'argent","Actividades B2-C1/01_Éducation - L'école et l'argent (interactivo).html"],
+
+  ["02","Santé — La science et ses titres","Actividades B2-C1/02_Santé - La science et ses titres (interactivo).html"],
+
+  ["03","Écologie — Le climat et ses remèdes","Actividades B2-C1/03_Écologie - Le climat et ses remèdes (interactivo).html"],
+
+  ["04","Français — La langue et ses gendarmes","Actividades B2-C1/04_Français - La langue et ses gendarmes (interactivo).html"],
+
+  ["05","Immigration — Les mots du déplacement","Actividades B2-C1/05_Immigration - Les mots du déplacement (interactivo).html"],
+
+  ["06","Travail — Le travail et ses euphémismes","Actividades B2-C1/06_Travail - Le travail et ses euphémismes (interactivo).html"],
+
+  ["07","Technologie — La machine et ses verbes humains","Actividades B2-C1/07_Technologie - La machine et ses verbes humains (interactivo).html"],
+
+  ["08","Tourisme — Le voyage et ses décors","Actividades B2-C1/08_Tourisme - Le voyage et ses décors (interactivo).html"],
+];
+
 function pdfCard([num, title, path]){
   const ext = path.split('.').pop().toLowerCase();
   const div = document.createElement('div');
@@ -365,6 +401,8 @@ function pdfCard([num, title, path]){
 
 const lEl = document.getElementById('lecons');
 lecons.forEach(item => lEl.appendChild(pdfCard(item)));
+const lEl2 = document.getElementById('lecons-b2c1');
+leconsB2C1.forEach(item => lEl2.appendChild(pdfCard(item)));
 
 const searchInput = document.getElementById('search');
 const emptyMsg = document.getElementById('empty');
@@ -376,6 +414,8 @@ searchInput.addEventListener('input', () => {
     card.style.display = match ? '' : 'none';
     if(match) anyVisible = true;
   });
+  const sec = document.getElementById('sec-b2c1');
+  sec.style.display = (q !== '' && !sec.querySelector('.card:not([style*="none"])')) ? 'none' : '';
   emptyMsg.style.display = (q !== '' && !anyVisible) ? 'block' : 'none';
 });
 </script>
@@ -406,7 +446,16 @@ I18N.add({
 "Questions de société et faits divers":{"es": "Cuestiones de sociedad y sucesos", "en": "Social issues and news items"},
 "La presse et la vie politique":{"es": "La prensa y la vida política", "en": "The press and political life"},
 "La communication":{"es": "La comunicación", "en": "Communication"},
-"L'art et la culture":{"es": "El arte y la cultura", "en": "Art and culture"}
+"L'art et la culture":{"es": "El arte y la cultura", "en": "Art and culture"},
+"8 dossiers : un article original, son lexique, des exercices et de la production.":{"es": "8 dosieres: un artículo original, su léxico, ejercicios y producción.", "en": "8 files: an original article, its vocabulary, exercises and production."},
+"Éducation — L'école et l'argent":{"es": "Educación — La escuela y el dinero", "en": "Education — School and money"},
+"Santé — La science et ses titres":{"es": "Salud — La ciencia y sus titulares", "en": "Health — Science and its headlines"},
+"Écologie — Le climat et ses remèdes":{"es": "Ecología — El clima y sus remedios", "en": "Ecology — The climate and its remedies"},
+"Français — La langue et ses gendarmes":{"es": "Francés — La lengua y sus guardianes", "en": "French — The language and its watchdogs"},
+"Immigration — Les mots du déplacement":{"es": "Inmigración — Las palabras del desplazamiento", "en": "Immigration — The words of displacement"},
+"Travail — Le travail et ses euphémismes":{"es": "Trabajo — El trabajo y sus eufemismos", "en": "Work — Work and its euphemisms"},
+"Technologie — La machine et ses verbes humains":{"es": "Tecnología — La máquina y sus verbos humanos", "en": "Technology — The machine and its human verbs"},
+"Tourisme — Le voyage et ses décors":{"es": "Turismo — El viaje y sus decorados", "en": "Tourism — Travel and its backdrops"}
 });
 </script>
 </body>
