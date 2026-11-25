@@ -1,0 +1,14 @@
+/* Nordelle typography — Poppins everywhere, one family for the whole site.
+   Loaded last in every page so it wins over each page's own font stacks. */
+html, body, *, *::before, *::after {
+  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}
+
+/* Poppins runs wider than the old stacks: keep controls and wide tables inside small screens */
+select, input, textarea { max-width: 100%; }
+@media (max-width: 560px) {
+  .plans th, .att th { letter-spacing: 0; font-size: .68rem; padding: .5rem .4rem; }
+  .plans, .att { table-layout: fixed; }
+  .plans th, .plans td, .att th, .att td { overflow-wrap: anywhere; }
+  .plans td, .att td { padding: .5rem .4rem; font-size: .8rem; }
+}

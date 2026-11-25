@@ -200,12 +200,12 @@
       '.i18n-switch{position:fixed;top:12px;right:12px;z-index:2147483000;display:flex;gap:2px;' +
       'padding:3px;border-radius:999px;background:rgba(255,255,255,.94);' +
       'border:1px solid rgba(0,0,0,.12);box-shadow:0 2px 10px rgba(57,59,102,.18);' +
-      'font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;' +
+      'font-family:Poppins,system-ui,sans-serif;' +
       'backdrop-filter:saturate(160%) blur(6px);-webkit-backdrop-filter:saturate(160%) blur(6px)}' +
       '.i18n-switch .i18n-globe{display:grid;place-items:center;width:26px;height:26px;' +
       'font-size:14px;line-height:1;opacity:.75;user-select:none}' +
       '.i18n-switch button{border:none;background:transparent;color:#393B66;cursor:pointer;' +
-      'font:700 11.5px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;' +
+      'font:600 11px/1 Poppins,system-ui,sans-serif;' +
       'letter-spacing:.04em;padding:7px 9px;border-radius:999px;transition:background .15s ease,color .15s ease}' +
       '.i18n-switch button:hover{background:rgba(55,142,246,.14);color:#393B66}' +
       '.i18n-switch button[aria-pressed="true"]{background:#393B66;color:#fff}' +
