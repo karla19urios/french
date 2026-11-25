@@ -28,12 +28,6 @@ footer, .hero-inner, .navpills, main:has(.grid) { max-width: min(1760px, 100%) !
 
 @media (min-width: 1000px) { main .grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important; } }
 
-/* level page: the stacked blocks sit side by side on wide screens */
-@media (min-width: 1000px) {
-  main:has(> .cefr-block) { display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)); gap: 16px; align-items: start; }
-  main:has(> .cefr-block) > .cefr-block { margin: 0 !important; }
-}
-
 /* the older 'browser window' reading pages and the A2 lesson shell */
 .browser-frame, .flag-stripe, .shell { max-width: min(1440px, 100%) !important; }
 .browser-body .wrap { max-width: none !important; }

@@ -83,6 +83,23 @@
   .cefr-block.disabled{
     opacity:.55;
   }
+  /* four separate groups: tracking, levels, vocabulary, exam preparation */
+  .group{ margin-top:2.8rem; }
+  .group:first-child{ margin-top:1.4rem; }
+  .group-title{
+    display:flex; align-items:center; gap:.9rem;
+    margin:0 0 1rem;
+    font-size:.82rem; font-weight:700;
+    letter-spacing:.16em; text-transform:uppercase;
+    color:var(--muted);
+  }
+  .group-title::after{ content:""; flex:1; height:1px; background:var(--border); }
+  .group-grid{
+    display:grid; gap:16px;
+    grid-template-columns:repeat(auto-fill, minmax(min(340px,100%), 1fr));
+    align-items:start;
+  }
+  .group-grid > .cefr-block{ margin-top:0; }
   .cefr-head{
     display:flex;
     align-items:baseline;
@@ -291,6 +308,9 @@
 </div>
 
 <main>
+  <div class="group">
+    <h2 class="group-title">Suivi</h2>
+    <div class="group-grid">
   <section class="cefr-block">
     <div class="cefr-head">
       <h2>👥 Étudiants</h2>
@@ -298,7 +318,12 @@
     <p class="desc">Consulte ton suivi avec ton code et ton PIN personnel — chaque étudiant ne peut voir que ses propres informations.</p>
     <a class="exam-btn" href="estudiantes.html">Voir mon suivi →</a>
   </section>
+    </div>
+  </div>
 
+  <div class="group">
+    <h2 class="group-title">Niveaux CECR</h2>
+    <div class="group-grid">
   <section class="cefr-block">
     <div class="cefr-head">
       <h2>A1 — Débutant</h2>
@@ -306,7 +331,6 @@
     <p class="desc">Les bases du français : alphabet, grammaire de base, vocabulaire du quotidien. Trois étapes : A1.1, A1.2 et A1.3.</p>
     <a class="exam-btn" href="A1/index.html">Ouvrir →</a>
   </section>
-
   <section class="cefr-block">
     <div class="cefr-head">
       <h2>A2 — Élémentaire</h2>
@@ -314,7 +338,6 @@
     <p class="desc">Grammaire intermédiaire : pronoms y/en, COD/COI, imparfait, imparfait vs passé composé, relatifs simples, futur simple, hypothèse et plus encore.</p>
     <a class="exam-btn" href="A2/index.html">Ouvrir →</a>
   </section>
-
   <section class="cefr-block">
     <div class="cefr-head">
       <h2>B1 — Intermédiaire</h2>
@@ -322,7 +345,6 @@
     <p class="desc">Grammaire : le conditionnel, le plus-que-parfait, l'hypothèse sur le présent et sur le passé, les relatifs composés, le comparatif et le superlatif, le subjonctif, le gérondif.</p>
     <a class="exam-btn" href="B1/index.html">Ouvrir →</a>
   </section>
-
   <section class="cefr-block disabled">
     <div class="cefr-head">
       <h2>B2 — Intermédiaire avancé</h2>
@@ -330,7 +352,12 @@
     </div>
     <p class="desc">La suite du parcours — pas encore de matériel publié pour ce niveau.</p>
   </section>
+    </div>
+  </div>
 
+  <div class="group">
+    <h2 class="group-title">Lexique</h2>
+    <div class="group-grid">
   <section class="cefr-block">
     <div class="cefr-head">
       <h2>📚 Vocabulaire</h2>
@@ -338,7 +365,12 @@
     <p class="desc">20 chapitres thématiques (du caractère à l'art et la culture) et 8 dossiers B2-C1 — lexique avec audio, exercices et production.</p>
     <a class="exam-btn" href="Vocabulaire/index.html">Ouvrir →</a>
   </section>
+    </div>
+  </div>
 
+  <div class="group">
+    <h2 class="group-title">Préparation aux examens</h2>
+    <div class="group-grid">
   <section class="cefr-block">
     <div class="cefr-head">
       <h2>🎙️ TEF examen</h2>
@@ -346,7 +378,6 @@
     <p class="desc">Préparation à l'épreuve d'expression orale du TEF — grammaire, connecteurs, méthode et 36 sujets d'entraînement avec chronomètre.</p>
     <a class="exam-btn" href="tef-examen.html">Ouvrir →</a>
   </section>
-
   <section class="cefr-block">
     <div class="cefr-head">
       <h2>📝 TCF examen — Expression orale</h2>
@@ -354,7 +385,6 @@
     <p class="desc">Préparation à l'épreuve d'expression orale du TCF Canada — les trois tâches, grammaire, connecteurs, méthode, sujets avec chronomètre et vocabulaire B1/B2 et B2/C1.</p>
     <a class="exam-btn" href="tcf-examen.html">Ouvrir →</a>
   </section>
-
   <section class="cefr-block">
     <div class="cefr-head">
       <h2>✍️ TCF examen — Expression écrite</h2>
@@ -362,7 +392,6 @@
     <p class="desc">Préparation à l'épreuve de production écrite du TCF Canada — les trois tâches, grammaire, formules de courriel, méthode et 30 sujets avec chronomètre et compteur de mots.</p>
     <a class="exam-btn" href="tcf-examen-ecrite.html">Ouvrir →</a>
   </section>
-
   <section class="cefr-block">
     <div class="cefr-head">
       <h2>🎧 TCF examen — Compréhension orale</h2>
@@ -370,6 +399,8 @@
     <p class="desc">Préparation à l'épreuve de compréhension orale du TCF Canada — le format, la méthode, et un entraînement de 40 questions du A1 au C2 avec correction, transcription et explication du piège.</p>
     <a class="exam-btn" href="tcf-comprehension-orale.html">Ouvrir →</a>
   </section>
+    </div>
+  </div>
 </main>
 
 <footer>Site local généré pour consulter les fichiers de cours de français</footer>
@@ -387,6 +418,10 @@ I18N.add({
 "A2 — Élémentaire":{es:"A2 — Elemental",en:"A2 — Elementary"},
 "Grammaire intermédiaire : pronoms y/en, COD/COI, imparfait, imparfait vs passé composé, relatifs simples, futur simple, hypothèse et plus encore.":{es:"Gramática intermedia: pronombres y/en, COD/COI, imparfait, imparfait frente a passé composé, relativos simples, futur simple, la hipótesis y más.",en:"Intermediate grammar: the pronouns y/en, direct and indirect objects, imparfait, imparfait vs passé composé, relative pronouns, future tense, hypotheses and more."},
 "Ouvrir →":{es:"Abrir →",en:"Open →"},
+"Suivi":{es:"Seguimiento",en:"Progress"},
+"Niveaux CECR":{es:"Niveles MCER",en:"CEFR levels"},
+"Lexique":{es:"Léxico",en:"Vocabulary"},
+"Préparation aux examens":{es:"Preparación de exámenes",en:"Exam preparation"},
 "📚 Vocabulaire":{es:"📚 Vocabulario",en:"📚 Vocabulary"},
 "20 chapitres thématiques (du caractère à l'art et la culture) et 8 dossiers B2-C1 — lexique avec audio, exercices et production.":{es:"20 capítulos temáticos (del carácter al arte y la cultura) y 8 dosieres B2-C1: léxico con audio, ejercicios y producción.",en:"20 thematic chapters (from character to art and culture) and 8 B2-C1 files — vocabulary with audio, exercises and production."},
 "Grammaire : le conditionnel, le plus-que-parfait, l'hypothèse sur le présent et sur le passé, les relatifs composés, le comparatif et le superlatif, le subjonctif, le gérondif.":{es:"Gramática: el condicional, el plus-que-parfait, la hipótesis sobre el presente y sobre el pasado, los relativos compuestos, el comparativo y el superlativo, el subjuntivo, el gerundio.",en:"Grammar: the conditional, the plus-que-parfait, hypotheses about the present and the past, compound relative pronouns, comparatives and superlatives, the subjunctive, the gérondif."},
