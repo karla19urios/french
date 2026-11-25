@@ -12,3 +12,32 @@ select, input, textarea { max-width: 100%; }
   .plans th, .plans td, .att th, .att td { overflow-wrap: anywhere; }
   .plans td, .att td { padding: .5rem .4rem; font-size: .8rem; }
 }
+
+/* ===== Layout: content closer to the screen edges, and phone-friendly ===== */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+img, video, canvas { max-width: 100%; }
+
+/* wider column on big screens, slim side gutters everywhere */
+.wrap, main, .hero-inner, .scorebar .inner, .navpills, footer, .app {
+  max-width: min(1280px, 100%) !important;
+  padding-left: clamp(10px, 2.2vw, 22px) !important;
+  padding-right: clamp(10px, 2.2vw, 22px) !important;
+}
+
+/* the older 'browser window' reading pages and the A2 lesson shell */
+.browser-frame, .flag-stripe, .shell { max-width: min(1280px, 100%) !important; }
+.browser-body .wrap { max-width: none !important; }
+
+/* phones */
+@media (max-width: 600px) {
+  .card, .art { padding: 14px !important; }
+  h1 { overflow-wrap: anywhere; }
+  .toc, .grid, .sujets { gap: 8px; }
+  .hero, .shell, .browser-body { padding-left: 10px !important; padding-right: 10px !important; }
+  .page { padding-left: 10px !important; padding-right: 10px !important; }
+  body { margin: 0; }
+  /* the language switcher sits bottom-right on phones, so sticky bars no longer need room for it */
+  html body .bar { padding-right: 12px !important; gap: 8px; }
+  .browser-body, .shell .page, .page .browser-body { padding-left: 6px !important; padding-right: 6px !important; }
+  .browser-body .wrap, .page .wrap { padding-left: 0 !important; padding-right: 0 !important; }
+}

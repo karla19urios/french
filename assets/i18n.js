@@ -216,7 +216,7 @@
       '.i18n-switch button{color:#F4F6FF}' +
       '.i18n-switch button:hover{background:rgba(125,182,250,.18);color:#7DB6FA}' +
       '.i18n-switch button[aria-pressed="true"]{background:#378EF6;color:#fff}}' +
-      '@media (max-width:560px){.i18n-switch{top:8px;right:8px}' +
+      '@media (max-width:560px){.i18n-switch{top:auto;bottom:10px;right:10px}' +
       '.i18n-switch button{padding:6px 7px;font-size:11px}' +
       '.i18n-switch .i18n-globe{width:22px;height:22px;font-size:13px}}' +
       '@media print{.i18n-switch{display:none}}' +

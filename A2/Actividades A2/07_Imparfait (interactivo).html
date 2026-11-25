@@ -1,4 +1,19 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style><link rel="preconnect" href="https://fonts.googleapis.com">
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style><style>
+/* phones: the 4-column matching table becomes one card per witness */
+@media (max-width:600px){
+  table.match, table.match tbody, table.match tr, table.match td { display:block; width:100%; }
+  table.match tr:has(th) { display:none; }
+  table.match tr { border:1px solid var(--line); border-radius:12px; padding:8px 10px; margin:0 0 10px; }
+  table.match td { border:0 !important; padding:4px 0 !important; }
+  table.match td:first-child { font-weight:700; }
+  table.match td:nth-child(2)::before { content:"1. Rang (jeune → âgé)"; }
+  table.match td:nth-child(3)::before { content:"2. Période de vie"; }
+  table.match td:nth-child(4)::before { content:"3. Nature du souvenir"; }
+  table.match td:nth-child(n+2)::before { display:block; font-size:.74rem; color:var(--ink-soft); margin-bottom:2px; }
+  table.match select { width:100%; }
+}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&display=swap">
 <link rel="stylesheet" href="../../assets/typography.css">
