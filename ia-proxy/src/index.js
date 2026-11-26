@@ -49,10 +49,13 @@ export default {
 
     // per-visitor limit (Cloudflare rate-limiting binding, see wrangler.toml)
     if (env.LIMITER) {
-      const ip = request.headers.get("CF-Connecting-IP") || "unknown";
-      const { success } = await env.LIMITER.limit({ key: ip });
-      if (!success) return reply(origin, 429, { code: "rate_limited" });
+      try {
+        const ip = request.headers.get("CF-Connecting-IP") || "unknown";
+        const { success } = await env.LIMITER.limit({ key: ip });
+        if (!success) return reply(origin, 429, { code: "rate_limited" });
+      } catch (e) { console.log("rate limiter unavailable:", String(e)); }
     }
+    if (!env.ANTHROPIC_API_KEY) return reply(origin, 500, { code: "server_key", detail: "ANTHROPIC_API_KEY secret is not set" });
 
     let body;
     try { body = await request.json(); } catch (e) { return reply(origin, 400, { code: "bad_request" }); }
@@ -84,7 +87,8 @@ export default {
       if (error instanceof Anthropic.AuthenticationError) return reply(origin, 500, { code: "server_key" });
       if (error instanceof Anthropic.APIConnectionError) return reply(origin, 502, { code: "upstream" });
       if (error instanceof Anthropic.APIError) return reply(origin, 502, { code: "upstream", status: error.status });
-      return reply(origin, 500, { code: "server_error" });
+      console.log("unexpected error:", error);
+      return reply(origin, 500, { code: "server_error", detail: String((error && error.name) || "") + ": " + String((error && error.message) || error).slice(0, 300) });
     }
   },
 };
