@@ -2,6 +2,8 @@ name = "french-ia"
 main = "src/index.js"
 compatibility_date = "2026-11-01"
 compatibility_flags = ["nodejs_compat"]
+# keep variables added in the Cloudflare dashboard when redeploying from GitHub
+keep_vars = true
 
 # 8 generations per minute per visitor (free Cloudflare rate-limiting binding)
 [[ratelimits]]
