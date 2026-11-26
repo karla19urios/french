@@ -1,0 +1,695 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/typography.css">
+</head><body>
+<title>L'Expression de la Conséquence</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+  :root{
+    --bg:#f4f5f7;
+    --paper:#ffffff;
+    --paper-2:#f4f5f7;
+    --ink:#1a1a2e;
+    --ink-soft:#6b7280;
+    --line:#e5e7eb;
+    --bleu:#002395;
+    --rouge:#ED2939;
+    --accent:#002395;
+    --accent-ink:#002395;
+    --green:#3f8f6d;
+    --green-bg:#e7f3ed;
+    --red:#ED2939;
+    --red-bg:#fdecec;
+    --purple:#7c5cff;
+    --purple-bg:#efecff;
+    --shadow: 0 1px 2px rgba(26,26,46,.06), 0 8px 24px -12px rgba(26,26,46,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#12141c;
+      --paper:#1b1e2b;
+      --paper-2:#20232f;
+      --ink:#f1f2f6;
+      --ink-soft:#9aa0b4;
+      --line:#2a2e40;
+      --bleu:#002395;
+      --rouge:#ED2939;
+      --accent:#5b7fe0;
+      --accent-ink:#7c9df2;
+      --green:#63c299;
+      --green-bg:#173226;
+      --red:#ED2939;
+      --red-bg:#3a1418;
+      --purple:#a394ff;
+      --purple-bg:#282259;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#12141c;
+    --paper:#1b1e2b;
+    --paper-2:#20232f;
+    --ink:#f1f2f6;
+    --ink-soft:#9aa0b4;
+    --line:#2a2e40;
+    --bleu:#002395;
+    --rouge:#ED2939;
+    --accent:#5b7fe0;
+    --accent-ink:#7c9df2;
+    --green:#63c299;
+    --green-bg:#173226;
+    --red:#ED2939;
+    --red-bg:#3a1418;
+    --purple:#a394ff;
+    --purple-bg:#282259;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.6);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'Work Sans', ui-sans-serif, system-ui, sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:0 20px 90px;}
+  h1,h2,h3{font-family:'Fraunces', Georgia, serif; text-wrap:balance; margin:0; color:var(--ink);}
+  .eyebrow{font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-ink); font-weight:600;}
+  code, .mono{font-family:'IBM Plex Mono', monospace;}
+
+  .stripe{height:8px; background:linear-gradient(90deg, var(--bleu) 33%, #ffffff 33%, #ffffff 66%, var(--rouge) 66%);}
+
+  .hero{
+    background: linear-gradient(180deg, var(--bleu) 0%, #000f42 100%);
+    color:#f3f5ff; padding:40px 20px 40px;
+  }
+  .hero-inner{max-width:900px; margin:0 auto;}
+  .hero h1{font-size:clamp(28px,4.2vw,42px); font-weight:600; color:#ffffff; letter-spacing:-.01em;}
+  .hero p.sub{color:#c7d1f5; font-size:15px; margin-top:10px; max-width:62ch;}
+  .hero-meta{display:flex; gap:22px; margin-top:22px; flex-wrap:wrap;}
+  .hero-meta div{font-family:'IBM Plex Mono',monospace; font-size:12px; color:#a9b6e8;}
+  .hero-meta b{display:block; color:#f3f5ff; font-size:14px; font-family:'Work Sans',sans-serif; font-weight:600; margin-top:2px;}
+  .hero-tags{display:flex; gap:8px; margin-top:18px; flex-wrap:wrap;}
+  .hero-tag{font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; letter-spacing:.04em; color:#dfe6ff; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.22); border-radius:20px; padding:4px 13px;}
+
+  .navpills{display:flex; gap:8px; flex-wrap:wrap; margin-top:20px; max-width:900px; margin-left:auto; margin-right:auto; padding:0 20px;}
+  .navpill{font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:600; color:var(--accent-ink); background:var(--paper); border:1px solid var(--line); border-radius:20px; padding:5px 13px; text-decoration:none; box-shadow:var(--shadow);}
+  .navpill:hover{border-color:var(--accent);}
+
+  section{margin-top:46px;}
+  .wrap > section:first-of-type{margin-top:36px;}
+  .sec-head{display:flex; align-items:baseline; gap:12px; margin-bottom:16px; flex-wrap:wrap;}
+  .sec-num{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent-ink); font-weight:600;}
+  section h2{font-size:25px; font-weight:600;}
+  .sec-intro{color:var(--ink-soft); font-size:15px; max-width:66ch; margin-top:6px;}
+  .sec-tag{font-family:'IBM Plex Mono',monospace; font-size:10.5px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--accent-ink); background:var(--paper-2); border:1px solid var(--line); border-radius:20px; padding:3px 11px; margin-left:2px;}
+
+  .card{background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:22px; box-shadow:var(--shadow);}
+  .card + .card{margin-top:14px;}
+
+  .instr-box{border-left:3px solid var(--accent); background:var(--paper-2); border-radius:0 10px 10px 0; padding:14px 18px; margin:16px 0; font-size:14.5px;}
+  .instr-box b{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-ink); display:block; margin-bottom:6px;}
+  .instr-box s{color:var(--ink-soft);}
+  .instr-box.warn{border-left-color:var(--rouge);}
+  .instr-box.warn b{color:var(--rouge);}
+  .instr-box.disclose{border-left-color:var(--purple); background:var(--purple-bg);}
+  .instr-box.disclose b{color:var(--purple);}
+
+  .rule-box{background:linear-gradient(180deg,var(--paper-2),var(--paper)); border:1px solid var(--line); border-radius:12px; padding:18px 20px; text-align:center; font-size:16.5px; font-family:'Fraunces',serif; font-weight:600; margin-bottom:18px;}
+  .rule-box div{margin:4px 0;}
+  .rule-box b{color:var(--bleu);}
+
+  .conn-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:4px;}
+  @media (max-width:640px){.conn-grid{grid-template-columns:1fr;}}
+  .conn-card{background:var(--paper-2); border-radius:10px; padding:14px 16px;}
+  .conn-card .conn-words{font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:13.5px; color:var(--accent-ink);}
+  .conn-card .conn-reg{font-family:'IBM Plex Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); margin:3px 0 8px;}
+  .conn-card .conn-ex{font-size:13px; font-style:italic; color:var(--ink-soft); margin-top:4px;}
+  .conn-card .conn-ex b{font-style:normal; color:var(--ink);}
+
+  table.grammar-table{width:100%; border-collapse:collapse; margin-top:14px; font-size:13.3px;}
+  table.grammar-table th{font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-soft); text-align:left; padding:6px 10px; border-bottom:2px solid var(--line);}
+  table.grammar-table td{padding:9px 10px; border-bottom:1px solid var(--line); vertical-align:top;}
+  table.grammar-table .gt-struct{font-family:'IBM Plex Mono',monospace; font-weight:600; color:var(--accent-ink); white-space:normal;}
+  table.grammar-table .gt-ex{font-style:italic; color:var(--ink-soft);}
+  table.grammar-table .gt-ex b{font-style:normal; color:var(--ink);}
+
+  .ex-block{margin-top:16px;}
+  .ex-tag{
+    display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%;
+    background:var(--bleu); color:#ffffff; font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:13px;
+    margin-right:8px; flex:0 0 auto;
+  }
+  .ex-title{font-weight:600; font-size:15.5px; display:flex; align-items:center; margin-bottom:4px;}
+  .ex-sub{color:var(--ink-soft); font-size:13.3px; margin:2px 0 14px 34px;}
+  .card.ex-block:first-of-type{margin-top:0;}
+
+  .fill-line{
+    display:flex; align-items:baseline; flex-wrap:wrap; gap:6px 4px; padding:9px 0; font-size:15px; border-bottom:1px dashed var(--line);
+  }
+  .fill-line:last-child{border-bottom:none;}
+  .fill-line .qn{font-family:'IBM Plex Mono',monospace; color:var(--ink-soft); font-size:12.5px; width:16px;}
+  .blank{
+    padding:5px 8px; border-radius:6px; border:1px solid var(--line); background:var(--paper-2);
+    color:var(--ink); font-family:'Work Sans',sans-serif; font-size:14.5px;
+  }
+  .blank.w-full{width:260px;}
+  .blank.w-med{width:170px;}
+  .blank.w-sm{width:110px; text-align:center;}
+  .blank.tiny{width:80px; text-align:center;}
+  .blank:focus{outline:2px solid var(--accent); outline-offset:1px;}
+  .blank.ok{border-color:var(--green); background:var(--green-bg);}
+  .blank.no{border-color:var(--red); background:var(--red-bg);}
+  .given{font-weight:600; color:var(--accent-ink);}
+
+  .hint-chip{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:600; color:var(--accent-ink); background:var(--paper-2); border:1px solid var(--line); border-radius:6px; padding:2px 7px; margin-right:6px; white-space:nowrap;}
+
+  .btn{font-family:'Work Sans',sans-serif; font-weight:600; font-size:14px; padding:10px 18px; border-radius:9px; border:none; cursor:pointer; background:var(--bleu); color:#ffffff;}
+  .btn:hover{background:var(--rouge);}
+  .btn.secondary{background:transparent; color:var(--ink); border:1px solid var(--line);}
+  .btn.secondary:hover{border-color:var(--accent); color:var(--accent-ink);}
+  .btn-row{display:flex; gap:10px; margin-top:16px; flex-wrap:wrap;}
+
+  textarea{width:100%; min-height:56px; border-radius:10px; border:1px solid var(--line); background:var(--paper-2); color:var(--ink); font-family:'Work Sans',sans-serif; font-size:14.5px; padding:11px 13px; resize:vertical;}
+  textarea:focus{outline:2px solid var(--accent); outline-offset:1px;}
+  .model-answer{display:none; margin-top:10px; background:var(--green-bg); border-radius:10px; padding:13px 16px; font-size:14px;}
+  .model-answer.show{display:block;}
+  .model-answer b{display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--green); margin-bottom:7px;}
+  .model-answer p{margin:3px 0;}
+
+  .sel-line{display:flex; align-items:baseline; flex-wrap:wrap; gap:6px; font-size:15px; padding:8px 0; border-bottom:1px dashed var(--line);}
+  .sel-line:last-child{border-bottom:none;}
+  select.blank{appearance:auto; cursor:pointer;}
+
+  .score-banner{margin-top:16px; padding:14px 18px; border-radius:12px; background:var(--paper-2); border:1px solid var(--line); display:none; align-items:center; gap:14px;}
+  .score-banner.show{display:flex;}
+  .score-num{font-family:'Fraunces',serif; font-size:30px; font-weight:600; color:var(--accent-ink);}
+
+  .prod-item{padding:12px 0; border-bottom:1px dashed var(--line);}
+  .prod-item:last-child{border-bottom:none;}
+  .prod-cause{font-size:14.5px; margin-bottom:8px;}
+  .prod-cause .given{font-weight:600; color:var(--accent-ink);}
+
+  .story-box{background:var(--paper-2); border-radius:12px; padding:18px 20px; font-size:15px; line-height:1.8;}
+  .story-box p{margin:0 0 10px;}
+  .story-box p:last-child{margin-bottom:0;}
+  .story-box mark{background:var(--purple-bg); color:var(--purple); font-weight:700; border-radius:4px; padding:0 3px; font-style:normal;}
+  .story-byline{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--accent-ink); margin-bottom:10px;}
+
+  .oral-card{border-top:3px solid var(--accent);}
+  .oral-num{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--accent-ink); font-weight:700; margin-bottom:6px;}
+  .oral-prompt{font-size:15.5px; font-weight:600; margin-bottom:8px;}
+  .phrase-bank{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0;}
+  .phrase{font-family:'IBM Plex Mono',monospace; font-size:12px; background:var(--paper-2); border:1px solid var(--line); border-radius:8px; padding:5px 10px; color:var(--ink);}
+  .timer-row{display:flex; align-items:center; gap:14px; margin-top:14px; flex-wrap:wrap;}
+  .timer-display{font-family:'Fraunces',serif; font-size:26px; font-weight:600; color:var(--accent-ink); min-width:64px;}
+  .timer-display.low{color:var(--rouge);}
+  .checklist-mini{list-style:none; margin:10px 0 0; padding:0; display:flex; flex-direction:column; gap:6px; font-size:13.3px; color:var(--ink-soft);}
+  .checklist-mini li::before{content:"☐ "; color:var(--accent-ink);}
+
+  footer{max-width:900px; margin:60px auto 0; padding:20px; text-align:center; color:var(--ink-soft); font-size:12.5px; font-family:'IBM Plex Mono',monospace;}
+  footer a{color:var(--accent-ink);}
+</style>
+
+<div class="stripe"></div>
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow" style="color:#a9b6e8;">B1/B2 · Grammaire</div>
+    <h1>L'Expression de la Conséquence</h1>
+    <p class="sub">Giving the result of a fact or an action — from the plain "donc" of everyday speech to the literary "si bien que" and "à tel point que" of a written account. Connectors, degree structures, a real témoignage, and oral practice.</p>
+    <div class="hero-meta">
+      <div>NIVEAU<b>B1 / B2</b></div>
+      <div>FOCUS<b>connecteurs logiques · intensité · quantité</b></div>
+      <div>COMPÉTENCES<b>Grammaire · Lecture · Oral</b></div>
+    </div>
+    <div class="hero-tags">
+      <span class="hero-tag">24 pts autocorrigés</span>
+      <span class="hero-tag">texte authentique</span>
+      <span class="hero-tag">3 sujets oraux</span>
+    </div>
+  </div>
+</div>
+<div class="navpills">
+  <a class="navpill" href="#gram">01 Grammaire</a>
+  <a class="navpill" href="#lecture">02 Lecture</a>
+  <a class="navpill" href="#pratique">03 Pratique libre</a>
+  <a class="navpill" href="#oral">04 Pratique orale</a>
+</div>
+
+<div class="wrap">
+
+<!-- ============ SECTION 01 : GRAMMAIRE ============ -->
+<section id="gram">
+  <div class="sec-head"><span class="sec-num">01</span><h2>Les connecteurs logiques</h2><span class="sec-tag">Théorie</span></div>
+  <p class="sec-intro">Exprimer la conséquence, c'est donner le résultat d'un fait ou d'une action.</p>
+
+  <div class="card">
+    <div class="rule-box">
+      <div>J'avais oublié les clés au bureau, <b>si bien que</b> je n'ai pas pu rentrer.</div>
+      <div>Il était <b>si</b> tard <b>que</b> j'ai dû aller dormir à l'hôtel.</div>
+      <div>Le film contenait des éléments racistes ; <b>c'est pourquoi</b> il a été censuré.</div>
+    </div>
+
+    <div class="conn-grid">
+      <div class="conn-card">
+        <div class="conn-words">alors / donc</div>
+        <div class="conn-reg">alors : surtout à l'oral &nbsp;·&nbsp; donc : oral et écrit</div>
+        <div class="conn-ex">Elle était en retard, <b>alors</b> on est partis.</div>
+        <div class="conn-ex">Vous avez rendu une feuille blanche ; <b>donc</b> vous n'aviez pas appris votre cours.</div>
+      </div>
+      <div class="conn-card">
+        <div class="conn-words">c'est pourquoi / c'est pour cela que / c'est pour ça que / c'est la raison pour laquelle</div>
+        <div class="conn-reg">insistent sur la cause déjà exprimée · « c'est pour ça que » : oral seulement</div>
+        <div class="conn-ex">J'étais malade, <b>c'est pour cela que</b> je ne suis pas venue travailler.</div>
+        <div class="conn-ex">Le prix du pain avait augmenté. <b>C'est pourquoi</b> le peuple se révoltait.</div>
+      </div>
+      <div class="conn-card">
+        <div class="conn-words">par conséquent / en conséquence</div>
+        <div class="conn-reg">langue administrative</div>
+        <div class="conn-ex">Lundi est un jour férié ; <b>par conséquent</b> notre banque sera fermée.</div>
+      </div>
+      <div class="conn-card">
+        <div class="conn-words">aussi / ainsi</div>
+        <div class="conn-reg">surtout à l'écrit · suivis de l'inversion sujet-verbe</div>
+        <div class="conn-ex">Il s'est opposé au régime, <b>aussi a-t-il été</b> obligé de quitter le pays.</div>
+        <div class="conn-ex">Il s'est enfui à l'étranger ; <b>ainsi a-t-il échappé</b> aux poursuites.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card ex-block">
+    <div class="ex-title"><span class="ex-tag">A</span>Choisissez entre « alors » ou « donc »</div>
+    <div class="ex-sub">« Alors » s'utilise surtout à l'oral ; « donc », à l'oral et à l'écrit.</div>
+    <div id="gram-ex1"></div>
+    <div class="btn-row">
+      <button class="btn" data-check="gram-ex1">Vérifier</button>
+      <button class="btn secondary" data-reveal="gram-ex1">Voir les réponses</button>
+    </div>
+    <div class="score-banner" id="gram-ex1-score"><span class="score-num" id="gram-ex1-score-num">0/6</span><span>bonnes réponses</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">01</span><h2>L'intensité et la quantité</h2><span class="sec-tag">Théorie</span></div>
+  <p class="sec-intro">Certaines conjonctions ajoutent une nuance d'intensité ou de quantité à la conséquence.</p>
+
+  <div class="card">
+    <table class="grammar-table">
+      <tr><th>Structure</th><th>Nuance</th><th>Exemple</th></tr>
+      <tr><td class="gt-struct">de sorte que · de manière que · de façon que · si bien que + indicatif</td><td>conséquence neutre</td><td class="gt-ex">Je me suis mise à dévorer les atlas <b>de sorte que</b> j'ai été capable très jeune de citer tous les pays du monde.</td></tr>
+      <tr><td class="gt-struct">si / tellement + adjectif ou adverbe</td><td>intensité</td><td class="gt-ex">Elle était <b>si</b> généreuse <b>que</b> tout le monde l'aimait.</td></tr>
+      <tr><td class="gt-struct">tant + verbe · tant de + nom</td><td>quantité</td><td class="gt-ex">Il <b>pleut tant que</b> les champs sont inondés.</td></tr>
+      <tr><td class="gt-struct">tellement + verbe · tellement de + nom</td><td>intensité / quantité</td><td class="gt-ex">J'étais <b>tellement</b> fascinée <b>que</b> j'en oubliais mes devoirs.</td></tr>
+      <tr><td class="gt-struct">tel(s), telle(s) + nom + que</td><td>= si grande</td><td class="gt-ex">Elle avait une <b>telle</b> envie de voyager <b>qu'</b>elle a fait le tour du monde.</td></tr>
+      <tr><td class="gt-struct">au point que · à tel point que</td><td>une limite a été atteinte</td><td class="gt-ex">Je me suis plongée dans les récits de voyages <b>à tel point que</b> je restais des heures à rêver.</td></tr>
+      <tr><td class="gt-struct">tant et si bien que</td><td>insiste sur l'idée de répétition</td><td class="gt-ex">J'étais passionnée de voyages <b>tant et si bien que</b> je suis partie.</td></tr>
+      <tr><td class="gt-struct">(pas) assez (de) / trop (de)… pour + infinitif<br>… pour que + subjonctif</td><td>jugé (in)suffisant ou excessif</td><td class="gt-ex">J'étais <b>trop</b> jeune <b>pour</b> voler de mes propres ailes.</td></tr>
+    </table>
+    <div class="instr-box" style="margin-top:14px;">
+      <b>Repère utile</b>
+      « si » et « tellement » peuvent porter sur un adjectif ou un adverbe ; « tant » porte sur un verbe ou un nom (avec « de ») — jamais directement sur un adjectif ou un adverbe. « si » et « tellement » se retrouvent aussi dans des expressions comme avoir faim, soif, peur, envie, froid, chaud.
+    </div>
+  </div>
+
+  <div class="card ex-block">
+    <div class="ex-title"><span class="ex-tag">B</span>Complétez avec « si » ou « tant »</div>
+    <div class="ex-sub">« si » + adjectif/adverbe (ou avoir faim, soif, peur, envie…) · « tant » + verbe ou « tant de » + nom.</div>
+    <div id="gram-ex2"></div>
+    <div class="btn-row">
+      <button class="btn" data-check="gram-ex2">Vérifier</button>
+      <button class="btn secondary" data-reveal="gram-ex2">Voir les réponses</button>
+    </div>
+    <div class="score-banner" id="gram-ex2-score"><span class="score-num" id="gram-ex2-score-num">0/6</span><span>bonnes réponses</span></div>
+  </div>
+
+  <div class="card ex-block">
+    <div class="ex-title"><span class="ex-tag">C</span>Complétez avec « tellement » ou « tant »</div>
+    <div class="ex-sub">Certaines réponses acceptent les deux mots — ce qui compte, c'est la logique grammaticale.</div>
+    <div id="gram-ex3"></div>
+    <div class="btn-row">
+      <button class="btn" data-check="gram-ex3">Vérifier</button>
+      <button class="btn secondary" data-reveal="gram-ex3">Voir les réponses</button>
+    </div>
+    <div class="score-banner" id="gram-ex3-score"><span class="score-num" id="gram-ex3-score-num">0/7</span><span>bonnes réponses</span></div>
+  </div>
+</section>
+
+<!-- ============ SECTION 02 : LECTURE ============ -->
+<section id="lecture">
+  <div class="sec-head"><span class="sec-num">02</span><h2>Lecture — un témoignage authentique</h2><span class="sec-tag">Lire</span></div>
+  <p class="sec-intro">Cinq structures de la conséquence, utilisées naturellement dans un même texte.</p>
+
+  <div class="card">
+    <div class="story-byline">Adeline Leclaire, écrivain — « Comment je suis devenue nomade et citoyenne du monde »</div>
+    <div class="story-box">
+      <p>J'ai eu la chance de passer mon enfance dans une ville portuaire. Enfant, je passais mes journées à contempler les bateaux et j'étais <mark>tellement fascinée que</mark> j'en oubliais souvent de faire mes devoirs. Dans la maison familiale, il y avait aussi <mark>tant d'objets</mark> liés à la marine <mark>que</mark> mon imagination s'envolait.</p>
+      <p>Je me suis mise également à dévorer les atlas <mark>de sorte que</mark> j'ai été capable très jeune de citer tous les pays du monde et leur capitale. Vers 12-13 ans, je me suis plongée dans les récits d'aventures et de voyages <mark>à tel point que</mark> je restais des heures entières dans ma chambre à rêver.</p>
+      <p>Je n'avais plus qu'une idée en tête : découvrir le monde, mais j'étais <mark>trop jeune pour</mark> voler de mes propres ailes… La suite la semaine prochaine…</p>
+    </div>
+  </div>
+
+  <div class="card ex-block">
+    <div class="ex-title"><span class="ex-tag">D</span>Classez les cinq structures surlignées</div>
+    <div class="ex-sub">Quelle nuance exprime chacune ?</div>
+    <div id="lecture-ex1"></div>
+    <div class="btn-row">
+      <button class="btn" data-check="lecture-ex1">Vérifier</button>
+      <button class="btn secondary" data-reveal="lecture-ex1">Voir les réponses</button>
+    </div>
+    <div class="score-banner" id="lecture-ex1-score"><span class="score-num" id="lecture-ex1-score-num">0/5</span><span>bonnes réponses</span></div>
+  </div>
+
+  <div class="card">
+    <div class="ex-title" style="margin-bottom:10px;">Reformulez les phrases du témoignage <span style="font-weight:400; color:var(--ink-soft); margin-left:8px; font-size:13px;">production libre, avec les conjonctions données</span></div>
+    <div class="prod-item">
+      <div class="prod-cause"><span class="given">1.</span> Comme cet explorateur a énormément voyagé, il connaît presque tous les pays du monde.</div>
+      <p style="margin:0 0 4px; font-size:13.3px; color:var(--ink-soft);">a. (si bien que)</p>
+      <textarea></textarea>
+      <p style="margin:10px 0 4px; font-size:13.3px; color:var(--ink-soft);">b. (tellement que)</p>
+      <textarea></textarea>
+    </div>
+    <div class="prod-item">
+      <div class="prod-cause"><span class="given">2.</span> Mon envie de prendre le large était si grande qu'à la première occasion je suis partie.</div>
+      <p style="margin:0 0 4px; font-size:13.3px; color:var(--ink-soft);">a. (tel que)</p>
+      <textarea></textarea>
+      <p style="margin:10px 0 4px; font-size:13.3px; color:var(--ink-soft);">b. (tant et si bien)</p>
+      <textarea></textarea>
+    </div>
+    <div class="btn-row">
+      <button class="btn secondary" data-reveal-model="lecture-model">Voir des réponses possibles</button>
+    </div>
+    <div class="model-answer" id="lecture-model">
+      <b>Réponses possibles</b>
+      <p>1a. Cet explorateur a énormément voyagé, si bien qu'il connaît presque tous les pays du monde.</p>
+      <p>1b. Cet explorateur a tellement voyagé qu'il connaît presque tous les pays du monde.</p>
+      <p>2a. J'avais une telle envie de prendre le large qu'à la première occasion je suis partie.</p>
+      <p>2b. J'avais tellement envie de prendre le large, tant et si bien que, à la première occasion, je suis partie.</p>
+    </div>
+  </div>
+
+  <div class="instr-box disclose">
+    <b>Note</b>
+    Votre PDF contenait aussi un exercice de vocabulaire administratif (ci-joint, solliciter, dûment, agréer) sur la même page — il appartient à un autre thème du manuel (la correspondance formelle) et n'a pas de rapport avec la conséquence, donc je l'ai laissé de côté ici.
+  </div>
+</section>
+
+<!-- ============ SECTION 03 : PRATIQUE LIBRE ============ -->
+<section id="pratique">
+  <div class="sec-head"><span class="sec-num">03</span><h2>Pratique libre</h2><span class="sec-tag">Production</span></div>
+  <p class="sec-intro">Une sélection d'énoncés réels de votre manuel — production libre, sans correction automatique, car les réponses varient. Comparez avec le modèle une fois votre phrase écrite.</p>
+
+  <div class="card">
+    <div class="prod-item">
+      <div class="prod-cause"><span class="given">1.</span> La situation s'est aggravée <span class="given">si bien que</span> …</div>
+      <textarea></textarea>
+    </div>
+    <div class="prod-item">
+      <div class="prod-cause"><span class="given">2.</span> Elle voyageait sans billet <span class="given">de sorte que</span> …</div>
+      <textarea></textarea>
+    </div>
+    <div class="prod-item">
+      <div class="prod-cause"><span class="given">3.</span> Être très ému – Ne plus pouvoir parler <span style="color:var(--ink-soft);">(variez l'expression)</span></div>
+      <textarea></textarea>
+    </div>
+    <div class="prod-item">
+      <div class="prod-cause"><span class="given">4.</span> Manifestations violentes – Intervention de la police <span style="color:var(--ink-soft);">(variez l'expression)</span></div>
+      <textarea></textarea>
+    </div>
+    <div class="prod-item">
+      <div class="prod-cause"><span class="given">5.</span> Elle maîtrise trois langues étrangères ; <span class="given">c'est pourquoi</span> …</div>
+      <textarea></textarea>
+    </div>
+    <div class="prod-item">
+      <div class="prod-cause"><span class="given">6.</span> Ils ont annoncé des licenciements massifs ; <span class="given">aussi</span> … <span style="color:var(--ink-soft);">(n'oubliez pas l'inversion !)</span></div>
+      <textarea></textarea>
+    </div>
+    <div class="prod-item">
+      <div class="prod-cause"><span class="given">7.</span> <i>Madame Bovary</i> de Flaubert – Roman jugé immoral – Censuré <span style="color:var(--ink-soft);">(variez l'expression)</span></div>
+      <textarea></textarea>
+    </div>
+    <div class="prod-item">
+      <div class="prod-cause"><span class="given">8.</span> Le triangle a un angle droit. – C'est un triangle rectangle. <span style="color:var(--ink-soft);">(variez l'expression)</span></div>
+      <textarea></textarea>
+    </div>
+    <div class="btn-row">
+      <button class="btn secondary" data-reveal-model="pratique-model">Voir des réponses possibles</button>
+    </div>
+    <div class="model-answer" id="pratique-model">
+      <b>Réponses possibles</b>
+      <p>1. La situation s'est aggravée si bien qu'il a fallu évacuer le quartier.</p>
+      <p>2. Elle voyageait sans billet de sorte qu'elle a été verbalisée par le contrôleur.</p>
+      <p>3. Il était tellement ému qu'il ne pouvait plus parler.</p>
+      <p>4. Il y a eu des manifestations tellement violentes que la police est intervenue.</p>
+      <p>5. Elle maîtrise trois langues étrangères ; c'est pourquoi elle a obtenu ce poste à l'international.</p>
+      <p>6. Ils ont annoncé des licenciements massifs ; aussi les syndicats ont-ils appelé à la grève.</p>
+      <p>7. Madame Bovary de Flaubert a été jugé immoral, si bien qu'il a été censuré.</p>
+      <p>8. Le triangle a un angle droit, c'est pourquoi c'est un triangle rectangle.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 04 : PRATIQUE ORALE ============ -->
+<section id="oral">
+  <div class="sec-head"><span class="sec-num">04</span><h2>Pratique orale — format TEF/TCF</h2><span class="sec-tag">Parler</span></div>
+  <p class="sec-intro">Speak your answers out loud (no auto-grading here) — a timer, a phrase bank, and a model answer to compare with.</p>
+
+  <div class="card oral-card">
+    <div class="oral-num">Sujet 1 — un souvenir d'enfance</div>
+    <div class="oral-prompt">Comme Adeline Leclaire, racontez un souvenir ou une passion d'enfance. Utilisez au moins deux structures de l'intensité (« tellement…que », « si…que », « à tel point que »).</div>
+    <div class="timer-row">
+      <div class="timer-display" data-timer-display="t1">2:00</div>
+      <button class="btn secondary" data-timer-start="t1" data-timer-seconds="120">Démarrer 2 min</button>
+      <button class="btn secondary" data-reveal-model="m1">Voir un modèle possible</button>
+    </div>
+    <div class="model-answer" id="m1">
+      <b>Modèle possible</b>
+      <p>J'étais tellement passionnée de dessin que je remplissais des cahiers entiers. J'adorais tant la bande dessinée que je voulais devenir illustratrice, à tel point que mes parents m'ont offert ma première tablette graphique.</p>
+    </div>
+  </div>
+
+  <div class="card oral-card">
+    <div class="oral-num">Sujet 2 — registre formel</div>
+    <div class="oral-prompt">Présentez une décision administrative ou professionnelle et sa conséquence, dans un registre formel (« par conséquent », « c'est pourquoi », « en conséquence »).</div>
+    <div class="phrase-bank">
+      <span class="phrase">par conséquent…</span>
+      <span class="phrase">c'est la raison pour laquelle…</span>
+      <span class="phrase">en conséquence…</span>
+      <span class="phrase">veuillez…</span>
+    </div>
+    <div class="timer-row">
+      <div class="timer-display" data-timer-display="t2">1:30</div>
+      <button class="btn secondary" data-timer-start="t2" data-timer-seconds="90">Démarrer 1:30</button>
+      <button class="btn secondary" data-reveal-model="m2">Voir un modèle possible</button>
+    </div>
+    <div class="model-answer" id="m2">
+      <b>Modèle possible</b>
+      <p>Le bâtiment sera fermé pour travaux la semaine prochaine ; par conséquent, toutes les réunions sont annulées. C'est la raison pour laquelle nous vous demandons de bien vouloir reporter vos rendez-vous.</p>
+    </div>
+  </div>
+
+  <div class="card oral-card">
+    <div class="oral-num">Sujet 3 — drill rapide : alors ou donc ?</div>
+    <div class="oral-prompt">Pour chaque situation, dites la phrase à voix haute avec le connecteur qui convient au registre.</div>
+    <ul class="checklist-mini" style="margin-bottom:6px;">
+      <li>Vous racontez à un ami que vous avez raté votre bus (registre oral, familier)</li>
+      <li>Vous expliquez par écrit pourquoi un projet a été annulé (registre plus formel)</li>
+      <li>Un agent de police vous demande de le suivre (registre très formel)</li>
+    </ul>
+    <div class="timer-row">
+      <div class="timer-display" data-timer-display="t3">1:00</div>
+      <button class="btn secondary" data-timer-start="t3" data-timer-seconds="60">Démarrer 1 min</button>
+      <button class="btn secondary" data-reveal-model="m3">Voir un modèle possible</button>
+    </div>
+    <div class="model-answer" id="m3">
+      <b>Modèle possible</b>
+      <p>J'ai raté mon bus, alors j'ai dû marcher. Le budget n'avait pas été approuvé ; donc le projet a été annulé. Veuillez donc me suivre, s'il vous plaît.</p>
+    </div>
+    <div class="instr-box" style="margin-top:16px;">
+      <b>Grille de relecture</b>
+      connecteur adapté au registre (oral/écrit/administratif) ? · « si »/« tellement » bien distingués de « tant » ? · inversion après « aussi »/« ainsi » si utilisés ? · indicatif après « de sorte que » (fait réel) ?
+    </div>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  L'Expression de la Conséquence · <a href="https://karla19urios.github.io/french/">karla19urios.github.io/french</a>
+</footer>
+
+<script>
+  function norm(s){
+    return (s||"").normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim()
+      .replace(/\s+/g,' ').replace(/['’]/g,"'").replace(/[?!.]+$/g,'').trim();
+  }
+  function matches(val, answers){
+    var v = norm(val);
+    if(!v) return false;
+    return answers.some(function(a){ return norm(a) === v; });
+  }
+
+  function buildMultiBlank(containerId, sentences){
+    var container = document.getElementById(containerId);
+    var answers = [];
+    sentences.forEach(function(s, i){
+      var line = document.createElement('div');
+      line.className = 'fill-line';
+      var html = '';
+      if(s.given){
+        html += '<span class="given">'+s.given+'</span>';
+      } else {
+        html += '<span class="qn">'+(i+1)+'.</span> ';
+        if(s.hint) html += '<span class="hint-chip">'+s.hint+'</span>';
+        s.parts.forEach(function(part){
+          if(typeof part === 'string'){
+            html += '<span>'+part+'</span>';
+          } else {
+            html += '<input class="blank '+(part.width||'w-med')+'" type="text" autocomplete="off" data-idx="'+answers.length+'">';
+            answers.push(part.answers);
+          }
+        });
+      }
+      line.innerHTML = html;
+      container.appendChild(line);
+    });
+    document.querySelector('[data-check="'+containerId+'"]').addEventListener('click', function(){
+      var score = 0;
+      container.querySelectorAll('input.blank').forEach(function(input){
+        var idx = +input.dataset.idx;
+        input.classList.remove('ok','no');
+        if(matches(input.value, answers[idx])){ input.classList.add('ok'); score++; }
+        else { input.classList.add('no'); }
+      });
+      var sb = document.getElementById(containerId+'-score');
+      if(sb){ sb.classList.add('show'); document.getElementById(containerId+'-score-num').textContent = score+'/'+answers.length; }
+    });
+    document.querySelector('[data-reveal="'+containerId+'"]').addEventListener('click', function(){
+      container.querySelectorAll('input.blank').forEach(function(input){
+        var idx = +input.dataset.idx;
+        input.value = answers[idx][0];
+        input.classList.remove('no'); input.classList.add('ok');
+      });
+      var sb = document.getElementById(containerId+'-score');
+      if(sb){ sb.classList.add('show'); document.getElementById(containerId+'-score-num').textContent = answers.length+'/'+answers.length; }
+    });
+  }
+
+  function buildMCQExercise(containerId, items){
+    var container = document.getElementById(containerId);
+    items.forEach(function(item, i){
+      var line = document.createElement('div');
+      line.className = 'sel-line';
+      var html = '<span class="qn">'+(i+1)+'.</span> ';
+      html += item.hint ? '<span class="hint-chip">'+item.hint+'</span>' : '';
+      html += '<select class="blank" data-idx="'+i+'"><option value="">…</option>';
+      item.options.forEach(function(opt){
+        html += '<option value="'+opt+'">'+opt+'</option>';
+      });
+      html += '</select>';
+      line.innerHTML = html;
+      container.appendChild(line);
+    });
+    function allSelects(){ return container.querySelectorAll('select.blank'); }
+    function correctList(item){ return Array.isArray(item.correct) ? item.correct : [item.correct]; }
+    document.querySelector('[data-check="'+containerId+'"]').addEventListener('click', function(){
+      var score = 0, total = 0;
+      allSelects().forEach(function(sel){
+        var idx = +sel.dataset.idx, item = items[idx];
+        total++; sel.classList.remove('ok','no');
+        if(correctList(item).indexOf(sel.value) !== -1){ sel.classList.add('ok'); score++; }
+        else { sel.classList.add('no'); }
+      });
+      var sb = document.getElementById(containerId+'-score');
+      if(sb){ sb.classList.add('show'); document.getElementById(containerId+'-score-num').textContent = score+'/'+total; }
+    });
+    document.querySelector('[data-reveal="'+containerId+'"]').addEventListener('click', function(){
+      allSelects().forEach(function(sel){
+        var idx = +sel.dataset.idx;
+        sel.value = correctList(items[idx])[0];
+        sel.classList.remove('no'); sel.classList.add('ok');
+      });
+      var sb = document.getElementById(containerId+'-score');
+      var totalSel = allSelects().length;
+      if(sb){ sb.classList.add('show'); document.getElementById(containerId+'-score-num').textContent = totalSel+'/'+totalSel; }
+    });
+  }
+
+  /* ========== EXERCISE A : alors / donc ========== */
+  buildMultiBlank('gram-ex1', [
+    {parts:["Le restaurant était complet ; ", {answers:["alors"], width:"tiny"}, " on est allés dîner à la brasserie."]},
+    {parts:["J'ai raté le train de 15 heures ; ", {answers:["alors"], width:"tiny"}, " j'ai pris celui de 18 heures."]},
+    {parts:["La vie est de plus en plus chère ; ", {answers:["donc"], width:"tiny"}, " la population est mécontente."]},
+    {parts:["Vous êtes en retard ; vous allez ", {answers:["donc"], width:"tiny"}, " être obligés d'attendre l'entracte pour rentrer."]},
+    {parts:["Vous avez passé au feu rouge et vous n'avez pas de permis de conduire. Veuillez ", {answers:["donc"], width:"tiny"}, " me suivre au poste de police."]},
+    {parts:["On avait deux valises chacun ; ", {answers:["alors"], width:"tiny"}, " on a pris un taxi."]}
+  ]);
+
+  /* ========== EXERCISE B : si / tant ========== */
+  buildMultiBlank('gram-ex2', [
+    {hint:"avoir peur", parts:["Il avait ", {answers:["si"], width:"tiny"}, " peur que ses mains tremblaient."]},
+    {hint:"aimer (verbe)", parts:["Elle l'aime ", {answers:["tant"], width:"tiny"}, " qu'elle ne peut pas vivre sans lui."]},
+    {hint:"fort (adjectif)", parts:["Le soleil était ", {answers:["si"], width:"tiny"}, " fort qu'ils ont la peau brûlée."]},
+    {hint:"haute (adjectif)", parts:["L'herbe est ", {answers:["si"], width:"tiny"}, " haute qu'on peut à peine marcher."]},
+    {hint:"des soucis (nom)", parts:["Elle a ", {answers:["tant"], width:"tiny"}, " de soucis qu'elle ne dort plus."]},
+    {hint:"fort (adverbe)", parts:["Nous chantions ", {answers:["si"], width:"tiny"}, " fort que les voisins se sont réveillés."]}
+  ]);
+
+  /* ========== EXERCISE C : tellement / tant ========== */
+  buildMultiBlank('gram-ex3', [
+    {hint:"chanté (verbe)", parts:["J'ai ", {answers:["tellement","tant"], width:"w-med"}, " chanté que je n'ai plus de voix."]},
+    {hint:"vite (adverbe)", parts:["Ils couraient ", {answers:["tellement"], width:"w-med"}, " vite qu'on n'a pas pu les rattraper."]},
+    {hint:"des bijoux (nom)", parts:["Elle a ", {answers:["tant de","tellement de"], width:"w-med"}, " bijoux qu'elle peut en changer tous les jours."]},
+    {hint:"sombre (adjectif)", parts:["La pièce est ", {answers:["tellement"], width:"w-med"}, " sombre que je ne peux pas lire."]},
+    {hint:"de bêtises (nom, « de » déjà donné)", parts:["Il a fait ", {answers:["tellement","tant"], width:"w-med"}, " de bêtises qu'il a été renvoyé du lycée."]},
+    {hint:"avoir froid (expression)", parts:["On avait ", {answers:["tellement"], width:"w-med"}, " froid qu'on ne pouvait plus bouger les doigts."]},
+    {hint:"parlé (verbe)", parts:["Il a ", {answers:["tellement","tant"], width:"w-med"}, " parlé qu'il n'a plus de voix."]}
+  ]);
+
+  /* ========== EXERCISE D : classer les structures ========== */
+  var categories = ["neutre","intensité (adjectif)","quantité (nom)","limite atteinte","insuffisance / excès"];
+  buildMCQExercise('lecture-ex1', [
+    {hint:"« tellement fascinée que »", correct:"intensité (adjectif)", options:categories},
+    {hint:"« tant d'objets… que »", correct:"quantité (nom)", options:categories},
+    {hint:"« de sorte que »", correct:"neutre", options:categories},
+    {hint:"« à tel point que »", correct:"limite atteinte", options:categories},
+    {hint:"« trop jeune pour »", correct:"insuffisance / excès", options:categories}
+  ]);
+
+  /* ========== TIMERS + MODEL REVEALS ========== */
+  document.querySelectorAll('[data-timer-start]').forEach(function(btn){
+    var key = btn.dataset.timerStart;
+    var totalSeconds = +btn.dataset.timerSeconds;
+    var display = document.querySelector('[data-timer-display="'+key+'"]');
+    var interval = null;
+    btn.addEventListener('click', function(){
+      if(interval){ clearInterval(interval); }
+      var remaining = totalSeconds;
+      function render(){
+        var m = Math.floor(remaining/60), s = remaining%60;
+        display.textContent = m+':'+(s<10?'0':'')+s;
+        display.classList.toggle('low', remaining <= 10);
+      }
+      render();
+      interval = setInterval(function(){
+        remaining--;
+        if(remaining < 0){ clearInterval(interval); display.textContent = "0:00"; return; }
+        render();
+      }, 1000);
+    });
+  });
+
+  document.querySelectorAll('[data-reveal-model]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var el = document.getElementById(btn.dataset.revealModel);
+      if(el) el.classList.toggle('show');
+    });
+  });
+</script>
+
+
+<script>(function(){function s(){try{var h=Math.max(document.body.scrollHeight,
+document.documentElement.scrollHeight);if(window.parent&&window.parent!==window)
+window.parent.postMessage({__gh:h},"*");}catch(e){}}
+window.addEventListener("load",s);setInterval(s,1200);
+if(document.readyState!=="loading")setTimeout(s,300);})();</script></body></html>

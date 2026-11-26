@@ -1,0 +1,955 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/typography.css">
+</head><body>
+<title>L'opposition et la concession</title>
+<style>
+:root{
+  --bleu:#002395;
+  --blanc:#ffffff;
+  --rouge:#ED2939;
+  --bg:#f4f5f7;
+  --card:#ffffff;
+  --text:#1a1a2e;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --shadow:rgba(16,24,40,.08);
+  --bleu-soft:rgba(0,35,149,.08);
+  --rouge-soft:rgba(237,41,57,.10);
+  --vert:#1a7f4f;
+  --vert-soft:rgba(26,127,79,.12);
+  --accent:var(--bleu);
+  --radius:16px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#12141c;
+    --card:#1b1e2b;
+    --text:#f1f2f6;
+    --muted:#9aa0b4;
+    --border:#2a2e40;
+    --shadow:rgba(0,0,0,.35);
+    --bleu-soft:rgba(90,125,255,.14);
+    --rouge-soft:rgba(237,41,57,.16);
+    --vert:#4ec98a;
+    --vert-soft:rgba(78,201,138,.15);
+    --accent:#9db2ff;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#12141c;
+  --card:#1b1e2b;
+  --text:#f1f2f6;
+  --muted:#9aa0b4;
+  --border:#2a2e40;
+  --shadow:rgba(0,0,0,.35);
+  --bleu-soft:rgba(90,125,255,.14);
+  --rouge-soft:rgba(237,41,57,.16);
+  --vert:#4ec98a;
+  --vert-soft:rgba(78,201,138,.15);
+  --accent:#9db2ff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  line-height:1.55;-webkit-font-smoothing:antialiased;
+}
+.flagbar{height:8px;background:linear-gradient(to right,var(--bleu) 0 33.33%,var(--blanc) 33.33% 66.66%,var(--rouge) 66.66% 100%)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 72px}
+
+.hero{padding:3.5rem 0 2rem;text-align:center}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;font-weight:800;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--bleu-soft);
+  padding:.35rem .75rem;border-radius:999px;
+}
+.hero h1{font-size:clamp(1.9rem,5vw,2.9rem);margin:.9rem 0 .4rem;letter-spacing:-.02em;line-height:1.12;text-wrap:balance}
+.hero p{color:var(--muted);margin:0 auto;max-width:62ch;font-size:1.02rem}
+
+nav.toc{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin-top:1.4rem}
+nav.toc a{
+  text-decoration:none;color:var(--text);border:1px solid var(--border);background:var(--card);
+  border-radius:999px;padding:.4rem .85rem;font-size:.84rem;font-weight:700;transition:all .15s ease;
+}
+nav.toc a:hover{border-color:var(--accent);color:var(--accent)}
+
+section{margin-top:3rem}
+.sec-head{display:flex;align-items:baseline;gap:.75rem;flex-wrap:wrap;margin-bottom:.35rem}
+.sec-head h2{font-size:1.4rem;margin:0;letter-spacing:-.01em}
+.sec-num{font-size:.72rem;font-weight:800;letter-spacing:.1em;color:var(--rouge);background:var(--rouge-soft);padding:.2rem .55rem;border-radius:6px}
+.sec-sub{color:var(--muted);margin:0 0 1.25rem;font-size:.95rem}
+
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.rule{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--bleu);border-radius:10px;padding:.8rem .9rem}
+.rule>b{display:block;font-size:1.05rem;color:var(--accent);margin-bottom:.15rem}
+.rule span{font-size:.9rem;color:var(--muted);display:block}
+.rule i{display:block;margin-top:.35rem;font-size:.92rem}
+.warn{border-left-color:var(--rouge)}
+.warn>b{color:var(--rouge)}
+
+.tbl{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:0 1px 3px var(--shadow);overflow-x:auto}
+.tbl table{border-collapse:collapse;width:100%;font-size:.92rem}
+.tbl th{text-align:left;color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;padding:.4rem .6rem;border-bottom:1px solid var(--border)}
+.tbl td{padding:.55rem .6rem;border-bottom:1px solid var(--border);vertical-align:top}
+.tbl tr:last-child td{border-bottom:none}
+.tbl b{color:var(--accent)}
+.tbl i{color:var(--muted)}
+
+.mail{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;box-shadow:0 1px 3px var(--shadow);max-width:70ch;margin:0 auto}
+.mail p{margin:0 0 .7rem}
+.mail .sig{color:var(--muted);font-style:italic;text-align:right;margin-top:1rem}
+.mail.letter{text-align:left;max-width:68ch}
+.mail.letter p{font-size:.98rem;line-height:1.7}
+
+.inline-sel{display:inline-block;margin:0 .15rem;padding:.15rem .5rem;border-radius:7px;border:1px solid var(--accent);background:var(--bleu-soft);color:var(--text);font:inherit;font-weight:700;font-size:.92rem}
+.inline-sel.good{border-color:var(--vert);background:var(--vert-soft);color:var(--vert)}
+.inline-sel.bad{border-color:var(--rouge);background:var(--rouge-soft);color:var(--rouge)}
+
+.ex{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:0 1px 3px var(--shadow);margin-bottom:16px;border-top:3px solid var(--rouge)}
+.ex.free{border-top-color:var(--border)}
+.ex-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.ex-head h3{margin:0;font-size:1.1rem;display:flex;align-items:center;gap:.5rem}
+.tag{font-size:.62rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;background:var(--rouge-soft);color:var(--rouge);padding:.2rem .5rem;border-radius:5px}
+.tag.soft{background:var(--bleu-soft);color:var(--accent)}
+.ex-sub{color:var(--muted);font-size:.85rem;margin:.15rem 0 1rem}
+.ex-meta{display:flex;align-items:center;gap:.6rem;font-size:.8rem;color:var(--muted);font-weight:700}
+.sc{background:var(--bleu-soft);color:var(--accent);padding:.2rem .55rem;border-radius:999px;font-variant-numeric:tabular-nums}
+.bar{height:5px;background:var(--border);border-radius:999px;overflow:hidden;margin:.9rem 0 1.1rem}
+.bar i{display:block;height:100%;width:0;background:var(--bleu);transition:width .3s ease}
+.ex-q{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem;font-size:1.03rem;font-weight:700;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;min-height:64px}
+.opts{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.opt{flex:1 1 140px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;padding:.72rem .9rem;font:inherit;font-size:.97rem;font-weight:700;cursor:pointer;transition:all .15s ease;text-align:center}
+.opt:hover:not(:disabled){border-color:var(--accent);transform:translateY(-2px);box-shadow:0 6px 16px var(--shadow)}
+.opt:disabled{cursor:default;opacity:.7}
+.opt.good{background:var(--vert-soft);border-color:var(--vert);color:var(--vert);opacity:1}
+.opt.bad{background:var(--rouge-soft);border-color:var(--rouge);color:var(--rouge);opacity:1}
+.fb{margin-top:.9rem;font-size:.92rem;font-weight:700;min-height:1.4em}
+.fb.good{color:var(--vert)}
+.fb.bad{color:var(--rouge)}
+.fb small{display:block;font-weight:500;color:var(--muted);margin-top:.15rem}
+.answer-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;align-items:center}
+.answer-row input{flex:1 1 260px;padding:.7rem .9rem;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text);font:inherit;font-size:1rem}
+.answer-row input.good{border-color:var(--vert)}
+.answer-row input.bad{border-color:var(--rouge)}
+.btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:10px;padding:.5rem .9rem;font:inherit;font-size:.86rem;font-weight:700;cursor:pointer;transition:all .15s ease;display:inline-flex;align-items:center;gap:.4rem}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.primary{background:var(--bleu);border-color:var(--bleu);color:#fff}
+.btn.primary:hover{opacity:.9;color:#fff}
+.btn.on{background:var(--bleu);border-color:var(--bleu);color:#fff}
+
+.fact{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:.7rem .9rem;font-size:.92rem;margin-bottom:.6rem}
+.fact b{color:var(--text)}
+
+textarea.reflect{width:100%;min-height:62px;padding:.65rem .85rem;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text);font:inherit;font-size:.95rem;resize:vertical;margin-bottom:.7rem}
+.reflect-note{font-size:.78rem;color:var(--muted);margin-top:-.4rem;margin-bottom:.4rem}
+
+.checklist{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.checklist label{display:flex;align-items:flex-start;gap:.6rem;font-size:.92rem;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:.6rem .8rem;cursor:pointer}
+.checklist input{margin-top:.2rem}
+
+.timer{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:.8rem 1rem;margin-top:12px}
+.timer .clock{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:1.6rem;font-weight:800;color:var(--accent);min-width:70px}
+.subject-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem;margin-bottom:10px}
+.subject-card b{display:block;margin-bottom:.2rem}
+.subject-card span{font-size:.88rem;color:var(--muted)}
+
+.phrase-bank{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:10px}
+.phrase{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:.6rem .8rem;font-size:.9rem}
+.phrase b{color:var(--accent)}
+.phrase span{display:block;color:var(--muted);font-size:.82rem;margin-top:.15rem}
+
+.bilan{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--bleu);border-radius:var(--radius);padding:20px;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;box-shadow:0 1px 3px var(--shadow)}
+.bilan .big{font-size:1.9rem;font-weight:900;color:var(--accent);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.bilan .lbl{font-size:.8rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.bilan-list{display:flex;gap:1.6rem;flex-wrap:wrap}
+
+.note{margin-top:1.25rem;font-size:.86rem;color:var(--muted);border-left:3px solid var(--rouge);padding:.15rem 0 .15rem .8rem}
+.disclose{margin-top:.6rem;font-size:.8rem;color:var(--muted);background:var(--bg);border:1px dashed var(--border);border-radius:8px;padding:.5rem .7rem}
+footer{margin-top:3.5rem;padding-top:1.5rem;border-top:1px solid var(--border);color:var(--muted);font-size:.85rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+footer a{color:var(--accent)}
+footer b{color:var(--text)}
+:focus-visible{outline:2px solid var(--bleu);outline-offset:2px;border-radius:6px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto}}
+@media (max-width:560px){.hero{padding:2.5rem 0 1.5rem}}
+</style>
+
+<div class="flagbar"></div>
+<div class="wrap">
+
+  <header class="hero">
+    <span class="eyebrow">Grammaire · B1 → B2</span>
+    <h1>L'opposition et la concession</h1>
+    <p>Contraster deux faits (opposition), ou montrer qu'une cause n'entraîne pas la conséquence attendue (concession) — des bases du B1 aux nuances avancées du B2.</p>
+    <nav class="toc">
+      <a href="https://karla19urios.github.io/french/">← Retour au cours</a>
+      <a href="#intro">Qu'est-ce que c'est ?</a>
+      <a href="#opposition">L'opposition</a>
+      <a href="#concession">La concession</a>
+      <a href="#b2">Vers le B2</a>
+      <a href="#lecture">Lecture</a>
+      <a href="#oral">Pratique orale</a>
+    </nav>
+  </header>
+
+  <!-- ================= 00 INTRO ================= -->
+  <section id="intro">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Qu'est-ce que c'est ?</h2></div>
+    <p class="sec-sub">Deux notions proches, à bien distinguer.</p>
+    <div class="rules">
+      <div class="rule">
+        <b>L'opposition</b>
+        <span>on souligne la différence entre deux faits indépendants</span>
+        <i>Elle dépense sans compter <b>alors qu'</b>elle a peu d'argent.<br>Il est froid et avare ; sa femme, <b>au contraire</b>, est généreuse.</i>
+      </div>
+      <div class="rule warn">
+        <b>La concession</b>
+        <span>une cause n'entraîne pas la conséquence qu'on attendait — elle englobe l'opposition et la restriction</span>
+        <i><b>Bien qu'</b>il y ait eu peu de neige, nous avons skié.<br>Ils étaient pauvres, <b>pourtant</b> ils se sentaient heureux.</i>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 02 OPPOSITION ================= -->
+  <section id="opposition">
+    <div class="sec-head"><span class="sec-num">02</span><h2>L'opposition</h2></div>
+    <p class="sec-sub">Niveau B1 — conjonctions, prépositions, mots de liaison.</p>
+
+    <div class="rules">
+      <div class="rule">
+        <b>Conjonctions</b>
+        <span>« alors que », « tandis que » + indicatif</span>
+        <i>Elle est calme et réservée <b>alors que</b> son frère est agité et bavard.<br>Ils font des études scientifiques <b>tandis que</b> leurs parents ont fait des études littéraires.</i>
+      </div>
+      <div class="rule">
+        <b>Nuance de durée</b>
+        <span>« tandis que », « pendant que »</span>
+        <i>Ils regardaient la télévision <b>tandis qu'</b>elle lisait.<br><b>Pendant que</b> je travaillais sur ma thèse, ils étaient à la montagne.</i>
+      </div>
+      <div class="rule">
+        <b>Prépositions</b>
+        <span>« au lieu de » + infinitif / nom · « contrairement à » + nom / pronom</span>
+        <i><b>Au lieu de</b> reconnaître ses torts, il a été agressif.<br><b>Contrairement à</b> lui, je n'aime pas la peinture moderne.</i>
+      </div>
+      <div class="rule">
+        <b>Mots de liaison</b>
+        <span>« mais » · « au contraire » · « en revanche » (soutenu) · « par contre » (courant)</span>
+        <i>Il n'aime pas les légumes ; <b>par contre</b>, il adore les pâtes.<br>Elle attirait par sa beauté ; <b>en revanche</b>, elle était critiquée pour son caractère.</i>
+      </div>
+    </div>
+
+    <div class="ex" id="exA" style="margin-top:22px">
+      <div class="ex-head">
+        <h3><span class="tag">A</span> Choisissez l'expression d'opposition qui convient</h3>
+        <div class="ex-meta"><span class="sc" id="scA">0 / 0</span><button class="btn" type="button" data-reset="A">↻ Recommencer</button></div>
+      </div>
+      <div class="bar"><i id="barA"></i></div>
+      <div class="ex-q" id="qA"></div>
+      <div class="opts" id="oA"></div>
+      <div class="fb" id="fA"></div>
+    </div>
+
+    <div class="ex" id="exB">
+      <div class="ex-head">
+        <h3><span class="tag">B</span> Reliez avec « tandis que » ou « pendant que »</h3>
+        <div class="ex-meta"><span class="sc" id="scB">0 / 0</span><button class="btn" type="button" data-reset="B">↻ Recommencer</button></div>
+      </div>
+      <div class="bar"><i id="barB"></i></div>
+      <div class="ex-q" id="qB"></div>
+      <div class="answer-row">
+        <input id="inB" type="text" placeholder="…" autocomplete="off" spellcheck="false" aria-label="Votre réponse">
+        <button class="btn primary" type="button" id="checkB">Vérifier</button>
+        <button class="btn" type="button" id="showB">Voir la réponse</button>
+      </div>
+      <div class="fb" id="fB"></div>
+    </div>
+
+    <div class="ex" id="exC">
+      <div class="ex-head">
+        <h3><span class="tag">C</span> Transformez avec « au lieu de » + infinitif ou nom</h3>
+        <div class="ex-meta"><span class="sc" id="scC">0 / 0</span><button class="btn" type="button" data-reset="C">↻ Recommencer</button></div>
+      </div>
+      <div class="bar"><i id="barC"></i></div>
+      <div class="ex-q" id="qC"></div>
+      <div class="answer-row">
+        <input id="inC" type="text" placeholder="…" autocomplete="off" spellcheck="false" aria-label="Votre réponse">
+        <button class="btn primary" type="button" id="checkC">Vérifier</button>
+        <button class="btn" type="button" id="showC">Voir la réponse</button>
+      </div>
+      <div class="fb" id="fC"></div>
+    </div>
+
+    <div class="ex free">
+      <div class="ex-head"><h3><span class="tag soft">Libre</span> Production libre — l'opposition</h3></div>
+      <p class="ex-sub">Complétez chaque phrase avec vos propres mots.</p>
+      <div class="fact"><b>alors que :</b> Ce candidat est populaire auprès des jeunes alors que ___</div>
+      <textarea class="reflect" id="freeOpp1" placeholder="…"></textarea>
+      <div class="fact"><b>alors que :</b> Ils ont commencé par traduire le texte alors que ___</div>
+      <textarea class="reflect" id="freeOpp2" placeholder="…"></textarea>
+      <div class="fact"><b>contrairement à :</b> Elle a un appétit d'oiseau, contrairement à ___</div>
+      <textarea class="reflect" id="freeOpp3" placeholder="…"></textarea>
+      <div class="fact"><b>contrairement à :</b> Le ciel du nord de la France est gris et brumeux, contrairement à ___</div>
+      <textarea class="reflect" id="freeOpp4" placeholder="…"></textarea>
+      <div class="fact"><b>mais / en revanche / par contre :</b> Les jeunes aiment les films d'aventures ; ___</div>
+      <textarea class="reflect" id="freeOpp5" placeholder="…"></textarea>
+      <div class="fact"><b>mais / en revanche / par contre :</b> Je voulais être médecin ; ___</div>
+      <textarea class="reflect" id="freeOpp6" placeholder="…"></textarea>
+      <p class="reflect-note">Production libre, non autocorrigée.</p>
+    </div>
+  </section>
+
+  <!-- ================= 03 CONCESSION ================= -->
+  <section id="concession">
+    <div class="sec-head"><span class="sec-num">03</span><h2>La concession</h2></div>
+    <p class="sec-sub">Niveau B1 — conjonctions, prépositions, mots de liaison.</p>
+
+    <div class="rules">
+      <div class="rule">
+        <b>Conjonctions + subjonctif</b>
+        <span>« bien que », « quoique »</span>
+        <i><b>Bien qu'</b>il <b>soit</b> tard, il fait encore jour.<br>Il ne fut pas reconnu à son époque, <b>quoiqu'</b>il <b>ait eu</b> du talent.</i>
+      </div>
+      <div class="rule">
+        <b>« même si » + indicatif</b>
+        <span>exprime l'opposition et la condition</span>
+        <i>C'est un bon romancier <b>même s'</b>il <b>n'a pas reçu</b> de prix littéraire.<br><b>Même si</b> elle <b>souffrait</b>, elle ne se plaignait pas.</i>
+      </div>
+      <div class="rule warn">
+        <b>« sans que » + subjonctif</b>
+        <span>introduit une négation — ⚠ sujets identiques → « sans » + infinitif</span>
+        <i>Elles sont venues <b>sans que</b> je les <b>aie invitées</b>.<br>Il est entré <b>sans avoir frappé</b> à la porte.</i>
+      </div>
+      <div class="rule">
+        <b>Prépositions</b>
+        <span>« malgré », « en dépit de », « sans » + nom</span>
+        <i><b>Malgré</b> son air farouche, c'est un gentil garçon.<br><b>En dépit de</b> l'indifférence qu'elle lui montrait, il ne cessait de l'aimer.</i>
+      </div>
+      <div class="rule">
+        <b>Mots de liaison</b>
+        <span>« mais », « pourtant », « cependant » (courants) · « néanmoins », « toutefois » (soutenu)</span>
+        <i>Il est sorti dans le froid ; <b>pourtant</b> le médecin le lui avait interdit.<br>Beaucoup de mesures ont été prises ; <b>néanmoins</b>, il ne cesse d'augmenter.</i>
+      </div>
+    </div>
+
+    <div class="ex" id="exF" style="margin-top:22px">
+      <div class="ex-head">
+        <h3><span class="tag">F</span> Conjuguez au mode et au temps qui conviennent</h3>
+        <div class="ex-meta"><span class="sc" id="scF">0 / 0</span><button class="btn" type="button" data-reset="F">↻ Recommencer</button></div>
+      </div>
+      <div class="bar"><i id="barF"></i></div>
+      <div class="ex-q" id="qF"></div>
+      <div class="answer-row">
+        <input id="inF" type="text" placeholder="…" autocomplete="off" spellcheck="false" aria-label="Votre réponse">
+        <button class="btn primary" type="button" id="checkF">Vérifier</button>
+        <button class="btn" type="button" id="showF">Voir la réponse</button>
+      </div>
+      <div class="fb" id="fF"></div>
+    </div>
+
+    <div class="ex" id="exG">
+      <div class="ex-head">
+        <h3><span class="tag">G</span> Reliez en introduisant « sans que »</h3>
+        <div class="ex-meta"><span class="sc" id="scG">0 / 0</span><button class="btn" type="button" data-reset="G">↻ Recommencer</button></div>
+      </div>
+      <p class="ex-sub">Attention : si les deux sujets sont identiques, utilisez « sans » + infinitif.</p>
+      <div class="bar"><i id="barG"></i></div>
+      <div class="ex-q" id="qG"></div>
+      <div class="answer-row">
+        <input id="inG" type="text" placeholder="…" autocomplete="off" spellcheck="false" aria-label="Votre réponse">
+        <button class="btn primary" type="button" id="checkG">Vérifier</button>
+        <button class="btn" type="button" id="showG">Voir la réponse</button>
+      </div>
+      <div class="fb" id="fG"></div>
+    </div>
+
+    <div class="ex" id="exH">
+      <div class="ex-head">
+        <h3><span class="tag">H</span> Exprimez la concession avec « malgré » ou « en dépit de »</h3>
+        <div class="ex-meta"><span class="sc" id="scH">0 / 0</span><button class="btn" type="button" data-reset="H">↻ Recommencer</button></div>
+      </div>
+      <div class="bar"><i id="barH"></i></div>
+      <div class="ex-q" id="qH"></div>
+      <div class="answer-row">
+        <input id="inH" type="text" placeholder="…" autocomplete="off" spellcheck="false" aria-label="Votre réponse">
+        <button class="btn primary" type="button" id="checkH">Vérifier</button>
+        <button class="btn" type="button" id="showH">Voir la réponse</button>
+      </div>
+      <div class="fb" id="fH"></div>
+    </div>
+
+    <div class="ex free">
+      <div class="ex-head"><h3><span class="tag soft">Libre</span> Production libre — la concession</h3></div>
+      <p class="ex-sub">Complétez chaque phrase avec vos propres mots.</p>
+      <div class="fact">Il avait promis de venir me voir mais ___</div>
+      <textarea class="reflect" id="freeCon1" placeholder="…"></textarea>
+      <div class="fact">Les voitures polluent les villes ; pourtant ___</div>
+      <textarea class="reflect" id="freeCon2" placeholder="…"></textarea>
+      <div class="fact">Elle se plaignait toujours de rester seule ; cependant ___</div>
+      <textarea class="reflect" id="freeCon3" placeholder="…"></textarea>
+      <div class="fact">Les gens se disent volontiers écologistes. Néanmoins ___</div>
+      <textarea class="reflect" id="freeCon4" placeholder="…"></textarea>
+      <div class="fact">Il devint aveugle à l'âge de trente ans. Toutefois ___</div>
+      <textarea class="reflect" id="freeCon5" placeholder="…"></textarea>
+      <p class="reflect-note">Production libre, non autocorrigée.</p>
+    </div>
+  </section>
+
+  <!-- ================= 04 VERS LE B2 ================= -->
+  <section id="b2">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Vers le B2 : nuances avancées</h2></div>
+    <p class="sec-sub">Des structures plus riches pour nuancer l'opposition et la concession.</p>
+
+    <h3 style="font-size:1rem;margin:0 0 .6rem">Zoom sur les conjonctions — l'opposition</h3>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Structure</th><th>Exemple</th></tr></thead>
+        <tbody>
+          <tr><td><b>alors que, tandis que</b> + indicatif</td><td><i>Fermé depuis 2010 <b>alors que</b> rien ne le justifiait…</i></td></tr>
+          <tr><td><b>si</b> + indicatif</td><td><i><b>Si</b> les élus de la majorité ne veulent pas sauver notre patrimoine, nous le sauverons ensemble !</i></td></tr>
+          <tr><td><b>autant… autant</b> + indicatif <span style="color:var(--muted)">(nuance de quantité)</span></td><td><i><b>Autant</b> ils veulent détruire, <b>autant</b> nous voulons sauvegarder !</i></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size:1rem;margin:1.6rem 0 .6rem">Zoom sur les conjonctions — la concession</h3>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Structure</th><th>Exemple</th></tr></thead>
+        <tbody>
+          <tr><td><b>même si</b> + indicatif</td><td><i><b>Même si</b> le bâtiment est vieux, il faut le sauver.</i></td></tr>
+          <tr><td><b>bien que, quoique</b> + subjonctif</td><td><i><b>Bien que</b> nous ayons proposé des solutions viables…</i></td></tr>
+          <tr><td><b>si</b> + adjectif + <b>que</b> + subjonctif <span style="color:var(--muted)">(valeur d'intensité)</span></td><td><i><b>Si</b> vieux <b>qu'</b>il soit, il doit être sauvé.</i></td></tr>
+          <tr><td><b>où que / qui que / quoi que</b> + subjonctif <span style="color:var(--muted)">(indétermination)</span></td><td><i><b>Qui que</b> vous soyez, mobilisez-vous !</i></td></tr>
+          <tr><td><b>quel(le)(s) que</b> + subjonctif <span style="color:var(--muted)">(indétermination, souvent avec « être »)</span></td><td><i><b>Quelle que</b> soit votre couleur politique…</i></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ex" id="exL" style="margin-top:22px">
+      <div class="ex-head">
+        <h3><span class="tag">L</span> Extraits d'opinions — travaux de restructuration</h3>
+        <div class="ex-meta"><span class="sc" id="scL">0 / 0</span><button class="btn" type="button" data-reset="L">↻ Recommencer</button></div>
+      </div>
+      <p class="ex-sub">Choisissez l'expression qui convient pour chaque extrait.</p>
+      <div class="bar"><i id="barL"></i></div>
+      <div class="mail letter" id="letterL"></div>
+      <div class="answer-row"><button class="btn primary" type="button" id="checkL">Vérifier</button></div>
+      <div class="fb" id="fL"></div>
+    </div>
+
+    <div class="ex" id="exM">
+      <div class="ex-head">
+        <h3><span class="tag">M</span> Lettre de protestation au maire</h3>
+        <div class="ex-meta"><span class="sc" id="scM">0 / 0</span><button class="btn" type="button" data-reset="M">↻ Recommencer</button></div>
+      </div>
+      <p class="ex-sub">Complétez avec les 6 expressions de concession données (chacune une seule fois).</p>
+      <div class="bar"><i id="barM"></i></div>
+      <div class="mail letter" id="letterM"></div>
+      <div class="answer-row"><button class="btn primary" type="button" id="checkM">Vérifier</button></div>
+      <div class="fb" id="fM"></div>
+    </div>
+  </section>
+
+  <!-- ================= 05 LECTURE ================= -->
+  <section id="lecture">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Lecture</h2></div>
+    <p class="sec-sub">Un tract associatif qui mobilise toutes les structures de la leçon.</p>
+
+    <div class="mail letter">
+      <p style="font-weight:800;font-size:1.1rem;margin-bottom:.9rem">Sauvons le marché couvert !</p>
+      <p>Le marché Saint-Léon est un édifice du XIX<sup>e</sup> siècle que vous connaissez tous. Fermé depuis 2015 alors que rien ne le justifiait, il est désormais menacé de démolition. Pourtant, contrairement à ce qu'on affirme, le bâtiment n'est pas dangereux et, si ancien qu'il soit, il doit être restauré ! Mais, au lieu de chercher des financements pour le rénover et, bien que nous ayons proposé des solutions viables, la mairie préfère vendre le terrain à un promoteur.</p>
+      <p>À l'inverse, Marché Vivant et les élus de l'opposition vous associent à une démarche participative. Si les élus de la majorité ne veulent pas sauver notre patrimoine, nous le sauverons ensemble ! Autant ils veulent le détruire, autant nous voulons le préserver !</p>
+      <p>Qui que vous soyez et quelle que soit votre couleur politique, mobilisez-vous avec nous et rejoignez l'association Marché Vivant !</p>
+    </div>
+    <p class="disclose">Texte composé pour cette leçon (scénario original), construit pour réunir naturellement les structures d'opposition et de concession étudiées ci-dessus — il remplace un document du manuel protégé par le droit d'auteur.</p>
+
+    <div class="ex" id="exJ" style="margin-top:18px">
+      <div class="ex-head">
+        <h3><span class="tag">J</span> Vrai ou faux ?</h3>
+        <div class="ex-meta"><span class="sc" id="scJ">0 / 0</span><button class="btn" type="button" data-reset="J">↻ Recommencer</button></div>
+      </div>
+      <p class="ex-sub">L'association « Marché Vivant » pense que…</p>
+      <div class="bar"><i id="barJ"></i></div>
+      <div class="ex-q" id="qJ"></div>
+      <div class="opts" id="oJ"></div>
+      <div class="fb" id="fJ"></div>
+    </div>
+
+    <div class="ex" id="exK">
+      <div class="ex-head">
+        <h3><span class="tag">K</span> Opposition ou concession ?</h3>
+        <div class="ex-meta"><span class="sc" id="scK">0 / 0</span><button class="btn" type="button" data-reset="K">↻ Recommencer</button></div>
+      </div>
+      <p class="ex-sub">Repérez les structures utilisées dans le texte et classez-les.</p>
+      <div class="bar"><i id="barK"></i></div>
+      <div class="ex-q" id="qK"></div>
+      <div class="opts" id="oK"></div>
+      <div class="fb" id="fK"></div>
+    </div>
+  </section>
+
+  <!-- ================= 06 ORAL ================= -->
+  <section id="oral">
+    <div class="sec-head"><span class="sec-num">06</span><h2>Pratique orale</h2></div>
+    <p class="sec-sub">Format TEF/TCF : choisissez un sujet, préparez-vous avec la banque de phrases, puis exprimez-vous pendant le temps imparti.</p>
+
+    <div class="subject-card"><b>1. Deux points de vue</b><span>Présentez deux opinions opposées sur un sujet de société (écologie, technologie, travail…). Utilisez « alors que », « tandis que », « au contraire ».</span></div>
+    <div class="subject-card"><b>2. Malgré tout</b><span>Racontez une situation où vous avez persévéré malgré des obstacles. Utilisez « malgré », « bien que », « même si ».</span></div>
+    <div class="subject-card"><b>3. Peu importe</b><span>Défendez une cause en vous adressant à tout le monde, sans exception. Utilisez « qui que », « quoi que », « quelle que soit ».</span></div>
+
+    <h3 style="font-size:1rem;margin:1.4rem 0 .4rem">Banque de phrases</h3>
+    <div class="phrase-bank">
+      <div class="phrase"><b>Alors que…</b><span>Whereas…</span></div>
+      <div class="phrase"><b>Au contraire / en revanche…</b><span>On the contrary / on the other hand…</span></div>
+      <div class="phrase"><b>Malgré… / en dépit de…</b><span>Despite…</span></div>
+      <div class="phrase"><b>Bien que + subjonctif…</b><span>Although…</span></div>
+      <div class="phrase"><b>Même si…</b><span>Even if…</span></div>
+      <div class="phrase"><b>Pourtant / cependant / néanmoins…</b><span>However / nevertheless…</span></div>
+      <div class="phrase"><b>Quelle que soit la raison…</b><span>Whatever the reason…</span></div>
+      <div class="phrase"><b>Qui que vous soyez…</b><span>Whoever you are…</span></div>
+    </div>
+
+    <div class="timer">
+      <span class="clock" id="clock">02:00</span>
+      <button class="btn primary" type="button" id="timerStart">▶ Démarrer (2 min)</button>
+      <button class="btn" type="button" id="timerReset">↻ Réinitialiser</button>
+      <span style="font-size:.85rem;color:var(--muted)">Choisissez un sujet et parlez jusqu'à la fin du temps.</span>
+    </div>
+
+    <h3 style="font-size:1rem;margin:1.4rem 0 .6rem">Grille de relecture</h3>
+    <div class="checklist">
+      <label><input type="checkbox">J'ai utilisé au moins une structure d'opposition et une de concession.</label>
+      <label><input type="checkbox">J'ai respecté le mode exigé par chaque conjonction (indicatif / subjonctif).</label>
+      <label><input type="checkbox">J'ai varié entre conjonctions, prépositions et mots de liaison.</label>
+      <label><input type="checkbox">Mes phrases ont un sens clair et complet.</label>
+    </div>
+  </section>
+
+  <!-- ================= BILAN ================= -->
+  <section>
+    <div class="bilan">
+      <div class="bilan-list">
+        <div><div class="lbl">Score</div><div class="big"><span id="bTotal">0 / 48</span></div></div>
+        <div><div class="lbl">Réussite</div><div class="big"><span id="bPct">0 %</span></div></div>
+      </div>
+      <div style="max-width:30ch;font-size:.85rem;color:var(--muted)">Les exercices A à M comptent pour le score. Les deux blocs de production libre ne sont pas notés.</div>
+    </div>
+  </section>
+
+  <footer>
+    <span>L'opposition et la concession — du B1 au B2</span>
+    <span><a href="https://karla19urios.github.io/french/">← Retour au cours</a></span>
+  </footer>
+</div>
+
+<script>
+function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function shuffle(a){ a = a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+function norm(s){
+  return String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/['’]/g,"'").replace(/[.,!?;:]/g,'').replace(/\s+/g,' ').trim();
+}
+
+/* ---------- moteur d'exercices ---------- */
+var EX = {};
+var TOTALS = {A:5,B:3,C:5,F:5,G:4,H:5,J:4,K:8,L:3,M:6};
+
+function setBar(letter){
+  var st = EX[letter];
+  var total = TOTALS[letter];
+  var pct = total ? Math.round((st.i/total)*100) : 0;
+  var barEl = document.getElementById('bar'+letter);
+  if(barEl) barEl.style.width = pct+'%';
+  var scEl = document.getElementById('sc'+letter);
+  if(scEl) scEl.textContent = st.ok+' / '+total;
+  updateBilan();
+}
+function updateBilan(){
+  var totalPts = 0, gotPts = 0;
+  for(var k in TOTALS){
+    totalPts += TOTALS[k];
+    gotPts += (EX[k] ? EX[k].ok : 0);
+  }
+  document.getElementById('bTotal').textContent = gotPts+' / '+totalPts;
+  document.getElementById('bPct').textContent = (totalPts ? Math.round((gotPts/totalPts)*100) : 0)+' %';
+}
+function fb(letter, good, msg, sub){
+  var el = document.getElementById('f'+letter);
+  if(!el) return;
+  el.className = 'fb ' + (good ? 'good' : 'bad');
+  el.innerHTML = esc(msg) + (sub ? ('<small>'+esc(sub)+'</small>') : '');
+}
+function finish(letter){
+  setBar(letter);
+  var el = document.getElementById('f'+letter);
+  var st = EX[letter];
+  var total = TOTALS[letter];
+  if(el){
+    el.className = 'fb good';
+    el.innerHTML = '🎉 Exercice terminé ! Score : '+st.ok+' / '+total;
+  }
+  var qEl = document.getElementById('q'+letter);
+  if(qEl) qEl.style.display = 'none';
+  var oEl = document.getElementById('o'+letter);
+  if(oEl) oEl.innerHTML = '';
+  var rowAnswer = document.querySelector('#ex'+letter+' .answer-row');
+  if(rowAnswer) rowAnswer.style.display = 'none';
+  updateBilan();
+}
+
+/* ---- moteur MCQ (séquentiel) ---- */
+function mkMCQ(letter, items){
+  return function render(){
+    var st = EX[letter];
+    if(st.i >= items.length){ finish(letter); return; }
+    var it = items[st.i];
+    document.getElementById('q'+letter).style.display = '';
+    document.getElementById('q'+letter).textContent = it.q;
+    var order = shuffle(it.opts.map(function(t,idx){ return {t:t, idx:idx}; }));
+    var html = '';
+    order.forEach(function(o){
+      html += '<button class="opt" type="button" data-idx="'+o.idx+'">'+esc(o.t)+'</button>';
+    });
+    var oEl = document.getElementById('o'+letter);
+    oEl.innerHTML = html;
+    document.getElementById('f'+letter).innerHTML = '';
+    Array.prototype.forEach.call(oEl.querySelectorAll('.opt'), function(btn){
+      btn.addEventListener('click', function(){
+        var idx = parseInt(btn.getAttribute('data-idx'), 10);
+        var correct = idx === it.correct;
+        Array.prototype.forEach.call(oEl.querySelectorAll('.opt'), function(b){ b.disabled = true; });
+        if(correct){ btn.classList.add('good'); st.ok++; }
+        else{
+          btn.classList.add('bad');
+          var good = oEl.querySelector('.opt[data-idx="'+it.correct+'"]');
+          if(good) good.classList.add('good');
+        }
+        fb(letter, correct, correct ? '✔ Correct !' : '✘ Pas tout à fait.', correct ? '' : ('Réponse : '+it.opts[it.correct]));
+        st.i++;
+        setBar(letter);
+        setTimeout(render, 1700);
+      });
+    });
+    setBar(letter);
+  };
+}
+
+/* ---- moteur texte libre (séquentiel, acceptant plusieurs variantes) ---- */
+function mkFill(letter, items){
+  return function render(){
+    var st = EX[letter];
+    if(st.i >= items.length){ finish(letter); return; }
+    var it = items[st.i];
+    var qEl = document.getElementById('q'+letter);
+    qEl.style.display = '';
+    qEl.textContent = it.q;
+    var input = document.getElementById('in'+letter);
+    input.value = ''; input.className = ''; input.disabled = false;
+    document.getElementById('f'+letter).innerHTML = '';
+    setBar(letter);
+    function check(){
+      if(input.disabled) return;
+      var val = norm(input.value);
+      var answers = Array.isArray(it.a) ? it.a : [it.a];
+      var ok = answers.some(function(a){ return norm(a) === val; });
+      input.disabled = true;
+      input.classList.add(ok ? 'good' : 'bad');
+      if(ok) st.ok++;
+      fb(letter, ok, ok ? '✔ Correct !' : '✘ Réponse possible :', ok ? '' : answers[0]);
+      st.i++;
+      setBar(letter);
+      setTimeout(render, 2200);
+    }
+    document.getElementById('check'+letter).onclick = check;
+    input.onkeydown = function(e){ if(e.key === 'Enter'){ e.preventDefault(); check(); } };
+    var showBtn = document.getElementById('show'+letter);
+    if(showBtn){
+      showBtn.onclick = function(){
+        if(input.disabled) return;
+        var answers = Array.isArray(it.a) ? it.a : [it.a];
+        input.value = answers[0];
+      };
+    }
+  };
+}
+
+/* ---- moteur "lettre à trous" (sélecteurs en ligne, un seul bouton Vérifier) ---- */
+function mkLetter(letter, segments, bank, containerId){
+  var blanks = segments.filter(function(s){ return s.blank; });
+  function render(){
+    var html = '';
+    var bi = 0;
+    segments.forEach(function(seg){
+      if(seg.blank){
+        var idx = bi++;
+        html += '<select class="inline-sel" id="sel'+letter+idx+'"><option value="">—</option>';
+        bank.forEach(function(w){ html += '<option value="'+esc(w)+'">'+esc(w)+'</option>'; });
+        html += '</select>';
+      } else {
+        html += esc(seg.text);
+      }
+    });
+    document.getElementById(containerId).innerHTML = '<p>'+html+'</p>' + (segments.sig ? '<p class="sig">'+esc(segments.sig)+'</p>' : '');
+    document.getElementById('f'+letter).innerHTML = '';
+    EX[letter] = {i:0, ok:0};
+    setBar(letter);
+  }
+  function check(){
+    var ok = 0;
+    blanks.forEach(function(seg, idx){
+      var sel = document.getElementById('sel'+letter+idx);
+      var correct = norm(sel.value) === norm(seg.a);
+      sel.classList.remove('good','bad');
+      sel.classList.add(correct ? 'good' : 'bad');
+      if(correct) ok++;
+    });
+    EX[letter] = {i:blanks.length, ok:ok};
+    setBar(letter);
+    var done = ok === blanks.length;
+    fb(letter, done, done ? '✔ Tout est correct !' : ('✔ '+ok+' / '+blanks.length+' corrects — les sélecteurs en rouge sont à revoir.'), '');
+    if(done) finish(letter);
+  }
+  document.getElementById('check'+letter).addEventListener('click', check);
+  return render;
+}
+
+/* ---- A : opposition, choisissez l'expression ---- */
+var ITEMS_A = [
+  {q:"Le maire actuel gaspille l'argent (…) le maire précédent l'utilisait à bon escient.", opts:['alors que','contrairement au'], correct:0},
+  {q:"La municipalité est à l'écoute de ses concitoyens (…) l'ancienne.", opts:['contrairement à','tandis que'], correct:0},
+  {q:"(…) la propreté des rues progresse, la qualité de l'air ne s'améliore pas.", opts:['Si','À l\'inverse'], correct:0},
+  {q:"Il y a maintenant une vraie politique de la ville (…) celle de ces dernières années.", opts:['au lieu de','à l\'opposé de'], correct:1},
+  {q:"(…) les arts sont privilégiés, (…) le sport est négligé.", opts:['Autant… autant','Si… si'], correct:0}
+];
+var startA = mkMCQ('A', ITEMS_A);
+
+/* ---- B : tandis que / pendant que ---- */
+var ITEMS_B = [
+  {q:"Elle travaillait dur. – Ils jouaient aux cartes.", a:["elle travaillait dur tandis qu'ils jouaient aux cartes","elle travaillait dur pendant qu'ils jouaient aux cartes"]},
+  {q:"Tout le monde se prépare pour la fête. – Elle pleure dans sa chambre.", a:["tout le monde se prépare pour la fête tandis qu'elle pleure dans sa chambre","tout le monde se prépare pour la fête pendant qu'elle pleure dans sa chambre"]},
+  {q:"Les voleurs cambriolaient leur maison. – Ils dormaient à poings fermés.", a:["les voleurs cambriolaient leur maison tandis qu'ils dormaient à poings fermés","les voleurs cambriolaient leur maison pendant qu'ils dormaient à poings fermés"]}
+];
+var startB = mkFill('B', ITEMS_B);
+
+/* ---- C : au lieu de ---- */
+var ITEMS_C = [
+  {q:"Je ne boirai pas d'apéritif mais je prendrai un jus d'orange.", a:"au lieu de boire un apéritif, je prendrai un jus d'orange"},
+  {q:"Ne mettez pas d'huile mais utilisez du beurre. C'est meilleur !", a:"au lieu de mettre de l'huile, utilisez du beurre"},
+  {q:"Nous prendrons le train mais pas l'avion. C'est trop cher !", a:"nous prendrons le train au lieu de l'avion"},
+  {q:"Pour son anniversaire elle veut un disque et non un livre.", a:"pour son anniversaire elle veut un disque au lieu d'un livre"},
+  {q:"Je préfère un hors-d'œuvre et un dessert et pas de plat.", a:"je préfère un hors-d'œuvre et un dessert au lieu d'un plat"}
+];
+var startC = mkFill('C', ITEMS_C);
+
+/* ---- F : conjuguez (concession) ---- */
+var ITEMS_F = [
+  {q:"Bien que (être) ___ une ville médiévale, il y a beaucoup d'immeubles modernes.", a:"soit"},
+  {q:"Ce magasin a beaucoup de clients, même si les vendeurs (ne pas être) ___ aimables.", a:"ne sont pas"},
+  {q:"Quoique des accords de paix (signer) ___ l'an dernier, la tension dans la région persiste.", a:"aient été signés"},
+  {q:"Je lui envoie une lettre de temps en temps, bien qu'elle (écrire) ___ jamais.", a:"n'écrive"},
+  {q:"Elle paraît jeune même si elle (fêter) ___ ses quarante ans le mois dernier.", a:"a fêté"}
+];
+var startF = mkFill('F', ITEMS_F);
+
+/* ---- G : sans que ---- */
+var ITEMS_G = [
+  {q:"Il est passé près de moi. Je ne l'ai pas vu.", a:["il est passé près de moi sans que je le voie","il est passé près de moi sans que je l'aie vu"]},
+  {q:"Un voleur lui a pris son sac. Elle n'a pas eu le temps de réagir.", a:["un voleur lui a pris son sac sans qu'elle ait le temps de réagir","un voleur lui a pris son sac sans qu'elle ait eu le temps de réagir"]},
+  {q:"Le professeur les a punis collectivement. Il n'a pas cherché à connaître l'origine du chahut.", a:"le professeur les a punis collectivement sans chercher à connaître l'origine du chahut"},
+  {q:"Ils se sont mariés. Personne ne le savait.", a:["ils se sont mariés sans que personne le sache","ils se sont mariés sans que personne ne le sache"]}
+];
+var startG = mkFill('G', ITEMS_G);
+
+/* ---- H : malgré / en dépit de ---- */
+var ITEMS_H = [
+  {q:"Il fait froid. Il est sorti sans manteau.", a:["malgré le froid, il est sorti sans manteau","en dépit du froid, il est sorti sans manteau"]},
+  {q:"Il y a de nombreuses recherches sur la maladie. Aucun vaccin n'a été trouvé.", a:["malgré de nombreuses recherches sur la maladie, aucun vaccin n'a été trouvé","en dépit de nombreuses recherches sur la maladie, aucun vaccin n'a été trouvé"]},
+  {q:"Les prix augmentent. Les gens continuent de consommer.", a:["malgré l'augmentation des prix, les gens continuent de consommer","en dépit de l'augmentation des prix, les gens continuent de consommer"]},
+  {q:"Son propriétaire a menacé de le poursuivre en justice. Il ne paye toujours pas son loyer.", a:["malgré les menaces de son propriétaire, il ne paye toujours pas son loyer","en dépit des menaces de son propriétaire, il ne paye toujours pas son loyer"]},
+  {q:"Ce film a reçu de mauvaises critiques. Il a eu du succès auprès du grand public.", a:["malgré de mauvaises critiques, ce film a eu du succès auprès du grand public","en dépit de mauvaises critiques, ce film a eu du succès auprès du grand public"]}
+];
+var startH = mkFill('H', ITEMS_H);
+
+/* ---- J : vrai/faux lecture ---- */
+var ITEMS_J = [
+  {q:"La fermeture du marché était justifiée.", opts:['Vrai','Faux'], correct:1},
+  {q:"Le bâtiment n'est pas dangereux.", opts:['Vrai','Faux'], correct:0},
+  {q:"Le marché est trop vieux pour être sauvé.", opts:['Vrai','Faux'], correct:1},
+  {q:"La mairie a essayé de rénover le bâtiment.", opts:['Vrai','Faux'], correct:1}
+];
+var startJ = mkMCQ('J', ITEMS_J);
+
+/* ---- K : opposition ou concession ---- */
+var ITEMS_K = [
+  {q:"« alors que rien ne le justifiait »", opts:['opposition','concession'], correct:0},
+  {q:"« si ancien qu'il soit, il doit être restauré »", opts:['opposition','concession'], correct:1},
+  {q:"« au lieu de chercher des financements »", opts:['opposition','concession'], correct:0},
+  {q:"« bien que nous ayons proposé des solutions viables »", opts:['opposition','concession'], correct:1},
+  {q:"« à l'inverse »", opts:['opposition','concession'], correct:0},
+  {q:"« autant ils veulent le détruire, autant nous voulons le préserver »", opts:['opposition','concession'], correct:0},
+  {q:"« qui que vous soyez »", opts:['opposition','concession'], correct:1},
+  {q:"« quelle que soit votre couleur politique »", opts:['opposition','concession'], correct:1}
+];
+var startK = mkMCQ('K', ITEMS_K);
+
+/* ---- L : extraits d'opinions ---- */
+var BANK_L = ['malgré','bien que','même si','si… que','quelles que','tout de même'];
+var SEG_L = [
+  {text:'1. « '},{blank:true, a:'malgré'},{text:' tout le respect que je vous dois et bien que je vous aie toujours soutenu, je proteste contre les travaux du centre-ville : quelles que soient les raisons qui vous ont amené à supprimer la pharmacie, je considère que c\'est une ineptie ! » '},{text:'— Jules, 65 ans, retraité'}
+];
+SEG_L.sig = undefined;
+var SEG_L2 = [
+  {text:'2. « Si originale '},{blank:true, a:'si… que'},{text:' soit l\'architecture de la nouvelle bibliothèque, elle enlaidit notre ville. » '},{text:'— Adèle, 45 ans, enseignante'}
+];
+var SEG_L3 = [
+  {text:'3. « '},{blank:true, a:'même si'},{text:' les voitures sont interdites, je n\'y renonce pas ! » '},{text:'— Arthur, 33 ans, chercheur'}
+];
+function renderL(){
+  var bi = 0;
+  function segHTML(segs){
+    var html = '';
+    segs.forEach(function(seg){
+      if(seg.blank){
+        var idx = bi++;
+        html += '<select class="inline-sel" id="selL'+idx+'"><option value="">—</option>';
+        BANK_L.forEach(function(w){ html += '<option value="'+esc(w)+'">'+esc(w)+'</option>'; });
+        html += '</select>';
+      } else {
+        html += esc(seg.text);
+      }
+    });
+    return html;
+  }
+  var html = '<p>'+segHTML(SEG_L)+'</p><p>'+segHTML(SEG_L2)+'</p><p>'+segHTML(SEG_L3)+'</p>';
+  document.getElementById('letterL').innerHTML = html;
+  document.getElementById('fL').innerHTML = '';
+  EX.L = {i:0, ok:0};
+  setBar('L');
+}
+function checkL(){
+  var answers = ['malgré','si… que','même si'];
+  var ok = 0;
+  answers.forEach(function(a, idx){
+    var sel = document.getElementById('selL'+idx);
+    var correct = norm(sel.value) === norm(a);
+    sel.classList.remove('good','bad');
+    sel.classList.add(correct ? 'good' : 'bad');
+    if(correct) ok++;
+  });
+  EX.L = {i:answers.length, ok:ok};
+  setBar('L');
+  var done = ok === answers.length;
+  fb('L', done, done ? '✔ Tout est correct !' : ('✔ '+ok+' / '+answers.length+' corrects — les sélecteurs en rouge sont à revoir.'), '');
+  if(done) finish('L');
+}
+document.getElementById('checkL').addEventListener('click', checkL);
+var startL = renderL;
+
+/* ---- M : lettre de protestation ---- */
+var BANK_M = ['malgré','quelles que soient','même si','néanmoins','bien que','tout de même'];
+var ANSWERS_M = ['malgré','quelles que soient','même si','néanmoins','bien que','tout de même'];
+function renderM(){
+  var parts = [
+    'Monsieur le Maire,<br><br>',
+    {blank:0}, ' toutes les pétitions que vous avez reçues, vous avez décidé de ne pas prendre en compte l\'avis de vos concitoyens. Nous réitérons donc ici nos critiques sur la restructuration de notre quartier historique. ',
+    {blank:1}, ' les raisons qui vous ont amené à la décider, je dois vous dire que ce n\'est pas une réussite. Les nouvelles constructions sont horribles ! ',
+    {blank:2}, ' vous nous expliquiez qu\'elles permettront de créer de nombreux logements sociaux et de faciliter l\'ouverture de nouveaux commerces, ',
+    {blank:3}, ' la hauteur de ces immeubles bouche complètement la perspective sur le port. Et je ne m\'étendrai pas sur les nuisances sonores provoquées par les bars du port qui, ',
+    {blank:4}, ' nous ayons isolé nos appartements, perturbent encore les nuits des riverains.<br><br>Nous vous prions de croire, Monsieur le Maire, à nos salutations les meilleures et, en dépit de nos divergences, nous restons ',
+    {blank:5}, ' à votre disposition pour des échanges constructifs.'
+  ];
+  var html = '<p>';
+  parts.forEach(function(p){
+    if(typeof p === 'string'){ html += p; }
+    else{
+      var idx = p.blank;
+      html += '<select class="inline-sel" id="selM'+idx+'"><option value="">—</option>';
+      BANK_M.forEach(function(w){ html += '<option value="'+esc(w)+'">'+esc(w)+'</option>'; });
+      html += '</select>';
+    }
+  });
+  html += '</p>';
+  document.getElementById('letterM').innerHTML = html;
+  document.getElementById('fM').innerHTML = '';
+  EX.M = {i:0, ok:0};
+  setBar('M');
+}
+function checkM(){
+  var ok = 0;
+  ANSWERS_M.forEach(function(a, idx){
+    var sel = document.getElementById('selM'+idx);
+    var correct = norm(sel.value) === norm(a);
+    sel.classList.remove('good','bad');
+    sel.classList.add(correct ? 'good' : 'bad');
+    if(correct) ok++;
+  });
+  EX.M = {i:ANSWERS_M.length, ok:ok};
+  setBar('M');
+  var done = ok === ANSWERS_M.length;
+  fb('M', done, done ? '✔ Tout est correct !' : ('✔ '+ok+' / '+ANSWERS_M.length+' corrects — les sélecteurs en rouge sont à revoir.'), '');
+  if(done) finish('M');
+}
+document.getElementById('checkM').addEventListener('click', checkM);
+var startM = renderM;
+
+var STARTERS = {A:startA, B:startB, C:startC, F:startF, G:startG, H:startH, J:startJ, K:startK, L:startL, M:startM};
+Array.prototype.forEach.call(document.querySelectorAll('[data-reset]'), function(btn){
+  btn.addEventListener('click', function(){
+    var letter = btn.getAttribute('data-reset');
+    EX[letter] = {i:0, ok:0};
+    var qEl = document.getElementById('q'+letter);
+    if(qEl) qEl.style.display = '';
+    var rowAnswer = document.querySelector('#ex'+letter+' .answer-row');
+    if(rowAnswer) rowAnswer.style.display = '';
+    STARTERS[letter]();
+  });
+});
+
+for(var kk in STARTERS){
+  EX[kk] = {i:0, ok:0};
+  STARTERS[kk]();
+}
+updateBilan();
+
+/* ---------- minuteur pratique orale ---------- */
+(function(){
+  var DURATION = 120;
+  var remaining = DURATION;
+  var timerId = null;
+  var clockEl = document.getElementById('clock');
+  var startBtn = document.getElementById('timerStart');
+  var resetBtn = document.getElementById('timerReset');
+  function render(){
+    var m = Math.floor(remaining/60);
+    var s = remaining%60;
+    clockEl.textContent = (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+  }
+  function tick(){
+    remaining--;
+    render();
+    if(remaining<=0){
+      clearInterval(timerId); timerId=null;
+      startBtn.textContent = '▶ Démarrer (2 min)';
+    }
+  }
+  startBtn.addEventListener('click', function(){
+    if(timerId){ clearInterval(timerId); timerId=null; startBtn.textContent='▶ Reprendre'; return; }
+    timerId = setInterval(tick, 1000);
+    startBtn.textContent = '⏸ Pause';
+  });
+  resetBtn.addEventListener('click', function(){
+    clearInterval(timerId); timerId=null;
+    remaining = DURATION; render();
+    startBtn.textContent = '▶ Démarrer (2 min)';
+  });
+  render();
+})();
+</script>
+
+
+<script>(function(){function s(){try{var h=Math.max(document.body.scrollHeight,
+document.documentElement.scrollHeight);if(window.parent&&window.parent!==window)
+window.parent.postMessage({__gh:h},"*");}catch(e){}}
+window.addEventListener("load",s);setInterval(s,1200);
+if(document.readyState!=="loading")setTimeout(s,300);})();</script></body></html>

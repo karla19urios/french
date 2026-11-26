@@ -1,0 +1,946 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&display=swap">
+<link rel="stylesheet" href="../../assets/typography.css">
+</head><body>
+<title>La Cause</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&family=Caveat:wght@600;700&family=IBM+Plex+Mono:wght@500&display=swap');
+
+  :root{
+    --board:#1b2a23;
+    --board-raised:#233830;
+    --board-raised-2:#2b443a;
+    --chalk:#f5f1e3;
+    --chalk-dim:#b7c2b8;
+    --chalk-faint:rgba(245,241,227,.14);
+    --yellow:#e8c94a;
+    --blue:#8ab6d6;
+    --coral:#e2836f;
+    --paper:#f3ecd8;
+    --paper-ink:#33291c;
+    --good:#8fbf7f;
+    --bad:#e2836f;
+    --radius:14px;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--board);
+    color:var(--chalk);
+    font-family:'Nunito Sans', system-ui, sans-serif;
+    line-height:1.55;
+  }
+  img,svg{max-width:100%;}
+
+  h1,h2,h3,.display{
+    font-family:'Baloo 2', 'Nunito Sans', sans-serif;
+    text-wrap:balance;
+    letter-spacing:.2px;
+  }
+  .mono{font-family:'IBM Plex Mono', ui-monospace, monospace;}
+  .hand{font-family:'Caveat', cursive;}
+  a{color:var(--yellow);}
+  ::selection{background:var(--yellow);color:var(--paper-ink);}
+
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px 110px;}
+
+  .board-texture{position:relative;}
+  .board-texture::before{
+    content:"";position:fixed;inset:0;pointer-events:none;
+    background:
+      radial-gradient(ellipse at 15% 10%, rgba(255,255,255,.05), transparent 55%),
+      radial-gradient(ellipse at 85% 90%, rgba(255,255,255,.04), transparent 50%);
+    z-index:0;
+  }
+
+  /* ---------- top nav back to hub ---------- */
+  .hub-nav{
+    display:flex;justify-content:center;gap:10px;
+    padding:18px 20px 0;
+  }
+  .hub-nav a{
+    display:inline-flex;align-items:center;gap:6px;
+    font-family:'Baloo 2';font-size:.85rem;
+    color:var(--chalk);
+    background:var(--board-raised);
+    border:1px solid var(--chalk-faint);
+    padding:8px 16px;border-radius:999px;
+    text-decoration:none;
+  }
+  .hub-nav a:hover{border-color:var(--yellow);color:var(--yellow);}
+
+  /* ---------- score badge ---------- */
+  .score-badge{
+    position:sticky;top:10px;z-index:30;
+    display:flex;justify-content:center;
+    margin:10px 0 0;
+    pointer-events:none;
+  }
+  .score-badge .pill{
+    pointer-events:auto;
+    font-family:'Baloo 2';font-size:.88rem;
+    background:var(--board-raised-2);
+    border:1px solid var(--chalk-faint);
+    color:var(--chalk);
+    padding:8px 18px;border-radius:999px;
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+    backdrop-filter:blur(6px);
+  }
+  .score-badge .pill b{color:var(--yellow);}
+
+  /* ---------- hero ---------- */
+  .hero{padding:48px 20px 30px;text-align:center;position:relative;}
+  .hero .eyebrow{
+    font-family:'Caveat',cursive;font-size:1.4rem;color:var(--blue);display:block;margin-bottom:4px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem,7vw,4rem);font-weight:800;color:var(--chalk);margin:0 0 10px;
+    text-shadow:0 0 22px rgba(245,241,227,.12);
+  }
+  .hero .underline{width:min(300px,70%);height:14px;margin:-6px auto 16px;}
+  .hero p.sub{max-width:580px;margin:0 auto;color:var(--chalk-dim);font-size:1.05rem;}
+
+  /* ---------- section headings ---------- */
+  .section-head{display:flex;align-items:baseline;gap:12px;margin:58px 0 18px;}
+  .section-head .tag{font-family:'Caveat',cursive;font-size:1.5rem;color:var(--coral);white-space:nowrap;}
+  .section-head h2{font-size:clamp(1.4rem,3.4vw,1.9rem);margin:0;color:var(--chalk);}
+  .section-head::after{content:"";flex:1;height:1px;background:repeating-linear-gradient(90deg, var(--chalk-faint) 0 8px, transparent 8px 14px);align-self:center;}
+
+  /* ---------- theory card ---------- */
+  .note-card{
+    background:var(--board-raised);border:1px solid var(--chalk-faint);border-radius:var(--radius);
+    padding:22px 24px;display:grid;gap:12px;
+  }
+  .note-card p{margin:0;color:var(--chalk-dim);}
+  .note-card strong{color:var(--chalk);}
+  .note-card .ex{color:var(--chalk);font-style:italic;}
+  .note-card .ex b{color:var(--yellow);font-style:normal;}
+
+  .rule-grid{display:grid;gap:12px;margin-top:4px;}
+  .rule{
+    border-radius:10px;padding:13px 15px;font-size:.94rem;
+    background:rgba(138,182,214,.1);border:1px solid rgba(138,182,214,.3);
+  }
+  .rule > b{display:block;font-family:'Baloo 2';font-size:1.05rem;margin-bottom:3px;color:var(--blue);}
+  .rule.warn{background:rgba(226,131,111,.1);border-color:rgba(226,131,111,.32);}
+  .rule.warn > b{color:var(--coral);}
+
+  /* ---------- zoom table ---------- */
+  .zoom-table{display:grid;gap:10px;margin-top:6px;}
+  .zoom-row{
+    background:var(--board-raised-2);border:1px solid var(--chalk-faint);border-radius:10px;
+    padding:12px 14px;display:grid;grid-template-columns:1fr;gap:4px;
+  }
+  .zoom-row .expr{font-family:'Baloo 2';color:var(--yellow);font-size:1.02rem;}
+  .zoom-row .mean{color:var(--chalk-dim);font-size:.86rem;}
+  .zoom-row .ex{color:var(--chalk);font-size:.92rem;font-style:italic;}
+  .zoom-row .ex b{color:var(--yellow);font-style:normal;}
+
+  /* ---------- practice shell ---------- */
+  .practice-shell{
+    background:var(--board-raised);border:1px solid var(--chalk-faint);border-radius:18px;padding:24px;
+  }
+  .practice-shell h3{margin:0 0 4px;font-size:1.15rem;color:var(--chalk);}
+  .practice-shell .instr{color:var(--chalk-dim);font-size:.9rem;margin:0 0 16px;}
+
+  .item{
+    border-top:1px dashed var(--chalk-faint);padding:16px 0;
+  }
+  .item:first-of-type{border-top:none;padding-top:0;}
+  .item .num{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:24px;height:24px;border-radius:50%;background:var(--board);border:1px solid var(--chalk-faint);
+    font-family:'IBM Plex Mono';font-size:.72rem;color:var(--chalk-dim);margin-right:8px;flex:none;
+  }
+  .item .prompt{font-size:1rem;color:var(--chalk);margin-bottom:10px;display:flex;align-items:flex-start;gap:4px;}
+  .item .prompt .fr{flex:1;}
+  .item .prompt .fr b.blankword{color:var(--yellow);}
+
+  .answer-row{display:flex;gap:8px;margin:6px 0;flex-wrap:wrap;}
+  .answer-row input[type="text"]{
+    flex:1;min-width:200px;background:var(--board);border:1px solid var(--chalk-faint);border-radius:10px;
+    padding:10px 12px;color:var(--chalk);font-size:.96rem;font-family:'Nunito Sans';
+  }
+  .answer-row input[type="text"]::placeholder{color:var(--chalk-dim);opacity:.7;}
+  .answer-row input[type="text"]:focus-visible{outline:2px solid var(--yellow);outline-offset:1px;}
+
+  .btn{
+    appearance:none;border:none;cursor:pointer;font-family:'Baloo 2';font-size:.88rem;
+    padding:9px 16px;border-radius:10px;transition:transform .12s ease, filter .12s ease;
+  }
+  .btn:hover{filter:brightness(1.08);}
+  .btn:active{transform:scale(.97);}
+  .btn.primary{background:var(--yellow);color:var(--paper-ink);}
+  .btn.ghost{background:transparent;color:var(--chalk-dim);border:1px solid var(--chalk-faint);}
+  .btn.ghost:hover{color:var(--chalk);border-color:var(--chalk-dim);}
+  .btn.small{padding:7px 13px;font-size:.8rem;}
+
+  .chip-row{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0;}
+  .chip-opt{
+    appearance:none;border:1px solid var(--chalk-faint);background:var(--board);color:var(--chalk);
+    font-family:'Nunito Sans';font-weight:700;font-size:.88rem;padding:8px 14px;border-radius:999px;cursor:pointer;
+  }
+  .chip-opt:hover{border-color:var(--yellow);}
+  .chip-opt.sel-good{background:rgba(143,191,127,.22);border-color:var(--good);color:var(--good);}
+  .chip-opt.sel-bad{background:rgba(226,131,111,.22);border-color:var(--bad);color:var(--bad);}
+  .chip-opt[disabled]{cursor:default;}
+
+  .feedback{margin-top:8px;font-size:.88rem;display:none;padding:9px 12px;border-radius:8px;}
+  .feedback.show{display:block;}
+  .feedback.good{background:rgba(143,191,127,.14);color:var(--good);border:1px solid rgba(143,191,127,.35);}
+  .feedback.hint{background:rgba(232,201,74,.1);color:var(--yellow);border:1px solid rgba(232,201,74,.3);}
+
+  .model-box{
+    margin-top:8px;padding:10px 12px;border-radius:8px;font-size:.88rem;
+    background:rgba(232,201,74,.08);border:1px dashed rgba(232,201,74,.35);color:var(--chalk);display:none;
+  }
+  .model-box.show{display:block;}
+  .model-box b{color:var(--yellow);}
+
+  .listen-btn{
+    appearance:none;border:1px solid var(--chalk-faint);background:var(--board-raised-2);color:var(--chalk);
+    width:32px;height:32px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    font-size:.9rem;flex:none;
+  }
+  .listen-btn:hover{background:var(--yellow);color:var(--paper-ink);}
+
+  /* ---------- forum reading ---------- */
+  .forum{
+    background:var(--board-raised);border:1px solid var(--chalk-faint);border-radius:var(--radius);
+    padding:20px 22px;
+  }
+  .forum .q{
+    background:rgba(138,182,214,.1);border:1px solid rgba(138,182,214,.3);border-radius:10px;
+    padding:12px 14px;font-size:.95rem;margin-bottom:14px;
+  }
+  .forum .q b{color:var(--blue);}
+  .post{display:flex;gap:10px;padding:10px 0;border-top:1px dashed var(--chalk-faint);}
+  .post:first-of-type{border-top:none;}
+  .post .who{
+    flex:none;width:68px;font-family:'Baloo 2';font-size:.86rem;color:var(--yellow);
+  }
+  .post .txt{flex:1;font-size:.95rem;}
+  .post select{
+    margin-top:6px;background:var(--board);color:var(--chalk);border:1px solid var(--chalk-faint);
+    border-radius:8px;padding:5px 8px;font-size:.82rem;font-family:'Nunito Sans';
+  }
+
+  .classify-item{border-top:1px dashed var(--chalk-faint);padding:14px 0;}
+  .classify-item:first-of-type{border-top:none;padding-top:0;}
+  .classify-item .sent{font-size:.98rem;margin-bottom:8px;}
+  .classify-item .sent b{color:var(--yellow);}
+
+  footer{text-align:center;color:var(--chalk-dim);font-size:.85rem;margin-top:70px;opacity:.75;}
+
+  @media (prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important;}}
+  @media (max-width:560px){
+    .post{flex-direction:column;}
+    .post .who{width:auto;}
+  }
+</style>
+
+<div class="board-texture">
+
+<nav class="hub-nav">
+  <a href="https://karla19urios.github.io/french/" target="_blank" rel="noopener">🏠 Back to the course hub</a>
+</nav>
+
+<div class="score-badge"><div class="pill">Score: <b id="scoreNum">0</b> / <span id="scoreMax">0</span></div></div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <span class="eyebrow">des mots et des formes</span>
+    <h1>La Cause</h1>
+    <svg class="underline" viewBox="0 0 300 14" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M4 8 C 56 2, 112 12, 150 6 S 244 2, 296 9" stroke="#e2836f" stroke-width="4" fill="none" stroke-linecap="round"/>
+    </svg>
+    <p class="sub">All the ways French gives a reason — conjunctions like <em>parce que</em> and <em>puisque</em>, prepositions like <em>grâce à</em> and <em>à cause de</em>, and linking words like <em>car</em>. Short theory, then practice, all the way through.</p>
+  </header>
+
+  <!-- ============ BLOCK 1 : parce que / comme / puisque ============ -->
+  <section class="note-card" aria-labelledby="h-trio">
+    <h2 id="h-trio" style="margin:0;font-size:1.15rem;">The big three: parce que, comme, puisque</h2>
+    <div class="rule-grid">
+      <div class="rule">
+        <b>Parce que</b>
+        Answers the question <em>pourquoi ?</em>. The cause is treated as ordinary, unremarkable. It's almost never the first word of the sentence.
+        <div class="ex">Il est allé voir le médecin <b>parce qu'</b>il avait de la fièvre.</div>
+      </div>
+      <div class="rule">
+        <b>Comme</b>
+        Goes at the very start of the sentence and puts the cause in the spotlight.
+        <div class="ex"><b>Comme</b> il n'a pas plu depuis un mois, on est obligés d'arroser le jardin tous les jours.</div>
+      </div>
+      <div class="rule">
+        <b>Puisque</b>
+        Introduces a cause that's obvious — both speakers already know it.
+        <div class="ex"><b>Puisqu'</b>il fait beau, déjeunons sur la terrasse !</div>
+      </div>
+      <div class="rule warn">
+        <b>Several causes in a row?</b>
+        Don't repeat the conjunction — replace it with <em>que</em>.
+        <div class="ex"><b>Comme</b> il y avait du soleil et <b>que</b> nous avions du temps, nous avons décidé d'y aller à pied.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ex-comme">
+    <div class="section-head"><span class="tag">à vous — 1</span><h2>Comme + the right tense</h2></div>
+    <div class="practice-shell">
+      <h3>Put the verb given in parentheses into the tense that fits.</h3>
+      <p class="instr">Type the conjugated verb only (e.g. <span class="mono">était</span>).</p>
+      <div id="exComme"></div>
+    </div>
+  </section>
+
+  <section id="ex-parceque">
+    <div class="section-head"><span class="tag">à vous — 2</span><h2>Answer with parce que</h2></div>
+    <div class="practice-shell">
+      <h3>Answer each question using "parce que".</h3>
+      <p class="instr">There's no single right answer here — write anything true-to-life, then compare with a model.</p>
+      <div id="exParceque"></div>
+    </div>
+  </section>
+
+  <section id="ex-puisque">
+    <div class="section-head"><span class="tag">à vous — 3</span><h2>Complete with puisque</h2></div>
+    <div class="practice-shell">
+      <h3>Add the clause with "puisque" that leads naturally into each exclamation.</h3>
+      <p class="instr"><em>Example: Puisque tu es bon en maths, explique-moi ce problème de géométrie !</em></p>
+      <div id="exPuisque"></div>
+    </div>
+  </section>
+
+  <!-- ============ BLOCK 2 : étant donné que / du fait que / sous prétexte que ============ -->
+  <section class="note-card" aria-labelledby="h-known">
+    <h2 id="h-known" style="margin:0;font-size:1.15rem;">A cause everyone already knows — or a fake one</h2>
+    <div class="rule-grid">
+      <div class="rule">
+        <b>Étant donné que / Du fait que</b>
+        Introduce a cause that's common knowledge. They can open the sentence or follow the consequence. <em>Étant donné que</em> leans written; <em>du fait que</em> works in speech too.
+        <div class="ex"><b>Étant donné qu'</b>il a dix-huit ans, il peut passer le permis de conduire.</div>
+        <div class="ex">Le ministre a laissé ses fonctions <b>du fait qu'</b>il était très malade.</div>
+      </div>
+      <div class="rule warn">
+        <b>Sous prétexte que</b>
+        Introduces a cause the speaker doesn't actually believe — a pretext.
+        <div class="ex">Il n'est pas venu <b>sous prétexte qu'</b>il était malade. <span class="mono">[mais je ne le crois pas]</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ex-combine">
+    <div class="section-head"><span class="tag">à vous — 4</span><h2>Link the two sentences</h2></div>
+    <div class="practice-shell">
+      <h3>Join each pair of facts with "étant donné que" or "du fait que" to make a cause/consequence sentence.</h3>
+      <p class="instr">Open-ended — write your version, then reveal a model.</p>
+      <div id="exCombine"></div>
+    </div>
+  </section>
+
+  <section id="ex-pretexte">
+    <div class="section-head"><span class="tag">à vous — 5</span><h2>Rewrite with sous prétexte que</h2></div>
+    <div class="practice-shell">
+      <h3>Transform each sentence so the cause becomes a pretext.</h3>
+      <p class="instr">Your sentence should contain "sous prétexte" — the rest can vary.</p>
+      <div id="exPretexte"></div>
+    </div>
+  </section>
+
+  <!-- ============ BLOCK 3 : prepositions + zoom table ============ -->
+  <section class="note-card" aria-labelledby="h-prep">
+    <h2 id="h-prep" style="margin:0;font-size:1.15rem;">Prepositions: grâce à, à cause de, en raison de</h2>
+    <div class="rule-grid">
+      <div class="rule">
+        <b>Grâce à</b> — the consequence is positive
+        <div class="ex">Elle a trouvé un appartement <b>grâce à</b> des amis qui travaillent dans une agence.</div>
+      </div>
+      <div class="rule warn">
+        <b>À cause de</b> — the consequence is negative
+        <div class="ex">Le match n'a pas eu lieu <b>à cause du</b> mauvais temps.</div>
+      </div>
+      <div class="rule">
+        <b>En raison de</b> — neutral, mostly written
+        <div class="ex">Le magasin sera fermé <b>en raison des</b> fêtes de Pâques.</div>
+      </div>
+      <div class="rule warn">
+        <b>Two causes in a row?</b>
+        The second one is introduced by "de" alone.
+        <div class="ex">On est arrivés en retard <b>à cause de</b> lui et <b>des</b> embouteillages.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ex-grace">
+    <div class="section-head"><span class="tag">à vous — 6</span><h2>Grâce à or à cause de?</h2></div>
+    <div class="practice-shell">
+      <h3>Pick the preposition that fits — good news or bad news?</h3>
+      <div id="exGrace"></div>
+    </div>
+  </section>
+
+  <section class="note-card" aria-labelledby="h-zoom">
+    <h2 id="h-zoom" style="margin:0;font-size:1.15rem;">Zoom sur : the fuller cause toolkit</h2>
+    <p>These are rarer but useful, especially in writing. Each gives a slightly different shade of meaning.</p>
+    <div class="zoom-table">
+      <div class="zoom-row">
+        <div class="expr">compte tenu de / du fait de + nom · du fait que + indicatif</div>
+        <div class="mean">An incontestable reason — "given that".</div>
+        <div class="ex"><b>Compte tenu de</b> ma branche professionnelle, j'avais plus de chance de trouver un travail ici.</div>
+      </div>
+      <div class="zoom-row">
+        <div class="expr">faute de + nom (no article) / infinitif</div>
+        <div class="mean">Points at something missing — "for lack of".</div>
+        <div class="ex"><b>Faute de</b> vraies motivations, j'ai décidé d'aller voir ailleurs.</div>
+      </div>
+      <div class="zoom-row">
+        <div class="expr">à force de + nom (no article) / infinitif</div>
+        <div class="mean">Repetition or intensity built the result — "by sheer…".</div>
+        <div class="ex"><b>À force de</b> ténacité (= parce que j'ai été très tenace), j'y suis parvenu.</div>
+      </div>
+      <div class="zoom-row">
+        <div class="expr">sous prétexte de + nom / infinitif</div>
+        <div class="mean">A cause the speaker disputes.</div>
+        <div class="ex">On a refusé de m'embaucher <b>sous prétexte que</b> j'étais trop jeune.</div>
+      </div>
+      <div class="zoom-row">
+        <div class="expr">par + nom (no article)</div>
+        <div class="mean">The reason is a feeling or attitude.</div>
+        <div class="ex">Je suis venue <b>par</b> amour.</div>
+      </div>
+      <div class="zoom-row">
+        <div class="expr">pour + nom / infinitif passé</div>
+        <div class="mean">= en raison de.</div>
+        <div class="ex">J'ai été expulsé <b>pour</b> avoir critiqué (= parce que j'ai critiqué…) mon gouvernement.</div>
+      </div>
+      <div class="zoom-row">
+        <div class="expr">d'autant (plus / moins) que + indicatif</div>
+        <div class="mean">Adds a second cause that reinforces the first.</div>
+        <div class="ex">Je ne me sentais pas chez moi… <b>d'autant plus que</b> (= en plus parce que) ma famille était déjà partie !</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ex-terminez">
+    <div class="section-head"><span class="tag">à vous — 7</span><h2>Finish the sentence</h2></div>
+    <div class="practice-shell">
+      <h3>Complete each sentence with a plausible cause.</h3>
+      <p class="instr">Open-ended — compare with a model once you've written yours.</p>
+      <div id="exTerminez"></div>
+    </div>
+  </section>
+
+  <section id="ex-etantnom">
+    <div class="section-head"><span class="tag">à vous — 8</span><h2>Transform with étant donné / du fait de + noun</h2></div>
+    <div class="practice-shell">
+      <h3>Rewrite each sentence, turning the "parce que" clause into a noun phrase after "étant donné" or "du fait de".</h3>
+      <p class="instr">Open-ended — compare with a model once you've written yours.</p>
+      <div id="exEtantNom"></div>
+    </div>
+  </section>
+
+  <!-- ============ BLOCK 4 : car / en effet ============ -->
+  <section class="note-card" aria-labelledby="h-liaison">
+    <h2 id="h-liaison" style="margin:0;font-size:1.15rem;">Linking words: car, en effet</h2>
+    <div class="rule-grid">
+      <div class="rule">
+        <b>Car</b> — mostly written. Introduces an explanation for what was just said.
+        <div class="ex">Ils avaient passé l'après-midi à bavarder au coin du feu <b>car</b> dehors il faisait très froid.</div>
+      </div>
+      <div class="rule">
+        <b>En effet</b> — written and spoken. Same job as "car".
+        <div class="ex">— Tu es pressé ? — <b>En effet</b>, je suis en retard ; j'ai un rendez-vous.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ex-careneffet">
+    <div class="section-head"><span class="tag">à vous — 9</span><h2>Complete to introduce an explanation</h2></div>
+    <div class="practice-shell">
+      <h3>Finish each item so "car" / "en effet" introduces a sensible explanation.</h3>
+      <p class="instr">Open-ended — compare with a model once you've written yours.</p>
+      <div id="exCarEffet"></div>
+    </div>
+  </section>
+
+  <!-- ============ READING ============ -->
+  <section id="lecture">
+    <div class="section-head"><span class="tag">lecture</span><h2>Pourquoi avez-vous changé de pays ?</h2></div>
+    <div class="forum">
+      <div class="q"><b>Léa</b> (forum de sociolinguistique) : Bonjour à tous ! Je fais une petite enquête pour mon mémoire sur les parcours migratoires. Pourquoi avez-vous changé de pays ?</div>
+      <div id="forumPosts"></div>
+    </div>
+    <p class="instr" style="color:var(--chalk-dim);font-size:.9rem;margin:14px 2px 0;">For each answer, pick the cause expression it uses.</p>
+  </section>
+
+  <section id="ex-forum">
+    <div class="section-head"><span class="tag">à vous — 10</span><h2>Complete with the right expression</h2></div>
+    <div class="practice-shell">
+      <h3>à force de — faute d' — du fait que — pour</h3>
+      <p class="instr">Fill each blank with the expression that fits.</p>
+      <div id="exForum"></div>
+    </div>
+  </section>
+
+  <!-- ============ FINAL RECAP ============ -->
+  <section id="ex-recap">
+    <div class="section-head"><span class="tag">pour finir</span><h2>Quick check: what kind of word is it?</h2></div>
+    <div class="practice-shell">
+      <h3>Is the highlighted expression a conjunction (+ a clause), a preposition (+ a noun), or a linking word?</h3>
+      <div id="exRecap"></div>
+    </div>
+  </section>
+
+  <footer>Adapted from your "La cause" materials — conjunctions, prepositions and linking words, drilled end to end.</footer>
+
+</div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------------- shared helpers ---------------- */
+  function norm(s){
+    return (s||"").normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim().replace(/\s+/g,' ');
+  }
+  function containsAny(input, accepted){
+    var n = norm(input);
+    if(!n) return false;
+    return accepted.some(function(a){ return n.indexOf(norm(a)) !== -1; });
+  }
+  function escapeHtml(s){
+    var d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  var cachedVoices = [];
+  function loadVoices(){
+    try{ if('speechSynthesis' in window){ cachedVoices = window.speechSynthesis.getVoices() || []; } }catch(e){}
+  }
+  loadVoices();
+  try{ if('speechSynthesis' in window){ window.speechSynthesis.onvoiceschanged = loadVoices; } }catch(e){}
+  function pickFrenchVoice(){
+    if(!cachedVoices.length) loadVoices();
+    if(!cachedVoices.length) return null;
+    var exact = cachedVoices.find(function(v){ return v.lang && v.lang.toLowerCase()==='fr-fr'; });
+    if(exact) return exact;
+    var starts = cachedVoices.find(function(v){ return v.lang && v.lang.toLowerCase().indexOf('fr')===0; });
+    if(starts) return starts;
+    return null;
+  }
+  function speak(text){
+    try{
+      if(!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      var say=function(){
+        var u=new SpeechSynthesisUtterance(text);
+        u.lang='fr-FR'; u.rate=0.95;
+        var v=pickFrenchVoice(); if(v){u.voice=v;u.lang=v.lang;}
+        window.speechSynthesis.speak(u);
+      };
+      if(!cachedVoices.length){ setTimeout(say,150); } else { say(); }
+    }catch(e){}
+  }
+
+  /* ---------------- scoring ---------------- */
+  var earned = {};  // id -> points earned
+  var maxPoints = {}; // id -> max points
+  function registerMax(id, pts){ maxPoints[id] = pts; renderScore(); }
+  function award(id, pts){
+    if(earned[id] === pts) return;
+    earned[id] = pts;
+    renderScore();
+  }
+  function renderScore(){
+    var e = 0, m = 0;
+    Object.keys(maxPoints).forEach(function(k){ m += maxPoints[k]; });
+    Object.keys(earned).forEach(function(k){ e += earned[k]; });
+    document.getElementById('scoreNum').textContent = e;
+    document.getElementById('scoreMax').textContent = m;
+  }
+
+  /* ================= EX 1 — Comme + tense ================= */
+  var COMME = [
+    {
+      id:'comme1',
+      before:"Comme elle ", verbA:"oublier", mid:" ses clefs et qu'elle ", verbB:"ne pas vouloir",
+      after:" réveiller ses parents, elle est restée dormir à la maison.",
+      acceptA:["avait oublie","avait oubliee"], acceptB:["ne voulait pas","voulait pas"]
+    },
+    { id:'comme2', before:"Comme il ", verbA:"être", mid:null, after:" seul, nous l'avons invité à dîner avec nous.", acceptA:["etait"] },
+    { id:'comme3', before:"Comme il ", verbA:"faire", mid:null, after:" beau, elle va emmener les enfants jouer au parc.", acceptA:["fait"] },
+    { id:'comme4', before:"Comme j'", verbA:"avoir", mid:null, after:" mal à l'estomac, je ne bois pas de jus d'orange.", acceptA:["ai"] }
+  ];
+  function renderComme(){
+    var host = document.getElementById('exComme');
+    var max = 0;
+    COMME.forEach(function(it){ max += it.mid ? 2 : 1; });
+    registerMax('comme', max);
+    COMME.forEach(function(it, idx){
+      var div = document.createElement('div');
+      div.className = 'item';
+      var two = !!it.mid;
+      div.innerHTML =
+        '<div class="prompt"><span class="num">'+(idx+1)+'</span><span class="fr">'+
+          it.before + '<em>('+it.verbA+')</em> _____ ' + (two ? (it.mid + '<em>('+it.verbB+')</em> _____ ') : '') + it.after +
+        '</span></div>'+
+        '<div class="answer-row">'+
+          '<input type="text" class="ansA" placeholder="'+it.verbA+'..." autocomplete="off"/>'+
+          (two ? '<input type="text" class="ansB" placeholder="'+it.verbB+'..." autocomplete="off"/>' : '')+
+          '<button class="btn primary small checkBtn" type="button">Check</button>'+
+        '</div>'+
+        '<div class="feedback"></div>';
+      host.appendChild(div);
+      var fb = div.querySelector('.feedback');
+      div.querySelector('.checkBtn').addEventListener('click', function(){
+        var okA = containsAny(div.querySelector('.ansA').value, it.acceptA);
+        var okB = two ? containsAny(div.querySelector('.ansB').value, it.acceptB) : true;
+        var pts = (okA?1:0) + (two ? (okB?1:0) : 0);
+        if(okA && okB){
+          fb.className='feedback show good'; fb.textContent='✅ Exactly right.';
+        } else if(pts>0){
+          fb.className='feedback show hint'; fb.textContent='💡 Half right — check both verbs.';
+        } else {
+          fb.className='feedback show hint'; fb.textContent='💡 Think about when each action happened relative to the main clause.';
+        }
+        award(it.id, pts);
+      });
+    });
+  }
+
+  /* ================= EX 2 — parce que (open) ================= */
+  var PARCEQUE = [
+    { q:"Pourquoi est-ce que tu pars tôt ?", model:"Je pars tôt parce que j'ai un rendez-vous chez le médecin." },
+    { q:"Pourquoi est-ce qu'elle rentre dans son pays ?", model:"Elle rentre dans son pays parce que sa famille lui manque." },
+    { q:"Pourquoi n'étiez-vous pas à la réunion hier soir ?", model:"Je n'étais pas à la réunion hier soir parce que j'étais malade." },
+    { q:"Pourquoi ne lui a-t-il pas dit la vérité ?", model:"Il ne lui a pas dit la vérité parce qu'il avait peur de sa réaction." }
+  ];
+  function renderOpen(hostId, data){
+    var host = document.getElementById(hostId);
+    data.forEach(function(it, idx){
+      var div = document.createElement('div');
+      div.className = 'item';
+      div.innerHTML =
+        '<div class="prompt"><span class="num">'+(idx+1)+'</span><span class="fr">'+it.q+'</span></div>'+
+        '<div class="answer-row"><input type="text" class="ans" placeholder="Écrivez votre réponse..." autocomplete="off"/>'+
+          '<button class="btn ghost small revealBtn" type="button">Show model answer</button></div>'+
+        '<div class="model-box"><b>Model:</b> '+escapeHtml(it.model)+'</div>';
+      host.appendChild(div);
+      div.querySelector('.revealBtn').addEventListener('click', function(){
+        div.querySelector('.model-box').classList.add('show');
+      });
+    });
+  }
+
+  /* ================= EX 3 — puisque (open) ================= */
+  var PUISQUE = [
+    { q:"_____________________, partons sans lui !", model:"Puisqu'il est en retard, partons sans lui !" },
+    { q:"_____________________, je ne t'en reparlerai pas !", model:"Puisque tu ne m'écoutes pas, je ne t'en reparlerai pas !" },
+    { q:"_____________________, allons voir un autre film !", model:"Puisque ce film ne te plaît pas, allons voir un autre film !" }
+  ];
+
+  /* ================= EX 4 — étant donné que / du fait que (open, flexible) ================= */
+  var COMBINE = [
+    { a:"Les loyers sont chers.", b:"Les gens désertent les grandes villes pour aller habiter en banlieue.",
+      model:"Étant donné que les loyers sont chers, les gens désertent les grandes villes pour aller habiter en banlieue.",
+      accept:["etant donne","du fait"] },
+    { a:"Les gens regardent beaucoup la télévision.", b:"Le cinéma est en crise.",
+      model:"Le cinéma est en crise du fait que les gens regardent beaucoup la télévision.",
+      accept:["etant donne","du fait"] },
+    { a:"Vous n'avez pas 18 ans.", b:"Vous avez besoin d'une autorisation parentale.",
+      model:"Étant donné que vous n'avez pas 18 ans, vous avez besoin d'une autorisation parentale.",
+      accept:["etant donne","du fait"] },
+    { a:"Les aiguilleurs du ciel sont en grève.", b:"Les avions ne partiront pas.",
+      model:"Du fait que les aiguilleurs du ciel sont en grève, les avions ne partiront pas.",
+      accept:["etant donne","du fait"] }
+  ];
+  function renderCombine(){
+    var host = document.getElementById('exCombine');
+    registerMax('combine', COMBINE.length);
+    COMBINE.forEach(function(it, idx){
+      var div = document.createElement('div');
+      div.className = 'item';
+      div.innerHTML =
+        '<div class="prompt"><span class="num">'+(idx+1)+'</span><span class="fr">'+it.a+' / '+it.b+'</span></div>'+
+        '<div class="answer-row"><input type="text" class="ans" placeholder="Reliez les deux phrases..." autocomplete="off"/>'+
+          '<button class="btn primary small checkBtn" type="button">Check</button>'+
+          '<button class="btn ghost small revealBtn" type="button">Show model</button></div>'+
+        '<div class="feedback"></div>'+
+        '<div class="model-box"><b>Model:</b> '+escapeHtml(it.model)+'</div>';
+      host.appendChild(div);
+      var fb = div.querySelector('.feedback');
+      div.querySelector('.checkBtn').addEventListener('click', function(){
+        var val = div.querySelector('.ans').value;
+        var ok = containsAny(val, it.accept) && val.trim().length>8;
+        if(ok){
+          fb.className='feedback show good'; fb.textContent='✅ Good — you used the right connector.';
+          award('combine'+idx, 1);
+        } else {
+          fb.className='feedback show hint'; fb.textContent='💡 Make sure you used "étant donné que" or "du fait que".';
+          award('combine'+idx, 0);
+        }
+      });
+      div.querySelector('.revealBtn').addEventListener('click', function(){
+        div.querySelector('.model-box').classList.add('show');
+      });
+    });
+  }
+
+  /* ================= EX 5 — sous prétexte que (flexible) ================= */
+  var PRETEXTE = [
+    { s:"Ils ne sont pas venus au cinéma avec nous parce qu'ils prétendaient qu'ils avaient vu le film.",
+      model:"Ils ne sont pas venus au cinéma avec nous sous prétexte qu'ils avaient vu le film." },
+    { s:"Ils ont détruit ce vieil immeuble parce qu'ils ont prétendu qu'il représentait un danger.",
+      model:"Ils ont détruit ce vieil immeuble sous prétexte qu'il représentait un danger." },
+    { s:"Elle ne m'a pas écrit parce qu'elle a prétendu avoir perdu mon adresse.",
+      model:"Elle ne m'a pas écrit sous prétexte d'avoir perdu mon adresse." }
+  ];
+  function renderPretexte(){
+    var host = document.getElementById('exPretexte');
+    registerMax('pretexte', PRETEXTE.length);
+    PRETEXTE.forEach(function(it, idx){
+      var div = document.createElement('div');
+      div.className = 'item';
+      div.innerHTML =
+        '<div class="prompt"><span class="num">'+(idx+1)+'</span><span class="fr">'+it.s+'</span></div>'+
+        '<div class="answer-row"><input type="text" class="ans" placeholder="Transformez la phrase..." autocomplete="off"/>'+
+          '<button class="btn primary small checkBtn" type="button">Check</button>'+
+          '<button class="btn ghost small revealBtn" type="button">Show model</button></div>'+
+        '<div class="feedback"></div>'+
+        '<div class="model-box"><b>Model:</b> '+escapeHtml(it.model)+'</div>';
+      host.appendChild(div);
+      var fb = div.querySelector('.feedback');
+      div.querySelector('.checkBtn').addEventListener('click', function(){
+        var ok = containsAny(div.querySelector('.ans').value, ['sous pretexte']);
+        if(ok){ fb.className='feedback show good'; fb.textContent='✅ Good — "sous prétexte" is there.'; award('pretexte'+idx,1); }
+        else { fb.className='feedback show hint'; fb.textContent='💡 Your sentence needs to contain "sous prétexte".'; award('pretexte'+idx,0); }
+      });
+      div.querySelector('.revealBtn').addEventListener('click', function(){ div.querySelector('.model-box').classList.add('show'); });
+    });
+  }
+
+  /* ================= EX 6 — grâce à / à cause de (chips) ================= */
+  var GRACE = [
+    { s:"Il a pu continuer ses études ", blank:true, after:" une bourse du ministère.", correct:"grace" },
+    { s:"Elle a été sauvée ", blank:true, after:" un nouveau médicament.", correct:"grace" },
+    { s:"J'ai mal aux pieds ", blank:true, after:" mes chaussures neuves.", correct:"cause" },
+    { s:"Je me suis enrhumé à cause du changement de temps et ", blank:true, after:" l'humidité.", correct:"de", options:["de","à cause de"] },
+    { s:"Cette entreprise a continué de fonctionner ", blank:true, after:" une subvention de la région.", correct:"grace" },
+    { s:"Ils sont arrivés en retard ", blank:true, after:" une panne de voiture.", correct:"cause" }
+  ];
+  function renderGrace(){
+    var host = document.getElementById('exGrace');
+    registerMax('grace', GRACE.length);
+    GRACE.forEach(function(it, idx){
+      var div = document.createElement('div');
+      div.className = 'item';
+      var opts = it.options || ["grâce à","à cause de"];
+      div.innerHTML =
+        '<div class="prompt"><span class="num">'+(idx+1)+'</span><span class="fr">'+it.s+' ______ '+it.after+'</span></div>'+
+        '<div class="chip-row"></div><div class="feedback"></div>';
+      host.appendChild(div);
+      var row = div.querySelector('.chip-row');
+      var fb = div.querySelector('.feedback');
+      opts.forEach(function(label){
+        var b = document.createElement('button');
+        b.type='button'; b.className='chip-opt'; b.textContent=label;
+        b.addEventListener('click', function(){
+          row.querySelectorAll('.chip-opt').forEach(function(x){ x.disabled=true; });
+          var isCorrect;
+          if(it.correct === 'grace') isCorrect = /grâce/i.test(label);
+          else if(it.correct === 'cause') isCorrect = /cause/i.test(label);
+          else if(it.correct === 'de') isCorrect = norm(label)==='de';
+          if(isCorrect){
+            b.classList.add('sel-good');
+            fb.className='feedback show good'; fb.textContent='✅ Correct.';
+            award('grace'+idx, 1);
+          } else {
+            b.classList.add('sel-bad');
+            fb.className='feedback show hint'; fb.textContent='💡 Not quite — think about whether the outcome is good or bad news.';
+            award('grace'+idx, 0);
+          }
+        });
+        row.appendChild(b);
+      });
+    });
+  }
+
+  /* ================= EX 7 — terminez (open) ================= */
+  var TERMINEZ = [
+    { q:"Les magasins sont illuminés en raison de ______", model:"Les magasins sont illuminés en raison de la période des fêtes de fin d'année." },
+    { q:"J'ai raté mon train à cause de ______", model:"J'ai raté mon train à cause d'un embouteillage monstre." },
+    { q:"Il a réussi son examen grâce à ______", model:"Il a réussi son examen grâce à l'aide de sa sœur." },
+    { q:"Le poisson est cher en raison de ______", model:"Le poisson est cher en raison de la pénurie de pêcheurs." },
+    { q:"Les banques seront fermées en raison de ______", model:"Les banques seront fermées en raison d'un jour férié." },
+    { q:"Il a raté son examen ______", model:"Il a raté son examen à cause du stress." },
+    { q:"Ils ont pu faire ce voyage ______", model:"Ils ont pu faire ce voyage grâce à leurs économies." }
+  ];
+
+  /* ================= EX 8 — étant donné / du fait de + nom (open) ================= */
+  var ETANTNOM = [
+    { s:"Nous sommes rentrés parce qu'il y avait une tempête.", model:"Étant donné la tempête, nous sommes rentrés." },
+    { s:"La rue est interdite à la circulation parce qu'il y a des travaux.", model:"Étant donné les travaux, la rue est interdite à la circulation." },
+    { s:"La population était mécontente parce que les prix augmentaient.", model:"Du fait de l'augmentation des prix, la population était mécontente." },
+    { s:"Il a dû quitter son poste parce qu'il y avait un scandale autour de sa vie privée.", model:"Du fait du scandale autour de sa vie privée, il a dû quitter son poste." },
+    { s:"Il y aura une manifestation parce que l'Assemblée a voté une nouvelle loi.", model:"Étant donné le vote d'une nouvelle loi par l'Assemblée, il y aura une manifestation." },
+    { s:"Ils ont changé le règlement parce qu'il y avait trop de fraudes.", model:"Du fait du grand nombre de fraudes, ils ont changé le règlement." }
+  ];
+  function renderTransformOpen(hostId, data){
+    var host = document.getElementById(hostId);
+    data.forEach(function(it, idx){
+      var div = document.createElement('div');
+      div.className = 'item';
+      div.innerHTML =
+        '<div class="prompt"><span class="num">'+(idx+1)+'</span><span class="fr">'+it.s+'</span></div>'+
+        '<div class="answer-row"><input type="text" class="ans" placeholder="Transformez..." autocomplete="off"/>'+
+          '<button class="btn ghost small revealBtn" type="button">Show model answer</button></div>'+
+        '<div class="model-box"><b>Model:</b> '+escapeHtml(it.model)+'</div>';
+      host.appendChild(div);
+      div.querySelector('.revealBtn').addEventListener('click', function(){ div.querySelector('.model-box').classList.add('show'); });
+    });
+  }
+
+  /* ================= EX 9 — car / en effet (open) ================= */
+  var CARENEFFET = [
+    { q:"Il a été envoyé en exil ; en effet ______", model:"Il a été envoyé en exil ; en effet ses opinions politiques dérangeaient le pouvoir." },
+    { q:"Tous ses romans ont pour toile de fond l'Indochine car ______", model:"Tous ses romans ont pour toile de fond l'Indochine car l'auteur y a vécu pendant son enfance." },
+    { q:"Nous sommes invités chez Justine samedi prochain. En effet ______", model:"Nous sommes invités chez Justine samedi prochain. En effet, elle organise une fête pour son anniversaire." },
+    { q:"Les étudiants étrangers aiment lire L'Étranger de Camus car ______", model:"Les étudiants étrangers aiment lire L'Étranger de Camus car ce roman est un classique accessible de la littérature française." }
+  ];
+
+  /* ================= READING — forum ================= */
+  var FORUM = [
+    { who:"Nour", txt:"Compte tenu de ma situation professionnelle, rester dans mon pays n'avait plus de sens pour moi.", type:"compte tenu de + nom" },
+    { who:"Thiago", txt:"Faute de perspectives dans ma région, j'ai tenté ma chance ailleurs.", type:"faute de + nom" },
+    { who:"Mara", txt:"À force de patience et de démarches, j'ai enfin obtenu mon visa et je suis venue m'installer ici.", type:"à force de + nom" },
+    { who:"Pavel", txt:"On m'a refusé ce poste sous prétexte que je manquais d'expérience, alors j'ai cherché un emploi à l'étranger.", type:"sous prétexte que + indicatif" },
+    { who:"Sanae", txt:"Je suis partie par curiosité, pour découvrir une autre culture.", type:"par + nom" },
+    { who:"Diego", txt:"J'ai été renvoyé pour avoir dénoncé des pratiques injustes dans mon entreprise.", type:"pour + infinitif passé" },
+    { who:"Iv", txt:"Je ne me sentais plus à ma place dans mon pays… d'autant plus que ma famille s'était déjà installée ici avant moi !", type:"d'autant plus que + indicatif" }
+  ];
+  var FORUM_TYPES = ["compte tenu de + nom","faute de + nom","à force de + nom","sous prétexte que + indicatif","par + nom","pour + infinitif passé","d'autant plus que + indicatif"];
+  function renderForum(){
+    var host = document.getElementById('forumPosts');
+    registerMax('forum-id', FORUM.length);
+    FORUM.forEach(function(p, idx){
+      var div = document.createElement('div');
+      div.className = 'post';
+      var opts = '<option value="">— choisir —</option>' + FORUM_TYPES.map(function(t){ return '<option value="'+escapeHtml(t)+'">'+escapeHtml(t)+'</option>'; }).join('');
+      div.innerHTML =
+        '<div class="who">'+p.who+'</div>'+
+        '<div class="txt">'+p.txt+
+          '<div><select>'+opts+'</select> <span class="fb" style="font-size:.85rem;"></span></div>'+
+        '</div>';
+      host.appendChild(div);
+      var sel = div.querySelector('select');
+      var fbspan = div.querySelector('.fb');
+      sel.addEventListener('change', function(){
+        if(sel.value === p.type){
+          fbspan.textContent = '✅'; fbspan.style.color = 'var(--good)';
+          award('forumid'+idx, 1);
+        } else if(sel.value){
+          fbspan.textContent = '💡 pas tout à fait'; fbspan.style.color = 'var(--yellow)';
+          award('forumid'+idx, 0);
+        }
+      });
+    });
+  }
+
+  /* ================= EX 10 — forum vocab fill-in (strict) ================= */
+  var FORUMFILL = [
+    { s:"Il a réussi son intégration ", after:" volonté et de travail.", accept:["a force de"] },
+    { s:"", pre:true, after:" il est européen, il n'a pas besoin de visa pour voyager dans l'Union européenne.", accept:["du fait qu"] },
+    { s:"Les employés de cette ambassade sont réputés ", after:" leur efficacité.", accept:["pour"] },
+    { s:"Ils n'ont pas pu développer leur entreprise à l'étranger ", after:" appuis financiers.", accept:["faute d"] }
+  ];
+  function renderForumFill(){
+    var host = document.getElementById('exForum');
+    registerMax('forumfill', FORUMFILL.length);
+    FORUMFILL.forEach(function(it, idx){
+      var div = document.createElement('div');
+      div.className = 'item';
+      div.innerHTML =
+        '<div class="prompt"><span class="num">'+(idx+1)+'</span><span class="fr">'+(it.pre?'':it.s)+' ______ '+it.after+'</span></div>'+
+        '<div class="answer-row"><input type="text" class="ans" placeholder="..." autocomplete="off"/>'+
+          '<button class="btn primary small checkBtn" type="button">Check</button></div>'+
+        '<div class="feedback"></div>';
+      host.appendChild(div);
+      var fb = div.querySelector('.feedback');
+      div.querySelector('.checkBtn').addEventListener('click', function(){
+        var ok = containsAny(div.querySelector('.ans').value, it.accept);
+        if(ok){ fb.className='feedback show good'; fb.textContent='✅ Correct.'; award('forumfill'+idx,1); }
+        else { fb.className='feedback show hint'; fb.textContent='💡 Try again — look at the word bank above.'; award('forumfill'+idx,0); }
+      });
+    });
+  }
+
+  /* ================= FINAL RECAP — classify ================= */
+  var RECAP = [
+    { s:"<b>Parce qu'</b>il faisait froid, elle a mis un manteau.", type:"conj" },
+    { s:"Le vol a été annulé <b>à cause du</b> brouillard.", type:"prep" },
+    { s:"Il est resté chez lui ; <b>en effet</b>, il était malade.", type:"link" },
+    { s:"<b>Puisque</b> tu insistes, j'accepte.", type:"conj" },
+    { s:"Elle a réussi <b>grâce à</b> son travail acharné.", type:"prep" },
+    { s:"Je n'ai rien dit, <b>car</b> je ne voulais pas la blesser.", type:"link" },
+    { s:"<b>Étant donné que</b> le magasin est fermé, revenons demain.", type:"conj" },
+    { s:"Les routes sont glissantes <b>en raison de</b> la neige.", type:"prep" }
+  ];
+  function renderRecap(){
+    var host = document.getElementById('exRecap');
+    registerMax('recap', RECAP.length);
+    var labels = { conj:"Conjonction (+ phrase)", prep:"Préposition (+ nom)", link:"Mot de liaison" };
+    RECAP.forEach(function(it, idx){
+      var div = document.createElement('div');
+      div.className = 'classify-item';
+      div.innerHTML =
+        '<div class="sent"><span class="num">'+(idx+1)+'</span> '+it.s+'</div>'+
+        '<div class="chip-row"></div><div class="feedback"></div>';
+      host.appendChild(div);
+      var row = div.querySelector('.chip-row');
+      var fb = div.querySelector('.feedback');
+      Object.keys(labels).forEach(function(key){
+        var b = document.createElement('button');
+        b.type='button'; b.className='chip-opt'; b.textContent=labels[key];
+        b.addEventListener('click', function(){
+          row.querySelectorAll('.chip-opt').forEach(function(x){ x.disabled=true; });
+          if(key === it.type){
+            b.classList.add('sel-good'); fb.className='feedback show good'; fb.textContent='✅ Correct.';
+            award('recap'+idx, 1);
+          } else {
+            b.classList.add('sel-bad'); fb.className='feedback show hint'; fb.textContent='💡 Not quite.';
+            award('recap'+idx, 0);
+          }
+        });
+        row.appendChild(b);
+      });
+    });
+  }
+
+  /* ---------------- init ---------------- */
+  renderComme();
+  renderOpen('exParceque', PARCEQUE);
+  renderOpen('exPuisque', PUISQUE);
+  renderCombine();
+  renderPretexte();
+  renderGrace();
+  renderOpen('exTerminez', TERMINEZ);
+  renderTransformOpen('exEtantNom', ETANTNOM);
+  renderOpen('exCarEffet', CARENEFFET);
+  renderForum();
+  renderForumFill();
+  renderRecap();
+  renderScore();
+})();
+</script>
+
+
+<script>(function(){function s(){try{var h=Math.max(document.body.scrollHeight,
+document.documentElement.scrollHeight);if(window.parent&&window.parent!==window)
+window.parent.postMessage({__gh:h},"*");}catch(e){}}
+window.addEventListener("load",s);setInterval(s,1200);
+if(document.readyState!=="loading")setTimeout(s,300);})();</script></body></html>
