@@ -424,7 +424,23 @@
       modele:"une réponse modèle de niveau C1 en 5 à 7 paragraphes courts, comme à l'oral" }
   };
   var GROUPS = { b1b2:["tef1","tef2","tcf2"], c1c2:["tcf3"] };
-  var q = (new URLSearchParams(location.search).get("t") || "tef1").toLowerCase();
+  var GROUP_NAMES = { b1b2:"Assistant IA B1-B2", c1c2:"Assistant IA TCF C1-C2" };
+  var params = new URLSearchParams(location.search);
+  var g = (params.get("g") || "").toLowerCase();
+  if(!params.get("t") && GROUPS[g]){
+    /* chooser: one entry point per group, then one card per task */
+    var hh0 = document.querySelector(".hero h1"); if(hh0) hh0.textContent = "🤖 " + GROUP_NAMES[g];
+    document.title = GROUP_NAMES[g];
+    document.querySelector(".ai-wrap").innerHTML = '<div class="group-grid">' + GROUPS[g].map(function(k){
+      var t = TASKS[k];
+      return '<section class="cefr-block"><div class="cefr-head"><h2>🤖 ' + t.tab + '</h2></div>' +
+        '<p style="margin:.6rem 0 0;color:var(--muted);line-height:1.5">' + t.desc + '</p>' +
+        '<div class="ai-format">' + t.chips.map(function(c){ return '<span class="ai-chip">' + c + '</span>'; }).join("") + '</div>' +
+        '<a class="exam-btn" href="?t=' + k + '">Ouvrir →</a></section>';
+    }).join("") + '</div>';
+    return;
+  }
+  var q = (params.get("t") || "tef1").toLowerCase();
   var key = TASKS[q] ? q : "tef1", T = TASKS[key], current = null;
 
   function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]; }); }
@@ -435,7 +451,7 @@
   $("aiTaskTitle").textContent = T.title;
   $("aiTaskDesc").textContent = T.desc;
   $("aiTaskChips").innerHTML = T.chips.map(function(c){ return '<span class="ai-chip">' + esc(c) + '</span>'; }).join("");
-  $("aiTabs").innerHTML = GROUPS[T.group].map(function(k){
+  $("aiTabs").innerHTML = (GROUPS[T.group].length > 1 ? '<a class="ai-tab" href="?g=' + T.group + '">← ' + GROUP_NAMES[T.group] + '</a>' : '') + GROUPS[T.group].map(function(k){
     return '<a class="ai-tab' + (k === key ? ' on' : '') + '" href="?t=' + k + '">' + esc(TASKS[k].tab) + '</a>';
   }).join("");
   document.title = "Assistant IA · " + T.tab;

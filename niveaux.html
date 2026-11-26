@@ -104,8 +104,8 @@
   .pair{ margin-top:2.8rem; display:grid; gap:24px; grid-template-columns:1fr; }
   .pair > .group{ margin-top:0; }
   @media (min-width:1000px){
-    .pair{ grid-template-columns:minmax(0,1fr) minmax(0,2fr); }
-    .pair > .group:last-child .group-grid{ grid-template-columns:repeat(auto-fill, minmax(min(240px,100%), 1fr)) !important; }
+    .pair{ grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+    .pair .group-grid{ grid-template-columns:1fr !important; }
   }
   .cefr-head{
     display:flex;
@@ -386,21 +386,9 @@
     <div class="group-grid">
   <section class="cefr-block">
     <div class="cefr-head">
-      <h2>🤖 TEF · Tâche 1</h2>
+      <h2>🤖 Assistant IA B1-B2</h2>
     </div>
-    <a class="exam-btn" href="assistant-ia.html?t=tef1">Ouvrir →</a>
-  </section>
-  <section class="cefr-block">
-    <div class="cefr-head">
-      <h2>🤖 TEF · Tâche 2</h2>
-    </div>
-    <a class="exam-btn" href="assistant-ia.html?t=tef2">Ouvrir →</a>
-  </section>
-  <section class="cefr-block">
-    <div class="cefr-head">
-      <h2>🤖 TCF · Tâche 2</h2>
-    </div>
-    <a class="exam-btn" href="assistant-ia.html?t=tcf2">Ouvrir →</a>
+    <a class="exam-btn" href="assistant-ia.html?g=b1b2">Ouvrir →</a>
   </section>
     </div>
   </div>
@@ -423,7 +411,7 @@
     <div class="group-grid">
   <section class="cefr-block">
     <div class="cefr-head">
-      <h2>🤖 TCF · Tâche 3</h2>
+      <h2>🤖 Assistant IA TCF C1-C2</h2>
     </div>
     <a class="exam-btn" href="assistant-ia.html?t=tcf3">Ouvrir →</a>
   </section>
@@ -454,6 +442,8 @@
 <script src="assets/i18n.js?v=3"></script>
 <script>
 I18N.add({
+"🤖 Assistant IA B1-B2":{es:"🤖 Asistente IA B1-B2",en:"🤖 AI assistant B1-B2"},
+"🤖 Assistant IA TCF C1-C2":{es:"🤖 Asistente IA TCF C1-C2",en:"🤖 AI assistant TCF C1-C2"},
 "Assistant IA B1-B2":{es:"Asistente IA B1-B2",en:"AI assistant B1-B2"},
 "Assistant IA TCF C1-C2":{es:"Asistente IA TCF C1-C2",en:"AI assistant TCF C1-C2"},
 "🤖 TEF · Tâche 1":{es:"🤖 TEF · Tarea 1",en:"🤖 TEF · Task 1"},
