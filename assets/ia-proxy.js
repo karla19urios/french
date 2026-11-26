@@ -14,7 +14,7 @@
       return fetch(ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt: String(prompt || ""), tier: opts.modelTier || "default" }),
+        body: JSON.stringify({ prompt: String(prompt || ""), tier: opts.modelTier || "default", kb: opts.kb === true, query: opts.query ? String(opts.query) : undefined }),
         signal: opts.signal
       }).then(function(r){
         return r.json().catch(function(){ throw fail("invalid_json"); }).then(function(d){
