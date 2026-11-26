@@ -9,12 +9,12 @@
   :root{
     --paper:#ffffff;
     --paper-2:#F5F9FF;
-    --rule:rgba(36,86,201,.11);
-    --margin:rgba(196,74,74,.28);
+    --rule:rgba(55,142,246,.11);
+    --margin:rgba(55,142,246,.28);
     --ink:#393B66;
     --ink-soft:#646363;
-    --blue:#2456c9;
-    --blue-soft:rgba(36,86,201,.1);
+    --blue:#378EF6;
+    --blue-soft:rgba(55,142,246,.1);
     --green:#1c7a4d;
     --green-soft:rgba(28,122,77,.1);
     --orange:#dd7a37;
@@ -23,8 +23,8 @@
     --sun-soft:rgba(226,167,48,.14);
     --sky:#4f9bcf;
     --sky-soft:rgba(79,155,207,.12);
-    --card-line:rgba(42,42,40,.12);
-    --shadow:0 10px 26px rgba(42,32,20,.1);
+    --card-line:rgba(57,59,102,.12);
+    --shadow:0 10px 26px rgba(57,59,102,.1);
     --radius:16px;
   }
 
@@ -37,7 +37,7 @@
     margin:0;
   }
   img,svg{max-width:100%;}
-  ::selection{background:var(--sun); color:#2a2a28;}
+  ::selection{background:var(--blue-soft); color:#393B66;}
   a{color:var(--blue);}
 
   h1,h2,h3,.display{
@@ -102,7 +102,7 @@
   .hero .kicker{
     font-family:'Caveat',cursive;
     font-size:1.35rem;
-    color:var(--green);
+    color:var(--blue);
     margin-bottom:2px;
   }
   .hero h1{
@@ -111,7 +111,7 @@
     color:var(--blue);
     margin:0 0 6px;
   }
-  .hero h1 .accent{color:var(--orange);}
+  .hero h1 .accent{color:var(--blue);}
   .hero p.sub{
     max-width:560px;
     color:var(--ink-soft);
@@ -563,7 +563,7 @@
     margin:0 auto;
     border-radius:8px;
     padding:30px 28px 26px;
-    box-shadow:0 16px 34px rgba(42,32,20,.16);
+    box-shadow:0 16px 34px rgba(57,59,102,.16);
     border:1px solid var(--card-line);
     transform:rotate(.5deg);
   }

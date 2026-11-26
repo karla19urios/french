@@ -53,5 +53,5 @@ footer, .hero-inner, .navpills, main:has(.grid) { max-width: min(1760px, 100%) !
    and long words in headings wrap */
 @media (max-width: 600px) {
   table:not(.plans):not(.att):not(.match) { display: block; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  h1, h2, h3, h4 { overflow-wrap: anywhere; }
+  h1, h2, h3, h4 { overflow-wrap: break-word; flex-wrap: wrap; }
 }

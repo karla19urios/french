@@ -7,17 +7,17 @@
 <style>
   
   :root{
-    --board:#1b2a23;
-    --board-raised:#233830;
-    --board-raised-2:#2b443a;
-    --chalk:#f5f1e3;
-    --chalk-dim:#b7c2b8;
-    --chalk-faint:rgba(245,241,227,.14);
-    --yellow:#e8c94a;
-    --blue:#8ab6d6;
-    --coral:#e2836f;
+    --board:#1D1F3A;
+    --board-raised:#2A2C50;
+    --board-raised-2:#31345E;
+    --chalk:#F4F6FF;
+    --chalk-dim:#B8B8B8;
+    --chalk-faint:rgba(244,246,255,.14);
+    --yellow:#7DB6FA;
+    --blue:#378EF6;
+    --coral:#A9CFFB;
     --paper:#ffffff;
-    --paper-ink:#33291c;
+    --paper-ink:#393B66;
     --good:#8fbf7f;
     --radius:14px;
   }
@@ -86,7 +86,7 @@
     font-weight:800;
     color:var(--chalk);
     margin:0 0 10px;
-    text-shadow: 0 0 22px rgba(245,241,227,.12);
+    text-shadow: 0 0 22px rgba(244,246,255,.12);
   }
   .hero .underline{
     width:min(320px,70%);
@@ -162,8 +162,8 @@
     padding:14px 16px;
     font-size:.94rem;
   }
-  .vt-card.vous{background:rgba(138,182,214,.14); border:1px solid rgba(138,182,214,.35);}
-  .vt-card.tu{background:rgba(226,131,111,.14); border:1px solid rgba(226,131,111,.35);}
+  .vt-card.vous{background:rgba(55,142,246,.14); border:1px solid rgba(55,142,246,.35);}
+  .vt-card.tu{background:rgba(169,207,251,.14); border:1px solid rgba(169,207,251,.35);}
   .vt-card b{display:block;font-family:'Baloo 2';font-size:1.05rem;margin-bottom:4px;}
   .vt-card.vous b{color:var(--blue);}
   .vt-card.tu b{color:var(--coral);}
@@ -256,8 +256,8 @@
     position:relative;
     top:-2px;
   }
-  .variant-badge.vous{background:rgba(138,182,214,.2);color:var(--blue);}
-  .variant-badge.tu{background:rgba(226,131,111,.2);color:var(--coral);}
+  .variant-badge.vous{background:rgba(55,142,246,.2);color:var(--blue);}
+  .variant-badge.tu{background:rgba(169,207,251,.2);color:var(--coral);}
   .phrase-card .en{
     grid-column:1;
     color:var(--chalk-dim);
@@ -447,7 +447,7 @@
   }
   .feedback.show{display:block;}
   .feedback.good{background:rgba(143,191,127,.14); color:var(--good); border:1px solid rgba(143,191,127,.35);}
-  .feedback.hint{background:rgba(232,201,74,.1); color:var(--yellow); border:1px solid rgba(232,201,74,.3);}
+  .feedback.hint{background:rgba(125,182,250,.1); color:var(--yellow); border:1px solid rgba(125,182,250,.3);}
 
   .practice-actions{
     display:flex;
@@ -473,7 +473,7 @@
     color:var(--chalk);
   }
   .gender-btn:hover{border-color:var(--yellow);}
-  .gender-btn.selected{border-color:var(--yellow); background:rgba(232,201,74,.1);}
+  .gender-btn.selected{border-color:var(--yellow); background:rgba(125,182,250,.1);}
   .gender-btn .big{font-family:'Baloo 2'; font-size:1.2rem; display:block; margin-top:6px;}
 
   /* ---------- pinned intro card ---------- */
@@ -485,7 +485,7 @@
   .pin{
     width:14px;height:14px;
     border-radius:50%;
-    background:radial-gradient(circle at 35% 30%, #ffe184, var(--yellow) 60%, #a9822a 100%);
+    background:radial-gradient(circle at 35% 30%, #A9CFFB, var(--yellow) 60%, #378EF6 100%);
     box-shadow:0 3px 5px rgba(0,0,0,.4);
     margin:0 auto -8px;
     position:relative;
@@ -506,7 +506,7 @@
     content:"";
     position:absolute;
     inset:10px;
-    border:1px dashed rgba(51,41,28,.18);
+    border:1px dashed rgba(57,59,102,.18);
     border-radius:4px;
     pointer-events:none;
   }
@@ -518,7 +518,7 @@
   .index-card .kicker{
     font-family:'Caveat',cursive;
     font-size:1.2rem;
-    color:#7a5230;
+    color:#378EF6;
   }
   .index-card .lines{
     margin-top:14px;
@@ -527,7 +527,7 @@
     font-size:1rem;
   }
   .index-card .lines .placeholder{
-    color:#8a7a5f;
+    color:#646363;
     font-style:italic;
   }
   .index-card .card-actions{
@@ -536,8 +536,8 @@
     gap:10px;
     flex-wrap:wrap;
   }
-  .index-card .btn.primary{background:#2c4235; color:var(--paper);}
-  .index-card .btn.ghost{border-color:#c9bd9c; color:#6b5c40;}
+  .index-card .btn.primary{background:#393B66; color:var(--paper);}
+  .index-card .btn.ghost{border-color:#D5E3F8; color:#646363;}
 
   footer{
     text-align:center;
@@ -672,7 +672,7 @@
   <header class="hero">
     <h1>Se Présenter</h1>
     <svg class="underline" viewBox="0 0 320 14" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M4 8 C 60 2, 120 12, 160 6 S 260 2, 316 9" stroke="#e2836f" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M4 8 C 60 2, 120 12, 160 6 S 260 2, 316 9" stroke="#378EF6" stroke-width="4" fill="none" stroke-linecap="round"/>
     </svg>
     <p class="sub">Introducing yourself in French — greetings, name, age, nationality, languages, job and home, drilled the way your teacher actually wrote it on the board.</p>
     <div class="flags"><span></span><span></span><span></span></div>
