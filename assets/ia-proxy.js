@@ -2,7 +2,7 @@
    This file provides the same interface, backed by the site's own Cloudflare Worker (folder ia-proxy/).
    While ENDPOINT is empty it does nothing, and ia-fallback.js shows the "open on Claude" button instead. */
 (function(){
-  var ENDPOINT = "";   // e.g. "https://french-ia.<your-subdomain>.workers.dev"
+  var ENDPOINT = "https://french-ia.karlauriostegui-ua.workers.dev";
   if(!ENDPOINT) return;
   try{ if(typeof claude !== "undefined" && claude && typeof claude.use === "function") return; }catch(e){}
 
