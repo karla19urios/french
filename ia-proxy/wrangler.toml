@@ -1,0 +1,13 @@
+name = "french-ia"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+compatibility_flags = ["nodejs_compat"]
+
+# 8 generations per minute per visitor (free Cloudflare rate-limiting binding)
+[[ratelimits]]
+name = "LIMITER"
+namespace_id = "1001"
+simple = { limit = 8, period = 60 }
+
+# The API key is NOT stored here. Set it once as a secret:
+#   npx wrangler secret put ANTHROPIC_API_KEY
