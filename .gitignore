@@ -81,3 +81,11 @@ codigos_estudiantes.csv
 A2/Grammaire A2/10_Futur simple/Futur simple.mp3
 A2/Grammaire A2/10_Futur simple/Futur simple.pdf
 A2/Grammaire A2/10_Futur simple/Lecture_Futur simple.pdf
+
+# Grabaciones de voz de Karla y sus versiones preparadas: nunca al sitio público
+tts-build/voz/
+tts-build/muestra.html
+tts-build/speech_pages.json
+
+# carpeta de pruebas locales
+_tmpverif/
