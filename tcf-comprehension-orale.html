@@ -273,7 +273,7 @@ footer b{color:var(--text)}
       <p><b>Les voix :</b> chaque enregistrement est lu par des voix neuronales du Québec. Dans les conversations (Famille 3), les personnes A et B ont deux voix différentes ; à la fin, le narrateur pose la question, comme à l'examen réel. Les réponses de la Famille 3 restent écrites.</p>
       <p><b>Familles 1 et 2 :</b> les 4 phrases (ou les 4 réactions) s'écoutent à la suite avec un seul bouton. Le narrateur annonce la lettre avant chaque réponse, avec 3 secondes de silence entre deux réponses. Choisissez ensuite A, B, C ou D, sans pouvoir réécouter une option séparément.</p>
       <p><b>2 écoutes maximum :</b> comme à l'examen officiel, chaque audio ne s'écoute que <b>2 fois</b> (compteur 0/2, 1/2, 2/2). Le compteur repart à zéro en changeant d'examen ou avec « Recommencer ».</p>
-      <p><b>Le bouton 📝</b> affiche le texte exact de l'audio. <b>« Vérifier »</b> corrige l'examen entier, affiche toutes les transcriptions et explique le piège de chaque question.</p>
+      <p><b>Uniquement à l'écoute :</b> aucun texte n'est affiché pendant l'examen. <b>« Vérifier »</b> corrige l'examen entier, affiche toutes les transcriptions et explique le piège de chaque question.</p>
     </div>
   </section>
 
@@ -538,7 +538,6 @@ function optsAudioHtml(qid, items, label){
   return `<span class="aslot" onclick="event.stopPropagation()">
     ${hiddenAudios}
     ${(TTS_OK || MP3_IDS.has(id)) ? `<button type="button" class="playbtn" data-playid="${id}" title="Écouter" onclick='speakGroup(${JSON.stringify(id)}, ${opts})'>🔊 ${esc(label)}</button><span class="playcount" data-counterfor="${id}">0/${MAX_PLAYS}</span>` : ''}
-    <button type="button" class="scriptbtn" title="Voir le texte" onclick="toggleScript('${id}')">📝</button>
   </span><span class="scripttxt" id="${id}-txt" hidden>${transcript}</span>`;
 }
 
@@ -547,7 +546,6 @@ function slotHtml(qid, letter, script){
   return `<span class="aslot" onclick="event.stopPropagation()">
     <audio class="tts" id="${id}" data-script="${esc(script)}" controls preload="none">audio non supporté</audio>
     ${playBtnHtml(id)}
-    <button type="button" class="scriptbtn" title="Voir le texte" onclick="toggleScript('${id}')">📝</button>
   </span><span class="scripttxt" id="${id}-txt" hidden>${esc(script)}</span>`;
 }
 
@@ -570,7 +568,6 @@ function docSlotHtml(qid, document_text, consigne){
   return `<span class="aslot" onclick="event.stopPropagation()">
     <audio class="tts" id="${id}" data-script="${esc(document_text)}" data-question="${esc(consigne || '')}" data-dialogue="1" controls preload="none">audio non supporté</audio>
     ${playBtnHtml(id, '🔊 Écouter la conversation')}
-    <button type="button" class="scriptbtn" title="Voir le texte" onclick="toggleScript('${id}')">📝</button>
   </span><span class="scripttxt" id="${id}-txt" hidden>${transcriptHtml}</span>`;
 }
 
@@ -592,7 +589,7 @@ function renderQ(exam, q){
       ? `<img src="${q.photo}" alt="" loading="lazy">`
       : ((typeof SCENES !== 'undefined' && SCENES[q.scene]) || '');
     body += `<div class="qimg">${scene}</div>`;
-    body += `<div class="aslot-row" style="margin:.4rem 0">${optsAudioHtml(qid, q.sentences, 'Écouter les 4 phrases')}<span style="font-size:.8rem;color:var(--muted);margin-left:.4rem">texte des phrases</span></div>`;
+    body += `<div class="aslot-row" style="margin:.4rem 0">${optsAudioHtml(qid, q.sentences, 'Écouter les 4 phrases')}</div>`;
     body += `<div class="opts let" id="${qid}-opts">`;
     q.sentences.forEach((s, i) => {
       body += `<div class="opt letonly" data-idx="${i}" onclick="selectOpt(event,'${qid}',${i})">
@@ -602,8 +599,8 @@ function renderQ(exam, q){
     body += `</div>`;
   } else if(q.fam === 2){
     instruction = 'Écoutez la phrase, puis les 4 réponses possibles. Choisissez la bonne réaction.';
-    body += `<div class="aslot-row" style="margin:.4rem 0">${slotHtml(qid, 'p', q.prompt)}<span style="font-size:.8rem;color:var(--muted);margin-left:.4rem">texte de la question</span></div>`;
-    body += `<div class="aslot-row" style="margin:.4rem 0">${optsAudioHtml(qid, q.options, 'Écouter les 4 réponses')}<span style="font-size:.8rem;color:var(--muted);margin-left:.4rem">texte des réponses</span></div>`;
+    body += `<div class="aslot-row" style="margin:.4rem 0">${slotHtml(qid, 'p', q.prompt)}</div>`;
+    body += `<div class="aslot-row" style="margin:.4rem 0">${optsAudioHtml(qid, q.options, 'Écouter les 4 réponses')}</div>`;
     body += `<div class="opts let" id="${qid}-opts">`;
     q.options.forEach((s, i) => {
       body += `<div class="opt letonly" data-idx="${i}" onclick="selectOpt(event,'${qid}',${i})">
@@ -613,7 +610,7 @@ function renderQ(exam, q){
     body += `</div>`;
   } else {
     instruction = q.consigne;
-    body += `<div class="aslot-row" style="margin:.4rem 0">${docSlotHtml(qid, q.document, q.consigne)}<span style="font-size:.8rem;color:var(--muted);margin-left:.4rem">texte du document</span></div>`;
+    body += `<div class="aslot-row" style="margin:.4rem 0">${docSlotHtml(qid, q.document, q.consigne)}</div>`;
     body += `<div class="opts txt" id="${qid}-opts">`;
     q.options.forEach((s, i) => {
       body += `<div class="opt" data-idx="${i}" onclick="selectOpt(event,'${qid}',${i})">
