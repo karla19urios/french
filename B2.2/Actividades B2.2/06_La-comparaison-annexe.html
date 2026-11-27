@@ -730,8 +730,8 @@ function corrigeBloc(root){
     }
     if(vd){
       var ex = it.getAttribute("data-note");
-      if(tousBons && repondu){ vd.textContent = "✓ " + (ex ? ex : "Correct"); vd.classList.remove("bad"); }
-      else { vd.textContent = "→ " + msgs.join(" · ") + (ex ? " — " + ex : ""); vd.classList.add("bad"); }
+      if(tousBons && repondu){ vd.innerHTML = "✓ " + (ex ? ex : "Correct"); vd.classList.remove("bad"); }
+      else { vd.innerHTML = "→ " + msgs.join(" · ") + (ex ? " — " + ex : ""); vd.classList.add("bad"); }
       vd.classList.add("show");
     }
   });
