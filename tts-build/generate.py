@@ -5,7 +5,7 @@ Output: assets/tts/<key>.mp3 and assets/tts/manifest.json  ({key: voice})
 Key   : cyrb53 hash of the whitespace-normalized text (same function as assets/tts.js)
 Secret: ~/.config/azure-tts.env with AZURE_TTS_KEY and AZURE_TTS_REGION (never printed)
 
-Resumable: phrases whose MP3 already exists are skipped. Run:  python3 tts-build/generate.py [--limit N | --sample N]
+Resumable: phrases whose MP3 already exists are skipped. Run:  python3 tts-build/generate.py [--limit N | --sample N] [--pages A2/]
 """
 import json, os, re, sys, time, html, urllib.request, urllib.error
 
@@ -60,6 +60,7 @@ def request(url, key, data=None, headers=None):
 def main():
     limit = int(sys.argv[sys.argv.index("--limit") + 1]) if "--limit" in sys.argv else None
     sample = int(sys.argv[sys.argv.index("--sample") + 1]) if "--sample" in sys.argv else None
+    section = sys.argv[sys.argv.index("--pages") + 1] if "--pages" in sys.argv else ""   # e.g. "A2/" = only that section
     key, region = load_secret()
     base = f"https://{region}.tts.speech.microsoft.com/cognitiveservices"
     voices = json.load(request(base + "/voices/list", key))
@@ -77,7 +78,8 @@ def main():
     for name in ("phrases_static.json", "phrases_runtime.json"):
         p = os.path.join(ROOT, "tts-build", name)
         if os.path.exists(p):
-            for v in json.load(open(p, encoding="utf-8")).values():
+            for page, v in json.load(open(p, encoding="utf-8")).items():
+                if not page.startswith(section): continue
                 texts.update(n for n in map(norm, v) if n and not is_code(n))
     os.makedirs(OUT, exist_ok=True)
     mpath = os.path.join(OUT, "manifest.json")
