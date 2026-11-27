@@ -51,7 +51,7 @@ def main():
     key, region = load_secret()
     base = f"https://{region}.tts.speech.microsoft.com/cognitiveservices"
     voices = json.load(request(base + "/voices/list", key))
-    ca = sorted(v["ShortName"] for v in voices if v.get("Locale") == "fr-CA" and v["ShortName"].endswith("Neural"))
+    ca = sorted(v["ShortName"] for v in voices if v.get("Locale") == "fr-CA" and v["ShortName"].endswith("Neural") and ":" not in v["ShortName"])  # standard neural voices (HD variants are billed separately)
     fem = [v["ShortName"] for v in voices if v["ShortName"] in ca and v.get("Gender") == "Female"]
     mal = [v["ShortName"] for v in voices if v["ShortName"] in ca and v.get("Gender") == "Male"]
     # alternate women and men so lessons hear several Quebec voices
