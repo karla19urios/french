@@ -88,6 +88,9 @@
     if(p && p.catch) p.catch(function(){ if(cur === c){ cur = null; nativeSpeak(u); } });
   }
 
+  // the talking portrait (assets/avatar.js) analyses this element to move the mouth
+  window.__ttsAudio = function(){ return cur ? cur.audio : null; };
+
   // real progress of the MP3 being played, for the lesson players (progress bar and duration)
   window.__ttsNow = function(){
     if(!cur || !isFinite(cur.audio.duration) || !cur.audio.duration) return null;

@@ -199,6 +199,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&display=swap">
 <link rel="stylesheet" href="assets/typography.css">
 <script src="assets/tts.js?v=2"></script>
+<script src="assets/avatar.js?v=1"></script>
 </head>
 <body>
 <style id="site-gate-style">html:not(.site-gate-unlocked) body > *:not(#site-gate-overlay){display:none!important}</style>
@@ -392,15 +393,23 @@
   .ai-exfoot{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin-top:.7rem}
   .ai-score{font-weight:800;color:var(--bleu)}
   @media (max-width:560px){.ai-card{padding:16px 14px}}
+  .ai-tete{display:flex;align-items:center;gap:22px}
+  .ai-tete-txt{flex:1;min-width:0}
+  .ai-tete .av{flex:none;width:150px}
+  @media (max-width:620px){.ai-tete{flex-direction:column;text-align:center}
+    .ai-tete .av{width:120px}.ai-tete .ai-format{justify-content:center}}
 </style>
 
 <div class="ai-wrap">
   <nav class="ai-tabs" id="aiTabs"></nav>
 
-  <section class="ai-card">
-    <h2 id="aiTaskTitle"></h2>
-    <p id="aiTaskDesc"></p>
-    <div class="ai-format" id="aiTaskChips"></div>
+  <section class="ai-card ai-tete">
+    <div id="aiFace"></div>
+    <div class="ai-tete-txt">
+      <h2 id="aiTaskTitle"></h2>
+      <p id="aiTaskDesc"></p>
+      <div class="ai-format" id="aiTaskChips"></div>
+    </div>
   </section>
 
   <section class="ai-card">
@@ -547,6 +556,9 @@
   function $(id){ return document.getElementById(id); }
   function list(a){ return Array.isArray(a) ? a : (a ? [a] : []); }
 
+  /* le portrait : il bouge les lèvres dès que la page parle (assets/avatar.js) */
+  var face = window.Avatar ? Avatar.mount($("aiFace"), {alt:""}) : null;
+
   /* header + tabs */
   $("aiTaskTitle").textContent = T.title;
   $("aiTaskDesc").textContent = T.desc;
@@ -602,15 +614,17 @@
   var samplePromise = (typeof claude !== "undefined" && claude && claude.use) ? claude.use("sample") : Promise.resolve(null);
   function ask(prompt, opts, statusEl, btn, render){
     btn.disabled = true; statusEl.textContent = "L'IA prépare la réponse… (10 à 40 secondes)";
+    if(face) face.state("pense");
     samplePromise.then(function(s){
       if(!s) throw Object.assign(new Error("x"), {code:"unavailable"});
       return s.json(prompt, opts);
-    }).then(function(d){ statusEl.textContent = ""; render(d); })
+    }).then(function(d){ statusEl.textContent = ""; if(face) face.state(null); render(d); })
     .catch(function(e){
       var c = e && e.code;
       statusEl.textContent = c === "rate_limited" ? "Trop de demandes — réessaie dans une minute."
         : c === "unavailable" ? "L'assistant IA n'est pas disponible pour le moment."
         : "La génération a échoué — réessaie.";
+      if(face) face.state("surprise", 2000);
     }).then(function(){ btn.disabled = false; });
   }
 
