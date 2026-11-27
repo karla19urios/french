@@ -1,8 +1,9 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style><link rel="preconnect" href="https://fonts.googleapis.com">
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&display=swap">
 <link rel="stylesheet" href="assets/typography.css">
 <script src="assets/tts.js?v=1"></script>
+<script src="assets/ia-proxy.js?v=3"></script>
 </head><body>
 <style id="site-gate-style">html:not(.site-gate-unlocked) body > *:not(#site-gate-overlay){display:none!important}</style>
 <div id="site-gate-overlay" style="position:fixed;inset:0;z-index:999999;background:#171933;display:flex;align-items:flex-start;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;overflow-y:auto;padding:3.5vh 0;">
@@ -113,20 +114,27 @@
   }
 })();
 </script>
-<title>TCF Canada · Expression orale · Tâche 3</title>
+<nav style="max-width:1100px;margin:0 auto;padding:16px clamp(10px,2.2vw,22px) 0;display:flex;flex-wrap:wrap;gap:8px;font-family:Poppins,system-ui,sans-serif">
+  <a href="tcf-examen.html" style="display:inline-block;padding:.45rem 1rem;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--text);text-decoration:none;font-weight:600;font-size:.85rem">← TCF · Expression orale</a>
+  <a href="tcf-oral-tache-1.html" style="display:inline-block;padding:.45rem 1rem;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--text);text-decoration:none;font-weight:600;font-size:.85rem">Tâche 1</a>
+  <a href="tcf-oral-tache-2.html" style="display:inline-block;padding:.45rem 1rem;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--text);text-decoration:none;font-weight:600;font-size:.85rem">Tâche 2</a>
+</nav>
+
+
+<title>TCF Canada · Tâche 3</title>
 <style>
 :root{
-  --bleu:#393B66;
+  --bleu:#002395;
   --blanc:#ffffff;
-  --rouge:#378EF6;
-  --bg:#EAF2FE;
+  --rouge:#ED2939;
+  --bg:#f4f5f7;
   --card:#ffffff;
-  --text:#393B66;
-  --muted:#646363;
-  --border:#D5E3F8;
-  --shadow:rgba(57,59,102,.08);
-  --bleu-soft:rgba(55,142,246,.12);
-  --rouge-soft:rgba(55,142,246,.10);
+  --text:#1a1a2e;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --shadow:rgba(16,24,40,.08);
+  --bleu-soft:rgba(0,35,149,.08);
+  --rouge-soft:rgba(237,41,57,.10);
   --vert:#1a7f4f;
   --vert-soft:rgba(26,127,79,.12);
   --accent:var(--bleu);
@@ -134,15 +142,15 @@
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#1D1F3A;--card:#2A2C50;--text:#F4F6FF;--muted:#B8B8B8;--border:#3F4278;
-    --shadow:rgba(0,0,0,.35);--bleu-soft:rgba(55,142,246,.16);--rouge-soft:rgba(125,182,250,.14);
-    --vert:#4ec98a;--vert-soft:rgba(78,201,138,.15);--accent:#7DB6FA;
+    --bg:#12141c;--card:#1b1e2b;--text:#f1f2f6;--muted:#9aa0b4;--border:#2a2e40;
+    --shadow:rgba(0,0,0,.35);--bleu-soft:rgba(90,125,255,.14);--rouge-soft:rgba(237,41,57,.16);
+    --vert:#4ec98a;--vert-soft:rgba(78,201,138,.15);--accent:#9db2ff;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#1D1F3A;--card:#2A2C50;--text:#F4F6FF;--muted:#B8B8B8;--border:#3F4278;
-  --shadow:rgba(0,0,0,.35);--bleu-soft:rgba(55,142,246,.16);--rouge-soft:rgba(125,182,250,.14);
-  --vert:#4ec98a;--vert-soft:rgba(78,201,138,.15);--accent:#7DB6FA;
+  --bg:#12141c;--card:#1b1e2b;--text:#f1f2f6;--muted:#9aa0b4;--border:#2a2e40;
+  --shadow:rgba(0,0,0,.35);--bleu-soft:rgba(90,125,255,.14);--rouge-soft:rgba(237,41,57,.16);
+  --vert:#4ec98a;--vert-soft:rgba(78,201,138,.15);--accent:#9db2ff;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -418,7 +426,7 @@ footer b{color:var(--text)}
 .evb span{font-size:.74rem;line-height:1.3;color:var(--muted)}
 .evb:hover{border-color:var(--accent)}
 .evb.on{background:var(--card);box-shadow:0 0 0 2px currentColor inset}
-.evb.on.l0{color:#646363} .evb.on.l1{color:var(--bleu)} .evb.on.l2{color:#b7791f} .evb.on.l3{color:var(--rouge)}
+.evb.on.l0{color:#6b7280} .evb.on.l1{color:var(--bleu)} .evb.on.l2{color:#b7791f} .evb.on.l3{color:var(--rouge)}
 .evb.on b,.evb.on span{color:inherit}
 .evnote{width:100%;padding:.5rem .7rem;border-radius:9px;border:1px solid var(--border);background:var(--card);color:var(--text);font:inherit;font-size:.86rem;margin-top:.2rem}
 .evglobal{display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap}
@@ -487,6 +495,14 @@ textarea.copie{width:100%;min-height:220px;padding:.75rem .85rem;border-radius:1
 .pehint b{color:var(--text)}
 h3.blkpe{font-size:1.08rem;margin:2rem 0 .7rem;padding-bottom:.35rem;border-bottom:2px solid var(--bleu);letter-spacing:-.01em}
 </style>
+<style>
+/* --- assistant IA --- */
+.ia-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:0 1px 3px var(--shadow);border-top:3px solid var(--accent)}
+.ia-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.ia-row select,.ia-row input{padding:.55rem .75rem;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text);font:inherit;font-size:.9rem}
+.ia-err{color:var(--rouge);font-size:.88rem;font-weight:600}
+.ia-ok{color:var(--vert);font-size:.88rem;font-weight:700}
+</style>
 
 
 <div class="flagbar"></div>
@@ -495,17 +511,15 @@ h3.blkpe{font-size:1.08rem;margin:2rem 0 .7rem;padding-bottom:.35rem;border-bott
   <header class="hero">
     <span class="eyebrow">TCF Canada · Expression orale</span>
     <h1>Tâche 3 · l'expression d'un point de vue</h1>
-    <p>4 min 30 en continu, sans préparation. Dix sujets, avec plan recommandé, pistes, squelette de phrases et vocabulaire B2/C1.</p>
+    <p>4 min 30 en continu, sans préparation. 56 sujets répartis en huit thèmes : éducation, santé, écologie, français, immigration, travail, technologie, tourisme. Pour chacun, un plan recommandé, des pistes, un squelette de phrases et du vocabulaire B2/C1.</p>
     <nav class="toc">
-      <a href="tcf-examen.html">← TCF · Expression orale</a>
-      <a href="tcf-oral-tache-1.html">Tâche 1</a>
-      <a href="tcf-oral-tache-2.html">Tâche 2</a>
       <a href="#epreuve">L'épreuve</a>
       <a href="#grammaire">Grammaire</a>
       <a href="#connecteurs">Connecteurs</a>
       <a href="#methode">La méthode</a>
       <a href="#t3">Les sujets</a>
       <a href="#evaluation">Évaluation</a>
+      <a href="#ia">IA</a>
     </nav>
   </header>
 
@@ -623,7 +637,8 @@ h3.blkpe{font-size:1.08rem;margin:2rem 0 .7rem;padding-bottom:.35rem;border-bott
 
   <section id="t3">
     <div class="sec-head"><span class="sec-num">05</span><h2>Les sujets de point de vue</h2></div>
-    <p class="sec-sub">Dix sujets, 4 min 30, sans préparation. Pour chacun : <b>plan recommandé</b>, pistes, squelette de phrases, <b>vocabulaire B2/C1</b>.</p>
+    <p class="sec-sub">56 sujets répartis en huit thèmes, 4 min 30, sans préparation. Pour chacun : <b>plan recommandé</b>, pistes, squelette de phrases, <b>vocabulaire B2/C1</b>.</p>
+    <div class="filters" id="catFilters"><button class="chip" type="button" data-cat="all" aria-pressed="true">Toutes</button><button class="chip" type="button" data-cat="Éducation" aria-pressed="false">Éducation</button><button class="chip" type="button" data-cat="Santé" aria-pressed="false">Santé</button><button class="chip" type="button" data-cat="Écologie" aria-pressed="false">Écologie</button><button class="chip" type="button" data-cat="Français" aria-pressed="false">Français</button><button class="chip" type="button" data-cat="Immigration" aria-pressed="false">Immigration</button><button class="chip" type="button" data-cat="Travail" aria-pressed="false">Travail</button><button class="chip" type="button" data-cat="Technologie" aria-pressed="false">Technologie</button><button class="chip" type="button" data-cat="Tourisme" aria-pressed="false">Tourisme</button></div>
     <div class="tgrid" id="gridT3"></div>
   </section>
 
@@ -641,7 +656,30 @@ h3.blkpe{font-size:1.08rem;margin:2rem 0 .7rem;padding-bottom:.35rem;border-bott
 
   </section>
 
-
+  <section id="ia">
+    <div class="sec-head"><span class="sec-num">07</span><h2>Assistant IA — sujets infinis</h2></div>
+    <p class="sec-sub">Au-delà des 56 sujets ci-dessus : générez un sujet de Tâche 3 inédit — avec son plan recommandé, ses pistes et son vocabulaire B2/C1 — dans le même format que les sujets déjà présents sur cette page. Le nouveau sujet s'ajoute à la grille ci-dessus et s'ouvre aussitôt dans la même fenêtre.</p>
+    <div class="ia-card" id="iaCard" style="display:none">
+      <div class="ia-row">
+        <select id="iaCat" aria-label="Thème">
+          <option value="aléatoire">Thème : aléatoire</option>
+          <option>Éducation</option>
+          <option>Santé</option>
+          <option>Écologie</option>
+          <option>Français</option>
+          <option>Immigration</option>
+          <option>Travail</option>
+          <option>Technologie</option>
+          <option>Tourisme</option>
+        </select>
+        <input id="iaAngle" type="text" placeholder="Angle optionnel : ex. intelligence artificielle, sport, grandes villes…" style="flex:1;min-width:240px">
+        <button class="btn primary" type="button" id="iaGo">✨ Générer un sujet inédit</button>
+      </div>
+      <p class="ia-err" id="iaErr" style="display:none;margin:.7rem 0 0"></p>
+      <p class="ia-ok" id="iaOk" style="display:none;margin:.7rem 0 0"></p>
+    </div>
+    <p class="note" id="iaUnavail" style="display:none">Cette fonctionnalité fait appel à Claude directement depuis la page ; elle n'est pas disponible dans ce contexte.</p>
+  </section>
 
   <footer>
     <span>Sources : <b>TCF.pdf</b> (banque de questions T1, sujets T2 et T3, plans argumentatifs) · <b>Connecteurs logiques</b> (francepodcasts.com / iSLCollective) · format de l'épreuve : France Éducation international</span>
@@ -735,206 +773,622 @@ var T2 = [];
 
 /* ---------------- Tâche 3 : expression d'un point de vue ---------------- */
 var T3 = [
- {n:11, t:'Maîtrise du français et intégration',
-  cons:"La maîtrise du français est indispensable pour une intégration réussie dans une société francophone. Qu'en pensez-vous ?",
-  pour:["Accès à l'emploi et aux services","Participation à la vie citoyenne","Compréhension des codes culturels"],
-  contre:["Intégration aussi économique et sociale","Le bilinguisme de certaines régions","Le temps d'apprentissage ne doit pas exclure"],
-  plan:'dialectique',
+ {n:201, cat:"Éducation", t:"Sujet 1", plan:"dialectique",
+  cons:"Les devoirs à la maison devraient être supprimés à l'école primaire. Êtes-vous d'accord avec cette affirmation ?",
   b2:[
-   {w:"la maîtrise de la langue", ex:"La maîtrise de la langue conditionne l'accès à l'emploi qualifié."},
-   {w:"un vecteur d'intégration", ex:"La langue est le premier vecteur d'intégration."},
-   {w:"la cohésion sociale", ex:"Une langue commune renforce la cohésion sociale."},
-   {w:"l'insertion professionnelle", ex:"Sans français, l'insertion professionnelle reste précaire."},
-   {w:"les codes culturels", ex:"La langue donne accès aux codes culturels implicites."},
-   {w:"la participation citoyenne", ex:"Elle permet une participation citoyenne pleine et entière."},
-   {w:"une condition nécessaire mais non suffisante", ex:"C'est une condition nécessaire, mais non suffisante."},
-   {w:"l'exclusion", ex:"Exiger un niveau trop élevé peut produire de l'exclusion."},
-   {w:"le bilinguisme", ex:"Dans certaines régions, le bilinguisme nuance cette exigence."},
-   {w:"l'apprentissage progressif", ex:"L'intégration se fait par un apprentissage progressif."},
-   {w:"la discrimination linguistique", ex:"Il faut éviter toute discrimination linguistique."},
-   {w:"l'autonomie", ex:"Parler la langue, c'est gagner en autonomie au quotidien."},
-   {w:"les dispositifs d'accueil", ex:"Les dispositifs d'accueil doivent accompagner cet effort."},
-   {w:"à mon sens", ex:"À mon sens, la langue ouvre des portes que rien d'autre n'ouvre."}]},
- {n:12, t:'Parité homme-femme et démocratie',
-  cons:"Un pays qui ne respecte pas la parité homme-femme dans ses institutions n'est pas une démocratie. Êtes-vous d'accord avec cette affirmation ?",
-  pour:["Représentativité des institutions","Égalité des droits comme fondement démocratique","Les quotas ont fait progresser l'égalité"],
-  contre:["La démocratie repose d'abord sur le vote libre","La parité est un objectif, pas une condition","Le risque de réduire la démocratie à un seul critère"],
-  plan:'dialectique',
+   {w:"la charge de travail", ex:"La charge de travail d'un enfant de huit ans est déjà considérable."},
+   {w:"creuser les inégalités", ex:"Les devoirs creusent les inégalités entre les familles."},
+   {w:"l'autonomie", ex:"On dit qu'ils développent l'autonomie, mais à cet âge c'est discutable."},
+   {w:"consolider les acquis", ex:"Une lecture quotidienne suffit à consolider les acquis."},
+   {w:"le temps périscolaire", ex:"Le temps périscolaire pourrait absorber ce travail."},
+   {w:"être chronophage", ex:"Pour les parents, c'est une tâche chronophage et conflictuelle."},
+   {w:"le suivi parental", ex:"Tout repose sur un suivi parental qui n'est pas garanti."},
+   {w:"une mesure symbolique", ex:"Supprimer les devoirs resterait une mesure symbolique sans réforme du temps scolaire."}]},
+ {n:202, cat:"Éducation", t:"Sujet 2", plan:"OREO",
+  cons:"Pensez-vous que les études universitaires devraient être gratuites pour tous ?",
   b2:[
-   {w:"la parité", ex:"La parité vise une représentation égale des femmes et des hommes."},
-   {w:"la représentativité", ex:"Des institutions sans femmes manquent de représentativité."},
-   {w:"l'égalité des droits", ex:"L'égalité des droits est un pilier de la démocratie."},
-   {w:"un quota", ex:"Les quotas ont accéléré la présence des femmes en politique."},
-   {w:"le plafond de verre", ex:"Le plafond de verre persiste dans les postes de pouvoir."},
-   {w:"le suffrage universel", ex:"La démocratie repose d'abord sur le suffrage universel."},
-   {w:"légitime", ex:"Une institution paritaire est perçue comme plus légitime."},
-   {w:"une démocratie imparfaite", ex:"On peut parler de démocratie imparfaite plutôt que d'absence de démocratie."},
-   {w:"un critère", ex:"La parité est un critère parmi d'autres."},
-   {w:"les stéréotypes de genre", ex:"Les stéréotypes de genre freinent l'accès aux responsabilités."},
-   {w:"l'émancipation", ex:"L'émancipation des femmes a transformé la vie politique."},
-   {w:"nuancer", ex:"Je nuancerais : l'affirmation est trop catégorique."},
-   {w:"la volonté politique", ex:"Tout dépend de la volonté politique."},
-   {w:"en définitive", ex:"En définitive, la parité renforce la démocratie sans la définir."}]},
- {n:13, t:'Réseaux sociaux et vraies amitiés',
-  cons:"Pensez-vous que les réseaux sociaux permettent de se faire de vrais amis ?",
-  pour:["Rencontres autour d'intérêts communs","Maintien du lien à distance","Première étape vers une rencontre réelle"],
-  contre:["Relations superficielles","Image idéalisée de soi","Le nombre remplace la qualité"],
-  plan:'OREO',
+   {w:"l'égalité des chances", ex:"La gratuité est un instrument d'égalité des chances."},
+   {w:"l'endettement étudiant", ex:"L'endettement étudiant pèse sur toute une génération."},
+   {w:"le financement public", ex:"Tout dépend du niveau de financement public."},
+   {w:"la sélection", ex:"Sans frais, la sélection se fait sur d'autres critères."},
+   {w:"le capital humain", ex:"L'État investit dans son capital humain."},
+   {w:"l'effet d'aubaine", ex:"La gratuité pour tous crée un effet d'aubaine pour les plus aisés."},
+   {w:"une bourse sur critères sociaux", ex:"Une bourse sur critères sociaux cible mieux l'aide."},
+   {w:"le décrochage", ex:"La gratuité seule n'empêche pas le décrochage."}]},
+ {n:203, cat:"Éducation", t:"Sujet 3", plan:"analytique",
+  cons:"On constate que de plus en plus d'élèves suivent des cours particuliers en dehors de l'école. Qu'en pensez-vous ?",
   b2:[
-   {w:"les réseaux sociaux", ex:"Les réseaux sociaux ont bouleversé nos façons de nouer des liens."},
-   {w:"une amitié virtuelle", ex:"Une amitié virtuelle peut devenir réelle."},
-   {w:"superficiel", ex:"Beaucoup de contacts restent superficiels."},
-   {w:"nouer des liens", ex:"On peut nouer des liens sincères autour d'une passion commune."},
-   {w:"la proximité", ex:"L'amitié se nourrit de proximité et de temps partagé."},
-   {w:"une communauté en ligne", ex:"Les communautés en ligne rassemblent des gens isolés."},
-   {w:"la mise en scène de soi", ex:"La mise en scène de soi fausse la relation."},
-   {w:"l'entraide", ex:"J'ai vu de vraies formes d'entraide naître en ligne."},
-   {w:"le lien social", ex:"Ces plateformes maintiennent le lien social à distance."},
-   {w:"la confiance", ex:"La confiance se construit difficilement derrière un écran."},
-   {w:"un tremplin", ex:"Le réseau est un tremplin, pas une fin en soi."},
-   {w:"l'isolement", ex:"Paradoxalement, l'hyperconnexion peut accentuer l'isolement."},
-   {w:"la qualité plutôt que la quantité", ex:"En amitié, la qualité compte plus que la quantité."},
-   {w:"à condition que", ex:"Oui, à condition que la relation sorte de l'écran."}]},
- {n:14, t:"Langues étrangères dès la maternelle",
-  cons:"L'enseignement des langues étrangères devrait commencer dès l'école maternelle. Êtes-vous d'accord avec cette affirmation ?",
-  pour:["Plasticité du cerveau et prononciation","Ouverture culturelle précoce","Avantage futur sur le marché du travail"],
-  contre:["Priorité à la langue maternelle","Surcharge des enfants","Manque d'enseignants formés"],
-  plan:'dialectique',
+   {w:"le soutien scolaire", ex:"Le soutien scolaire est devenu un marché à part entière."},
+   {w:"la pression scolaire", ex:"La pression scolaire commence de plus en plus tôt."},
+   {w:"l'orientation", ex:"Tout se joue au moment de l'orientation."},
+   {w:"un effectif chargé", ex:"Avec un effectif chargé, l'enseignant ne peut pas tout suivre."},
+   {w:"la reproduction sociale", ex:"Ce système alimente la reproduction sociale."},
+   {w:"le décrochage", ex:"Détecté tôt, le décrochage coûte moins cher à corriger."},
+   {w:"le dédoublement des classes", ex:"Le dédoublement des classes a montré des résultats."},
+   {w:"un palliatif", ex:"Les cours particuliers sont un palliatif, pas une réponse."}]},
+ {n:204, cat:"Éducation", t:"Sujet 4", plan:"dialectique",
+  cons:"Faut-il continuer à noter les élèves par des chiffres ? Qu'en pensez-vous ?",
   b2:[
-   {w:"l'apprentissage précoce", ex:"L'apprentissage précoce facilite la prononciation."},
-   {w:"la plasticité cérébrale", ex:"La plasticité cérébrale des jeunes enfants est un atout."},
-   {w:"l'éveil aux langues", ex:"L'éveil aux langues développe la curiosité."},
-   {w:"le bilinguisme", ex:"Le bilinguisme précoce améliore la flexibilité mentale."},
-   {w:"la langue maternelle", ex:"Il ne faut pas négliger la langue maternelle."},
-   {w:"la surcharge", ex:"Certains craignent une surcharge des programmes."},
-   {w:"des enseignants qualifiés", ex:"Cela suppose des enseignants qualifiés en nombre suffisant."},
-   {w:"ludique", ex:"À cet âge, l'apprentissage doit rester ludique."},
-   {w:"l'ouverture culturelle", ex:"Les langues favorisent l'ouverture culturelle."},
-   {w:"un atout professionnel", ex:"C'est un atout professionnel considérable à long terme."},
-   {w:"les inégalités", ex:"Sans moyens publics, cela creuse les inégalités."},
-   {w:"la continuité pédagogique", ex:"La continuité pédagogique est essentielle jusqu'au secondaire."},
-   {w:"acquérir", ex:"Les enfants acquièrent les sons sans effort apparent."},
-   {w:"je suis plutôt favorable", ex:"Je suis plutôt favorable, avec quelques réserves."}]},
- {n:15, t:'Écologie et société moderne',
-  cons:"L'écologie est nécessaire pour bâtir une société moderne. Qu'en pensez-vous ?",
-  pour:["Urgence climatique","Innovation et emplois verts","Santé publique et qualité de vie"],
-  contre:["Coût de la transition","Inégalités entre pays","Risque de décroissance"],
-  plan:'analytique',
+   {w:"l'évaluation par compétences", ex:"L'évaluation par compétences décrit ce que l'élève sait faire."},
+   {w:"un repère", ex:"La note donne un repère immédiat, mais grossier."},
+   {w:"la constance de la correction", ex:"La constance de la correction est rarement assurée."},
+   {w:"démotiver", ex:"Une mauvaise note répétée finit par démotiver."},
+   {w:"le classement", ex:"Le classement transforme l'apprentissage en compétition."},
+   {w:"la progression", ex:"Ce qui compte, c'est la progression, pas le niveau absolu."},
+   {w:"un retour formatif", ex:"Un retour formatif fait progresser plus qu'un chiffre."},
+   {w:"l'estime de soi", ex:"À dix ans, la note construit ou détruit l'estime de soi."}]},
+ {n:205, cat:"Éducation", t:"Sujet 5", plan:"comparatif",
+  cons:"L'école à la maison vaut-elle mieux que l'école ordinaire ? Qu'en pensez-vous ?",
   b2:[
-   {w:"la transition écologique", ex:"La transition écologique est un chantier de société."},
-   {w:"le réchauffement climatique", ex:"Le réchauffement climatique impose des choix urgents."},
-   {w:"le développement durable", ex:"Le développement durable concilie économie et environnement."},
-   {w:"les énergies renouvelables", ex:"Les énergies renouvelables créent des emplois."},
-   {w:"l'empreinte carbone", ex:"Réduire notre empreinte carbone relève de la responsabilité collective."},
-   {w:"la biodiversité", ex:"La biodiversité s'effondre à un rythme inquiétant."},
-   {w:"la sobriété", ex:"La sobriété énergétique n'est pas synonyme de régression."},
-   {w:"les ressources naturelles", ex:"Nos ressources naturelles ne sont pas illimitées."},
-   {w:"l'innovation verte", ex:"L'innovation verte est un moteur de modernité."},
-   {w:"le coût de la transition", ex:"Le coût de la transition pèse sur les ménages modestes."},
-   {w:"les générations futures", ex:"Nous avons une dette envers les générations futures."},
-   {w:"les politiques publiques", ex:"Les politiques publiques doivent accompagner les citoyens."},
-   {w:"la justice climatique", ex:"La justice climatique exige de partager l'effort."},
-   {w:"incontournable", ex:"L'écologie est devenue incontournable."}]},
- {n:16, t:'Technologie et vie quotidienne',
-  cons:"La technologie (téléphone, Internet, réseaux sociaux…) a pris une place trop importante dans notre vie quotidienne. Qu'en pensez-vous ?",
-  pour:["Dépendance et perte d'attention","Impact sur le sommeil et les relations","Surveillance et données personnelles"],
-  contre:["Accès à l'information et au savoir","Gain de temps et télétravail","Lien avec les proches éloignés"],
-  plan:'dialectique',
+   {w:"l'instruction en famille", ex:"L'instruction en famille reste très minoritaire."},
+   {w:"la socialisation", ex:"L'école assure une socialisation difficile à remplacer."},
+   {w:"le programme officiel", ex:"Le programme officiel garantit un socle commun."},
+   {w:"un rythme individualisé", ex:"Un rythme individualisé profite aux élèves atypiques."},
+   {w:"la mixité sociale", ex:"La mixité sociale ne s'improvise pas à la maison."},
+   {w:"le contrôle pédagogique", ex:"Un contrôle pédagogique régulier est indispensable."},
+   {w:"l'isolement", ex:"Le risque principal reste l'isolement."},
+   {w:"une solution de repli", ex:"C'est une solution de repli utile, pas un modèle à généraliser."}]},
+ {n:206, cat:"Éducation", t:"Sujet 6", plan:"dialectique",
+  cons:"Beaucoup estiment qu'il faut avoir fait de longues études pour bien gagner sa vie. Êtes-vous d'accord avec cette affirmation ?",
   b2:[
-   {w:"l'omniprésence", ex:"L'omniprésence des écrans modifie nos comportements."},
-   {w:"la dépendance", ex:"La dépendance au téléphone touche tous les âges."},
-   {w:"la capacité de concentration", ex:"Notre capacité de concentration diminue."},
-   {w:"la déconnexion", ex:"Le droit à la déconnexion devient une revendication."},
-   {w:"les données personnelles", ex:"Nos données personnelles sont exploitées à notre insu."},
-   {w:"l'accès au savoir", ex:"Internet démocratise l'accès au savoir."},
-   {w:"le télétravail", ex:"Le télétravail n'existerait pas sans ces outils."},
-   {w:"la sédentarité", ex:"Les écrans favorisent la sédentarité."},
-   {w:"un usage raisonné", ex:"Tout dépend d'un usage raisonné."},
-   {w:"la sphère privée", ex:"La technologie envahit la sphère privée."},
-   {w:"faciliter", ex:"Elle facilite les démarches du quotidien."},
-   {w:"l'esprit critique", ex:"Il faut développer l'esprit critique face aux contenus."},
-   {w:"une double face", ex:"La technologie a une double face."},
-   {w:"trouver un équilibre", ex:"L'enjeu est de trouver un équilibre."}]},
- {n:17, t:'Services publics : moins performants ?',
-  cons:"Les services publics (poste, hôpitaux, administrations) sont moins performants aujourd'hui qu'il y a quelques années. Êtes-vous d'accord avec cette affirmation ?",
-  pour:["Délais d'attente plus longs","Fermetures en zone rurale","Manque de personnel"],
-  contre:["Numérisation des démarches","Attentes des usagers plus élevées","Différences selon les régions"],
-  plan:'analytique',
+   {w:"un niveau de diplôme", ex:"Le revenu reste corrélé au niveau de diplôme."},
+   {w:"une compétence rare", ex:"Ce qui se paie cher, c'est une compétence rare."},
+   {w:"un métier en pénurie", ex:"Les métiers en pénurie offrent des salaires élevés sans diplôme long."},
+   {w:"la reconversion", ex:"Le diplôme facilite la reconversion en milieu de carrière."},
+   {w:"le déclassement", ex:"Beaucoup de diplômés connaissent le déclassement."},
+   {w:"la formation professionnelle", ex:"La formation professionnelle est trop peu valorisée."},
+   {w:"une trajectoire", ex:"Une trajectoire ne se résume pas à un salaire."},
+   {w:"la sécurité de l'emploi", ex:"Le diplôme apporte surtout de la sécurité de l'emploi."}]},
+ {n:207, cat:"Éducation", t:"Sujet 7", plan:"OREO",
+  cons:"Pensez-vous que l'école devrait donner plus de place à la musique, au théâtre et aux arts visuels ?",
   b2:[
-   {w:"les services publics", ex:"Les services publics garantissent l'égalité d'accès."},
-   {w:"la performance", ex:"La performance se mesure aussi à la qualité humaine."},
-   {w:"les délais d'attente", ex:"Les délais d'attente à l'hôpital se sont allongés."},
-   {w:"la pénurie de personnel", ex:"La pénurie de personnel soignant est criante."},
-   {w:"la dématérialisation", ex:"La dématérialisation simplifie certaines démarches."},
-   {w:"la fracture numérique", ex:"Mais elle creuse la fracture numérique."},
-   {w:"les zones rurales", ex:"Les zones rurales perdent leurs bureaux de poste."},
-   {w:"les restrictions budgétaires", ex:"Les restrictions budgétaires expliquent en partie ce recul."},
-   {w:"un usager", ex:"Les usagers sont plus exigeants qu'autrefois."},
-   {w:"la proximité", ex:"La proximité des services est un enjeu d'égalité."},
-   {w:"la modernisation", ex:"La modernisation ne doit pas exclure les plus fragiles."},
-   {w:"le financement", ex:"Tout dépend du financement accordé."},
-   {w:"les inégalités territoriales", ex:"Les inégalités territoriales se creusent."},
-   {w:"à mon avis", ex:"À mon avis, la situation est contrastée."}]},
- {n:18, t:"Expérience professionnelle avant l'université",
-  cons:"Tous les jeunes devraient avoir une expérience professionnelle avant d'entrer à l'université. Qu'en pensez-vous ?",
-  pour:["Maturité et orientation plus claire","Autonomie financière","Compétences pratiques"],
-  contre:["Risque d'abandon des études","Inégalités selon les milieux","Certaines filières exigent la continuité"],
-  plan:'dialectique',
+   {w:"une matière à part entière", ex:"Il faut en faire une matière à part entière."},
+   {w:"l'expression orale", ex:"Le théâtre travaille l'expression orale mieux qu'un exposé."},
+   {w:"la confiance en soi", ex:"La scène construit la confiance en soi."},
+   {w:"le capital culturel", ex:"L'école compense un capital culturel inégal."},
+   {w:"raccrocher", ex:"Ces activités raccrochent les élèves en difficulté."},
+   {w:"l'emploi du temps", ex:"L'emploi du temps est déjà saturé."},
+   {w:"la créativité", ex:"La créativité s'apprend comme le reste."},
+   {w:"une discipline secondaire", ex:"On les traite encore comme des disciplines secondaires."}]},
+ {n:208, cat:"Santé", t:"Sujet 8", plan:"dialectique",
+  cons:"Les entreprises devraient réserver une heure par semaine à l'activité physique de leurs employés. Êtes-vous d'accord avec cette affirmation ?",
   b2:[
-   {w:"une année de césure", ex:"Une année de césure aide à mûrir un projet."},
-   {w:"l'orientation", ex:"Beaucoup de jeunes choisissent leur orientation par défaut."},
-   {w:"la maturité", ex:"Le travail apporte une maturité précieuse."},
-   {w:"l'autonomie financière", ex:"L'autonomie financière responsabilise."},
-   {w:"les compétences transversales", ex:"On y développe des compétences transversales."},
-   {w:"le monde du travail", ex:"Découvrir le monde du travail tôt évite les désillusions."},
-   {w:"le décrochage", ex:"Le risque, c'est le décrochage : certains ne reprennent jamais."},
-   {w:"les inégalités sociales", ex:"Tous n'ont pas les mêmes opportunités d'emploi."},
-   {w:"un stage", ex:"Un stage encadré peut remplacer une expérience longue."},
-   {w:"la continuité des études", ex:"Certaines filières exigent la continuité des études."},
-   {w:"la motivation", ex:"Les étudiants qui ont travaillé sont souvent plus motivés."},
-   {w:"généraliser", ex:"Faut-il pour autant généraliser cette obligation ?"},
-   {w:"le parcours", ex:"Chaque parcours est différent."},
-   {w:"je pense au contraire que", ex:"Je pense au contraire que cela devrait rester un choix."}]},
- {n:19, t:'Expérience vs diplômes à l\'embauche',
-  cons:"Lorsqu'elles embauchent des salariés, les entreprises devraient donner plus d'importance à l'expérience professionnelle qu'aux diplômes obtenus. Qu'en pensez-vous ?",
-  pour:["Compétences prouvées sur le terrain","Adaptabilité et savoir-être","Diplômes parfois déconnectés"],
-  contre:["Le diplôme garantit des bases solides","Certains métiers l'exigent","Risque d'exclure les jeunes diplômés"],
-  plan:'comparatif',
+   {w:"la sédentarité", ex:"La sédentarité au bureau coûte cher à long terme."},
+   {w:"un trouble musculo-squelettique", ex:"Les troubles musculo-squelettiques sont la première cause d'arrêt."},
+   {w:"l'absentéisme", ex:"Les entreprises qui l'ont fait constatent moins d'absentéisme."},
+   {w:"la productivité", ex:"Une pause active améliore la productivité de l'après-midi."},
+   {w:"la vie privée", ex:"Il y a une frontière à ne pas franchir avec la vie privée."},
+   {w:"une contrainte de service", ex:"Dans certains métiers, la contrainte de service rend la mesure irréaliste."},
+   {w:"la prévention", ex:"Mieux vaut investir dans la prévention que dans la réparation."},
+   {w:"l'aménagement du poste", ex:"L'aménagement du poste produit plus d'effet qu'une heure de sport."}]},
+ {n:209, cat:"Santé", t:"Sujet 9", plan:"analytique",
+  cons:"On constate que beaucoup de gens cherchent sur Internet avant de consulter un médecin. Qu'en pensez-vous ?",
   b2:[
-   {w:"l'embauche", ex:"À l'embauche, les critères varient selon les secteurs."},
-   {w:"les compétences", ex:"L'expérience prouve les compétences réelles."},
-   {w:"le savoir-être", ex:"Le savoir-être ne s'apprend pas à l'université."},
-   {w:"un diplôme", ex:"Le diplôme atteste des connaissances théoriques."},
-   {w:"le terrain", ex:"Le terrain révèle des qualités invisibles sur un CV."},
-   {w:"l'adaptabilité", ex:"L'adaptabilité est devenue essentielle."},
-   {w:"les métiers réglementés", ex:"Les métiers réglementés exigent un diplôme."},
-   {w:"un jeune diplômé", ex:"Les jeunes diplômés seraient pénalisés."},
-   {w:"la formation continue", ex:"La formation continue réconcilie les deux."},
-   {w:"complémentaire", ex:"Expérience et diplôme sont complémentaires."},
-   {w:"le potentiel", ex:"Recruter, c'est aussi miser sur le potentiel."},
-   {w:"la validation des acquis", ex:"La validation des acquis reconnaît l'expérience."},
-   {w:"privilégier", ex:"Je privilégierais l'expérience pour les postes opérationnels."},
-   {w:"tout dépend de", ex:"Tout dépend du poste et du secteur."}]},
- {n:20, t:'Voyager pour connaître le monde ?',
-  cons:"Il n'est pas nécessaire de voyager pour connaître le monde. Êtes-vous d'accord avec cette affirmation ?",
-  pour:["Livres, documentaires, Internet","Rencontrer l'autre chez soi","Impact écologique du tourisme"],
-  contre:["L'expérience directe est irremplaçable","Les sens et les émotions","Confronter ses préjugés"],
-  plan:'OREO',
+   {w:"l'auto-diagnostic", ex:"L'auto-diagnostic conduit souvent à surestimer la gravité."},
+   {w:"un délai de rendez-vous", ex:"Le délai de rendez-vous explique en grande partie le phénomène."},
+   {w:"le désert médical", ex:"Dans un désert médical, Internet devient le premier recours."},
+   {w:"une source fiable", ex:"Encore faut-il distinguer une source fiable d'un forum."},
+   {w:"l'anxiété", ex:"La lecture des symptômes alimente l'anxiété."},
+   {w:"la prise en charge", ex:"Un mauvais tri retarde la prise en charge."},
+   {w:"un patient informé", ex:"Un patient informé pose de meilleures questions."},
+   {w:"la téléconsultation", ex:"La téléconsultation permet un premier tri rapide."}]},
+ {n:210, cat:"Santé", t:"Sujet 10", plan:"OREO",
+  cons:"Pensez-vous qu'il faille taxer davantage les produits très sucrés ?",
   b2:[
-   {w:"connaître le monde", ex:"Connaître le monde, c'est aussi comprendre ses habitants."},
-   {w:"l'expérience directe", ex:"L'expérience directe reste irremplaçable."},
-   {w:"la découverte", ex:"La découverte passe par tous les sens."},
-   {w:"les préjugés", ex:"Voyager confronte nos préjugés à la réalité."},
-   {w:"le tourisme de masse", ex:"Le tourisme de masse n'apprend pas grand-chose."},
-   {w:"un documentaire", ex:"Un bon documentaire vaut parfois un voyage."},
-   {w:"la curiosité", ex:"Tout commence par la curiosité."},
-   {w:"l'ouverture d'esprit", ex:"L'ouverture d'esprit ne dépend pas du kilométrage."},
-   {w:"l'empreinte écologique", ex:"L'empreinte écologique des voyages pose question."},
-   {w:"la rencontre", ex:"La rencontre peut avoir lieu dans son propre quartier."},
-   {w:"le dépaysement", ex:"Le dépaysement stimule la réflexion."},
-   {w:"s'informer", ex:"S'informer, c'est déjà voyager."},
-   {w:"vécu", ex:"Le savoir vécu diffère du savoir lu."},
-   {w:"je ne partage pas cet avis", ex:"Je ne partage pas cet avis, ou seulement en partie."}]}
+   {w:"une taxe comportementale", ex:"Une taxe comportementale vise à modifier les achats."},
+   {w:"reformuler un produit", ex:"Les industriels ont reformulé leurs produits pour éviter la taxe."},
+   {w:"une maladie chronique", ex:"Les maladies chroniques liées au sucre augmentent."},
+   {w:"le coût pour la collectivité", ex:"Le coût pour la collectivité est considérable."},
+   {w:"un impôt régressif", ex:"C'est un impôt régressif, qui touche d'abord les plus modestes."},
+   {w:"l'accessibilité", ex:"Sans accessibilité des produits frais, la mesure est injuste."},
+   {w:"l'étiquetage nutritionnel", ex:"L'étiquetage nutritionnel complète utilement la taxe."},
+   {w:"redistribuer", ex:"L'essentiel est de redistribuer la recette vers la prévention."}]},
+ {n:211, cat:"Santé", t:"Sujet 11", plan:"comparatif",
+  cons:"La consultation à distance peut-elle remplacer la consultation chez le médecin ? Qu'en pensez-vous ?",
+  b2:[
+   {w:"un examen clinique", ex:"Un examen clinique ne se fait pas par écran."},
+   {w:"le suivi", ex:"La distance convient bien au suivi d'un traitement connu."},
+   {w:"un désert médical", ex:"Dans un désert médical, elle évite des renoncements aux soins."},
+   {w:"la relation de confiance", ex:"La relation de confiance se construit en présence."},
+   {w:"désengorger", ex:"Elle permet de désengorger les cabinets et les urgences."},
+   {w:"la fracture numérique", ex:"La fracture numérique en exclut une partie de la population."},
+   {w:"un acte technique", ex:"Aucun acte technique n'est possible à distance."},
+   {w:"être complémentaire", ex:"Les deux formes sont complémentaires, pas interchangeables."}]},
+ {n:212, cat:"Santé", t:"Sujet 12", plan:"thématique",
+  cons:"Nos villes sont-elles construites pour la santé de leurs habitants ? Qu'en pensez-vous ?",
+  b2:[
+   {w:"l'urbanisme", ex:"L'urbanisme est une politique de santé qui ne dit pas son nom."},
+   {w:"la qualité de l'air", ex:"La qualité de l'air varie fortement d'un quartier à l'autre."},
+   {w:"un îlot de chaleur", ex:"Les îlots de chaleur rendent l'été dangereux pour les personnes âgées."},
+   {w:"la mobilité active", ex:"La mobilité active doit devenir le choix le plus simple."},
+   {w:"les nuisances sonores", ex:"Les nuisances sonores dégradent le sommeil sur le long terme."},
+   {w:"un espace vert", ex:"Un espace vert à dix minutes à pied change la vie quotidienne."},
+   {w:"l'isolement", ex:"Les lieux de rencontre réduisent l'isolement des habitants."},
+   {w:"une inégalité territoriale", ex:"Les inégalités de santé sont aussi des inégalités territoriales."}]},
+ {n:213, cat:"Santé", t:"Sujet 13", plan:"dialectique",
+  cons:"Le stress peut aussi avoir des effets positifs et pousser les gens à agir. Êtes-vous d'accord avec cette affirmation ?",
+  b2:[
+   {w:"un stress ponctuel", ex:"Un stress ponctuel peut améliorer la performance."},
+   {w:"un stress chronique", ex:"Le stress chronique use l'organisme."},
+   {w:"la récupération", ex:"Tout dépend du temps de récupération."},
+   {w:"la mobilisation", ex:"Il provoque une mobilisation de l'énergie."},
+   {w:"l'épuisement professionnel", ex:"Sans répit, on va vers l'épuisement professionnel."},
+   {w:"le sommeil", ex:"Le premier signe d'alerte, c'est le sommeil."},
+   {w:"un facteur de risque", ex:"C'est un facteur de risque cardiovasculaire reconnu."},
+   {w:"les conditions de travail", ex:"On parle de stress pour éviter de parler des conditions de travail."}]},
+ {n:214, cat:"Santé", t:"Sujet 14", plan:"OREO",
+  cons:"Pensez-vous que l'État devrait assurer la gratuité complète des soins ?",
+  b2:[
+   {w:"le renoncement aux soins", ex:"Le renoncement aux soins finit par coûter plus cher."},
+   {w:"la prévention", ex:"La prévention n'a d'effet que si elle est accessible."},
+   {w:"un délai d'attente", ex:"La gratuité allonge parfois les délais d'attente."},
+   {w:"le reste à charge", ex:"Le reste à charge écarte les ménages modestes."},
+   {w:"la solidarité", ex:"Le système repose sur une solidarité entre bien portants et malades."},
+   {w:"un arbitrage budgétaire", ex:"C'est d'abord un arbitrage budgétaire."},
+   {w:"l'accès universel", ex:"L'accès universel est une question d'efficacité, pas seulement de justice."},
+   {w:"la régulation", ex:"Une régulation reste nécessaire pour éviter les abus."}]},
+ {n:215, cat:"Écologie", t:"Sujet 15", plan:"dialectique",
+  cons:"Chacun devrait réduire sa consommation de viande. Êtes-vous d'accord avec cette affirmation ?",
+  b2:[
+   {w:"l'empreinte carbone", ex:"L'empreinte carbone de l'élevage est considérable."},
+   {w:"l'usage des terres", ex:"L'usage des terres pour l'alimentation animale est massif."},
+   {w:"une habitude alimentaire", ex:"Les habitudes alimentaires changent lentement."},
+   {w:"une alternative végétale", ex:"Les alternatives végétales sont encore chères."},
+   {w:"culpabiliser", ex:"Culpabiliser le consommateur ne suffit pas."},
+   {w:"un levier collectif", ex:"Les cantines sont un levier collectif efficace."},
+   {w:"la filière", ex:"Il faut accompagner la filière, pas la condamner."},
+   {w:"une consommation raisonnée", ex:"Une consommation raisonnée vaut mieux qu'une interdiction."}]},
+ {n:216, cat:"Écologie", t:"Sujet 16", plan:"analytique",
+  cons:"On observe que de plus en plus de villes limitent la circulation des voitures en centre-ville. Qu'en pensez-vous ?",
+  b2:[
+   {w:"une zone à faibles émissions", ex:"Une zone à faibles émissions suppose une alternative crédible."},
+   {w:"le report modal", ex:"Le report modal ne se décrète pas, il s'organise."},
+   {w:"la périphérie", ex:"Les habitants de la périphérie sont les premiers pénalisés."},
+   {w:"le commerce de proximité", ex:"Le commerce de proximité profite souvent de la piétonnisation."},
+   {w:"une dérogation", ex:"Des dérogations sont indispensables pour les artisans."},
+   {w:"l'espace public", ex:"On rend l'espace public aux piétons."},
+   {w:"la congestion", ex:"La congestion se déplace parfois au lieu de disparaître."},
+   {w:"l'acceptabilité sociale", ex:"Tout dépend de l'acceptabilité sociale de la mesure."}]},
+ {n:217, cat:"Écologie", t:"Sujet 17", plan:"OREO",
+  cons:"Pensez-vous que le recyclage suffise à régler le problème des déchets ?",
+  b2:[
+   {w:"la réduction à la source", ex:"La réduction à la source est le seul vrai levier."},
+   {w:"le réemploi", ex:"Le réemploi évite la dépense énergétique du recyclage."},
+   {w:"une filière de tri", ex:"Les filières de tri ont progressé, mais restent incomplètes."},
+   {w:"un emballage", ex:"Le meilleur emballage est celui qui n'existe pas."},
+   {w:"se déculpabiliser", ex:"Trier permet surtout de se déculpabiliser."},
+   {w:"la consigne", ex:"La consigne du verre a fait ses preuves."},
+   {w:"l'obsolescence", ex:"L'obsolescence rapide annule les gains du recyclage."},
+   {w:"la matière première", ex:"Chaque cycle dégrade un peu la matière première."}]},
+ {n:218, cat:"Écologie", t:"Sujet 18", plan:"comparatif",
+  cons:"Vaut-il mieux faire réparer un appareil ou en acheter un neuf ? Qu'en pensez-vous ?",
+  b2:[
+   {w:"la durée de vie", ex:"On a divisé par deux la durée de vie des appareils."},
+   {w:"une pièce détachée", ex:"Sans pièces détachées, la réparation est impossible."},
+   {w:"l'indice de réparabilité", ex:"L'indice de réparabilité guide désormais l'achat."},
+   {w:"la main-d'œuvre", ex:"Le coût de la main-d'œuvre décourage la réparation."},
+   {w:"l'obsolescence programmée", ex:"L'obsolescence programmée est difficile à prouver."},
+   {w:"l'énergie grise", ex:"L'énergie grise d'un appareil neuf est considérable."},
+   {w:"un atelier de réparation", ex:"Les ateliers de réparation se multiplient dans les quartiers."},
+   {w:"la sobriété", ex:"La sobriété consiste d'abord à garder ce qu'on a."}]},
+ {n:219, cat:"Écologie", t:"Sujet 19", plan:"dialectique",
+  cons:"La transition écologique dépend avant tout des gestes individuels. Êtes-vous d'accord avec cette affirmation ?",
+  b2:[
+   {w:"un geste individuel", ex:"Le geste individuel a une portée réelle mais limitée."},
+   {w:"l'ordre de grandeur", ex:"Il faut raisonner en ordre de grandeur, pas en bonne volonté."},
+   {w:"la responsabilité", ex:"On déplace la responsabilité vers le consommateur."},
+   {w:"une infrastructure", ex:"Sans infrastructure, le bon choix reste impraticable."},
+   {w:"une politique publique", ex:"Une politique publique cohérente change la donne."},
+   {w:"l'exemplarité", ex:"L'exemplarité crée une norme sociale."},
+   {w:"un effet de levier", ex:"Les cantines et les transports ont un effet de levier énorme."},
+   {w:"la contrainte réglementaire", ex:"La contrainte réglementaire produit plus que l'incitation."}]},
+ {n:220, cat:"Écologie", t:"Sujet 20", plan:"analytique",
+  cons:"On constate que l'on consomme, dans les pays riches, bien plus que ce dont on a besoin. Qu'en pensez-vous ?",
+  b2:[
+   {w:"la surconsommation", ex:"La surconsommation est devenue le moteur de l'économie."},
+   {w:"un besoin créé", ex:"La publicité fabrique des besoins créés de toutes pièces."},
+   {w:"la durée d'usage", ex:"La durée d'usage réelle est dérisoire."},
+   {w:"l'épuisement des ressources", ex:"L'épuisement des ressources est le point aveugle du modèle."},
+   {w:"le renouvellement", ex:"Le renouvellement permanent des modèles entretient l'achat."},
+   {w:"l'économie du partage", ex:"L'économie du partage réduit le besoin de posséder."},
+   {w:"la sobriété", ex:"La sobriété n'est pas la privation."},
+   {w:"externaliser", ex:"On externalise la pollution vers d'autres pays."}]},
+ {n:221, cat:"Écologie", t:"Sujet 21", plan:"OREO",
+  cons:"Pensez-vous que les transports en commun devraient être gratuits ?",
+  b2:[
+   {w:"le report modal", ex:"Le report modal dépend surtout de la fréquence."},
+   {w:"la fréquence", ex:"Une fréquence faible décourage, quel que soit le prix."},
+   {w:"une recette d'exploitation", ex:"La gratuité supprime une recette d'exploitation."},
+   {w:"le financement", ex:"Le financement se reporte alors sur l'impôt local."},
+   {w:"la fraude", ex:"La gratuité règle d'un coup la question de la fraude."},
+   {w:"un tarif social", ex:"Un tarif social cible mieux ceux qui en ont besoin."},
+   {w:"la desserte", ex:"Tout se joue sur la qualité de la desserte."},
+   {w:"la congestion", ex:"L'objectif reste de réduire la congestion automobile."}]},
+ {n:222, cat:"Français", t:"Sujet 22", plan:"dialectique",
+  cons:"Apprendre une langue à l'âge adulte est aussi efficace que l'apprendre enfant. Êtes-vous d'accord avec cette affirmation ?",
+  b2:[
+   {w:"l'acquisition", ex:"L'acquisition enfantine est implicite, celle de l'adulte est consciente."},
+   {w:"la phonétique", ex:"La phonétique reste le point faible de l'apprenant tardif."},
+   {w:"le transfert", ex:"Le transfert depuis la langue maternelle accélère beaucoup de choses."},
+   {w:"l'exposition", ex:"Sans exposition quotidienne, rien ne s'installe."},
+   {w:"la fossilisation", ex:"Certaines erreurs finissent par se fossiliser."},
+   {w:"l'inhibition", ex:"La peur de se tromper crée une inhibition à l'oral."},
+   {w:"la métacognition", ex:"L'adulte dispose d'une métacognition que l'enfant n'a pas."},
+   {w:"l'immersion", ex:"Rien ne remplace l'immersion, quel que soit l'âge."}]},
+ {n:223, cat:"Français", t:"Sujet 23", plan:"analytique",
+  cons:"On constate que les mots anglais sont de plus en plus nombreux dans le français courant. Qu'en pensez-vous ?",
+  b2:[
+   {w:"un anglicisme", ex:"Certains anglicismes comblent un vide, d'autres non."},
+   {w:"un emprunt", ex:"L'emprunt est un mécanisme normal des langues vivantes."},
+   {w:"le rayonnement", ex:"Le rayonnement d'une langue suit celui de son économie."},
+   {w:"un équivalent", ex:"Quand l'équivalent arrive trop tard, l'usage est déjà fixé."},
+   {w:"l'intelligibilité", ex:"Au travail, l'intelligibilité doit primer."},
+   {w:"le registre", ex:"Ces mots marquent surtout un registre professionnel."},
+   {w:"s'enrichir", ex:"Une langue qui emprunte est une langue qui s'enrichit."},
+   {w:"l'exclusion", ex:"Le jargon anglais produit de l'exclusion dans les réunions."}]},
+ {n:224, cat:"Français", t:"Sujet 24", plan:"OREO",
+  cons:"Pensez-vous qu'un professeur doive corriger toutes les erreurs de ses élèves ?",
+  b2:[
+   {w:"la correction", ex:"La correction immédiate convient aux exercices de précision."},
+   {w:"la fluidité", ex:"En activité de fluidité, on note et on corrige après."},
+   {w:"la fossilisation", ex:"Ne rien corriger favorise la fossilisation."},
+   {w:"l'inhibition", ex:"Une correction permanente crée de l'inhibition."},
+   {w:"un objectif pédagogique", ex:"La correction dépend de l'objectif pédagogique de la tâche."},
+   {w:"l'auto-correction", ex:"Mieux vaut amener l'élève à l'auto-correction."},
+   {w:"une erreur systématique", ex:"On cible les erreurs systématiques, pas les accidents."},
+   {w:"la progression", ex:"La progression compte plus que la perfection ponctuelle."}]},
+ {n:225, cat:"Français", t:"Sujet 25", plan:"comparatif",
+  cons:"Les applications pour apprendre les langues valent-elles les cours avec un professeur ? Qu'en pensez-vous ?",
+  b2:[
+   {w:"la régularité", ex:"L'application installe une régularité quotidienne."},
+   {w:"l'interaction", ex:"L'interaction réelle ne se simule pas."},
+   {w:"un retour personnalisé", ex:"Le professeur donne un retour personnalisé immédiat."},
+   {w:"la production orale", ex:"La production orale spontanée reste le point faible des applications."},
+   {w:"la motivation", ex:"Le jeu entretient la motivation sur la durée."},
+   {w:"un palier", ex:"Les applications plafonnent vite à un certain palier."},
+   {w:"être complémentaire", ex:"Les deux outils sont complémentaires."},
+   {w:"l'autonomie", ex:"Elles développent une autonomie utile entre deux cours."}]},
+ {n:226, cat:"Français", t:"Sujet 26", plan:"thématique",
+  cons:"Faut-il parler parfaitement français pour se sentir francophone ? Qu'en pensez-vous ?",
+  b2:[
+   {w:"la francophonie", ex:"La francophonie n'a jamais eu une seule norme."},
+   {w:"une variation", ex:"La variation fait partie de toute langue vivante."},
+   {w:"l'insécurité linguistique", ex:"L'insécurité linguistique freine plus que le niveau réel."},
+   {w:"un accent", ex:"Un accent raconte un parcours."},
+   {w:"l'appartenance", ex:"Le sentiment d'appartenance vient de l'usage, pas de la perfection."},
+   {w:"le jugement", ex:"Le jugement des locuteurs natifs décourage beaucoup d'apprenants."},
+   {w:"s'approprier", ex:"On s'approprie une langue en la parlant imparfaitement."},
+   {w:"la norme", ex:"La norme est utile à l'écrit, pesante à l'oral."}]},
+ {n:227, cat:"Français", t:"Sujet 27", plan:"dialectique",
+  cons:"On peut vivre dans un pays sans en parler la langue. Êtes-vous d'accord avec cette affirmation ?",
+  b2:[
+   {w:"la survie quotidienne", ex:"On assure la survie quotidienne, pas la participation."},
+   {w:"la dépendance", ex:"Sans la langue, on vit dans la dépendance d'un traducteur."},
+   {w:"l'accès aux droits", ex:"L'accès aux droits suppose de comprendre ce qu'on signe."},
+   {w:"un entre-soi", ex:"On finit par vivre dans un entre-soi confortable."},
+   {w:"le plafond de verre", ex:"La langue fixe un plafond de verre professionnel."},
+   {w:"l'outil de traduction", ex:"Les outils de traduction dépannent sans remplacer."},
+   {w:"la vie citoyenne", ex:"La vie citoyenne reste fermée."},
+   {w:"l'isolement", ex:"L'isolement se révèle au moment où l'on en a le plus besoin."}]},
+ {n:228, cat:"Français", t:"Sujet 28", plan:"comparatif",
+  cons:"Vaut-il mieux apprendre la langue avant de partir ou une fois sur place ? Qu'en pensez-vous ?",
+  b2:[
+   {w:"un socle", ex:"Un socle grammatical évite de tout reconstruire."},
+   {w:"l'immersion", ex:"L'immersion accélère l'oral comme rien d'autre."},
+   {w:"un besoin réel", ex:"Sur place, on apprend selon un besoin réel."},
+   {w:"la langue du quotidien", ex:"La langue du quotidien ne figure pas dans les manuels."},
+   {w:"la charge cognitive", ex:"Arriver sans bases alourdit énormément la charge cognitive."},
+   {w:"l'aisance", ex:"L'aisance ne s'acquiert qu'en situation."},
+   {w:"se replier", ex:"Sans bases, on se replie sur sa communauté."},
+   {w:"la progression", ex:"La progression est la plus rapide quand les deux se combinent."}]},
+ {n:229, cat:"Immigration", t:"Sujet 29", plan:"dialectique",
+  cons:"Les diplômes obtenus à l'étranger devraient être reconnus automatiquement. Êtes-vous d'accord avec cette affirmation ?",
+  b2:[
+   {w:"la reconnaissance des acquis", ex:"La reconnaissance des acquis devrait porter sur les compétences."},
+   {w:"le déclassement", ex:"Le déclassement professionnel est un gâchis collectif."},
+   {w:"une équivalence", ex:"L'équivalence formelle ne dit rien du savoir-faire réel."},
+   {w:"un ordre professionnel", ex:"Les ordres professionnels protègent aussi un marché."},
+   {w:"une pénurie de main-d'œuvre", ex:"La pénurie de main-d'œuvre rend la situation absurde."},
+   {w:"une mise à niveau", ex:"Une mise à niveau de six mois suffirait souvent."},
+   {w:"la sécurité du public", ex:"Pour certains métiers, la sécurité du public justifie l'examen."},
+   {w:"un stage d'adaptation", ex:"Un stage d'adaptation vaut mieux qu'un refus."}]},
+ {n:230, cat:"Immigration", t:"Sujet 30", plan:"analytique",
+  cons:"On constate que les nouveaux arrivants s'installent surtout dans les grandes villes. Qu'en pensez-vous ?",
+  b2:[
+   {w:"une métropole", ex:"Tout se concentre dans quelques métropoles."},
+   {w:"le bassin d'emploi", ex:"Le bassin d'emploi décide de l'installation."},
+   {w:"un réseau communautaire", ex:"Le réseau communautaire remplace l'institution les premiers mois."},
+   {w:"la régionalisation", ex:"La régionalisation de l'immigration reste un objectif difficile."},
+   {w:"le coût du logement", ex:"Le coût du logement annule l'avantage salarial."},
+   {w:"la dévitalisation", ex:"La dévitalisation des régions est un problème parallèle."},
+   {w:"un service d'accueil", ex:"Sans service d'accueil local, personne ne reste."},
+   {w:"l'ancrage", ex:"L'ancrage se joue dans les deux premières années."}]},
+ {n:231, cat:"Immigration", t:"Sujet 31", plan:"OREO",
+  cons:"Pensez-vous que les cours de langue devraient être obligatoires pour les nouveaux arrivants ?",
+  b2:[
+   {w:"la francisation", ex:"La francisation devrait être un droit garanti."},
+   {w:"l'accès aux droits", ex:"Sans la langue, l'accès aux droits reste théorique."},
+   {w:"une contrainte", ex:"Une contrainte sans moyens produit surtout de l'échec."},
+   {w:"un horaire adapté", ex:"Un horaire adapté change tout pour un parent qui travaille."},
+   {w:"la garde d'enfants", ex:"Sans garde d'enfants, les femmes décrochent les premières."},
+   {w:"l'insertion professionnelle", ex:"La langue conditionne l'insertion professionnelle."},
+   {w:"une sanction", ex:"Lier le titre de séjour à un examen revient à une sanction."},
+   {w:"l'accompagnement", ex:"L'accompagnement produit plus de résultats que l'obligation."}]},
+ {n:232, cat:"Immigration", t:"Sujet 32", plan:"comparatif",
+  cons:"Quand on arrive dans un nouveau pays, vaut-il mieux s'installer dans une grande ville ou dans une petite ville ? Qu'en pensez-vous ?",
+  b2:[
+   {w:"le coût de la vie", ex:"Le coût de la vie en métropole mange le salaire."},
+   {w:"un bassin d'emploi", ex:"Le bassin d'emploi est plus étroit mais parfois plus demandeur."},
+   {w:"l'anonymat", ex:"L'anonymat de la grande ville protège et isole à la fois."},
+   {w:"le tissu associatif", ex:"Le tissu associatif est décisif les premiers mois."},
+   {w:"la mobilité", ex:"Sans voiture, la petite ville devient compliquée."},
+   {w:"l'intégration", ex:"L'intégration linguistique va souvent plus vite en région."},
+   {w:"une opportunité", ex:"La métropole multiplie les opportunités de formation."},
+   {w:"un arbitrage", ex:"C'est un arbitrage entre possibilités et qualité de vie."}]},
+ {n:233, cat:"Immigration", t:"Sujet 33", plan:"thématique",
+  cons:"Qu'est-ce qui rend une société véritablement accueillante ? Qu'en pensez-vous ?",
+  b2:[
+   {w:"l'accueil", ex:"L'accueil se mesure aux démarches, pas aux discours."},
+   {w:"la lisibilité", ex:"La lisibilité des procédures est une forme d'hospitalité."},
+   {w:"le déclassement", ex:"Éviter le déclassement est le meilleur signal d'accueil."},
+   {w:"le lien social", ex:"Le lien social se construit au travail et dans le quartier."},
+   {w:"un préjugé", ex:"Les préjugés pèsent plus que les lois au quotidien."},
+   {w:"l'appartenance", ex:"Le sentiment d'appartenance vient quand on cesse d'être « le nouveau »."},
+   {w:"le tissu associatif", ex:"Le tissu associatif fait ce que l'administration ne peut pas faire."},
+   {w:"la réciprocité", ex:"L'intégration suppose une réciprocité."}]},
+ {n:234, cat:"Immigration", t:"Sujet 34", plan:"thématique",
+  cons:"Les enfants facilitent-ils l'intégration d'une famille qui arrive dans un nouveau pays ? Qu'en pensez-vous ?",
+  b2:[
+   {w:"un vecteur d'intégration", ex:"Les enfants sont un vecteur d'intégration puissant."},
+   {w:"le réseau social", ex:"L'école construit un réseau social immédiat."},
+   {w:"l'inversion des rôles", ex:"L'inversion des rôles pèse sur l'enfant traducteur."},
+   {w:"les codes culturels", ex:"Ils assimilent les codes culturels sans effort."},
+   {w:"un écart générationnel", ex:"Un écart générationnel se creuse parfois."},
+   {w:"la transmission", ex:"La transmission de la langue d'origine demande un effort conscient."},
+   {w:"la scolarisation", ex:"La scolarisation structure toute la vie de la famille."},
+   {w:"l'ancrage", ex:"Les enfants créent l'ancrage dans le quartier."}]},
+ {n:235, cat:"Immigration", t:"Sujet 35", plan:"dialectique",
+  cons:"Il est difficile de préserver sa culture d'origine quand on vit à l'étranger. Êtes-vous d'accord avec cette affirmation ?",
+  b2:[
+   {w:"la transmission", ex:"La transmission demande une démarche volontaire."},
+   {w:"la langue d'origine", ex:"Maintenir la langue d'origine exige de la constance."},
+   {w:"une pratique culturelle", ex:"Les pratiques culturelles survivent par la cuisine et les fêtes."},
+   {w:"l'assimilation", ex:"On confond souvent intégration et assimilation."},
+   {w:"le métissage", ex:"Il en naît un métissage plutôt qu'une perte."},
+   {w:"le tissu associatif", ex:"Le tissu associatif joue un rôle décisif."},
+   {w:"le déracinement", ex:"Le sentiment de déracinement se travaille."},
+   {w:"une double appartenance", ex:"Les enfants vivent une double appartenance."}]},
+ {n:236, cat:"Travail", t:"Sujet 36", plan:"dialectique",
+  cons:"La semaine de quatre jours devrait devenir la norme. Êtes-vous d'accord avec cette affirmation ?",
+  b2:[
+   {w:"la productivité", ex:"La productivité horaire augmente quand la semaine raccourcit."},
+   {w:"l'intensification", ex:"Le risque, c'est l'intensification du travail."},
+   {w:"un service continu", ex:"Les services continus ne peuvent pas s'organiser ainsi."},
+   {w:"l'équilibre de vie", ex:"L'équilibre de vie devient un argument de recrutement."},
+   {w:"l'attractivité", ex:"C'est devenu un facteur d'attractivité pour les entreprises."},
+   {w:"la charge de travail", ex:"Réduire les jours sans réduire la charge ne sert à rien."},
+   {w:"une expérimentation", ex:"Les expérimentations donnent des résultats encourageants."},
+   {w:"la fidélisation", ex:"La fidélisation des salariés compense le coût."}]},
+ {n:237, cat:"Travail", t:"Sujet 37", plan:"analytique",
+  cons:"On constate que les gens changent d'emploi beaucoup plus souvent qu'avant. Qu'en pensez-vous ?",
+  b2:[
+   {w:"la mobilité professionnelle", ex:"La mobilité professionnelle est devenue la norme."},
+   {w:"la fidélisation", ex:"La fidélisation passe par des perspectives, pas des discours."},
+   {w:"une compétence transférable", ex:"Les compétences transférables ouvrent les reconversions."},
+   {w:"la quête de sens", ex:"La quête de sens pèse autant que le salaire."},
+   {w:"le turnover", ex:"Un turnover élevé coûte très cher à l'entreprise."},
+   {w:"la formation continue", ex:"La formation continue retient mieux qu'une prime."},
+   {w:"la précarité", ex:"La mobilité choisie n'a rien à voir avec la précarité subie."},
+   {w:"une reconversion", ex:"Les reconversions se multiplient à quarante ans."}]},
+ {n:238, cat:"Travail", t:"Sujet 38", plan:"OREO",
+  cons:"Pensez-vous qu'un employeur ait le droit de contacter ses employés le soir et le week-end ?",
+  b2:[
+   {w:"le droit à la déconnexion", ex:"Le droit à la déconnexion doit être formalisé."},
+   {w:"une astreinte", ex:"Une astreinte se rémunère et s'organise."},
+   {w:"la charge mentale", ex:"La disponibilité permanente alourdit la charge mentale."},
+   {w:"l'épuisement professionnel", ex:"L'épuisement professionnel commence souvent ainsi."},
+   {w:"une frontière", ex:"La frontière entre vie privée et travail s'est effacée."},
+   {w:"une obligation implicite", ex:"Un message du soir crée une obligation implicite."},
+   {w:"la flexibilité", ex:"La flexibilité ne doit pas être à sens unique."},
+   {w:"un accord d'entreprise", ex:"Un accord d'entreprise clarifie les règles."}]},
+ {n:239, cat:"Travail", t:"Sujet 39", plan:"comparatif",
+  cons:"Le télétravail vaut-il mieux que le travail au bureau ? Qu'en pensez-vous ?",
+  b2:[
+   {w:"le travail hybride", ex:"Le travail hybride s'est imposé comme compromis."},
+   {w:"la cohésion d'équipe", ex:"La cohésion d'équipe se nourrit d'informel."},
+   {w:"l'isolement", ex:"L'isolement guette les salariés à distance."},
+   {w:"la concentration", ex:"Les tâches de fond gagnent à être faites au calme."},
+   {w:"l'intégration", ex:"L'intégration d'un nouveau se fait très mal à distance."},
+   {w:"le temps de trajet", ex:"Le temps de trajet économisé est le premier gain."},
+   {w:"la confiance", ex:"Le télétravail suppose une culture de la confiance."},
+   {w:"un rituel d'équipe", ex:"Les rituels d'équipe deviennent indispensables."}]},
+ {n:240, cat:"Travail", t:"Sujet 40", plan:"dialectique",
+  cons:"Le bénévolat devrait compter comme une expérience professionnelle. Êtes-vous d'accord avec cette affirmation ?",
+  b2:[
+   {w:"une compétence transversale", ex:"Le bénévolat développe de vraies compétences transversales."},
+   {w:"valoriser", ex:"Il faut savoir valoriser cette expérience en entretien."},
+   {w:"un parcours interrompu", ex:"Il comble utilement un parcours interrompu."},
+   {w:"l'engagement", ex:"L'engagement associatif dit beaucoup d'un candidat."},
+   {w:"le travail gratuit", ex:"Attention à ne pas banaliser le travail gratuit."},
+   {w:"une obligation de résultat", ex:"Il n'y a pas la même obligation de résultat."},
+   {w:"une attestation", ex:"Une attestation détaillée est plus convaincante qu'une ligne."},
+   {w:"le réseau", ex:"Le bénévolat construit aussi un réseau professionnel."}]},
+ {n:241, cat:"Travail", t:"Sujet 41", plan:"analytique",
+  cons:"On constate que de plus en plus de gens cherchent à vivre de leur passion. Qu'en pensez-vous ?",
+  b2:[
+   {w:"la quête de sens", ex:"La quête de sens explique beaucoup de reconversions."},
+   {w:"l'indépendance", ex:"L'indépendance a un prix social rarement évoqué."},
+   {w:"un revenu irrégulier", ex:"Un revenu irrégulier complique tout projet de long terme."},
+   {w:"la protection sociale", ex:"La protection sociale des indépendants reste faible."},
+   {w:"un biais de visibilité", ex:"On ne voit que ceux qui ont réussi : c'est un biais de visibilité."},
+   {w:"la gestion", ex:"Le métier ne suffit pas, il faut savoir gérer."},
+   {w:"une activité complémentaire", ex:"Commencer comme activité complémentaire limite le risque."},
+   {w:"la précarité", ex:"Entre liberté et précarité, la frontière est mince."}]},
+ {n:242, cat:"Travail", t:"Sujet 42", plan:"dialectique",
+  cons:"Il vaut mieux garder ses projets pour soi jusqu'à ce qu'ils aboutissent. Êtes-vous d'accord avec cette affirmation ?",
+  b2:[
+   {w:"un projet personnel", ex:"Un projet personnel est fragile au départ."},
+   {w:"l'engagement public", ex:"L'engagement public crée une obligation d'avancer."},
+   {w:"un retour extérieur", ex:"Un retour extérieur corrige ce qu'on ne voit plus."},
+   {w:"la procrastination", ex:"Annoncer peut nourrir la procrastination."},
+   {w:"un cercle de confiance", ex:"Mieux vaut un petit cercle de confiance."},
+   {w:"l'opportunité", ex:"Parler de son projet fait naître des opportunités."},
+   {w:"se prémunir", ex:"On cherche surtout à se prémunir du jugement."},
+   {w:"la remise en question", ex:"Le silence évite une remise en question utile."}]},
+ {n:243, cat:"Technologie", t:"Sujet 43", plan:"dialectique",
+  cons:"Le téléphone portable devrait être interdit dans tous les établissements scolaires. Êtes-vous d'accord avec cette affirmation ?",
+  b2:[
+   {w:"l'attention", ex:"L'attention se fragmente dès que l'appareil est à portée."},
+   {w:"le harcèlement", ex:"Le harcèlement se prolonge en dehors de la classe."},
+   {w:"un usage raisonné", ex:"L'école devrait enseigner un usage raisonné."},
+   {w:"l'éducation au numérique", ex:"L'éducation au numérique vaut mieux qu'une interdiction sèche."},
+   {w:"un outil pédagogique", ex:"L'appareil peut devenir un outil pédagogique."},
+   {w:"la concentration", ex:"Les enseignants constatent une meilleure concentration."},
+   {w:"l'application de la règle", ex:"L'application de la règle repose sur les surveillants."},
+   {w:"la sociabilité", ex:"La sociabilité des récréations change du tout au tout."}]},
+ {n:244, cat:"Technologie", t:"Sujet 44", plan:"analytique",
+  cons:"On constate que l'intelligence artificielle entre dans presque tous les métiers. Qu'en pensez-vous ?",
+  b2:[
+   {w:"l'automatisation", ex:"L'automatisation touche désormais les métiers qualifiés."},
+   {w:"une tâche répétitive", ex:"Les tâches répétitives disparaissent les premières."},
+   {w:"la vérification humaine", ex:"La vérification humaine reste indispensable."},
+   {w:"une reconversion", ex:"Il faudra accompagner des reconversions massives."},
+   {w:"la dépendance", ex:"La dépendance à l'outil fait perdre le savoir-faire."},
+   {w:"la fiabilité", ex:"La fiabilité des résultats varie énormément."},
+   {w:"la responsabilité", ex:"La question de la responsabilité reste entière."},
+   {w:"la montée en compétences", ex:"La montée en compétences doit précéder le déploiement."}]},
+ {n:245, cat:"Technologie", t:"Sujet 45", plan:"OREO",
+  cons:"Pensez-vous qu'il faille limiter le temps d'écran des enfants ?",
+  b2:[
+   {w:"le temps d'écran", ex:"Le temps d'écran dit peu de chose sans le contenu."},
+   {w:"le sommeil", ex:"Les écrans du soir dégradent la qualité du sommeil."},
+   {w:"un contenu passif", ex:"Un contenu passif n'a pas les effets d'une activité créative."},
+   {w:"l'attention", ex:"Ces applications sont conçues pour capter l'attention."},
+   {w:"le développement du langage", ex:"Chez les tout-petits, le développement du langage en souffre."},
+   {w:"une règle familiale", ex:"Une règle familiale claire vaut mieux qu'un contrôle permanent."},
+   {w:"l'exemplarité", ex:"L'exemplarité des parents compte énormément."},
+   {w:"l'activité physique", ex:"L'écran prend le temps de l'activité physique."}]},
+ {n:246, cat:"Technologie", t:"Sujet 46", plan:"comparatif",
+  cons:"Vaut-il mieux faire ses achats en ligne ou en magasin ? Qu'en pensez-vous ?",
+  b2:[
+   {w:"le commerce en ligne", ex:"Le commerce en ligne a transformé les centres-villes."},
+   {w:"le commerce de proximité", ex:"Le commerce de proximité tient la vie de quartier."},
+   {w:"un avis d'acheteur", ex:"Les avis d'acheteurs ne sont pas tous authentiques."},
+   {w:"le service après-vente", ex:"Le service après-vente fait la différence."},
+   {w:"la livraison", ex:"Les retours de livraison ont un coût écologique élevé."},
+   {w:"l'achat impulsif", ex:"Les deux formats encouragent l'achat impulsif, autrement."},
+   {w:"la traçabilité", ex:"La traçabilité du produit est souvent meilleure en magasin."},
+   {w:"l'emploi local", ex:"L'emploi local dépend de ces arbitrages quotidiens."}]},
+ {n:247, cat:"Technologie", t:"Sujet 47", plan:"thématique",
+  cons:"La technologie nous fait-elle vraiment gagner du temps ? Qu'en pensez-vous ?",
+  b2:[
+   {w:"un gain de temps", ex:"Le gain de temps est réel, mais rarement conservé."},
+   {w:"l'intensification", ex:"Chaque gain est suivi d'une intensification des attentes."},
+   {w:"la fragmentation", ex:"La fragmentation de l'attention annule le bénéfice."},
+   {w:"une démarche en ligne", ex:"Les démarches en ligne ont supprimé des heures d'attente."},
+   {w:"la disponibilité permanente", ex:"La disponibilité permanente est le prix à payer."},
+   {w:"le temps libéré", ex:"Le temps libéré est immédiatement réaffecté."},
+   {w:"une notification", ex:"Une notification coûte plus que les secondes qu'elle prend."},
+   {w:"l'arbitrage", ex:"Tout se joue dans l'arbitrage personnel."}]},
+ {n:248, cat:"Technologie", t:"Sujet 48", plan:"dialectique",
+  cons:"Aujourd'hui, il est impossible de se passer de son téléphone pendant une semaine. Êtes-vous d'accord avec cette affirmation ?",
+  b2:[
+   {w:"la dépendance", ex:"La dépendance est autant sociale que technique."},
+   {w:"l'identité numérique", ex:"L'identité numérique est devenue indispensable."},
+   {w:"la dématérialisation", ex:"La dématérialisation des services ne laisse plus le choix."},
+   {w:"un usage automatique", ex:"Une semaine suffit à révéler l'usage automatique."},
+   {w:"l'exclusion numérique", ex:"Tout cela produit une exclusion numérique bien réelle."},
+   {w:"la disponibilité permanente", ex:"La disponibilité permanente est devenue une norme sociale."},
+   {w:"un sevrage", ex:"Le sevrage est difficile les trois premiers jours."},
+   {w:"maîtriser son usage", ex:"L'enjeu est de maîtriser son usage, pas de renoncer."}]},
+ {n:249, cat:"Technologie", t:"Sujet 49", plan:"comparatif",
+  cons:"Pour s'informer, vaut-il mieux les médias traditionnels ou les réseaux sociaux ? Qu'en pensez-vous ?",
+  b2:[
+   {w:"la vérification des faits", ex:"La vérification des faits prend du temps."},
+   {w:"une source identifiée", ex:"Une source identifiée engage sa responsabilité."},
+   {w:"la hiérarchie de l'information", ex:"La hiérarchie de l'information disparaît dans un fil."},
+   {w:"une bulle de filtres", ex:"L'algorithme enferme dans une bulle de filtres."},
+   {w:"l'immédiateté", ex:"L'immédiateté se paie en erreurs."},
+   {w:"la désinformation", ex:"La désinformation circule plus vite qu'un démenti."},
+   {w:"un témoignage direct", ex:"Les témoignages directs ont une valeur réelle."},
+   {w:"le recoupement", ex:"Le recoupement des sources reste la seule méthode."}]},
+ {n:250, cat:"Tourisme", t:"Sujet 50", plan:"dialectique",
+  cons:"Certaines villes devraient limiter le nombre de touristes qu'elles accueillent. Êtes-vous d'accord avec cette affirmation ?",
+  b2:[
+   {w:"le surtourisme", ex:"Le surtourisme vide les centres de leurs habitants."},
+   {w:"la location de courte durée", ex:"La location de courte durée assèche le marché locatif."},
+   {w:"la saturation", ex:"La saturation dégrade l'expérience de tout le monde."},
+   {w:"un quota", ex:"Un quota pose la question de qui peut encore venir."},
+   {w:"l'étalement des flux", ex:"L'étalement des flux dans l'année est plus efficace."},
+   {w:"la préservation", ex:"La préservation du patrimoine a un coût."},
+   {w:"une taxe de séjour", ex:"Une taxe de séjour bien employée finance les services."},
+   {w:"l'économie locale", ex:"L'économie locale dépend largement des visiteurs."}]},
+ {n:251, cat:"Tourisme", t:"Sujet 51", plan:"analytique",
+  cons:"On constate que les voyageurs préfèrent des séjours courts et fréquents plutôt que de longues vacances. Qu'en pensez-vous ?",
+  b2:[
+   {w:"un séjour court", ex:"Les séjours courts se sont multipliés."},
+   {w:"le fractionnement", ex:"Le fractionnement des congés explique en partie le phénomène."},
+   {w:"l'empreinte carbone", ex:"Quatre allers-retours pèsent plus qu'un seul long séjour."},
+   {w:"la récupération", ex:"La récupération demande plus de deux jours."},
+   {w:"la saisonnalité", ex:"La saisonnalité du tourisme s'est transformée."},
+   {w:"une destination de proximité", ex:"Les destinations de proximité en profitent."},
+   {w:"la dernière minute", ex:"La réservation de dernière minute est devenue la règle."},
+   {w:"un rythme soutenu", ex:"Ce rythme soutenu fatigue autant qu'il distrait."}]},
+ {n:252, cat:"Tourisme", t:"Sujet 52", plan:"OREO",
+  cons:"Pensez-vous que le tourisme profite réellement aux habitants d'une région ?",
+  b2:[
+   {w:"un emploi saisonnier", ex:"Les emplois saisonniers ne font pas vivre une famille à l'année."},
+   {w:"les retombées économiques", ex:"Les retombées économiques quittent souvent le territoire."},
+   {w:"la spéculation", ex:"La spéculation immobilière suit l'arrivée des visiteurs."},
+   {w:"un circuit court", ex:"Un tourisme en circuit court profite davantage aux habitants."},
+   {w:"la dépendance", ex:"La dépendance à une seule activité fragilise la région."},
+   {w:"le maintien des services", ex:"Le tourisme permet le maintien de certains services."},
+   {w:"la gouvernance locale", ex:"Tout dépend de la gouvernance locale."},
+   {w:"la valeur ajoutée", ex:"La valeur ajoutée doit rester sur place."}]},
+ {n:253, cat:"Tourisme", t:"Sujet 53", plan:"comparatif",
+  cons:"Vaut-il mieux voyager seul ou avec un groupe organisé ? Qu'en pensez-vous ?",
+  b2:[
+   {w:"l'autonomie", ex:"Voyager seul développe une vraie autonomie."},
+   {w:"l'imprévu", ex:"L'imprévu est la part la plus formatrice du voyage."},
+   {w:"la logistique", ex:"Le groupe prend en charge toute la logistique."},
+   {w:"une immersion", ex:"L'immersion linguistique est bien plus forte en solitaire."},
+   {w:"la sécurité", ex:"Dans certaines régions, la sécurité oriente le choix."},
+   {w:"un itinéraire balisé", ex:"Un itinéraire balisé fait manquer l'inattendu."},
+   {w:"le rythme", ex:"Le rythme imposé fatigue autant qu'il rassure."},
+   {w:"la médiation", ex:"Un guide apporte une médiation culturelle précieuse."}]},
+ {n:254, cat:"Tourisme", t:"Sujet 54", plan:"thématique",
+  cons:"Qu'est-ce qu'un voyage à l'étranger apporte vraiment ? Qu'en pensez-vous ?",
+  b2:[
+   {w:"le dépaysement", ex:"Le dépaysement oblige à revoir ses évidences."},
+   {w:"les repères", ex:"On apprend beaucoup en perdant ses repères."},
+   {w:"l'adaptabilité", ex:"L'adaptabilité se construit sur le terrain."},
+   {w:"l'immersion", ex:"L'immersion transforme une langue scolaire en langue vivante."},
+   {w:"un préjugé", ex:"Le voyage défait les préjugés plus sûrement qu'un livre."},
+   {w:"l'ouverture d'esprit", ex:"L'ouverture d'esprit n'est pas automatique, elle se travaille."},
+   {w:"le recul", ex:"On revient avec du recul sur son propre pays."},
+   {w:"un réseau", ex:"On en garde souvent un réseau durable."}]},
+ {n:255, cat:"Tourisme", t:"Sujet 55", plan:"dialectique",
+  cons:"Lire les avis en ligne avant de choisir un restaurant ou une visite nous empêche de découvrir par nous-mêmes. Êtes-vous d'accord avec cette affirmation ?",
+  b2:[
+   {w:"un avis en ligne", ex:"Les avis en ligne orientent la quasi-totalité des choix."},
+   {w:"la sérendipité", ex:"On perd la sérendipité du voyage."},
+   {w:"une note moyenne", ex:"Une note moyenne récompense le consensuel."},
+   {w:"un piège à touristes", ex:"Ils protègent des pièges à touristes."},
+   {w:"la concentration des flux", ex:"Ils concentrent les flux sur quelques adresses."},
+   {w:"un avis authentique", ex:"Distinguer un avis authentique d'un faux devient difficile."},
+   {w:"l'uniformisation", ex:"Il en résulte une uniformisation de l'expérience."},
+   {w:"se laisser surprendre", ex:"Il faut garder du temps pour se laisser surprendre."}]},
+ {n:256, cat:"Tourisme", t:"Sujet 56", plan:"analytique",
+  cons:"On constate que les réseaux sociaux ont transformé notre façon de voyager. Qu'en pensez-vous ?",
+  b2:[
+   {w:"la mise en scène", ex:"Le voyage devient une mise en scène de soi."},
+   {w:"la viralité", ex:"La viralité fait exploser la fréquentation d'un lieu."},
+   {w:"la saturation", ex:"La saturation arrive avant toute préparation."},
+   {w:"une destination méconnue", ex:"Certaines destinations méconnues en profitent."},
+   {w:"la prescription", ex:"La prescription est passée des guides aux particuliers."},
+   {w:"un site fragile", ex:"Les sites fragiles supportent mal cette affluence."},
+   {w:"la saison creuse", ex:"Promouvoir la saison creuse étale la fréquentation."},
+   {w:"l'authenticité", ex:"On cherche une authenticité que l'image a déjà détruite."}]}
 ];
 
 /* ---------------- Tâche 3 : plan recommandé et pistes par sujet ---------------- */
@@ -946,50 +1400,252 @@ var PLAN_WHY = {
   'OREO':"La question appelle une prise de position nette : annoncez votre opinion, justifiez-la, illustrez-la, reformulez-la."
 };
 var PISTES = {
- 11:{plan:'dialectique', alt:'OREO',
-     parts:[{h:'Thèse — oui, indispensable',items:["Accès à l'emploi qualifié et aux services","Compréhension des codes culturels implicites","Participation à la vie citoyenne"]},
-            {h:'Antithèse — pas suffisant, parfois excessif',items:["L'intégration est aussi économique et sociale","Le bilinguisme de certaines régions relativise l'exigence","Un niveau trop élevé exigé trop tôt exclut"]},
-            {h:'Synthèse',items:["Condition nécessaire mais non suffisante","À accompagner par des dispositifs d'accueil"]}]},
- 12:{plan:'dialectique', alt:'thématique',
-     parts:[{h:'Thèse — oui',items:["Des institutions sans femmes manquent de représentativité","L'égalité des droits est un pilier démocratique","Les quotas ont fait progresser l'égalité"]},
-            {h:'Antithèse — l\'affirmation est trop catégorique',items:["La démocratie repose d'abord sur le suffrage libre","La parité est un objectif, pas une condition d'existence","Réduire la démocratie à un seul critère est simplificateur"]},
-            {h:'Synthèse',items:["Démocratie imparfaite plutôt qu'absence de démocratie","La parité renforce la démocratie sans la définir"]}]},
- 13:{plan:'OREO', alt:'dialectique',
-     parts:[{h:'Opinion',items:["Oui, à condition que la relation sorte de l'écran"]},
-            {h:'Raisons',items:["Rencontres autour d'intérêts communs","Maintien du lien à distance","Premier pas vers une rencontre réelle"]},
-            {h:'Exemples',items:["Une communauté en ligne devenue groupe d'amis réels","Une amitié maintenue entre deux pays grâce aux réseaux"]},
-            {h:'Nuance puis opinion reformulée',items:["Beaucoup de contacts restent superficiels ; la mise en scène de soi fausse la relation","Le réseau est un tremplin, pas une fin en soi"]}]},
- 14:{plan:'dialectique', alt:'analytique',
-     parts:[{h:'Thèse — oui, dès la maternelle',items:["Plasticité cérébrale : prononciation et sons","Ouverture culturelle précoce","Atout futur sur le marché du travail"]},
-            {h:'Antithèse — avec prudence',items:["Priorité à la langue maternelle","Risque de surcharge des programmes","Manque d'enseignants formés et inégalités entre écoles"]},
-            {h:'Synthèse',items:["Oui, si l'approche reste ludique et si la continuité est assurée jusqu'au secondaire"]}]},
- 15:{plan:'thématique', alt:'analytique',
-     parts:[{h:'Axe 1 — environnemental',items:["Urgence climatique, effondrement de la biodiversité","Ressources naturelles limitées"]},
-            {h:'Axe 2 — économique',items:["Énergies renouvelables et emplois verts","Innovation verte comme moteur de modernité","Mais coût de la transition pour les ménages modestes"]},
-            {h:'Axe 3 — social et sanitaire',items:["Qualité de l'air, santé publique","Justice climatique : partager l'effort","Dette envers les générations futures"]}]},
- 16:{plan:'analytique', alt:'dialectique',
-     parts:[{h:'Les faits',items:["Omniprésence des écrans à tout âge","Temps d'écran quotidien en hausse"]},
-            {h:'Les causes',items:["Télétravail, démarches en ligne, réseaux sociaux","Applications conçues pour capter l'attention"]},
-            {h:'Les conséquences',items:["Négatives : dépendance, concentration, sommeil, données personnelles","Positives : accès au savoir, lien avec les proches éloignés, gain de temps"]},
-            {h:'Les solutions',items:["Droit à la déconnexion, usage raisonné","Éducation à l'esprit critique dès l'école"]}]},
- 17:{plan:'analytique', alt:'dialectique',
-     parts:[{h:'Les faits',items:["Délais d'attente plus longs à l'hôpital","Fermetures de bureaux de poste en zone rurale"]},
-            {h:'Les causes',items:["Restrictions budgétaires, pénurie de personnel","Dématérialisation qui remplace l'accueil physique"]},
-            {h:'Les conséquences',items:["Négatives : fracture numérique, inégalités territoriales","Positives : certaines démarches en ligne plus rapides"]},
-            {h:'Les solutions',items:["Financement, maisons de services de proximité","Modernisation qui n'exclut pas les plus fragiles"]}]},
- 18:{plan:'dialectique', alt:'OREO',
-     parts:[{h:'Thèse — avantages',items:["Maturité et orientation plus claire","Autonomie financière","Compétences transversales et savoir-être"]},
-            {h:'Antithèse — limites',items:["Risque de décrochage : certains ne reprennent jamais","Inégalités selon les milieux sociaux","Certaines filières exigent la continuité"]},
-            {h:'Synthèse',items:["Encourager (année de césure, stage) plutôt qu'imposer"]}]},
- 19:{plan:'comparatif', alt:'dialectique',
-     parts:[{h:'A — l\'expérience professionnelle',items:["Compétences prouvées sur le terrain","Adaptabilité, savoir-être, autonomie"]},
-            {h:'B — les diplômes',items:["Bases théoriques solides et vérifiables","Obligatoires dans les métiers réglementés","Protègent les jeunes diplômés sans expérience"]},
-            {h:'Ce qui les distingue · votre choix',items:["Tout dépend du poste : opérationnel vs expertise","Complémentaires : formation continue, validation des acquis"]}]},
- 20:{plan:'OREO', alt:'dialectique',
-     parts:[{h:'Opinion',items:["Je ne partage pas cet avis, ou seulement en partie"]},
-            {h:'Raisons',items:["L'expérience directe et les sens sont irremplaçables","Voyager confronte nos préjugés à la réalité","Mais livres, documentaires et rencontres locales ouvrent déjà l'esprit"]},
-            {h:'Exemples',items:["Ce que j'ai compris de mon pays d'accueil en y vivant, et pas en le lisant","Un documentaire qui a changé ma vision d'un pays"]},
-            {h:'Nuance puis opinion reformulée',items:["Le tourisme de masse n'apprend rien ; l'empreinte écologique pose question","Connaître le monde demande curiosité et rencontre — le voyage en est le chemin le plus direct"]}]}
+ 201:{plan:"dialectique", alt:"OREO",
+     parts:[{h:"Thèse : oui, il faut les supprimer",items:["Les journées des enfants sont déjà longues", "Les familles ne peuvent pas toutes aider, ce qui creuse les écarts", "Les apprentissages peuvent se faire en classe, avec l'enseignant"]},
+            {h:"Antithèse : non, ils restent utiles",items:["Ils installent une habitude de travail autonome", "Ils donnent aux parents une fenêtre sur la scolarité", "Dix minutes de lecture par soir suffisent à consolider"]},
+            {h:"Synthèse",items:["Supprimer les exercices écrits, garder la lecture", "Le problème n'est pas le devoir, c'est sa quantité et son inégalité"]}]},
+ 202:{plan:"OREO", alt:"dialectique",
+     parts:[{h:"Opinion",items:["Oui, gratuites, mais avec des conditions de réussite"]},
+            {h:"Raisons",items:["L'accès au savoir ne devrait pas dépendre du revenu des parents", "Un pays forme ainsi les compétences dont il a besoin", "L'endettement étudiant retarde l'autonomie et la natalité"]},
+            {h:"Nuance",items:["La gratuité totale profite aussi à ceux qui pourraient payer", "Sans financement public solide, la qualité baisse"]},
+            {h:"Opinion reformulée",items:["Une gratuité conditionnée, financée par l'impôt, me paraît la formule la plus juste"]}]},
+ 203:{plan:"analytique", alt:"thématique",
+     parts:[{h:"Les faits",items:["Un marché du soutien scolaire en forte croissance", "Des familles qui y consacrent une part importante de leur budget"]},
+            {h:"Les causes",items:["Des classes nombreuses et un programme dense", "La pression des examens et de l'orientation", "L'angoisse des parents devant un avenir incertain"]},
+            {h:"Les conséquences",items:["Un avantage net pour les élèves qui peuvent payer", "Une fatigue supplémentaire et moins de temps libre", "Une école qui perd sa fonction d'égalisation"]},
+            {h:"Les solutions",items:["Du soutien gratuit organisé dans l'établissement", "Des groupes réduits aux moments charnières de la scolarité"]}]},
+ 204:{plan:"dialectique", alt:"analytique",
+     parts:[{h:"Thèse : la note reste utile",items:["Elle situe l'élève et rend le niveau lisible", "Elle prépare aux examens et aux concours", "Elle donne un repère commun aux familles"]},
+            {h:"Antithèse : elle fait plus de mal que de bien",items:["Elle classe au lieu de faire progresser", "Elle décourage durablement les élèves fragiles", "Une même copie reçoit des notes différentes selon le correcteur"]},
+            {h:"Synthèse",items:["Évaluer par compétences et garder la note pour les bilans", "Ce qui compte, c'est le commentaire qui accompagne la note"]}]},
+ 205:{plan:"comparatif", alt:"dialectique",
+     parts:[{h:"L'école à la maison",items:["Rythme adapté à l'enfant et contenus choisis", "Un cadre rassurant pour un enfant en difficulté", "Une organisation familiale souple"]},
+            {h:"L'école ordinaire",items:["La vie collective et l'apprentissage des règles", "Des enseignants formés et un programme contrôlé", "Une diversité sociale qu'on ne reproduit pas à la maison"]},
+            {h:"Ce qui les distingue",items:["L'une optimise l'individu, l'autre prépare au collectif", "La maison convient à des situations particulières, pas comme modèle général"]}]},
+ 206:{plan:"dialectique", alt:"OREO",
+     parts:[{h:"Thèse : oui",items:["Les statistiques de revenus suivent encore le niveau de diplôme", "Le diplôme ouvre des portes fermées autrement", "Il protège mieux en cas de crise ou de reconversion"]},
+            {h:"Antithèse : non",items:["Des métiers manuels en pénurie paient très bien", "L'entrepreneuriat et les compétences techniques ne demandent pas de diplôme", "Certains diplômés restent longtemps sous-payés"]},
+            {h:"Synthèse",items:["Le diplôme protège plus qu'il n'enrichit", "Ce qui paie, c'est la rareté de la compétence, pas la durée des études"]}]},
+ 207:{plan:"OREO", alt:"thématique",
+     parts:[{h:"Opinion",items:["Oui, non comme un supplément mais comme une matière à part entière"]},
+            {h:"Raisons",items:["Le théâtre travaille la parole en public, utile dans tous les métiers", "Ces activités raccrochent des élèves que les notes ont découragés", "Elles donnent accès à une culture inégalement répartie dans les familles"]},
+            {h:"Nuance",items:["Les heures doivent bien être prises quelque part", "Sans enseignants formés, l'intention reste décorative"]},
+            {h:"Opinion reformulée",items:["Peu d'heures mais sérieuses, évaluées comme le reste, changeraient déjà beaucoup"]}]},
+ 208:{plan:"dialectique", alt:"OREO",
+     parts:[{h:"Thèse : oui",items:["Moins d'arrêts de travail et moins de troubles du dos", "Une heure rendue à la santé est rendue à la productivité", "Un effet direct sur l'ambiance et la cohésion d'équipe"]},
+            {h:"Antithèse : non",items:["L'employeur n'a pas à organiser la vie privée", "Les métiers de terrain ne peuvent pas s'arrêter une heure", "Le dispositif profite surtout à ceux qui bougent déjà"]},
+            {h:"Synthèse",items:["Rendre l'heure possible plutôt qu'obligatoire", "Agir d'abord sur les postes de travail et les trajets"]}]},
+ 209:{plan:"analytique", alt:"dialectique",
+     parts:[{h:"Les faits",items:["Les recherches sur les symptômes font partie des plus fréquentes", "Des forums et des vidéos consultés avant tout rendez-vous"]},
+            {h:"Les causes",items:["Des délais de rendez-vous très longs", "Le coût ou l'éloignement des soins", "Le besoin de comprendre avant d'être examiné"]},
+            {h:"Les conséquences",items:["De l'anxiété et des auto-diagnostics erronés", "Des retards de prise en charge", "Mais aussi des patients mieux informés et plus actifs"]},
+            {h:"Les solutions",items:["Des sources fiables et clairement identifiées", "Des téléconsultations pour trier rapidement les cas"]}]},
+ 210:{plan:"OREO", alt:"dialectique",
+     parts:[{h:"Opinion",items:["Oui, à condition que la recette serve à rendre les produits sains accessibles"]},
+            {h:"Raisons",items:["Le prix modifie réellement les achats, les expériences le montrent", "Le coût des maladies liées au sucre pèse sur toute la collectivité", "La taxe pousse les industriels à reformuler leurs recettes"]},
+            {h:"Nuance",items:["Une taxe frappe d'abord les ménages modestes", "Sans alternative abordable, elle punit sans corriger"]},
+            {h:"Opinion reformulée",items:["Taxer oui, mais avec l'argent redistribué vers les fruits, les légumes et les cantines"]}]},
+ 211:{plan:"comparatif", alt:"analytique",
+     parts:[{h:"La consultation à distance",items:["Rapide, sans transport, accessible depuis une région isolée", "Pratique pour un renouvellement ou un résultat", "Elle désengorge les cabinets"]},
+            {h:"La consultation en cabinet",items:["L'examen clinique, qui ne se transmet pas par écran", "La relation de confiance et les signes qu'on observe", "Les gestes et les examens immédiats"]},
+            {h:"Ce qui les distingue",items:["L'une traite l'information, l'autre examine le corps", "Complémentaires plutôt que concurrentes"]}]},
+ 212:{plan:"thématique", alt:"analytique",
+     parts:[{h:"Sur le plan physique",items:["La place donnée à la voiture décourage la marche et le vélo", "Les espaces verts et la qualité de l'air déterminent la santé quotidienne"]},
+            {h:"Sur le plan mental",items:["Le bruit et la densité pèsent sur le sommeil et la fatigue", "Les lieux de rencontre réduisent l'isolement"]},
+            {h:"Sur le plan social",items:["L'accès aux soins et aux commerces frais varie d'un quartier à l'autre", "Les inégalités de santé suivent la carte de la ville"]}]},
+ 213:{plan:"dialectique", alt:"OREO",
+     parts:[{h:"Thèse : oui",items:["Une tension modérée améliore la concentration avant une échéance", "Il signale ce qui compte vraiment pour nous", "Beaucoup de décisions utiles naissent d'une pression"]},
+            {h:"Antithèse : non",items:["Installé dans la durée, il épuise le corps et le sommeil", "Il bloque autant qu'il mobilise, selon les personnes", "Parler de stress positif sert parfois à justifier de mauvaises conditions de travail"]},
+            {h:"Synthèse",items:["Positif s'il est court et suivi d'une récupération", "Le problème n'est pas le stress, c'est l'absence de répit"]}]},
+ 214:{plan:"OREO", alt:"dialectique",
+     parts:[{h:"Opinion",items:["Oui pour tout ce qui est nécessaire, avec un financement assumé"]},
+            {h:"Raisons",items:["Renoncer aux soins coûte plus cher que les soins eux-mêmes", "Personne ne choisit de tomber malade", "La prévention ne fonctionne que si elle est accessible à tous"]},
+            {h:"Nuance",items:["La gratuité augmente la demande et allonge les délais", "Sans participation symbolique, certains rendez-vous ne sont pas honorés"]},
+            {h:"Opinion reformulée",items:["Gratuité du nécessaire, régulation de l'accès : c'est une question de priorités budgétaires"]}]},
+ 215:{plan:"dialectique", alt:"OREO",
+     parts:[{h:"Thèse : oui",items:["L'élevage pèse lourd dans les émissions et l'usage des terres", "Moins de viande, c'est aussi moins de maladies cardiovasculaires", "Manger moins de viande mais de meilleure qualité coûte le même prix"]},
+            {h:"Antithèse : non, ou pas ainsi",items:["La viande reste une source de protéines accessible et culturelle", "La responsabilité est surtout industrielle, pas individuelle", "Culpabiliser les ménages détourne l'attention des vrais leviers"]},
+            {h:"Synthèse",items:["Réduire la fréquence plutôt qu'interdire", "Agir sur l'offre : cantines, prix, étiquetage"]}]},
+ 216:{plan:"analytique", alt:"dialectique",
+     parts:[{h:"Les faits",items:["Des zones piétonnes et des restrictions qui s'étendent", "Des centres rendus au vélo et aux transports collectifs"]},
+            {h:"Les causes",items:["La pollution de l'air et le bruit", "L'espace public saturé par le stationnement", "Des engagements climatiques à tenir"]},
+            {h:"Les conséquences",items:["Un air plus respirable et des commerces de proximité relancés", "Mais des difficultés réelles pour les artisans et les périphéries", "Un report de circulation vers les quartiers voisins"]},
+            {h:"Les solutions",items:["Des transports performants avant les interdictions", "Des dérogations pour les professionnels et les personnes à mobilité réduite"]}]},
+ 217:{plan:"OREO", alt:"analytique",
+     parts:[{h:"Opinion",items:["Non, le recyclage est nécessaire mais arrive trop tard dans la chaîne"]},
+            {h:"Raisons",items:["Une partie des matières n'est pas recyclable en pratique", "Recycler consomme de l'énergie et dégrade la matière", "Le tri déculpabilise et encourage à consommer autant"]},
+            {h:"Nuance",items:["Il reste indispensable pour le verre, le métal, le papier", "Les filières se sont beaucoup améliorées"]},
+            {h:"Opinion reformulée",items:["La priorité reste de réduire et de réemployer, le recyclage venant en dernier"]}]},
+ 218:{plan:"comparatif", alt:"OREO",
+     parts:[{h:"Réparer",items:["On évite la fabrication, qui concentre l'essentiel de l'impact", "On garde un appareil qu'on connaît et qui fonctionne", "On soutient un savoir-faire et des emplois locaux"]},
+            {h:"Acheter neuf",items:["Souvent moins cher que la réparation, garantie comprise", "Des appareils plus sobres en énergie", "Des pièces introuvables au-delà de quelques années"]},
+            {h:"Ce qui les distingue",items:["Le calcul économique favorise le neuf, le calcul écologique la réparation", "Tout dépend de la disponibilité des pièces et du coût de la main-d'œuvre"]}]},
+ 219:{plan:"dialectique", alt:"thématique",
+     parts:[{h:"Thèse : les gestes comptent",items:["Alimentation, transport et logement représentent une part réelle des émissions", "Les comportements créent une demande et font bouger l'offre", "Sans adhésion des citoyens, aucune politique ne tient"]},
+            {h:"Antithèse : l'essentiel est collectif",items:["L'industrie, l'énergie et l'aménagement décident de l'ordre de grandeur", "On ne peut pas choisir le vélo là où rien n'est prévu pour", "Le discours sur les gestes déplace la responsabilité"]},
+            {h:"Synthèse",items:["Les gestes rendent la politique possible, la politique rend les gestes possibles", "Le vrai sujet est l'infrastructure qui oriente les choix"]}]},
+ 220:{plan:"analytique", alt:"dialectique",
+     parts:[{h:"Les faits",items:["Des achats fréquents et des objets peu utilisés", "Des logements saturés et des garde-meubles en expansion"]},
+            {h:"Les causes",items:["Des prix bas obtenus en déplaçant la production", "Une publicité qui crée le besoin avant l'envie", "Le renouvellement permanent des modèles"]},
+            {h:"Les conséquences",items:["Des ressources et une énergie dépensées pour peu d'usage", "Des montagnes de déchets exportés ailleurs", "Une insatisfaction qui ne diminue pas avec les achats"]},
+            {h:"Les solutions",items:["Allonger la durée de vie et faciliter la réparation", "Développer la location et le partage entre voisins"]}]},
+ 221:{plan:"OREO", alt:"dialectique",
+     parts:[{h:"Opinion",items:["Plutôt que gratuits, je les voudrais fréquents, fiables et très bon marché"]},
+            {h:"Raisons",items:["Ce qui fait renoncer à la voiture, c'est la fréquence, pas le prix", "La gratuité prive le réseau de recettes dont il a besoin", "Les villes qui ont essayé ont surtout capté des piétons et des cyclistes"]},
+            {h:"Nuance",items:["Pour les ménages modestes, le prix reste un obstacle réel", "La gratuité simplifie l'exploitation et supprime la fraude"]},
+            {h:"Opinion reformulée",items:["Gratuité ciblée et investissement dans l'offre feront plus que la gratuité pour tous"]}]},
+ 222:{plan:"dialectique", alt:"OREO",
+     parts:[{h:"Thèse : oui",items:["L'adulte apprend plus vite la grammaire et le vocabulaire", "Il sait pourquoi il apprend, et cette motivation porte loin", "Il transfère ce qu'il connaît déjà d'autres langues"]},
+            {h:"Antithèse : non",items:["L'accent et la perception des sons se fixent tôt", "L'enfant baigne dans la langue sans effort conscient", "L'adulte manque de temps et craint de se tromper"]},
+            {h:"Synthèse",items:["Efficace différemment : plus rapide à l'écrit, plus lent à l'oral", "Ce qui décide, c'est l'exposition quotidienne, à tout âge"]}]},
+ 223:{plan:"analytique", alt:"dialectique",
+     parts:[{h:"Les faits",items:["Des anglicismes installés dans le travail, la technologie et la publicité", "Des équivalents français proposés mais peu employés"]},
+            {h:"Les causes",items:["L'anglais domine la technologie et les échanges économiques", "Les termes anglais arrivent avant leur traduction", "Un effet de mode et de prestige professionnel"]},
+            {h:"Les conséquences",items:["Une langue vivante qui s'enrichit, comme elle l'a toujours fait", "Mais une exclusion de ceux qui ne maîtrisent pas l'anglais", "Un appauvrissement quand le mot français existe déjà"]},
+            {h:"Les solutions",items:["Proposer tôt des équivalents simples et utilisables", "Veiller surtout à la clarté dans l'administration et au travail"]}]},
+ 224:{plan:"OREO", alt:"dialectique",
+     parts:[{h:"Opinion",items:["Non, corriger moins mais mieux, selon l'objectif du moment"]},
+            {h:"Raisons",items:["Corriger sans cesse coupe la parole et installe la peur de parler", "L'élève ne retient que ce qu'il peut traiter à son niveau", "Certaines erreurs disparaissent seules avec l'exposition"]},
+            {h:"Nuance",items:["Sans correction, des erreurs s'installent définitivement", "À l'écrit, la précision reste exigible"]},
+            {h:"Opinion reformulée",items:["Corriger la fluidité après, la précision pendant, et toujours une chose à la fois"]}]},
+ 225:{plan:"comparatif", alt:"OREO",
+     parts:[{h:"Les applications",items:["Disponibles partout, à son rythme et à faible coût", "Excellentes pour le vocabulaire et la régularité", "Une progression visible qui motive"]},
+            {h:"Les cours",items:["Un interlocuteur qui réagit, corrige et relance", "Une progression construite et adaptée au groupe", "L'oral spontané, que l'application ne provoque pas"]},
+            {h:"Ce qui les distingue",items:["L'application entretient, le cours fait progresser", "Les deux ensemble valent mieux que chacune séparément"]}]},
+ 226:{plan:"thématique", alt:"dialectique",
+     parts:[{h:"Sur le plan linguistique",items:["La langue sert à communiquer, pas à être jugée", "L'accent est une trace de parcours, pas un défaut"]},
+            {h:"Sur le plan identitaire",items:["On se sent francophone par l'usage quotidien et les liens qu'il crée", "La francophonie rassemble des normes et des accents très divers"]},
+            {h:"Sur le plan social",items:["Le regard des autres pèse plus que le niveau réel", "La peur de mal parler éloigne durablement de la langue"]}]},
+ 227:{plan:"dialectique", alt:"OREO",
+     parts:[{h:"Thèse : c'est possible",items:["Dans les grandes villes, le travail et les services s'organisent en anglais", "Les outils de traduction règlent beaucoup de situations courantes", "Des communautés entières permettent de vivre dans sa langue"]},
+            {h:"Antithèse : à quel prix",items:["Sans la langue, on dépend de quelqu'un pour la santé et l'administration", "Les relations restent limitées à son propre groupe", "Les emplois accessibles plafonnent très vite"]},
+            {h:"Synthèse",items:["Vivre oui, participer non", "La langue ne sert pas à survivre, elle sert à exister pleinement"]}]},
+ 228:{plan:"comparatif", alt:"OREO",
+     parts:[{h:"Avant de partir",items:["On arrive en comprenant les démarches et les consignes", "On choisit son rythme sans la pression du quotidien", "Les bases de grammaire se posent mieux au calme"]},
+            {h:"Une fois sur place",items:["L'oral progresse infiniment plus vite dans l'usage réel", "On apprend la langue dont on a besoin, pas celle du manuel", "La motivation est immédiate et permanente"]},
+            {h:"Ce qui les distingue",items:["L'un donne les bases, l'autre donne l'aisance", "Le pire est d'arriver sans rien : on s'enferme dans sa langue dès la première semaine"]}]},
+ 229:{plan:"dialectique", alt:"analytique",
+     parts:[{h:"Thèse : oui",items:["Des compétences disponibles restent inutilisées faute de reconnaissance", "Le déclassement décourage et fait perdre des années à tout le monde", "Le pays a besoin de ces métiers, parfois en pénurie"]},
+            {h:"Antithèse : non, pas automatiquement",items:["Les programmes et les pratiques diffèrent réellement d'un pays à l'autre", "Certaines professions engagent la sécurité des personnes", "La vérification des diplômes n'est pas toujours possible"]},
+            {h:"Synthèse",items:["Une évaluation des compétences réelles plutôt qu'un examen du papier", "Des parcours de mise à niveau courts et rémunérés"]}]},
+ 230:{plan:"analytique", alt:"thématique",
+     parts:[{h:"Les faits",items:["Une concentration dans quelques métropoles", "Des régions qui manquent de bras au même moment"]},
+            {h:"Les causes",items:["L'emploi, les transports et les services s'y trouvent", "Les communautés déjà installées rassurent et informent", "Les cours de langue et les démarches y sont accessibles"]},
+            {h:"Les conséquences",items:["Un logement cher et des trajets longs", "Des régions qui se vident et vieillissent", "Mais un réseau d'entraide précieux les premiers mois"]},
+            {h:"Les solutions",items:["Des services d'accueil réellement présents en région", "Un emploi et un logement proposés ensemble"]}]},
+ 231:{plan:"OREO", alt:"dialectique",
+     parts:[{h:"Opinion",items:["Gratuits et accessibles oui, obligatoires non"]},
+            {h:"Raisons",items:["La langue conditionne l'emploi, la santé et les droits", "Rendre obligatoire sans adapter les horaires revient à sanctionner", "Un adulte qui travaille et élève des enfants a besoin de souplesse"]},
+            {h:"Nuance",items:["Sans obligation, certains repoussent indéfiniment", "Un cadre clair aide aussi à s'organiser"]},
+            {h:"Opinion reformulée",items:["Un droit garanti, avec garde d'enfants et horaires adaptés, fera plus qu'une obligation"]}]},
+ 232:{plan:"comparatif", alt:"OREO",
+     parts:[{h:"La grande ville",items:["Plus d'offres d'emploi et de formations", "Des communautés et des services d'accueil installés", "Des transports qui permettent de vivre sans voiture"]},
+            {h:"La petite ville",items:["Un logement abordable et des trajets courts", "Un accueil plus personnel et des liens plus rapides", "Un besoin de main-d'œuvre souvent plus fort"]},
+            {h:"Ce qui les distingue",items:["La grande ville offre des possibilités, la petite offre des conditions", "Le choix dépend du métier, de la famille et de la langue parlée"]}]},
+ 233:{plan:"thématique", alt:"dialectique",
+     parts:[{h:"Sur le plan institutionnel",items:["Des démarches lisibles et des délais raisonnables", "Un accès réel à la langue, au logement et aux soins"]},
+            {h:"Sur le plan économique",items:["La reconnaissance des compétences déjà acquises", "Un premier emploi qui ne condamne pas au déclassement"]},
+            {h:"Sur le plan humain",items:["Des voisins, des collègues et des associations qui ouvrent la porte", "Un regard qui ne renvoie pas sans cesse à l'origine"]}]},
+ 234:{plan:"thématique", alt:"OREO",
+     parts:[{h:"Sur le plan linguistique",items:["Ils apprennent vite et ramènent la langue à la maison", "Mais ils deviennent parfois les traducteurs de leurs parents, ce qui les charge"]},
+            {h:"Sur le plan social",items:["L'école ouvre un réseau de parents, de voisins et d'activités", "Les familles se rencontrent par les enfants bien plus que par le travail"]},
+            {h:"Sur le plan culturel",items:["Les enfants adoptent vite les codes du pays", "Ce qui crée parfois une distance avec la culture des parents"]}]},
+ 235:{plan:"dialectique", alt:"thématique",
+     parts:[{h:"Thèse : oui, c'est difficile",items:["Le quotidien impose la langue et le calendrier du pays d'accueil", "Les enfants adoptent vite les usages locaux", "Il faut du temps et de l'argent pour maintenir les liens"]},
+            {h:"Antithèse : non, c'est faisable",items:["Associations, cuisine, musique et fêtes font vivre la culture au quotidien", "Les communications permettent un lien permanent avec le pays", "L'éloignement rend souvent l'attachement plus conscient"]},
+            {h:"Synthèse",items:["On ne conserve pas une culture, on la transforme", "Le vrai sujet est la transmission aux enfants, pas la conservation"]}]},
+ 236:{plan:"dialectique", alt:"analytique",
+     parts:[{h:"Thèse : oui",items:["Les expériences montrent une productivité maintenue", "Moins de fatigue, moins d'arrêts, plus de fidélité des équipes", "Un jour de trajets en moins pour tout le monde"]},
+            {h:"Antithèse : non",items:["Impossible dans les services continus : soins, commerce, transports", "Souvent, les heures se reportent sur les quatre autres jours", "Les clients et les partenaires, eux, travaillent cinq jours"]},
+            {h:"Synthèse",items:["Possible par secteur, pas comme règle générale", "Le vrai sujet est la charge de travail, pas le nombre de jours"]}]},
+ 237:{plan:"analytique", alt:"thématique",
+     parts:[{h:"Les faits",items:["Des carrières faites de passages courts", "Des changements de secteur en cours de vie active"]},
+            {h:"Les causes",items:["Des salaires qui progressent plus vite en changeant", "La recherche de sens et de conditions de travail", "Des compétences devenues transférables d'un secteur à l'autre"]},
+            {h:"Les conséquences",items:["Pour le salarié : progression rapide mais moins de sécurité", "Pour l'entreprise : des départs coûteux et une mémoire qui se perd", "Des équipes plus ouvertes, nourries d'expériences variées"]},
+            {h:"Les solutions",items:["Des perspectives internes et de la formation continue", "Reconnaître les compétences acquises ailleurs"]}]},
+ 238:{plan:"OREO", alt:"dialectique",
+     parts:[{h:"Opinion",items:["Non, sauf urgence définie à l'avance et compensée"]},
+            {h:"Raisons",items:["Sans frontière claire, le travail occupe tout l'espace mental", "La disponibilité permanente use et finit en arrêt de travail", "Un message du soir crée une obligation implicite de répondre"]},
+            {h:"Nuance",items:["Certains métiers supposent une astreinte, qui doit être payée", "La souplesse d'horaires profite aussi aux salariés"]},
+            {h:"Opinion reformulée",items:["Le droit à la déconnexion doit être écrit, pas laissé à la bonne volonté"]}]},
+ 239:{plan:"comparatif", alt:"dialectique",
+     parts:[{h:"Le télétravail",items:["Pas de trajets, plus de concentration sur les tâches de fond", "Une organisation personnelle plus souple", "Un accès au travail pour ceux qui vivent loin"]},
+            {h:"Le bureau",items:["L'apprentissage informel et l'intégration des nouveaux", "Les décisions qui se prennent en trois minutes dans un couloir", "Une séparation nette entre vie privée et travail"]},
+            {h:"Ce qui les distingue",items:["L'un favorise la production individuelle, l'autre la coopération", "La question n'est pas l'un ou l'autre, mais ce qu'on fait de chaque jour"]}]},
+ 240:{plan:"dialectique", alt:"OREO",
+     parts:[{h:"Thèse : oui",items:["On y acquiert des compétences réelles : organiser, encadrer, rendre compte", "Cela valorise les parcours interrompus, notamment ceux des nouveaux arrivants", "C'est souvent la seule expérience accessible au début"]},
+            {h:"Antithèse : non, pas à égalité",items:["Ni les responsabilités ni les contraintes ne sont comparables", "Il n'y a ni évaluation ni obligation de résultat", "Le risque est de justifier du travail gratuit"]},
+            {h:"Synthèse",items:["Le valoriser comme compétence, sans le confondre avec un emploi", "Une attestation détaillée vaut mieux qu'une ligne sur un CV"]}]},
+ 241:{plan:"analytique", alt:"OREO",
+     parts:[{h:"Les faits",items:["Des reconversions vers l'artisanat, la création, le sport", "Des activités menées en parallèle d'un emploi salarié"]},
+            {h:"Les causes",items:["Une perte de sens dans des métiers très spécialisés", "Des outils qui permettent de vendre sans structure lourde", "Des modèles très visibles qui donnent envie"]},
+            {h:"Les conséquences",items:["Un engagement et une qualité que l'emploi classique obtient rarement", "Mais des revenus irréguliers et une protection sociale faible", "Le risque de perdre le plaisir en le transformant en obligation"]},
+            {h:"Les solutions",items:["Tester en parallèle avant de tout quitter", "Se former à la gestion autant qu'au métier"]}]},
+ 242:{plan:"dialectique", alt:"OREO",
+     parts:[{h:"Thèse : oui",items:["On se protège des avis décourageants au moment le plus fragile", "Annoncer donne l'impression d'avoir déjà agi", "On garde la liberté de changer d'avis sans se justifier"]},
+            {h:"Antithèse : non",items:["En parler attire des conseils, des contacts et des occasions", "L'engagement public oblige à avancer", "Le silence prolongé enferme dans ses propres erreurs"]},
+            {h:"Synthèse",items:["En parler à quelques personnes choisies, pas à tout le monde", "Partager le projet, garder le calendrier pour soi"]}]},
+ 243:{plan:"dialectique", alt:"OREO",
+     parts:[{h:"Thèse : oui",items:["L'attention se fragmente et les résultats baissent", "Le harcèlement continue pendant la récréation", "Les élèves se reparlent quand les écrans disparaissent"]},
+            {h:"Antithèse : non",items:["L'appareil sert aussi à apprendre et à s'organiser", "Interdire ne forme personne à un usage raisonnable", "Les familles veulent pouvoir joindre leurs enfants"]},
+            {h:"Synthèse",items:["Interdire pendant les cours, encadrer ailleurs", "Accompagner l'interdiction d'une éducation au numérique"]}]},
+ 244:{plan:"analytique", alt:"dialectique",
+     parts:[{h:"Les faits",items:["Des outils intégrés à la rédaction, au service client, au diagnostic", "Une adoption très rapide, souvent avant toute formation"]},
+            {h:"Les causes",items:["Des gains de temps immédiats sur les tâches répétitives", "La pression concurrentielle entre entreprises", "Des outils devenus simples d'accès"]},
+            {h:"Les conséquences",items:["Des tâches qui disparaissent et d'autres qui apparaissent", "Une dépendance et une perte de savoir-faire", "Des erreurs reprises sans vérification"]},
+            {h:"Les solutions",items:["Former avant de déployer", "Garder une vérification humaine sur les décisions qui engagent"]}]},
+ 245:{plan:"OREO", alt:"analytique",
+     parts:[{h:"Opinion",items:["Oui, mais en regardant le contenu et le moment autant que la durée"]},
+            {h:"Raisons",items:["Les écrans du soir dégradent le sommeil, donc les apprentissages", "Le temps d'écran remplace du jeu, du mouvement et de la parole", "Les contenus sont conçus pour retenir, pas pour nourrir"]},
+            {h:"Nuance",items:["Tout écran n'est pas équivalent : créer n'est pas subir", "Interdire sans proposer autre chose ne marche pas"]},
+            {h:"Opinion reformulée",items:["Des règles simples sur le soir et les repas feront plus qu'un compteur de minutes"]}]},
+ 246:{plan:"comparatif", alt:"analytique",
+     parts:[{h:"En ligne",items:["Choix immense, comparaison des prix immédiate", "Accessible sans se déplacer, à toute heure", "Les avis d'autres acheteurs aident à décider"]},
+            {h:"En magasin",items:["Voir, essayer, demander conseil et repartir avec", "Un service après-vente avec un interlocuteur réel", "Des emplois et une vie de quartier qui tiennent"]},
+            {h:"Ce qui les distingue",items:["L'un optimise le prix, l'autre la certitude et le lien", "Les livraisons et les retours pèsent lourd sur le bilan écologique"]}]},
+ 247:{plan:"thématique", alt:"dialectique",
+     parts:[{h:"Sur le plan pratique",items:["Les démarches et les trajets inutiles ont presque disparu", "Mais le temps gagné est immédiatement réinvesti ailleurs"]},
+            {h:"Sur le plan professionnel",items:["On traite plus de dossiers, donc on en attend davantage", "Les notifications fractionnent la journée en miettes"]},
+            {h:"Sur le plan personnel",items:["Rester en lien coûte moins d'efforts qu'avant", "Le temps libéré est souvent repris par les écrans eux-mêmes"]}]},
+ 248:{plan:"dialectique", alt:"OREO",
+     parts:[{h:"Thèse : impossible",items:["Paiement, transport, travail et identité numérique y sont concentrés", "On devient injoignable pour sa famille et son employeur", "Beaucoup de services n'existent plus que sous forme d'application"]},
+            {h:"Antithèse : possible",items:["La difficulté est sociale, pas technique", "Des solutions existent encore pour presque tout", "L'expérience montre surtout à quel point l'usage était automatique"]},
+            {h:"Synthèse",items:["Difficile parce que la société l'a rendu obligatoire", "La question n'est pas de s'en passer, mais de choisir quand on l'utilise"]}]},
+ 249:{plan:"comparatif", alt:"analytique",
+     parts:[{h:"Les médias traditionnels",items:["Des journalistes identifiés et une responsabilité engagée", "Une hiérarchie de l'information et des vérifications", "Un format qui permet d'expliquer un sujet complexe"]},
+            {h:"Les réseaux sociaux",items:["Une information immédiate et des témoignages directs", "Des voix que les rédactions ne relaient pas", "Un accès gratuit, sans abonnement"]},
+            {h:"Ce qui les distingue",items:["L'un vérifie puis publie, l'autre publie puis corrige parfois", "Les réseaux repèrent, les médias établissent"]}]},
+ 250:{plan:"dialectique", alt:"analytique",
+     parts:[{h:"Thèse : oui",items:["Les logements se transforment en locations courtes et les habitants partent", "Les sites et les transports saturent, l'expérience se dégrade pour tous", "Le patrimoine s'abîme plus vite qu'il ne s'entretient"]},
+            {h:"Antithèse : non",items:["Le tourisme fait vivre des commerces et des milliers d'emplois", "Limiter revient à réserver certaines villes aux plus riches", "Le problème vient de la concentration, pas du nombre"]},
+            {h:"Synthèse",items:["Réguler les locations et étaler les flux plutôt que fermer la porte", "Faire payer le coût réel au visiteur, pas à l'habitant"]}]},
+ 251:{plan:"analytique", alt:"thématique",
+     parts:[{h:"Les faits",items:["Des week-ends prolongés qui remplacent les trois semaines d'été", "Des destinations proches, réservées à la dernière minute"]},
+            {h:"Les causes",items:["Des congés fractionnés et des contraintes familiales", "Des transports rapides et des offres très accessibles", "L'envie de partir souvent plutôt que longtemps"]},
+            {h:"Les conséquences",items:["Plus de trajets, donc une empreinte plus lourde", "Des villes saturées chaque fin de semaine", "Un repos réel plus difficile à obtenir"]},
+            {h:"Les solutions",items:["Des offres qui récompensent les séjours longs", "Privilégier le train pour les courtes distances"]}]},
+ 252:{plan:"OREO", alt:"dialectique",
+     parts:[{h:"Opinion",items:["Il profite surtout là où les habitants en gardent le contrôle"]},
+            {h:"Raisons",items:["Les emplois créés sont souvent saisonniers et peu payés", "Une grande part des recettes part vers des groupes extérieurs", "Les prix du logement et des commerces suivent les visiteurs"]},
+            {h:"Nuance",items:["Il maintient des services et des lignes de transport qui disparaîtraient", "Il finance la restauration du patrimoine"]},
+            {h:"Opinion reformulée",items:["Le tourisme devient bénéfique quand il est encadré et détenu localement"]}]},
+ 253:{plan:"comparatif", alt:"OREO",
+     parts:[{h:"Voyager seul",items:["Liberté totale du rythme et des étapes", "Des rencontres plus faciles et plus vraies", "Une confrontation à la langue et à l'imprévu"]},
+            {h:"Le groupe organisé",items:["Sécurité, logistique et accès à des lieux difficiles", "Un guide qui explique ce qu'on ne verrait pas", "Rassurant quand on ne parle pas la langue"]},
+            {h:"Ce qui les distingue",items:["L'un forme, l'autre protège", "Le choix dépend de la destination, du temps et de l'expérience"]}]},
+ 254:{plan:"thématique", alt:"OREO",
+     parts:[{h:"Sur le plan personnel",items:["On apprend à se débrouiller sans ses repères", "On revient avec une autre idée de ce qui est normal"]},
+            {h:"Sur le plan linguistique et culturel",items:["La langue devient un besoin, pas un exercice", "On comprend de l'intérieur ce qu'on avait lu de loin"]},
+            {h:"Sur le plan professionnel et social",items:["Une capacité d'adaptation que les employeurs reconnaissent", "Des liens qui durent bien au-delà du séjour"]}]},
+ 255:{plan:"dialectique", alt:"OREO",
+     parts:[{h:"Thèse : oui",items:["Tout le monde finit dans les trois mêmes adresses", "On arrive avec une attente au lieu d'une curiosité", "Une note moyenne écarte ce qui est inhabituel"]},
+            {h:"Antithèse : non",items:["Les avis évitent les pièges à touristes et les mauvaises surprises", "Ils donnent accès à des lieux qu'on n'aurait jamais trouvés", "On reste libre de ne pas les suivre"]},
+            {h:"Synthèse",items:["Les lire après avoir choisi, pas avant", "Garder une part du séjour sans rien préparer"]}]},
+ 256:{plan:"analytique", alt:"dialectique",
+     parts:[{h:"Les faits",items:["Des destinations devenues populaires en quelques mois", "Des itinéraires construits à partir d'images vues en ligne"]},
+            {h:"Les causes",items:["Des images qui circulent sans frein et donnent envie", "Des recommandations perçues comme plus sincères qu'une publicité", "La facilité de réserver dans la foulée"]},
+            {h:"Les conséquences",items:["Des sites fragiles saturés du jour au lendemain", "Un voyage organisé autour de la photo à rapporter", "Mais aussi des lieux méconnus enfin visités"]},
+            {h:"Les solutions",items:["Mettre en avant la saison creuse et les alternatives", "Encadrer l'accès aux sites les plus fragiles"]}]}
 };
 
 var GRAM = [
@@ -1254,8 +1910,9 @@ function renderGrids(){
     return '<button class="tcard t2" type="button" data-task="2" data-i="'+i+'"><span class="k"><span>Tâche 2</span>'+(done['2'+i]?'<span class="done">✓</span>':'')+'</span><span class="typ'+(s.type==='convaincre'?' conv':'')+'">'+(s.type==='convaincre'?'convaincre':'s\'informer')+(s.neuf?' · inédit':'')+'</span><span class="t">Sujet '+(i+1)+'</span><span class="c">'+esc(s.cons.length>150?s.cons.slice(0,150)+'…':s.cons)+'</span></button>';
   }).join('');
   document.getElementById('gridT3').innerHTML=T3.map(function(s,i){
-    return '<button class="tcard t3" type="button" data-task="3" data-i="'+i+'"><span class="k"><span>Tâche 3 · sujet '+(i+1)+'</span>'+(done['3'+i]?'<span class="done">✓</span>':'')+'</span><span class="typ conv">point de vue</span><span class="t">'+esc(s.t)+'</span><span class="c">'+esc(s.cons)+'</span></button>';
+    return '<button class="tcard t3" type="button" data-task="3" data-i="'+i+'" data-cat="'+esc(s.cat)+'"><span class="k"><span>Tâche 3 · sujet '+(i+1)+'</span>'+(done['3'+i]?'<span class="done">✓</span>':'')+'</span><span class="typ conv">'+esc(s.cat)+'</span><span class="t">Sujet '+(i+1)+'</span><span class="c">'+esc(s.cons)+'</span></button>';
   }).join('');
+  if(window.applyCatFilter) window.applyCatFilter();
 }
 renderGrids();
 document.querySelectorAll('.tgrid').forEach(function(g){
@@ -1361,7 +2018,7 @@ function openItem(task,i,autostart){
   } else {
     var s3=T3[i];
     pill.textContent='Tâche 3 · expression d\'un point de vue';
-    document.getElementById('dlNum').textContent='Sujet '+(i+1)+' / '+T3.length+' · '+s3.t;
+    document.getElementById('dlNum').textContent='Sujet '+(i+1)+' / '+T3.length+' · '+s3.cat;
     cons.innerHTML=esc(s3.cons);
     phases=[{label:'Expression en continu · 4 min 30 · sans préparation',d:270}];
     var ps=PISTES[s3.n], rec=ps?ps.plan:s3.plan;
@@ -1577,7 +2234,7 @@ document.getElementById('attendus').innerHTML=[window.ONLY_T||'1'].map(function(
     + '</tr></tbody></table>';
 }).join('');
 document.querySelectorAll('#evaluation [data-evhost]').forEach(function(h){ bindEval(h, h.getAttribute('data-evhost'), null); });
-function sujetLabel(t,i){ return t==='2' ? ('Sujet '+(i+1)+' / '+T2.length) : ('Sujet '+(i+1)+' / '+T3.length+' · '+T3[i].t); }
+function sujetLabel(t,i){ return t==='2' ? ('Sujet '+(i+1)+' / '+T2.length) : ('Sujet '+(i+1)+' / '+T3.length+' · '+T3[i].cat); }
 ['2','3'].forEach(function(t){
   var sel=document.getElementById('sel'+t), list=t==='2'?T2:T3;
   list.forEach(function(x,i){ var o=document.createElement('option'); o.value=i; o.textContent=sujetLabel(t,i); sel.appendChild(o); });
@@ -1827,9 +2484,138 @@ document.getElementById('dlECopy').addEventListener('click', function(){
 });
 })();
 
+
+/* ---------------- filtre par thème (tâche 3) ---------------- */
+(function(){
+  var cur='all', f=document.getElementById('catFilters');
+  window.applyCatFilter=function(){
+    var g=document.getElementById('gridT3'); if(!g||!g.querySelectorAll) return;
+    g.querySelectorAll('.tcard').forEach(function(c){
+      c.style.display=(cur==='all'||c.getAttribute('data-cat')===cur)?'':'none';
+    });
+  };
+  if(f&&f.addEventListener) f.addEventListener('click', function(e){
+    var b=e.target.closest('[data-cat]'); if(!b) return;
+    cur=b.getAttribute('data-cat');
+    f.querySelectorAll('.chip').forEach(function(x){ x.setAttribute('aria-pressed', x===b?'true':'false'); });
+    window.applyCatFilter();
+  });
+  window.applyCatFilter();
+})();
+</script>
+<script>
+/* ---------------- Assistant IA : sujets de Tâche 3 infinis ---------------- */
+(function(){
+  var card = document.getElementById('iaCard');
+  var unavail = document.getElementById('iaUnavail');
+  var go = document.getElementById('iaGo');
+  var catSel = document.getElementById('iaCat');
+  var angleInp = document.getElementById('iaAngle');
+  var errEl = document.getElementById('iaErr');
+  var okEl = document.getElementById('iaOk');
+  var sample = null, busy = false, counter = 0;
+  var CATS = ['Éducation','Santé','Écologie','Français','Immigration','Travail','Technologie','Tourisme'];
+  var PLANS = ['dialectique','analytique','thématique','comparatif','OREO'];
+
+  // deux sujets réels de cette page, utilisés comme modèles (few-shot) pour que
+  // l'IA génère exactement dans le même format que les 56 sujets déjà présents.
+  var FEWSHOT = [
+    {cat:"Éducation", cons:"Les devoirs à la maison devraient être supprimés à l'école primaire. Êtes-vous d'accord avec cette affirmation ?",
+     plan:"dialectique", alt:"OREO",
+     parts:[{h:"Thèse : oui, il faut les supprimer",items:["Les journées des enfants sont déjà longues","Les familles ne peuvent pas toutes aider, ce qui creuse les écarts","Les apprentissages peuvent se faire en classe, avec l'enseignant"]},
+            {h:"Antithèse : non, ils restent utiles",items:["Ils installent une habitude de travail autonome","Ils donnent aux parents une fenêtre sur la scolarité","Dix minutes de lecture par soir suffisent à consolider"]},
+            {h:"Synthèse",items:["Supprimer les exercices écrits, garder la lecture","Le problème n'est pas le devoir, c'est sa quantité et son inégalité"]}],
+     b2:[{w:"la charge de travail", ex:"La charge de travail d'un enfant de huit ans est déjà considérable."},
+         {w:"creuser les inégalités", ex:"Les devoirs creusent les inégalités entre les familles."},
+         {w:"l'autonomie", ex:"On dit qu'ils développent l'autonomie, mais à cet âge c'est discutable."},
+         {w:"consolider les acquis", ex:"Une lecture quotidienne suffit à consolider les acquis."}]},
+    {cat:"Éducation", cons:"Pensez-vous que les études universitaires devraient être gratuites pour tous ?",
+     plan:"OREO", alt:"dialectique",
+     parts:[{h:"Opinion",items:["Oui, gratuites, mais avec des conditions de réussite"]},
+            {h:"Raisons",items:["L'accès au savoir ne devrait pas dépendre du revenu des parents","Un pays forme ainsi les compétences dont il a besoin","L'endettement étudiant retarde l'autonomie et la natalité"]},
+            {h:"Nuance",items:["La gratuité totale profite aussi à ceux qui pourraient payer","Sans financement public solide, la qualité baisse"]},
+            {h:"Opinion reformulée",items:["Une gratuité conditionnée, financée par l'impôt, me paraît la formule la plus juste"]}],
+     b2:[{w:"l'égalité des chances", ex:"La gratuité est un instrument d'égalité des chances."},
+         {w:"l'endettement étudiant", ex:"L'endettement étudiant pèse sur toute une génération."},
+         {w:"le financement public", ex:"Tout dépend du niveau de financement public."},
+         {w:"l'effet d'aubaine", ex:"La gratuité pour tous crée un effet d'aubaine pour les plus aisés."}]}
+  ];
+
+  function showErr(msg){ errEl.textContent = msg; errEl.style.display = ''; okEl.style.display = 'none'; }
+  function showOk(msg){ okEl.textContent = msg; okEl.style.display = ''; errEl.style.display = 'none'; }
+
+  function runGen(){
+    if(busy || !sample) return;
+    busy = true; go.disabled = true; go.textContent = 'Réflexion…';
+    errEl.style.display = 'none'; okEl.style.display = 'none';
+    var cat = catSel.value === 'aléatoire' ? CATS[Math.floor(Math.random()*CATS.length)] : catSel.value;
+    var angle = angleInp.value.trim();
+    var prompt = "Tu es un concepteur d'épreuves TCF Canada (expression orale, Tâche 3 — expression d'un point de vue, 4 min 30 sans préparation, niveaux B2 à C2). "
+      + "Voici deux sujets déjà publiés sur cette page, donnés comme MODÈLES de format et de niveau à respecter STRICTEMENT (même structure JSON, même registre de langue, même longueur de pistes) :\n"
+      + JSON.stringify(FEWSHOT, null, 0) + "\n\n"
+      + "Les 5 plans possibles, et quand les utiliser :\n"
+      + "- dialectique : la question demande si on est d'accord avec une affirmation tranchée (thèse, antithèse, synthèse).\n"
+      + "- analytique : la question porte sur un phénomène de société qu'on constate (faits, causes, conséquences, solutions).\n"
+      + "- thématique : question ouverte à organiser en trois axes (économique, social, personnel…).\n"
+      + "- comparatif : la question oppose deux éléments (caractéristiques de chacun, ce qui les distingue).\n"
+      + "- OREO : la question appelle une prise de position nette (opinion, raisons, exemple, opinion reformulée).\n\n"
+      + "Invente UN sujet original et inédit (jamais utilisé avant), dans le thème \"" + cat + "\""
+      + (angle ? (", avec cet angle précis si possible : \"" + angle + "\"") : '')
+      + ". Choisis le plan le plus adapté à la formulation de ta question, en suivant la règle ci-dessus. "
+      + "Réponds UNIQUEMENT en JSON strict, sans texte autour, avec exactement ces clés : "
+      + '{"cat": "' + cat + '", '
+      + '"cons": "la question de point de vue, formulée comme un vrai sujet TCF (ex. se terminant par \\"Qu\'en pensez-vous ?\\" ou \\"Êtes-vous d\'accord avec cette affirmation ?\\")", '
+      + '"plan": "un des 5 noms exacts : dialectique, analytique, thématique, comparatif, OREO", '
+      + '"alt": "un plan alternatif possible, ou chaîne vide", '
+      + '"parts": [ {"h": "titre court de cette partie du plan (adapté au plan choisi, ex. Thèse / Antithèse / Synthèse pour dialectique, ou Opinion / Raisons / Nuance / Opinion reformulée pour OREO)", "items": ["2 à 3 arguments courts et concrets en français"] }, ... 2 à 4 parties au total, cohérentes avec le plan choisi ], '
+      + '"b2": [ {"w": "mot ou expression de niveau B2/C1", "ex": "phrase exemple employant ce mot, en lien avec le sujet"}, ... 6 à 8 entrées ] }';
+
+    sample.json(prompt, { modelTier: 'quick', cache: false }).then(function(data){
+      busy = false; go.disabled = false; go.textContent = '✨ Générer un sujet inédit';
+      if(!data || !data.cons || !Array.isArray(data.parts) || !data.parts.length){
+        showErr('Réponse inattendue — réessayez.');
+        return;
+      }
+      var plan = PLANS.indexOf(data.plan) !== -1 ? data.plan : 'OREO';
+      var catOut = CATS.indexOf(data.cat) !== -1 ? data.cat : cat;
+      counter++;
+      var n = 9000 + counter;
+      T3.push({ n: n, cat: catOut, t: 'Sujet IA ' + counter, plan: plan, cons: data.cons,
+        b2: Array.isArray(data.b2) ? data.b2.filter(function(x){ return x && x.w && x.ex; }) : [] });
+      PISTES[n] = { plan: plan, alt: typeof data.alt === 'string' ? data.alt : '',
+        parts: data.parts.filter(function(p){ return p && p.h && Array.isArray(p.items) && p.items.length; }) };
+      renderGrids();
+      showOk('✓ Sujet ajouté (' + catOut + ', plan ' + plan + ') — ouverture…');
+      openItem('3', T3.length - 1, false);
+    }).catch(function(err){
+      busy = false; go.disabled = false; go.textContent = '✨ Générer un sujet inédit';
+      var code = err && err.code;
+      if(code === 'not_granted' || code === 'not_declared' || code === 'capability_disabled' || code === 'capability_removed'){
+        card.style.display = 'none';
+        unavail.style.display = '';
+      } else if(code === 'rate_limited'){
+        showErr('Trop de demandes pour le moment — réessayez dans un instant.');
+      } else if(code === 'invalid_json' || code === 'empty_completion' || code === 'refused'){
+        showErr('La génération a échoué — réessayez.');
+      } else {
+        showErr('Erreur temporaire — réessayez.');
+      }
+    });
+  }
+  go.addEventListener('click', runGen);
+
+  try{
+    if(typeof claude !== 'undefined' && claude && typeof claude.use === 'function'){
+      claude.use('sample').then(function(s){
+        if(!s) return;
+        sample = s;
+        card.style.display = '';
+      }).catch(function(){});
+    }
+  }catch(e){}
+})();
 </script>
 
-
-
 <script src="assets/i18n.js?v=3"></script>
+<script src="assets/ia-fallback.js?v=1" data-ia-url="https://claude.ai/artifact/HCByLBbFMJ2HfSw3CKzfNV"></script>
 </body></html>

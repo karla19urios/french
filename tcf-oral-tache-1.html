@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style><link rel="preconnect" href="https://fonts.googleapis.com">
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&display=swap">
 <link rel="stylesheet" href="assets/typography.css">
@@ -113,20 +113,27 @@
   }
 })();
 </script>
-<title>TCF Canada · Expression orale · Tâche 1</title>
+<nav style="max-width:1100px;margin:0 auto;padding:16px clamp(10px,2.2vw,22px) 0;display:flex;flex-wrap:wrap;gap:8px;font-family:Poppins,system-ui,sans-serif">
+  <a href="tcf-examen.html" style="display:inline-block;padding:.45rem 1rem;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--text);text-decoration:none;font-weight:600;font-size:.85rem">← TCF · Expression orale</a>
+  <a href="tcf-oral-tache-2.html" style="display:inline-block;padding:.45rem 1rem;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--text);text-decoration:none;font-weight:600;font-size:.85rem">Tâche 2</a>
+  <a href="tcf-oral-tache-3.html" style="display:inline-block;padding:.45rem 1rem;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--text);text-decoration:none;font-weight:600;font-size:.85rem">Tâche 3</a>
+</nav>
+
+
+<title>TCF Canada · Tâche 1</title>
 <style>
 :root{
-  --bleu:#393B66;
+  --bleu:#002395;
   --blanc:#ffffff;
-  --rouge:#378EF6;
-  --bg:#EAF2FE;
+  --rouge:#ED2939;
+  --bg:#f4f5f7;
   --card:#ffffff;
-  --text:#393B66;
-  --muted:#646363;
-  --border:#D5E3F8;
-  --shadow:rgba(57,59,102,.08);
-  --bleu-soft:rgba(55,142,246,.12);
-  --rouge-soft:rgba(55,142,246,.10);
+  --text:#1a1a2e;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --shadow:rgba(16,24,40,.08);
+  --bleu-soft:rgba(0,35,149,.08);
+  --rouge-soft:rgba(237,41,57,.10);
   --vert:#1a7f4f;
   --vert-soft:rgba(26,127,79,.12);
   --accent:var(--bleu);
@@ -134,15 +141,15 @@
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#1D1F3A;--card:#2A2C50;--text:#F4F6FF;--muted:#B8B8B8;--border:#3F4278;
-    --shadow:rgba(0,0,0,.35);--bleu-soft:rgba(55,142,246,.16);--rouge-soft:rgba(125,182,250,.14);
-    --vert:#4ec98a;--vert-soft:rgba(78,201,138,.15);--accent:#7DB6FA;
+    --bg:#12141c;--card:#1b1e2b;--text:#f1f2f6;--muted:#9aa0b4;--border:#2a2e40;
+    --shadow:rgba(0,0,0,.35);--bleu-soft:rgba(90,125,255,.14);--rouge-soft:rgba(237,41,57,.16);
+    --vert:#4ec98a;--vert-soft:rgba(78,201,138,.15);--accent:#9db2ff;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#1D1F3A;--card:#2A2C50;--text:#F4F6FF;--muted:#B8B8B8;--border:#3F4278;
-  --shadow:rgba(0,0,0,.35);--bleu-soft:rgba(55,142,246,.16);--rouge-soft:rgba(125,182,250,.14);
-  --vert:#4ec98a;--vert-soft:rgba(78,201,138,.15);--accent:#7DB6FA;
+  --bg:#12141c;--card:#1b1e2b;--text:#f1f2f6;--muted:#9aa0b4;--border:#2a2e40;
+  --shadow:rgba(0,0,0,.35);--bleu-soft:rgba(90,125,255,.14);--rouge-soft:rgba(237,41,57,.16);
+  --vert:#4ec98a;--vert-soft:rgba(78,201,138,.15);--accent:#9db2ff;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -418,7 +425,7 @@ footer b{color:var(--text)}
 .evb span{font-size:.74rem;line-height:1.3;color:var(--muted)}
 .evb:hover{border-color:var(--accent)}
 .evb.on{background:var(--card);box-shadow:0 0 0 2px currentColor inset}
-.evb.on.l0{color:#646363} .evb.on.l1{color:var(--bleu)} .evb.on.l2{color:#b7791f} .evb.on.l3{color:var(--rouge)}
+.evb.on.l0{color:#6b7280} .evb.on.l1{color:var(--bleu)} .evb.on.l2{color:#b7791f} .evb.on.l3{color:var(--rouge)}
 .evb.on b,.evb.on span{color:inherit}
 .evnote{width:100%;padding:.5rem .7rem;border-radius:9px;border:1px solid var(--border);background:var(--card);color:var(--text);font:inherit;font-size:.86rem;margin-top:.2rem}
 .evglobal{display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap}
@@ -497,9 +504,6 @@ h3.blkpe{font-size:1.08rem;margin:2rem 0 .7rem;padding-bottom:.35rem;border-bott
     <h1>Tâche 1 · l'entretien dirigé</h1>
     <p>2 minutes, sans préparation. L'examinateur vous interroge sur vous : vie au Canada, travail, quotidien, parcours, projets. Sept thèmes, 75 questions, chronomètre et vocabulaire B1/B2.</p>
     <nav class="toc">
-      <a href="tcf-examen.html">← TCF · Expression orale</a>
-      <a href="tcf-oral-tache-2.html">Tâche 2</a>
-      <a href="tcf-oral-tache-3.html">Tâche 3</a>
       <a href="#epreuve">L'épreuve</a>
       <a href="#grammaire">Grammaire</a>
       <a href="#connecteurs">Connecteurs</a>
@@ -1760,8 +1764,6 @@ document.getElementById('dlECopy').addEventListener('click', function(){
 })();
 
 </script>
-
-
 
 <script src="assets/i18n.js?v=3"></script>
 </body></html>
