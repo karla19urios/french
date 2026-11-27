@@ -680,7 +680,7 @@ footer{text-align:center; padding:30px 0; color:var(--ink-soft); font-size:12.5p
   <div class="card">
     <div class="cat-badge">Erreurs à analyser</div>
     <div class="ex-title">Collez les erreurs de l'étudiant·e</div>
-    <div class="ex-sub">Une par ligne, ou un extrait corrigé — en français ou décrites en espagnol, les deux fonctionnent.</div>
+    <div class="ex-sub">Une par ligne, ou un extrait corrigé — en français ou décrites en anglais, les deux fonctionnent.</div>
     <textarea class="open-ans" id="ia-input" placeholder="Ex. : « Il y a des problèmes qui je connais pas bien » (confusion qui/que) — « Je suis intéressé de ce sujet » (préposition après adjectif) — « la probleme » (genre du nom)…"></textarea>
     <div class="btn-row"><button class="btn" id="ia-generate-btn" onclick="iaGenerate()">Analyser et générer des exercices</button></div>
     <div class="ia-status" id="ia-status"></div>
@@ -1100,7 +1100,7 @@ ${userText}
 
 Réponds UNIQUEMENT avec un objet JSON valide (pas de texte avant/après, pas de balises markdown), au format exact suivant :
 {
-  "analyse": "2 à 4 phrases en espagnol, destinées à la professeure : à quelles catégories de l'atelier ces erreurs se rattachent-elles et pourquoi.",
+  "analyse": "2 à 4 phrases en anglais, destinées à la professeure : à quelles catégories de l'atelier ces erreurs se rattachent-elles et pourquoi.",
   "categories_liees": ["nom court de catégorie 1", "nom court de catégorie 2"],
   "exercices_grammaire": [
     {"phrase_a_trou": "Phrase en français avec UN SEUL blanc marqué par ___ qui cible précisément une des erreurs fournies.", "reponse": "la réponse exacte attendue (un mot ou une courte expression ; plusieurs réponses séparées par / si pertinent)", "explication": "courte règle grammaticale en français, une phrase"}
@@ -1114,12 +1114,12 @@ Réponds UNIQUEMENT avec un objet JSON valide (pas de texte avant/après, pas de
     "points_a_travailler": ["point précis à vérifier 1", "point précis à vérifier 2"]
   },
   "lecons_du_site": [
-    {"titre": "titre exact de la leçon du site", "url": "URL exacte copiée du plan du site", "pourquoi": "une phrase en espagnol : quelle erreur cette leçon aide à corriger"}
+    {"titre": "titre exact de la leçon du site", "url": "URL exacte copiée du plan du site", "pourquoi": "une phrase en anglais : quelle erreur cette leçon aide à corriger"}
   ]
 }
 
 Pour "lecons_du_site", recommande 2 à 5 leçons du site qui traitent précisément ces erreurs (en priorité celles des extraits fournis). Quand une explication existe dans les leçons du site, reprends sa formulation.
-Génère entre 5 et 8 exercices de grammaire, chacun ciblant une des erreurs réellement fournies — n'invente pas d'erreurs absentes du texte fourni. Si le texte est vide ou incompréhensible, renvoie un JSON avec "analyse" expliquant le problème en espagnol et des tableaux vides ailleurs.`;
+Génère entre 5 et 8 exercices de grammaire, chacun ciblant une des erreurs réellement fournies — n'invente pas d'erreurs absentes du texte fourni. Si le texte est vide ou incompréhensible, renvoie un JSON avec "analyse" expliquant le problème en anglais et des tableaux vides ailleurs.`;
 }
 
 async function iaGenerate(){
