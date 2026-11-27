@@ -341,6 +341,47 @@
   .ai-err .o{text-decoration:line-through;opacity:.75}
   .ai-err .c{font-weight:700;color:var(--rouge)}
   .ai-level{display:inline-block;padding:.35rem .9rem;border-radius:999px;background:var(--bleu);color:#fff;font-weight:800}
+  /* annonce générée — même gabarit que les annonces du dossier TEF */
+  .annonce{--h:210;border-radius:14px;overflow:hidden;border:1px solid var(--border);margin:.6rem 0 0;background:hsl(var(--h) 50% 97%);box-shadow:0 2px 10px var(--shadow)}
+  .annonce .an-top{background:hsl(var(--h) 62% 88%);padding:16px 20px 14px;text-align:center}
+  .annonce .an-ens{font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:hsl(var(--h) 45% 32%)}
+  .annonce .an-tit{margin:.3rem 0 .15rem;font-size:clamp(1.25rem,3.6vw,2rem);font-weight:900;line-height:1.08;text-transform:uppercase;color:hsl(var(--h) 60% 24%);display:flex;align-items:center;justify-content:center;gap:.6em}
+  .annonce .an-tit i{font-style:normal;font-size:.6em;opacity:.7}
+  .annonce .an-acc{font-size:.98rem;font-weight:800;color:hsl(var(--h) 50% 30%)}
+  .annonce .an-body{display:grid;grid-template-columns:minmax(0,42%) minmax(0,1fr);gap:14px;padding:16px 20px}
+  @media(max-width:620px){.annonce .an-body{grid-template-columns:1fr}}
+  .annonce .an-vis{border-radius:8px;min-height:150px;display:grid;place-items:center;font-size:3.6rem;background:linear-gradient(140deg,hsl(var(--h) 55% 78%),hsl(var(--h) 58% 58%));border:3px solid #fff;box-shadow:0 1px 6px rgba(0,0,0,.18)}
+  .annonce .an-li{display:flex;flex-direction:column;gap:8px}
+  .annonce .an-li span{background:hsl(var(--h) 65% 86%);border-radius:8px;padding:.5rem .8rem;font-size:.9rem;font-weight:600;color:hsl(var(--h) 55% 22%)}
+  .annonce .an-li span::before{content:'\2726';opacity:.7;margin-right:.45em}
+  .annonce .an-foot{background:hsl(var(--h) 45% 22%);color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .annonce .an-cta{font-weight:800;font-size:.98rem}
+  .annonce .an-tel{background:#fff;color:hsl(var(--h) 55% 22%);border-radius:999px;padding:.4rem 1.1rem;font-weight:900;font-size:1.05rem;white-space:nowrap}
+  .annonce .an-prix{display:inline-block;margin-top:.55rem;background:hsl(var(--h) 60% 24%);color:#fff;border-radius:999px;padding:.2rem .7rem;font-size:.8rem;font-weight:800}
+
+  /* points à travailler + exercices */
+  .ai-pt{display:flex;gap:.7rem;align-items:flex-start;border:1px solid var(--border);border-left:4px solid var(--border);border-radius:12px;padding:.6rem .8rem;margin:.5rem 0;background:var(--bg)}
+  .ai-pt.p-haute{border-left-color:var(--rouge)}
+  .ai-pt.p-moyenne{border-left-color:#d97706}
+  .ai-pt.p-basse{border-left-color:#1a7f4f}
+  .ai-pt b{display:block;font-size:.95rem}
+  .ai-pt i{display:block;font-style:normal;color:var(--muted);font-size:.86rem;margin-top:.15rem}
+  .ai-pt .pr{flex:0 0 auto;font-size:.62rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .5rem;border-radius:5px;background:var(--border);color:var(--text)}
+  .ai-pt.p-haute .pr{background:var(--rouge);color:#fff}
+  .ai-ex{border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin:.7rem 0;background:var(--bg)}
+  .ai-ex h4{margin:0 0 .2rem;font-size:1rem}
+  .ai-ex .cons{color:var(--muted);font-size:.88rem;margin:0 0 .7rem}
+  .ai-it{padding:.55rem 0;border-top:1px dashed var(--border)}
+  .ai-it:first-of-type{border-top:none}
+  .ai-it .q{font-size:.94rem;margin-bottom:.35rem}
+  .ai-it input{width:100%;padding:.5rem .7rem;border-radius:9px;border:1px solid var(--border);background:var(--card);color:var(--text);font:inherit;font-size:.92rem}
+  .ai-it input.ok{border-color:#1a7f4f;background:rgba(26,127,79,.10)}
+  .ai-it input.no{border-color:var(--rouge);background:rgba(237,41,57,.08)}
+  .ai-it .sol{display:none;margin-top:.3rem;font-size:.86rem;color:var(--muted)}
+  .ai-it .sol b{color:var(--rouge)}
+  .ai-it.done .sol{display:block}
+  .ai-exfoot{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin-top:.7rem}
+  .ai-score{font-weight:800;color:var(--bleu)}
   @media (max-width:560px){.ai-card{padding:16px 14px}}
 </style>
 
@@ -355,7 +396,7 @@
 
   <section class="ai-card">
     <h2>1 · Un sujet d'entraînement</h2>
-    <p class="ai-muted">L'IA crée un sujet nouveau à chaque clic, au format de l'examen, avec des pistes, des expressions utiles et un modèle.</p>
+    <p class="ai-muted">L'IA crée un sujet nouveau à chaque clic. Pour le TEF, il s'affiche comme une vraie annonce, au format de l'examen, avec des pistes, des expressions utiles et un modèle.</p>
     <div class="ai-row">
       <input type="text" id="aiTheme" placeholder="Thème (facultatif) : logement, travail, voyage, santé…">
       <button class="ai-btn" type="button" id="aiGen">✨ Générer un sujet</button>
@@ -377,7 +418,7 @@
 
   <section class="ai-card">
     <h2>3 · Ma réponse, corrigée</h2>
-    <p class="ai-muted">Écris ta réponse (ou dicte-la au micro). L'IA estime ton niveau, corrige chaque erreur avec une explication, propose une version améliorée et t'indique les leçons du site à revoir.</p>
+    <p class="ai-muted">Écris ta réponse (ou dicte-la au micro). L'IA estime ton niveau, corrige chaque erreur avec une explication, propose une version améliorée, puis liste tes points à travailler et te donne des exercices pour les reprendre.</p>
     <textarea class="ai-answer" id="aiAnswer" placeholder="Écris ici ce que tu dirais à l'examen…"></textarea>
     <div class="ai-row">
       <button class="ai-btn" type="button" id="aiCorrect">✅ Corriger ma réponse</button>
@@ -391,7 +432,7 @@
 <script>
 (function(){
   var TASKS = {
-    tef1: { group:"b1b2", tab:"TEF · Tâche 1", title:"TEF Canada · Expression orale · Section A (tâche 1)",
+    tef1: { annonce:true, group:"b1b2", tab:"TEF · Tâche 1", title:"TEF Canada · Expression orale · Section A (tâche 1)",
       desc:"Obtenir des informations : tu lis une petite annonce et tu téléphones pour poser des questions. Tu vouvoies ton interlocuteur et tu dois poser une dizaine de questions variées et polies.",
       chips:["5 minutes","Registre : vous","Niveau visé B1-B2","≈ 10 questions"],
       phases:[["Appel",300]],
@@ -399,7 +440,7 @@
       situation:"le texte complet de l'annonce telle qu'elle apparaît à l'examen (titre, 4 à 7 lignes d'informations incomplètes qui donnent envie de poser des questions)",
       pistes:"8 à 10 questions que le candidat pourrait poser (vouvoiement, formes variées : inversion, est-ce que, mots interrogatifs)",
       modele:"un dialogue modèle de 12 à 16 répliques, chaque élément commençant par « Candidat : » ou « Examinateur : »" },
-    tef2: { group:"b1b2", tab:"TEF · Tâche 2", title:"TEF Canada · Expression orale · Section B (tâche 2)",
+    tef2: { annonce:true, group:"b1b2", tab:"TEF · Tâche 2", title:"TEF Canada · Expression orale · Section B (tâche 2)",
       desc:"Présenter et convaincre : tu lis une annonce et tu dois convaincre un·e ami·e (l'examinateur) d'y participer. Tu le tutoies, tu présentes l'offre, tu argumentes et tu réponds à ses objections.",
       chips:["10 minutes","Registre : tu","Niveau visé B1-B2","3 à 4 arguments + objections"],
       phases:[["Présentation et discussion",600]],
@@ -459,6 +500,30 @@
   var hh = document.querySelector(".hero h1"); if(hh) hh.textContent = "🤖 Assistant IA · " + T.tab;
 
   /* AI access (site Worker through assets/ia-proxy.js) */
+  /* une annonce dessinée au même gabarit que celles du dossier TEF */
+  function annonceHTML(d){
+    var a = d && d.annonce;
+    if(!a || typeof a !== "object") return "";
+    var lignes = list(a.lignes);
+    if(!a.titre && !lignes.length) return "";
+    var h = parseFloat(a.teinte);
+    if(!isFinite(h) || h < 0 || h > 360) h = 210;
+    return '<div class="annonce" style="--h:' + h + '">' +
+      '<div class="an-top">' +
+        (a.enseigne ? '<div class="an-ens">' + esc(a.enseigne) + '</div>' : '') +
+        '<div class="an-tit"><i>\u2726</i><span>' + esc(a.titre || d.titre || "") + '</span><i>\u2726</i></div>' +
+        (a.accroche ? '<div class="an-acc">' + esc(a.accroche) + '</div>' : '') +
+      '</div>' +
+      '<div class="an-body">' +
+        '<div class="an-vis" aria-hidden="true">' + esc(a.emoji || "\u2726") + '</div>' +
+        '<div><div class="an-li">' + lignes.map(function(x){ return '<span>' + esc(x) + '</span>'; }).join("") + '</div>' +
+        (a.prix ? '<div class="an-prix">' + esc(a.prix) + '</div>' : '') + '</div>' +
+      '</div>' +
+      '<div class="an-foot"><span class="an-cta">' + esc(a.cta || "Renseignements") + '</span>' +
+        (a.telephone ? '<span class="an-tel">' + esc(a.telephone) + '</span>' : '') + '</div>' +
+    '</div>';
+  }
+
   var samplePromise = (typeof claude !== "undefined" && claude && claude.use) ? claude.use("sample") : Promise.resolve(null);
   function ask(prompt, opts, statusEl, btn, render){
     btn.disabled = true; statusEl.textContent = "L'IA prépare la réponse… (10 à 40 secondes)";
@@ -477,10 +542,23 @@
   /* 1 · subject */
   $("aiGen").addEventListener("click", function(){
     var theme = $("aiTheme").value.trim();
+    var champAnnonce = T.annonce ?
+      "  \"annonce\": {\n" +
+      "    \"enseigne\": \"nom de l'organisme ou de l'entreprise, court\",\n" +
+      "    \"titre\": \"le grand titre de l'affiche, 2 à 5 mots, en majuscules\",\n" +
+      "    \"accroche\": \"un slogan d'une ligne\",\n" +
+      "    \"lignes\": [\"4 à 5 informations courtes, une par ligne, volontairement incomplètes pour donner envie de poser des questions\"],\n" +
+      "    \"prix\": \"le prix s'il y en a un, sinon une chaîne vide\",\n" +
+      "    \"cta\": \"l'invitation à appeler, par ex. « Renseignements et réservations »\",\n" +
+      "    \"telephone\": \"un numéro fictif au format 514 555 01XX\",\n" +
+      "    \"emoji\": \"un seul emoji qui illustre l'annonce\",\n" +
+      "    \"teinte\": 210\n  },\n" : "";
     var prompt = "Tu prépares un sujet d'entraînement pour " + T.spec + "\n" +
       (theme ? "Le sujet doit porter sur ce thème : « " + theme + " ».\n" : "Choisis un thème réaliste et varié, différent à chaque fois.\n") +
+      (T.annonce ? "L'annonce doit ressembler à une vraie affiche publicitaire : une enseigne, un grand titre, un slogan, quelques lignes d'informations et un numéro de téléphone. « teinte » est la teinte dominante de l'affiche, un nombre entre 0 et 360 (0 rouge, 40 orange, 120 vert, 210 bleu, 280 violet, 330 rose) : choisis-la en accord avec le thème et varie-la d'une annonce à l'autre.\n" : "") +
       "Réponds UNIQUEMENT avec un objet JSON valide, sans texte autour, avec exactement ces champs :\n" +
-      "{\n  \"titre\": \"titre court du sujet\",\n  \"situation\": \"" + T.situation + "\",\n" +
+      "{\n  \"titre\": \"titre court du sujet\",\n" + champAnnonce +
+      "  \"situation\": \"" + T.situation + "\",\n" +
       "  \"consigne\": \"la consigne de l'examen, en une ou deux phrases\",\n" +
       "  \"pistes\": [\"" + T.pistes + "\"],\n" +
       "  \"expressions\": [\"8 expressions ou connecteurs utiles pour cette tâche\"],\n" +
@@ -488,7 +566,7 @@
     ask(prompt, {modelTier:"default"}, $("aiGenStatus"), this, function(d){
       current = d;
       var h = '<h3>' + esc(d.titre || "Sujet") + '</h3>';
-      h += '<div class="ai-situation">' + esc(d.situation || "") + '</div>';
+      h += (T.annonce ? annonceHTML(d) : "") || ('<div class="ai-situation">' + esc(d.situation || "") + '</div>');
       if(d.consigne) h += '<p><b>Consigne :</b> ' + esc(d.consigne) + '</p>';
       h += '<div class="ai-grid2"><div><h3>Pistes</h3><ul class="ai-list">' + list(d.pistes).map(function(x){ return '<li>' + esc(x) + '</li>'; }).join("") + '</ul></div>';
       h += '<div><h3>Expressions utiles</h3><ul class="ai-list">' + list(d.expressions).map(function(x){ return '<li>' + esc(x) + '</li>'; }).join("") + '</ul></div></div>';
@@ -560,8 +638,14 @@
       "  \"erreurs\": [{\"original\": \"le passage fautif exact\", \"correction\": \"la forme correcte en français\", \"explication\": \"la règle, en espagnol, en une phrase\"}],\n" +
       "  \"version_amelioree\": \"la réponse réécrite en bon français, au niveau visé, en gardant les idées du candidat\",\n" +
       "  \"conseils\": [\"3 conseils concrets pour la prochaine fois, en espagnol\"],\n" +
+      "  \"points_a_travailler\": [{\"titre\": \"le point de langue à retravailler, en espagnol, par ex. « El subjuntivo después de bien que »\", \"pourquoi\": \"en espagnol, une phrase qui renvoie à ce que le candidat a écrit\", \"priorite\": \"haute, moyenne ou basse\"}],\n" +
+      "  \"exercices\": [{\"titre\": \"titre court de l'exercice, en espagnol\", \"consigne\": \"la consigne, en espagnol\", \"items\": [{\"question\": \"l'énoncé en français, avec ___ à l'endroit à compléter si besoin\", \"reponse\": \"la réponse attendue, courte, en français\", \"aide\": \"la règle en une phrase, en espagnol\"}]}],\n" +
       "  \"lecons_du_site\": [{\"titre\": \"titre exact de la leçon du site\", \"url\": \"URL exacte copiée du plan du site\", \"pourquoi\": \"en espagnol, une phrase\"}]\n}\n" +
-      "Relève toutes les vraies erreurs (maximum 12), n'en invente pas. Recommande 2 à 4 leçons du site liées aux erreurs.";
+      "Relève toutes les vraies erreurs (maximum 12), n'en invente pas. Recommande 2 à 4 leçons du site liées aux erreurs.\n" +
+      "« points_a_travailler » : 2 à 4 points, tirés des erreurs réelles de cette réponse, du plus important au moins important.\n" +
+      "« exercices » : 2 ou 3 exercices qui entraînent précisément ces points, avec 4 à 6 items chacun. " +
+      "Chaque « reponse » doit être courte (un mot ou un groupe de mots) et être la seule réponse correcte, pour que la page puisse la vérifier automatiquement. " +
+      "N'utilise pas d'items à réponse libre.";
     ask(prompt, {modelTier:"default", kb:true, query:ans}, $("aiCorStatus"), this, function(d){
       var h = '<h3>Niveau estimé : <span class="ai-level">' + esc(d.niveau || "?") + '</span></h3>';
       if(d.resume) h += '<p>' + esc(d.resume) + '</p>';
@@ -571,11 +655,64 @@
       h += errs.length ? errs.map(function(e){ return '<div class="ai-err"><span class="o">' + esc(e.original) + '</span> → <span class="c">' + esc(e.correction) + '</span><br><span class="ai-muted">' + esc(e.explication) + '</span></div>'; }).join("") : '<p>Aucune erreur importante. Bravo !</p>';
       if(d.version_amelioree) h += '<h3>⭐ Version améliorée</h3><div class="ai-situation">' + esc(d.version_amelioree) + '</div>';
       if(list(d.conseils).length) h += '<h3>💡 Conseils</h3><ul class="ai-list">' + list(d.conseils).map(function(x){ return '<li>' + esc(x) + '</li>'; }).join("") + '</ul>';
+      var pts = list(d.points_a_travailler);
+      if(pts.length) h += '<h3>\ud83c\udfaf Points à travailler</h3>' + pts.map(function(x){
+        var pr = String(x && x.priorite || "").toLowerCase();
+        pr = /haut|alta/.test(pr) ? "haute" : /bas|baja/.test(pr) ? "basse" : "moyenne";
+        var lbl = pr === "haute" ? "prioritaire" : pr === "basse" ? "secondaire" : "à revoir";
+        return '<div class="ai-pt p-' + pr + '"><span class="pr">' + lbl + '</span><span><b>' + esc(x && x.titre) + '</b>' +
+          (x && x.pourquoi ? '<i>' + esc(x.pourquoi) + '</i>' : '') + '</span></div>';
+      }).join("");
+      var exs = list(d.exercices).filter(function(e){ return e && list(e.items).length; });
+      if(exs.length) h += '<h3>\ud83c\udfcb\ufe0f Exercices pour m\u2019entraîner</h3>' + exs.map(function(e, ei){
+        return '<div class="ai-ex" data-ex="' + ei + '"><h4>' + esc(e.titre || ("Exercice " + (ei + 1))) + '</h4>' +
+          (e.consigne ? '<p class="cons">' + esc(e.consigne) + '</p>' : '') +
+          list(e.items).map(function(it, ii){
+            return '<div class="ai-it" data-sol="' + esc(it && it.reponse) + '">' +
+              '<div class="q">' + (ii + 1) + '. ' + esc(it && it.question) + '</div>' +
+              '<input type="text" autocomplete="off" spellcheck="false" placeholder="Ta réponse…">' +
+              '<div class="sol">\u2192 <b>' + esc(it && it.reponse) + '</b>' + (it && it.aide ? ' — ' + esc(it.aide) : '') + '</div></div>';
+          }).join("") +
+          '<div class="ai-exfoot"><button class="ai-btn" type="button" data-check="' + ei + '">\u2714 Vérifier</button>' +
+          '<button class="ai-btn ghost" type="button" data-sol="' + ei + '">Voir les réponses</button>' +
+          '<span class="ai-score" data-score="' + ei + '"></span></div></div>';
+      }).join("");
       var lec = list(d.lecons_du_site).filter(function(l){ return l && /^https:\/\/karla19urios\.github\.io\/french\//.test(String(l.url || "")); });
       if(lec.length) h += '<h3>📚 Leçons du site à revoir</h3><ul class="ai-list">' + lec.map(function(l){ return '<li><a href="' + esc(l.url) + '" style="font-weight:700;color:var(--rouge)">' + esc(l.titre || l.url) + '</a>' + (l.pourquoi ? ' — ' + esc(l.pourquoi) : '') + '</li>'; }).join("") + '</ul>';
       $("aiCorrection").innerHTML = h;
+      wireExercices($("aiCorrection"));
     });
   });
+
+  /* les exercices se corrigent tout seuls, accents et ponctuation tolérés */
+  function normRep(x){
+    return String(x == null ? "" : x).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[\u2019']/g, "'").replace(/[.,;:!?]/g, "").replace(/\s+/g, " ").trim();
+  }
+  function wireExercices(root){
+    root.addEventListener("click", function(ev){
+      var bChk = ev.target.closest("[data-check]"), bSol = ev.target.closest("[data-sol]");
+      var box = ev.target.closest(".ai-ex");
+      if(!box || (!bChk && !(bSol && bSol.tagName === "BUTTON"))) return;
+      var items = box.querySelectorAll(".ai-it");
+      var ok = 0;
+      items.forEach(function(it){
+        var inp = it.querySelector("input"), sol = it.getAttribute("data-sol") || "";
+        if(bChk){
+          var good = normRep(inp.value) !== "" && normRep(inp.value) === normRep(sol);
+          inp.classList.remove("ok", "no");
+          inp.classList.add(good ? "ok" : "no");
+          if(good) ok++; else it.classList.add("done");
+        } else {
+          inp.value = sol;
+          inp.classList.remove("no"); inp.classList.add("ok");
+          it.classList.add("done");
+        }
+      });
+      var sc = box.querySelector("[data-score]");
+      if(sc) sc.textContent = bChk ? (ok + " / " + items.length) : (items.length + " / " + items.length);
+    });
+  }
 })();
 </script>
 
@@ -588,15 +725,23 @@ I18N.add({
 "Entraîne-toi à l'expression orale avec une IA : sujets nouveaux, chronomètre et correction de ta réponse.":{es:"Practica la expresión oral con una IA: temas nuevos, cronómetro y corrección de tu respuesta.",en:"Practise speaking with an AI: new topics, a timer and feedback on your answer."},
 "← Tous les niveaux":{es:"← Todos los niveles",en:"← All levels"},
 "1 · Un sujet d'entraînement":{es:"1 · Un tema de práctica",en:"1 · A practice topic"},
-"L'IA crée un sujet nouveau à chaque clic, au format de l'examen, avec des pistes, des expressions utiles et un modèle.":{es:"La IA crea un tema nuevo en cada clic, con el formato del examen, ideas, expresiones útiles y un modelo.",en:"The AI writes a new exam-style topic on every click, with ideas, useful phrases and a model answer."},
+"L'IA crée un sujet nouveau à chaque clic. Pour le TEF, il s'affiche comme une vraie annonce, au format de l'examen, avec des pistes, des expressions utiles et un modèle.":{es:"La IA crea un tema nuevo en cada clic, con el formato del examen, ideas, expresiones útiles y un modelo.",en:"The AI writes a new exam-style topic on every click, with ideas, useful phrases and a model answer."},
 "✨ Générer un sujet":{es:"✨ Generar un tema",en:"✨ Generate a topic"},
 "2 · Le chronomètre":{es:"2 · El cronómetro",en:"2 · The timer"},
 "Les temps officiels de l'épreuve.":{es:"Los tiempos oficiales de la prueba.",en:"The official timings of the test."},
 "■ Arrêter":{es:"■ Detener",en:"■ Stop"},
 "3 · Ma réponse, corrigée":{es:"3 · Mi respuesta, corregida",en:"3 · My answer, corrected"},
-"Écris ta réponse (ou dicte-la au micro). L'IA estime ton niveau, corrige chaque erreur avec une explication, propose une version améliorée et t'indique les leçons du site à revoir.":{es:"Escribe tu respuesta (o díctala al micrófono). La IA estima tu nivel, corrige cada error con una explicación, propone una versión mejorada y te indica las lecciones del sitio que debes repasar.",en:"Write your answer (or dictate it). The AI estimates your level, corrects each mistake with an explanation, suggests an improved version and points you to the lessons to review."},
+"Écris ta réponse (ou dicte-la au micro). L'IA estime ton niveau, corrige chaque erreur avec une explication, propose une version améliorée, puis liste tes points à travailler et te donne des exercices pour les reprendre.":{es:"Escribe tu respuesta (o díctala al micrófono). La IA estima tu nivel, corrige cada error con una explicación, propone una versión mejorada y te indica las lecciones del sitio que debes repasar.",en:"Write your answer (or dictate it). The AI estimates your level, corrects each mistake with an explanation, suggests an improved version and points you to the lessons to review."},
 "✅ Corriger ma réponse":{es:"✅ Corregir mi respuesta",en:"✅ Correct my answer"},
 "🎙️ Dicter":{es:"🎙️ Dictar",en:"🎙️ Dictate"},
+"🎯 Points à travailler":{es:"🎯 Puntos a trabajar",en:"🎯 Points to work on"},
+"🏋️ Exercices pour m’entraîner":{es:"🏋️ Ejercicios para practicar",en:"🏋️ Exercises to practise"},
+"✔ Vérifier":{es:"✔ Comprobar",en:"✔ Check"},
+"Voir les réponses":{es:"Ver las respuestas",en:"Show the answers"},
+"Ta réponse…":{es:"Tu respuesta…",en:"Your answer…"},
+"prioritaire":{es:"prioritario",en:"top priority"},
+"à revoir":{es:"a repasar",en:"to review"},
+"secondaire":{es:"secundario",en:"secondary"},
 
 "📝 TCF examen":{es:"📝 Examen TCF",en:"📝 TCF exam"},
 "Les trois épreuves du TCF Canada : expression orale, expression écrite et compréhension orale":{es:"Las tres pruebas del TCF Canadá: expresión oral, expresión escrita y comprensión oral",en:"The three TCF Canada tests: speaking, writing and listening"},
