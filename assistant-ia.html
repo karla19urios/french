@@ -100,6 +100,15 @@
     align-items:start;
   }
   .group-grid > .cefr-block{ margin-top:0; }
+  .exam-group{ margin-top:2.6rem; }
+  .exam-group:first-child{ margin-top:1rem; }
+  .exam-title{
+    display:flex; align-items:center; gap:.9rem;
+    margin:0 0 .4rem; font-size:1.45rem; font-weight:800;
+    letter-spacing:-.01em; color:var(--text);
+  }
+  .exam-title::after{ content:""; flex:1; height:2px; border-radius:2px; background:var(--bleu); opacity:.55; }
+  .exam-group .group{ margin-top:1.4rem; }
   .cefr-head{
     display:flex;
     align-items:baseline;
@@ -305,7 +314,7 @@
 <header class="flag"></header>
 <div class="hero">
   <h1>🤖 Assistant IA</h1>
-  <p>Entraîne-toi à l'expression orale avec une IA : sujets nouveaux, chronomètre et correction de ta réponse.</p>
+  <p>Entraîne-toi à l'oral et à l'écrit avec une IA : sujets nouveaux, chronomètre et correction de ta réponse.</p>
   <a class="back-link" href="niveaux.html">← Tous les niveaux</a>
 </div>
 <style>
@@ -432,7 +441,7 @@
 <script>
 (function(){
   var TASKS = {
-    tef1: { annonce:true, group:"b1b2", tab:"TEF · Tâche 1", title:"TEF Canada · Expression orale · Section A (tâche 1)",
+    tef1: { exam:"TEF", epreuve:"Expression orale", court:"Tâche 1",  annonce:true, group:"b1b2", tab:"TEF · Tâche 1", title:"TEF Canada · Expression orale · Section A (tâche 1)",
       desc:"Obtenir des informations : tu lis une petite annonce et tu téléphones pour poser des questions. Tu vouvoies ton interlocuteur et tu dois poser une dizaine de questions variées et polies.",
       chips:["5 minutes","Registre : vous","Niveau visé B1-B2","≈ 10 questions"],
       phases:[["Appel",300]],
@@ -440,7 +449,7 @@
       situation:"le texte complet de l'annonce telle qu'elle apparaît à l'examen (titre, 4 à 7 lignes d'informations incomplètes qui donnent envie de poser des questions)",
       pistes:"8 à 10 questions que le candidat pourrait poser (vouvoiement, formes variées : inversion, est-ce que, mots interrogatifs)",
       modele:"un dialogue modèle de 12 à 16 répliques, chaque élément commençant par « Candidat : » ou « Examinateur : »" },
-    tef2: { annonce:true, group:"b1b2", tab:"TEF · Tâche 2", title:"TEF Canada · Expression orale · Section B (tâche 2)",
+    tef2: { exam:"TEF", epreuve:"Expression orale", court:"Tâche 2",  annonce:true, group:"b1b2", tab:"TEF · Tâche 2", title:"TEF Canada · Expression orale · Section B (tâche 2)",
       desc:"Présenter et convaincre : tu lis une annonce et tu dois convaincre un·e ami·e (l'examinateur) d'y participer. Tu le tutoies, tu présentes l'offre, tu argumentes et tu réponds à ses objections.",
       chips:["10 minutes","Registre : tu","Niveau visé B1-B2","3 à 4 arguments + objections"],
       phases:[["Présentation et discussion",600]],
@@ -448,7 +457,7 @@
       situation:"le texte complet de l'annonce à présenter (titre, 5 à 8 lignes d'informations)",
       pistes:"6 à 8 arguments possibles et 3 objections probables de l'ami avec une manière d'y répondre",
       modele:"un dialogue modèle de 12 à 16 répliques, chaque élément commençant par « Candidat : » ou « Ami·e : »" },
-    tcf2: { group:"b1b2", tab:"TCF · Tâche 2", title:"TCF Canada · Expression orale · Tâche 2",
+    tcf2: { exam:"TCF", epreuve:"Expression orale", court:"Tâche 2",  group:"b1b2", tab:"TCF · Tâche 2", title:"TCF Canada · Expression orale · Tâche 2",
       desc:"Exercice en interaction : une situation de la vie quotidienne où tu dois obtenir des informations. Tu as 2 minutes de préparation, puis tu interroges l'examinateur.",
       chips:["2 min de préparation","3 min 30 d'interaction","Niveau visé B1-B2","vous ou tu selon la situation"],
       phases:[["Préparation",120],["Interaction",210]],
@@ -456,7 +465,7 @@
       situation:"l'énoncé de la situation tel qu'il apparaît à l'examen (2 à 4 phrases, avec le rôle de l'examinateur)",
       pistes:"8 à 10 questions pertinentes à poser, formulées de façon naturelle",
       modele:"un dialogue modèle de 12 à 16 répliques, chaque élément commençant par « Candidat : » ou « Examinateur : »" },
-    tcf1: { group:"b1b2", tab:"TCF · Tâche 1", title:"TCF Canada · Expression orale · Tâche 1",
+    tcf1: { exam:"TCF", epreuve:"Expression orale", court:"Tâche 1",  group:"b1b2", tab:"TCF · Tâche 1", title:"TCF Canada · Expression orale · Tâche 1",
       desc:"Entretien dirigé : l'examinateur t'interroge sur toi — ta vie au Canada, ton travail, ton quotidien, ton parcours, tes projets. Deux minutes, sans préparation.",
       chips:["2 minutes","Sans préparation","Niveaux visés A1-B1","Réponse + raison + exemple"],
       phases:[["Entretien",120]],
@@ -464,7 +473,7 @@
       situation:"la première question de l'examinateur telle qu'elle est posée à l'examen, puis le thème de l'entretien en une phrase",
       pistes:"8 à 10 questions que l'examinateur peut enchaîner sur ce thème, du plus simple au plus exigeant",
       modele:"un dialogue modèle de 12 à 16 répliques, chaque élément commençant par « Examinateur : » ou « Candidat : », où chaque réponse du candidat tient en trois temps (réponse, raison, exemple)" },
-    tcfe1: { ecrit:true, mots:[60,120], group:"b1b2", tab:"TCF écrit · Tâche 1", title:"TCF Canada · Production écrite · Tâche 1",
+    tcfe1: { exam:"TCF", epreuve:"Production écrite", court:"Tâche 1",  ecrit:true, mots:[60,120], group:"b1b2", tab:"TCF écrit · Tâche 1", title:"TCF Canada · Production écrite · Tâche 1",
       desc:"Message à un proche : un courriel ou un message personnel — inviter, remercier, annuler, prévenir, demander un service. Entre 60 et 120 mots : hors de la fourchette, la tâche n'est pas évaluée.",
       chips:["60 à 120 mots","15 min conseillé","Niveaux visés A1-B1","Registre amical ou neutre"],
       phases:[["Rédaction",900]],
@@ -472,7 +481,7 @@
       situation:"l'énoncé complet tel qu'il apparaît à l'examen : la situation en 2 ou 3 phrases, le ou les destinataires, et chaque élément à traiter",
       pistes:"les points que l'énoncé oblige à traiter, un par ligne, puis les formules d'appel et de clôture adaptées au destinataire",
       modele:"un message modèle de 60 à 120 mots, mis en forme comme un vrai courriel (formule d'appel, corps, formule de clôture, signature)" },
-    tcfe2: { ecrit:true, mots:[120,150], group:"b1b2", tab:"TCF écrit · Tâche 2", title:"TCF Canada · Production écrite · Tâche 2",
+    tcfe2: { exam:"TCF", epreuve:"Production écrite", court:"Tâche 2",  ecrit:true, mots:[120,150], group:"b1b2", tab:"TCF écrit · Tâche 2", title:"TCF Canada · Production écrite · Tâche 2",
       desc:"Récit, article ou courriel : raconter une expérience et y intégrer tes commentaires, ton avis ou tes arguments. Entre 120 et 150 mots, registre adapté au destinataire.",
       chips:["120 à 150 mots","20 min conseillé","Niveaux visés B1-B2","Récit + avis"],
       phases:[["Rédaction",1200]],
@@ -480,7 +489,7 @@
       situation:"l'énoncé complet tel qu'il apparaît à l'examen : le support (article, lettre ou note), le destinataire, l'expérience à raconter et la partie avis ou conseil exigée",
       pistes:"un plan en 3 paragraphes, les connecteurs à employer et le rappel de la partie « avis » à ne pas oublier",
       modele:"un texte modèle de 120 à 150 mots, en 3 paragraphes, récit au passé puis avis" },
-    tcfe3: { ecrit:true, mots:[120,180], group:"c1c2", tab:"TCF écrit · Tâche 3", title:"TCF Canada · Production écrite · Tâche 3",
+    tcfe3: { exam:"TCF", epreuve:"Production écrite", court:"Tâche 3",  ecrit:true, mots:[120,180], group:"c1c2", tab:"TCF écrit · Tâche 3", title:"TCF Canada · Production écrite · Tâche 3",
       desc:"Comparer deux opinions : tu reformules les deux points de vue des documents avec tes propres mots, puis tu donnes et justifies ton avis sur le thème. Deux parties strictement séparées.",
       chips:["120 à 180 mots","25 min conseillé","Niveaux visés B2-C2","40-60 mots puis 80-120 mots"],
       phases:[["Rédaction",1500]],
@@ -488,7 +497,7 @@
       situation:"les deux documents tels qu'ils apparaissent à l'examen : pour chacun, un titre, une source fictive et un texte de 60 à 90 mots qui défend un point de vue opposé à l'autre sur un même thème de société",
       pistes:"la reformulation possible de chaque document en une phrase, le thème général commun, puis 6 arguments nuancés (pour et contre) avec un exemple chacun",
       modele:"un texte modèle de 120 à 180 mots en deux parties séparées et annoncées : d'abord la comparaison des deux points de vue (40 à 60 mots), puis l'avis justifié (80 à 120 mots)" },
-    tcf3: { group:"c1c2", tab:"TCF · Tâche 3", title:"TCF Canada · Expression orale · Tâche 3",
+    tcf3: { exam:"TCF", epreuve:"Expression orale", court:"Tâche 3",  group:"c1c2", tab:"TCF · Tâche 3", title:"TCF Canada · Expression orale · Tâche 3",
       desc:"Expression d'un point de vue : tu donnes ton opinion sur un sujet de société et tu la défends avec des arguments et des exemples, sans préparation.",
       chips:["4 min 30","Sans préparation","Niveau visé C1-C2","Plan + arguments + exemples"],
       phases:[["Expression",270]],
@@ -505,13 +514,30 @@
     /* chooser: one entry point per group, then one card per task */
     var hh0 = document.querySelector(".hero h1"); if(hh0) hh0.textContent = "🤖 " + GROUP_NAMES[g];
     document.title = GROUP_NAMES[g];
-    document.querySelector(".ai-wrap").innerHTML = '<div class="group-grid">' + GROUPS[g].map(function(k){
+    /* d'abord l'examen (TEF, TCF), puis l'épreuve (orale, écrite) */
+    var ordre = [], par = {};
+    GROUPS[g].forEach(function(k){
       var t = TASKS[k];
-      return '<section class="cefr-block"><div class="cefr-head"><h2>🤖 ' + t.tab + '</h2></div>' +
+      if(!par[t.exam]){ par[t.exam] = {ordre:[], par:{}}; ordre.push(t.exam); }
+      var e = par[t.exam];
+      if(!e.par[t.epreuve]){ e.par[t.epreuve] = []; e.ordre.push(t.epreuve); }
+      e.par[t.epreuve].push(k);
+    });
+    function carte(k){
+      var t = TASKS[k];
+      return '<section class="cefr-block"><div class="cefr-head"><h2>🤖 ' + (t.court || t.tab) + '</h2></div>' +
         '<p style="margin:.6rem 0 0;color:var(--muted);line-height:1.5">' + t.desc + '</p>' +
         '<div class="ai-format">' + t.chips.map(function(c){ return '<span class="ai-chip">' + c + '</span>'; }).join("") + '</div>' +
         '<a class="exam-btn" href="?t=' + k + '">Ouvrir →</a></section>';
-    }).join("") + '</div>';
+    }
+    document.querySelector(".ai-wrap").innerHTML = ordre.map(function(ex){
+      var e = par[ex];
+      return '<section class="exam-group"><h2 class="exam-title">' + ex + '</h2>' +
+        e.ordre.map(function(ep){
+          return '<div class="group"><h3 class="group-title">' + ep + '</h3>' +
+            '<div class="group-grid">' + e.par[ep].map(carte).join("") + '</div></div>';
+        }).join("") + '</section>';
+    }).join("");
     return;
   }
   var q = (params.get("t") || "tef1").toLowerCase();
@@ -770,8 +796,14 @@
 <script src="assets/i18n.js?v=3"></script>
 <script>
 I18N.add({
+"Entraîne-toi à l'oral et à l'écrit avec une IA : sujets nouveaux, chronomètre et correction de ta réponse.":{es:"Practica el oral y el escrito con una IA: temas nuevos, cronómetro y corrección de tu respuesta.",en:"Practise speaking and writing with an AI: new topics, a timer and feedback on your answer."},
+"Expression orale":{es:"Expresión oral",en:"Speaking"},
+"Production écrite":{es:"Producción escrita",en:"Writing"},
+"Tâche 1":{es:"Tarea 1",en:"Task 1"},
+"Tâche 2":{es:"Tarea 2",en:"Task 2"},
+"Tâche 3":{es:"Tarea 3",en:"Task 3"},
 "🤖 Assistant IA":{es:"🤖 Asistente IA",en:"🤖 AI assistant"},
-"Entraîne-toi à l'expression orale avec une IA : sujets nouveaux, chronomètre et correction de ta réponse.":{es:"Practica la expresión oral con una IA: temas nuevos, cronómetro y corrección de tu respuesta.",en:"Practise speaking with an AI: new topics, a timer and feedback on your answer."},
+"Entraîne-toi à l'oral et à l'écrit avec une IA : sujets nouveaux, chronomètre et correction de ta réponse.":{es:"Practica la expresión oral con una IA: temas nuevos, cronómetro y corrección de tu respuesta.",en:"Practise speaking with an AI: new topics, a timer and feedback on your answer."},
 "← Tous les niveaux":{es:"← Todos los niveles",en:"← All levels"},
 "1 · Un sujet d'entraînement":{es:"1 · Un tema de práctica",en:"1 · A practice topic"},
 "L'IA crée un sujet nouveau à chaque clic. Pour le TEF, il s'affiche comme une vraie annonce, au format de l'examen, avec des pistes, des expressions utiles et un modèle.":{es:"La IA crea un tema nuevo en cada clic, con el formato del examen, ideas, expresiones útiles y un modelo.",en:"The AI writes a new exam-style topic on every click, with ideas, useful phrases and a model answer."},
