@@ -5,7 +5,7 @@ Output: assets/tts/<key>.mp3 and assets/tts/manifest.json  ({key: voice})
 Key   : cyrb53 hash of the whitespace-normalized text (same function as assets/tts.js)
 Secret: ~/.config/azure-tts.env with AZURE_TTS_KEY and AZURE_TTS_REGION (never printed)
 
-Resumable: phrases whose MP3 already exists are skipped. Run:  python3 tts-build/generate.py [--limit N]
+Resumable: phrases whose MP3 already exists are skipped. Run:  python3 tts-build/generate.py [--limit N | --sample N]
 """
 import json, os, re, sys, time, html, urllib.request, urllib.error
 
@@ -14,8 +14,19 @@ OUT = os.path.join(ROOT, "assets", "tts")
 FORMAT = "audio-24khz-48kbitrate-mono-mp3"
 DELAY = 3.2          # seconds between requests (free F0 tier is rate limited)
 
+CIRCLED = re.compile("[\u2460-\u24ff]")   # ① ② … are visual numbering, not spoken
+TAG = re.compile(r"</?[a-zA-Z][^>]*>")
 def norm(t):
-    return re.sub(r"\s+", " ", t).strip()
+    # same steps as norm() in assets/tts.js: decode HTML entities (some lessons double-escape them),
+    # drop leftover tags and circled numbers, collapse whitespace
+    for _ in range(2):
+        if "&" not in t: break
+        t = html.unescape(t)
+    return re.sub(r"\s+", " ", CIRCLED.sub("", TAG.sub("", t))).strip()
+
+def is_code(t):
+    # fragments of page JavaScript picked up by the extractor, e.g. "' + esc(v.fr) + '"
+    return bool(re.search(r"(^|\s)['\"]\s*\+|\+\s*['\"](\s|$)|\besc\(", t))
 
 def cyrb53(s, seed=0):
     M = 0xFFFFFFFF
@@ -48,6 +59,7 @@ def request(url, key, data=None, headers=None):
 
 def main():
     limit = int(sys.argv[sys.argv.index("--limit") + 1]) if "--limit" in sys.argv else None
+    sample = int(sys.argv[sys.argv.index("--sample") + 1]) if "--sample" in sys.argv else None
     key, region = load_secret()
     base = f"https://{region}.tts.speech.microsoft.com/cognitiveservices"
     voices = json.load(request(base + "/voices/list", key))
@@ -66,12 +78,14 @@ def main():
         p = os.path.join(ROOT, "tts-build", name)
         if os.path.exists(p):
             for v in json.load(open(p, encoding="utf-8")).values():
-                texts.update(norm(x) for x in v if norm(x))
+                texts.update(n for n in map(norm, v) if n and not is_code(n))
     os.makedirs(OUT, exist_ok=True)
     mpath = os.path.join(OUT, "manifest.json")
     manifest = json.load(open(mpath, encoding="utf-8")) if os.path.exists(mpath) else {}
     todo = sorted(t for t in texts if cyrb53(t) not in manifest or not os.path.exists(os.path.join(OUT, cyrb53(t) + ".mp3")))
     print(f"phrases: {len(texts)}, already done: {len(texts) - len(todo)}, to generate: {len(todo)}", flush=True)
+    if sample:   # N phrases spread over the whole list, to listen before the full run
+        todo = todo[::max(1, len(todo) // sample)][:sample]
     done = 0
     for t in todo[:limit]:
         k = cyrb53(t)

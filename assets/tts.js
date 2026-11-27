@@ -12,7 +12,14 @@
   var manifest = null;
   fetch(BASE + "manifest.json").then(function(r){ return r.ok ? r.json() : null; }).then(function(m){ manifest = m; }).catch(function(){});
 
-  function norm(t){ return String(t == null ? "" : t).replace(/\s+/g, " ").trim(); }
+  // same steps as norm() in tts-build/generate.py: decode HTML entities (some lessons double-escape them),
+  // drop leftover tags and circled numbers, collapse whitespace
+  var deco = document.createElement("textarea");
+  function norm(t){
+    t = String(t == null ? "" : t);
+    for(var i = 0; i < 2 && /&[#a-zA-Z0-9]+;/.test(t); i++){ deco.innerHTML = t; t = deco.value; }
+    return t.replace(/<\/?[a-zA-Z][^>]*>/g, "").replace(/[\u2460-\u24ff]/g, "").replace(/\s+/g, " ").trim();
+  }
   function cyrb53(str, seed){
     seed = seed || 0;
     var h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
@@ -83,6 +90,7 @@
 
   ss.speak = function(u){
     var t = norm(u && u.text);
+    if(u && t && /&[#a-zA-Z0-9]+;|[\u2460-\u24ff]|<\/?[a-zA-Z][^>]*>/.test(u.text)){ try{ u.text = t; }catch(e){} }   // the device voice should not read "&nbsp;" either
     if(!t || !manifest){ return nativeSpeak(u); }
     if(cur) finish("end");
     var key = cyrb53(t);
