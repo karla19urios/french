@@ -66,7 +66,7 @@
     var rate = u.rate || 1;
     a.playbackRate = Math.max(0.5, Math.min(2, rate / 0.9));
     a.volume = (u.volume == null ? 1 : u.volume);
-    var c = {audio: a, u: u, len: norm(u.text).length, paused: false};
+    var c = {audio: a, u: u, key: key, len: norm(u.text).length, paused: false};
     cur = c;
     var started = false;
     a.addEventListener("loadedmetadata", function(){
@@ -87,6 +87,12 @@
     var p = a.play();
     if(p && p.catch) p.catch(function(){ if(cur === c){ cur = null; nativeSpeak(u); } });
   }
+
+  // real progress of the MP3 being played, for the lesson players (progress bar and duration)
+  window.__ttsNow = function(){
+    if(!cur || !isFinite(cur.audio.duration) || !cur.audio.duration) return null;
+    return {key: cur.key, frac: cur.audio.currentTime / cur.audio.duration, dur: cur.audio.duration / (cur.audio.playbackRate || 1)};
+  };
 
   ss.speak = function(u){
     var t = norm(u && u.text);
