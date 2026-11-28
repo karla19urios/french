@@ -111,12 +111,25 @@
     function montreCorps(cle) {
       var i = corpsImg(cle);
       if (corpsActif === i) return;
-      if (corpsActif) corpsActif.classList.remove("on");
+      var antes = corpsActif;
       corpsActif = i;
-      // el "on" espera un cuadro para que la imagen recién creada pueda hacer su fundido.
+      // La cara vieja no se apaga hasta que la nueva está descargada: la primera vez que
+      // sale un gesto su archivo aún no ha llegado, y si se cambiara ya mismo ella se
+      // quedaría en blanco ese rato. El cuadro de espera es para que el fundido arranque.
       // Si entretanto cambió el gesto otra vez, este ya no toca: dos gestos en el mismo
       // cuadro dejaban las dos caras encendidas y una se quedaba pegada para siempre.
-      requestAnimationFrame(function () { if (corpsActif === i) i.classList.add("on"); });
+      var muestra = function () {
+        requestAnimationFrame(function () {
+          if (corpsActif !== i) return;
+          if (antes) antes.classList.remove("on");
+          i.classList.add("on");
+        });
+      };
+      if (i.complete && i.naturalWidth) muestra();
+      else {
+        i.addEventListener("load", muestra, { once: true });
+        i.addEventListener("error", muestra, { once: true });
+      }
     }
     corpsImg("repos").classList.add("on");
     corpsActif = corps.repos;

@@ -117,7 +117,7 @@
     var id = "iat-persona-js", prev = document.getElementById(id);
     if (prev) { prev.addEventListener("load", cb); return; }
     var sc = document.createElement("script");
-    sc.id = id; sc.src = ASSETS + "persona.js?v=5";
+    sc.id = id; sc.src = ASSETS + "persona.js?v=6";
     sc.addEventListener("load", function () { if (window.Persona) cb(); });
     document.head.appendChild(sc);
   }
@@ -593,9 +593,25 @@
     return "doute";
   }
 
+  // en cuanto el estudiante toca un ejercicio va a pulsar Vérifier enseguida: es el
+  // momento de ir bajando las caras de la reacción, para que salgan sin espera
+  var precargado = false;
+  function precargaCaras() {
+    if (precargado || !window.Persona || !window.Persona.base) return;
+    precargado = true;
+    ["bravo", "rire", "doute", "surprise"].forEach(function (n) {
+      var im = new Image(); im.src = window.Persona.base + n + "_s.png";
+    });
+  }
+
   function vigilaEjercicios() {
     if (!window.MutationObserver) return;
     vigilaTrampas();
+    document.addEventListener("input", precargaCaras, true);
+    document.addEventListener("click", function (e) {
+      var t0 = e.target;
+      if (t0 && t0.closest && t0.closest(".opt,.opts,[data-check],input,select,textarea")) precargaCaras();
+    }, true);
     var obs = new MutationObserver(function (muts) {
       if (Date.now() < despiertaEn || Date.now() < trampaHasta || busy) return;
       var mejor = null;                          // el bloque que acaba de corregirse
