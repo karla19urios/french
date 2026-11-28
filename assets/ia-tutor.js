@@ -117,7 +117,7 @@
     var id = "iat-persona-js", prev = document.getElementById(id);
     if (prev) { prev.addEventListener("load", cb); return; }
     var sc = document.createElement("script");
-    sc.id = id; sc.src = ASSETS + "persona.js?v=3";
+    sc.id = id; sc.src = ASSETS + "persona.js?v=4";
     sc.addEventListener("load", function () { if (window.Persona) cb(); });
     document.head.appendChild(sc);
   }
@@ -467,6 +467,13 @@
   ".iat-stage-panel{width:92px;margin:4px auto -6px}" +
   ".iat-root.big .iat-stage-panel{width:188px;margin:6px auto -4px}" +
   ".iat-root.big .iat-panel{width:min(430px,calc(100vw - 28px));max-height:min(86vh,680px)}" +
+  // al agrandarla se sale del cuadro: se planta fuera del panel, a su izquierda, pisando
+  // un poco el borde para que se vea delante de la caja y no metida dentro de ella.
+  // Hace falta sitio, así que por debajo de 760px se queda dentro, sólo que más grande.
+  "@media (min-width:760px){" +
+    ".iat-root.big .iat-panel{overflow:visible}" +
+    ".iat-root.big .iat-stage-panel{position:absolute;left:-232px;bottom:4px;width:248px;" +
+      "margin:0;filter:drop-shadow(0 18px 34px rgba(25,28,60,.36))}}" +
   ".iat-panel{position:absolute;right:0;bottom:0;width:min(380px,calc(100vw - 28px));" +
     "max-height:min(72vh,560px);display:flex;flex-direction:column;overflow:hidden;" +
     "border-radius:18px;background:#fff;border:1px solid rgba(57,59,102,.14);" +

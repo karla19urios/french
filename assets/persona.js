@@ -23,7 +23,8 @@
   var MOUTH = { l: 142 / W, t: 123 / H, w: 170 / W, h: 107 / H };
   var EYES  = { l: 127 / W, t:  56 / H, w: 200 / W, h: 104 / H };
   var BOUCHES = ["m_repos", "m_mmm", "m_ou", "m_sourire", "m_ah"];   // de cerrada a abierta
-  var CORPS = { repos: "neutre", pense: "reflexion", rire: "rire",
+  // en reposo sonríe: es la cara con la que la ve el estudiante casi todo el tiempo
+  var CORPS = { repos: "sourire", neutre: "neutre", pense: "reflexion", rire: "rire",
                 surprise: "surprise", salut: "salut", bravo: "bravo",
                 ecoute: "ecoute", doute: "doute" };
   var MASQUE_BOUCHE = "radial-gradient(ellipse 58% 54% at 50% 52%, #000 52%, rgba(0,0,0,.6) 78%, transparent 100%)";
