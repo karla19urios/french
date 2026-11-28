@@ -157,15 +157,36 @@
   }
 
   // El personaje vive en assets/persona.js y se carga una sola vez por página.
+  // Si la red falla se vuelve a intentar: sin esto el hueco se quedaba vacío para siempre.
   function withPersona(cb) {
     if (window.Persona) return cb();
     if (!ASSETS) return;
     var id = "iat-persona-js", prev = document.getElementById(id);
-    if (prev) { prev.addEventListener("load", cb); return; }
-    var sc = document.createElement("script");
-    sc.id = id; sc.src = ASSETS + "persona.js?v=7";
-    sc.addEventListener("load", function () { if (window.Persona) cb(); });
-    document.head.appendChild(sc);
+    if (prev) {
+      prev.addEventListener("load", function () { if (window.Persona) cb(); });
+      return;
+    }
+    var intentos = 0;
+    (function carga() {
+      var sc = document.createElement("script");
+      sc.id = id; sc.src = ASSETS + "persona.js?v=7";
+      sc.addEventListener("load", function () { if (window.Persona) cb(); });
+      sc.addEventListener("error", function () {
+        sc.remove();
+        if (++intentos < 3) setTimeout(carga, 700 * intentos);
+      });
+      document.head.appendChild(sc);
+    })();
+  }
+
+  // Dónde le toca estar ahora mismo: dentro del panel si está abierto, y si no en el
+  // botón flotante. Se llama al abrir, al cerrar y en cuanto el retrato llega, porque
+  // puede llegar con el panel ya abierto: entonces hay que meterla en el panel, no en
+  // el botón, que queda tapado detrás. Era eso lo que dejaba el hueco vacío.
+  function coloca() {
+    if (!av) return;
+    var donde = (panel && !panel.hidden) ? stagePanel : stageBtn;
+    if (av.el.parentNode !== donde) donde.appendChild(av.el);
   }
 
   function mood(name, ms) { try { if (av) av.state(name || null, ms); } catch (e) {} }
@@ -346,7 +367,7 @@
   function open() {
     panel.hidden = false;
     btn.setAttribute("aria-expanded", "true");
-    if (av && av.el.parentNode !== stagePanel) stagePanel.appendChild(av.el);
+    coloca();
     mood("salut", 1600);
     setTimeout(function () { input.focus(); }, 30);
     log.scrollTop = log.scrollHeight;
@@ -355,7 +376,7 @@
     panel.hidden = true;
     btn.setAttribute("aria-expanded", "false");
     micOff();
-    if (av && av.el.parentNode !== stageBtn) stageBtn.appendChild(av.el);
+    coloca();
     hush();
     if (abort) { abort.abort(); abort = null; busy = false; sendBtn.disabled = false; }
   }
@@ -492,6 +513,7 @@
       }
       try { av = window.Persona.mount(stageBtn, { alt: "Karla" }); }
       catch (e) { av = null; }
+      coloca();                     // puede haber abierto el panel mientras ella llegaba
     });
     setupMic();
   }
@@ -534,6 +556,8 @@
     "background:#378EF6;color:#fff;font-size:.82rem;font-weight:600;line-height:1.3;" +
     "box-shadow:0 5px 14px rgba(55,142,246,.4);white-space:nowrap}" +
   ".iat-stage-panel{flex:none;width:92px;margin:4px auto -6px}" +
+  // si por lo que sea no hay retrato, que no quede un hueco en blanco en el panel
+  ".iat-stage-panel:empty{display:none}" +
   ".iat-root.big .iat-stage-panel{width:188px;margin:6px auto -4px}" +
   ".iat-root.big .iat-panel{width:min(430px,calc(100vw - 28px));max-height:min(86vh,680px)}" +
   // al agrandarla se sale del cuadro: se planta fuera del panel, a su izquierda, pisando
