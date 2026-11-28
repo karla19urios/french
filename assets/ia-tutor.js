@@ -53,10 +53,56 @@
           err_net: "Pas de connexion avec l'assistant. Vérifie ton réseau.",
           err_ref: "Je n'aide que sur le cours de français.",
           err_srv: "L'assistant n'est pas disponible pour le moment. Réessaie plus tard.",
-          note: "L'IA peut se tromper. Si quelque chose contredit la leçon, fais confiance à la leçon." }
+          note: "L'IA peut se tromper. Si quelque chose contredit la leçon, fais confiance à la leçon." },
+    de: { open: "Frag mich", title: "Karla · Assistentin", close: "Schließen",
+          ph: "Schreib deine Frage…", send: "Senden", clear: "Löschen", clearLong: "Das Gespräch löschen",
+          hello: "Frag mich alles zu dieser Lektion oder zum Französischen allgemein.",
+          chips: ["Erklär mir diese Lektion", "Warum sagt man das so?", "Gib mir noch ein Beispiel"],
+          thinking: "Ich denke nach…", listen: "Anhören", stop: "Stopp",
+          big: "Vergrößern", small: "Verkleinern", mic: "Sprechen", micStop: "Fertig",
+          micNo: "Dein Browser lässt das Mikrofon nicht zu.", micOn: "Ich höre zu…",
+          err_rate: "Das waren viele Fragen auf einmal. Warte eine Minute und versuch es noch einmal.",
+          err_net: "Keine Verbindung zur Assistentin. Prüf dein Internet.",
+          err_ref: "Ich kann nur beim Französischkurs helfen.",
+          err_srv: "Die Assistentin ist gerade nicht erreichbar. Versuch es später noch einmal.",
+          note: "Die KI kann sich irren. Wenn etwas der Lektion widerspricht, gilt die Lektion." },
+    zh: { open: "问我", title: "Karla · 助手", close: "关闭",
+          ph: "输入你的问题…", send: "发送", clear: "清除", clearLong: "清除对话",
+          hello: "关于这节课，或者关于法语的任何问题，都可以问我。",
+          chips: ["讲解这节课", "为什么这样说？", "再给我一个例子"],
+          thinking: "思考中…", listen: "朗读", stop: "停止",
+          big: "放大", small: "缩小", mic: "说话", micStop: "完成",
+          micNo: "你的浏览器不允许使用麦克风。", micOn: "我在听…",
+          err_rate: "一下子问得太多了。请等一分钟再试。",
+          err_net: "无法连接助手。请检查网络连接。",
+          err_ref: "我只能帮你学法语课程。",
+          err_srv: "助手暂时无法使用，请稍后再试。",
+          note: "AI 可能会出错。如果和课文有出入，以课文为准。" },
+    ko: { open: "물어보세요", title: "Karla · 어시스턴트", close: "닫기",
+          ph: "질문을 입력하세요…", send: "보내기", clear: "지우기", clearLong: "대화 지우기",
+          hello: "이 수업에 대해서도, 프랑스어 전반에 대해서도 무엇이든 물어보세요.",
+          chips: ["이 수업을 설명해 주세요", "왜 그렇게 말하나요?", "예문을 하나 더 주세요"],
+          thinking: "생각 중…", listen: "듣기", stop: "정지",
+          big: "크게", small: "작게", mic: "말하기", micStop: "완료",
+          micNo: "브라우저에서 마이크를 사용할 수 없습니다.", micOn: "듣고 있어요…",
+          err_rate: "질문이 너무 빨랐어요. 잠시 기다렸다가 다시 시도해 주세요.",
+          err_net: "어시스턴트에 연결할 수 없습니다. 인터넷을 확인해 주세요.",
+          err_ref: "프랑스어 수업에 대해서만 도와드릴 수 있어요.",
+          err_srv: "지금은 어시스턴트를 사용할 수 없습니다. 나중에 다시 시도해 주세요.",
+          note: "AI가 틀릴 수 있습니다. 수업 내용과 다르면 수업을 따르세요." }
   };
+  // El sitio está en tres idiomas, pero la asistente habla seis: el estudiante elige el suyo
+  // dentro del panel y ahí se queda. Sin elegir, sigue al sitio.
+  var IDIOMAS = [["es","Español"],["en","English"],["fr","Français"],
+                 ["de","Deutsch"],["zh","中文"],["ko","한국어"]];
+  var LANG_KEY = "ia-tutor-lang";
+  function langElegida() {
+    try { var v = localStorage.getItem(LANG_KEY); return T[v] ? v : ""; } catch (e) { return ""; }
+  }
 
   function lang() {
+    var mia = langElegida();
+    if (mia) return mia;                         // lo que el estudiante eligió en el panel manda
     try { if (window.I18N && window.I18N.get) return T[window.I18N.get()] ? window.I18N.get() : "es"; } catch (e) {}
     try { var s = localStorage.getItem("fr-course-lang"); if (T[s]) return s; } catch (e) {}
     return "es";
@@ -102,7 +148,7 @@
     try { sessionStorage.setItem(STORE, JSON.stringify(turns.slice(-MAX_TURNS))); } catch (e) {}
   }
 
-  var root, panel, log, input, btn, sendBtn, stageBtn, stagePanel, zoomBtn, micBtn;
+  var root, panel, log, input, btn, sendBtn, stageBtn, stagePanel, zoomBtn, micBtn, langSel;
   var abort = null, busy = false, big = false, reco = null, recoOn = false;
   var av = null, audio = null, speaking = null, noVoice = false;
 
@@ -327,7 +373,8 @@
   }
 
   // ---------- que el estudiante le hable ----------
-  var RECO_LANG = { es: "es-MX", en: "en-US", fr: "fr-FR" };
+  var RECO_LANG = { es: "es-MX", en: "en-US", fr: "fr-FR",
+                    de: "de-DE", zh: "zh-CN", ko: "ko-KR" };
   function setupMic() {
     var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SR || !micBtn) return;                    // Firefox no lo tiene: el botón no aparece
@@ -379,6 +426,7 @@
       '</button>' +
       '<section class="iat-panel" hidden>' +
         '<header class="iat-head"><b class="iat-title"></b>' +
+          '<select class="iat-lang" aria-label="idioma"></select>' +
           '<button class="iat-zoom" type="button" aria-label=""></button>' +
           '<button class="iat-clear" type="button"></button>' +
           '<button class="iat-x" type="button" aria-label="">✕</button></header>' +
@@ -401,6 +449,17 @@
 
     zoomBtn = root.querySelector(".iat-zoom");
     micBtn = root.querySelector(".iat-mic");
+    langSel = root.querySelector(".iat-lang");
+    langSel.innerHTML = IDIOMAS.map(function (p) {
+      return '<option value="' + p[0] + '">' + p[1] + "</option>";
+    }).join("");
+    langSel.value = lang();
+    langSel.addEventListener("change", function () {
+      try { localStorage.setItem(LANG_KEY, langSel.value); } catch (e) {}
+      hush();
+      words();
+      if (!turns.length) paint();          // el saludo y los atajos, en el idioma nuevo
+    });
     btn.addEventListener("click", function () { panel.hidden ? open() : close(); });
     zoomBtn.addEventListener("click", function () { setBig(!big); });
     micBtn.addEventListener("click", function () { recoOn ? micOff() : micOn(); });
@@ -455,6 +514,7 @@
       zoomBtn.title = zoomBtn.getAttribute("aria-label");
     }
     if (micBtn) micBtn.setAttribute("aria-label", recoOn ? x.micStop : x.mic);
+    if (langSel && langSel.value !== lang()) langSel.value = lang();
   }
 
   var CSS =
@@ -489,6 +549,10 @@
     "box-shadow:0 18px 50px rgba(30,32,70,.26)}" +
   ".iat-head{display:flex;align-items:center;gap:8px;padding:12px 14px;" +
     "border-bottom:1px solid rgba(57,59,102,.1)}" +
+  ".iat-lang{flex:none;max-width:104px;border:1px solid rgba(57,59,102,.18);border-radius:9px;" +
+    "background:transparent;color:#6B6E99;font:inherit;font-size:.78rem;padding:3px 4px;" +
+    "cursor:pointer}" +
+  ".iat-lang:focus-visible{outline:2px solid #378EF6;outline-offset:1px}" +
   ".iat-zoom{flex:none;border:none;background:transparent;cursor:pointer;color:#6B6E99;" +
     "font:inherit;font-size:1rem;line-height:1;padding:4px 6px;border-radius:8px}" +
   ".iat-zoom:hover{background:rgba(55,142,246,.12);color:#378EF6}" +
@@ -546,6 +610,8 @@
     ".iat-msg a{color:#7DB6FA}" +
     ".iat-chips button{border-color:#7DB6FA;color:#7DB6FA}" +
     ".iat-zoom{color:#A6A9CE}" +
+    ".iat-lang{color:#A6A9CE;border-color:rgba(255,255,255,.2)}" +
+    ".iat-lang option{background:#1F2140;color:#F4F6FF}" +
     ".iat-zoom:hover{background:rgba(125,182,250,.18);color:#7DB6FA}" +
     ".iat-mic{border-color:rgba(125,182,250,.5);color:#7DB6FA}" +
     ".iat-mic:hover{background:rgba(125,182,250,.16)}" +
