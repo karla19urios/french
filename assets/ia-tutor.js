@@ -150,6 +150,11 @@
 
   var root, panel, log, input, btn, sendBtn, stageBtn, stagePanel, zoomBtn, micBtn, langSel;
   var abort = null, busy = false, big = false, reco = null, recoOn = false;
+  var TAM_KEY = "ia-tutor-tam";                  // 0 pequeño, 1 normal, 2 grande
+  var tam = (function () {
+    try { var v = parseInt(localStorage.getItem(TAM_KEY), 10); return (v === 0 || v === 2) ? v : 1; }
+    catch (e) { return 1; }
+  })();
   var av = null, audio = null, speaking = null, noVoice = false;
 
   function dropSpeakButtons() {
@@ -382,15 +387,25 @@
   }
 
 
-  // ---------- agrandar, sólo si el estudiante quiere ----------
-  function setBig(on) {
-    big = !!on;
+  // ---------- tres tamaños, porque el panel tapa la lección ----------
+  // 0 pequeño, 1 normal, 2 grande. El botón baja un paso cada vez y desde el más pequeño
+  // vuelve al grande: con un solo botón en la cabecera se llega a los tres.
+  function setTam(n) {
+    tam = (n + 3) % 3;
+    big = tam === 2;
+    root.classList.toggle("mini", tam === 0);
     root.classList.toggle("big", big);
-    zoomBtn.textContent = big ? "\u2922" : "\u2921";
-    zoomBtn.setAttribute("aria-label", big ? t().small : t().big);
-    zoomBtn.title = zoomBtn.getAttribute("aria-label");
+    try { localStorage.setItem(TAM_KEY, String(tam)); } catch (e) {}   // que no haya que repetirlo en cada página
+    caraZoom();
     try { if (av) av.big(big); } catch (e) {}      // en grande, los archivos de resolución completa
     log.scrollTop = log.scrollHeight;
+  }
+  function caraZoom() {
+    if (!zoomBtn) return;
+    var baja = tam > 0;            // en el más pequeño ya no se puede bajar: el clic agranda
+    zoomBtn.textContent = baja ? "\u2922" : "\u2921";
+    zoomBtn.setAttribute("aria-label", baja ? t().small : t().big);
+    zoomBtn.title = zoomBtn.getAttribute("aria-label");
   }
 
   // ---------- que el estudiante le hable ----------
@@ -482,7 +497,7 @@
       if (!turns.length) paint();          // el saludo y los atajos, en el idioma nuevo
     });
     btn.addEventListener("click", function () { panel.hidden ? open() : close(); });
-    zoomBtn.addEventListener("click", function () { setBig(!big); });
+    zoomBtn.addEventListener("click", function () { setTam(tam > 0 ? tam - 1 : 2); });
     micBtn.addEventListener("click", function () { recoOn ? micOff() : micOn(); });
     root.querySelector(".iat-x").addEventListener("click", close);
     root.querySelector(".iat-clear").addEventListener("click", function () {
@@ -503,6 +518,7 @@
     });
 
     words();
+    setTam(tam);                   // el tamaño que eligió la última vez
     document.body.appendChild(root);
     paint();
     withPersona(function () {
@@ -530,11 +546,7 @@
     input.placeholder = x.ph;
     sendBtn.textContent = x.send;
     root.querySelector(".iat-note").textContent = x.note;
-    if (zoomBtn) {
-      zoomBtn.textContent = big ? "\u2922" : "\u2921";
-      zoomBtn.setAttribute("aria-label", big ? x.small : x.big);
-      zoomBtn.title = zoomBtn.getAttribute("aria-label");
-    }
+    caraZoom();
     if (micBtn) micBtn.setAttribute("aria-label", recoOn ? x.micStop : x.mic);
     if (langSel && langSel.value !== lang()) langSel.value = lang();
   }
@@ -567,6 +579,25 @@
     ".iat-root.big .iat-panel{overflow:visible}" +
     ".iat-root.big .iat-stage-panel{position:absolute;left:-232px;bottom:4px;width:248px;" +
       "margin:0;filter:drop-shadow(0 18px 34px rgba(25,28,60,.36))}}" +
+  // el paso pequeño: el panel se quita de en medio sin dejar de ser usable. El título
+  // sobra aquí (ella está justo encima), y el selector de idioma empuja al resto a la derecha.
+  ".iat-root.mini .iat-panel{width:min(268px,calc(100vw - 28px));max-height:min(58vh,390px)}" +
+  ".iat-root.mini .iat-stage-panel{width:54px;margin:2px auto -4px}" +
+  ".iat-root.mini .iat-head{padding:7px 9px;gap:5px}" +
+  ".iat-root.mini .iat-head b{display:none}" +
+  ".iat-root.mini .iat-lang{margin-right:auto;max-width:92px;font-size:.72rem;padding:2px 3px}" +
+  ".iat-root.mini .iat-zoom{font-size:.9rem;padding:3px 5px}" +
+  ".iat-root.mini .iat-clear{font-size:.72rem;padding:3px 4px}" +
+  ".iat-root.mini .iat-x{font-size:.85rem;padding:3px 5px}" +
+  ".iat-root.mini .iat-log{padding:10px;gap:8px}" +
+  ".iat-root.mini .iat-msg{max-width:96%;padding:7px 10px;font-size:.85rem}" +
+  ".iat-root.mini .iat-chips button{font-size:.76rem;padding:4px 9px}" +
+  ".iat-root.mini .iat-speak{font-size:.72rem;padding:3px 9px}" +
+  ".iat-root.mini .iat-form{padding:8px 10px 0;gap:6px}" +
+  ".iat-root.mini .iat-in{padding:7px 9px;font-size:.85rem;max-height:76px}" +
+  ".iat-root.mini .iat-send{height:34px;font-size:.82rem;padding:0 12px}" +
+  ".iat-root.mini .iat-mic{width:34px;height:34px;font-size:.92rem}" +
+  ".iat-root.mini .iat-note{margin:6px 10px 8px;font-size:.66rem}" +
   ".iat-panel{position:absolute;right:0;bottom:0;width:min(380px,calc(100vw - 28px));" +
     "max-height:min(72vh,560px);display:flex;flex-direction:column;overflow:hidden;" +
     "border-radius:18px;background:#fff;border:1px solid rgba(57,59,102,.14);" +
@@ -615,9 +646,11 @@
     "font:inherit;font-size:.82rem;padding:5px 10px;border-radius:999px;text-align:left}" +
   ".iat-chips button:hover{background:rgba(55,142,246,.12)}" +
   ".iat-form{display:flex;align-items:flex-end;gap:8px;padding:10px 12px 0}" +
+  // min-height:0 a propósito: las lecciones le ponen min-height:90px a todo <textarea>
+  // y esta caja salía de tres renglones de alto dentro del panel.
   ".iat-in{flex:1;resize:none;border:1px solid rgba(57,59,102,.2);border-radius:12px;" +
     "padding:9px 11px;font:inherit;font-size:.93rem;color:inherit;background:#fff;" +
-    "max-height:110px;overflow-y:auto}" +
+    "min-height:0;max-height:110px;overflow-y:auto}" +
   ".iat-in:focus{outline:none;border-color:#378EF6}" +
   ".iat-send{flex:none;height:40px;border:none;border-radius:12px;background:#378EF6;color:#fff;" +
     "cursor:pointer;font:inherit;font-size:.9rem;font-weight:600;padding:0 15px}" +
@@ -651,6 +684,7 @@
     ".iat-btn-txt{font-size:.76rem;padding:5px 11px}" +
     ".iat-root.big .iat-stage-panel{width:150px}" +
     ".iat-panel{right:auto;left:0;width:calc(100vw - 20px);max-height:74vh}" +
+    ".iat-root.mini .iat-panel{width:min(290px,calc(100vw - 20px));max-height:56vh}" +
     // el selector de idioma flota encima, abajo a la derecha: que la nota no pase por debajo
     ".iat-note{margin-right:100px}}";
 
