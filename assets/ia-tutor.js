@@ -464,7 +464,7 @@
   ".iat-btn-txt{display:block;margin-top:-10px;padding:6px 13px;border-radius:999px;" +
     "background:#378EF6;color:#fff;font-size:.82rem;font-weight:600;line-height:1.3;" +
     "box-shadow:0 5px 14px rgba(55,142,246,.4);white-space:nowrap}" +
-  ".iat-stage-panel{width:92px;margin:4px auto -6px}" +
+  ".iat-stage-panel{flex:none;width:92px;margin:4px auto -6px}" +
   ".iat-root.big .iat-stage-panel{width:188px;margin:6px auto -4px}" +
   ".iat-root.big .iat-panel{width:min(430px,calc(100vw - 28px));max-height:min(86vh,680px)}" +
   // al agrandarla se sale del cuadro: se planta fuera del panel, a su izquierda, pisando
