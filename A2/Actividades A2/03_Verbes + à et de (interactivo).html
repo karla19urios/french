@@ -176,6 +176,19 @@ input[type=text]{font:inherit;font-size:.95rem;padding:6px 10px;border-radius:8p
 input[type=text]:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(55,142,246,.12)}
 input.ok{border-color:var(--ok);background:var(--okbg)}
 input.bad{border-color:var(--ko);background:var(--kobg)}
+/* el hueco con opciones: se elige, no se adivina. Mismo aspecto que la casilla de escribir. */
+select.pick{font:inherit;font-size:.95rem;padding:6px 26px 6px 10px;border-radius:8px;border:1px solid var(--border);
+   background:var(--card-2);color:var(--text);transition:.15s;cursor:pointer;max-width:100%;
+   -webkit-appearance:none;appearance:none;
+   background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);
+   background-position:calc(100% - 15px) calc(50% + 1px),calc(100% - 10px) calc(50% + 1px);
+   background-size:5px 5px,5px 5px;background-repeat:no-repeat}
+select.pick:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(55,142,246,.12)}
+select.pick:hover{border-color:var(--bleu)}
+select.pick.vacio{color:var(--muted)}
+select.pick.ok{border-color:var(--ok);background-color:var(--okbg)}
+select.pick.bad{border-color:var(--ko);background-color:var(--kobg)}
+select.pick option{background:var(--card);color:var(--text)}
 .q,.blank{padding:11px 0;border-bottom:1px solid var(--border)}
 .q:last-child,.blank:last-child{border-bottom:none}
 .q{counter-increment:qq;position:relative;padding-left:2.1em}
@@ -439,13 +452,13 @@ de transmettre ce qu'ils ont reçu.</p></article>
 <div class="card" id="bCOMP" data-bloc>
 <div class="liste">
 <div class="q" data-answer="le 2 septembre"><span>Les inscriptions commencent&nbsp;:</span><div class="opts"><button class="opt" type="button">le 2 septembre</button><button class="opt" type="button">le 2 octobre</button><button class="opt" type="button">en janvier</button></div><div class="vd"></div></div>
-<div class="q" data-note="32 activités">La MJC propose <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="32|trente-deux" size="11" autocomplete="off" spellcheck="false"></span> activités.<div class="vd"></div></div>
+<div class="q" data-note="32 activités">La MJC propose <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="32|trente-deux"><option value="">—</option><option>12</option><option>32</option><option>52</option></select></span> activités.<div class="vd"></div></div>
 <div class="q" data-answer="essayer deux activités avant de choisir"><span>Le conseil de la lettre&nbsp;:</span><div class="opts"><button class="opt" type="button">essayer deux activités avant de choisir</button><button class="opt" type="button">choisir tout de suite</button><button class="opt" type="button">ne rien changer en cours d'année</button></div><div class="vd"></div></div>
-<div class="q" data-note="du lundi au jeudi">L'aide aux devoirs a lieu du lundi au <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="jeudi" size="8" autocomplete="off" spellcheck="false"></span>.<div class="vd"></div></div>
+<div class="q" data-note="du lundi au jeudi">L'aide aux devoirs a lieu du lundi au <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="jeudi"><option value="">—</option><option>jeudi</option><option>mardi</option><option>samedi</option></select></span>.<div class="vd"></div></div>
 <div class="q" data-answer="participe au championnat départemental"><span>L'équipe de basket&nbsp;:</span><div class="opts"><button class="opt" type="button">participe au championnat départemental</button><button class="opt" type="button">a gagné la coupe l'an dernier</button><button class="opt" type="button">n'existe plus</button></div><div class="vd"></div></div>
-<div class="q" data-note="avoir du mal à">Les lycéens de terminale ont du <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="mal" size="6" autocomplete="off" spellcheck="false"></span> à s'organiser.<div class="vd"></div></div>
+<div class="q" data-note="avoir du mal à">Les lycéens de terminale ont du <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="mal"><option value="">—</option><option>temps</option><option>plaisir</option><option>mal</option></select></span> à s'organiser.<div class="vd"></div></div>
 <div class="q" data-answer="rêvent de devenir animateurs"><span>Les anciens adhérents&nbsp;:</span><div class="opts"><button class="opt" type="button">rêvent de devenir animateurs</button><button class="opt" type="button">refusent d'encadrer un groupe</button><button class="opt" type="button">ont arrêté la MJC</button></div><div class="vd"></div></div>
-<div class="q" data-note="décider d&#x27;arrêter">Si un enfant décide d'<span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="arrêter" size="9" autocomplete="off" spellcheck="false"></span>, la MJC propose sa place à quelqu'un d'autre.<div class="vd"></div></div>
+<div class="q" data-note="décider d&#x27;arrêter">Si un enfant décide d'<span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="arrêter"><option value="">—</option><option>arrêter</option><option>continuer</option><option>commencer</option></select></span>, la MJC propose sa place à quelqu'un d'autre.<div class="vd"></div></div>
 </div>
 <div class="cmd"><button class="btn primary" data-check="bCOMP" type="button">Vérifier</button><button class="btn" data-reset="bCOMP" type="button">&#8634; Effacer</button><span class="bloc-score"></span></div>
 </div>
@@ -486,12 +499,12 @@ de transmettre ce qu'ils ont reçu.</p></article>
       <p>Dépêche-toi <b>de</b> t'inscrire ! — Il <b>rêve d'</b>apprendre la guitare.</p></div></div></div>
 <div class="card" id="bR1" data-bloc>
 <div class="liste">
-<div class="q" data-note="oublier DE">Les inscriptions&nbsp;: n'oubliez pas <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="de" size="5" autocomplete="off" spellcheck="false"></span> apporter une photo.<div class="vd"></div></div>
-<div class="q" data-note="décider DE">Mon fils a décidé <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="d&#x27;|de" size="5" autocomplete="off" spellcheck="false"></span>arrêter le judo.<div class="vd"></div></div>
-<div class="q" data-note="se dépêcher DE">Dépêche-toi <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="de" size="5" autocomplete="off" spellcheck="false"></span> t'inscrire, il reste trois places&nbsp;!<div class="vd"></div></div>
-<div class="q" data-note="rêver DE">Elle rêve <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="d&#x27;|de" size="5" autocomplete="off" spellcheck="false"></span>apprendre la guitare.<div class="vd"></div></div>
-<div class="q" data-note="essayer DE">Nous essayons <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="de" size="5" autocomplete="off" spellcheck="false"></span> proposer la place à quelqu'un d'autre.<div class="vd"></div></div>
-<div class="q" data-note="refuser DE">Il a refusé <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="de" size="5" autocomplete="off" spellcheck="false"></span> changer de groupe.<div class="vd"></div></div>
+<div class="q" data-note="oublier DE">Les inscriptions&nbsp;: n'oubliez pas <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="de"><option value="">—</option><option>de</option><option>pour</option><option>à</option></select></span> apporter une photo.<div class="vd"></div></div>
+<div class="q" data-note="décider DE">Mon fils a décidé <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="d&#x27;|de"><option value="">—</option><option>d'</option><option>pour</option><option>à</option></select></span>arrêter le judo.<div class="vd"></div></div>
+<div class="q" data-note="se dépêcher DE">Dépêche-toi <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="de"><option value="">—</option><option>de</option><option>pour</option><option>à</option></select></span> t'inscrire, il reste trois places&nbsp;!<div class="vd"></div></div>
+<div class="q" data-note="rêver DE">Elle rêve <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="d&#x27;|de"><option value="">—</option><option>d'</option><option>à</option><option>pour</option></select></span>apprendre la guitare.<div class="vd"></div></div>
+<div class="q" data-note="essayer DE">Nous essayons <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="de"><option value="">—</option><option>pour</option><option>à</option><option>de</option></select></span> proposer la place à quelqu'un d'autre.<div class="vd"></div></div>
+<div class="q" data-note="refuser DE">Il a refusé <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="de"><option value="">—</option><option>pour</option><option>à</option><option>de</option></select></span> changer de groupe.<div class="vd"></div></div>
 <div class="q" data-answer="« J&#x27;ai oublié de payer la cotisation. »"><span>Quelle phrase est correcte&nbsp;?</span><div class="opts"><button class="opt" type="button">« J'ai oublié de payer la cotisation. »</button><button class="opt" type="button">« J'ai oublié à payer la cotisation. »</button><button class="opt" type="button">« J'ai oublié payer la cotisation. »</button></div><div class="vd"></div></div>
 <div class="q" data-answer="Parce que le choix entre à et de est arbitraire." data-note="C&#x27;est exactement ce que dit la règle 1."><span>Pourquoi faut-il apprendre «&nbsp;le verbe + sa préposition&nbsp;»&nbsp;?</span><div class="opts"><button class="opt" type="button">Parce que le choix entre à et de est arbitraire.</button><button class="opt" type="button">Parce que c'est toujours « à » après un verbe.</button><button class="opt" type="button">Parce que la préposition dépend du sujet.</button></div><div class="vd"></div></div>
 </div>
@@ -524,12 +537,12 @@ de transmettre ce qu'ils ont reçu.</p></article>
       <span style="color:var(--muted)">— the person goes before the preposition.</span></div></div></div>
 <div class="card" id="bR2" data-bloc>
 <div class="liste">
-<div class="q" data-note="apprendre À">Beaucoup d'enfants apprennent <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="à" size="4" autocomplete="off" spellcheck="false"></span> nager à la MJC.<div class="vd"></div></div>
-<div class="q" data-note="commencer À">En septembre, on commence <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="à" size="4" autocomplete="off" spellcheck="false"></span> travailler le mercredi.<div class="vd"></div></div>
-<div class="q" data-note="aider quelqu&#x27;un À">Les animateurs aident les élèves <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="à" size="4" autocomplete="off" spellcheck="false"></span> réviser.<div class="vd"></div></div>
-<div class="q" data-note="hésiter À">N'hésitez pas <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="à" size="4" autocomplete="off" spellcheck="false"></span> essayer deux activités&nbsp;!<div class="vd"></div></div>
-<div class="q" data-note="arriver À">Je n'arrive pas <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="à" size="4" autocomplete="off" spellcheck="false"></span> choisir entre le judo et l'escalade.<div class="vd"></div></div>
-<div class="q" data-note="continuer À">Tout le monde continue <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="à" size="4" autocomplete="off" spellcheck="false"></span> venir, même après la défaite.<div class="vd"></div></div>
+<div class="q" data-note="apprendre À">Beaucoup d'enfants apprennent <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="à"><option value="">—</option><option>pour</option><option>à</option><option>de</option></select></span> nager à la MJC.<div class="vd"></div></div>
+<div class="q" data-note="commencer À">En septembre, on commence <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="à"><option value="">—</option><option>de</option><option>pour</option><option>à</option></select></span> travailler le mercredi.<div class="vd"></div></div>
+<div class="q" data-note="aider quelqu&#x27;un À">Les animateurs aident les élèves <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="à"><option value="">—</option><option>pour</option><option>à</option><option>de</option></select></span> réviser.<div class="vd"></div></div>
+<div class="q" data-note="hésiter À">N'hésitez pas <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="à"><option value="">—</option><option>à</option><option>pour</option><option>de</option></select></span> essayer deux activités&nbsp;!<div class="vd"></div></div>
+<div class="q" data-note="arriver À">Je n'arrive pas <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="à"><option value="">—</option><option>pour</option><option>de</option><option>à</option></select></span> choisir entre le judo et l'escalade.<div class="vd"></div></div>
+<div class="q" data-note="continuer À">Tout le monde continue <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="à"><option value="">—</option><option>à</option><option>pour</option><option>de</option></select></span> venir, même après la défaite.<div class="vd"></div></div>
 <div class="q" data-answer="« Il aide son frère à réviser. »" data-note="Aider quelqu&#x27;un à&nbsp;: la personne vient avant la préposition."><span>Où se place la personne&nbsp;?</span><div class="opts"><button class="opt" type="button">« Il aide son frère à réviser. »</button><button class="opt" type="button">« Il aide à son frère réviser. »</button><button class="opt" type="button">« Il aide à réviser son frère. »</button></div><div class="vd"></div></div>
 <div class="q" data-answer="« Elle invite ses voisins à venir. »"><span>Et avec «&nbsp;inviter&nbsp;»&nbsp;?</span><div class="opts"><button class="opt" type="button">« Elle invite ses voisins à venir. »</button><button class="opt" type="button">« Elle invite à ses voisins venir. »</button><button class="opt" type="button">« Elle invite de venir ses voisins. »</button></div><div class="vd"></div></div>
 </div>
@@ -604,14 +617,14 @@ de transmettre ce qu'ils ont reçu.</p></article>
       <span style="color:var(--muted)">Et l'infinitif sujet n'a pas de préposition : <b>Marcher, courir, bouger</b> est bon pour la santé.</span></div></div></div>
 <div class="card" id="bR3" data-bloc>
 <div class="liste">
-<div class="q" data-note="content DE">Je suis content <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="de" size="5" autocomplete="off" spellcheck="false"></span> commencer l'escalade.<div class="vd"></div></div>
-<div class="q" data-note="avoir envie DE">Elle a envie <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="de" size="5" autocomplete="off" spellcheck="false"></span> changer d'activité cette année.<div class="vd"></div></div>
-<div class="q" data-note="⚠️ avoir du mal À">Les terminales ont du mal <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="à" size="4" autocomplete="off" spellcheck="false"></span> s'organiser.<div class="vd"></div></div>
-<div class="q" data-note="⚠️ être prêt À">Trois anciens sont prêts <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="à" size="4" autocomplete="off" spellcheck="false"></span> encadrer un groupe.<div class="vd"></div></div>
-<div class="q" data-note="adorer + infinitif, sans préposition">Mon frère adore <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="Ø|rien|-" size="6" autocomplete="off" spellcheck="false"></span> jouer au basket. (aucune préposition)<div class="vd"></div></div>
+<div class="q" data-note="content DE">Je suis content <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="de"><option value="">—</option><option>à</option><option>pour</option><option>de</option></select></span> commencer l'escalade.<div class="vd"></div></div>
+<div class="q" data-note="avoir envie DE">Elle a envie <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="de"><option value="">—</option><option>pour</option><option>de</option><option>à</option></select></span> changer d'activité cette année.<div class="vd"></div></div>
+<div class="q" data-note="⚠️ avoir du mal À">Les terminales ont du mal <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="à"><option value="">—</option><option>pour</option><option>de</option><option>à</option></select></span> s'organiser.<div class="vd"></div></div>
+<div class="q" data-note="⚠️ être prêt À">Trois anciens sont prêts <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="à"><option value="">—</option><option>pour</option><option>de</option><option>à</option></select></span> encadrer un groupe.<div class="vd"></div></div>
+<div class="q" data-note="adorer + infinitif, sans préposition">Mon frère adore <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="Ø|rien|-"><option value="">—</option><option>Ø</option><option>de</option><option>à</option></select></span> jouer au basket. (aucune préposition)<div class="vd"></div></div>
 <div class="q" data-answer="« Je préfère réviser le matin. »" data-note="Les verbes de goût prennent l&#x27;infinitif directement."><span>Quelle phrase est correcte&nbsp;?</span><div class="opts"><button class="opt" type="button">« Je préfère réviser le matin. »</button><button class="opt" type="button">« Je préfère de réviser le matin. »</button><button class="opt" type="button">« Je préfère à réviser le matin. »</button></div><div class="vd"></div></div>
 <div class="q" data-answer="« Elle espère réussir son bac. »"><span>Et pour un projet&nbsp;?</span><div class="opts"><button class="opt" type="button">« Elle espère réussir son bac. »</button><button class="opt" type="button">« Elle espère de réussir son bac. »</button><button class="opt" type="button">« Elle espère à réussir son bac. »</button></div><div class="vd"></div></div>
-<div class="q" data-note="⚠️ être habitué À">Il est habitué <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="à" size="4" autocomplete="off" spellcheck="false"></span> se lever tôt pour l'entraînement.<div class="vd"></div></div>
+<div class="q" data-note="⚠️ être habitué À">Il est habitué <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="à"><option value="">—</option><option>pour</option><option>à</option><option>de</option></select></span> se lever tôt pour l'entraînement.<div class="vd"></div></div>
 </div>
 <div class="cmd"><button class="btn primary" data-check="bR3" type="button">Vérifier</button><button class="btn" data-reset="bR3" type="button">&#8634; Effacer</button><span class="bloc-score"></span></div>
 </div>
@@ -682,14 +695,14 @@ de transmettre ce qu'ils ont reçu.</p></article>
 <p class="lead">8 points &middot; La structure correcte, c'est tout l'exercice.</p>
 <div class="card" id="vA_bB" data-bloc>
 <div class="liste">
-<div class="q" data-note="jouer au football">Il joue <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="au" size="5" autocomplete="off" spellcheck="false"></span> football le samedi.<div class="vd"></div></div>
-<div class="q" data-note="jouer du piano">Elle joue <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="du" size="5" autocomplete="off" spellcheck="false"></span> piano depuis dix ans.<div class="vd"></div></div>
-<div class="q" data-note="jouer aux cartes">Nous jouons <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="aux" size="5" autocomplete="off" spellcheck="false"></span> cartes le dimanche.<div class="vd"></div></div>
-<div class="q" data-note="jouer de la guitare">Je joue <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="de la" size="7" autocomplete="off" spellcheck="false"></span> guitare dans un groupe.<div class="vd"></div></div>
-<div class="q" data-note="faire du vélo">Tu fais <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="du" size="5" autocomplete="off" spellcheck="false"></span> vélo tous les matins&nbsp;?<div class="vd"></div></div>
-<div class="q" data-note="faire de la natation">Ma sœur fait <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="de la" size="7" autocomplete="off" spellcheck="false"></span> natation deux fois par semaine.<div class="vd"></div></div>
-<div class="q" data-note="faire de l&#x27;escalade">Il fait <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="de l&#x27;" size="6" autocomplete="off" spellcheck="false"></span> escalade en salle.<div class="vd"></div></div>
-<div class="q" data-note="jouer aux échecs">On joue <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="aux" size="5" autocomplete="off" spellcheck="false"></span> échecs&nbsp;?<div class="vd"></div></div>
+<div class="q" data-note="jouer au football">Il joue <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="au"><option value="">—</option><option>de la</option><option>au</option><option>du</option></select></span> football le samedi.<div class="vd"></div></div>
+<div class="q" data-note="jouer du piano">Elle joue <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="du"><option value="">—</option><option>de la</option><option>du</option><option>au</option></select></span> piano depuis dix ans.<div class="vd"></div></div>
+<div class="q" data-note="jouer aux cartes">Nous jouons <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="aux"><option value="">—</option><option>au</option><option>des</option><option>aux</option></select></span> cartes le dimanche.<div class="vd"></div></div>
+<div class="q" data-note="jouer de la guitare">Je joue <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="de la"><option value="">—</option><option>de la</option><option>à la</option><option>du</option></select></span> guitare dans un groupe.<div class="vd"></div></div>
+<div class="q" data-note="faire du vélo">Tu fais <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="du"><option value="">—</option><option>du</option><option>au</option><option>de la</option></select></span> vélo tous les matins&nbsp;?<div class="vd"></div></div>
+<div class="q" data-note="faire de la natation">Ma sœur fait <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="de la"><option value="">—</option><option>de la</option><option>du</option><option>à la</option></select></span> natation deux fois par semaine.<div class="vd"></div></div>
+<div class="q" data-note="faire de l&#x27;escalade">Il fait <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="de l&#x27;"><option value="">—</option><option>à l'</option><option>du</option><option>de l'</option></select></span> escalade en salle.<div class="vd"></div></div>
+<div class="q" data-note="jouer aux échecs">On joue <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="aux"><option value="">—</option><option>des</option><option>au</option><option>aux</option></select></span> échecs&nbsp;?<div class="vd"></div></div>
 </div>
 <div class="cmd"><button class="btn primary" data-check="vA_bB" type="button">Vérifier</button><button class="btn" data-reset="vA_bB" type="button">&#8634; Effacer</button><span class="bloc-score"></span></div>
 </div>
@@ -697,14 +710,14 @@ de transmettre ce qu'ils ont reçu.</p></article>
 <p class="lead">8 points &middot; Un seul mot par trou.</p>
 <div class="card" id="vA_bC" data-bloc>
 <div class="liste">
-<div class="q" data-note="le cinéma">Le samedi, je vais au <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="cinéma" size="9" autocomplete="off" spellcheck="false"></span> avec mes amis.<div class="vd"></div></div>
-<div class="q" data-note="gagner">Mon équipe a <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="gagné" size="8" autocomplete="off" spellcheck="false"></span> trois à zéro&nbsp;!<div class="vd"></div></div>
-<div class="q" data-note="perdre">Nous avons <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="perdu" size="8" autocomplete="off" spellcheck="false"></span> le match de dimanche.<div class="vd"></div></div>
-<div class="q" data-note="la piscine">Pour nager, je vais à la <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="piscine" size="10" autocomplete="off" spellcheck="false"></span>.<div class="vd"></div></div>
-<div class="q" data-note="un roman">Le soir, je lis un <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="roman" size="8" autocomplete="off" spellcheck="false"></span> avant de dormir.<div class="vd"></div></div>
-<div class="q" data-note="prendre un verre">On <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="prend" size="7" autocomplete="off" spellcheck="false"></span> un verre après le travail&nbsp;?<div class="vd"></div></div>
-<div class="q" data-note="deux fois par semaine">Je fais du sport deux <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="fois" size="7" autocomplete="off" spellcheck="false"></span> par semaine.<div class="vd"></div></div>
-<div class="q" data-note="accepter">Merci pour l'invitation, j'<span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="accepte" size="9" autocomplete="off" spellcheck="false"></span> avec plaisir&nbsp;!<div class="vd"></div></div>
+<div class="q" data-note="le cinéma">Le samedi, je vais au <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="cinéma"><option value="">—</option><option>cinéma</option><option>théâtre</option><option>stade</option></select></span> avec mes amis.<div class="vd"></div></div>
+<div class="q" data-note="gagner">Mon équipe a <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="gagné"><option value="">—</option><option>raté</option><option>perdu</option><option>gagné</option></select></span> trois à zéro&nbsp;!<div class="vd"></div></div>
+<div class="q" data-note="perdre">Nous avons <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="perdu"><option value="">—</option><option>gagné</option><option>perdu</option><option>accepté</option></select></span> le match de dimanche.<div class="vd"></div></div>
+<div class="q" data-note="la piscine">Pour nager, je vais à la <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="piscine"><option value="">—</option><option>bibliothèque</option><option>piscine</option><option>patinoire</option></select></span>.<div class="vd"></div></div>
+<div class="q" data-note="un roman">Le soir, je lis un <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="roman"><option value="">—</option><option>cahier</option><option>roman</option><option>match</option></select></span> avant de dormir.<div class="vd"></div></div>
+<div class="q" data-note="prendre un verre">On <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="prend"><option value="">—</option><option>fait</option><option>joue</option><option>prend</option></select></span> un verre après le travail&nbsp;?<div class="vd"></div></div>
+<div class="q" data-note="deux fois par semaine">Je fais du sport deux <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="fois"><option value="">—</option><option>fois</option><option>moments</option><option>temps</option></select></span> par semaine.<div class="vd"></div></div>
+<div class="q" data-note="accepter">Merci pour l'invitation, j'<span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="accepte"><option value="">—</option><option>hésite</option><option>refuse</option><option>accepte</option></select></span> avec plaisir&nbsp;!<div class="vd"></div></div>
 </div>
 <div class="cmd"><button class="btn primary" data-check="vA_bC" type="button">Vérifier</button><button class="btn" data-reset="vA_bC" type="button">&#8634; Effacer</button><span class="bloc-score"></span></div>
 </div>
@@ -717,9 +730,9 @@ de transmettre ce qu'ils ont reçu.</p></article>
 <div class="q" data-answer="parfois"><span>Une fois par mois&nbsp;:</span><div class="opts"><button class="opt" type="button">parfois</button><button class="opt" type="button">souvent</button><button class="opt" type="button">toujours</button></div><div class="vd"></div></div>
 <div class="q" data-answer="rarement"><span>Deux fois dans ma vie&nbsp;:</span><div class="opts"><button class="opt" type="button">rarement</button><button class="opt" type="button">souvent</button><button class="opt" type="button">toujours</button></div><div class="vd"></div></div>
 <div class="q" data-answer="ne… jamais" data-note="⚠️ «&nbsp;Je ne joue jamais&nbsp;»&nbsp;: deux mots&nbsp;!"><span>Zéro fois&nbsp;:</span><div class="opts"><button class="opt" type="button">ne… jamais</button><button class="opt" type="button">parfois</button><button class="opt" type="button">souvent</button></div><div class="vd"></div></div>
-<div class="q" data-note="une fois par semaine">Je fais du sport <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="une fois par semaine|1 fois par semaine" size="24" autocomplete="off" spellcheck="false"></span> (1×/semaine).<div class="vd"></div></div>
-<div class="q" data-note="deux fois par mois">Elle va au cinéma <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="deux fois par mois" size="20" autocomplete="off" spellcheck="false"></span> (2×/mois).<div class="vd"></div></div>
-<div class="q" data-note="ne… jamais">Il ne joue <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="jamais" size="9" autocomplete="off" spellcheck="false"></span> aux jeux vidéo.<div class="vd"></div></div>
+<div class="q" data-note="une fois par semaine">Je fais du sport <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="une fois par semaine|1 fois par semaine"><option value="">—</option><option>une fois par mois</option><option>une fois par semaine</option><option>deux fois par semaine</option></select></span> (1×/semaine).<div class="vd"></div></div>
+<div class="q" data-note="deux fois par mois">Elle va au cinéma <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="deux fois par mois"><option value="">—</option><option>une fois par mois</option><option>deux fois par semaine</option><option>deux fois par mois</option></select></span> (2×/mois).<div class="vd"></div></div>
+<div class="q" data-note="ne… jamais">Il ne joue <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="jamais"><option value="">—</option><option>toujours</option><option>jamais</option><option>souvent</option></select></span> aux jeux vidéo.<div class="vd"></div></div>
 </div>
 <div class="cmd"><button class="btn primary" data-check="vA_bD" type="button">Vérifier</button><button class="btn" data-reset="vA_bD" type="button">&#8634; Effacer</button><span class="bloc-score"></span></div>
 </div>
@@ -729,14 +742,14 @@ de transmettre ce qu'ils ont reçu.</p></article>
 <div style="margin-top:10px"><button class="audio txt" type="button" data-say="Salut ! Tu fais quoi ce week-end ? Samedi matin, je fais du vélo avec mon frère. Après, rien. Ça te dit d&#x27;aller au cinéma samedi soir ? Bonne idée ! Il y a un film italien à vingt heures. Ou on peut jouer aux cartes chez moi. Le cinéma, plutôt. Et dimanche, il y a un match de rugby à la télé. Ah non, moi le rugby, jamais ! Je préfère me promener. D&#x27;accord : cinéma samedi, promenade dimanche. Ça marche !" style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">&#128264; Écouter la scène</button></div></div>
 <div class="card" id="vA_bE" data-bloc>
 <div class="liste">
-<div class="q" data-note="le week-end">&mdash; Tu fais quoi ce <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="week-end" size="10" autocomplete="off" spellcheck="false"></span>&nbsp;?<div class="vd"></div></div>
-<div class="q" data-note="faire du vélo">&mdash; Je fais <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="du" size="5" autocomplete="off" spellcheck="false"></span> vélo samedi matin.<div class="vd"></div></div>
-<div class="q" data-note="« ça te dit&nbsp;? » = tu veux&nbsp;?">&mdash; Ça te <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="dit" size="5" autocomplete="off" spellcheck="false"></span> d'aller au cinéma&nbsp;?<div class="vd"></div></div>
-<div class="q" data-note="jouer aux cartes">&mdash; On peut jouer <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="aux" size="5" autocomplete="off" spellcheck="false"></span> cartes chez moi.<div class="vd"></div></div>
-<div class="q" data-note="un match">&mdash; Il y a un <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="match" size="8" autocomplete="off" spellcheck="false"></span> de rugby à la télé.<div class="vd"></div></div>
-<div class="q" data-note="ne… jamais">&mdash; Le rugby, je ne regarde <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="jamais" size="9" autocomplete="off" spellcheck="false"></span>.<div class="vd"></div></div>
-<div class="q" data-note="se promener">&mdash; Je préfère me <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="promener" size="10" autocomplete="off" spellcheck="false"></span>.<div class="vd"></div></div>
-<div class="q" data-note="« ça marche&nbsp;! » = d&#x27;accord">&mdash; D'accord, ça <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="marche" size="8" autocomplete="off" spellcheck="false"></span>&nbsp;!<div class="vd"></div></div>
+<div class="q" data-note="le week-end">&mdash; Tu fais quoi ce <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="week-end"><option value="">—</option><option>trimestre</option><option>week-end</option><option>mois</option></select></span>&nbsp;?<div class="vd"></div></div>
+<div class="q" data-note="faire du vélo">&mdash; Je fais <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="du"><option value="">—</option><option>au</option><option>du</option><option>de la</option></select></span> vélo samedi matin.<div class="vd"></div></div>
+<div class="q" data-note="« ça te dit&nbsp;? » = tu veux&nbsp;?">&mdash; Ça te <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="dit"><option value="">—</option><option>dit</option><option>marche</option><option>fait</option></select></span> d'aller au cinéma&nbsp;?<div class="vd"></div></div>
+<div class="q" data-note="jouer aux cartes">&mdash; On peut jouer <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="aux"><option value="">—</option><option>aux</option><option>au</option><option>des</option></select></span> cartes chez moi.<div class="vd"></div></div>
+<div class="q" data-note="un match">&mdash; Il y a un <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="match"><option value="">—</option><option>cours</option><option>match</option><option>contrôle</option></select></span> de rugby à la télé.<div class="vd"></div></div>
+<div class="q" data-note="ne… jamais">&mdash; Le rugby, je ne regarde <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="jamais"><option value="">—</option><option>jamais</option><option>toujours</option><option>souvent</option></select></span>.<div class="vd"></div></div>
+<div class="q" data-note="se promener">&mdash; Je préfère me <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="promener"><option value="">—</option><option>promener</option><option>gagner</option><option>réviser</option></select></span>.<div class="vd"></div></div>
+<div class="q" data-note="« ça marche&nbsp;! » = d&#x27;accord">&mdash; D'accord, ça <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="marche"><option value="">—</option><option>joue</option><option>dit</option><option>marche</option></select></span>&nbsp;!<div class="vd"></div></div>
 </div>
 <div class="cmd"><button class="btn primary" data-check="vA_bE" type="button">Vérifier</button><button class="btn" data-reset="vA_bE" type="button">&#8634; Effacer</button><span class="bloc-score"></span></div>
 </div>
@@ -856,14 +869,14 @@ de transmettre ce qu'ils ont reçu.</p></article>
 <p class="lead">8 points &middot; Un seul mot par trou.</p>
 <div class="card" id="vB_bC" data-bloc>
 <div class="liste">
-<div class="q" data-note="un cahier">J'écris mes exercices dans mon <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="cahier" size="9" autocomplete="off" spellcheck="false"></span>.<div class="vd"></div></div>
-<div class="q" data-note="une trousse">Je range mes stylos dans ma <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="trousse" size="10" autocomplete="off" spellcheck="false"></span>.<div class="vd"></div></div>
-<div class="q" data-note="une gomme">J'ai fait une erreur&nbsp;: je prends ma <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="gomme" size="8" autocomplete="off" spellcheck="false"></span>.<div class="vd"></div></div>
-<div class="q" data-note="une règle">Pour tracer un trait droit, j'utilise une <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="règle" size="8" autocomplete="off" spellcheck="false"></span>.<div class="vd"></div></div>
-<div class="q" data-note="un classeur">Je mets mes feuilles dans un <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="classeur" size="11" autocomplete="off" spellcheck="false"></span>.<div class="vd"></div></div>
-<div class="q" data-note="un cartable">Je porte mes livres dans mon <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="cartable|sac" size="10" autocomplete="off" spellcheck="false"></span>.<div class="vd"></div></div>
-<div class="q" data-note="le tableau">Le professeur écrit au <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="tableau" size="10" autocomplete="off" spellcheck="false"></span>.<div class="vd"></div></div>
-<div class="q" data-note="une calculatrice">Pour les calculs, j'utilise une <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="calculatrice|calculette" size="14" autocomplete="off" spellcheck="false"></span>.<div class="vd"></div></div>
+<div class="q" data-note="un cahier">J'écris mes exercices dans mon <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="cahier"><option value="">—</option><option>tableau</option><option>cartable</option><option>cahier</option></select></span>.<div class="vd"></div></div>
+<div class="q" data-note="une trousse">Je range mes stylos dans ma <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="trousse"><option value="">—</option><option>règle</option><option>trousse</option><option>gomme</option></select></span>.<div class="vd"></div></div>
+<div class="q" data-note="une gomme">J'ai fait une erreur&nbsp;: je prends ma <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="gomme"><option value="">—</option><option>gomme</option><option>règle</option><option>trousse</option></select></span>.<div class="vd"></div></div>
+<div class="q" data-note="une règle">Pour tracer un trait droit, j'utilise une <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="règle"><option value="">—</option><option>calculatrice</option><option>gomme</option><option>règle</option></select></span>.<div class="vd"></div></div>
+<div class="q" data-note="un classeur">Je mets mes feuilles dans un <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="classeur"><option value="">—</option><option>contrôle</option><option>classeur</option><option>tableau</option></select></span>.<div class="vd"></div></div>
+<div class="q" data-note="un cartable">Je porte mes livres dans mon <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="cartable|sac"><option value="">—</option><option>tiroir</option><option>cartable</option><option>classeur</option></select></span>.<div class="vd"></div></div>
+<div class="q" data-note="le tableau">Le professeur écrit au <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="tableau"><option value="">—</option><option>cahier</option><option>classeur</option><option>tableau</option></select></span>.<div class="vd"></div></div>
+<div class="q" data-note="une calculatrice">Pour les calculs, j'utilise une <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="calculatrice|calculette"><option value="">—</option><option>calculatrice</option><option>gomme</option><option>règle</option></select></span>.<div class="vd"></div></div>
 </div>
 <div class="cmd"><button class="btn primary" data-check="vB_bC" type="button">Vérifier</button><button class="btn" data-reset="vB_bC" type="button">&#8634; Effacer</button><span class="bloc-score"></span></div>
 </div>
@@ -888,14 +901,14 @@ de transmettre ce qu'ils ont reçu.</p></article>
 <div style="margin-top:10px"><button class="audio txt" type="button" data-say="Salut ! Tu es dans quelle classe ? En seconde B. Et toi ? Pareil ! Tu as vu notre emploi du temps ? On commence à huit heures tous les jours. Ah non. Et on a sport le vendredi après-midi. Moi, ma matière préférée, c&#x27;est l&#x27;histoire-géo. Et toi ? Les maths, mais je suis nul en langues ! On peut réviser ensemble, si tu veux. Et manger à la cantine ? D&#x27;accord ! Première récré dans dix minutes, on y va ? Attends : j&#x27;ai un contrôle de maths demain. Tu réviseras avec moi ? Promis." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">&#128264; Écouter la scène</button></div></div>
 <div class="card" id="vB_bE" data-bloc>
 <div class="liste">
-<div class="q" data-note="la classe">&mdash; Tu es dans quelle <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="classe" size="9" autocomplete="off" spellcheck="false"></span>&nbsp;?<div class="vd"></div></div>
-<div class="q" data-note="l&#x27;emploi du temps">&mdash; Tu as vu notre <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="emploi du temps" size="17" autocomplete="off" spellcheck="false"></span>&nbsp;?<div class="vd"></div></div>
-<div class="q" data-note="une matière">&mdash; Ma <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="matière" size="10" autocomplete="off" spellcheck="false"></span> préférée, c'est l'histoire-géo.<div class="vd"></div></div>
-<div class="q" data-note="être nul en…">&mdash; Je suis <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="nul|nulle|mauvais" size="9" autocomplete="off" spellcheck="false"></span> en langues&nbsp;!<div class="vd"></div></div>
-<div class="q" data-note="réviser">&mdash; On peut <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="réviser" size="9" autocomplete="off" spellcheck="false"></span> ensemble.<div class="vd"></div></div>
-<div class="q" data-note="la cantine">&mdash; On mange à la <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="cantine" size="10" autocomplete="off" spellcheck="false"></span>&nbsp;?<div class="vd"></div></div>
-<div class="q" data-note="la récré">&mdash; La <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="récré|récréation" size="12" autocomplete="off" spellcheck="false"></span> est dans dix minutes.<div class="vd"></div></div>
-<div class="q" data-note="un contrôle">&mdash; J'ai un <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="contrôle" size="10" autocomplete="off" spellcheck="false"></span> de maths demain.<div class="vd"></div></div>
+<div class="q" data-note="la classe">&mdash; Tu es dans quelle <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="classe"><option value="">—</option><option>récré</option><option>classe</option><option>cantine</option></select></span>&nbsp;?<div class="vd"></div></div>
+<div class="q" data-note="l&#x27;emploi du temps">&mdash; Tu as vu notre <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="emploi du temps"><option value="">—</option><option>contrôle</option><option>tableau</option><option>emploi du temps</option></select></span>&nbsp;?<div class="vd"></div></div>
+<div class="q" data-note="une matière">&mdash; Ma <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="matière"><option value="">—</option><option>cantine</option><option>récré</option><option>matière</option></select></span> préférée, c'est l'histoire-géo.<div class="vd"></div></div>
+<div class="q" data-note="être nul en…">&mdash; Je suis <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="nul|nulle|mauvais"><option value="">—</option><option>nul</option><option>fort</option><option>prêt</option></select></span> en langues&nbsp;!<div class="vd"></div></div>
+<div class="q" data-note="réviser">&mdash; On peut <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="réviser"><option value="">—</option><option>rater</option><option>réviser</option><option>gagner</option></select></span> ensemble.<div class="vd"></div></div>
+<div class="q" data-note="la cantine">&mdash; On mange à la <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="cantine"><option value="">—</option><option>piscine</option><option>cantine</option><option>récré</option></select></span>&nbsp;?<div class="vd"></div></div>
+<div class="q" data-note="la récré">&mdash; La <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="récré|récréation"><option value="">—</option><option>récré</option><option>matière</option><option>cantine</option></select></span> est dans dix minutes.<div class="vd"></div></div>
+<div class="q" data-note="un contrôle">&mdash; J'ai un <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="contrôle"><option value="">—</option><option>contrôle</option><option>cartable</option><option>cahier</option></select></span> de maths demain.<div class="vd"></div></div>
 </div>
 <div class="cmd"><button class="btn primary" data-check="vB_bE" type="button">Vérifier</button><button class="btn" data-reset="vB_bE" type="button">&#8634; Effacer</button><span class="bloc-score"></span></div>
 </div>
@@ -936,13 +949,13 @@ de transmettre ce qu'ils ont reçu.</p></article>
 <p class="lead">13 points &middot; un mot du jour <em>et</em> la bonne préposition.</p>
 <div class="card" id="bINT" data-bloc>
 <div class="liste">
-<div class="q" data-note="faire de la natation + commencer à">Ma sœur fait <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="de la" size="7" autocomplete="off" spellcheck="false"></span> natation et elle a commencé <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="à" size="4" autocomplete="off" spellcheck="false"></span> s'entraîner deux fois par semaine.<div class="vd"></div></div>
-<div class="q" data-note="jouer du piano + rêver de">Il joue <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="du" size="5" autocomplete="off" spellcheck="false"></span> piano depuis l'an dernier et il rêve <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="d&#x27;|de" size="5" autocomplete="off" spellcheck="false"></span>entrer au conservatoire.<div class="vd"></div></div>
-<div class="q" data-note="la terminale + avoir du mal à">En <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="terminale" size="11" autocomplete="off" spellcheck="false"></span>, on prépare le bac&nbsp;: les élèves ont du mal <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="à" size="4" autocomplete="off" spellcheck="false"></span> tout réviser.<div class="vd"></div></div>
+<div class="q" data-note="faire de la natation + commencer à">Ma sœur fait <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="de la"><option value="">—</option><option>du</option><option>de la</option><option>à la</option></select></span> natation et elle a commencé <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="à"><option value="">—</option><option>à</option><option>pour</option><option>de</option></select></span> s'entraîner deux fois par semaine.<div class="vd"></div></div>
+<div class="q" data-note="jouer du piano + rêver de">Il joue <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="du"><option value="">—</option><option>de la</option><option>au</option><option>du</option></select></span> piano depuis l'an dernier et il rêve <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="d&#x27;|de"><option value="">—</option><option>d'</option><option>pour</option><option>à</option></select></span>entrer au conservatoire.<div class="vd"></div></div>
+<div class="q" data-note="la terminale + avoir du mal à">En <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="terminale"><option value="">—</option><option>cantine</option><option>terminale</option><option>récré</option></select></span>, on prépare le bac&nbsp;: les élèves ont du mal <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="à"><option value="">—</option><option>de</option><option>à</option><option>pour</option></select></span> tout réviser.<div class="vd"></div></div>
 <div class="q" data-answer="« Il a décidé d&#x27;arrêter. »"><span>Après trois mois, il abandonne le judo&nbsp;:</span><div class="opts"><button class="opt" type="button">« Il a décidé d'arrêter. »</button><button class="opt" type="button">« Il a décidé à arrêter. »</button><button class="opt" type="button">« Il a décidé arrêter. »</button></div><div class="vd"></div></div>
-<div class="q" data-note="aider à + les devoirs">Le prof de maths aide les élèves <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="à" size="4" autocomplete="off" spellcheck="false"></span> faire leurs <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="devoirs" size="9" autocomplete="off" spellcheck="false"></span> après les cours.<div class="vd"></div></div>
+<div class="q" data-note="aider à + les devoirs">Le prof de maths aide les élèves <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="à"><option value="">—</option><option>de</option><option>pour</option><option>à</option></select></span> faire leurs <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="devoirs"><option value="">—</option><option>contrôles</option><option>devoirs</option><option>matières</option></select></span> après les cours.<div class="vd"></div></div>
 <div class="q" data-answer="« Elle adore faire du vélo. »"><span>Elle adore le sport&nbsp;:</span><div class="opts"><button class="opt" type="button">« Elle adore faire du vélo. »</button><button class="opt" type="button">« Elle adore de faire du vélo. »</button><button class="opt" type="button">« Elle adore à faire du vélo. »</button></div><div class="vd"></div></div>
-<div class="q" data-note="rater un contrôle + continuer à">Il a raté son <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="contrôle|examen" size="9" autocomplete="off" spellcheck="false"></span> de maths, mais il continue <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="à" size="4" autocomplete="off" spellcheck="false"></span> travailler.<div class="vd"></div></div>
+<div class="q" data-note="rater un contrôle + continuer à">Il a raté son <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="contrôle|examen"><option value="">—</option><option>cahier</option><option>contrôle</option><option>emploi du temps</option></select></span> de maths, mais il continue <span class="blank" style="display:inline;padding:0;border:none"><select class="pick vacio" data-a="à"><option value="">—</option><option>pour</option><option>de</option><option>à</option></select></span> travailler.<div class="vd"></div></div>
 <div class="q" data-answer="« Je t&#x27;invite à venir samedi. »"><span>Tu invites un camarade au club de basket&nbsp;:</span><div class="opts"><button class="opt" type="button">« Je t'invite à venir samedi. »</button><button class="opt" type="button">« Je t'invite de venir samedi. »</button><button class="opt" type="button">« Je invite à toi venir samedi. »</button></div><div class="vd"></div></div>
 </div>
 <div class="cmd"><button class="btn primary" data-check="bINT" type="button">Vérifier</button><button class="btn" data-reset="bINT" type="button">&#8634; Effacer</button><span class="bloc-score"></span></div>
@@ -1081,6 +1094,16 @@ document.addEventListener("click", function(e){
   if(it){ var v = it.querySelector(".vd"); if(v) v.classList.remove("show"); }
 });
 
+/* al elegir en un hueco, se quita la corrección anterior: igual que con las fichas */
+document.addEventListener("change", function(e){
+  var s = e.target;
+  if(!s || s.tagName !== "SELECT" || !s.hasAttribute("data-a")) return;
+  s.classList.remove("ok","bad");
+  s.classList.toggle("vacio", !s.value);
+  var it = s.closest(".q, .blank");
+  if(it){ var v = it.querySelector(".vd"); if(v) v.classList.remove("show"); }
+});
+
 /* ---------- correction ---------- */
 function itemsOf(root){
   return Array.prototype.filter.call(root.querySelectorAll(".q, .blank"), function(el){
@@ -1092,7 +1115,7 @@ function corrigeBloc(root){
   var bons = 0, total = 0;
   Array.prototype.forEach.call(itemsOf(root), function(it){
     var vd = it.querySelector(".vd");
-    var champs = it.querySelectorAll("input[type=text][data-a]");
+    var champs = it.querySelectorAll("input[type=text][data-a], select[data-a]");
     var opts = it.querySelector(".opts");
     var msgs = [];
     var tousBons = true, repondu = false;
@@ -1169,13 +1192,13 @@ Array.prototype.forEach.call(document.querySelectorAll("button[data-check]"), fu
     });
     Array.prototype.forEach.call(root.querySelectorAll(".blank"), function(it){
       if(it.querySelector(".vd") || (it.closest(".q") && it.closest(".q").querySelector(".vd"))) return;
-      Array.prototype.forEach.call(it.querySelectorAll("input[type=text][data-a]"), function(inp){
+      Array.prototype.forEach.call(it.querySelectorAll("input[type=text][data-a], select[data-a]"), function(inp){
         if(inp.classList.contains("ok")) return;
         var ctx = inp.closest(".dit, .rep, p, li") || it.parentNode;
-        var all = Array.prototype.slice.call(ctx.querySelectorAll("input"));
+        var all = Array.prototype.slice.call(ctx.querySelectorAll("input, select"));
         var idx = all.indexOf(inp);
         var clone = ctx.cloneNode(true);
-        Array.prototype.forEach.call(clone.querySelectorAll("input"), function(x, k){
+        Array.prototype.forEach.call(clone.querySelectorAll("input, select"), function(x, k){
           x.replaceWith(k === idx ? "___" : (x.getAttribute("data-a") || "").split("|")[0]);
         });
         var q = (clone.textContent || "").replace(/\s+/g, " ").trim();
@@ -1192,6 +1215,7 @@ Array.prototype.forEach.call(document.querySelectorAll("[data-reset]"), function
     var root = document.getElementById(id);
     if(!root) return;
     Array.prototype.forEach.call(root.querySelectorAll("input[type=text]"), function(i){ i.value=""; i.classList.remove("ok","bad"); });
+    Array.prototype.forEach.call(root.querySelectorAll("select[data-a]"), function(s){ s.value=""; s.classList.remove("ok","bad"); s.classList.add("vacio"); });
     Array.prototype.forEach.call(root.querySelectorAll(".opt"), function(b){ b.classList.remove("sel","ok","bad"); });
     Array.prototype.forEach.call(root.querySelectorAll(".vd"), function(v){ v.classList.remove("show","bad"); v.textContent=""; });
     var out = root.querySelector(".bloc-score"); if(out) out.textContent = "";
@@ -1203,7 +1227,7 @@ Array.prototype.forEach.call(document.querySelectorAll("[data-reset]"), function
 document.addEventListener("keydown", function(e){
   if(e.key !== "Enter") return;
   var inp = e.target;
-  if(!inp || inp.tagName !== "INPUT") return;
+  if(!inp || (inp.tagName !== "INPUT" && inp.tagName !== "SELECT")) return;
   var bloc = inp.closest("[data-bloc]");
   if(!bloc) return;
   var b = document.querySelector('[data-check="' + bloc.id + '"]');

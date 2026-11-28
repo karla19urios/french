@@ -177,6 +177,19 @@ input[type=text]{font:inherit;font-size:.95rem;padding:6px 10px;border-radius:8p
 input[type=text]:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(55,142,246,.12)}
 input.ok{border-color:var(--ok);background:var(--okbg)}
 input.bad{border-color:var(--ko);background:var(--kobg)}
+/* el hueco con opciones: se elige, no se adivina. Mismo aspecto que la casilla de escribir. */
+select.pick{font:inherit;font-size:.95rem;padding:6px 26px 6px 10px;border-radius:8px;border:1px solid var(--border);
+   background:var(--card-2);color:var(--text);transition:.15s;cursor:pointer;max-width:100%;
+   -webkit-appearance:none;appearance:none;
+   background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);
+   background-position:calc(100% - 15px) calc(50% + 1px),calc(100% - 10px) calc(50% + 1px);
+   background-size:5px 5px,5px 5px;background-repeat:no-repeat}
+select.pick:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(55,142,246,.12)}
+select.pick:hover{border-color:var(--bleu)}
+select.pick.vacio{color:var(--muted)}
+select.pick.ok{border-color:var(--ok);background-color:var(--okbg)}
+select.pick.bad{border-color:var(--ko);background-color:var(--kobg)}
+select.pick option{background:var(--card);color:var(--text)}
 .q,.blank{padding:11px 0;border-bottom:1px solid var(--border)}
 .q:last-child,.blank:last-child{border-bottom:none}
 .q{counter-increment:qq;position:relative;padding-left:2.1em}
@@ -1216,6 +1229,16 @@ document.addEventListener("click", function(e){
   if(it){ var v = it.querySelector(".vd"); if(v) v.classList.remove("show"); }
 });
 
+/* al elegir en un hueco, se quita la corrección anterior: igual que con las fichas */
+document.addEventListener("change", function(e){
+  var s = e.target;
+  if(!s || s.tagName !== "SELECT" || !s.hasAttribute("data-a")) return;
+  s.classList.remove("ok","bad");
+  s.classList.toggle("vacio", !s.value);
+  var it = s.closest(".q, .blank");
+  if(it){ var v = it.querySelector(".vd"); if(v) v.classList.remove("show"); }
+});
+
 /* ---------- correction ---------- */
 function itemsOf(root){
   return Array.prototype.filter.call(root.querySelectorAll(".q, .blank"), function(el){
@@ -1227,7 +1250,7 @@ function corrigeBloc(root){
   var bons = 0, total = 0;
   Array.prototype.forEach.call(itemsOf(root), function(it){
     var vd = it.querySelector(".vd");
-    var champs = it.querySelectorAll("input[type=text][data-a]");
+    var champs = it.querySelectorAll("input[type=text][data-a], select[data-a]");
     var opts = it.querySelector(".opts");
     var msgs = [];
     var tousBons = true, repondu = false;
@@ -1304,13 +1327,13 @@ Array.prototype.forEach.call(document.querySelectorAll("button[data-check]"), fu
     });
     Array.prototype.forEach.call(root.querySelectorAll(".blank"), function(it){
       if(it.querySelector(".vd") || (it.closest(".q") && it.closest(".q").querySelector(".vd"))) return;
-      Array.prototype.forEach.call(it.querySelectorAll("input[type=text][data-a]"), function(inp){
+      Array.prototype.forEach.call(it.querySelectorAll("input[type=text][data-a], select[data-a]"), function(inp){
         if(inp.classList.contains("ok")) return;
         var ctx = inp.closest(".dit, .rep, p, li") || it.parentNode;
-        var all = Array.prototype.slice.call(ctx.querySelectorAll("input"));
+        var all = Array.prototype.slice.call(ctx.querySelectorAll("input, select"));
         var idx = all.indexOf(inp);
         var clone = ctx.cloneNode(true);
-        Array.prototype.forEach.call(clone.querySelectorAll("input"), function(x, k){
+        Array.prototype.forEach.call(clone.querySelectorAll("input, select"), function(x, k){
           x.replaceWith(k === idx ? "___" : (x.getAttribute("data-a") || "").split("|")[0]);
         });
         var q = (clone.textContent || "").replace(/\s+/g, " ").trim();
@@ -1327,6 +1350,7 @@ Array.prototype.forEach.call(document.querySelectorAll("[data-reset]"), function
     var root = document.getElementById(id);
     if(!root) return;
     Array.prototype.forEach.call(root.querySelectorAll("input[type=text]"), function(i){ i.value=""; i.classList.remove("ok","bad"); });
+    Array.prototype.forEach.call(root.querySelectorAll("select[data-a]"), function(s){ s.value=""; s.classList.remove("ok","bad"); s.classList.add("vacio"); });
     Array.prototype.forEach.call(root.querySelectorAll(".opt"), function(b){ b.classList.remove("sel","ok","bad"); });
     Array.prototype.forEach.call(root.querySelectorAll(".vd"), function(v){ v.classList.remove("show","bad"); v.textContent=""; });
     var out = root.querySelector(".bloc-score"); if(out) out.textContent = "";
@@ -1338,7 +1362,7 @@ Array.prototype.forEach.call(document.querySelectorAll("[data-reset]"), function
 document.addEventListener("keydown", function(e){
   if(e.key !== "Enter") return;
   var inp = e.target;
-  if(!inp || inp.tagName !== "INPUT") return;
+  if(!inp || (inp.tagName !== "INPUT" && inp.tagName !== "SELECT")) return;
   var bloc = inp.closest("[data-bloc]");
   if(!bloc) return;
   var b = document.querySelector('[data-check="' + bloc.id + '"]');
