@@ -555,6 +555,78 @@
     // el selector de idioma flota encima, abajo a la derecha: que la nota no pase por debajo
     ".iat-note{margin-right:100px}}";
 
+  // ---------- que reaccione a los ejercicios ----------
+  // La señal honesta es el marcador que la propia lección calcula ("7 / 10"), no las
+  // clases ok/bad: en B1 la opción correcta se marca "ok" aunque el estudiante haya
+  // fallado, y el botón de ver la respuesta las marca todas. El marcador sólo se
+  // escribe cuando el estudiante pulsa Vérifier, que es justo el momento de reaccionar.
+  var ESPERA_TRAMPA = 700;        // ms tras pulsar "ver respuesta" o "borrar": no cuenta
+  var DESCANSO = 1500;            // ms mínimos entre dos reacciones
+  var CALMA_INICIAL = 2000;       // al cargar, la lección escribe "0 / 176" en el marcador:
+                                  // eso no es un fallo del estudiante, es la página naciendo
+  var trampaHasta = 0, ultima = 0, pendiente = 0, despiertaEn = 0;
+
+  function esMarcador(el) {
+    for (var n = 0, e = el; e && e.nodeType === 1 && n < 4; e = e.parentElement, n++) {
+      var id = e.id || "", cl = typeof e.className === "string" ? e.className : "";
+      if (e.id === "sc" || /score|punt/i.test(id + " " + cl)) return e;
+    }
+    return null;
+  }
+
+  // "ver la respuesta" y "borrar" también escriben en el marcador: eso no es un acierto
+  function vigilaTrampas() {
+    document.addEventListener("click", function (e) {
+      var b = e.target && e.target.closest && e.target.closest("button,a,[role=button]");
+      if (!b) return;
+      var marca = (b.getAttribute("data-reveal") || "") + " " + (b.getAttribute("data-reset") || "") +
+                  " " + (typeof b.className === "string" ? b.className : "") + " " + (b.textContent || "");
+      if (/reveal|reset|solution|afficher|montrer|effacer|respuesta|réponse|reponse|borrar|limpiar/i.test(marca))
+        trampaHasta = Date.now() + ESPERA_TRAMPA;
+    }, true);
+  }
+
+  function reaccion(bons, total, global) {
+    if (global) return "surprise";               // la página entera, perfecta
+    if (bons === total) return "bravo";
+    if (bons * 2 > total) return "rire";
+    return "doute";
+  }
+
+  function vigilaEjercicios() {
+    if (!window.MutationObserver) return;
+    vigilaTrampas();
+    var obs = new MutationObserver(function (muts) {
+      if (Date.now() < despiertaEn || Date.now() < trampaHasta || busy) return;
+      var mejor = null;                          // el bloque que acaba de corregirse
+      var global = null;                         // el marcador de toda la página
+      for (var i = 0; i < muts.length; i++) {
+        var t0 = muts[i].target;
+        var el = esMarcador(t0.nodeType === 1 ? t0 : t0.parentNode);
+        if (!el) continue;
+        var m = /(\d+)\s*\/\s*(\d+)/.exec(el.textContent || "");
+        if (!m) continue;
+        var par = { a: +m[1], b: +m[2] };
+        if (!par.b) continue;
+        // el de la página tiene el total más grande; el del bloque es el que acaba de tocarse
+        if (!mejor || par.b < mejor.b) { if (mejor) global = mejor; mejor = par; }
+        else if (!global || par.b > global.b) global = par;
+      }
+      if (!mejor) return;
+      var ahora = Date.now();
+      if (ahora - ultima < DESCANSO) return;
+      ultima = ahora;
+      clearTimeout(pendiente);
+      var perfectaLaPagina = !!(global && global.a === global.b && global.b > mejor.b);
+      var cara = reaccion(mejor.a, mejor.b, perfectaLaPagina);
+      mood(cara, perfectaLaPagina ? 1500 : (cara === "doute" ? 2200 : 2400));
+      // la página entera bien: primero el asombro, después el pulgar arriba
+      if (perfectaLaPagina) pendiente = setTimeout(function () { mood("bravo", 3200); }, 1500);
+    });
+    despiertaEn = Date.now() + CALMA_INICIAL;
+    obs.observe(document.body, { childList: true, subtree: true, characterData: true });
+  }
+
   function boot() {
     if (document.getElementById("iat-css")) return;
     var st = document.createElement("style");
@@ -562,6 +634,7 @@
     st.textContent = CSS;
     document.head.appendChild(st);
     build();
+    vigilaEjercicios();
     // el selector de idioma cambia la lengua en caliente
     document.addEventListener("click", function (e) {
       if (e.target && e.target.closest && e.target.closest(".i18n-switch")) {
