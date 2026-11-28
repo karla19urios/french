@@ -193,6 +193,7 @@ input.bad{border-color:var(--ko);background:var(--kobg)}
 .opt.bad{border-color:var(--ko);background:var(--kobg);color:var(--ko)}
 .audio{font:inherit;cursor:pointer;border:1px solid var(--border);background:var(--card-2);color:var(--muted);
        border-radius:50%;width:1.9em;height:1.9em;line-height:1;padding:0;flex:none;transition:.15s;font-size:.88rem}
+.audio:where(.txt){width:auto;height:auto;border-radius:99px;padding:.42em .85em;gap:.4em;line-height:1.25;font-size:inherit}
 .audio:hover{border-color:var(--bleu);color:var(--bleu)}
 .audio.on{border-color:var(--rouge);color:var(--rouge)}
 .alerte{background:var(--card-2);border-left:3px solid var(--rouge);border-radius:0 10px 10px 0;padding:11px 15px;margin:14px 0;font-size:.93rem}
@@ -377,7 +378,7 @@ textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(5
 <div class="card flash" id="flash1">
   <div class="carte"></div>
   <div class="flash-cmd">
-    <button class="btn audio ecoute" type="button" style="width:auto;height:auto;border-radius:99px;padding:7px 15px">🔊 Écouter</button>
+    <button class="btn audio ecoute txt" type="button" style="width:auto;height:auto;border-radius:99px;padding:7px 15px">🔊 Écouter</button>
     <button class="btn sais" type="button">✅ Je sais</button>
     <button class="btn revoir" type="button">🔁 À revoir</button>
     <span class="cpt"></span>
@@ -470,7 +471,7 @@ textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(5
     <div class="rep"><span class="qui">Le témoin</span><span class="dit">Oui ! Un <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="grain" size="7"></span> de beauté au-dessus de la lèvre, et il <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="portait|porte" size="9"></span> des lunettes rondes.</span></div>
     <div class="rep"><span class="qui">L'agent</span><span class="dit">Parfait. Son âge, approximativement ?</span></div>
     <div class="rep"><span class="qui">Le témoin</span><span class="dit">Une <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="quarantaine|trentaine|cinquantaine" size="12"></span> d'années. Mais il ne faisait pas son âge, peut-être moins.</span></div>
-    <div style="margin-top:10px"><button class="audio" type="button" data-say="Décrivez-le-moi. Grand ? Petit ? Plutôt grand. Il mesure dans les un mètre quatre-vingt-cinq, je dirais. Les cheveux ? Il a les cheveux bruns, assez courts, avec la raie sur le côté. Le visage ? Un visage plutôt carré, le teint mat. Et il portait une petite barbe. Des signes particuliers ? Oui ! Un grain de beauté au-dessus de la lèvre, et il portait des lunettes rondes. Parfait. Son âge, approximativement ? Une quarantaine d'années. Mais il ne faisait pas son âge, peut-être moins." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter la déposition</button></div>
+    <div style="margin-top:10px"><button class="audio txt" type="button" data-say="Décrivez-le-moi. Grand ? Petit ? Plutôt grand. Il mesure dans les un mètre quatre-vingt-cinq, je dirais. Les cheveux ? Il a les cheveux bruns, assez courts, avec la raie sur le côté. Le visage ? Un visage plutôt carré, le teint mat. Et il portait une petite barbe. Des signes particuliers ? Oui ! Un grain de beauté au-dessus de la lèvre, et il portait des lunettes rondes. Parfait. Son âge, approximativement ? Une quarantaine d'années. Mais il ne faisait pas son âge, peut-être moins." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter la déposition</button></div>
   </div>
   <div class="cmd"><button class="btn primary" data-check="bE" type="button">Vérifier</button><button class="btn" data-reset="bE" type="button">↺ Effacer</button><span class="bloc-score"></span></div>
 </div>
@@ -485,7 +486,7 @@ textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(5
     <div class="rep"><span class="qui">Le coiffeur</span><span class="dit">Un <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="carré" size="7"></span> ? Ça irait très bien avec votre visage.</span></div>
     <div class="rep"><span class="qui">Cliente</span><span class="dit">Pourquoi pas. Et une <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="frange" size="8"></span>, vous en pensez quoi ?</span></div>
     <div class="rep"><span class="qui">Le coiffeur</span><span class="dit">Franchement ? Je garderais la <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="raie" size="6"></span> sur le côté. C'est plus doux.</span></div>
-    <div style="margin-top:8px"><button class="audio" type="button" data-say="Alors, qu'est-ce qu'on fait aujourd'hui ? J'en ai assez des cheveux longs. Je voudrais quelque chose de court. Un carré ? Ça irait très bien avec votre visage. Pourquoi pas. Et une frange, vous en pensez quoi ? Franchement ? Je garderais la raie sur le côté. C'est plus doux." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter</button></div>
+    <div style="margin-top:8px"><button class="audio txt" type="button" data-say="Alors, qu'est-ce qu'on fait aujourd'hui ? J'en ai assez des cheveux longs. Je voudrais quelque chose de court. Un carré ? Ça irait très bien avec votre visage. Pourquoi pas. Et une frange, vous en pensez quoi ? Franchement ? Je garderais la raie sur le côté. C'est plus doux." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter</button></div>
   </div>
   <div class="dial">
     <div class="lieu">☕ On attend quelqu'un à la gare</div>
@@ -493,7 +494,7 @@ textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(5
     <div class="rep"><span class="qui">Élodie</span><span class="dit">Elle m'a dit : « <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="c'est une|je suis une" size="10"></span> petite rousse <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="aux" size="5"></span> cheveux frisés ».</span></div>
     <div class="rep"><span class="qui">Malik</span><span class="dit">Ah, ça aide. Autre chose ?</span></div>
     <div class="rep"><span class="qui">Élodie</span><span class="dit">Elle <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="porte" size="7"></span> des lunettes rouges, apparemment. Impossible de la rater.</span></div>
-    <div style="margin-top:8px"><button class="audio" type="button" data-say="Tu la reconnaîtras comment ? Tu ne l'as jamais vue. Elle m'a dit : c'est une petite rousse aux cheveux frisés. Ah, ça aide. Autre chose ? Elle porte des lunettes rouges, apparemment. Impossible de la rater." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter</button></div>
+    <div style="margin-top:8px"><button class="audio txt" type="button" data-say="Tu la reconnaîtras comment ? Tu ne l'as jamais vue. Elle m'a dit : c'est une petite rousse aux cheveux frisés. Ah, ça aide. Autre chose ? Elle porte des lunettes rouges, apparemment. Impossible de la rater." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter</button></div>
   </div>
   <div class="cmd"><button class="btn primary" data-check="bF" type="button">Vérifier</button><button class="btn" data-reset="bF" type="button">↺ Effacer</button><span class="bloc-score"></span></div>
 </div>
@@ -547,7 +548,7 @@ textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(5
   </div>
   <div class="cmd"><button class="btn" id="vm2" type="button">👁️ Voir une réponse modèle (sujet C)</button></div>
   <div class="modele" id="m2">
-    <strong>Modèle oral</strong> <button class="audio" type="button" data-say="Chez moi, on peut parler très librement des cheveux : une nouvelle coupe, une couleur, tout le monde donne son avis. En revanche, parler du poids de quelqu'un est délicat, même pour dire quelque chose de gentil. En France, j'ai remarqué la même chose : on complimente les vêtements, la coiffure, le style, jamais le corps. La règle, finalement, c'est de parler de ce que la personne a choisi.">🔊 Écouter</button><br>
+    <strong>Modèle oral</strong> <button class="audio txt" type="button" data-say="Chez moi, on peut parler très librement des cheveux : une nouvelle coupe, une couleur, tout le monde donne son avis. En revanche, parler du poids de quelqu'un est délicat, même pour dire quelque chose de gentil. En France, j'ai remarqué la même chose : on complimente les vêtements, la coiffure, le style, jamais le corps. La règle, finalement, c'est de parler de ce que la personne a choisi.">🔊 Écouter</button><br>
     <em>« Chez moi, on peut parler très librement des cheveux : une nouvelle coupe, une couleur, tout le monde donne son avis. En revanche, parler du poids de quelqu'un est délicat, même pour dire quelque chose de gentil. En France, j'ai remarqué la même chose : on complimente les vêtements, la coiffure, le style, jamais le corps. La règle, finalement, c'est de parler de ce que la personne a choisi. »</em>
   </div>
   <div class="astuce">🎯 <strong>Pour passer à B1 :</strong> ne fais pas une liste. Choisis <em>un</em> détail frappant et développe-le. « Il est grand, brun, il a les yeux noirs » (A2) → « Ce qui frappe d'abord, c'est sa taille : il doit mesurer près de deux mètres » (B1).</div>

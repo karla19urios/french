@@ -193,6 +193,7 @@ input.bad{border-color:var(--ko);background:var(--kobg)}
 .opt.bad{border-color:var(--ko);background:var(--kobg);color:var(--ko)}
 .audio{font:inherit;cursor:pointer;border:1px solid var(--border);background:var(--card-2);color:var(--muted);
        border-radius:50%;width:1.9em;height:1.9em;line-height:1;padding:0;flex:none;transition:.15s;font-size:.88rem}
+.audio:where(.txt){width:auto;height:auto;border-radius:99px;padding:.42em .85em;gap:.4em;line-height:1.25;font-size:inherit}
 .audio:hover{border-color:var(--bleu);color:var(--bleu)}
 .audio.on{border-color:var(--rouge);color:var(--rouge)}
 .alerte{background:var(--card-2);border-left:3px solid var(--rouge);border-radius:0 10px 10px 0;padding:11px 15px;margin:14px 0;font-size:.93rem}
@@ -400,7 +401,7 @@ textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(5
 <div class="card flash" id="flash1">
   <div class="carte"></div>
   <div class="flash-cmd">
-    <button class="btn audio ecoute" type="button" style="width:auto;height:auto;border-radius:99px;padding:7px 15px">🔊 Écouter</button>
+    <button class="btn audio ecoute txt" type="button" style="width:auto;height:auto;border-radius:99px;padding:7px 15px">🔊 Écouter</button>
     <button class="btn sais" type="button">✅ Je sais</button>
     <button class="btn revoir" type="button">🔁 À revoir</button>
     <span class="cpt"></span>
@@ -501,7 +502,7 @@ textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(5
     <div class="rep"><span class="qui">Karim</span><span class="dit">Un peu <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="timide" size="10"></span> au téléphone, mais ça viendra. Il a quand même le sens du <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="contact" size="10"></span>.</span></div>
     <div class="rep"><span class="qui">Sofia</span><span class="dit">Et son bureau ? J'ai vu des papiers partout…</span></div>
     <div class="rep"><span class="qui">Karim</span><span class="dit">Ah, ça… Disons qu'il n'est pas très <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="organisé" size="12"></span> ! Mais il ne manque pas de <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="bonne volonté|volonté|motivation" size="14"></span>.</span></div>
-    <div style="margin-top:8px"><button class="audio" type="button" data-say="Alors, le nouveau stagiaire, il donne quoi ? Franchement, bien. Il arrive avant tout le monde, il est très travailleur. Et avec les clients ? Un peu timide au téléphone, mais ça viendra. Il a quand même le sens du contact. Et son bureau ? J'ai vu des papiers partout… Ah, ça… Disons qu'il n'est pas très organisé ! Mais il ne manque pas de bonne volonté." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter le dialogue</button></div>
+    <div style="margin-top:8px"><button class="audio txt" type="button" data-say="Alors, le nouveau stagiaire, il donne quoi ? Franchement, bien. Il arrive avant tout le monde, il est très travailleur. Et avec les clients ? Un peu timide au téléphone, mais ça viendra. Il a quand même le sens du contact. Et son bureau ? J'ai vu des papiers partout… Ah, ça… Disons qu'il n'est pas très organisé ! Mais il ne manque pas de bonne volonté." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter le dialogue</button></div>
   </div>
 
   <div class="dial">
@@ -513,7 +514,7 @@ textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(5
     <div class="rep"><span class="qui">Léa</span><span class="dit">Lui, il est d'un <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="calme" size="10"></span> ! Il n'a presque rien dit.</span></div>
     <div class="rep"><span class="qui">Chloé</span><span class="dit">Trop <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="discret|calme|silencieux" size="10"></span> pour une coloc, tu crois ?</span></div>
     <div class="rep"><span class="qui">Léa</span><span class="dit">Peut-être. Moi, je préfère quelqu'un de <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="bavard|sociable|ouvert" size="12"></span> — au moins, on sait ce qu'il pense !</span></div>
-    <div style="margin-top:8px"><button class="audio" type="button" data-say="Celle d'hier soir, qu'est-ce que tu en as pensé ? Sympa ! Elle a beaucoup d'humour, on a ri pendant deux heures. Oui, mais elle a posé trois questions sur mon salaire… Un peu indiscrète, non ? C'est vrai. Et l'autre candidat, le grand ? Lui, il est d'un calme ! Il n'a presque rien dit. Trop discret pour une coloc, tu crois ? Peut-être. Moi, je préfère quelqu'un de bavard — au moins, on sait ce qu'il pense !" style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter le dialogue</button></div>
+    <div style="margin-top:8px"><button class="audio txt" type="button" data-say="Celle d'hier soir, qu'est-ce que tu en as pensé ? Sympa ! Elle a beaucoup d'humour, on a ri pendant deux heures. Oui, mais elle a posé trois questions sur mon salaire… Un peu indiscrète, non ? C'est vrai. Et l'autre candidat, le grand ? Lui, il est d'un calme ! Il n'a presque rien dit. Trop discret pour une coloc, tu crois ? Peut-être. Moi, je préfère quelqu'un de bavard — au moins, on sait ce qu'il pense !" style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter le dialogue</button></div>
   </div>
 
   <div class="cmd"><button class="btn primary" data-check="bF" type="button">Vérifier</button><button class="btn" data-reset="bF" type="button">↺ Effacer</button><span class="bloc-score"></span></div>
@@ -570,7 +571,7 @@ textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(5
   </div>
   <div class="cmd"><button class="btn" id="vm2" type="button">👁️ Voir une réponse modèle (sujet B)</button></div>
   <div class="modele" id="m2">
-    <strong>Modèle oral</strong> <button class="audio" type="button" data-say="Le défaut que je ne supporte pas du tout, c'est la malhonnêteté. Je peux pardonner à quelqu'un d'impatient, ou même de très bavard, mais pas à quelqu'un qui ment. L'année dernière, un collègue a pris le travail de toute l'équipe à son compte devant le directeur. Il ne manquait pas d'ambition, mais il manquait complètement d'honnêteté. Depuis, je garde mes distances.">🔊 Écouter</button><br>
+    <strong>Modèle oral</strong> <button class="audio txt" type="button" data-say="Le défaut que je ne supporte pas du tout, c'est la malhonnêteté. Je peux pardonner à quelqu'un d'impatient, ou même de très bavard, mais pas à quelqu'un qui ment. L'année dernière, un collègue a pris le travail de toute l'équipe à son compte devant le directeur. Il ne manquait pas d'ambition, mais il manquait complètement d'honnêteté. Depuis, je garde mes distances.">🔊 Écouter</button><br>
     <em>« Le défaut que je ne supporte pas du tout, c'est la malhonnêteté. Je peux pardonner à quelqu'un d'impatient, ou même de très bavard, mais pas à quelqu'un qui ment. L'année dernière, un collègue a pris le travail de toute l'équipe à son compte devant le directeur. Il ne manquait pas d'ambition, mais il manquait complètement d'honnêteté. Depuis, je garde mes distances. »</em>
   </div>
   <div class="astuce">🎯 <strong>Pour aller plus loin :</strong> reprends ta réponse et remplace chaque adjectif simple par une structure plus riche. « Il est malhonnête » → « il manque complètement d'honnêteté ». C'est exactement ce qui fait passer de A2 à B1.</div>

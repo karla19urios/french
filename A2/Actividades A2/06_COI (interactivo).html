@@ -193,6 +193,7 @@ input.bad{border-color:var(--ko);background:var(--kobg)}
 .opt.bad{border-color:var(--ko);background:var(--kobg);color:var(--ko)}
 .audio{font:inherit;cursor:pointer;border:1px solid var(--border);background:var(--card-2);color:var(--muted);
        border-radius:50%;width:1.9em;height:1.9em;line-height:1;padding:0;flex:none;transition:.15s;font-size:.88rem}
+.audio:where(.txt){width:auto;height:auto;border-radius:99px;padding:.42em .85em;gap:.4em;line-height:1.25;font-size:inherit}
 .audio:hover{border-color:var(--bleu);color:var(--bleu)}
 .audio.on{border-color:var(--rouge);color:var(--rouge)}
 .alerte{background:var(--card-2);border-left:3px solid var(--rouge);border-radius:0 10px 10px 0;padding:11px 15px;margin:14px 0;font-size:.93rem}
@@ -409,7 +410,7 @@ table.pron-table td.pr{font-weight:800;color:var(--rouge);text-align:center}
 <div class="partsep"><span class="pnum">Étape 1</span><span class="ptit">La lecture &middot; un cadeau, un &eacute;cran</span><span class="psous">Le texte d'origine de Martine, puis la m&ecirc;me f&ecirc;te un an plus tard&nbsp;&mdash; &agrave; distance.</span></div>
 <h2 class="sec" id="lect"><span class="n">1</span> On lit d'abord</h2>
 <p class="lead">Les pronoms COI sont <span class="y">en couleur</span>&nbsp;: clique pour savoir &agrave; qui ils renvoient. Les mots <span class="w" data-en="like this">soulign&eacute;s</span> donnent leur traduction.</p>
-<div class="card"><h3>&#128214; Vocabulaire avant la lecture</h3><div class="vlist"><button class="v audio" type="button" data-say="souhaiter (la fête)">souhaiter (la fête)<span class="en">to wish (happy Mother's Day)</span></button><button class="v audio" type="button" data-say="offrir">offrir<span class="en">to give (a gift)</span></button><button class="v audio" type="button" data-say="un paquet bien fermé">un paquet bien fermé<span class="en">a tightly wrapped package</span></button><button class="v audio" type="button" data-say="sourire fièrement">sourire fièrement<span class="en">to smile proudly</span></button><button class="v audio" type="button" data-say="plaire à quelqu'un">plaire à quelqu'un<span class="en">to please someone, to be liked</span></button><button class="v audio" type="button" data-say="aller bien à quelqu'un">aller bien à quelqu'un<span class="en">to suit someone (color)</span></button></div></div>
+<div class="card"><h3>&#128214; Vocabulaire avant la lecture</h3><div class="vlist"><button class="v audio txt" type="button" data-say="souhaiter (la fête)">souhaiter (la fête)<span class="en">to wish (happy Mother's Day)</span></button><button class="v audio txt" type="button" data-say="offrir">offrir<span class="en">to give (a gift)</span></button><button class="v audio txt" type="button" data-say="un paquet bien fermé">un paquet bien fermé<span class="en">a tightly wrapped package</span></button><button class="v audio txt" type="button" data-say="sourire fièrement">sourire fièrement<span class="en">to smile proudly</span></button><button class="v audio txt" type="button" data-say="plaire à quelqu'un">plaire à quelqu'un<span class="en">to please someone, to be liked</span></button><button class="v audio txt" type="button" data-say="aller bien à quelqu'un">aller bien à quelqu'un<span class="en">to suit someone (color)</span></button></div></div>
 <div class="card"><div class="lect">
   <div>
     <article class="article"><span class="kicker">Lecture d'origine &middot; Cadeau surprise</span><h3>Cadeau surprise</h3><p>Chaque année, Olivia <span class="y" data-say="&agrave; moi, Martine">me</span> souhaite la Fête des mères. Elle <span class="y" data-say="&agrave; moi, Martine">m'</span>offre un petit cadeau et elle <span class="y" data-say="&agrave; moi, Martine">m'</span>&eacute;crit une poésie. Elle <span class="y" data-say="&agrave; moi, Martine">me</span> dit de jolies choses et elle <span class="y" data-say="&agrave; moi, Martine">me</span> donne un paquet bien fermé, pour la surprise. (Chaque année, elle <span class="y" data-say="&agrave; moi, Martine">m'</span>offre un collier de perles violettes.) Elle <span class="y" data-say="&agrave; moi, Martine">me</span> sourit fièrement, elle <span class="y" data-say="&agrave; moi, Martine">me</span> demande si ça me plaît et elle <span class="y" data-say="&agrave; moi, Martine">me</span> dit que le violet me va bien !</p><p class="sig" style="text-align:right;color:var(--muted);font-style:italic">Sign&eacute; Martine.</p><p style="font-size:.86rem;color:var(--muted);margin-top:10px">&#128073; Ici tous les pronoms sont &agrave; la <b>1<sup>re</sup> personne</b> (<i>me, m'</i>). Dans le texte suivant, c'est Olivia qui raconte&nbsp;: les m&ecirc;mes pronoms deviennent <b>lui</b> et <b>leur</b>.</p></article>
@@ -447,7 +448,7 @@ promis.&nbsp;&raquo; Olivia <span class="y" data-say="&agrave; ses fr&egrave;res
       <p style="margin:0;font-size:.86rem;line-height:1.6">Les mots <span class="w" data-en="click to see the English">soulignés en pointillé</span>
       donnent leur traduction quand tu cliques. Les <span class="y" data-say="exemple">pronoms</span> en rouge montrent ce qu'ils remplacent.</p></div>
   </div>
-</div><div class="lead-art"><button class="audio" type="button" data-say="Chaque ann&eacute;e, Olivia me souhaite la F&ecirc;te des m&egrave;res. Elle m'offre un petit cadeau et elle m'&eacute;crit une po&eacute;sie. Cette ann&eacute;e, Olivia habite &agrave; Lyon et sa m&egrave;re &agrave; Brest. Alors elle lui t&eacute;l&eacute;phone le dimanche matin. Quand personne ne r&eacute;pond, elle laisse un message sur le r&eacute;pondeur. Le cadeau, elle le commande sur Internet et elle lui fait livrer directement. Elle lui envoie un lien : un &eacute;pisode de la s&eacute;rie qu'elles regardent toutes les deux en streaming. Ses fr&egrave;res ont oubli&eacute; la date : Olivia leur envoie un message le soir.">&#128264; &Eacute;couter le r&eacute;sum&eacute; des deux textes</button></div></div>
+</div><div class="lead-art"><button class="audio txt" type="button" data-say="Chaque ann&eacute;e, Olivia me souhaite la F&ecirc;te des m&egrave;res. Elle m'offre un petit cadeau et elle m'&eacute;crit une po&eacute;sie. Cette ann&eacute;e, Olivia habite &agrave; Lyon et sa m&egrave;re &agrave; Brest. Alors elle lui t&eacute;l&eacute;phone le dimanche matin. Quand personne ne r&eacute;pond, elle laisse un message sur le r&eacute;pondeur. Le cadeau, elle le commande sur Internet et elle lui fait livrer directement. Elle lui envoie un lien : un &eacute;pisode de la s&eacute;rie qu'elles regardent toutes les deux en streaming. Ses fr&egrave;res ont oubli&eacute; la date : Olivia leur envoie un message le soir.">&#128264; &Eacute;couter le r&eacute;sum&eacute; des deux textes</button></div></div>
 <h2 class="sec" id="comp"><span class="n">1</span> As-tu bien lu&nbsp;?</h2>
 <p class="lead">8 points &middot; tout est dans les deux textes.</p>
 <div class="card" id="bCOMP" data-bloc>
@@ -518,25 +519,25 @@ promis.&nbsp;&raquo; Olivia <span class="y" data-say="&agrave; ses fr&egrave;res
 <p class="lead">La liste d'origine (clique pour &eacute;couter), puis 9 points.</p>
 <div class="card"><p class="sec-sub">On utilise surtout les pronoms indirects avec les verbes de <b>communication</b>. Cliquez sur 🔊 pour écouter.</p>
     <div class="vlist">
-<button class="v audio" type="button" data-say="parler à">parler à<span class="en">to talk to</span></button>
-<button class="v audio" type="button" data-say="téléphoner à">téléphoner à<span class="en">to call (phone)</span></button>
-<button class="v audio" type="button" data-say="écrire à">écrire à<span class="en">to write to</span></button>
-<button class="v audio" type="button" data-say="répondre à">répondre à<span class="en">to answer</span></button>
-<button class="v audio" type="button" data-say="demander à">demander à<span class="en">to ask</span></button>
-<button class="v audio" type="button" data-say="emprunter à">emprunter à<span class="en">to borrow from</span></button>
-<button class="v audio" type="button" data-say="prêter à">prêter à<span class="en">to lend to</span></button>
-<button class="v audio" type="button" data-say="rendre à">rendre à<span class="en">to give back to</span></button>
-<button class="v audio" type="button" data-say="dire à">dire à<span class="en">to say/tell</span></button>
-<button class="v audio" type="button" data-say="offrir à">offrir à<span class="en">to give (a gift) to</span></button>
-<button class="v audio" type="button" data-say="sourire à">sourire à<span class="en">to smile at</span></button>
-<button class="v audio" type="button" data-say="souhaiter à">souhaiter à<span class="en">to wish (someone)</span></button>
+<button class="v audio txt" type="button" data-say="parler à">parler à<span class="en">to talk to</span></button>
+<button class="v audio txt" type="button" data-say="téléphoner à">téléphoner à<span class="en">to call (phone)</span></button>
+<button class="v audio txt" type="button" data-say="écrire à">écrire à<span class="en">to write to</span></button>
+<button class="v audio txt" type="button" data-say="répondre à">répondre à<span class="en">to answer</span></button>
+<button class="v audio txt" type="button" data-say="demander à">demander à<span class="en">to ask</span></button>
+<button class="v audio txt" type="button" data-say="emprunter à">emprunter à<span class="en">to borrow from</span></button>
+<button class="v audio txt" type="button" data-say="prêter à">prêter à<span class="en">to lend to</span></button>
+<button class="v audio txt" type="button" data-say="rendre à">rendre à<span class="en">to give back to</span></button>
+<button class="v audio txt" type="button" data-say="dire à">dire à<span class="en">to say/tell</span></button>
+<button class="v audio txt" type="button" data-say="offrir à">offrir à<span class="en">to give (a gift) to</span></button>
+<button class="v audio txt" type="button" data-say="sourire à">sourire à<span class="en">to smile at</span></button>
+<button class="v audio txt" type="button" data-say="souhaiter à">souhaiter à<span class="en">to wish (someone)</span></button>
 </div>
 
     <h3 style="font-size:1rem;margin:1.4rem 0 .6rem">D'autres verbes courants</h3>
     <div class="vlist">
-<button class="v audio" type="button" data-say="ressembler à">ressembler à<span class="en">to look like</span></button>
-<button class="v audio" type="button" data-say="plaire à">plaire à<span class="en">to please, to be liked by</span></button>
-<button class="v audio" type="button" data-say="aller à">aller à<span class="en">to suit (clothes/colors)</span></button>
+<button class="v audio txt" type="button" data-say="ressembler à">ressembler à<span class="en">to look like</span></button>
+<button class="v audio txt" type="button" data-say="plaire à">plaire à<span class="en">to please, to be liked by</span></button>
+<button class="v audio txt" type="button" data-say="aller à">aller à<span class="en">to suit (clothes/colors)</span></button>
 </div>
     <p class="note">Sa fille <b>lui</b> ressemble. Paris <b>lui</b> plaît. Le rouge <b>lui</b> va bien.</p></div>
 <div class="card" id="bR2" data-bloc>
@@ -682,7 +683,7 @@ promis.&nbsp;&raquo; Olivia <span class="y" data-say="&agrave; ses fr&egrave;res
 <h2 class="sec" id="vA_exE"><span class="n">5</span> Une invitation&nbsp;: dialogue à écouter</h2>
 <p class="lead">8 points &middot; &#127911; Le dialogue n'est pas écrit&nbsp;: écoute la scène autant de fois que tu veux, puis complète.</p>
 <div class="dial"><div class="lieu">&#128241; Un appel, jeudi soir</div>
-<div style="margin-top:10px"><button class="audio" type="button" data-say="Allô ? Salut Tom, c&#x27;est Maya. Salut ! Ça va ? Oui ! Dis, tu es libre samedi ? Il y a un concert gratuit au parc. Samedi, ah, je suis pris l&#x27;après-midi, j&#x27;ai un match. C&#x27;est le soir, à vingt heures ! Alors oui, avec plaisir ! Et si on mangeait avant ? Bonne idée. On se retrouve à dix-huit heures trente devant la pizzeria ? Ça marche ! Je te rappelle vendredi pour confirmer." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">&#128264; Écouter la scène</button></div></div>
+<div style="margin-top:10px"><button class="audio txt" type="button" data-say="Allô ? Salut Tom, c&#x27;est Maya. Salut ! Ça va ? Oui ! Dis, tu es libre samedi ? Il y a un concert gratuit au parc. Samedi, ah, je suis pris l&#x27;après-midi, j&#x27;ai un match. C&#x27;est le soir, à vingt heures ! Alors oui, avec plaisir ! Et si on mangeait avant ? Bonne idée. On se retrouve à dix-huit heures trente devant la pizzeria ? Ça marche ! Je te rappelle vendredi pour confirmer." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">&#128264; Écouter la scène</button></div></div>
 <div class="card" id="vA_bE" data-bloc>
 <div class="liste">
 <div class="q" data-note="Allô&nbsp;?">&mdash; <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="Allô" size="6" autocomplete="off" spellcheck="false"></span>&nbsp;? Salut, c'est Maya.<div class="vd"></div></div>
@@ -840,7 +841,7 @@ promis.&nbsp;&raquo; Olivia <span class="y" data-say="&agrave; ses fr&egrave;res
 <h2 class="sec" id="vB_exE"><span class="n">5</span> Devant la télé&nbsp;: dialogue à écouter</h2>
 <p class="lead">8 points &middot; &#127911; Le dialogue n'est pas écrit&nbsp;: écoute la scène autant de fois que tu veux, puis complète.</p>
 <div class="dial"><div class="lieu">&#128250; Samedi soir, à la maison</div>
-<div style="margin-top:10px"><button class="audio" type="button" data-say="Tu peux me passer la télécommande ? Tiens. Tu veux regarder quoi ? Il y a un match sur la deux, en direct. Encore ! Et le documentaire sur l&#x27;Islande, tu ne veux pas ? Après le match. Oh non, encore de la publicité ! Baisse le son, alors. Les voisins dorment. D&#x27;accord. Et si on regardait la série, finalement ? On est abonnés jusqu&#x27;en mars. Bonne idée. J&#x27;éteins la lumière ! Attends, tu peux changer de chaîne ? Il y a les informations sur la trois." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">&#128264; Écouter la scène</button></div></div>
+<div style="margin-top:10px"><button class="audio txt" type="button" data-say="Tu peux me passer la télécommande ? Tiens. Tu veux regarder quoi ? Il y a un match sur la deux, en direct. Encore ! Et le documentaire sur l&#x27;Islande, tu ne veux pas ? Après le match. Oh non, encore de la publicité ! Baisse le son, alors. Les voisins dorment. D&#x27;accord. Et si on regardait la série, finalement ? On est abonnés jusqu&#x27;en mars. Bonne idée. J&#x27;éteins la lumière ! Attends, tu peux changer de chaîne ? Il y a les informations sur la trois." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">&#128264; Écouter la scène</button></div></div>
 <div class="card" id="vB_bE" data-bloc>
 <div class="liste">
 <div class="q" data-note="la télécommande">&mdash; Tu peux me passer la <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="télécommande" size="14" autocomplete="off" spellcheck="false"></span>&nbsp;?<div class="vd"></div></div>

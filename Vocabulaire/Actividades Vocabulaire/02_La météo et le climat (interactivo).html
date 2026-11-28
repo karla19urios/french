@@ -193,6 +193,7 @@ input.bad{border-color:var(--ko);background:var(--kobg)}
 .opt.bad{border-color:var(--ko);background:var(--kobg);color:var(--ko)}
 .audio{font:inherit;cursor:pointer;border:1px solid var(--border);background:var(--card-2);color:var(--muted);
        border-radius:50%;width:1.9em;height:1.9em;line-height:1;padding:0;flex:none;transition:.15s;font-size:.88rem}
+.audio:where(.txt){width:auto;height:auto;border-radius:99px;padding:.42em .85em;gap:.4em;line-height:1.25;font-size:inherit}
 .audio:hover{border-color:var(--bleu);color:var(--bleu)}
 .audio.on{border-color:var(--rouge);color:var(--rouge)}
 .alerte{background:var(--card-2);border-left:3px solid var(--rouge);border-radius:0 10px 10px 0;padding:11px 15px;margin:14px 0;font-size:.93rem}
@@ -365,7 +366,7 @@ textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(5
 <div class="card flash" id="flash1">
   <div class="carte"></div>
   <div class="flash-cmd">
-    <button class="btn audio ecoute" type="button" style="width:auto;height:auto;border-radius:99px;padding:7px 15px">🔊 Écouter</button>
+    <button class="btn audio ecoute txt" type="button" style="width:auto;height:auto;border-radius:99px;padding:7px 15px">🔊 Écouter</button>
     <button class="btn sais" type="button">✅ Je sais</button>
     <button class="btn revoir" type="button">🔁 À revoir</button>
     <span class="cpt"></span>
@@ -449,7 +450,7 @@ textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(5
     <p style="margin:.2em 0 .8em">Attention sur la côte : le vent va se <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="lever" size="8"></span> en fin de matinée, avec des <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="rafales" size="10"></span> pouvant atteindre 80 kilomètres par heure.</p>
     <p style="margin:.2em 0 .8em">Côté températures, on annonce une légère <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="hausse" size="9"></span> : 14 degrés à Lille, 19 à Bordeaux — des valeurs <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="supérieures" size="12"></span> aux normales de saison.</p>
     <p style="margin:.2em 0 0">Demain, le temps se <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="dégrade|dégradera" size="11"></span> : de fortes précipitations sont à prévoir sur tout le pays. Bonne journée !</p>
-    <div style="margin-top:10px"><button class="audio" type="button" data-say="Bonjour à tous. Ce matin, les brumes matinales couvrent encore les vallées, mais elles se dissiperont avant dix heures. L'après-midi, le ciel sera dégagé sur la moitié nord, avec de belles éclaircies. Attention sur la côte : le vent va se lever en fin de matinée, avec des rafales pouvant atteindre quatre-vingts kilomètres par heure. Côté températures, on annonce une légère hausse : quatorze degrés à Lille, dix-neuf à Bordeaux, des valeurs supérieures aux normales de saison. Demain, le temps se dégrade : de fortes précipitations sont à prévoir sur tout le pays. Bonne journée !" data-rate="0.92" style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter le bulletin</button></div>
+    <div style="margin-top:10px"><button class="audio txt" type="button" data-say="Bonjour à tous. Ce matin, les brumes matinales couvrent encore les vallées, mais elles se dissiperont avant dix heures. L'après-midi, le ciel sera dégagé sur la moitié nord, avec de belles éclaircies. Attention sur la côte : le vent va se lever en fin de matinée, avec des rafales pouvant atteindre quatre-vingts kilomètres par heure. Côté températures, on annonce une légère hausse : quatorze degrés à Lille, dix-neuf à Bordeaux, des valeurs supérieures aux normales de saison. Demain, le temps se dégrade : de fortes précipitations sont à prévoir sur tout le pays. Bonne journée !" data-rate="0.92" style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter le bulletin</button></div>
   </div>
   <div class="cmd"><button class="btn primary" data-check="bE" type="button">Vérifier</button><button class="btn" data-reset="bE" type="button">↺ Effacer</button><span class="bloc-score"></span></div>
 </div>
@@ -464,7 +465,7 @@ textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(5
     <div class="rep"><span class="qui">La boulangère</span><span class="dit">Et ce matin, vous avez vu ? Il y avait du <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="givre|verglas" size="9"></span> sur toutes les voitures.</span></div>
     <div class="rep"><span class="qui">Client</span><span class="dit">J'ai gratté le pare-brise pendant un quart d'heure ! Mais bon, on annonce une <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="éclaircie|hausse|amélioration" size="12"></span> pour le week-end.</span></div>
     <div class="rep"><span class="qui">La boulangère</span><span class="dit">On verra bien. Le temps est tellement <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="changeant|incertain" size="11"></span> en ce moment…</span></div>
-    <div style="margin-top:8px"><button class="audio" type="button" data-say="Bonjour ! Alors, il fait un temps de chien, hein ? Ah oui ! Il pleut depuis trois jours sans s'arrêter. Et ce matin, vous avez vu ? Il y avait du givre sur toutes les voitures. J'ai gratté le pare-brise pendant un quart d'heure ! Mais bon, on annonce une éclaircie pour le week-end. On verra bien. Le temps est tellement changeant en ce moment…" style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter le dialogue</button></div>
+    <div style="margin-top:8px"><button class="audio txt" type="button" data-say="Bonjour ! Alors, il fait un temps de chien, hein ? Ah oui ! Il pleut depuis trois jours sans s'arrêter. Et ce matin, vous avez vu ? Il y avait du givre sur toutes les voitures. J'ai gratté le pare-brise pendant un quart d'heure ! Mais bon, on annonce une éclaircie pour le week-end. On verra bien. Le temps est tellement changeant en ce moment…" style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter le dialogue</button></div>
   </div>
   <div class="dial">
     <div class="lieu">📱 Deux amis organisent une randonnée</div>
@@ -473,7 +474,7 @@ textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(5
     <div class="rep"><span class="qui">Yanis</span><span class="dit">Fortes ?</span></div>
     <div class="rep"><span class="qui">Inès</span><span class="dit">Courtes mais violentes. Et en altitude, il va <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="geler" size="8"></span> la nuit, donc ça risque de glisser.</span></div>
     <div class="rep"><span class="qui">Yanis</span><span class="dit">Bon. On part tôt, alors — et on redescend avant que le temps se <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="dégrade|gâte" size="10"></span>.</span></div>
-    <div style="margin-top:8px"><button class="audio" type="button" data-say="Alors, on part dimanche ou pas ? T'as regardé la météo ? Oui. Le matin ça va, mais à partir de midi ils prévoient des averses. Fortes ? Courtes mais violentes. Et en altitude, il va geler la nuit, donc ça risque de glisser. Bon. On part tôt, alors, et on redescend avant que le temps se dégrade." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter le dialogue</button></div>
+    <div style="margin-top:8px"><button class="audio txt" type="button" data-say="Alors, on part dimanche ou pas ? T'as regardé la météo ? Oui. Le matin ça va, mais à partir de midi ils prévoient des averses. Fortes ? Courtes mais violentes. Et en altitude, il va geler la nuit, donc ça risque de glisser. Bon. On part tôt, alors, et on redescend avant que le temps se dégrade." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter le dialogue</button></div>
   </div>
   <div class="cmd"><button class="btn primary" data-check="bF" type="button">Vérifier</button><button class="btn" data-reset="bF" type="button">↺ Effacer</button><span class="bloc-score"></span></div>
 </div>
@@ -527,7 +528,7 @@ textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(5
   </div>
   <div class="cmd"><button class="btn" id="vm2" type="button">👁️ Voir une réponse modèle (sujet B)</button></div>
   <div class="modele" id="m2">
-    <strong>Modèle oral</strong> <button class="audio" type="button" data-say="L'été dernier, on avait prévu un pique-nique au bord d'un lac. Le matin, le ciel était complètement dégagé, un temps splendide. Vers deux heures, le vent s'est levé d'un coup et le ciel est devenu noir. En dix minutes, il pleuvait à torrents. On a tout mangé dans la voiture, avec les vitres couvertes de buée. Finalement, c'est le meilleur souvenir de l'été.">🔊 Écouter</button><br>
+    <strong>Modèle oral</strong> <button class="audio txt" type="button" data-say="L'été dernier, on avait prévu un pique-nique au bord d'un lac. Le matin, le ciel était complètement dégagé, un temps splendide. Vers deux heures, le vent s'est levé d'un coup et le ciel est devenu noir. En dix minutes, il pleuvait à torrents. On a tout mangé dans la voiture, avec les vitres couvertes de buée. Finalement, c'est le meilleur souvenir de l'été.">🔊 Écouter</button><br>
     <em>« L'été dernier, on avait prévu un pique-nique au bord d'un lac. Le matin, le ciel était complètement dégagé, un temps splendide. Vers deux heures, le vent s'est levé d'un coup et le ciel est devenu noir. En dix minutes, il pleuvait à torrents. On a tout mangé dans la voiture, avec les vitres couvertes de buée. Finalement, c'est le meilleur souvenir de l'été. »</em>
   </div>
   <div class="astuce">🎯 <strong>Pour passer à B1 :</strong> remplace les verbes plats par les verbes de la météo. « Il y avait beaucoup de vent » → « le vent s'est levé, avec des rafales ». « Il a beaucoup plu » → « il est tombé des trombes d'eau ». C'est ça, la différence.</div>

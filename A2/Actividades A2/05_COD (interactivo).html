@@ -193,6 +193,7 @@ input.bad{border-color:var(--ko);background:var(--kobg)}
 .opt.bad{border-color:var(--ko);background:var(--kobg);color:var(--ko)}
 .audio{font:inherit;cursor:pointer;border:1px solid var(--border);background:var(--card-2);color:var(--muted);
        border-radius:50%;width:1.9em;height:1.9em;line-height:1;padding:0;flex:none;transition:.15s;font-size:.88rem}
+.audio:where(.txt){width:auto;height:auto;border-radius:99px;padding:.42em .85em;gap:.4em;line-height:1.25;font-size:inherit}
 .audio:hover{border-color:var(--bleu);color:var(--bleu)}
 .audio.on{border-color:var(--rouge);color:var(--rouge)}
 .alerte{background:var(--card-2);border-left:3px solid var(--rouge);border-radius:0 10px 10px 0;padding:11px 15px;margin:14px 0;font-size:.93rem}
@@ -452,7 +453,7 @@ une <span class="w" data-en="belt">ceinture</span> fine, un foulard en soie. Le 
       <p style="margin:0;font-size:.86rem;line-height:1.6">Les mots <span class="w" data-en="click to see the English">soulignés en pointillé</span>
       donnent leur traduction quand tu cliques. Les <span class="y" data-say="exemple">y</span> en rouge montrent ce qu'ils remplacent.</p></div>
   </div>
-</div><div class="lead-art"><button class="audio" type="button" data-say="La maison a présenté sa collection d'hiver mardi soir. La première robe était noire, très moulante ; le public l'a applaudie pendant une minute. Les manteaux en laine sont le cœur de la collection : la créatrice les a dessinés larges, avec une doublure rouge. Les tissus à rayures reviennent aussi : je les adore, je les trouve modernes. Léa porte un jean clair et un pull en laine trop grand. Les cravates, je ne les supporte plus, dit Samir.">&#128264; Écouter le résumé du texte</button></div></div>
+</div><div class="lead-art"><button class="audio txt" type="button" data-say="La maison a présenté sa collection d'hiver mardi soir. La première robe était noire, très moulante ; le public l'a applaudie pendant une minute. Les manteaux en laine sont le cœur de la collection : la créatrice les a dessinés larges, avec une doublure rouge. Les tissus à rayures reviennent aussi : je les adore, je les trouve modernes. Léa porte un jean clair et un pull en laine trop grand. Les cravates, je ne les supporte plus, dit Samir.">&#128264; Écouter le résumé du texte</button></div></div>
 <h2 class="sec" id="comp"><span class="n">1</span> As-tu bien lu&nbsp;?</h2>
 <p class="lead">8 points &middot; tout est dans les deux textes.</p>
 <div class="card" id="bCOMP" data-bloc>
@@ -661,7 +662,7 @@ une <span class="w" data-en="belt">ceinture</span> fine, un foulard en soie. Le 
 <h2 class="sec" id="vA_exE"><span class="n">5</span> Dans la boutique&nbsp;: dialogue à écouter</h2>
 <p class="lead">8 points &middot; &#127911; Le dialogue n'est pas écrit&nbsp;: écoute la scène autant de fois que tu veux, puis complète.</p>
 <div class="dial"><div class="lieu">&#128717;&#65039; Magasin de vêtements, samedi après-midi</div>
-<div style="margin-top:10px"><button class="audio" type="button" data-say="Bonjour ! Je peux vous aider ? Oui, je cherche une veste noire, pour le travail. Vous faites quelle taille ? Du trente-huit, normalement. Voilà. La cabine est au fond, à droite. Merci. Elle est un peu grande. Vous avez une taille en dessous ? Je regarde. Voilà le trente-six. Parfait, ça me va très bien. Je la prends ! Je peux essayer ce pull aussi ? Bien sûr. Il coûte combien ? Quarante-cinq euros." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">&#128264; Écouter la scène</button></div></div>
+<div style="margin-top:10px"><button class="audio txt" type="button" data-say="Bonjour ! Je peux vous aider ? Oui, je cherche une veste noire, pour le travail. Vous faites quelle taille ? Du trente-huit, normalement. Voilà. La cabine est au fond, à droite. Merci. Elle est un peu grande. Vous avez une taille en dessous ? Je regarde. Voilà le trente-six. Parfait, ça me va très bien. Je la prends ! Je peux essayer ce pull aussi ? Bien sûr. Il coûte combien ? Quarante-cinq euros." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">&#128264; Écouter la scène</button></div></div>
 <div class="card" id="vA_bE" data-bloc>
 <div class="liste">
 <div class="q" data-note="chercher">&mdash; Je <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="cherche" size="9" autocomplete="off" spellcheck="false"></span> une veste noire.<div class="vd"></div></div>
@@ -816,7 +817,7 @@ une <span class="w" data-en="belt">ceinture</span> fine, un foulard en soie. Le 
 <h2 class="sec" id="vB_exE"><span class="n">5</span> Le portrait&nbsp;: dialogue à écouter</h2>
 <p class="lead">8 points &middot; &#127911; Le dialogue n'est pas écrit&nbsp;: écoute la scène autant de fois que tu veux, puis complète.</p>
 <div class="dial"><div class="lieu">&#128737;&#65039; À la gare&nbsp;: retrouver quelqu'un</div>
-<div style="margin-top:10px"><button class="audio" type="button" data-say="Je t&#x27;attends à la sortie. Tu vas me reconnaître ? Dis-moi ! Tu es grande ? De taille moyenne, un mètre soixante-huit. J&#x27;ai les cheveux bouclés, assez courts. De quelle couleur ? Châtain clair. Et j&#x27;ai les yeux marron. D&#x27;accord. Tu portes des lunettes ? Oui, rondes et noires. Et un manteau rouge : tu ne peux pas me rater ! Mon frère vient aussi : il mesure un mètre quatre-vingt-dix, il est très grand. Il est mince et sportif, tu le verras tout de suite." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">&#128264; Écouter la scène</button></div></div>
+<div style="margin-top:10px"><button class="audio txt" type="button" data-say="Je t&#x27;attends à la sortie. Tu vas me reconnaître ? Dis-moi ! Tu es grande ? De taille moyenne, un mètre soixante-huit. J&#x27;ai les cheveux bouclés, assez courts. De quelle couleur ? Châtain clair. Et j&#x27;ai les yeux marron. D&#x27;accord. Tu portes des lunettes ? Oui, rondes et noires. Et un manteau rouge : tu ne peux pas me rater ! Mon frère vient aussi : il mesure un mètre quatre-vingt-dix, il est très grand. Il est mince et sportif, tu le verras tout de suite." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">&#128264; Écouter la scène</button></div></div>
 <div class="card" id="vB_bE" data-bloc>
 <div class="liste">
 <div class="q" data-note="de taille moyenne">&mdash; Je suis de taille <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="moyenne" size="10" autocomplete="off" spellcheck="false"></span>, 1 m 68.<div class="vd"></div></div>

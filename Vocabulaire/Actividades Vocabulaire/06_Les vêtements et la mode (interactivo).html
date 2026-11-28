@@ -193,6 +193,7 @@ input.bad{border-color:var(--ko);background:var(--kobg)}
 .opt.bad{border-color:var(--ko);background:var(--kobg);color:var(--ko)}
 .audio{font:inherit;cursor:pointer;border:1px solid var(--border);background:var(--card-2);color:var(--muted);
        border-radius:50%;width:1.9em;height:1.9em;line-height:1;padding:0;flex:none;transition:.15s;font-size:.88rem}
+.audio:where(.txt){width:auto;height:auto;border-radius:99px;padding:.42em .85em;gap:.4em;line-height:1.25;font-size:inherit}
 .audio:hover{border-color:var(--bleu);color:var(--bleu)}
 .audio.on{border-color:var(--rouge);color:var(--rouge)}
 .alerte{background:var(--card-2);border-left:3px solid var(--rouge);border-radius:0 10px 10px 0;padding:11px 15px;margin:14px 0;font-size:.93rem}
@@ -375,7 +376,7 @@ textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(5
 <div class="card flash" id="flash1">
   <div class="carte"></div>
   <div class="flash-cmd">
-    <button class="btn audio ecoute" type="button" style="width:auto;height:auto;border-radius:99px;padding:7px 15px">🔊 Écouter</button>
+    <button class="btn audio ecoute txt" type="button" style="width:auto;height:auto;border-radius:99px;padding:7px 15px">🔊 Écouter</button>
     <button class="btn sais" type="button">✅ Je sais</button>
     <button class="btn revoir" type="button">🔁 À revoir</button>
     <span class="cpt"></span>
@@ -465,7 +466,7 @@ textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(5
     <div class="rep"><span class="qui">Cliente</span><span class="dit"><em>(deux minutes plus tard)</em> Elle me <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="serre" size="7"></span> un peu aux épaules.</span></div>
     <div class="rep"><span class="qui">La vendeuse</span><span class="dit">Je vous apporte une taille <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="au-dessus|au dessus" size="10"></span>. Et attention, le lin se <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="froisse" size="9"></span> beaucoup.</span></div>
     <div class="rep"><span class="qui">Cliente</span><span class="dit">Je sais… mais elle me <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="va" size="5"></span> vraiment bien. Je la prends.</span></div>
-    <div style="margin-top:10px"><button class="audio" type="button" data-say="Bonjour, je peux vous aider ? Oui, j'ai vu une veste bleue dans la vitrine. Celle en lin ? Elle est très jolie. Quelle taille faites-vous ? Du trente-huit, normalement. Je peux l'essayer ? Bien sûr, la cabine d'essayage est au fond. Elle me serre un peu aux épaules. Je vous apporte une taille au-dessus. Et attention, le lin se froisse beaucoup. Je sais… mais elle me va vraiment bien. Je la prends." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter la scène</button></div>
+    <div style="margin-top:10px"><button class="audio txt" type="button" data-say="Bonjour, je peux vous aider ? Oui, j'ai vu une veste bleue dans la vitrine. Celle en lin ? Elle est très jolie. Quelle taille faites-vous ? Du trente-huit, normalement. Je peux l'essayer ? Bien sûr, la cabine d'essayage est au fond. Elle me serre un peu aux épaules. Je vous apporte une taille au-dessus. Et attention, le lin se froisse beaucoup. Je sais… mais elle me va vraiment bien. Je la prends." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter la scène</button></div>
   </div>
   <div class="cmd"><button class="btn primary" data-check="bE" type="button">Vérifier</button><button class="btn" data-reset="bE" type="button">↺ Effacer</button><span class="bloc-score"></span></div>
 </div>
@@ -480,7 +481,7 @@ textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(5
     <div class="rep"><span class="qui">Camille</span><span class="dit">Chez tes parents ! Mets au moins une chemise <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="unie|sobre" size="7"></span>, pas celle à fleurs.</span></div>
     <div class="rep"><span class="qui">Rémi</span><span class="dit">Bon, bon. Et toi, tu as décidé ?</span></div>
     <div class="rep"><span class="qui">Camille</span><span class="dit">Je n'ai plus rien à me <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="mettre" size="8"></span> ! …Je vais prendre la jupe noire avec un haut <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="assorti" size="9"></span>.</span></div>
-    <div style="margin-top:8px"><button class="audio" type="button" data-say="Tu vas t'habiller comment, ce soir ? Moi ? Je reste en jean. C'est juste un dîner. Chez tes parents ! Mets au moins une chemise unie, pas celle à fleurs. Bon, bon. Et toi, tu as décidé ? Je n'ai plus rien à me mettre ! Je vais prendre la jupe noire avec un haut assorti." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter</button></div>
+    <div style="margin-top:8px"><button class="audio txt" type="button" data-say="Tu vas t'habiller comment, ce soir ? Moi ? Je reste en jean. C'est juste un dîner. Chez tes parents ! Mets au moins une chemise unie, pas celle à fleurs. Bon, bon. Et toi, tu as décidé ? Je n'ai plus rien à me mettre ! Je vais prendre la jupe noire avec un haut assorti." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter</button></div>
   </div>
   <div class="dial">
     <div class="lieu">👞 Au rayon chaussures</div>
@@ -488,7 +489,7 @@ textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(5
     <div class="rep"><span class="qui">Client</span><span class="dit">Du 44. Je cherche quelque chose de confortable pour le travail.</span></div>
     <div class="rep"><span class="qui">Le vendeur</span><span class="dit">Des mocassins, alors : des chaussures <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="plates" size="8"></span>, en cuir.</span></div>
     <div class="rep"><span class="qui">Client</span><span class="dit">Parfait. Les miennes sont complètement <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="usées" size="7"></span>, je les ai depuis six ans.</span></div>
-    <div style="margin-top:8px"><button class="audio" type="button" data-say="Vous chaussez du combien ? Du quarante-quatre. Je cherche quelque chose de confortable pour le travail. Des mocassins, alors : des chaussures plates, en cuir. Parfait. Les miennes sont complètement usées, je les ai depuis six ans." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter</button></div>
+    <div style="margin-top:8px"><button class="audio txt" type="button" data-say="Vous chaussez du combien ? Du quarante-quatre. Je cherche quelque chose de confortable pour le travail. Des mocassins, alors : des chaussures plates, en cuir. Parfait. Les miennes sont complètement usées, je les ai depuis six ans." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter</button></div>
   </div>
   <div class="cmd"><button class="btn primary" data-check="bF" type="button">Vérifier</button><button class="btn" data-reset="bF" type="button">↺ Effacer</button><span class="bloc-score"></span></div>
 </div>
@@ -542,7 +543,7 @@ textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(5
   </div>
   <div class="cmd"><button class="btn" id="vm2" type="button">👁️ Voir une réponse modèle (sujet B)</button></div>
   <div class="modele" id="m2">
-    <strong>Modèle oral</strong> <button class="audio" type="button" data-say="Aujourd'hui, je porte un jean bleu foncé, assez large, et un pull en laine gris, tout simple, uni. Par-dessus, j'ai une veste en cuir noir que j'ai depuis des années : elle est un peu usée, mais c'est ma préférée. Aux pieds, des baskets blanches, confortables, parce que je marche beaucoup. Pas de bijoux, sauf une montre. En général, je m'habille plutôt classique et sobre.">🔊 Écouter</button><br>
+    <strong>Modèle oral</strong> <button class="audio txt" type="button" data-say="Aujourd'hui, je porte un jean bleu foncé, assez large, et un pull en laine gris, tout simple, uni. Par-dessus, j'ai une veste en cuir noir que j'ai depuis des années : elle est un peu usée, mais c'est ma préférée. Aux pieds, des baskets blanches, confortables, parce que je marche beaucoup. Pas de bijoux, sauf une montre. En général, je m'habille plutôt classique et sobre.">🔊 Écouter</button><br>
     <em>« Aujourd'hui, je porte un jean bleu foncé, assez large, et un pull en laine gris, tout simple, uni. Par-dessus, j'ai une veste en cuir noir que j'ai depuis des années : elle est un peu usée, mais c'est ma préférée. Aux pieds, des baskets blanches, confortables, parce que je marche beaucoup. Pas de bijoux, sauf une montre. En général, je m'habille plutôt classique et sobre. »</em>
   </div>
   <div class="astuce">🎯 <strong>Pour passer à B1 :</strong> ne dis pas seulement la couleur. Ajoute <em>la matière</em>, <em>la coupe</em> et <em>pourquoi</em>. « Un pull gris » (A2) → « un pull en laine gris, un peu large, parce que je déteste ce qui serre » (B1).</div>

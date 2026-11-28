@@ -193,6 +193,7 @@ input.bad{border-color:var(--ko);background:var(--kobg)}
 .opt.bad{border-color:var(--ko);background:var(--kobg);color:var(--ko)}
 .audio{font:inherit;cursor:pointer;border:1px solid var(--border);background:var(--card-2);color:var(--muted);
        border-radius:50%;width:1.9em;height:1.9em;line-height:1;padding:0;flex:none;transition:.15s;font-size:.88rem}
+.audio:where(.txt){width:auto;height:auto;border-radius:99px;padding:.42em .85em;gap:.4em;line-height:1.25;font-size:inherit}
 .audio:hover{border-color:var(--bleu);color:var(--bleu)}
 .audio.on{border-color:var(--rouge);color:var(--rouge)}
 .alerte{background:var(--card-2);border-left:3px solid var(--rouge);border-radius:0 10px 10px 0;padding:11px 15px;margin:14px 0;font-size:.93rem}
@@ -350,7 +351,7 @@ textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(5
 <div class="card flash" id="flash1">
   <div class="carte"></div>
   <div class="flash-cmd">
-    <button class="btn audio ecoute" type="button" style="width:auto;height:auto;border-radius:99px;padding:7px 15px">🔊 Écouter</button>
+    <button class="btn audio ecoute txt" type="button" style="width:auto;height:auto;border-radius:99px;padding:7px 15px">🔊 Écouter</button>
     <button class="btn sais" type="button">✅ Je sais</button>
     <button class="btn revoir" type="button">🔁 À revoir</button>
     <span class="cpt"></span>
@@ -439,7 +440,7 @@ textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(5
     <div class="rep"><span class="qui">Le médecin</span><span class="dit">Bon. On va faire une <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="analyse|prise" size="9"></span> de sang pour y voir clair. Je vous fais une <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="ordonnance" size="12"></span>.</span></div>
     <div class="rep"><span class="qui">Mme Adjani</span><span class="dit">Et en attendant ?</span></div>
     <div class="rep"><span class="qui">Le médecin</span><span class="dit">En attendant, vous vous <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="reposez" size="9"></span>. Vraiment. Revenez vendredi avec les résultats et ça <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="ira" size="6"></span> mieux.</span></div>
-    <div style="margin-top:10px"><button class="audio" type="button" data-say="Bonjour, asseyez-vous. Qu'est-ce qui vous amène ? Bonjour docteur. Je suis épuisée depuis un mois. Je dors, mais ça ne change rien. Vous avez de la fièvre ? Non. Mais j'ai souvent mal à la tête, surtout en fin de journée. Vous avez bon appétit ? Pas vraiment. Et j'ai perdu trois kilos sans le vouloir. Bon. On va faire une analyse de sang pour y voir clair. Je vous fais une ordonnance. Et en attendant ? En attendant, vous vous reposez. Vraiment. Revenez vendredi avec les résultats et ça ira mieux." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter la consultation</button></div>
+    <div style="margin-top:10px"><button class="audio txt" type="button" data-say="Bonjour, asseyez-vous. Qu'est-ce qui vous amène ? Bonjour docteur. Je suis épuisée depuis un mois. Je dors, mais ça ne change rien. Vous avez de la fièvre ? Non. Mais j'ai souvent mal à la tête, surtout en fin de journée. Vous avez bon appétit ? Pas vraiment. Et j'ai perdu trois kilos sans le vouloir. Bon. On va faire une analyse de sang pour y voir clair. Je vous fais une ordonnance. Et en attendant ? En attendant, vous vous reposez. Vraiment. Revenez vendredi avec les résultats et ça ira mieux." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter la consultation</button></div>
   </div>
   <div class="cmd"><button class="btn primary" data-check="bE" type="button">Vérifier</button><button class="btn" data-reset="bE" type="button">↺ Effacer</button><span class="bloc-score"></span></div>
 </div>
@@ -452,7 +453,7 @@ textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(5
     <div class="rep"><span class="qui">Zoé</span><span class="dit">Coucou ! Je te préviens, j'annule ce soir. Je suis <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="malade" size="8"></span>.</span></div>
     <div class="rep"><span class="qui">Zoé</span><span class="dit">J'ai 38,5 de <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="fièvre" size="8"></span> et mal <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="à la" size="5"></span> gorge depuis hier.</span></div>
     <div class="rep"><span class="qui">Zoé</span><span class="dit">Je vais <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="consulter" size="10"></span> demain matin si ça ne passe pas. Bisous, désolée !</span></div>
-    <div style="margin-top:8px"><button class="audio" type="button" data-say="Coucou ! Je te préviens, j'annule ce soir. Je suis malade. J'ai trente-huit cinq de fièvre et mal à la gorge depuis hier. Je vais consulter demain matin si ça ne passe pas. Bisous, désolée !" style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter</button></div>
+    <div style="margin-top:8px"><button class="audio txt" type="button" data-say="Coucou ! Je te préviens, j'annule ce soir. Je suis malade. J'ai trente-huit cinq de fièvre et mal à la gorge depuis hier. Je vais consulter demain matin si ça ne passe pas. Bisous, désolée !" style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter</button></div>
   </div>
   <div class="dial">
     <div class="lieu">☕ Deux collègues, lundi matin</div>
@@ -461,7 +462,7 @@ textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(5
     <div class="rep"><span class="qui">Hugo</span><span class="dit">Ça se voit, tu as bonne <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="mine" size="7"></span>.</span></div>
     <div class="rep"><span class="qui">Samia</span><span class="dit">Le médecin m'a dit que je <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="manquais|manque" size="10"></span> simplement de sommeil. Rien de grave.</span></div>
     <div class="rep"><span class="qui">Hugo</span><span class="dit">Tant mieux ! Tu nous as fait peur, tu étais toute <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="pâle" size="7"></span> la semaine dernière.</span></div>
-    <div style="margin-top:8px"><button class="audio" type="button" data-say="Ça va ? Tu as l'air d'aller mieux. Beaucoup mieux, oui. J'ai dormi dix heures samedi. Ça se voit, tu as bonne mine. Le médecin m'a dit que je manquais simplement de sommeil. Rien de grave. Tant mieux ! Tu nous as fait peur, tu étais toute pâle la semaine dernière." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter</button></div>
+    <div style="margin-top:8px"><button class="audio txt" type="button" data-say="Ça va ? Tu as l'air d'aller mieux. Beaucoup mieux, oui. J'ai dormi dix heures samedi. Ça se voit, tu as bonne mine. Le médecin m'a dit que je manquais simplement de sommeil. Rien de grave. Tant mieux ! Tu nous as fait peur, tu étais toute pâle la semaine dernière." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter</button></div>
   </div>
   <div class="cmd"><button class="btn primary" data-check="bF" type="button">Vérifier</button><button class="btn" data-reset="bF" type="button">↺ Effacer</button><span class="bloc-score"></span></div>
 </div>
@@ -515,7 +516,7 @@ textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(5
   </div>
   <div class="cmd"><button class="btn" id="vm2" type="button">👁️ Voir une réponse modèle (sujet B)</button></div>
   <div class="modele" id="m2">
-    <strong>Modèle oral</strong> <button class="audio" type="button" data-say="Pour rester en forme, j'essaie surtout de dormir sept heures par nuit. Quand je manque de sommeil, je sens tout de suite la différence : je suis de mauvaise humeur et j'ai mal à la tête en fin de journée. Je marche aussi beaucoup, parce que je n'aime pas la salle de sport. Le plus difficile, c'est le stress au travail, et ça, aucune marche ne le règle complètement.">🔊 Écouter</button><br>
+    <strong>Modèle oral</strong> <button class="audio txt" type="button" data-say="Pour rester en forme, j'essaie surtout de dormir sept heures par nuit. Quand je manque de sommeil, je sens tout de suite la différence : je suis de mauvaise humeur et j'ai mal à la tête en fin de journée. Je marche aussi beaucoup, parce que je n'aime pas la salle de sport. Le plus difficile, c'est le stress au travail, et ça, aucune marche ne le règle complètement.">🔊 Écouter</button><br>
     <em>« Pour rester en forme, j'essaie surtout de dormir sept heures par nuit. Quand je manque de sommeil, je sens tout de suite la différence : je suis de mauvaise humeur et j'ai mal à la tête en fin de journée. Je marche aussi beaucoup, parce que je n'aime pas la salle de sport. Le plus difficile, c'est le stress au travail, et ça, aucune marche ne le règle complètement. »</em>
   </div>
   <div class="astuce">🎯 <strong>Pour passer à B1 :</strong> ajoute toujours <em>depuis quand</em> et <em>une conséquence</em>. « J'ai mal à la tête » (A2) → « J'ai mal à la tête depuis trois jours, au point que je n'arrive plus à travailler » (B1).</div>

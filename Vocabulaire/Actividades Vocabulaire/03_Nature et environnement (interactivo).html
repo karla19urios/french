@@ -193,6 +193,7 @@ input.bad{border-color:var(--ko);background:var(--kobg)}
 .opt.bad{border-color:var(--ko);background:var(--kobg);color:var(--ko)}
 .audio{font:inherit;cursor:pointer;border:1px solid var(--border);background:var(--card-2);color:var(--muted);
        border-radius:50%;width:1.9em;height:1.9em;line-height:1;padding:0;flex:none;transition:.15s;font-size:.88rem}
+.audio:where(.txt){width:auto;height:auto;border-radius:99px;padding:.42em .85em;gap:.4em;line-height:1.25;font-size:inherit}
 .audio:hover{border-color:var(--bleu);color:var(--bleu)}
 .audio.on{border-color:var(--rouge);color:var(--rouge)}
 .alerte{background:var(--card-2);border-left:3px solid var(--rouge);border-radius:0 10px 10px 0;padding:11px 15px;margin:14px 0;font-size:.93rem}
@@ -341,7 +342,7 @@ textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(5
 <div class="card flash" id="flash1">
   <div class="carte"></div>
   <div class="flash-cmd">
-    <button class="btn audio ecoute" type="button" style="width:auto;height:auto;border-radius:99px;padding:7px 15px">🔊 Écouter</button>
+    <button class="btn audio ecoute txt" type="button" style="width:auto;height:auto;border-radius:99px;padding:7px 15px">🔊 Écouter</button>
     <button class="btn sais" type="button">✅ Je sais</button>
     <button class="btn revoir" type="button">🔁 À revoir</button>
     <span class="cpt"></span>
@@ -425,7 +426,7 @@ textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(5
     <p style="margin:.2em 0 .8em">On ne déplore aucune <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="victime" size="9"></span>, mais les <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="dégâts" size="9"></span> sont importants : deux ponts sont coupés et l'électricité manque dans trois villages.</p>
     <p style="margin:.2em 0 .8em">Par précaution, les autorités ont décidé d'<span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="évacuer" size="9"></span> les habitants du littoral : un risque de <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="tsunami|raz-de-marée" size="14"></span> n'est pas écarté.</p>
     <p style="margin:.2em 0 0">Les <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="secours" size="9"></span> sont sur place depuis six heures du matin. Les <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="sinistrés" size="11"></span> sont accueillis dans le gymnase municipal.</p>
-    <div style="margin-top:10px"><button class="audio" type="button" data-say="Un séisme de magnitude six virgule quatre a secoué la côte est de l'île cette nuit à trois heures douze. On ne déplore aucune victime, mais les dégâts sont importants : deux ponts sont coupés et l'électricité manque dans trois villages. Par précaution, les autorités ont décidé d'évacuer les habitants du littoral : un risque de tsunami n'est pas écarté. Les secours sont sur place depuis six heures du matin. Les sinistrés sont accueillis dans le gymnase municipal." data-rate="0.92" style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter le flash</button></div>
+    <div style="margin-top:10px"><button class="audio txt" type="button" data-say="Un séisme de magnitude six virgule quatre a secoué la côte est de l'île cette nuit à trois heures douze. On ne déplore aucune victime, mais les dégâts sont importants : deux ponts sont coupés et l'électricité manque dans trois villages. Par précaution, les autorités ont décidé d'évacuer les habitants du littoral : un risque de tsunami n'est pas écarté. Les secours sont sur place depuis six heures du matin. Les sinistrés sont accueillis dans le gymnase municipal." data-rate="0.92" style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter le flash</button></div>
   </div>
   <div class="cmd"><button class="btn primary" data-check="bE" type="button">Vérifier</button><button class="btn" data-reset="bE" type="button">↺ Effacer</button><span class="bloc-score"></span></div>
 </div>
@@ -441,7 +442,7 @@ textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(5
     <div class="rep"><span class="qui">Tom</span><span class="dit">Franchement, tu crois que ça change quelque chose ?</span></div>
     <div class="rep"><span class="qui">Nour</span><span class="dit">Tout seul, non. Mais si tout l'immeuble <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="recycle|trie" size="10"></span>, oui. C'est comme l'<span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="empreinte" size="11"></span> carbone : c'est la somme qui compte.</span></div>
     <div class="rep"><span class="qui">Tom</span><span class="dit">D'accord, d'accord. Bac jaune.</span></div>
-    <div style="margin-top:8px"><button class="audio" type="button" data-say="Attends, le pot de yaourt, tu le mets où ? Euh… à la poubelle ? Non ! Il faut le trier : plastique dans le bac jaune. Franchement, tu crois que ça change quelque chose ? Tout seul, non. Mais si tout l'immeuble recycle, oui. C'est comme l'empreinte carbone : c'est la somme qui compte. D'accord, d'accord. Bac jaune." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter le dialogue</button></div>
+    <div style="margin-top:8px"><button class="audio txt" type="button" data-say="Attends, le pot de yaourt, tu le mets où ? Euh… à la poubelle ? Non ! Il faut le trier : plastique dans le bac jaune. Franchement, tu crois que ça change quelque chose ? Tout seul, non. Mais si tout l'immeuble recycle, oui. C'est comme l'empreinte carbone : c'est la somme qui compte. D'accord, d'accord. Bac jaune." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter le dialogue</button></div>
   </div>
   <div class="dial">
     <div class="lieu">🏘️ Réunion de quartier : un projet d'éoliennes</div>
@@ -450,7 +451,7 @@ textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(5
     <div class="rep"><span class="qui">M. Royer</span><span class="dit">Je préfère qu'on consomme moins, tout simplement.</span></div>
     <div class="rep"><span class="qui">Mme Diallo</span><span class="dit">D'accord avec vous. Mais en attendant, les énergies <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="renouvelables" size="14"></span>, c'est la seule solution qui n'<span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="épuise" size="9"></span> pas les ressources.</span></div>
     <div class="rep"><span class="qui">M. Royer</span><span class="dit">Mmh. Et le <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="paysage" size="9"></span>, on en parle ?</span></div>
-    <div style="margin-top:8px"><button class="audio" type="button" data-say="Quatre éoliennes à deux kilomètres du village ? C'est non. Vous préférez quoi ? Une centrale nucléaire ? Je préfère qu'on consomme moins, tout simplement. D'accord avec vous. Mais en attendant, les énergies renouvelables, c'est la seule solution qui n'épuise pas les ressources. Mmh. Et le paysage, on en parle ?" style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter le dialogue</button></div>
+    <div style="margin-top:8px"><button class="audio txt" type="button" data-say="Quatre éoliennes à deux kilomètres du village ? C'est non. Vous préférez quoi ? Une centrale nucléaire ? Je préfère qu'on consomme moins, tout simplement. D'accord avec vous. Mais en attendant, les énergies renouvelables, c'est la seule solution qui n'épuise pas les ressources. Mmh. Et le paysage, on en parle ?" style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">🔊 Écouter le dialogue</button></div>
   </div>
   <div class="cmd"><button class="btn primary" data-check="bF" type="button">Vérifier</button><button class="btn" data-reset="bF" type="button">↺ Effacer</button><span class="bloc-score"></span></div>
 </div>
@@ -504,7 +505,7 @@ textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(5
   </div>
   <div class="cmd"><button class="btn" id="vm2" type="button">👁️ Voir une réponse modèle (sujet B)</button></div>
   <div class="modele" id="m2">
-    <strong>Modèle oral</strong> <button class="audio" type="button" data-say="Pour le nucléaire, il y a un argument solide : une centrale produit beaucoup d'électricité sans émettre de gaz à effet de serre. Contre, il y a les déchets radioactifs, qu'on ne sait pas stocker, et le risque d'accident. Personnellement, je pense qu'il faut développer d'abord les énergies renouvelables, puis sortir du nucléaire lentement. Fermer tout demain, ce serait remplacer le nucléaire par le charbon : le pire des deux.">🔊 Écouter</button><br>
+    <strong>Modèle oral</strong> <button class="audio txt" type="button" data-say="Pour le nucléaire, il y a un argument solide : une centrale produit beaucoup d'électricité sans émettre de gaz à effet de serre. Contre, il y a les déchets radioactifs, qu'on ne sait pas stocker, et le risque d'accident. Personnellement, je pense qu'il faut développer d'abord les énergies renouvelables, puis sortir du nucléaire lentement. Fermer tout demain, ce serait remplacer le nucléaire par le charbon : le pire des deux.">🔊 Écouter</button><br>
     <em>« Pour le nucléaire, il y a un argument solide : une centrale produit beaucoup d'électricité sans émettre de gaz à effet de serre. Contre, il y a les déchets radioactifs, qu'on ne sait pas stocker, et le risque d'accident. Personnellement, je pense qu'il faut développer d'abord les énergies renouvelables, puis sortir du nucléaire lentement. Fermer tout demain, ce serait remplacer le nucléaire par le charbon : le pire des deux. »</em>
   </div>
   <div class="astuce">🎯 <strong>Pour passer à B1 :</strong> dans un débat, annonce toujours ta structure. « Il y a un argument pour… / Contre, il y a… / Personnellement, je pense que… ». L'examinateur entend immédiatement que tu organises ta pensée.</div>

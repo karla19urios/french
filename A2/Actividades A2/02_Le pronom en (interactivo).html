@@ -193,6 +193,7 @@ input.bad{border-color:var(--ko);background:var(--kobg)}
 .opt.bad{border-color:var(--ko);background:var(--kobg);color:var(--ko)}
 .audio{font:inherit;cursor:pointer;border:1px solid var(--border);background:var(--card-2);color:var(--muted);
        border-radius:50%;width:1.9em;height:1.9em;line-height:1;padding:0;flex:none;transition:.15s;font-size:.88rem}
+.audio:where(.txt){width:auto;height:auto;border-radius:99px;padding:.42em .85em;gap:.4em;line-height:1.25;font-size:inherit}
 .audio:hover{border-color:var(--bleu);color:var(--bleu)}
 .audio.on{border-color:var(--rouge);color:var(--rouge)}
 .alerte{background:var(--card-2);border-left:3px solid var(--rouge);border-radius:0 10px 10px 0;padding:11px 15px;margin:14px 0;font-size:.93rem}
@@ -417,7 +418,7 @@ a plus beaucoup dans le quartier&nbsp;», écrit Samir sur le livre d'or. Une au
       <p style="margin:0;font-size:.86rem;line-height:1.6">Les mots <span class="w" data-en="click to see the English">soulignés en pointillé</span>
       donnent leur traduction quand tu cliques. Les <span class="y" data-say="exemple">y</span> en rouge montrent ce qu'ils remplacent.</p></div>
   </div>
-</div><div class="lead-art"><button class="audio" type="button" data-say="Le Café des Trois Moulins change sa carte. Des croissants, on en fait deux cents chaque matin. À midi, il y a une formule à treize euros cinquante. Du poisson, nous en servons le vendredi. Le café est passé de un euro quatre-vingts à deux euros. On peut payer en espèces ou par carte. Des cafés comme celui-ci, il n'y en a plus beaucoup dans le quartier. La formule du midi ? J'en prends une deux fois par semaine.">&#128264; Écouter le résumé du texte</button></div></div>
+</div><div class="lead-art"><button class="audio txt" type="button" data-say="Le Café des Trois Moulins change sa carte. Des croissants, on en fait deux cents chaque matin. À midi, il y a une formule à treize euros cinquante. Du poisson, nous en servons le vendredi. Le café est passé de un euro quatre-vingts à deux euros. On peut payer en espèces ou par carte. Des cafés comme celui-ci, il n'y en a plus beaucoup dans le quartier. La formule du midi ? J'en prends une deux fois par semaine.">&#128264; Écouter le résumé du texte</button></div></div>
 <h2 class="sec" id="comp"><span class="n">1</span> As-tu bien lu&nbsp;?</h2>
 <p class="lead">8 points &middot; tout est dans le texte.</p>
 <div class="card" id="bCOMP" data-bloc>
@@ -645,7 +646,7 @@ a plus beaucoup dans le quartier&nbsp;», écrit Samir sur le livre d'or. Une au
 <h2 class="sec" id="vA_exE"><span class="n">5</span> Au restaurant&nbsp;: dialogue à écouter</h2>
 <p class="lead">8 points &middot; &#127911; Le dialogue n'est pas écrit&nbsp;: écoute la scène autant de fois que tu veux, puis complète.</p>
 <div class="dial"><div class="lieu">&#127869; Bistrot, vendredi 12 h 30</div>
-<div style="margin-top:10px"><button class="audio" type="button" data-say="Bonjour ! Vous avez réservé ? Non, nous sommes deux. C&#x27;est possible ? Oui, là, près de la fenêtre. Voici la carte. Qu&#x27;est-ce que vous me conseillez ? Le poisson du jour, avec des légumes. Et en entrée, la soupe est très bonne. Parfait. Et une carafe d&#x27;eau, s&#x27;il vous plaît. Bien sûr. Vous prendrez un dessert ? On verra ! Vous pouvez apporter l&#x27;addition avec le café ? Bien sûr. Vous voulez commander autre chose avant ? Non merci. Je peux payer par carte ? Oui, bien sûr." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">&#128264; Écouter la scène</button></div></div>
+<div style="margin-top:10px"><button class="audio txt" type="button" data-say="Bonjour ! Vous avez réservé ? Non, nous sommes deux. C&#x27;est possible ? Oui, là, près de la fenêtre. Voici la carte. Qu&#x27;est-ce que vous me conseillez ? Le poisson du jour, avec des légumes. Et en entrée, la soupe est très bonne. Parfait. Et une carafe d&#x27;eau, s&#x27;il vous plaît. Bien sûr. Vous prendrez un dessert ? On verra ! Vous pouvez apporter l&#x27;addition avec le café ? Bien sûr. Vous voulez commander autre chose avant ? Non merci. Je peux payer par carte ? Oui, bien sûr." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">&#128264; Écouter la scène</button></div></div>
 <div class="card" id="vA_bE" data-bloc>
 <div class="liste">
 <div class="q" data-note="réserver">&mdash; Vous avez <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="réservé" size="10" autocomplete="off" spellcheck="false"></span>&nbsp;?<div class="vd"></div></div>
@@ -802,7 +803,7 @@ a plus beaucoup dans le quartier&nbsp;», écrit Samir sur le livre d'or. Une au
 <h2 class="sec" id="vB_exE"><span class="n">5</span> Au distributeur&nbsp;: dialogue à écouter</h2>
 <p class="lead">8 points &middot; &#127911; Le dialogue n'est pas écrit&nbsp;: écoute la scène autant de fois que tu veux, puis complète.</p>
 <div class="dial"><div class="lieu">&#127975; Devant la banque, avec une amie</div>
-<div style="margin-top:10px"><button class="audio" type="button" data-say="Attends deux minutes, je dois retirer de l&#x27;argent. Le distributeur est juste là, à côté de la porte. J&#x27;introduis ma carte, je compose mon code, et je choisis le montant. Prends quarante, tu auras des billets de vingt. Voilà. Tu veux le reçu ? Non, merci. Au fait, tu as de la monnaie pour le parking ? Attends, non, je n&#x27;ai que des billets. On paiera par carte, alors !" style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">&#128264; Écouter la scène</button></div></div>
+<div style="margin-top:10px"><button class="audio txt" type="button" data-say="Attends deux minutes, je dois retirer de l&#x27;argent. Le distributeur est juste là, à côté de la porte. J&#x27;introduis ma carte, je compose mon code, et je choisis le montant. Prends quarante, tu auras des billets de vingt. Voilà. Tu veux le reçu ? Non, merci. Au fait, tu as de la monnaie pour le parking ? Attends, non, je n&#x27;ai que des billets. On paiera par carte, alors !" style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">&#128264; Écouter la scène</button></div></div>
 <div class="card" id="vB_bE" data-bloc>
 <div class="liste">
 <div class="q" data-note="retirer de l&#x27;argent">&mdash; Je dois <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="retirer" size="9" autocomplete="off" spellcheck="false"></span> de l'argent.<div class="vd"></div></div>

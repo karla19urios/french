@@ -193,6 +193,7 @@ input.bad{border-color:var(--ko);background:var(--kobg)}
 .opt.bad{border-color:var(--ko);background:var(--kobg);color:var(--ko)}
 .audio{font:inherit;cursor:pointer;border:1px solid var(--border);background:var(--card-2);color:var(--muted);
        border-radius:50%;width:1.9em;height:1.9em;line-height:1;padding:0;flex:none;transition:.15s;font-size:.88rem}
+.audio:where(.txt){width:auto;height:auto;border-radius:99px;padding:.42em .85em;gap:.4em;line-height:1.25;font-size:inherit}
 .audio:hover{border-color:var(--bleu);color:var(--bleu)}
 .audio.on{border-color:var(--rouge);color:var(--rouge)}
 .alerte{background:var(--card-2);border-left:3px solid var(--rouge);border-radius:0 10px 10px 0;padding:11px 15px;margin:14px 0;font-size:.93rem}
@@ -393,7 +394,7 @@ explique une habitante de Saint-Paul. «&nbsp;Quand on vit dans un endroit aussi
       <p style="margin:0;font-size:.86rem;line-height:1.6">Les mots <span class="w" data-en="click to see the English">soulignés en pointillé</span>
       donnent leur traduction quand tu cliques. Les <span class="y" data-say="exemple">y</span> en rouge montrent ce qu'ils remplacent.</p></div>
   </div>
-</div><div class="lead-art"><button class="audio" type="button" data-say="La Réunion est une petite île française dans l'océan Indien, à l'est de Madagascar. On y trouve un mélange de cultures. C'est une île volcanique et montagneuse. Au bord de la mer, il y fait chaud toute l'année. De novembre à avril, c'est la saison des pluies : il pleut souvent l'après-midi et il y a parfois un cyclone. Un parc national protège plus de quarante pour cent de l'île ; on y trouve des espèces menacées. La pollution, nous y pensons tous les jours.">&#128264; Écouter le résumé du texte</button></div></div>
+</div><div class="lead-art"><button class="audio txt" type="button" data-say="La Réunion est une petite île française dans l'océan Indien, à l'est de Madagascar. On y trouve un mélange de cultures. C'est une île volcanique et montagneuse. Au bord de la mer, il y fait chaud toute l'année. De novembre à avril, c'est la saison des pluies : il pleut souvent l'après-midi et il y a parfois un cyclone. Un parc national protège plus de quarante pour cent de l'île ; on y trouve des espèces menacées. La pollution, nous y pensons tous les jours.">&#128264; Écouter le résumé du texte</button></div></div>
 <h2 class="sec" id="comp"><span class="n">1</span> As-tu bien lu&nbsp;?</h2>
 <p class="lead">8 points &middot; les réponses sont toutes dans le texte.</p>
 <div class="card" id="bCOMP" data-bloc>
@@ -615,7 +616,7 @@ explique une habitante de Saint-Paul. «&nbsp;Quand on vit dans un endroit aussi
 <h2 class="sec" id="vA_exE"><span class="n">5</span> Dialogue à trous</h2>
 <p class="lead">8 points &middot; &#127911; Le dialogue n'est pas écrit&nbsp;: écoute la scène autant de fois que tu veux, puis complète.</p>
 <div class="dial"><div class="lieu">&#128222; Deux amies au téléphone, un samedi matin</div>
-<div style="margin-top:10px"><button class="audio" type="button" data-say="Alors, on va à la plage ? Ici il pleut depuis six heures du matin ! Ah bon ? Chez moi il fait beau, il y a du soleil. Attends, la météo dit : orages l&#x27;après-midi. Bon. Alors demain ? Il va faire doux, vingt-quatre degrés. Parfait. Je prends quand même un parapluie, on ne sait jamais. Ah, et en montagne, il neige déjà. Déjà ? Alors mets une écharpe, il fait froid ce soir. Et il y a du vent : ferme la fenêtre avant de sortir." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">&#128264; Écouter la scène</button></div></div>
+<div style="margin-top:10px"><button class="audio txt" type="button" data-say="Alors, on va à la plage ? Ici il pleut depuis six heures du matin ! Ah bon ? Chez moi il fait beau, il y a du soleil. Attends, la météo dit : orages l&#x27;après-midi. Bon. Alors demain ? Il va faire doux, vingt-quatre degrés. Parfait. Je prends quand même un parapluie, on ne sait jamais. Ah, et en montagne, il neige déjà. Déjà ? Alors mets une écharpe, il fait froid ce soir. Et il y a du vent : ferme la fenêtre avant de sortir." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">&#128264; Écouter la scène</button></div></div>
 <div class="card" id="vA_bE" data-bloc>
 <div class="liste">
 <div class="q" data-note="il pleut">&mdash; Ici <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="il pleut" size="10" autocomplete="off" spellcheck="false"></span> depuis ce matin.<div class="vd"></div></div>
@@ -770,7 +771,7 @@ explique une habitante de Saint-Paul. «&nbsp;Quand on vit dans un endroit aussi
 <h2 class="sec" id="vB_exE"><span class="n">5</span> Dialogue à trous</h2>
 <p class="lead">8 points &middot; &#127911; Le dialogue n'est pas écrit&nbsp;: écoute la scène autant de fois que tu veux, puis complète.</p>
 <div class="dial"><div class="lieu">&#127968; À la maison, le soir</div>
-<div style="margin-top:10px"><button class="audio" type="button" data-say="Tu peux sortir les déchets, s&#x27;il te plaît ? Oui. Le plastique, c&#x27;est quelle poubelle ? La jaune. Et le verre, tu le mets à part : on trie tout maintenant. D&#x27;accord. Ah : tu as laissé la lumière de la cuisine ! Pardon ! Éteins-la. Il faut économiser l&#x27;électricité. Demain je prends le vélo pour aller au lycée, aussi. Attends : ne jette pas ce sac, il est réutilisable, je le garde pour le marché. D&#x27;accord. Et ne pose pas le carton ici, c&#x27;est sale partout." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">&#128264; Écouter la scène</button></div></div>
+<div style="margin-top:10px"><button class="audio txt" type="button" data-say="Tu peux sortir les déchets, s&#x27;il te plaît ? Oui. Le plastique, c&#x27;est quelle poubelle ? La jaune. Et le verre, tu le mets à part : on trie tout maintenant. D&#x27;accord. Ah : tu as laissé la lumière de la cuisine ! Pardon ! Éteins-la. Il faut économiser l&#x27;électricité. Demain je prends le vélo pour aller au lycée, aussi. Attends : ne jette pas ce sac, il est réutilisable, je le garde pour le marché. D&#x27;accord. Et ne pose pas le carton ici, c&#x27;est sale partout." style="width:auto;height:auto;border-radius:99px;padding:5px 13px;font-size:.84rem">&#128264; Écouter la scène</button></div></div>
 <div class="card" id="vB_bE" data-bloc>
 <div class="liste">
 <div class="q" data-note="les déchets">&mdash; Tu peux sortir les <span class="blank" style="display:inline;padding:0;border:none"><input type="text" data-a="déchets" size="10" autocomplete="off" spellcheck="false"></span>&nbsp;?<div class="vd"></div></div>
