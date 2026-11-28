@@ -89,7 +89,7 @@
     box.setAttribute("role", "img");
     box.setAttribute("aria-label", opts.alt || "");
 
-    var grand = false, chargees = {};
+    var grand = false, chargees = {}, epoca = 0;
     function src(nom) { return BASE + nom + (grand ? "" : "_s") + ".png"; }
 
     function img(cls, nom) {
@@ -225,9 +225,20 @@
         on = !!on;
         if (on === grand) return inst;
         grand = on;
-        Object.keys(corps).forEach(function (k) { corps[k].src = src(CORPS[k]); });
-        Object.keys(yeux).forEach(function (k) { yeux[k].src = src(k); });
-        Object.keys(bouches).forEach(function (k) { bouches[k].src = src(k); });
+        // El archivo grande tarda en bajar y un <img> no pinta nada mientras llega:
+        // si se cambiara el src de golpe, ella desaparecería un momento al agrandarla.
+        // Se queda la pequeña estirada hasta que la grande está lista, y entonces cambia.
+        var mia = ++epoca;
+        var cambia = function (el, nom) {
+          var url = src(nom);
+          if (el.getAttribute("src") === url) return;
+          var pre = new Image();
+          var pon = function () { if (mia === epoca) el.src = url; };
+          pre.onload = pon; pre.onerror = pon; pre.src = url;
+        };
+        Object.keys(corps).forEach(function (k) { cambia(corps[k], CORPS[k]); });
+        Object.keys(yeux).forEach(function (k) { cambia(yeux[k], k); });
+        Object.keys(bouches).forEach(function (k) { cambia(bouches[k], k); });
         return inst;
       },
       destroy: function () { cancelAnimationFrame(raf); clearTimeout(minuteur); box.remove(); }

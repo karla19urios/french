@@ -117,7 +117,7 @@
     var id = "iat-persona-js", prev = document.getElementById(id);
     if (prev) { prev.addEventListener("load", cb); return; }
     var sc = document.createElement("script");
-    sc.id = id; sc.src = ASSETS + "persona.js?v=4";
+    sc.id = id; sc.src = ASSETS + "persona.js?v=5";
     sc.addEventListener("load", function () { if (window.Persona) cb(); });
     document.head.appendChild(sc);
   }
