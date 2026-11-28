@@ -174,7 +174,7 @@
     var intentos = 0;
     (function carga() {
       var sc = document.createElement("script");
-      sc.id = id; sc.src = ASSETS + "persona.js?v=7";
+      sc.id = id; sc.src = ASSETS + "persona.js?v=8";
       sc.addEventListener("load", function () { if (window.Persona) cb(); });
       sc.addEventListener("error", function () {
         sc.remove();
@@ -182,6 +182,24 @@
       });
       document.head.appendChild(sc);
     })();
+  }
+
+  // Su cara tiene que estar en cuanto se pinta el widget, en todas las páginas del sitio
+  // y pase lo que pase: persona.js es una segunda ida y vuelta a la red y puede tardar o
+  // no llegar nunca. Mientras tanto va una foto suya quieta, en el botón y en el panel,
+  // con el mismo encuadre, así que al llegar la de verdad no se mueve nada.
+  function fija() {
+    if (!ASSETS) return;
+    [stageBtn, stagePanel].forEach(function (d) {
+      if (d.firstChild) return;
+      var i = new Image();
+      i.className = "iat-fija"; i.alt = ""; i.decoding = "async";
+      i.src = ASSETS + "persona/sourire_s.png";
+      d.appendChild(i);
+    });
+  }
+  function quitaFijas() {
+    [].forEach.call(root.querySelectorAll(".iat-fija"), function (i) { i.remove(); });
   }
 
   // Dónde le toca estar ahora mismo: dentro del panel si está abierto, y si no en el
@@ -519,6 +537,7 @@
 
     words();
     setTam(tam);                   // el tamaño que eligió la última vez
+    fija();                        // su cara ya está, antes de que llegue persona.js
     document.body.appendChild(root);
     paint();
     withPersona(function () {
@@ -529,6 +548,7 @@
       }
       try { av = window.Persona.mount(stageBtn, { alt: "Karla" }); }
       catch (e) { av = null; }
+      if (av) quitaFijas();         // ya está la de verdad, que respira y habla
       coloca();                     // puede haber abierto el panel mientras ella llegaba
     });
     setupMic();
@@ -553,7 +573,7 @@
 
   var CSS =
   ".iat-root{position:fixed;right:14px;bottom:14px;z-index:2147482000;font:inherit;" +
-    "font-size:15px;line-height:1.5;color:#393B66}" +
+    "font-size:.9375rem;line-height:1.5;color:#393B66}" +
   ".iat-btn{display:block;position:relative;padding:0;border:none;background:none;cursor:pointer;" +
     "font:inherit;line-height:0}" +
   ".iat-btn:focus-visible{outline:2px solid #378EF6;outline-offset:6px;border-radius:14px}" +
@@ -570,8 +590,10 @@
   ".iat-stage-panel{flex:none;width:92px;margin:4px auto -6px}" +
   // si por lo que sea no hay retrato, que no quede un hueco en blanco en el panel
   ".iat-stage-panel:empty{display:none}" +
+  ".iat-fija{display:block;width:100%;height:auto;" +
+    "filter:drop-shadow(0 10px 18px rgba(25,28,60,.3))}" +
   ".iat-root.big .iat-stage-panel{width:188px;margin:6px auto -4px}" +
-  ".iat-root.big .iat-panel{width:min(430px,calc(100vw - 28px));max-height:min(86vh,680px)}" +
+  ".iat-root.big .iat-panel{width:min(452px,calc(100vw - 28px));max-height:min(86vh,680px)}" +
   // al agrandarla se sale del cuadro: se planta fuera del panel, a su izquierda, pisando
   // un poco el borde para que se vea delante de la caja y no metida dentro de ella.
   // Hace falta sitio, así que por debajo de 760px se queda dentro, sólo que más grande.
@@ -598,13 +620,13 @@
   ".iat-root.mini .iat-send{height:34px;font-size:.82rem;padding:0 12px}" +
   ".iat-root.mini .iat-mic{width:34px;height:34px;font-size:.92rem}" +
   ".iat-root.mini .iat-note{margin:6px 10px 8px;font-size:.66rem}" +
-  ".iat-panel{position:absolute;right:0;bottom:0;width:min(380px,calc(100vw - 28px));" +
+  ".iat-panel{position:absolute;right:0;bottom:0;width:min(406px,calc(100vw - 28px));" +
     "max-height:min(72vh,560px);display:flex;flex-direction:column;overflow:hidden;" +
     "border-radius:18px;background:#fff;border:1px solid rgba(57,59,102,.14);" +
     "box-shadow:0 18px 50px rgba(30,32,70,.26)}" +
-  ".iat-head{display:flex;align-items:center;gap:8px;padding:12px 14px;" +
+  ".iat-head{display:flex;align-items:center;gap:6px;padding:12px 12px;" +
     "border-bottom:1px solid rgba(57,59,102,.1)}" +
-  ".iat-lang{flex:none;max-width:104px;border:1px solid rgba(57,59,102,.18);border-radius:9px;" +
+  ".iat-lang{flex:none;max-width:98px;border:1px solid rgba(57,59,102,.18);border-radius:9px;" +
     "background:transparent;color:#6B6E99;font:inherit;font-size:.78rem;padding:3px 4px;" +
     "cursor:pointer}" +
   ".iat-lang:focus-visible{outline:2px solid #378EF6;outline-offset:1px}" +
@@ -686,7 +708,11 @@
     ".iat-panel{right:auto;left:0;width:calc(100vw - 20px);max-height:74vh}" +
     ".iat-root.mini .iat-panel{width:min(290px,calc(100vw - 20px));max-height:56vh}" +
     // el selector de idioma flota encima, abajo a la derecha: que la nota no pase por debajo
-    ".iat-note{margin-right:100px}}";
+    ".iat-note{margin-right:100px}}" +
+    // con las letras del sitio más grandes, el título no cabía junto a los botones
+    "@media (max-width:560px){.iat-head{gap:5px;padding:11px 10px}" +
+    ".iat-head b{font-size:.85rem}" +
+    ".iat-lang{max-width:82px;font-size:.7rem;padding:3px 2px}}";
 
   // ---------- que reaccione a los ejercicios ----------
   // La señal honesta es el marcador que la propia lección calcula ("7 / 10"), no las

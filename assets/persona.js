@@ -170,7 +170,13 @@
 
     function boucle(t) {
       raf = requestAnimationFrame(boucle);
-      var parle = !!(audio && !audio.paused && !audio.ended);
+      // lo que le hayan dado por attach() manda; si no, lo que esté diciendo la página
+      // (assets/tts.js publica su <audio> ahí), para que mueva los labios en cualquier parte
+      var son = (audio && !audio.paused && !audio.ended) ? audio : null;
+      if (!son && window.__ttsAudio) {
+        try { var x = window.__ttsAudio(); if (x && !x.paused && !x.ended) son = x; } catch (e) {}
+      }
+      var parle = !!son;
 
       // --- respiración y balanceo: siempre, aunque esté callada ---
       var resp = Math.sin(t / 2000) * .9 + Math.sin(t / 3100) * .4;      // %
@@ -203,7 +209,7 @@
         return;
       }
       precharge();
-      var n = level(audio);
+      var n = level(son);
       if (n < 0) {                             // sin AudioContext: dos ritmos que no cuadran
         n = Math.max(0, Math.sin(t / 118) * .5 + Math.sin(t / 193) * .5) * .09;
         pic = .09;

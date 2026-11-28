@@ -13,23 +13,34 @@ select, input, textarea { max-width: 100%; }
   .plans td, .att td { padding: .5rem .4rem; font-size: .8rem; }
 }
 
-/* ===== Layout: content closer to the screen edges, and phone-friendly ===== */
+/* ===== One knob for the size of every letter on the site =====
+   Every text size in the pages is written in rem, so this single value sets them
+   all. 18.5px instead of the browser's 16px is about 16% bigger everywhere, down
+   to the smallest label. The lines get shorter and the pages get longer: that is
+   the trade we want — scrolling costs nothing, squinting does. */
+html { font-size: 18.5px; }
+@media (max-width: 400px) { html { font-size: 17.5px; } }
+
+/* bigger letters want more air between the lines */
+main p, main li, .wrap p, .wrap li, .art p, .art li, .page p, .page li { line-height: 1.65; }
+
+/* ===== Layout: a column you can read in one eye-sweep ===== */
 html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 img, video, canvas { max-width: 100%; }
 
-/* wider column on big screens, slim side gutters everywhere */
+/* reading column: narrow on purpose, slim side gutters everywhere */
 .wrap, main, .hero-inner, .scorebar .inner, .navpills, footer, .app {
-  max-width: min(1440px, 100%) !important;
+  max-width: min(820px, 100%) !important;
   padding-left: clamp(10px, 2.2vw, 22px) !important;
   padding-right: clamp(10px, 2.2vw, 22px) !important;
 }
-/* lists of cards (level pages, lesson lists) can use the whole screen */
-footer, .hero-inner, .navpills, main:has(.grid) { max-width: min(1760px, 100%) !important; }
+/* lists of cards (level pages, lesson lists) get a little more room: three across, not six */
+footer, .hero-inner, .navpills, main:has(.grid) { max-width: min(1020px, 100%) !important; }
 
-@media (min-width: 1000px) { main .grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important; } }
+@media (min-width: 1000px) { main .grid { grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)) !important; } }
 
 /* the older 'browser window' reading pages and the A2 lesson shell */
-.browser-frame, .flag-stripe, .shell { max-width: min(1440px, 100%) !important; }
+.browser-frame, .flag-stripe, .shell { max-width: min(940px, 100%) !important; }
 .browser-body .wrap { max-width: none !important; }
 
 /* phones */
