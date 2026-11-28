@@ -112,7 +112,10 @@
       if (corpsActif === i) return;
       if (corpsActif) corpsActif.classList.remove("on");
       corpsActif = i;
-      requestAnimationFrame(function () { i.classList.add("on"); });
+      // el "on" espera un cuadro para que la imagen recién creada pueda hacer su fundido.
+      // Si entretanto cambió el gesto otra vez, este ya no toca: dos gestos en el mismo
+      // cuadro dejaban las dos caras encendidas y una se quedaba pegada para siempre.
+      requestAnimationFrame(function () { if (corpsActif === i) i.classList.add("on"); });
     }
     corpsImg("repos").classList.add("on");
     corpsActif = corps.repos;
