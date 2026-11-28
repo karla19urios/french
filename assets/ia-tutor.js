@@ -18,31 +18,37 @@
   var SEND_TURNS = 6;          // lo que viaja al Worker
 
   var T = {
-    es: { open: "Pregúntale a la IA", title: "Asistente del curso", close: "Cerrar",
+    es: { open: "Pregúntame", title: "Karla · asistente", close: "Cerrar",
           ph: "Escribe tu duda…", send: "Enviar", clear: "Borrar", clearLong: "Borrar la conversación",
           hello: "Pregúntame lo que quieras sobre esta lección o sobre el francés en general.",
           chips: ["Explícame esta lección", "¿Por qué se dice así?", "Dame otro ejemplo"],
           thinking: "Pensando…", listen: "Escuchar", stop: "Parar",
+          big: "Agrandar", small: "Reducir", mic: "Hablar", micStop: "Listo",
+          micNo: "Tu navegador no deja usar el micrófono.", micOn: "Te escucho…",
           err_rate: "Has preguntado muy rápido. Espera un minuto y vuelve a intentarlo.",
           err_net: "No hay conexión con el asistente. Revisa tu internet.",
           err_ref: "Solo puedo ayudarte con el curso de francés.",
           err_srv: "El asistente no está disponible ahora mismo. Inténtalo más tarde.",
           note: "La IA puede equivocarse. Si algo no cuadra con la lección, hazle caso a la lección." },
-    en: { open: "Ask the AI", title: "Course assistant", close: "Close",
+    en: { open: "Ask me", title: "Karla · assistant", close: "Close",
           ph: "Type your question…", send: "Send", clear: "Clear", clearLong: "Clear the conversation",
           hello: "Ask me anything about this lesson, or about French in general.",
           chips: ["Explain this lesson", "Why is it said that way?", "Give me another example"],
           thinking: "Thinking…", listen: "Listen", stop: "Stop",
+          big: "Enlarge", small: "Shrink", mic: "Speak", micStop: "Done",
+          micNo: "Your browser won't let me use the microphone.", micOn: "I'm listening…",
           err_rate: "That was a lot of questions at once. Wait a minute and try again.",
           err_net: "Can't reach the assistant. Check your connection.",
           err_ref: "I can only help with the French course.",
           err_srv: "The assistant is unavailable right now. Try again later.",
           note: "The AI can be wrong. If something clashes with the lesson, trust the lesson." },
-    fr: { open: "Pose ta question", title: "Assistant du cours", close: "Fermer",
+    fr: { open: "Demande-moi", title: "Karla · assistante", close: "Fermer",
           ph: "Écris ta question…", send: "Envoyer", clear: "Effacer", clearLong: "Effacer la conversation",
           hello: "Demande-moi ce que tu veux sur cette leçon, ou sur le français en général.",
           chips: ["Explique-moi cette leçon", "Pourquoi on dit comme ça ?", "Donne-moi un autre exemple"],
           thinking: "Je réfléchis…", listen: "Écouter", stop: "Arrêter",
+          big: "Agrandir", small: "Réduire", mic: "Parler", micStop: "Fini",
+          micNo: "Ton navigateur ne permet pas le micro.", micOn: "Je t'écoute…",
           err_rate: "Trop de questions d'un coup. Attends une minute et réessaie.",
           err_net: "Pas de connexion avec l'assistant. Vérifie ton réseau.",
           err_ref: "Je n'aide que sur le cours de français.",
@@ -96,22 +102,23 @@
     try { sessionStorage.setItem(STORE, JSON.stringify(turns.slice(-MAX_TURNS))); } catch (e) {}
   }
 
-  var root, panel, log, input, btn, sendBtn, face, abort = null, busy = false;
+  var root, panel, log, input, btn, sendBtn, stageBtn, stagePanel, zoomBtn, micBtn;
+  var abort = null, busy = false, big = false, reco = null, recoOn = false;
   var av = null, audio = null, speaking = null, noVoice = false;
 
   function dropSpeakButtons() {
     [].forEach.call(root.querySelectorAll(".iat-speak"), function (b) { b.remove(); });
   }
 
-  // El retrato parlante vive en assets/avatar.js; si la página ya lo cargó, se reutiliza.
-  function withAvatar(cb) {
-    if (window.Avatar) return cb();
+  // El personaje vive en assets/persona.js y se carga una sola vez por página.
+  function withPersona(cb) {
+    if (window.Persona) return cb();
     if (!ASSETS) return;
-    var id = "iat-avatar-js", prev = document.getElementById(id);
+    var id = "iat-persona-js", prev = document.getElementById(id);
     if (prev) { prev.addEventListener("load", cb); return; }
     var sc = document.createElement("script");
-    sc.id = id; sc.src = ASSETS + "avatar.js";
-    sc.addEventListener("load", function () { if (window.Avatar) cb(); });
+    sc.id = id; sc.src = ASSETS + "persona.js?v=1";
+    sc.addEventListener("load", function () { if (window.Persona) cb(); });
     document.head.appendChild(sc);
   }
 
@@ -228,6 +235,8 @@
     bubble("me", "<p>" + esc(question) + "</p>");
     var out = bubble("bot", '<p class="iat-wait">' + esc(t().thinking) + "</p>");
     hush();
+    micOff();
+    if (micBtn) micBtn.disabled = true;
     mood("pense");
 
     abort = new AbortController();
@@ -282,6 +291,7 @@
     }).then(function () {
       busy = false; sendBtn.disabled = false; abort = null;
       mood(null);
+      if (micBtn) micBtn.disabled = false;
       log.scrollTop = log.scrollHeight;
     });
   }
@@ -289,14 +299,72 @@
   function open() {
     panel.hidden = false;
     btn.setAttribute("aria-expanded", "true");
+    if (av && av.el.parentNode !== stagePanel) stagePanel.appendChild(av.el);
+    mood("salut", 1600);
     setTimeout(function () { input.focus(); }, 30);
     log.scrollTop = log.scrollHeight;
   }
   function close() {
     panel.hidden = true;
     btn.setAttribute("aria-expanded", "false");
+    micOff();
+    if (av && av.el.parentNode !== stageBtn) stageBtn.appendChild(av.el);
     hush();
     if (abort) { abort.abort(); abort = null; busy = false; sendBtn.disabled = false; }
+  }
+
+
+  // ---------- agrandar, sólo si el estudiante quiere ----------
+  function setBig(on) {
+    big = !!on;
+    root.classList.toggle("big", big);
+    zoomBtn.textContent = big ? "\u2922" : "\u2921";
+    zoomBtn.setAttribute("aria-label", big ? t().small : t().big);
+    zoomBtn.title = zoomBtn.getAttribute("aria-label");
+    try { if (av) av.big(big); } catch (e) {}      // en grande, los archivos de resolución completa
+    log.scrollTop = log.scrollHeight;
+  }
+
+  // ---------- que el estudiante le hable ----------
+  var RECO_LANG = { es: "es-MX", en: "en-US", fr: "fr-FR" };
+  function setupMic() {
+    var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR || !micBtn) return;                    // Firefox no lo tiene: el botón no aparece
+    micBtn.hidden = false;
+    reco = new SR();
+    reco.continuous = false;
+    reco.interimResults = true;
+    reco.addEventListener("result", function (e) {
+      var txt = "";
+      for (var i = e.resultIndex; i < e.results.length; i++) txt += e.results[i][0].transcript;
+      input.value = txt;
+      input.style.height = "auto";
+      input.style.height = Math.min(input.scrollHeight, 110) + "px";
+    });
+    reco.addEventListener("error", function () { micOff(); });
+    reco.addEventListener("end", function () {
+      var txt = input.value.trim();
+      micOff();
+      if (txt) ask(txt);                           // lo dicho se manda solo
+    });
+  }
+  function micOn() {
+    if (!reco || busy) return;
+    hush();
+    try { reco.lang = RECO_LANG[lang()] || RECO_LANG.es; reco.start(); }
+    catch (e) { return; }
+    recoOn = true;
+    micBtn.classList.add("on");
+    micBtn.setAttribute("aria-label", t().micStop);
+    input.placeholder = t().micOn;
+  }
+  function micOff() {
+    if (!reco) return;
+    if (recoOn) { try { reco.abort(); } catch (e) {} }
+    recoOn = false;
+    micBtn.classList.remove("on");
+    micBtn.setAttribute("aria-label", t().mic);
+    input.placeholder = t().ph;
   }
 
   function build() {
@@ -304,26 +372,36 @@
     root.className = "iat-root";
     root.innerHTML =
       '<button class="iat-btn" type="button" aria-expanded="false">' +
-        '<span class="iat-spark" aria-hidden="true">✨</span><span class="iat-btn-txt"></span>' +
+        '<span class="iat-stage iat-stage-btn"></span>' +
+        '<span class="iat-btn-txt"></span>' +
       '</button>' +
       '<section class="iat-panel" hidden>' +
-        '<header class="iat-head"><span class="iat-face"></span><b class="iat-title"></b>' +
+        '<header class="iat-head"><b class="iat-title"></b>' +
+          '<button class="iat-zoom" type="button" aria-label=""></button>' +
           '<button class="iat-clear" type="button"></button>' +
           '<button class="iat-x" type="button" aria-label="">✕</button></header>' +
+        '<div class="iat-stage iat-stage-panel"></div>' +
         '<div class="iat-log" role="log" aria-live="polite"></div>' +
-        '<form class="iat-form"><textarea class="iat-in" rows="1"></textarea>' +
+        '<form class="iat-form">' +
+          '<button class="iat-mic" type="button" aria-label="" hidden></button>' +
+          '<textarea class="iat-in" rows="1"></textarea>' +
           '<button class="iat-send" type="submit"></button></form>' +
         '<p class="iat-note"></p>' +
       '</section>';
 
-    face = root.querySelector(".iat-face");
+    stageBtn = root.querySelector(".iat-stage-btn");
+    stagePanel = root.querySelector(".iat-stage-panel");
     btn = root.querySelector(".iat-btn");
     panel = root.querySelector(".iat-panel");
     log = root.querySelector(".iat-log");
     input = root.querySelector(".iat-in");
     sendBtn = root.querySelector(".iat-send");
 
+    zoomBtn = root.querySelector(".iat-zoom");
+    micBtn = root.querySelector(".iat-mic");
     btn.addEventListener("click", function () { panel.hidden ? open() : close(); });
+    zoomBtn.addEventListener("click", function () { setBig(!big); });
+    micBtn.addEventListener("click", function () { recoOn ? micOff() : micOn(); });
     root.querySelector(".iat-x").addEventListener("click", close);
     root.querySelector(".iat-clear").addEventListener("click", function () {
       turns = []; save(); paint(); input.focus();
@@ -345,11 +423,12 @@
     words();
     document.body.appendChild(root);
     paint();
-    withAvatar(function () {
-      if (av || !face) return;
-      try { av = window.Avatar.mount(face, { alt: "Karla", className: "iat-av" }); }
+    withPersona(function () {
+      if (av) return;
+      try { av = window.Persona.mount(stageBtn, { alt: "Karla" }); }
       catch (e) { av = null; }
     });
+    setupMic();
   }
 
   function words() {
@@ -364,25 +443,44 @@
     input.placeholder = x.ph;
     sendBtn.textContent = x.send;
     root.querySelector(".iat-note").textContent = x.note;
+    if (zoomBtn) {
+      zoomBtn.textContent = big ? "\u2922" : "\u2921";
+      zoomBtn.setAttribute("aria-label", big ? x.small : x.big);
+      zoomBtn.title = zoomBtn.getAttribute("aria-label");
+    }
+    if (micBtn) micBtn.setAttribute("aria-label", recoOn ? x.micStop : x.mic);
   }
 
   var CSS =
   ".iat-root{position:fixed;right:14px;bottom:14px;z-index:2147482000;font:inherit;" +
     "font-size:15px;line-height:1.5;color:#393B66}" +
-  ".iat-btn{display:flex;align-items:center;gap:7px;padding:11px 17px;border:none;cursor:pointer;" +
-    "border-radius:999px;background:#378EF6;color:#fff;font:inherit;font-size:.95rem;font-weight:600;" +
-    "box-shadow:0 6px 20px rgba(55,142,246,.38)}" +
-  ".iat-btn:hover{filter:brightness(1.07)}" +
-  ".iat-btn:focus-visible{outline:2px solid #393B66;outline-offset:2px}" +
-  ".iat-spark{font-size:1.05em}" +
+  ".iat-btn{display:block;position:relative;padding:0;border:none;background:none;cursor:pointer;" +
+    "font:inherit;line-height:0}" +
+  ".iat-btn:focus-visible{outline:2px solid #378EF6;outline-offset:6px;border-radius:14px}" +
+  ".iat-stage{display:block;width:112px;margin:0 auto;filter:drop-shadow(0 10px 18px rgba(25,28,60,.3))}" +
+  ".iat-btn:hover .iat-stage{filter:drop-shadow(0 12px 22px rgba(55,142,246,.45))}" +
+  ".iat-btn-txt{display:block;margin-top:-10px;padding:6px 13px;border-radius:999px;" +
+    "background:#378EF6;color:#fff;font-size:.82rem;font-weight:600;line-height:1.3;" +
+    "box-shadow:0 5px 14px rgba(55,142,246,.4);white-space:nowrap}" +
+  ".iat-stage-panel{width:92px;margin:4px auto -6px}" +
+  ".iat-root.big .iat-stage-panel{width:188px;margin:6px auto -4px}" +
+  ".iat-root.big .iat-panel{width:min(430px,calc(100vw - 28px));max-height:min(86vh,680px)}" +
   ".iat-panel{position:absolute;right:0;bottom:0;width:min(380px,calc(100vw - 28px));" +
     "max-height:min(72vh,560px);display:flex;flex-direction:column;overflow:hidden;" +
     "border-radius:18px;background:#fff;border:1px solid rgba(57,59,102,.14);" +
     "box-shadow:0 18px 50px rgba(30,32,70,.26)}" +
   ".iat-head{display:flex;align-items:center;gap:8px;padding:12px 14px;" +
     "border-bottom:1px solid rgba(57,59,102,.1)}" +
-  ".iat-face{flex:none;width:42px;height:42px;border-radius:50%;overflow:hidden;background:rgba(55,142,246,.12);position:relative}" +
-  ".iat-face .av,.iat-face img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}" +
+  ".iat-zoom{flex:none;border:none;background:transparent;cursor:pointer;color:#6B6E99;" +
+    "font:inherit;font-size:1rem;line-height:1;padding:4px 6px;border-radius:8px}" +
+  ".iat-zoom:hover{background:rgba(55,142,246,.12);color:#378EF6}" +
+  ".iat-mic{flex:none;width:40px;border:1px solid rgba(55,142,246,.45);border-radius:12px;" +
+    "background:transparent;color:#1F6FD0;cursor:pointer;font:inherit;font-size:1.05rem}" +
+  ".iat-mic::before{content:\"\\1F3A4\"}" +
+  ".iat-mic:hover{background:rgba(55,142,246,.12)}" +
+  ".iat-mic.on{background:#E8453C;border-color:#E8453C;color:#fff;animation:iat-pulse 1.1s infinite}" +
+  ".iat-mic:disabled{opacity:.45;cursor:default}" +
+  "@keyframes iat-pulse{50%{box-shadow:0 0 0 7px rgba(232,69,60,.18)}}" +
   ".iat-speak{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:4px 10px;border:1px solid rgba(55,142,246,.45);border-radius:999px;background:transparent;color:#1F6FD0;cursor:pointer;font:inherit;font-size:.78rem}" +
   ".iat-speak::before{content:\"\\1F509\";font-size:.95em}" +
   ".iat-speak:hover{background:rgba(55,142,246,.12)}" +
@@ -429,6 +527,10 @@
     ".iat-msg code{background:rgba(255,255,255,.12)}" +
     ".iat-msg a{color:#7DB6FA}" +
     ".iat-chips button{border-color:#7DB6FA;color:#7DB6FA}" +
+    ".iat-zoom{color:#A6A9CE}" +
+    ".iat-zoom:hover{background:rgba(125,182,250,.18);color:#7DB6FA}" +
+    ".iat-mic{border-color:rgba(125,182,250,.5);color:#7DB6FA}" +
+    ".iat-mic:hover{background:rgba(125,182,250,.16)}" +
     ".iat-speak{border-color:rgba(125,182,250,.5);color:#7DB6FA}" +
     ".iat-speak:hover{background:rgba(125,182,250,.16)}" +
     ".iat-speak.on{background:#378EF6;border-color:#378EF6;color:#fff}" +
@@ -437,7 +539,9 @@
   // en móvil el selector de idioma ocupa la esquina de abajo a la derecha
   "@media (max-width:560px){" +
     ".iat-root{right:auto;left:10px;bottom:10px}" +
-    ".iat-btn{padding:10px 14px;font-size:.88rem}" +
+    ".iat-stage{width:92px}" +
+    ".iat-btn-txt{font-size:.76rem;padding:5px 11px}" +
+    ".iat-root.big .iat-stage-panel{width:150px}" +
     ".iat-panel{right:auto;left:0;width:calc(100vw - 20px);max-height:74vh}" +
     // el selector de idioma flota encima, abajo a la derecha: que la nota no pase por debajo
     ".iat-note{margin-right:100px}}";
