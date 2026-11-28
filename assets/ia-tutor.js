@@ -174,7 +174,7 @@
     var intentos = 0;
     (function carga() {
       var sc = document.createElement("script");
-      sc.id = id; sc.src = ASSETS + "persona.js?v=9";
+      sc.id = id; sc.src = ASSETS + "persona.js?v=10";
       sc.addEventListener("load", function () { if (window.Persona) cb(); });
       sc.addEventListener("error", function () {
         sc.remove();
@@ -624,6 +624,12 @@
     "max-height:min(72vh,560px);display:flex;flex-direction:column;overflow:hidden;" +
     "border-radius:18px;background:#fff;border:1px solid rgba(57,59,102,.14);" +
     "box-shadow:0 18px 50px rgba(30,32,70,.26)}" +
+  // display:flex en .iat-panel le gana a la regla [hidden]{display:none} del navegador,
+  // que pierde por ser suya y no nuestra. En las lecciones no se notaba porque su propio
+  // CSS ya trae un [hidden]{display:none}; en las páginas que no lo traen el panel salía
+  // abierto de entrada y para siempre, con el hueco de la cara vacío: ella, según el
+  // código, estaba en el botón, tapado por detrás del panel.
+  ".iat-root [hidden]{display:none!important}" +
   ".iat-head{display:flex;align-items:center;gap:6px;padding:12px 12px;" +
     "border-bottom:1px solid rgba(57,59,102,.1)}" +
   ".iat-lang{flex:none;max-width:98px;border:1px solid rgba(57,59,102,.18);border-radius:9px;" +
