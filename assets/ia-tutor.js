@@ -574,14 +574,20 @@
     return null;
   }
 
-  // "ver la respuesta" y "borrar" también escriben en el marcador: eso no es un acierto
+  // "ver las respuestas" y "borrar" también escriben en el marcador: eso no es un acierto.
+  // Ojo con el texto: el botón de corregir de A1.1 se llama "Comprobar mis respuestas",
+  // así que primero se reconoce al que corrige y sólo después se busca la trampa.
+  var CORRIGE = /v[eé]rifier|comprobar|corregir|corriger|revisar|valider|check my answers/i;
+  var TRAMPA = /voir les r[eé]ponses|show answers|ver las respuestas|voir un mod[eè]le|see the answers|afficher|montrer|effacer|recommencer|borrar|limpiar|r[eé]initialiser|soluci[oó]n|solution/i;
   function vigilaTrampas() {
     document.addEventListener("click", function (e) {
       var b = e.target && e.target.closest && e.target.closest("button,a,[role=button]");
       if (!b) return;
-      var marca = (b.getAttribute("data-reveal") || "") + " " + (b.getAttribute("data-reset") || "") +
-                  " " + (typeof b.className === "string" ? b.className : "") + " " + (b.textContent || "");
-      if (/reveal|reset|solution|afficher|montrer|effacer|respuesta|réponse|reponse|borrar|limpiar/i.test(marca))
+      var txt = (b.textContent || "").replace(/\s+/g, " ").trim();
+      if (b.hasAttribute("data-check") || CORRIGE.test(txt)) return;      // éste sí corrige
+      var cl = typeof b.className === "string" ? b.className : "";
+      if (b.hasAttribute("data-reveal") || b.hasAttribute("data-reset") ||
+          /reveal|reset|solution/i.test(cl) || TRAMPA.test(txt))
         trampaHasta = Date.now() + ESPERA_TRAMPA;
     }, true);
   }
