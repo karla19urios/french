@@ -147,6 +147,23 @@ a.learn-cta:focus-visible,.learn-btn:focus-visible{outline:3px solid #7DB6FA;out
 .learn-arrow{transition:transform .2s ease}
 .learn-btn:hover .learn-arrow,a.learn-cta:hover .learn-arrow{transform:translateX(4px)}
 @media (max-width:560px){.learn-cta::before{width:62%;height:36%}.learn-cta::after{width:58%;height:38%}}
+/* clôture du niveau : le quiz de révision */
+.exam-cta{position:relative;overflow:hidden;max-width:1060px;margin:18px auto 0;
+  padding:clamp(28px,4.4vw,44px) clamp(22px,5vw,48px);border-radius:32px;border:1px solid var(--border);
+  background:var(--card);display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  box-shadow:0 18px 44px rgba(10,11,26,.18)}
+.exam-cta::before{content:"";position:absolute;top:0;left:0;width:6px;height:100%;
+  background:linear-gradient(180deg,#393B66,#378EF6)}
+.exam-txt{flex:1 1 320px;min-width:0}
+.exam-kicker{margin:0;font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--rouge)}
+.exam-cta h2{margin:.35rem 0 .5rem;font-size:clamp(1.35rem,3vw,1.9rem)}
+.exam-cta p.exam-sub{margin:0;color:var(--muted);font-size:.95rem;line-height:1.5}
+.exam-btn{display:inline-flex;align-items:center;gap:.65rem;background:#2E2D2D;color:#fff;font-weight:600;
+  font-size:clamp(.95rem,1.5vw,1.05rem);letter-spacing:.09em;text-transform:uppercase;padding:1.05rem 2.1rem;
+  border-radius:999px;text-decoration:none;box-shadow:0 10px 24px rgba(10,11,26,.3);
+  transition:transform .2s ease, background .2s ease}
+.exam-btn:hover{transform:translateY(-2px) scale(1.03);background:#393B66}
+.exam-btn:focus-visible{outline:3px solid #7DB6FA;outline-offset:4px}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -281,12 +298,25 @@ a.learn-cta:focus-visible,.learn-btn:focus-visible{outline:3px solid #7DB6FA;out
       <a class="learn-btn" href="audios.html"><span>Audios</span><span class="learn-arrow" aria-hidden="true">→</span></a>
     </span>
   </div>
+
+  <section class="exam-cta">
+    <div class="exam-txt">
+      <p class="exam-kicker">Pour finir le niveau</p>
+      <h2>Quiz de révision A1.1</h2>
+      <p class="exam-sub">Les 14 leçons en un seul examen : 42 questions notées (écouter, lire, écrire), l'oral en entraînement, et les audios dans une vraie voix québécoise. Note de passage : 70 %.</p>
+    </div>
+    <a class="exam-btn" href="quiz.html"><span>Commencer le quiz</span><span class="learn-arrow" aria-hidden="true">→</span></a>
+  </section>
 </main>
 
 <footer>Site local généré pour consulter les fichiers du cours A1.1</footer>
 <script src="../assets/i18n.js?v=3"></script>
 <script>
 I18N.add({
+"Pour finir le niveau":{"es": "Para terminar el nivel", "en": "To finish the level"},
+"Quiz de révision A1.1":{"es": "Quiz de repaso A1.1", "en": "A1.1 revision quiz"},
+"Les 14 leçons en un seul examen : 42 questions notées (écouter, lire, écrire), l'oral en entraînement, et les audios dans une vraie voix québécoise. Note de passage : 70 %.":{"es": "Las 14 lecciones en un solo examen: 42 preguntas calificadas (escuchar, leer, escribir), el oral como práctica y los audios con una voz real de Quebec. Nota de aprobación: 70 %.", "en": "All 14 lessons in one exam: 42 graded questions (listening, reading, writing), speaking as practice, and the audio in a real Quebec voice. Pass mark: 70%."},
+"Commencer le quiz":{"es": "Empezar el quiz", "en": "Start the quiz"},
 "On va apprendre !":{"es": "¡Vamos a aprender!", "en": "Let's learn!"},
 "Grammaire":{"es": "Gramática", "en": "Grammar"},
 "Lectures":{"es": "Lecturas", "en": "Readings"},

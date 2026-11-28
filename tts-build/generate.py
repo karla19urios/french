@@ -7,7 +7,7 @@ Secret: ~/.config/azure-tts.env with AZURE_TTS_KEY and AZURE_TTS_REGION (never p
 
 Resumable: phrases whose MP3 already exists are skipped. Run:  python3 tts-build/generate.py [--limit N | --sample N] [--pages A2/]
 """
-import json, os, re, sys, time, html, urllib.request, urllib.error
+import glob, json, os, re, sys, time, html, urllib.request, urllib.error
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 OUT = os.path.join(ROOT, "assets", "tts")
@@ -75,8 +75,9 @@ def main():
     print("voices:", ", ".join(ca), flush=True)
 
     texts = set()
-    for name in ("phrases_static.json", "phrases_runtime.json"):
-        p = os.path.join(ROOT, "tts-build", name)
+    # every tts-build/phrases_*.json: the two extracted ones, plus hand-written lists
+    # for pages whose spoken text lives in JavaScript (e.g. phrases_quiz.json)
+    for p in sorted(glob.glob(os.path.join(ROOT, "tts-build", "phrases_*.json"))):
         if os.path.exists(p):
             for page, v in json.load(open(p, encoding="utf-8")).items():
                 if not page.startswith(section): continue
