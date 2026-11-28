@@ -15,32 +15,40 @@ select, input, textarea { max-width: 100%; }
 
 /* ===== One knob for the size of every letter on the site =====
    Every text size in the pages is written in rem, so this single value sets them
-   all. 18.5px instead of the browser's 16px is about 16% bigger everywhere, down
-   to the smallest label. The lines get shorter and the pages get longer: that is
-   the trade we want — scrolling costs nothing, squinting does. */
-html { font-size: 18.5px; }
+   all. 20px instead of the browser's 16px is a quarter bigger everywhere, down to
+   the smallest label — and since the cards, the pills and their padding are in em
+   and rem too, the boxes grow with the words inside them. */
+html { font-size: 20px; }
+@media (max-width: 700px) { html { font-size: 18.5px; } }
 @media (max-width: 400px) { html { font-size: 17.5px; } }
 
 /* bigger letters want more air between the lines */
-main p, main li, .wrap p, .wrap li, .art p, .art li, .page p, .page li { line-height: 1.65; }
+main p, main li, .wrap p, .wrap li, .art p, .art li, .page p, .page li { line-height: 1.6; }
 
-/* ===== Layout: a column you can read in one eye-sweep ===== */
+/* ===== Layout: use the screen, don't leave margins on either side ===== */
 html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 img, video, canvas { max-width: 100%; }
 
-/* reading column: narrow on purpose, slim side gutters everywhere */
+/* the page keeps the width it had: the letters got bigger, not the margins */
 .wrap, main, .hero-inner, .scorebar .inner, .navpills, footer, .app {
-  max-width: min(820px, 100%) !important;
+  max-width: min(1440px, 100%) !important;
   padding-left: clamp(10px, 2.2vw, 22px) !important;
   padding-right: clamp(10px, 2.2vw, 22px) !important;
 }
-/* lists of cards (level pages, lesson lists) get a little more room: three across, not six */
-footer, .hero-inner, .navpills, main:has(.grid) { max-width: min(1020px, 100%) !important; }
+/* lists of cards (level pages, lesson lists) can use the whole screen */
+footer, .hero-inner, .navpills, main:has(.grid) { max-width: min(1760px, 100%) !important; }
 
-@media (min-width: 1000px) { main .grid { grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)) !important; } }
+/* fewer cards per row, each one bigger — the same span of screen, in larger pieces */
+@media (min-width: 1000px) { main .grid { grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)) !important; } }
+
+/* the index at the top of a lesson: wider tiles, so a title of three words
+   stops breaking into three lines now that the letters are bigger */
+@media (min-width: 900px) {
+  .wrap .toc { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+}
 
 /* the older 'browser window' reading pages and the A2 lesson shell */
-.browser-frame, .flag-stripe, .shell { max-width: min(940px, 100%) !important; }
+.browser-frame, .flag-stripe, .shell { max-width: min(1440px, 100%) !important; }
 .browser-body .wrap { max-width: none !important; }
 
 /* phones */
