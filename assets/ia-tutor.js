@@ -117,7 +117,7 @@
     var id = "iat-persona-js", prev = document.getElementById(id);
     if (prev) { prev.addEventListener("load", cb); return; }
     var sc = document.createElement("script");
-    sc.id = id; sc.src = ASSETS + "persona.js?v=6";
+    sc.id = id; sc.src = ASSETS + "persona.js?v=7";
     sc.addEventListener("load", function () { if (window.Persona) cb(); });
     document.head.appendChild(sc);
   }
@@ -427,6 +427,10 @@
     paint();
     withPersona(function () {
       if (av) return;
+      if (window.Persona.ratio) {
+        stageBtn.style.aspectRatio = window.Persona.ratio;
+        stagePanel.style.aspectRatio = window.Persona.ratio;
+      }
       try { av = window.Persona.mount(stageBtn, { alt: "Karla" }); }
       catch (e) { av = null; }
     });
@@ -459,7 +463,12 @@
   ".iat-btn{display:block;position:relative;padding:0;border:none;background:none;cursor:pointer;" +
     "font:inherit;line-height:0}" +
   ".iat-btn:focus-visible{outline:2px solid #378EF6;outline-offset:6px;border-radius:14px}" +
-  ".iat-stage{display:block;width:112px;margin:0 auto;filter:drop-shadow(0 10px 18px rgba(25,28,60,.3))}" +
+  // La proporción tiene que estar en el hueco, no sólo en el retrato: el retrato saca su
+  // altura de su aspect-ratio, y la altura automática de un elemento flexible no resuelve
+  // la de un hijo así, de modo que el hueco se quedaba en cero y ella acababa pintada
+  // por debajo de la conversación. persona.js manda: abajo se recoge su valor.
+  ".iat-stage{display:block;width:112px;aspect-ratio:402/528;margin:0 auto;" +
+    "filter:drop-shadow(0 10px 18px rgba(25,28,60,.3))}" +
   ".iat-btn:hover .iat-stage{filter:drop-shadow(0 12px 22px rgba(55,142,246,.45))}" +
   ".iat-btn-txt{display:block;margin-top:-10px;padding:6px 13px;border-radius:999px;" +
     "background:#378EF6;color:#fff;font-size:.82rem;font-weight:600;line-height:1.3;" +

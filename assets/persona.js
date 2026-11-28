@@ -266,5 +266,5 @@
     return inst;
   }
 
-  window.Persona = { mount: mount, base: BASE };
+  window.Persona = { mount: mount, base: BASE, ratio: W + " / " + H };
 })();
