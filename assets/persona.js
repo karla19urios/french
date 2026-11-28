@@ -24,7 +24,8 @@
   var EYES  = { l: 127 / W, t:  56 / H, w: 200 / W, h: 104 / H };
   var BOUCHES = ["m_repos", "m_mmm", "m_ou", "m_sourire", "m_ah"];   // de cerrada a abierta
   var CORPS = { repos: "neutre", pense: "reflexion", rire: "rire",
-                surprise: "surprise", salut: "salut", bravo: "bravo" };
+                surprise: "surprise", salut: "salut", bravo: "bravo",
+                ecoute: "ecoute", doute: "doute" };
   var MASQUE_BOUCHE = "radial-gradient(ellipse 58% 54% at 50% 52%, #000 52%, rgba(0,0,0,.6) 78%, transparent 100%)";
   var MASQUE_YEUX = "radial-gradient(ellipse 64% 50% at 50% 50%, #000 48%, rgba(0,0,0,.6) 76%, transparent 100%)";
 

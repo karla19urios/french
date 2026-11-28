@@ -117,7 +117,7 @@
     var id = "iat-persona-js", prev = document.getElementById(id);
     if (prev) { prev.addEventListener("load", cb); return; }
     var sc = document.createElement("script");
-    sc.id = id; sc.src = ASSETS + "persona.js?v=1";
+    sc.id = id; sc.src = ASSETS + "persona.js?v=2";
     sc.addEventListener("load", function () { if (window.Persona) cb(); });
     document.head.appendChild(sc);
   }
@@ -240,7 +240,7 @@
     mood("pense");
 
     abort = new AbortController();
-    var answer = "", failed = null;
+    var answer = "", failed = null, malo = false;
 
     fetch(ENDPOINT, {
       method: "POST",
@@ -281,16 +281,17 @@
         });
       })();
     }).then(function () {
-      if (failed && !answer) { out.innerHTML = '<p class="iat-err">' + esc(errText(failed)) + "</p>"; }
+      if (failed && !answer) { malo = true; out.innerHTML = '<p class="iat-err">' + esc(errText(failed)) + "</p>"; }
       else if (answer) { turns.push({ role: "assistant", text: answer }); save(); addSpeak(out, answer); }
-      else { out.innerHTML = '<p class="iat-err">' + esc(errText("server_error")) + "</p>"; }
+      else { malo = true; out.innerHTML = '<p class="iat-err">' + esc(errText("server_error")) + "</p>"; }
     }).catch(function (err) {
       if (err && err.name === "AbortError") { out.remove(); return; }
+      malo = true;
       out.innerHTML = '<p class="iat-err">' +
         esc(errText(typeof err === "string" ? err : "network")) + "</p>";
     }).then(function () {
       busy = false; sendBtn.disabled = false; abort = null;
-      mood(null);
+      mood(malo ? "doute" : null, malo ? 2600 : 0);   // si algo falló, lo dice la cara
       if (micBtn) micBtn.disabled = false;
       log.scrollTop = log.scrollHeight;
     });
@@ -354,13 +355,14 @@
     try { reco.lang = RECO_LANG[lang()] || RECO_LANG.es; reco.start(); }
     catch (e) { return; }
     recoOn = true;
+    mood("ecoute");
     micBtn.classList.add("on");
     micBtn.setAttribute("aria-label", t().micStop);
     input.placeholder = t().micOn;
   }
   function micOff() {
     if (!reco) return;
-    if (recoOn) { try { reco.abort(); } catch (e) {} }
+    if (recoOn) { try { reco.abort(); } catch (e) {} mood(null); }
     recoOn = false;
     micBtn.classList.remove("on");
     micBtn.setAttribute("aria-label", t().mic);
