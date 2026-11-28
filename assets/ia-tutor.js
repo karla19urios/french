@@ -474,7 +474,7 @@
   ".iat-zoom{flex:none;border:none;background:transparent;cursor:pointer;color:#6B6E99;" +
     "font:inherit;font-size:1rem;line-height:1;padding:4px 6px;border-radius:8px}" +
   ".iat-zoom:hover{background:rgba(55,142,246,.12);color:#378EF6}" +
-  ".iat-mic{flex:none;width:40px;border:1px solid rgba(55,142,246,.45);border-radius:12px;" +
+  ".iat-mic{flex:none;width:40px;height:40px;border:1px solid rgba(55,142,246,.45);border-radius:12px;" +
     "background:transparent;color:#1F6FD0;cursor:pointer;font:inherit;font-size:1.05rem}" +
   ".iat-mic::before{content:\"\\1F3A4\"}" +
   ".iat-mic:hover{background:rgba(55,142,246,.12)}" +
@@ -508,13 +508,13 @@
   ".iat-chips button{border:1px dashed #378EF6;background:transparent;color:#1F6FD0;cursor:pointer;" +
     "font:inherit;font-size:.82rem;padding:5px 10px;border-radius:999px;text-align:left}" +
   ".iat-chips button:hover{background:rgba(55,142,246,.12)}" +
-  ".iat-form{display:flex;gap:8px;padding:10px 12px 0}" +
+  ".iat-form{display:flex;align-items:flex-end;gap:8px;padding:10px 12px 0}" +
   ".iat-in{flex:1;resize:none;border:1px solid rgba(57,59,102,.2);border-radius:12px;" +
     "padding:9px 11px;font:inherit;font-size:.93rem;color:inherit;background:#fff;" +
     "max-height:110px;overflow-y:auto}" +
   ".iat-in:focus{outline:none;border-color:#378EF6}" +
-  ".iat-send{flex:none;border:none;border-radius:12px;background:#378EF6;color:#fff;cursor:pointer;" +
-    "font:inherit;font-size:.9rem;font-weight:600;padding:0 15px}" +
+  ".iat-send{flex:none;height:40px;border:none;border-radius:12px;background:#378EF6;color:#fff;" +
+    "cursor:pointer;font:inherit;font-size:.9rem;font-weight:600;padding:0 15px}" +
   ".iat-send:disabled{opacity:.5;cursor:default}" +
   ".iat-note{margin:8px 12px 11px;font-size:.73rem;line-height:1.45;color:#6B6E99}" +
   "@media (prefers-color-scheme:dark){" +
