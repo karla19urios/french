@@ -62,6 +62,10 @@
     try {
       ctx = ctx || new AC();
       if (ctx.state === "suspended") ctx.resume();
+      // Enchufar un <audio> a un contexto parado lo deja mudo, y el navegador no deja
+      // arrancar el contexto hasta que el estudiante toca algo. Mejor sin análisis y con
+      // la boca fingida un momento que una lección que se queda sin voz.
+      if (ctx.state !== "running") return null;
       var src = ctx.createMediaElementSource(audio);
       var an = ctx.createAnalyser();
       an.fftSize = 512; an.smoothingTimeConstant = .2;

@@ -174,7 +174,7 @@
     var intentos = 0;
     (function carga() {
       var sc = document.createElement("script");
-      sc.id = id; sc.src = ASSETS + "persona.js?v=8";
+      sc.id = id; sc.src = ASSETS + "persona.js?v=9";
       sc.addEventListener("load", function () { if (window.Persona) cb(); });
       sc.addEventListener("error", function () {
         sc.remove();
